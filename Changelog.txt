@@ -1,0 +1,7 @@
+Changelog:
+- Mt. Everest gives adjacent Mountains +1 Tourism;
+- added base code for potential new Natural Wonders;
+- changed setting names to be easily recognized in Community table (f.e. MW-MAX-ERA --> MW-SETTING-MAX-ERA); I hope all stuff was found and changed correctly; report any issues;
+- fixed, revised and optimized the Civilopedia entries for Natural Wonders;
+- fixed multiple text errors (mostly in Natural Wonders part);
+- fixed Dallol placement (missing terrain requiements);
