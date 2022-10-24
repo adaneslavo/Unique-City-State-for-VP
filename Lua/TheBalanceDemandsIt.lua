@@ -54,11 +54,28 @@ local tBuildingsPassiveAbilities = {
 	GameInfoTypes.BUILDING_MILITARISTIC_HOSTILE
 }
 
-local ePolicyMaritime = GameInfoTypes.POLICY_MARITIME
-local ePolicyReligious = GameInfoTypes.POLICY_RELIGIOUS
-local ePolicyReligiousFriendly = GameInfoTypes.POLICY_RELIGIOUS_FRIENDLY
-local ePolicyMilitaristic = GameInfoTypes.POLICY_MILITARISTIC
-local ePolicyMilitaristicFriendly = GameInfoTypes.POLICY_MILITARISTIC_FRIENDLY
+local tPoliciesPassiveAbilities = {
+	GameInfoTypes.POLICY_MARITIME, -- 1
+	GameInfoTypes.POLICY_MARITIME_FRIENDLY,
+	GameInfoTypes.POLICY_MARITIME_NEUTRAL,
+	GameInfoTypes.POLICY_MARITIME_HOSTILE,
+	GameInfoTypes.POLICY_MERCANTILE,
+	GameInfoTypes.POLICY_MERCANTILE_FRIENDLY, -- 6
+	GameInfoTypes.POLICY_MERCANTILE_NEUTRAL,
+	GameInfoTypes.POLICY_MERCANTILE_HOSTILE,
+	GameInfoTypes.POLICY_CULTURED,
+	GameInfoTypes.POLICY_CULTURED_FRIENDLY,
+	GameInfoTypes.POLICY_CULTURED_NEUTRAL, -- 11
+	GameInfoTypes.POLICY_CULTURED_HOSTILE,
+	GameInfoTypes.POLICY_RELIGIOUS,
+	GameInfoTypes.POLICY_RELIGIOUS_FRIENDLY,
+	GameInfoTypes.POLICY_RELIGIOUS_NEUTRAL,
+	GameInfoTypes.POLICY_RELIGIOUS_HOSTILE, -- 16
+	GameInfoTypes.POLICY_MILITARISTIC,
+	GameInfoTypes.POLICY_MILITARISTIC_FRIENDLY,
+	GameInfoTypes.POLICY_MILITARISTIC_NEUTRAL,
+	GameInfoTypes.POLICY_MILITARISTIC_HOSTILE
+}
 
 local eBuildMarsh = GameInfoTypes.BUILD_MARSH
 local eBuildMound = GameInfoTypes.BUILD_MOUND
@@ -84,6 +101,8 @@ local eUnitGreatDiplomat = GameInfoTypes.UNIT_GREAT_DIPLOMAT
 local eUnitMissionary = GameInfoTypes.UNIT_MISSIONARY
 local eUnitWorker = GameInfoTypes.UNIT_WORKER
 local eUnitFishingBoat = GameInfoTypes.UNIT_WORKBOAT
+local eUnitCaravan = GameInfoTypes.UNIT_CARAVAN
+local eUnitCargoShip = GameInfoTypes.UNIT_CARGO_SHIP
 
 local tMinorTraits = {
 	GameInfoTypes.MINOR_TRAIT_MARITIME,
@@ -258,6 +277,20 @@ end
 GameEvents.ResolutionResult.Add(MovingSwiftly)
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
+function UnitNotificationLoad(pMinorPlayer, pMajorPlayer, sUnitName)
+	pMajorCapitalCity = pMajorPlayer:GetCapitalCity()
+	pMinorCapitalCity = pMinorPlayer:GetCapitalCity()
+	sMinorCityName = pMinorCapitalCity:GetName()
+
+	if pMajorPlayer:IsHuman() then
+		pMajorPlayer:AddNotification(0, 
+			'You received new [COLOR_POSITIVE_TEXT]' .. sUnitName .. '[ENDCOLOR] unit from [COLOR_CYAN]' .. sMinorCityName .. '[ENDCOLOR] as a gratitude for great cooperation and friendly attitutde', 
+			'Civilians arrived from friendly City-State', 
+			pMajorCapitalCity:GetX(), pMajorCapitalCity:GetY())
+	end
+end
+-----------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
 -- Unique stuff for CSs types and personalities
 -- MARITIME
 function MaritimeCityStatesBonuses(ePlayer, iX, iY)
@@ -372,7 +405,7 @@ function MaritimeCityStatesBonuses(ePlayer, iX, iY)
 	
 	-- rest
 	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[1], 1)
-	pPlayer:SetHasPolicy(ePolicyMaritime, true)
+	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[1], true)
 	
 	
 	-- Maritime - Friendly
@@ -410,14 +443,16 @@ function FreeWorkerFromCityState(ePlayer)
 					if pMajorPlayer:IsMinorCiv() then break end
 					if not pMajorPlayer:IsEverAlive() then break end
 					
-					if pPlayer:IsFriends(eMajorPlayer) then
+					if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
 						local iWorkerOrFishingBoatSpawnChance = RandomNumberBetween(1, 100)
 						local bIsMajorHasCoast = pMajorPlayer:GetCapitalCity():IsCoastal()
 						
 						if iWorkerOrFishingBoatSpawnChance <= 50 and bIsMajorHasCoast then
 							pMajorPlayer:AddFreeUnit(eUnitFishingBoat, UNITAI_DEFENSE)
+							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Fishing Boat')
 						else	
 							pMajorPlayer:AddFreeUnit(eUnitWorker, UNITAI_DEFENSE)
+							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Worker')
 						end
 					end
 				end
@@ -560,6 +595,43 @@ function MercantileCityStatesBonuses(ePlayer, iX, iY)
 end
 GameEvents.PlayerCityFounded.Add(MercantileCityStatesBonuses)
 
+function FreeCaravanFromCityState(ePlayer)
+	local pPlayer = Players[ePlayer]
+	
+	if not pPlayer:IsMinorCiv() then return end
+	
+	local pMinorCapital = pPlayer:GetCapitalCity()
+	
+	if pMinorCapital == nil then return end
+	
+	if pMinorCapital:IsHasBuilding(tBuildingsPassiveAbilities[6]) then
+		local iCaravanSpawnChance = RandomNumberBetween(1, 100)
+		
+		if iCaravanSpawnChance <= 5 then
+			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
+				if pMajorPlayer and pMajorPlayer:IsAlive() then
+					if pMajorPlayer:IsMinorCiv() then break end
+					if not pMajorPlayer:IsEverAlive() then break end
+					
+					if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
+						local iCaravanOrCargoSpawnChance = RandomNumberBetween(1, 100)
+						local bIsMajorHasCoast = pMajorPlayer:GetCapitalCity():IsCoastal()
+						
+						if iCaravanOrCargoSpawnChance <= 50 and bIsMajorHasCoast then
+							pMajorPlayer:AddFreeUnit(eUnitCargoShip, UNITAI_DEFENSE)
+							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Cargo Ship')
+						else	
+							pMajorPlayer:AddFreeUnit(eUnitCaravan, UNITAI_DEFENSE)
+							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Caravan')
+						end
+					end
+				end
+			end
+		end
+	end
+end
+GameEvents.PlayerDoTurn.Add(FreeCaravanFromCityState)
+
 
 -- CULTURED
 function CulturedCityStatesBonuses(ePlayer, iX, iY)
@@ -658,12 +730,11 @@ function ReligiousCityStatesBonuses(ePlayer, iX, iY)
 	
 	-- rest
 	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[13], 1)
-	pPlayer:SetHasPolicy(ePolicyReligious, true)
 	
 	-- Religious - Friendly
 	if eMinorPersonality == tMinorPersonalities[1] then
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[14], 1)
-		pPlayer:SetHasPolicy(ePolicyReligiousFriendly, true)
+		pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[14], true)
 	end
 	
 	-- Religious - Neutral
@@ -696,8 +767,13 @@ function FreeMissionariesFromCityState(ePlayer)
 					if pMajorPlayer:IsMinorCiv() then break end
 					if not pMajorPlayer:IsEverAlive() then break end
 					
-					if pPlayer:IsFriends(eMajorPlayer) then
-						pMajorPlayer:AddFreeUnit(eUnitMissionary, UNITAI_DEFENSE)
+					local bCanMissionaryBeSpawned = pMajorPlayer:HasCreatedReligion() or pMajorPlayer:GetCapitalCity():GetReligiousMajority() > 0
+
+					if bCanMissionaryBeSpawned then
+						if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
+							pMajorPlayer:AddFreeUnit(eUnitMissionary, UNITAI_DEFENSE)
+								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Missionary')
+						end
 					end
 				end
 			end
@@ -825,13 +901,13 @@ function MilitaristicCityStatesBonuses(ePlayer, iX, iY)
 	
 	-- rest
 	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[17], 1)
-	pPlayer:SetHasPolicy(ePolicyMilitaristic, true)
+	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[17], true)
 	
 	
 	-- Militaristic - Friendly
 	if eMinorPersonality == tMinorPersonalities[1] then
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[18], 1)
-		pPlayer:SetHasPolicy(ePolicyMilitaristicFriendly, true)
+		pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[18], true)
 	end
 	
 	-- Militaristic - Neutral
@@ -918,11 +994,11 @@ end
 -- BRUSSELS (FEATURE)
 function CanWeBuildMarsh(ePlayer, eUnit, iX, iY, eBuild)
 	if eBuild ~= eBuildMarsh then return true end
-	print("UCS Marsh")
+	
 	local pPlayer = Players[ePlayer]
 	
 	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[2]) > 0) then return false end
-	print("UCS Marsh after", pPlayer:GetEventChoiceCooldown(tEventChoice[2]))
+	
 	return true
 end
 GameEvents.PlayerCanBuild.Add(CanWeBuildMarsh)
@@ -941,11 +1017,11 @@ end
 -- CAHOKIA (IMPROVEMENT)
 function CanWeBuildMound(ePlayer, eUnit, iX, iY, eBuild)
 	if eBuild ~= eBuildMound then return true end
-	print("UCS Mound")
+	
 	local pPlayer = Players[ePlayer]
 	
 	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[3]) > 0) then return false end
-	print("UCS Mound after", pPlayer:GetEventChoiceCooldown(tEventChoice[3]))
+	
 	return true
 end
 GameEvents.PlayerCanBuild.Add(CanWeBuildMound)
@@ -1017,8 +1093,9 @@ function ZurichMerchants(ePlayer)
 	
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[6]) ~= 0 then
 		local iInterest = math.ceil(pPlayer:GetGold() * 0.02)
+		local iInterestCap = 20 * (pPlayer:GetCurrentEra() + 1)
 		
-		if iInterest > 50 * (pPlayer:GetCurrentEra() + 1) then iInterest = 50 * (pPlayer:GetCurrentEra() + 1) end
+		if iInterest > iInterestCap then iInterest = iInterestCap end
 		
 		pPlayer:ChangeGold(iInterest)
 		local pMinorPlayer = Players[tLostCities["eLostZurich"]]

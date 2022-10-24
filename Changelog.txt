@@ -1,7 +1,25 @@
 Changelog:
-- Mt. Everest gives adjacent Mountains +1 Tourism;
-- added base code for potential new Natural Wonders;
-- changed setting names to be easily recognized in Community table (f.e. MW-MAX-ERA --> MW-SETTING-MAX-ERA); I hope all stuff was found and changed correctly; report any issues;
-- fixed, revised and optimized the Civilopedia entries for Natural Wonders;
-- fixed multiple text errors (mostly in Natural Wonders part);
-- fixed Dallol placement (missing terrain requiements);
+- new:
+	- added notifications when receiving new civilian units from CS;
+	- added missing abilities for Mercantile CSs;
+- balancing:
+	- revised all abilities; tweak values; substituted some pointless ones with more useful:
+		- deleted Border Growth malus from religious CSs and added supply cap maluses;
+		- deleted Natural Wonder boost from religious CSs and added defense and hp instead;
+		- Mountains and Atolls now give food instead of faith for religious CSs;
+		- added flat supply cap to militaristic CSs;
+		- and more...
+	- reduced cap for Zurich to 20 Gold/Era (was 50);
+- fixes:	
+	- CS now give Missionaries as follows:
+		- if player has found no Religion and has no Majority Religion in capital, then a Missionary is not spawned;
+		- if player has found no Religion and has a Majority Religion of other player in its capital, then a Missionary will spawn with that Majority Religion;
+		- if player has found a Religion then a Missionary is spawned with his Religion regardless of the Majority Religion in the capital;
+		- if player has found a Religion and lost his Holy City, a Missionary is spawned still with his Religion;
+	- reduced placement condition for CS GPTI to 2nd ring around city (was 3rd);
+	- now GPTI can be placed on resources, so greater chance to have it closer to the city (previously forbidden);
+	- fixed Muscat yields on buildings - now flat like they should be from start (were modifiers);
+	- now units can be given by CS when Allied or Friends (was only Friends);
+- miscellanous:
+	- simplified (shortened) passives descriptions (f.e. omitted yield name if it was base yield);
+	- reworked, fixed, tweaked and simplified some code (both lua and sql);
