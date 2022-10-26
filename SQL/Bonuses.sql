@@ -18,6 +18,18 @@ VALUES	('UCS-EE', 2);
 UPDATE COMMUNITY
 SET Value = '1'
 WHERE Type = 'UCS-EE' AND EXISTS (SELECT * FROM Buildings WHERE Type='BUILDING_EE_DRYDOCK') AND NOT EXISTS (SELECT * FROM COMMUNITY WHERE Type='UCS-EE' AND Value= 0);
+
+-- More Wonders by @adan_eslavo and @Infixo
+INSERT INTO COMMUNITY	
+		(Type,			Value)
+VALUES	('UCS-MW', 2);
+
+UPDATE COMMUNITY
+SET Value = '1'
+WHERE Type = 'UCS-MW' AND EXISTS (SELECT * FROM Resources WHERE Type='RESOURCE_TROPICAL_FISH') AND NOT EXISTS (SELECT * FROM COMMUNITY WHERE Type='UCS-MW' AND Value= 0);
+--==========================================================================================================================
+-- UPDATES AND DEFINES
+--==========================================================================================================================	
 ---------------------------------------------------
 -- Updates - Units
 ---------------------------------------------------
@@ -136,11 +148,9 @@ UPDATE Language_en_US SET Text = '[ICON_INFLUENCE] Influence with City-States st
 UPDATE Language_en_US SET Text = REPLACE(Text, 'Available![ENDCOLOR]', '[ENDCOLOR]available!') WHERE Tag = 'TXT_KEY_CSTATE_CAN_EMBASSY';
 UPDATE Language_en_US SET Text = REPLACE(Text, 'Available![ENDCOLOR].', '[ENDCOLOR]available!') WHERE Tag = 'TXT_KEY_CSTATE_CAN_PROTECT';
 UPDATE Language_en_US SET Text = REPLACE(Text, 'early.[NEWLINE][NEWLINE]', 'early.') WHERE Tag = 'TXT_KEY_CSTATE_JERK_STATUS';	
----------------------------------------------------
----------------------------------------------------
----------------------------------------------------
--- Art
----------------------------------------------------
+--==========================================================================================================================
+-- ATLASES
+--==========================================================================================================================	
 INSERT INTO IconTextureAtlases 
 			(Atlas, 								IconSize, 	Filename, 					IconsPerRow, 	IconsPerColumn)
 SELECT 		'UCS_BUILDING_ATLAS', 					'256', 		'UCS_Buildings_256.dds', 	8, 				2 UNION ALL
@@ -156,11 +166,9 @@ SELECT 		'UCS_PROMOTION_ATLAS', 					'16', 		'UCS_Promotions_016.dds', 	5, 				5
 SELECT 		'UCS_IMPROVEMENT_ATLAS', 				'256', 		'UCS_Improvements_256.dds', 2, 				1 UNION ALL
 SELECT 		'UCS_IMPROVEMENT_ATLAS', 				'64', 		'UCS_Improvements_064.dds', 2, 				1 UNION ALL
 SELECT 		'UCS_IMPROVEMENT_ATLAS', 				'45', 		'UCS_Improvements_045.dds', 2, 				1;
----------------------------------------------------
----------------------------------------------------
----------------------------------------------------
--- Texts
----------------------------------------------------
+--==========================================================================================================================
+-- TEXTS
+--==========================================================================================================================	
 INSERT INTO Language_en_US (Tag, Text)
 -- different texts
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV', 					'A Shift in Alliance'  UNION ALL
@@ -537,6 +545,9 @@ SELECT 'TXT_KEY_BUILDING_LHASA_HELP', 					'+1 and +10% [ICON_CULTURE] Culture a
 SELECT 'TXT_KEY_BUILDING_LHASA_QUOTE', 					'[NEWLINE][TAB][TAB]"The first time I stepped onto the rooftop of the Potala Palace, I felt, as never before or since, as if I were stepping onto the rooftop of my being; onto some dimension of consciousness that I''d never visited before."[NEWLINE] – Pico Iyer';
 ---------------------------------------------------
 ---------------------------------------------------
+--==========================================================================================================================
+-- DEFINITIONS
+--==========================================================================================================================	
 ---------------------------------------------------
 -- Definitions - Minor Civilizations
 ---------------------------------------------------
@@ -1940,9 +1951,6 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_SIERRA_LEONE', 	'YIELD_CULTURE', 	-5;
 ---------------------------------------------------
 -- Definitions - Improvements
 ---------------------------------------------------	
---==========================================================================================================================
--- ARTDEFINES
---==========================================================================================================================	
 INSERT INTO ArtDefine_LandmarkTypes
 			(Type, 							LandmarkType, 	FriendlyName)
 VALUES 		('ART_DEF_IMPROVEMENT_MARSH', 	'Improvement', 	'BRUSSELS_MARSH');
@@ -2015,3 +2023,20 @@ INSERT INTO Policy_ImprovementYieldChanges
 SELECT 		'POLICY_CIVIL_SOCIETY', 	'IMPROVEMENT_MOUND', 	'YIELD_FOOD', 		4 UNION ALL
 SELECT 		'POLICY_MOBILIZATION', 		'IMPROVEMENT_MOUND', 	'YIELD_SCIENCE', 	3 UNION ALL
 SELECT 		'POLICY_FIVE_YEAR_PLAN', 	'IMPROVEMENT_MOUND', 	'YIELD_PRODUCTION', 3; 
+--==========================================================================================================================
+-- COMPATIBLITY
+--==========================================================================================================================
+-- POTALA PALACE - More Wonders
+UPDATE Language_en_US
+SET Text = '[COLOR_YIELD_FOOD]Potala Palace[ENDCOLOR] depends strongly on alliance with [COLOR_CYAN]Lhasa[ENDCOLOR] (+10%[ICON_FOOD]; +10%[ICON_CULTURE]; halved when not allied with [COLOR_CYAN]Lhasa[ENDCOLOR]). Ties bonds between these two countries ([COLOR_YIELD_GOLD]Sphere of Influence[ENDCOLOR] over [COLOR_CYAN]Lhasa[ENDCOLOR]) using special diplomatic techniques (+1[ICON_DIPLOMAT] League Vote).'
+WHERE Tag = 'TXT_KEY_BUILDING_LHASA_HELP' AND EXISTS (SELECT * FROM COMMUNITY WHERE Type='MW-SETTING-HELP' AND Value= 1) AND EXISTS (SELECT * FROM COMMUNITY WHERE Type='UCS-MW' AND Value= 1);
+
+UPDATE Language_en_US SET Text = REPLACE(Text, 'Requires and alliance with [COLOR_POSITIVE_TEXT]Lhasa[ENDCOLOR] and an active session of the [COLOR_POSITIVE_TEXT]World Congress[ENDCOLOR]. ', '') WHERE Tag ='TXT_KEY_BUILDING_LHASA_HELP' AND EXISTS (SELECT * FROM COMMUNITY WHERE Type='MW-SETTING-HELP' AND Value= 0) AND EXISTS (SELECT * FROM COMMUNITY WHERE Type='UCS-MW' AND Value= 1);
+
+INSERT INTO Language_en_US 
+			(Tag,										Text) 
+SELECT		'TXT_KEY_BUILDING_LHASA_HELP_CUT',			Text
+FROM Language_en_US WHERE Tag = 'TXT_KEY_BUILDING_LHASA_HELP' AND EXISTS (SELECT * FROM COMMUNITY WHERE Type='UCS-MW' AND Value= 1);
+				
+UPDATE Language_en_US SET Text = 'Special: [COLOR_CYAN]Lhasa CS Ally[ENDCOLOR] and an [COLOR_CYAN]active session of WC[ENDCOLOR].[NEWLINE][NEWLINE]'||Text WHERE Tag ='TXT_KEY_BUILDING_LHASA_HELP' AND EXISTS (SELECT * FROM COMMUNITY WHERE Type='UCS-MW' AND Value= 1);
+---------------------------------------------------

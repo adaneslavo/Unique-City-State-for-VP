@@ -43,6 +43,13 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
         <MinVersion>0</MinVersion>
         <MaxVersion>999</MaxVersion>
       </Association>
+      <Association>
+        <Type>Mod</Type>
+        <Name>(overhaul) More Wonders for VP</Name>
+        <Id>3e151552-1683-4881-b736-8ee89226f599</Id>
+        <MinVersion>0</MinVersion>
+        <MaxVersion>999</MaxVersion>
+      </Association>
     </ModReferences>
     <ReloadLandmarkSystem>true</ReloadLandmarkSystem>
     <ReloadUnitSystem>true</ReloadUnitSystem>
