@@ -277,16 +277,16 @@ end
 GameEvents.ResolutionResult.Add(MovingSwiftly)
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
-function UnitNotificationLoad(pMinorPlayer, pMajorPlayer, sUnitName)
+function UnitNotificationLoad(pMinorPlayer, pMajorPlayer, sUnitName, eUnitType)
 	pMajorCapitalCity = pMajorPlayer:GetCapitalCity()
 	pMinorCapitalCity = pMinorPlayer:GetCapitalCity()
 	sMinorCityName = pMinorCapitalCity:GetName()
 
 	if pMajorPlayer:IsHuman() then
-		pMajorPlayer:AddNotification(0, 
+		pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_GREAT_PERSON_ACTIVE_PLAYER, 
 			'You received new [COLOR_POSITIVE_TEXT]' .. sUnitName .. '[ENDCOLOR] unit from [COLOR_CYAN]' .. sMinorCityName .. '[ENDCOLOR] as a gratitude for great cooperation and friendly attitutde', 
 			'Civilians arrived from friendly City-State', 
-			pMajorCapitalCity:GetX(), pMajorCapitalCity:GetY())
+			pMajorCapitalCity:GetX(), pMajorCapitalCity:GetY(), eUnitType, false)
 	end
 end
 -----------------------------------------------------------------------------------------------------------
@@ -449,10 +449,10 @@ function FreeWorkerFromCityState(ePlayer)
 						
 						if iWorkerOrFishingBoatSpawnChance <= 50 and bIsMajorHasCoast then
 							pMajorPlayer:AddFreeUnit(eUnitFishingBoat, UNITAI_DEFENSE)
-							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Fishing Boat')
+							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Fishing Boat', eUnitFishingBoat)
 						else	
 							pMajorPlayer:AddFreeUnit(eUnitWorker, UNITAI_DEFENSE)
-							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Worker')
+							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Worker', eUnitWorker)
 						end
 					end
 				end
@@ -619,10 +619,10 @@ function FreeCaravanFromCityState(ePlayer)
 						
 						if iCaravanOrCargoSpawnChance <= 50 and bIsMajorHasCoast then
 							pMajorPlayer:AddFreeUnit(eUnitCargoShip, UNITAI_DEFENSE)
-							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Cargo Ship')
+							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Cargo Ship', eUnitCargoShip)
 						else	
 							pMajorPlayer:AddFreeUnit(eUnitCaravan, UNITAI_DEFENSE)
-							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Caravan')
+							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Caravan', eUnitCaravan)
 						end
 					end
 				end
@@ -772,7 +772,7 @@ function FreeMissionariesFromCityState(ePlayer)
 					if bCanMissionaryBeSpawned then
 						if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
 							pMajorPlayer:AddFreeUnit(eUnitMissionary, UNITAI_DEFENSE)
-								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Missionary')
+								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Missionary', eUnitMissionary)
 						end
 					end
 				end
