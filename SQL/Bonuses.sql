@@ -183,8 +183,8 @@ SELECT 'TXT_KEY_MERCANTILE_BONUS', 						'[COLOR:240:215:65:255]Trade Center (Me
 SELECT 'TXT_KEY_MERCANTILE_FRIENDLY_BONUS', 				'[COLOR:240:240:165:255]Golden City (Mercantile Friendly):[ENDCOLOR][NEWLINE][ICON_BULLET]5% Chance for spawning a Caravan or a Cargo Ship inside Friends'' Territory (their Capital must be on a Coast to get a Cargo Ship)[NEWLINE][ICON_BULLET]+2 [ICON_GOLD] to Luxury Resources'  UNION ALL
 SELECT 'TXT_KEY_MERCANTILE_NEUTRAL_BONUS', 					'[COLOR:210:210:70:255]Shadow Council (Mercantile Neutral):[ENDCOLOR][NEWLINE][ICON_BULLET]+2 [ICON_PRODUCTION] and +2 [ICON_CULTURE] to Luxury Resources[NEWLINE][ICON_BULLET]20 [ICON_GOLD] from Border Growth'  UNION ALL
 SELECT 'TXT_KEY_MERCANTILE_HOSTILE_BONUS', 					'[COLOR:130:130:20:255]Free City (Mercantile Hostile):[ENDCOLOR][NEWLINE][ICON_BULLET]30 [ICON_GOLD] and 10 [ICON_CULTURE] when unit is produced[NEWLINE][ICON_BULLET][ICON_GOLD] when unit level ups[NEWLINE][ICON_BULLET]25% of [ICON_PRODUCTION] is added on [ICON_CITIZEN] Birth'  UNION ALL
-SELECT 'TXT_KEY_CULTURED_BONUS', 						'[COLOR:210:65:200:255]Center of Learning (Cultured):[ENDCOLOR][NEWLINE][ICON_BULLET]has an Academy nearby'  UNION ALL
-SELECT 'TXT_KEY_CULTURED_FRIENDLY_BONUS', 					'[COLOR:240:180:235:255]Open University (Cultured Friendly):[ENDCOLOR]'  UNION ALL
+SELECT 'TXT_KEY_CULTURED_BONUS', 						'[COLOR:210:65:200:255]Center of Learning (Cultured):[ENDCOLOR][NEWLINE][ICON_BULLET]has an Academy and an Archaeological Site nearby.[NEWLINE][ICON_BULLET]+1 [ICON_CULTURE] to Forests, Jungles, Marshes, Oasis and Flood Plains.[NEWLINE][ICON_BULLET][COLOR_NEGATIVE_TEXT]-20% [ICON_PEACE] Religious Pressure[ENDCOLOR]'  UNION ALL
+SELECT 'TXT_KEY_CULTURED_FRIENDLY_BONUS', 					'[COLOR:240:180:235:255]Open University (Cultured Friendly):[ENDCOLOR][NEWLINE][ICON_BULLET]5% Chance for spawning an Archaeologist inside Friends'' Territory (after researching Archaeology)'  UNION ALL
 SELECT 'TXT_KEY_CULTURED_NEUTRAL_BONUS', 					'[COLOR:210:90:195:255]Patronage (Cultured Neutral):[ENDCOLOR]'  UNION ALL
 SELECT 'TXT_KEY_CULTURED_HOSTILE_BONUS', 					'[COLOR:130:30:115:255]Recluse Court (Cultured Hostile):[ENDCOLOR]'  UNION ALL
 SELECT 'TXT_KEY_RELIGIOUS_BONUS', 						'[COLOR:25:110:250:255]Center of Faith (Religious):[ENDCOLOR][NEWLINE][ICON_BULLET]has a Holy Site nearby[NEWLINE][ICON_BULLET]+33% [ICON_PEACE] Religious Pressure[NEWLINE][ICON_BULLET]+3 [ICON_FOOD], +3 [ICON_GOLD] and +3 [ICON_CULTURE] from Mountains and Atolls[NEWLINE][ICON_BULLET]+10 [ICON_STRENGTH] Defense and +50 City HP[NEWLINE][ICON_BULLET][COLOR_NEGATIVE_TEXT]-5 [ICON_WAR] Military Supply Cap[NEWLINE][ICON_BULLET][COLOR_NEGATIVE_TEXT]-25% [ICON_WAR] Supply Cap from [ICON_CITIZEN][ENDCOLOR]'  UNION ALL
@@ -1189,6 +1189,7 @@ UPDATE Buildings SET UnculturedHappinessChange = -10 WHERE Type = 'BUILDING_ANDO
 UPDATE Buildings SET SpecialistType = 'SPECIALIST_CIVIL_SERVANT', GreatPeopleRateChange = 1 WHERE Type = 'BUILDING_CANOSSA';
 
 UPDATE Buildings SET ReligiousPressureModifier = 33, Defense = 1000, ExtraCityHitPoints = 50 WHERE Type = 'BUILDING_RELIGIOUS';
+UPDATE Buildings SET ReligiousPressureModifier = -20 WHERE Type = 'BUILDING_CULTURED';
 UPDATE Buildings SET ConversionModifier = 25 WHERE Type = 'BUILDING_RELIGIOUS_FRIENDLY';
 UPDATE Buildings SET ConversionModifier = -10 WHERE Type = 'BUILDING_RELIGIOUS_NEUTRAL';
 UPDATE Buildings SET ConversionModifier = -25, ReligiousPressureModifier = 25 WHERE Type = 'BUILDING_RELIGIOUS_HOSTILE';
@@ -1323,6 +1324,15 @@ SELECT		'BUILDING_MARITIME',	'YIELD_CULTURE_LOCAL',	10;
 INSERT INTO Building_HurryModifiers
 			(BuildingType,			HurryType,		HurryCostModifier)
 SELECT		'BUILDING_MERCANTILE',	'HURRY_GOLD',	-20;
+
+INSERT INTO Building_FeatureYieldChanges
+			(BuildingType, 			FeatureType, 			YieldType, 			Yield)
+SELECT 		'BUILDING_CULTURED', 	'FEATURE_MARSH', 		'YIELD_CULTURE', 	1 UNION ALL
+SELECT 		'BUILDING_CULTURED', 	'FEATURE_FOREST', 		'YIELD_CULTURE', 	1 UNION ALL
+SELECT 		'BUILDING_CULTURED', 	'FEATURE_JUNGLE', 		'YIELD_CULTURE', 	1 UNION ALL
+SELECT 		'BUILDING_CULTURED', 	'FEATURE_OASIS',		'YIELD_CULTURE', 	1 UNION ALL
+SELECT 		'BUILDING_CULTURED', 	'FEATURE_FLOOD_PLAINS', 'YIELD_CULTURE', 	1 UNION ALL
+SELECT 		'BUILDING_CULTURED', 	'FEATURE_ATOLL', 		'YIELD_CULTURE', 	1;
 
 INSERT INTO Building_ResourceYieldChanges (BuildingType,  					YieldType, 				Yield, 	ResourceType)
 SELECT DISTINCT							  'BUILDING_MARITIME_FRIENDLY', 	'YIELD_FOOD', 			1, 		Type

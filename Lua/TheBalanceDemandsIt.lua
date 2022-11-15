@@ -92,10 +92,12 @@ local eImprovementAcademy = GameInfoTypes.IMPROVEMENT_ACADEMY
 
 local eFeatureMarsh = GameInfoTypes.FEATURE_MARSH
 
-local ePlotFlat = GameInfoTypes.PLOT_LAND
-local ePlotHill = GameInfoTypes.PLOT_HILLS
-local ePlotMountain = GameInfoTypes.PLOT_MOUNTAIN
-local ePlotWater = GameInfoTypes.PLOT_OCEAN
+local tPlotTypes = {
+	GameInfoTypes.PLOT_LAND,
+	GameInfoTypes.PLOT_HILLS,
+	GameInfoTypes.PLOT_MOUNTAIN,
+	GameInfoTypes.PLOT_OCEAN
+}
 
 local eUnitGreatDiplomat = GameInfoTypes.UNIT_GREAT_DIPLOMAT
 local eUnitMissionary = GameInfoTypes.UNIT_MISSIONARY
@@ -103,6 +105,11 @@ local eUnitWorker = GameInfoTypes.UNIT_WORKER
 local eUnitFishingBoat = GameInfoTypes.UNIT_WORKBOAT
 local eUnitCaravan = GameInfoTypes.UNIT_CARAVAN
 local eUnitCargoShip = GameInfoTypes.UNIT_CARGO_SHIP
+local eUnitArchaeologist = GameInfoTypes.UNIT_ARCHAEOLOGIST
+
+local eTechArchaeology = GameInfoTypes.TECH_ARCHAEOLOGY
+local eArtifactRuin = GameInfoTypes.ARTIFACT_ANCIENT_RUIN
+local eResourceArtifact = GameInfoTypes.RESOURCE_ARTIFACTS
 
 local tMinorTraits = {
 	GameInfoTypes.MINOR_TRAIT_MARITIME,
@@ -318,7 +325,7 @@ function MaritimeCityStatesBonuses(ePlayer, iX, iY)
 			local eImprovement = pPlot:GetImprovementType()
 			local eFeature = pPlot:GetFeatureType()
 			
-			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == ePlotFlat or ePlot == ePlotHill) then
+			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
 				pPlot:SetImprovementType(eImprovementManufactory)
 				break
 			end
@@ -489,7 +496,7 @@ function MercantileCityStatesBonuses(ePlayer, iX, iY)
 			local eImprovement = pPlot:GetImprovementType()
 			local eFeature = pPlot:GetFeatureType()
 			
-			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == ePlotFlat or ePlot == ePlotHill) then
+			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
 				pPlot:SetImprovementType(eImprovementTown)
 				break
 			end
@@ -659,7 +666,7 @@ function CulturedCityStatesBonuses(ePlayer, iX, iY)
 			local eImprovement = pPlot:GetImprovementType()
 			local eFeature = pPlot:GetFeatureType()
 			
-			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == ePlotFlat or ePlot == ePlotHill) then
+			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
 				pPlot:SetImprovementType(eImprovementAcademy)
 				break
 			end
@@ -670,6 +677,36 @@ function CulturedCityStatesBonuses(ePlayer, iX, iY)
 		end
 	end
 	
+	-- Artifact
+	local tArtifactSpots = {}
+
+	for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
+		local pPlot = pMinorCapital:GetCityIndexPlot(i)
+			
+		if pPlot then
+			local bIsCity = pPlot:IsCity()
+			local bIsWater = pPlot:IsWater()
+			local bIsMountain = pPlot:GetPlotType() == 0
+			local eImprovement = pPlot:GetImprovementType()
+			local eResource = pPlot:GetResourceType()
+				
+			if not bIsWater and not bIsMountain and not bIsCity and eResource == -1 and eImprovement == -1 then
+				table.insert(tArtifactSpots, pPlot)
+			end
+		end
+			
+		if i >= 18 then
+			break
+		end
+	end
+
+	if #tArtifactSpots > 0 then
+		local pChosenPlot = table.remove(tArtifactSpots, #tArtifactSpots)
+		
+		pChosenPlot:SetArchaeologicalRecord(eArtifactRuin, GameInfoTypes.ERA_ANCIENT, pPlayer:GetID())
+		pChosenPlot:SetResourceType(eResourceArtifact, 1)
+	end
+
 	-- rest
 	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[9], 1)
 	
@@ -689,6 +726,40 @@ function CulturedCityStatesBonuses(ePlayer, iX, iY)
 	end
 end
 GameEvents.PlayerCityFounded.Add(CulturedCityStatesBonuses)
+
+function FreeArchaeologistFromCityState(ePlayer)
+	local pPlayer = Players[ePlayer]
+	
+	if not pPlayer:IsMinorCiv() then return end
+	
+	local pMinorCapital = pPlayer:GetCapitalCity()
+	
+	if pMinorCapital == nil then return end
+	
+	if pMinorCapital:IsHasBuilding(tBuildingsPassiveAbilities[10]) then
+		local iArchaeologistSpawnChance = RandomNumberBetween(1, 100)
+		
+		if iArchaeologistSpawnChance <= 5 then
+			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
+				if pMajorPlayer and pMajorPlayer:IsAlive() then
+					if pMajorPlayer:IsMinorCiv() then break end
+					if not pMajorPlayer:IsEverAlive() then break end
+					
+					local pMajorTeam = Teams[pMajorPlayer:GetTeam()]
+					local bCanArchaeologistBeSpawned = pMajorTeam:IsHasTech(eTechArchaeology)
+
+					if bCanArchaeologistBeSpawned then
+						if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
+							pMajorPlayer:AddFreeUnit(eUnitArchaeologist, UNITAI_DEFENSE)
+								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Archaeologist', eUnitArchaeologist)
+						end
+					end
+				end
+			end
+		end
+	end
+end
+GameEvents.PlayerDoTurn.Add(FreeArchaeologistFromCityState)
 
 
 -- RELIGIOUS
@@ -717,7 +788,7 @@ function ReligiousCityStatesBonuses(ePlayer, iX, iY)
 			local eImprovement = pPlot:GetImprovementType()
 			local eFeature = pPlot:GetFeatureType()
 			
-			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == ePlotFlat or ePlot == ePlotHill) then
+			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
 				pPlot:SetImprovementType(eImprovementHolySite)
 				break
 			end
@@ -809,7 +880,7 @@ function MilitaristicCityStatesBonuses(ePlayer, iX, iY)
 			local eImprovement = pPlot:GetImprovementType()
 			local eFeature = pPlot:GetFeatureType()
 			
-			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == ePlotFlat or ePlot == ePlotHill) then
+			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
 				pPlot:SetImprovementType(eImprovementFort)
 				break
 			end
@@ -861,7 +932,7 @@ function MilitaristicCityStatesBonuses(ePlayer, iX, iY)
 				if not bIsCity and eResource == -1 and eImprovement == -1 then
 					if #tStrategicResourceFeatures == 0 and eFeature == -1 then
 						bFeaturePass = true
-					elseif eFeature == -1  and ePlot == ePlotWater then
+					elseif eFeature == -1  and ePlot == tPlotTypes[4] then
 						bFeaturePass = true
 					else
 						for i, value in ipairs(tStrategicResourceFeatures) do
@@ -1004,7 +1075,7 @@ end
 GameEvents.PlayerCanBuild.Add(CanWeBuildMarsh)
 
 function BuiltMarsh(ePlayer, iX, iY, eImprovement)
-	if eImprovement == eImprovementMarsh or eImprovement == eImprovementForest or eImprovement == eImprovementJungle then
+	if eImprovement == eImprovementMarsh then
 		local pPlot = Map.GetPlot(iX, iY)
 		
 		pPlot:SetImprovementType(-1)
@@ -1313,7 +1384,7 @@ function DrukTsendhen(ePlayer)
 			if pPlot then
 				local ePlot = pPlot:GetPlotType()
 			
-				if ePlot == ePlotHill then
+				if ePlot == tPlotTypes[2] then
 					city:SetNumRealBuilding(tBuildingsActiveAbilities[4], 1)
 				end
 			end
@@ -1345,7 +1416,7 @@ function DrukTsendhenCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bCo
 			local ePlot = pPlot:GetPlotType()
 			local pConqCity = pPlot:GetWorkingCity()
 			
-			if ePlot == ePlotHill then
+			if ePlot == tPlotTypes[2] then
 				pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[4], 1)
 			end
 			
@@ -1379,7 +1450,7 @@ function DrukTsendhenNewCity(ePlayer, iX, iY)
 			local ePlot = pPlot:GetPlotType()
 			local pCity = pPlot:GetWorkingCity()
 			
-			if ePlot == ePlotHill then		
+			if ePlot == tPlotTypes[2] then		
 				pCity:SetNumRealBuilding(tBuildingsActiveAbilities[4], 1)
 			end
 			
@@ -1408,7 +1479,7 @@ function PyreneanPareage(ePlayer)
 					if pPlot then
 						local ePlot = pPlot:GetPlotType()
 						
-						if ePlot == ePlotMountain then
+						if ePlot == tPlotTypes[3] then
 							city:SetNumRealBuilding(tBuildingsActiveAbilities[6], 1)
 							break
 						end
@@ -1443,7 +1514,7 @@ function PyreneanPareageCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, 
 			if pPlot then
 				local ePlot = pPlot:GetPlotType()
 				
-				if ePlot == ePlotMountain then
+				if ePlot == tPlotTypes[3] then
 					pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[6], 1)
 					break
 				end
@@ -1475,7 +1546,7 @@ function PyreneanPareageNewCity(ePlayer, iX, iY)
 				if pPlotAround then
 					local ePlot = pPlotAround:GetPlotType()
 					
-					if ePlot == ePlotMountain then
+					if ePlot == tPlotTypes[3] then
 						pCity:SetNumRealBuilding(tBuildingsActiveAbilities[6], 1)
 						break
 					end

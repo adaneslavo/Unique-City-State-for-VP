@@ -21,6 +21,7 @@ Changelog:
 	- fixed Muscat yields on buildings - now flat like they should be from start (were modifiers);
 	- now units can be given by CS when Allied or Friends (was only Friends);
 	- moved Potala Palace text changes from MW to UCS (allows adding reference);
+	- fixed Marsh placement (Jugnle and Forest interaction deleted);
 - miscellanous:
 	- simplified (shortened) passives descriptions (f.e. omitted yield name if it was base yield);
 	- reworked, fixed, tweaked and simplified some code (both lua and sql);
