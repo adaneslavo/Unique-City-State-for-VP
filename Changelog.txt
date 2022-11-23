@@ -1,9 +1,13 @@
 Changelog:
+- important:
+	- updated for VP 3.0!
+	- added BALANCE_CORE_WORLD_WONDER_SECOND_PREVIOUS_ERA_COST_MODIFIER, so now there are four stages of modifiers (40%-35%-30%-20%);
 - new:
 	- added notifications when receiving new civilian units from CS;
 	- added missing abilities for Mercantile CSs;
+	- added few new abilities for Cultured CSs;
 - balancing:
-	- revised all abilities; tweak values; substituted some pointless ones with more useful:
+	- revised all abilities; tweaked values; substituted some pointless ones with more useful:
 		- deleted Border Growth malus from religious CSs and added supply cap maluses;
 		- deleted Natural Wonder boost from religious CSs and added defense and hp instead;
 		- Mountains and Atolls now give food instead of faith for religious CSs;
