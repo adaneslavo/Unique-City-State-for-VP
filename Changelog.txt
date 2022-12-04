@@ -1,33 +1,4 @@
 Changelog:
-- important:
-	- updated for VP 3.0!
-	- added BALANCE_CORE_WORLD_WONDER_SECOND_PREVIOUS_ERA_COST_MODIFIER, so now there are four stages of modifiers (40%-35%-30%-20%);
-- new:
-	- added notifications when receiving new civilian units from CS;
-	- added missing abilities for Mercantile CSs;
-	- added few new abilities for Cultured CSs;
-- balancing:
-	- revised all abilities; tweaked values; substituted some pointless ones with more useful:
-		- deleted Border Growth malus from religious CSs and added supply cap maluses;
-		- deleted Natural Wonder boost from religious CSs and added defense and hp instead;
-		- Mountains and Atolls now give food instead of faith for religious CSs;
-		- added flat supply cap to militaristic CSs;
-		- and more...
-	- reduced cap for Zurich to 20 Gold/Era (was 50);
-- fixes:	
-	- CS now give Missionaries as follows:
-		- if player has found no Religion and has no Majority Religion in capital, then a Missionary is not spawned;
-		- if player has found no Religion and has a Majority Religion of other player in its capital, then a Missionary will spawn with that Majority Religion;
-		- if player has found a Religion then a Missionary is spawned with his Religion regardless of the Majority Religion in the capital;
-		- if player has found a Religion and lost his Holy City, a Missionary is spawned still with his Religion;
-	- reduced placement condition for CS GPTI to 2nd ring around city (was 3rd);
-	- now GPTI can be placed on resources, so greater chance to have it closer to the city (previously forbidden);
-	- fixed Muscat yields on buildings - now flat like they should be from start (were modifiers);
-	- now units can be given by CS when Allied or Friends (was only Friends);
-	- moved Potala Palace text changes from MW to UCS (allows adding reference);
-	- fixed Marsh placement (Jugnle and Forest interaction deleted);
-- miscellanous:
-	- simplified (shortened) passives descriptions (f.e. omitted yield name if it was base yield);
-	- reworked, fixed, tweaked and simplified some code (both lua and sql);
-	- added reference for More Wonders mod (new resources);
-	- deleted obsolete references and blocks;
+- lowered CS gift frequency to 3% (was 5%);
+- added lake exception for Workboat and Cargo Ship gifts;
+- added trade route limit check for Mercantile CS gifts;

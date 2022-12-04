@@ -444,7 +444,7 @@ function FreeWorkerFromCityState(ePlayer)
 	if pMinorCapital:IsHasBuilding(tBuildingsPassiveAbilities[2]) then
 		local iWorkerSpawnChance = RandomNumberBetween(1, 100)
 		
-		if iWorkerSpawnChance <= 5 then
+		if iWorkerSpawnChance <= 3 then
 			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
 				if pMajorPlayer and pMajorPlayer:IsAlive() then
 					if pMajorPlayer:IsMinorCiv() then break end
@@ -452,9 +452,32 @@ function FreeWorkerFromCityState(ePlayer)
 					
 					if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
 						local iWorkerOrFishingBoatSpawnChance = RandomNumberBetween(1, 100)
-						local bIsMajorHasCoast = pMajorPlayer:GetCapitalCity():IsCoastal()
+
+						local pMajorCapital = pMajorPlayer:GetCapitalCity()
+						local bIsMajorHasCoast = pMajorCapital:IsCoastal()
+						local bIsMajorHasTrueSea = false
+
+						if bIsMajorHasCoast then
+							for i = 1, pMajorCapital:GetNumCityPlots() - 1, 1 do
+								local pPlot = pMajorCapital:GetCityIndexPlot(i)
+		
+								if pPlot then
+									local bIsLake = pPlot:IsLake()
+									local ePlot = pPlot:GetPlotType()
+			
+									if ePlot == tPlotTypes[4] and not bIsLake then
+										bIsMajorHasTrueSea = true
+										break
+									end
+								end
+		
+								if i >= 6 then
+									break
+								end
+							end
+						end
 						
-						if iWorkerOrFishingBoatSpawnChance <= 50 and bIsMajorHasCoast then
+						if iWorkerOrFishingBoatSpawnChance <= 50 and bIsMajorHasTrueSea then
 							pMajorPlayer:AddFreeUnit(eUnitFishingBoat, UNITAI_DEFENSE)
 							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Fishing Boat', eUnitFishingBoat)
 						else	
@@ -614,22 +637,50 @@ function FreeCaravanFromCityState(ePlayer)
 	if pMinorCapital:IsHasBuilding(tBuildingsPassiveAbilities[6]) then
 		local iCaravanSpawnChance = RandomNumberBetween(1, 100)
 		
-		if iCaravanSpawnChance <= 5 then
+		if iCaravanSpawnChance <= 3 then
 			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
 				if pMajorPlayer and pMajorPlayer:IsAlive() then
 					if pMajorPlayer:IsMinorCiv() then break end
 					if not pMajorPlayer:IsEverAlive() then break end
 					
 					if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
-						local iCaravanOrCargoSpawnChance = RandomNumberBetween(1, 100)
-						local bIsMajorHasCoast = pMajorPlayer:GetCapitalCity():IsCoastal()
+						print('TRs', pMajorPlayer:GetNumInternationalTradeRoutesAvailable())
+						local bIsMajorCanHaveTR = pMajorPlayer:GetNumInternationalTradeRoutesUsed() < pMajorPlayer:GetNumInternationalTradeRoutesAvailable()
 						
-						if iCaravanOrCargoSpawnChance <= 50 and bIsMajorHasCoast then
-							pMajorPlayer:AddFreeUnit(eUnitCargoShip, UNITAI_DEFENSE)
-							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Cargo Ship', eUnitCargoShip)
-						else	
-							pMajorPlayer:AddFreeUnit(eUnitCaravan, UNITAI_DEFENSE)
-							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Caravan', eUnitCaravan)
+						if bIsMajorCanHaveTR then
+							local iCaravanOrCargoSpawnChance = RandomNumberBetween(1, 100)
+						
+							local pMajorCapital = pMajorPlayer:GetCapitalCity()
+							local bIsMajorHasCoast = pMajorCapital:IsCoastal()
+							local bIsMajorHasTrueSea = false
+
+							if bIsMajorHasCoast then
+								for i = 1, pMajorCapital:GetNumCityPlots() - 1, 1 do
+									local pPlot = pMajorCapital:GetCityIndexPlot(i)
+		
+									if pPlot then
+										local bIsLake = pPlot:IsLake()
+										local ePlot = pPlot:GetPlotType()
+			
+										if ePlot == tPlotTypes[4] and not bIsLake then
+											bIsMajorHasTrueSea = true
+											break
+										end
+									end
+		
+									if i >= 6 then
+										break
+									end
+								end
+							end
+
+							if iCaravanOrCargoSpawnChance <= 50 and bIsMajorHasTrueSea then
+								pMajorPlayer:AddFreeUnit(eUnitCargoShip, UNITAI_DEFENSE)
+								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Cargo Ship', eUnitCargoShip)
+							else	
+								pMajorPlayer:AddFreeUnit(eUnitCaravan, UNITAI_DEFENSE)
+								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Caravan', eUnitCaravan)
+							end
 						end
 					end
 				end
@@ -739,7 +790,7 @@ function FreeArchaeologistFromCityState(ePlayer)
 	if pMinorCapital:IsHasBuilding(tBuildingsPassiveAbilities[10]) then
 		local iArchaeologistSpawnChance = RandomNumberBetween(1, 100)
 		
-		if iArchaeologistSpawnChance <= 5 then
+		if iArchaeologistSpawnChance <= 3 then
 			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
 				if pMajorPlayer and pMajorPlayer:IsAlive() then
 					if pMajorPlayer:IsMinorCiv() then break end
@@ -832,7 +883,7 @@ function FreeMissionariesFromCityState(ePlayer)
 	if pMinorCapital:IsHasBuilding(tBuildingsPassiveAbilities[14]) then
 		local iMissionarySpawnChance = RandomNumberBetween(1, 100)
 		
-		if iMissionarySpawnChance <= 5 then
+		if iMissionarySpawnChance <= 3 then
 			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
 				if pMajorPlayer and pMajorPlayer:IsAlive() then
 					if pMajorPlayer:IsMinorCiv() then break end
