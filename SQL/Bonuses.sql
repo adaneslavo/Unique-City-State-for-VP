@@ -521,7 +521,7 @@ SELECT 'TXT_KEY_BUILDING_ANDORRA_2_HELP', 				'+1 [ICON_TOURISM] Tourism from Mo
 SELECT 'TXT_KEY_BUILDING_CANOSSA', 						'Ardent Flame In Pious Heart' UNION ALL
 SELECT 'TXT_KEY_BUILDING_CANOSSA_HELP', 				'+1 [ICON_DIPLOMAT] Great Diplomat Point if City has a Temple.' UNION ALL
 SELECT 'TXT_KEY_BUILDING_LEVUKA', 						'Destroyers of Bau' UNION ALL
-SELECT 'TXT_KEY_BUILDING_LEVUKA_HELP', 					'+1 [ICON_DIPLOMAT] Great General Point in Capital for each conquered City.' UNION ALL
+SELECT 'TXT_KEY_BUILDING_LEVUKA_HELP', 					'+1 [ICON_GREAT_GENERAL] Great General Point in Capital for each conquered City.' UNION ALL
 -- regular buildings
 SELECT 'TXT_KEY_BUILDING_KIEV', 						'Bylina' UNION ALL
 SELECT 'TXT_KEY_BUILDING_KIEV_HELP', 					'Requires an Alliance with [COLOR_CYAN]Kyiv[ENDCOLOR]. +1 Musician Slot. Can never be destroyed.' UNION ALL

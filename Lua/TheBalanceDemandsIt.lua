@@ -444,7 +444,7 @@ function FreeWorkerFromCityState(ePlayer)
 	if pMinorCapital:IsHasBuilding(tBuildingsPassiveAbilities[2]) then
 		local iWorkerSpawnChance = RandomNumberBetween(1, 100)
 		
-		if iWorkerSpawnChance <= 3 then
+		if iWorkerSpawnChance <= 1 then
 			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
 				if pMajorPlayer and pMajorPlayer:IsAlive() then
 					if pMajorPlayer:IsMinorCiv() then break end
@@ -637,7 +637,7 @@ function FreeCaravanFromCityState(ePlayer)
 	if pMinorCapital:IsHasBuilding(tBuildingsPassiveAbilities[6]) then
 		local iCaravanSpawnChance = RandomNumberBetween(1, 100)
 		
-		if iCaravanSpawnChance <= 3 then
+		if iCaravanSpawnChance <= 1 then
 			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
 				if pMajorPlayer and pMajorPlayer:IsAlive() then
 					if pMajorPlayer:IsMinorCiv() then break end
@@ -790,7 +790,7 @@ function FreeArchaeologistFromCityState(ePlayer)
 	if pMinorCapital:IsHasBuilding(tBuildingsPassiveAbilities[10]) then
 		local iArchaeologistSpawnChance = RandomNumberBetween(1, 100)
 		
-		if iArchaeologistSpawnChance <= 3 then
+		if iArchaeologistSpawnChance <= 1 then
 			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
 				if pMajorPlayer and pMajorPlayer:IsAlive() then
 					if pMajorPlayer:IsMinorCiv() then break end
@@ -883,7 +883,7 @@ function FreeMissionariesFromCityState(ePlayer)
 	if pMinorCapital:IsHasBuilding(tBuildingsPassiveAbilities[14]) then
 		local iMissionarySpawnChance = RandomNumberBetween(1, 100)
 		
-		if iMissionarySpawnChance <= 3 then
+		if iMissionarySpawnChance <= 1 then
 			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
 				if pMajorPlayer and pMajorPlayer:IsAlive() then
 					if pMajorPlayer:IsMinorCiv() then break end
