@@ -756,7 +756,7 @@ UPDATE Policies SET CityStateUnitFrequencyModifier = 50 WHERE Type = 'POLICY_AMB
 
 UPDATE Policies SET CityGrowthMod = 15 WHERE Type = 'POLICY_MARITIME';
 UPDATE Policies SET CityGrowthMod = -33 WHERE Type = 'POLICY_MILITARISTIC';
-UPDATE Policies SET CityStateUnitFrequencyModifier = 3 WHERE Type = 'POLICY_MILITARISTIC_FRIENDLY';
+UPDATE Policies SET CityStateUnitFrequencyModifier = 1 WHERE Type = 'POLICY_MILITARISTIC_FRIENDLY';
 
 
 INSERT INTO Policy_YieldGPExpend 
