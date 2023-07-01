@@ -281,13 +281,13 @@ SELECT 'TXT_KEY_CITYSTATE_TAIWAN_ADJ', 						'Taipei' UNION ALL
 SELECT 'TXT_KEY_CIV5_TAIWAN_TEXT', 							'Taipei is the capital city of the Republic of China, and forms the cultural, political, and economic center of Taiwan. Prior to the establishment of the Kuomintang''s Chinese government in exile, Taipei was a minor provincial capital, situated along trade routes between China, Japan, and the Philippines. Much of the surrounding area continues to be inhabited by several Formosan indigenous groups, creating a rich cultural fabric distinct from mainland China''s domination by Han Chinese influence.' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_OC_EO', 						'Óc Eo' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_OC_EO_ADJ', 						'The Funan' UNION ALL
-SELECT 'TXT_KEY_CIV5_OC_EO_TEXT', 							'TODO' UNION ALL
+SELECT 'TXT_KEY_CIV5_OC_EO_TEXT', 							'Funan was an ancient state in Cambodia that arose in the 1st century ad and was incorporated into the state of Chenla in the 6th century. Funan (perhaps a Chinese transcription of pnom, “mountain”) was the first important Hinduized kingdom in southeast Asia. It covered portions of what are now Vietnam, Thailand, and Cambodia. Funan had trade relations with India as well as China, to whose emperor the people of Funan sent tribute between the 3rd and 6th centuries. [NEWLINE]Funan reached the apex of its power under the 3rd-century king Fan Shiman, also known as Srei Meara. Fan Shiman expanded his empire's navy and improved the Funanese bureaucracy, creating a quasi-feudal pattern that left local customs and identities largely intact, particularly in the empire's further reaches. Fan Shiman and his successors also sent ambassadors to China and India to regulate sea trade. The kingdom likely accelerated the process of Indianization of Southeast Asia. Later kingdoms of Southeast Asia such as Chenla may have emulated the Funanese court. The Funanese established a strong system of mercantilism and commercial monopolies that would become a pattern for empires in the region. [NEWLINE]Funan's dependence on maritime trade is seen as a cause for the beginning of Funan's downfall. Their coastal ports allowed trade with foreign regions that funnelled goods to the north and coastal populations. However, the shift in maritime trade to Sumatra, the rise in the Srivijaya trade empire, and the taking of trade routes all throughout Southeast Asia by China, leads to economic instability in the south, and forces politics and economy northward. Funan was superseded and absorbed in the 6th century by the Khmer polity of the Chenla Kingdom.' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_THIMPHU', 					'Thimphu' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_THIMPHU_ADJ', 					'Thimphu' UNION ALL
-SELECT 'TXT_KEY_CIV5_THIMPHU_TEXT', 						'TODO' UNION ALL
+SELECT 'TXT_KEY_CIV5_THIMPHU_TEXT', 						'Since 1955 Thimphu is the capital of the Kingdom of Bhutan, a landlocked country in South Asia at the eastern end of the Himalayas. It is bordered to the north by Tibet (China), and to the south, east, and west by India. Bhutan existed as a patchwork of minor warring fiefs until the early 17th century. At that time the lama and military leader Ngawang Namgyal, the first Zhabdrung Rinpoche, who was fleeing religious persecution in Tibet, unified the area and cultivated a distinct Bhutanese identity. In the early 20th century, Bhutan came into contact with the British Empire and retained strong bilateral relations with India upon its independence.' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_ANDORRA', 					'Andorra' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_ANDORRA_ADJ', 					'Andorran' UNION ALL
-SELECT 'TXT_KEY_CIV5_ANDORRA_TEXT', 						'TODO' UNION ALL
+SELECT 'TXT_KEY_CIV5_ANDORRA_TEXT', 						'Lying on the southern slopes of the Pyrenees, the Principality of Andorra consists of a cluster of mountain valleys whose streams form the Valira River. Andorra’s independence is traditionally ascribed to Charlemagne, who recovered the region from the Muslims in 803 CE. It was placed under the joint suzerainty of the French counts of Foix and the Spanish bishops of Urgel in 1278, and it was subsequently governed jointly by the Spanish bishop of Urgel and the French head of state. This feudal system of government, the last in Europe, continued until 1993, when a constitution was adopted that transferred most of the coprinces’ powers to the Andorran General Council, which is elected by universal suffrage. Andorra has long had a strong affinity with Catalonia; its institutions are based in Catalonian law, and it is part of the diocese of Urgel (Spain). The traditional economy was based on sheep raising, but tourism grew in importance since the 1950s and became central to Andorra’s economy by the early 21st century.' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_CANOSSA', 					'Canossa' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_CANOSSA_ADJ', 					'Canossan' UNION ALL
 SELECT 'TXT_KEY_CIV5_CANOSSA_TEXT', 						'TODO' UNION ALL
@@ -300,7 +300,7 @@ SELECT 'TXT_KEY_CIV5_DALI_TEXT', 							'The Kingdom of Dali, which meant "the g
 SELECT 'TXT_KEY_CITYSTATE_MULTAN', 						'Multan' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_MULTAN_ADJ', 						'Ghaznavid' UNION ALL
 SELECT 'TXT_KEY_CIV5_MULTAN_TEXT', 							'Multan is a city in the Punjab Province of Pakistan, and capital of Multan District. It is located in the southern part of the province, and is steeped in history. It has a population of over 3.8 million (according to 1998 census), making it the sixth largest city in Pakistan. It is built just east of the Chenab River, more or less in the geographic center of the country and about 966 km from Karachi. Multan is known as the "City of Pirs and Shrines", and is a prosperous city of bazaars, mosques and superbly designed tombs. The Multan International Airport connects flights to major cities in Pakistan and to cities in the Persian Gulf. The city''s industries include metal working, flour, sugar, oil milling, textiles manufacturing, fertilizer, soap, and glass. Multan is also known for its handicrafts, especially pottery and enamel work. One of the subcontinent''s oldest cities, Multan derives its name from an idol in the temple of the sun god, a shrine of the pre-Muslim period. The city was conquered (c.326 BC) by Alexander the Great , visited (AD 641) by the Chinese Buddhist scholar Hsüan-tsang, taken (8th cent.) by the Arabs, and captured by Muslim Turkish conqueror Mahmud of Ghazna in 1005 and by Timur in 1398. In the 16th and 17th century, Multan enjoyed peace under the rule of Mughal emperors. In 1818, the city was seized by Ranjit Singh, leader of the Sikhs. The British held it from 1848 until Pakistan achieved independence in 1947. Landmarks include an old fort containing the 14th-century tombs of two Muslim saints.' UNION ALL
-SELECT 'TXT_KEY_CITYSTATE_BAGAN', 						'Bagan' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_BAGAN', 						'Pagan' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_BAGAN_ADJ', 						'Burmese' UNION ALL
 SELECT 'TXT_KEY_CIV5_BAGAN_TEXT', 							'The kingdom grew out of a small 9th-century settlement at Pagan (present-day Bagan) by the Mranma/Burmans, who had recently entered the Irrawaddy valley from the Kingdom of Nanzhao. Over the next two hundred years, the small principality gradually grew to absorb its surrounding regions until the 1050s and 1060s when King Anawrahta founded the Pagan Empire, for the first time unifying under one polity the Irrawaddy valley and its periphery. By the late 12th century, Anawrahta''s successors had extended their influence farther to the south into the upper Malay peninsula, to the east at least to the Salween river, in the farther north to below the current China border, and to the west, in northern Arakan and the Chin Hills. In the 12th and 13th centuries, Pagan, alongside the Khmer Empire, was one of two main empires in mainland Southeast Asia. The kingdom went into decline in the mid-13th century as the continuous growth of tax-free religious wealth by the 1280s had severely affected the crown''s ability to retain the loyalty of courtiers and military servicemen. This ushered in a vicious circle of internal disorders and external challenges by the Arakanese, Mons, Mongols and Shans. Repeated Mongol invasions (1277–1301) toppled the four-century-old kingdom in 1287. The collapse was followed by 250 years of political fragmentation that lasted well into the 16th century.' UNION ALL
 -- abilities
@@ -394,9 +394,9 @@ SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_THIMPHU', 			'[COLOR_MAGENTA]Druk Tsendhen:[EN
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ANDORRA', 			'[COLOR_MAGENTA]Pyrenean Paréage:[ENDCOLOR] +1 [ICON_TOURISM] Tourism for every Mountain within their workable radius. -10% [ICON_HAPPINESS_3] Boredom in Cities with Mountains nearby.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_CANOSSA', 			'[COLOR_MAGENTA]Ardent Flame in Pious Heart:[ENDCOLOR] +1 [ICON_PEACE] Faith to Civil Servants. +1 [ICON_DIPLOMAT] Great Diplomat Point if City has a Temple.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BEDULU', 				'[COLOR_MAGENTA]Isle of Gods:[ENDCOLOR] +1 [ICON_PEACE] Faith from Sea Resources. +1 [ICON_PEACE] Faith for every 2 Jungle Tiles within workable radius.' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_DALI', 				'[COLOR_MAGENTA]Tea Horse Road:[ENDCOLOR] Player can purchase Caravans and Cargo Ships with [ICON_PEACE] Faith.' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_DALI', 				'[COLOR_MAGENTA]Tea Horse Road:[ENDCOLOR] Player can Purchase Caravans and Cargo Ships with [ICON_PEACE] Faith.' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MULTAN', 				'[COLOR_MAGENTA]City of Saints:[ENDCOLOR] 10 [ICON_PEACE] Faith in the City whenever a Citizen is born. Owned Missionaries can spread Religion 1 additional time.' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_CANOSSA', 			'[COLOR_MAGENTA]Land of Thousand Pagodas:[ENDCOLOR] +1 [ICON_HAPPINESS_1] Happiness from Shrines. 10 [ICON_PEACE] Faith in the City upon Building construction.' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BAGAN', 			'[COLOR_MAGENTA]Land of Thousand Pagodas:[ENDCOLOR] +1 [ICON_HAPPINESS_1] Happiness from Shrines. 10 [ICON_PEACE] Faith in the City upon Building construction.' UNION ALL
 -- promotions
 SELECT 'TXT_KEY_PROMOTION_ANTANANARIVO', 				'Pirate Haven' UNION ALL
 SELECT 'TXT_KEY_PROMOTION_ANTANANARIVO_HELP', 				'Military kills generate [ICON_GOLD] Gold equivalent to the killed''s [ICON_STRENGTH] Combat Strength.' UNION ALL
@@ -538,6 +538,8 @@ SELECT 'TXT_KEY_BUILDING_CANOSSA', 						'Ardent Flame In Pious Heart' UNION ALL
 SELECT 'TXT_KEY_BUILDING_CANOSSA_HELP', 				'+1 [ICON_DIPLOMAT] Great Diplomat Point if City has a Temple.' UNION ALL
 SELECT 'TXT_KEY_BUILDING_LEVUKA', 						'Destroyers of Bau' UNION ALL
 SELECT 'TXT_KEY_BUILDING_LEVUKA_HELP', 					'+1 [ICON_GREAT_GENERAL] Great General Point in Capital for each conquered City.' UNION ALL
+SELECT 'TXT_KEY_BUILDING_BEDULU', 						'Isle of Gods' UNION ALL
+SELECT 'TXT_KEY_BUILDING_BEDULU_HELP', 					'+1 [ICON_PEACE] Faith for every 2 Jungle Tiles within workable radius.' UNION ALL
 -- regular buildings
 SELECT 'TXT_KEY_BUILDING_KIEV', 						'Bylina' UNION ALL
 SELECT 'TXT_KEY_BUILDING_KIEV_HELP', 					'Requires an Alliance with [COLOR_CYAN]Kyiv[ENDCOLOR]. +1 Musician Slot. Can never be destroyed.' UNION ALL
@@ -602,10 +604,10 @@ SELECT 		'MINOR_CIV_OC_EO', 			'TXT_KEY_CITYSTATE_OC_EO', 			'TXT_KEY_CIV5_OC_EO
 SELECT 		'MINOR_CIV_THIMPHU', 		'TXT_KEY_CITYSTATE_THIMPHU', 		'TXT_KEY_CIV5_THIMPHU_TEXT', 		'TXT_KEY_CITYSTATE_THIMPHU', 		'TXT_KEY_CITYSTATE_THIMPHU_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_MIDDLE_BLUE', 	'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_CULTURED',			'UNITCLASS_WORKER' UNION ALL
 SELECT 		'MINOR_CIV_ANDORRA', 		'TXT_KEY_CITYSTATE_ANDORRA', 		'TXT_KEY_CIV5_ANDORRA_TEXT', 		'TXT_KEY_CITYSTATE_ANDORRA', 		'TXT_KEY_CITYSTATE_ANDORRA_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_WHITE', 			'ARTSTYLE_GRECO_ROMAN', 	'_MED', 			'MEDITERRANEAN', 	'MINOR_TRAIT_CULTURED',			'UNITCLASS_WORKER' UNION ALL
 SELECT 		'MINOR_CIV_CANOSSA', 		'TXT_KEY_CITYSTATE_CANOSSA', 		'TXT_KEY_CIV5_CANOSSA_TEXT', 		'TXT_KEY_CITYSTATE_CANOSSA', 		'TXT_KEY_CITYSTATE_CANOSSA_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_GRECO_ROMAN', 	'_MED', 			'MEDITERRANEAN', 	'MINOR_TRAIT_RELIGIOUS',		'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_BEDULU', 		'TXT_KEY_CITYSTATE_BEDULU', 		'TXT_KEY_CIV5_BEDULU_TEXT', 		'TXT_KEY_CITYSTATE_BEDULU', 		'TXT_KEY_CITYSTATE_BEDULU_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_DALI', 			'TXT_KEY_CITYSTATE_DALI', 			'TXT_KEY_CIV5_DALI_TEXT', 			'TXT_KEY_CITYSTATE_DALI', 			'TXT_KEY_CITYSTATE_DALI_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_BEDULU', 		'TXT_KEY_CITYSTATE_BEDULU', 		'TXT_KEY_CIV5_BEDULU_TEXT', 		'TXT_KEY_CITYSTATE_BEDULU', 		'TXT_KEY_CITYSTATE_BEDULU_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_DALI', 			'TXT_KEY_CITYSTATE_DALI', 			'TXT_KEY_CIV5_DALI_TEXT', 			'TXT_KEY_CITYSTATE_DALI', 			'TXT_KEY_CITYSTATE_DALI_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_PEACH', 			'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		'UNITCLASS_WORKER' UNION ALL
 SELECT 		'MINOR_CIV_MULTAN', 		'TXT_KEY_CITYSTATE_MULTAN', 		'TXT_KEY_CIV5_MULTAN_TEXT', 		'TXT_KEY_CITYSTATE_MULTAN', 		'TXT_KEY_CITYSTATE_MULTAN_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_BAGAN', 			'TXT_KEY_CITYSTATE_BAGAN', 			'TXT_KEY_CIV5_BAGAN_TEXT', 			'TXT_KEY_CITYSTATE_BAGAN', 			'TXT_KEY_CITYSTATE_BAGAN_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		'UNITCLASS_WORKER';
+SELECT 		'MINOR_CIV_BAGAN', 			'TXT_KEY_CITYSTATE_BAGAN', 			'TXT_KEY_CIV5_BAGAN_TEXT', 			'TXT_KEY_CITYSTATE_BAGAN', 			'TXT_KEY_CITYSTATE_BAGAN_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 			'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		'UNITCLASS_WORKER';
 
 INSERT INTO MinorCivilization_CityNames 
 			(MinorCivType, 				CityName)
@@ -739,6 +741,19 @@ SELECT 		'MINOR_CIV_ANDORRA', 		'FLAVOR_CULTURE', 			7 UNION ALL
 SELECT 		'MINOR_CIV_CANOSSA', 		'FLAVOR_RELIGION', 			8 UNION ALL
 SELECT 		'MINOR_CIV_CANOSSA', 		'FLAVOR_CITY_DEFENSE', 		5 UNION ALL
 SELECT 		'MINOR_CIV_CANOSSA', 		'FLAVOR_MILITARY_TRAINING', 2;
+SELECT 		'MINOR_CIV_BEDULU', 		'FLAVOR_RELIGION', 			10 UNION ALL
+SELECT 		'MINOR_CIV_BEDULU', 		'FLAVOR_NAVAL', 			2 UNION ALL
+SELECT 		'MINOR_CIV_BEDULU', 		'FLAVOR_CULTURE', 			3 UNION ALL
+SELECT 		'MINOR_CIV_DALI', 		'FLAVOR_RELIGION', 			4 UNION ALL
+SELECT 		'MINOR_CIV_DALI', 		'FLAVOR_GOLD', 			6 UNION ALL
+SELECT 		'MINOR_CIV_DALI', 		'FLAVOR_CULTURE', 			4 UNION ALL
+SELECT 		'MINOR_CIV_DALI', 		'FLAVOR_MILITARY_TRAINING', 			1 UNION ALL
+SELECT 		'MINOR_CIV_MULTAN', 		'FLAVOR_RELIGION', 			3 UNION ALL
+SELECT 		'MINOR_CIV_MULTAN', 		'FLAVOR_EXPANSION', 			8 UNION ALL
+SELECT 		'MINOR_CIV_MULTAN', 		'FLAVOR_OFFENSE', 			2 UNION ALL
+SELECT 		'MINOR_CIV_MULTAN', 		'FLAVOR_MILITARY_TRAINING', 			2 UNION ALL
+SELECT 		'MINOR_CIV_BAGAN', 		'FLAVOR_RELIGION', 			8 UNION ALL
+SELECT 		'MINOR_CIV_BAGAN', 		'FLAVOR_EXPANSION', 			7;
 ---------------------------------------------------
 -- Definitions - Policies
 ---------------------------------------------------
@@ -763,6 +778,8 @@ SELECT 'POLICY_MANAGUA', 				'TXT_KEY_CITYSTATE_MANAGUA' UNION ALL
 SELECT 'POLICY_PHANOTEUS', 				'TXT_KEY_CITYSTATE_PHANOTEUS' UNION ALL
 SELECT 'POLICY_DOUALA', 				'TXT_KEY_CITYSTATE_DOUALA' UNION ALL
 SELECT 'POLICY_AMBRACIA', 				'TXT_KEY_CITYSTATE_AMBRACIA' UNION ALL
+SELECT 'POLICY_MULTAN', 				'TXT_KEY_CITYSTATE_MULTAN' UNION ALL
+SELECT 'POLICY_BAGAN', 				'TXT_KEY_CITYSTATE_MULTAN' UNION ALL
 SELECT 'POLICY_MARITIME', 				'TXT_KEY_BUILDING_MARITIME' UNION ALL
 SELECT 'POLICY_RELIGIOUS', 				'TXT_KEY_BUILDING_RELIGIOUS' UNION ALL
 SELECT 'POLICY_RELIGIOUS_FRIENDLY', 	'TXT_KEY_BUILDING_RELIGIOUS_FRIENDLY' UNION ALL
@@ -777,6 +794,7 @@ UPDATE Policies SET MonopolyModPercent = 7 WHERE Type = 'POLICY_MANAGUA';
 UPDATE Policies SET EspionageModifier = -20, StealTechFasterModifier = 20, RiggingElectionModifier = 20 WHERE Type = 'POLICY_PHANOTEUS';
 UPDATE Policies SET FreeTradeRoute = 1 WHERE Type = 'POLICY_DOUALA';
 UPDATE Policies SET CityStateUnitFrequencyModifier = 50 WHERE Type = 'POLICY_AMBRACIA';
+UPDATE Policies SET ExtraMissionarySpreads = 1 WHERE Type = 'POLICY_MULTAN';
 
 UPDATE Policies SET CityGrowthMod = 15 WHERE Type = 'POLICY_MARITIME';
 UPDATE Policies SET CityGrowthMod = -33 WHERE Type = 'POLICY_MILITARISTIC';
@@ -831,6 +849,14 @@ SELECT 		'POLICY_MUISCA', 	'YIELD_GOLD', 	50;
 INSERT INTO Policy_CapitalYieldPerPopChangeEmpire
 			(PolicyType, 		YieldType, 		Yield)
 SELECT 		'POLICY_MUISCA', 	'YIELD_GOLD', 	30;
+
+INSERT INTO Policy_YieldFromBirth
+			(PolicyType, 		YieldType, 		Yield)
+SELECT 		'POLICY_MULTAN', 	'YIELD_FAITH', 	10);
+
+INSERT INTO Policy_YieldFromConstruction 
+			(PolicyType, 		YieldType, 		Yield)
+SELECT 		'POLICY_BAGAN',		'YIELD_FAITH', 	10;
 ---------------------------------------------------
 -- Definitions - Unit Promotions
 ---------------------------------------------------
@@ -1140,6 +1166,7 @@ SELECT 		'BUILDINGCLASS_ANDORRA', 				'BUILDING_ANDORRA', 				'TXT_KEY_BUILDING_
 SELECT 		'BUILDINGCLASS_ANDORRA_2', 				'BUILDING_ANDORRA_2', 				'TXT_KEY_BUILDING_ANDORRA_2' UNION ALL
 SELECT 		'BUILDINGCLASS_CANOSSA', 				'BUILDING_CANOSSA', 				'TXT_KEY_BUILDING_CANOSSA' UNION ALL
 SELECT 		'BUILDINGCLASS_LEVUKA', 				'BUILDING_LEVUKA',	 				'TXT_KEY_BUILDING_LEVUKA' UNION ALL
+SELECT 		'BUILDINGCLASS_BEDULU', 				'BUILDING_BEDULU',	 				'TXT_KEY_BUILDING_BEDULU' UNION ALL
 SELECT 		'BUILDINGCLASS_MARITIME', 				'BUILDING_MARITIME', 				'TXT_KEY_BUILDING_MARITIME' UNION ALL
 SELECT 		'BUILDINGCLASS_MARITIME_FRIENDLY', 		'BUILDING_MARITIME_FRIENDLY', 		'TXT_KEY_BUILDING_MARITIME_FRIENDLY' UNION ALL
 SELECT 		'BUILDINGCLASS_MARITIME_NEUTRAL', 		'BUILDING_MARITIME_NEUTRAL', 		'TXT_KEY_BUILDING_MARITIME_NEUTRAL' UNION ALL
@@ -1209,6 +1236,7 @@ SELECT 		'BUILDING_ANDORRA', 				'BUILDINGCLASS_ANDORRA', 				-1, 	0, 					NULL,
 SELECT 		'BUILDING_ANDORRA_2', 				'BUILDINGCLASS_ANDORRA_2', 				-1, 	0, 					NULL, 		'TXT_KEY_BUILDING_ANDORRA_2', 				'TXT_KEY_BUILDING_ANDORRA_2_HELP', 				-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1 UNION ALL
 SELECT 		'BUILDING_CANOSSA', 				'BUILDINGCLASS_CANOSSA', 				-1, 	0, 					NULL, 		'TXT_KEY_BUILDING_CANOSSA', 				'TXT_KEY_BUILDING_CANOSSA_HELP', 				-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1 UNION ALL
 SELECT 		'BUILDING_LEVUKA', 					'BUILDINGCLASS_LEVUKA', 				-1, 	0, 					NULL, 		'TXT_KEY_BUILDING_LEVUKA', 					'TXT_KEY_BUILDING_LEVUKA_HELP', 				-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1 UNION ALL
+SELECT 		'BUILDING_BEDULU', 					'BUILDINGCLASS_BEDULU', 				-1, 	0, 					NULL, 		'TXT_KEY_BUILDING_BEDULU', 					'TXT_KEY_BUILDING_BEDULU_HELP', 				-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1 UNION ALL
 SELECT 		'BUILDING_MARITIME', 				'BUILDINGCLASS_MARITIME', 				-1, 	0, 					NULL, 		'TXT_KEY_BUILDING_MARITIME', 				'TXT_KEY_BUILDING_MARITIME_HELP', 				-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1 UNION ALL
 SELECT 		'BUILDING_MARITIME_FRIENDLY', 		'BUILDINGCLASS_MARITIME_FRIENDLY', 		-1, 	0, 					NULL, 		'TXT_KEY_BUILDING_MARITIME_FRIENDLY', 		'TXT_KEY_BUILDING_MARITIME_FRIENDLY_HELP', 		-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1 UNION ALL
 SELECT 		'BUILDING_MARITIME_NEUTRAL', 		'BUILDINGCLASS_MARITIME_NEUTRAL', 		-1, 	0, 					NULL, 		'TXT_KEY_BUILDING_MARITIME_NEUTRAL', 		'TXT_KEY_BUILDING_MARITIME_NEUTRAL_HELP', 		-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1 UNION ALL
@@ -1277,7 +1305,8 @@ INSERT INTO Building_YieldPerXFeatureTimes100
 			(BuildingType, 			FeatureType,		YieldType, 			Yield)
 SELECT 		'BUILDING_RELIGIOUS', 	'FEATURE_ATOLL', 	'YIELD_CULTURE', 	300 UNION ALL
 SELECT 		'BUILDING_RELIGIOUS', 	'FEATURE_ATOLL', 	'YIELD_FOOD', 		300 UNION ALL
-SELECT 		'BUILDING_RELIGIOUS', 	'FEATURE_ATOLL', 	'YIELD_GOLD', 		300;
+SELECT 		'BUILDING_RELIGIOUS', 	'FEATURE_ATOLL', 	'YIELD_GOLD', 		300 UNION ALL
+SELECT 		'BUILDING_BEDULU', 	'FEATURE_JUNGLE', 	'YIELD_FAITH', 		50;
 
 INSERT INTO Building_YieldPerAlly 
 			(BuildingType, 		YieldType, 		Yield)
@@ -1661,10 +1690,10 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_OC_EO', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_THIMPHU', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_THIMPHU', 		3, 				1, 			NULL, 					NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ANDORRA', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_ANDORRA', 		3, 				1, 			NULL, 					NULL, 						'BUILDINGCLASS_ANDORRA_2' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_CANOSSA', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_CANOSSA', 		3, 				1, 			NULL, 					NULL, 						NULL;
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BEDULU', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_BEDULU', 		3, 				1, 			NULL, 					NULL, 						NULL;
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BEDULU', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_BEDULU', 		3, 				1, 			NULL, 					NULL, 						'BUILDINGCLASS_BEDULU';
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_DALI', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_DALIA', 			3, 				1, 			NULL, 					NULL, 						NULL;
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MULTAN', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_MULTAN', 		3, 				1, 			NULL, 					NULL, 						NULL;
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BAGAN', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_BAGAN', 			3, 				1, 			NULL, 					NULL, 						NULL;
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MULTAN', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_MULTAN', 		3, 				1, 			'POLICY_MULTAN', 					NULL, 						NULL;
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BAGAN', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_BAGAN', 			3, 				1, 			'POLICY_BAGAN', 					NULL, 						NULL;
 
 INSERT INTO Event_ParentEvents 
 			(EventChoiceType, 								EventType)
@@ -1994,7 +2023,12 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_YANGCHENG', 		'RESOURCE_FUR', 		'YIELD_F
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_YANGCHENG', 		'RESOURCE_CRAB', 		'YIELD_FAITH', 		1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_YANGCHENG', 		'RESOURCE_TRUFFLES', 	'YIELD_FAITH', 		1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_YANGCHENG', 		'RESOURCE_CORAL', 		'YIELD_FAITH', 		1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_YANGCHENG', 		'RESOURCE_HORSE', 		'YIELD_FAITH', 		1;
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_YANGCHENG', 		'RESOURCE_HORSE', 		'YIELD_FAITH', 		1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BEDULU', 		'RESOURCE_FISH', 		'YIELD_FAITH', 		1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BEDULU', 		'RESOURCE_CRAB', 		'YIELD_FAITH', 		1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BEDULU', 		'RESOURCE_PEARLS', 		'YIELD_FAITH', 		1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BEDULU', 		'RESOURCE_CORAL', 		'YIELD_FAITH', 		1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BEDULU', 		'RESOURCE_WHALE', 		'YIELD_FAITH', 		1;
 
 
 -- bonus
@@ -2024,6 +2058,12 @@ INSERT INTO EventChoice_ResourceYieldChange
 			(EventChoiceType, 							ResourceType, 			YieldType, 		YieldChange)
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_YANGCHENG', 	'RESOURCE_BIRDS_NEST', 	'YIELD_FAITH', 	1
 WHERE EXISTS (SELECT * FROM Community WHERE Type='UCS-EMR' AND Value = 1);
+
+--sea
+INSERT INTO EventChoice_ResourceYieldChange 
+			(EventChoiceType, 							ResourceType, 			YieldType, 		YieldChange)
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BEDULU', 	'RESOURCE_TROPICAL_FISH', 	'YIELD_FAITH', 	1
+WHERE EXISTS (SELECT * FROM Community WHERE Type='UCS-MW' AND Value = 1);
 
 UPDATE EventChoices SET ReligiousUnrestModifierGlobal = -15 WHERE Type = 'PLAYER_EVENT_CHOICE_MINOR_CIV_WITTENBERG';
 UPDATE EventChoices SET GoldMedianModifierGlobal = -5 WHERE Type = 'PLAYER_EVENT_CHOICE_MINOR_CIV_DJIBOUTI';
