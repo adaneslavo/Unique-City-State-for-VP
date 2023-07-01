@@ -1,4 +1,1 @@
 Changelog:
-- lowered CS gift frequency to 3% (was 5%);
-- added lake exception for Workboat and Cargo Ship gifts;
-- added trade route limit check for Mercantile CS gifts;

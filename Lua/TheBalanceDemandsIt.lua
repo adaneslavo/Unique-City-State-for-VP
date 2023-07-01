@@ -414,7 +414,6 @@ function MaritimeCityStatesBonuses(ePlayer, iX, iY)
 	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[1], 1)
 	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[1], true)
 	
-	
 	-- Maritime - Friendly
 	if eMinorPersonality == tMinorPersonalities[1] then
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[2], 1)
@@ -431,6 +430,40 @@ function MaritimeCityStatesBonuses(ePlayer, iX, iY)
 	end
 end
 GameEvents.PlayerCityFounded.Add(MaritimeCityStatesBonuses)
+
+function MaritimeCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
+	local pPlayer = Players[eOtherPlayer]
+	
+	if not pPlayer:IsMinorCiv() then return end
+	
+	local eMinorType = pPlayer:GetMinorCivType()
+	local eMinorTrait = pPlayer:GetMinorCivTrait()
+	local eMinorPersonality = pPlayer:GetPersonality()
+	
+	-- Maritime
+	if eMinorTrait ~= tMinorTraits[1] then return end
+	
+	local pMinorCapital = pPlayer:GetCapitalCity()
+	
+	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[1], 1)
+	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[1], true)
+	
+	-- Maritime - Friendly
+	if eMinorPersonality == tMinorPersonalities[1] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[2], 1)
+	end
+	
+	-- Maritime - Neutral
+	if eMinorPersonality == tMinorPersonalities[2] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[3], 1)
+	end
+	
+	-- Maritime - Hostile
+	if eMinorPersonality == tMinorPersonalities[3] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[4], 1)
+	end
+end
+GameEvents.PlayerLiberated.Add(MaritimeCityStatesBonusesLiberated)
 
 function FreeWorkerFromCityState(ePlayer)
 	local pPlayer = Players[ePlayer]
@@ -607,7 +640,6 @@ function MercantileCityStatesBonuses(ePlayer, iX, iY)
 	-- rest
 	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[5], 1)
 	
-	
 	-- Mercantile - Friendly
 	if eMinorPersonality == tMinorPersonalities[1] then
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[6], 1)
@@ -625,6 +657,39 @@ function MercantileCityStatesBonuses(ePlayer, iX, iY)
 end
 GameEvents.PlayerCityFounded.Add(MercantileCityStatesBonuses)
 
+function MercantileCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
+	local pPlayer = Players[eOtherPlayer]
+	
+	if not pPlayer:IsMinorCiv() then return end
+	
+	local eMinorType = pPlayer:GetMinorCivType()
+	local eMinorTrait = pPlayer:GetMinorCivTrait()
+	local eMinorPersonality = pPlayer:GetPersonality()
+	
+	-- Maritime
+	if eMinorTrait ~= tMinorTraits[2] then return end
+	
+	local pMinorCapital = pPlayer:GetCapitalCity()
+	
+	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[5], 1)
+	
+	-- Mercantile - Friendly
+	if eMinorPersonality == tMinorPersonalities[1] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[6], 1)
+	end
+	
+	-- Mercantile - Neutral
+	if eMinorPersonality == tMinorPersonalities[2] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[7], 1)
+	end
+	
+	-- Mercantile - Hostile
+	if eMinorPersonality == tMinorPersonalities[3] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[8], 1)
+	end
+end
+GameEvents.PlayerLiberated.Add(MercantileCityStatesBonusesLiberated)
+
 function FreeCaravanFromCityState(ePlayer)
 	local pPlayer = Players[ePlayer]
 	
@@ -636,7 +701,7 @@ function FreeCaravanFromCityState(ePlayer)
 	
 	if pMinorCapital:IsHasBuilding(tBuildingsPassiveAbilities[6]) then
 		local iCaravanSpawnChance = RandomNumberBetween(1, 100)
-		
+							
 		if iCaravanSpawnChance <= 1 then
 			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
 				if pMajorPlayer and pMajorPlayer:IsAlive() then
@@ -644,7 +709,6 @@ function FreeCaravanFromCityState(ePlayer)
 					if not pMajorPlayer:IsEverAlive() then break end
 					
 					if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
-						print('TRs', pMajorPlayer:GetNumInternationalTradeRoutesAvailable())
 						local bIsMajorCanHaveTR = pMajorPlayer:GetNumInternationalTradeRoutesUsed() < pMajorPlayer:GetNumInternationalTradeRoutesAvailable()
 						
 						if bIsMajorCanHaveTR then
@@ -778,6 +842,39 @@ function CulturedCityStatesBonuses(ePlayer, iX, iY)
 end
 GameEvents.PlayerCityFounded.Add(CulturedCityStatesBonuses)
 
+function CulturedCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
+	local pPlayer = Players[eOtherPlayer]
+	
+	if not pPlayer:IsMinorCiv() then return end
+	
+	local eMinorType = pPlayer:GetMinorCivType()
+	local eMinorTrait = pPlayer:GetMinorCivTrait()
+	local eMinorPersonality = pPlayer:GetPersonality()
+	
+	-- Maritime
+	if eMinorTrait ~= tMinorTraits[3] then return end
+	
+	local pMinorCapital = pPlayer:GetCapitalCity()
+	
+	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[9], 1)
+	
+	-- Cultured - Friendly
+	if eMinorPersonality == tMinorPersonalities[1] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[10], 1)
+	end
+	
+	-- Cultured - Neutral
+	if eMinorPersonality == tMinorPersonalities[2] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[11], 1)
+	end
+	
+	-- Cultured - Hostile
+	if eMinorPersonality == tMinorPersonalities[3] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[12], 1)
+	end
+end
+GameEvents.PlayerLiberated.Add(CulturedCityStatesBonusesLiberated)
+
 function FreeArchaeologistFromCityState(ePlayer)
 	local pPlayer = Players[ePlayer]
 	
@@ -870,6 +967,40 @@ function ReligiousCityStatesBonuses(ePlayer, iX, iY)
 	end
 end
 GameEvents.PlayerCityFounded.Add(ReligiousCityStatesBonuses)
+
+function ReligiousCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
+	local pPlayer = Players[eOtherPlayer]
+	
+	if not pPlayer:IsMinorCiv() then return end
+	
+	local eMinorType = pPlayer:GetMinorCivType()
+	local eMinorTrait = pPlayer:GetMinorCivTrait()
+	local eMinorPersonality = pPlayer:GetPersonality()
+	
+	-- Maritime
+	if eMinorTrait ~= tMinorTraits[4] then return end
+	
+	local pMinorCapital = pPlayer:GetCapitalCity()
+	
+	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[13], 1)
+	
+	-- Religious - Friendly
+	if eMinorPersonality == tMinorPersonalities[1] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[14], 1)
+		pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[14], true)
+	end
+	
+	-- Religious - Neutral
+	if eMinorPersonality == tMinorPersonalities[2] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[15], 1)
+	end
+	
+	-- Religious - Hostile
+	if eMinorPersonality == tMinorPersonalities[3] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[16], 1)
+	end
+end
+GameEvents.PlayerLiberated.Add(ReligiousCityStatesBonusesLiberated)
 
 function FreeMissionariesFromCityState(ePlayer)
 	local pPlayer = Players[ePlayer]
@@ -1025,7 +1156,6 @@ function MilitaristicCityStatesBonuses(ePlayer, iX, iY)
 	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[17], 1)
 	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[17], true)
 	
-	
 	-- Militaristic - Friendly
 	if eMinorPersonality == tMinorPersonalities[1] then
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[18], 1)
@@ -1043,6 +1173,41 @@ function MilitaristicCityStatesBonuses(ePlayer, iX, iY)
 	end
 end
 GameEvents.PlayerCityFounded.Add(MilitaristicCityStatesBonuses)
+
+function MilitaristicCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
+	local pPlayer = Players[eOtherPlayer]
+	
+	if not pPlayer:IsMinorCiv() then return end
+	
+	local eMinorType = pPlayer:GetMinorCivType()
+	local eMinorTrait = pPlayer:GetMinorCivTrait()
+	local eMinorPersonality = pPlayer:GetPersonality()
+	
+	-- Maritime
+	if eMinorTrait ~= tMinorTraits[5] then return end
+	
+	local pMinorCapital = pPlayer:GetCapitalCity()
+	
+	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[17], 1)
+	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[17], true)
+	
+	-- Militaristic - Friendly
+	if eMinorPersonality == tMinorPersonalities[1] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[18], 1)
+		pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[18], true)
+	end
+	
+	-- Militaristic - Neutral
+	if eMinorPersonality == tMinorPersonalities[2] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[19], 1)
+	end
+	
+	-- Militaristic - Hostile
+	if eMinorPersonality == tMinorPersonalities[3] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[20], 1)
+	end
+end
+GameEvents.PlayerLiberated.Add(MilitaristicCityStatesBonusesLiberated)
 
 function CityStateTrainedUU(ePlayer, eCity, eUnit, bGold, bFaith)
 	local pPlayer = Players[ePlayer]
@@ -1237,8 +1402,8 @@ function JerusalemsDevotion(ePlayer)
 		    local pMinorPlayer = pplayer
 		    
 		    if GameInfo.MinorCivilizations[pMinorPlayer:GetMinorCivType()].Type == "MINOR_CIV_JERUSALEM" then
-                if pMinorPlayer:IsAllies(ePlayer) then
-	        	    local pMajorPlayer = Players[ePlayer]
+				if pMinorPlayer:IsAllies(ePlayer) then
+					local pMajorPlayer = Players[ePlayer]
         	    
             		if pMajorPlayer:GetMajorityReligion() ~= nil and pMajorPlayer:GetMajorityReligion() ~= pMinorPlayer:GetMajorityReligion() then
             			local pMinorCapitalCity = pMinorPlayer:GetCapitalCity()
@@ -1250,19 +1415,28 @@ function JerusalemsDevotion(ePlayer)
 							pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "[COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR] adopted your main Religion. Now they spread your word over the world.", "Religion transfer to [COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR]", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
 						end
             		end
-            		
-            		if Game.GetNumActiveLeagues() ~= 0 and not Game.IsResolutionPassed(eSphere, tLostCities["eLostJerusalem"]) then
-            			Game.DoEnactResolution(eSphere, tLostCities["eLostJerusalem"], eMajor)
-            			
-            			if pMajorPlayer:IsHuman() then
-            				pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "In recognition and awe of your holiness, the leaders of [COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR] pledge their loyalty to you in the form of a [COLOR_POSITIVE_TEXT]Sphere of Influence[ENDCOLOR].", "[COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR]'s Sphere of Influence", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
-            			end
-        	    	end
         		
         		    break
                 end
     	    end
     	end
+	end
+end
+
+function JerusalemsDevotionSphere(eMinor, eMajor, bIsAlly, iOldFriendship, iNewFriendship)
+	local pMinorPlayer = Players[eMinor]
+	local pMajorPlayer = Players[eMajor]
+	
+	if GameInfo.MinorCivilizations[pMinorPlayer:GetMinorCivType()].Type == "MINOR_CIV_JERUSALEM" then
+		if bIsAlly then
+			if Game.GetNumActiveLeagues() ~= 0 and not Game.IsResolutionPassed(eSphere, tLostCities["eLostJerusalem"]) then
+            	Game.DoEnactResolution(eSphere, tLostCities["eLostJerusalem"], eMajor)
+            			
+            	if pMajorPlayer:IsHuman() then
+            		pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "In recognition and awe of your holiness, the leaders of [COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR] pledge their loyalty to you in the form of a [COLOR_POSITIVE_TEXT]Sphere of Influence[ENDCOLOR].", "[COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR]'s Sphere of Influence", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
+            	end
+			end
+        end
 	end
 end
 
@@ -1830,6 +2004,7 @@ function SettingUpSpecificEvents()
 			elseif sMinorCivType == "MINOR_CIV_JERUSALEM" then
 				tLostCities["eLostJerusalem"] = eCS
 				GameEvents.PlayerDoTurn.Add(JerusalemsDevotion)
+				GameEvents.MinorAlliesChanged.Add(JerusalemsDevotionSphere)
 			
 			
 			
