@@ -1,1 +1,7 @@
 Changelog:
+- added 4 new religious CSs: Bedulu, Dali, Multan and Pagan;
+- added few missing civilopedia texts;
+- added missing flavours for base CSs;
+- added missing resources from MW (Tropical Fish, Giant Tortoise);
+- fixed dummies showing in the city view;
+- numerous text fixes, text unifications, new text icons;
