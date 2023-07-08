@@ -1355,11 +1355,10 @@ GameEvents.PlayerCanBuild.Add(CanWeBuildSunkenCourtyard)
 
 
 -- CAPE TOWN/MANILA (BENEFITS FROM TRADE ROUTES)
-function TradeToTheKing(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eConnectionType)
+function TradeInCapeTown(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eConnectionType)
 	local pPlayer = Players[eFromPlayer]
 	local pToPlayer = Players[eToPlayer]
 	
-	-- CAPE TOWN
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[4]) ~= 0 then
 		local iCahChing = pToPlayer:GetCityByID(eToCity):GetPopulation() * RandomNumberBetween(20, 40)
 		
@@ -1371,8 +1370,14 @@ function TradeToTheKing(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eCo
 			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "And Cape of Good Hope it was, [COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR] rewards you with " .. iCahChing .. "[ICON_GOLD] Gold!", "Cape of Good Hope", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
 		end
 	end
+end
 
-    -- MANILA
+
+-- MANILA (YIELDS AT THE END FOR TRADE)
+function TradeInManila(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eConnectionType)
+	local pPlayer = Players[eFromPlayer]
+	local pToPlayer = Players[eToPlayer]
+	
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[5]) ~= 0 then
 		local iYumYum = pToPlayer:GetCityByID(eToCity):GetPopulation() * RandomNumberBetween(1, 15)
 		local pPlayerCity = pPlayer:GetCityByID(eFromCity)
@@ -1386,6 +1391,26 @@ function TradeToTheKing(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eCo
 			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "With the Pearl of the Orient, your merchants discovered " .. iYumYum .. "[ICON_FOOD] Food and [ICON_PRODUCTION] Production on their travels!", "Pearl of the Orient", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
 		end
 	end
+end
+
+
+-- COLOMBO (HEAL UNITS AT THE END FOR TRADE)
+function TradeInColombo(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eConnectionType)
+	local pPlayer = Players[eFromPlayer]
+	local pCity = pPlayer:GetCityByID(eFromCity)
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[18]) ~= 0 then
+		if eFromPlayer ~= eToPlayer then
+			for unit in pPlayer:Units() do
+				unit:ChangeDamage(-10)
+			end
+
+			local pColombo = Players[tLostCities["eLostColombo"]]
+
+			if pPlayer:IsHuman() then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "[COLOR_CYAN]" .. pCity:GetName() .. "[ENDCOLOR] finished a [ICON_INTERNATIONAL_TRADE] Trade Route. Desired goods from [COLOR_CYAN]" .. pColombo:GetName() .. "[ENDCOLOR] brought you enough profits to restructure your army and increase the defense of the trade network.", "Trade partners!", pCity:GetX(), pCity:GetY())
+			end
+		end
+	end		
 end
 
 
@@ -2141,26 +2166,6 @@ end
 
 
 
-function TradeInColombo(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eConnectionType)
-	local pPlayer = Players[eFromPlayer]
-	local pCity = pPlayer:GetCityByID(eFromCity)
-	if pPlayer:GetEventChoiceCooldown(tEventChoice[18]) ~= 0 then
-		if eFromPlayer ~= eToPlayer then
-			for unit in pPlayer:Units() do
-				unit:ChangeDamage(-10)
-			end
-
-			local pColombo = Players[tLostCities["eLostColombo"]]
-
-			if pPlayer:IsHuman() then
-				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "[COLOR_CYAN]" .. pCity:GetName() .. "[ENDCOLOR] finished a [ICON_INTERNATIONAL_TRADE] Trade Route. Desired goods from [COLOR_CYAN]" .. pColombo:GetName() .. "[ENDCOLOR] brought you enough profits to restructure your army and increase the defense of the trade network.", "Trade partners!", pCity:GetX(), pCity:GetY())
-			end
-		end
-	end		
-end
-
-
-
 function MigrationToHongKong(ePlayer)
 	local pPlayer = Players[ePlayer]
 					
@@ -2220,29 +2225,30 @@ function SettingUpSpecificEvents()
 			-- trade routes bonuses
 			elseif sMinorCivType == "MINOR_CIV_CAPE_TOWN" then	
 				tLostCities["eLostCapeTown"] = eCS
-				GameEvents.PlayerTradeRouteCompleted.Add(TradeToTheKing)
+				GameEvents.PlayerTradeRouteCompleted.Add(TradeInCapeTown)
 			elseif sMinorCivType == "MINOR_CIV_MANILA" then	
 				tLostCities["eLostManila"] = eCS
-				GameEvents.PlayerTradeRouteCompleted.Add(TradeToTheKing)
+				GameEvents.PlayerTradeRouteCompleted.Add(TradeInManila)
+			elseif sMinorCivType == "MINOR_CIV_COLOMBO" then
+				tLostCities["eLostColombo"] = eCS
+				GameEvents.PlayerTradeRouteCompleted.Add(TradeInColombo)
 			
 			
 			-- starting building setup for city-states
-			elseif sMinorCivType == "MINOR_CIV_KIEV" then	
-				tLostCities["eLostKyiv"] = eCS
+			elseif 		sMinorCivType == "MINOR_CIV_KIEV" or sMinorCivType == "MINOR_CIV_MILAN" 
+				     or	sMinorCivType == "MINOR_CIV_VILNIUS" or sMinorCivType == "MINOR_CIV_VALLETTA" then
 				GameEvents.UnitCityFounded.Add(SettledCityStateWithBuilding)
 				GameEvents.PlayerLiberated.Add(LiberatedCityStateWithBuilding)
-			elseif sMinorCivType == "MINOR_CIV_MILAN" then	
-				tLostCities["eLostMilan"] = eCS
-				GameEvents.UnitCityFounded.Add(SettledCityStateWithBuilding)
-				GameEvents.PlayerLiberated.Add(LiberatedCityStateWithBuilding)
-			elseif sMinorCivType == "MINOR_CIV_VILNIUS" then	
-				tLostCities["eLostVilnius"] = eCS
-				GameEvents.UnitCityFounded.Add(SettledCityStateWithBuilding)
-				GameEvents.PlayerLiberated.Add(LiberatedCityStateWithBuilding)
-			elseif sMinorCivType == "MINOR_CIV_VALLETTA" then	
-				tLostCities["eLostValletta"] = eCS
-				GameEvents.UnitCityFounded.Add(SettledCityStateWithBuilding)
-				GameEvents.PlayerLiberated.Add(LiberatedCityStateWithBuilding)	
+				
+				if sMinorCivType == "MINOR_CIV_KIEV" then	
+					tLostCities["eLostKyiv"] = eCS
+				elseif sMinorCivType == "MINOR_CIV_MILAN" then	
+					tLostCities["eLostMilan"] = eCS
+				elseif sMinorCivType == "MINOR_CIV_VILNIUS" then	
+					tLostCities["eLostVilnius"] = eCS
+				elseif sMinorCivType == "MINOR_CIV_VALLETTA" then	
+					tLostCities["eLostValletta"] = eCS
+				end
 			
 			
 			-- gold interests
@@ -2276,25 +2282,21 @@ function SettingUpSpecificEvents()
 				GameEvents.PlayerCityFounded.Add(LordsOfTheGreatGlassRiverNewCity)
 			elseif sMinorCivType == "MINOR_CIV_THIMPHU" then
 				tLostCities["eLostThimphu"] = eCS
-				
 				GameEvents.PlayerDoTurn.Add(DrukTsendhen)
 				GameEvents.CityCaptureComplete.Add(DrukTsendhenCapture)
 				GameEvents.PlayerCityFounded.Add(DrukTsendhenNewCity)
 			elseif sMinorCivType == "MINOR_CIV_RISHIKESH" then
 				tLostCities["eLostRishikesh"] = eCS
-				
 				GameEvents.PlayerDoTurn.Add(HimalayanYogi)
 				GameEvents.CityCaptureComplete.Add(HimalayanYogiCapture)
 				GameEvents.PlayerCityFounded.Add(HimalayanYogiNewCity)
 			elseif sMinorCivType == "MINOR_CIV_ANDORRA" then
 				tLostCities["eLostAndorra"] = eCS
-				
 				GameEvents.PlayerDoTurn.Add(PyreneanPareage)
 				GameEvents.CityCaptureComplete.Add(PyreneanPareageCapture)
 				GameEvents.PlayerCityFounded.Add(PyreneanPareageNewCity)
 			elseif sMinorCivType == "MINOR_CIV_CANOSSA" then
 				tLostCities["eLostCanossa"] = eCS
-				
 				GameEvents.PlayerDoTurn.Add(ArdentFlameInPiousHeart)
 				GameEvents.CityCaptureComplete.Add(ArdentFlameInPiousHeartCapture)
 				GameEvents.PlayerCityFounded.Add(ArdentFlameInPiousHeartNewCity)
@@ -2304,7 +2306,6 @@ function SettingUpSpecificEvents()
 			-- food from killing
 			elseif sMinorCivType == "MINOR_CIV_LEVUKA" then
 				tLostCities["eLostLevuka"] = eCS
-				
 				GameEvents.CityCaptureComplete.Add(CaptureCityForLevuka)
 				GameEvents.PlayerDoTurn.Add(ConquestsForLevuka)
 				GameEvents.BarbariansCampCleared.Add(BarbCampForLevuka)
@@ -2318,21 +2319,12 @@ function SettingUpSpecificEvents()
 			-- promotion healing from religious source
 			elseif sMinorCivType == "MINOR_CIV_ISKANWAYA" then
 				tLostCities["eLostIskanwaya"] = eCS
-
 				GameEvents.PlayerDoTurn.Add(KallawayaHealers)
-			
-			
-			-- healing units on trade finish
-			elseif sMinorCivType == "MINOR_CIV_COLOMBO" then
-				tLostCities["eLostColombo"] = eCS
-				
-				GameEvents.PlayerTradeRouteCompleted.Add(TradeInColombo)
 			
 
 			-- citizen migration
 			elseif sMinorCivType == "MINOR_CIV_HONG_KONG" then
 				tLostCities["eLostHongKong"] = eCS
-				
 				GameEvents.PlayerDoTurn.Add(MigrationToHongKong)
 			end
 		end
