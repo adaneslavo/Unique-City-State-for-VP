@@ -370,7 +370,7 @@ SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_VANCOUVER', 			'[COLOR_MAGENTA]Terminal City:[
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_VATICAN_CITY', 		'[COLOR_MAGENTA]Absolute Faith:[ENDCOLOR] -10% [ICON_PEACE] Faith Purchase Cost.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_VILNIUS', 			'[COLOR_MAGENTA]Athens of the North:[ENDCOLOR] Player can construct [COLOR_CYAN]The Gate of Dawn[ENDCOLOR] (+1 slot for [ICON_GREAT_WRITER] Writer). Writers gain +1 [ICON_GOLD] Gold.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_WELLINGTON', 			'[COLOR_MAGENTA]Te Whanga-nui-a-Tara:[ENDCOLOR] Strategic Resources gain +1 [ICON_FOOD] Food.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_WITTENBERG', 			'[COLOR_MAGENTA]Birth of the Reformation:[ENDCOLOR] -5% [ICON_HAPPINESS_3] Religion Unrest in all Cities. Civil Servants and Laborers gain +1 [ICON_PEACE] Faith.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_WITTENBERG', 			'[COLOR_MAGENTA]Birth of the Reformation:[ENDCOLOR] -5% [ICON_HAPPINESS_3] Religious Unrest in all Cities. Civil Servants and Laborers gain +1 [ICON_PEACE] Faith.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_YEREVAN', 			'[COLOR_MAGENTA]Art of War:[ENDCOLOR] Military kills generate [ICON_CULTURE] Culture equivalent to 50% of the killed''s [ICON_STRENGTH] Combat Strength.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ZANZIBAR', 			'[COLOR_MAGENTA]The Spice Islands:[ENDCOLOR] Bonus and Strategic Resources gain +1 [ICON_GOLD] Gold.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ZURICH', 				'[COLOR_MAGENTA]Banking Establishments:[ENDCOLOR] Treasury produces +2% [ICON_GOLD] Gold as interest (caps at 20 [ICON_GOLD] Gold/Era).[NEWLINE]' UNION ALL
