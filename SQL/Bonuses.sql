@@ -383,7 +383,7 @@ SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_GRANADA', 			'[COLOR_MAGENTA]Alcázars:[ENDCOL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_NANMANDOL', 			'[COLOR_MAGENTA]Reef of Heaven:[ENDCOLOR] Oceans gain +1 [ICON_FOOD] Food and +1 [ICON_CULTURE] Culture.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_GWYNEDD', 			'[COLOR_MAGENTA]Cyfraith Hywel:[ENDCOLOR] +10% [ICON_CULTURE] Culture during [ICON_GOLDEN_AGE] Golden Ages.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MUISCA', 				'[COLOR_MAGENTA]The Golden One:[ENDCOLOR] Capital gains +1 [ICON_GOLD] Gold for its every 2 [ICON_CITIZEN] Citizens and +1 [ICON_GOLD] Gold for every 20 [ICON_CITIZEN] Citizens in your Empire.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LACONIA', 			'[COLOR_MAGENTA]Spartan Discipline:[ENDCOLOR] Land Military Units gain +10% [ICON_STRENGTH] Combat Strength when adjacent to a Friendly Unit.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LACONIA', 			'[COLOR_MAGENTA]Spartan Discipline:[ENDCOLOR] Land Military Units gain +15% [ICON_STRENGTH] Combat Strength when adjacent to a Friendly Unit.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_CHEVAK', 				'[COLOR_MAGENTA]Cev''aq:[ENDCOLOR] +1 [ICON_FOOD] Food for every 2 worked Tundra tiles, or 3 Snow tiles within workable radius.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SANTO_DOMINGO', 		'[COLOR_MAGENTA]Caribbean''s Gateway:[ENDCOLOR] Each currently applied Happiness or flat-yield Global Monopoly modifier gains an additional +3 bonus.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MANAGUA', 			'[COLOR_MAGENTA]Place of the Big Man:[ENDCOLOR] Each currently applied percentage-based Global Monopoly modifier gains an additional +7% bonus.[NEWLINE]' UNION ALL
