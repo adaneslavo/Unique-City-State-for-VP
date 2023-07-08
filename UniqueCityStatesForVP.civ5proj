@@ -103,6 +103,9 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Art" />
+    <Folder Include="Art\Model" />
+    <Folder Include="Art\Model\SunkenCourtyard" />
+    <Folder Include="Art\SV_Icons" />
     <Folder Include="Lua" />
     <Folder Include="Sound" />
     <Folder Include="SQL" />
@@ -112,7 +115,55 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\sv_BuildMarsh.dds">
+    <Content Include="Art\Model\SunkenCourtyard\chatallatadecal.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\SunkenCourtyard\chatallata_6.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\SunkenCourtyard\chatallata_6.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\SunkenCourtyard\chatallata_hb.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\SunkenCourtyard\chatallata_hb.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\SunkenCourtyard\chatallata_pl.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\SunkenCourtyard\chatallata_pl.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\SunkenCourtyard\kalasasaya_diff.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\SunkenCourtyard\kalasasaya_sref.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\SunkenCourtyard\templete_diff.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\SunkenCourtyard\templete_sref.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\SV_Icons\sv_BuildMarsh.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\SV_Icons\sv_BuildSunkenCourtyard.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>

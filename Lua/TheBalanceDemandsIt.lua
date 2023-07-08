@@ -15,7 +15,13 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_THIMPHU,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_ANDORRA, -- 11
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_CANOSSA,
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_LEVUKA
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_LEVUKA,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_DALI,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_RISHIKESH,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_ISKANWAYA, -- 16
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_TIWANAKU,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_COLOMBO,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_HONG_KONG
 }
 
 local tBuildingsActiveAbilities = {
@@ -28,7 +34,12 @@ local tBuildingsActiveAbilities = {
 	GameInfoTypes.BUILDING_CANOSSA,
 	GameInfoTypes.BUILDING_TEMPLE,
 	GameInfoTypes.BUILDING_LEVUKA,
-	GameInfoTypes.BUILDING_JERUSALEM
+	GameInfoTypes.BUILDING_JERUSALEM,
+	GameInfoTypes.BUILDING_RISHIKESH_2 -- 11
+}
+
+local tPromotionsActiveAbilities = {
+	GameInfoTypes.PROMOTION_ISKANWAYA -- 1
 }
 
 local tBuildingsPassiveAbilities = {
@@ -77,9 +88,6 @@ local tPoliciesPassiveAbilities = {
 	GameInfoTypes.POLICY_MILITARISTIC_HOSTILE
 }
 
-local eBuildMarsh = GameInfoTypes.BUILD_MARSH
-local eBuildMound = GameInfoTypes.BUILD_MOUND
-
 local eImprovementMarsh = GameInfoTypes.IMPROVEMENT_MARSH
 local eImprovementForest = GameInfoTypes.IMPROVEMENT_PLANT_FOREST
 local eImprovementJungle = GameInfoTypes.IMPROVEMENT_PLANT_JUNGLE
@@ -103,9 +111,14 @@ local eUnitGreatDiplomat = GameInfoTypes.UNIT_GREAT_DIPLOMAT
 local eUnitMissionary = GameInfoTypes.UNIT_MISSIONARY
 local eUnitWorker = GameInfoTypes.UNIT_WORKER
 local eUnitFishingBoat = GameInfoTypes.UNIT_WORKBOAT
-local eUnitCaravan = GameInfoTypes.UNIT_CARAVAN
-local eUnitCargoShip = GameInfoTypes.UNIT_CARGO_SHIP
 local eUnitArchaeologist = GameInfoTypes.UNIT_ARCHAEOLOGIST
+
+local tUnitsTrade = {
+	GameInfoTypes.UNIT_CARAVAN,
+	GameInfoTypes.UNIT_CARGO_SHIP,
+	GameInfoTypes.UNIT_CARAVAN_OF_DALI,
+	--GameInfoTypes.UNIT_CARGO_SHIP_OF_DALI -- unused because of VP's dll constraints
+}
 
 local eTechArchaeology = GameInfoTypes.TECH_ARCHAEOLOGY
 local eArtifactRuin = GameInfoTypes.ARTIFACT_ANCIENT_RUIN
@@ -125,12 +138,24 @@ local tMinorPersonalities = {
 	MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_HOSTILE
 }
 
+
 -- for events to start
 local iThresholdPseudoAllies = 3 * GameDefines.FRIENDSHIP_THRESHOLD_ALLIES
 local bIsAllyAnOption = true
 local bIsEmbassyAnOption = true
 local bIsPseudoAllyAnOption = true
 local tEmbassies = {}
+
+-- for plot iteration
+local tDirectionTypes = {
+		DirectionTypes.DIRECTION_NORTHEAST,
+		DirectionTypes.DIRECTION_EAST,
+		DirectionTypes.DIRECTION_SOUTHEAST,
+		DirectionTypes.DIRECTION_SOUTHWEST,
+		DirectionTypes.DIRECTION_WEST,
+		DirectionTypes.DIRECTION_NORTHWEST
+	}
+
 
 -- for CS UU gifts (MinorCivGift=1)
 local tUniqueUnitsFromMinors = {}
@@ -739,11 +764,11 @@ function FreeCaravanFromCityState(ePlayer)
 							end
 
 							if iCaravanOrCargoSpawnChance <= 50 and bIsMajorHasTrueSea then
-								pMajorPlayer:AddFreeUnit(eUnitCargoShip, UNITAI_DEFENSE)
-								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Cargo Ship', eUnitCargoShip)
+								pMajorPlayer:AddFreeUnit(tUnitsTrade[2], UNITAI_DEFENSE)
+								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Cargo Ship', tUnitsTrade[2])
 							else	
-								pMajorPlayer:AddFreeUnit(eUnitCaravan, UNITAI_DEFENSE)
-								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Caravan', eUnitCaravan)
+								pMajorPlayer:AddFreeUnit(tUnitsTrade[1], UNITAI_DEFENSE)
+								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Caravan', tUnitsTrade[1])
 							end
 						end
 					end
@@ -1278,9 +1303,9 @@ end
 
 
 
--- BRUSSELS (FEATURE)
+-- BRUSSELS (FEATURE MARSH)
 function CanWeBuildMarsh(ePlayer, eUnit, iX, iY, eBuild)
-	if eBuild ~= eBuildMarsh then return true end
+	if eBuild ~= GameInfoTypes.BUILD_MARSH then return true end
 	
 	local pPlayer = Players[ePlayer]
 	
@@ -1301,9 +1326,9 @@ end
 
 
 
--- CAHOKIA (IMPROVEMENT)
+-- CAHOKIA (IMPROVEMENT MOUND)
 function CanWeBuildMound(ePlayer, eUnit, iX, iY, eBuild)
-	if eBuild ~= eBuildMound then return true end
+	if eBuild ~= GameInfoTypes.BUILD_MOUND then return true end
 	
 	local pPlayer = Players[ePlayer]
 	
@@ -1315,7 +1340,21 @@ GameEvents.PlayerCanBuild.Add(CanWeBuildMound)
 
 
 
--- CAPE TOWN/MANILA (TRADE ROUTES)
+-- TIWANAKU (IMPROVEMENT SUNKEN COURTYARD)
+function CanWeBuildSunkenCourtyard(ePlayer, eUnit, iX, iY, eBuild)
+	if eBuild ~= GameInfoTypes.BUILD_SUNK_COURT then return true end
+	
+	local pPlayer = Players[ePlayer]
+	
+	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[17]) > 0) then return false end
+	
+	return true
+end
+GameEvents.PlayerCanBuild.Add(CanWeBuildSunkenCourtyard)
+
+
+
+-- CAPE TOWN/MANILA (BENEFITS FROM TRADE ROUTES)
 function TradeToTheKing(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eConnectionType)
 	local pPlayer = Players[eFromPlayer]
 	local pToPlayer = Players[eToPlayer]
@@ -1351,7 +1390,7 @@ end
 
 
 
--- KIEV/MILAN/VILNIUS/VALETTA (STARTING BUILDINGS)
+-- KIEV/MILAN/VILNIUS/VALETTA (STARTING BUILDINGS FOR CERTAIN CITY-STATES)
 function SettledCityStateWithBuilding(ePlayer, eUnit, eUnitType, iPlotX, iPlotY)
 	local pPlayer = Players[ePlayer]
 	
@@ -1370,9 +1409,27 @@ function SettledCityStateWithBuilding(ePlayer, eUnit, eUnitType, iPlotX, iPlotY)
 	end
 end
 
+function LiberatedCityStateWithBuilding(ePlayer, eOtherPlayer, eCity)
+	local pPlayer = Players[eOtherPlayer]
+	
+	if pPlayer:IsMinorCiv() then
+		local pLiberatedCity = pPlayer:GetCapitalCity()
+		
+		if GameInfo.MinorCivilizations[pPlayer:GetMinorCivType()].Type == "MINOR_CIV_KIEV" then
+			pLiberatedCity:SetNumRealBuilding(GameInfoTypes.BUILDING_KIEV, 1)
+		elseif GameInfo.MinorCivilizations[pPlayer:GetMinorCivType()].Type == "MINOR_CIV_MILAN" then
+			pLiberatedCity:SetNumRealBuilding(GameInfoTypes.BUILDING_MILAN, 1)
+		elseif GameInfo.MinorCivilizations[pPlayer:GetMinorCivType()].Type == "MINOR_CIV_VALLETTA" then
+			pLiberatedCity:SetNumRealBuilding(GameInfoTypes.BUILDING_VALLETTA, 1)
+		elseif GameInfo.MinorCivilizations[pPlayer:GetMinorCivType()].Type == "MINOR_CIV_VILNIUS" then
+			pLiberatedCity:SetNumRealBuilding(GameInfoTypes.BUILDING_VILNIUS, 1)
+		end
+	end
+end
 
 
--- ZURICH (GOLD)
+
+-- ZURICH (GOLD INTERESTS)
 function ZurichMerchants(ePlayer)
 	local pPlayer = Players[ePlayer]
 	
@@ -1395,7 +1452,7 @@ end
 
 
 
--- JERUSALEM (SPHERE OF INFLUENCE AND RELIGION)
+-- JERUSALEM (SPHERE OF INFLUENCE AND RELIGION FOR AN ALLY)
 function JerusalemsDevotion(ePlayer)
 	for _, pplayer in ipairs(Players) do
 		if pplayer and pplayer:IsAlive() and pplayer:IsMinorCiv() then
@@ -1442,7 +1499,7 @@ end
 
 
 
--- SIDON (SPHERE OF INFLUENCE)
+-- SIDON (SPHERE OF INFLUENCE FROM BULLYING)
 function DestroyLifeForSidon(ePlayer, eCS, iGold, eUnitType, iPlotX, iPlotY)
 	local pPlayer = Players[ePlayer]
 
@@ -1459,7 +1516,7 @@ end
 
 
 
--- LHASA (SPHERE OF INFLUENCE)
+-- LHASA (SPHERE OF INFLUENCE FROM WW)
 function CanWeBuildPotalaPalace(ePlayer, eBuilding)
 	if eBuilding ~= tBuildingsActiveAbilities[1] then return true end
 	if Game.GetNumActiveLeagues() == 0 then return false end
@@ -1595,7 +1652,7 @@ end
 
 
 
--- THIMPHU (CITY ON HILL)
+-- THIMPHU (CITY ON HILL?)
 function DrukTsendhen(ePlayer)
 	local pPlayer = Players[ePlayer]
 	
@@ -1646,9 +1703,9 @@ function DrukTsendhenCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bCo
 			end
 			
 			-- culture to defense conversion
-			local iDefenseToAdd = city:GetJONSCulturePerTurn()
+			local iDefenseToAdd = pConqCity:GetJONSCulturePerTurn()
 			
-			pCity:SetNumRealBuilding(tBuildingsActiveAbilities[5], iDefenseToAdd)
+			pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[5], iDefenseToAdd)
 		end
 	else
 		if not pNewOwner:IsEventChoiceActive(tEventChoice[10]) then
@@ -1689,7 +1746,82 @@ end
 
 
 
--- ANDORRA (MOUNTAIN NEARBY)
+-- RISHIKESH (CITY ON RIVER?)
+function HimalayanYogi(ePlayer)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:IsMinorCiv() then return end
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[15]) ~= 0 then
+		for city in pPlayer:Cities() do
+			-- culture on hill
+			local pPlot = city:Plot()
+			
+			if pPlot then
+				-- faith for river
+				if pPlot:IsRiver() then
+					city:SetNumRealBuilding(tBuildingsActiveAbilities[11], 1)
+				end
+			end
+		end
+	else
+		if pPlayer:CountNumBuildings(tBuildingsActiveAbilities[11]) > 0 then
+			if not pPlayer:IsEventChoiceActive(tEventChoice[15]) then
+				for city in pPlayer:Cities() do
+					city:SetNumRealBuilding(tBuildingsActiveAbilities[11], 0)
+				end
+			end
+		end
+	end
+end
+
+function HimalayanYogiCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
+	local pNewOwner = Players[eNewOwner]
+	
+	if pNewOwner:GetEventChoiceCooldown(tEventChoice[15]) ~= 0 then
+		local pPlot = Map.GetPlot(iX, iY)
+		
+		if pPlot then
+			-- faith for river
+			if pPlot:IsRiver() then
+				local pCity = pPlot:GetWorkingCity()
+				
+				pCity:SetNumRealBuilding(tBuildingsActiveAbilities[11], 1)
+			end
+		end
+	else
+		if not pNewOwner:IsEventChoiceActive(tEventChoice[15]) then
+			local pPlot = Map.GetPlot(iX, iY)
+			
+			if pPlot then
+				local pConqCity = pPlot:GetWorkingCity()
+			
+				pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[11], 0)
+			end
+		end
+	end
+end
+
+function HimalayanYogiNewCity(ePlayer, iX, iY)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[15]) ~= 0 then
+		local pPlot = Map.GetPlot(iX, iY)
+				
+		if pPlot then
+			-- faith for river
+			if pPlot:IsRiver() then
+				local pCity = pPlot:GetWorkingCity()
+			
+				pCity:SetNumRealBuilding(tBuildingsActiveAbilities[11], 1)
+			end
+		end
+	end
+end
+
+
+
+-- ANDORRA (MOUNTAIN NEARBY?)
 function PyreneanPareage(ePlayer)
 	local pPlayer = Players[ePlayer]
 	
@@ -1787,7 +1919,7 @@ end
 
 
 
--- CANOSSA (TEMPLE BUILT)
+-- CANOSSA (TEMPLE BUILT?)
 function ArdentFlameInPiousHeart(ePlayer)
 	local pPlayer = Players[ePlayer]
 	
@@ -1866,7 +1998,7 @@ end
 
 
 
--- LEVUKA
+-- LEVUKA (GROWTH FROM KILLING AND CONQUER)
 function CaptureCityForLevuka(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
 	local pPlayer = Players[eNewOwner]
 	
@@ -1939,6 +2071,129 @@ function BarbCampForLevuka(iX, iY, ePlayer)
 		end
 	end
 end
+
+
+
+-- DALI (BUYING TRADE UNITS WITH FAITH)
+function TradeWithFaith(ePlayer, eCity, eUnit)
+	if eUnit ~= tUnitsTrade[3] --[[and eUnit ~= tUnitsTrade[4]--]] then return true end
+	
+	local pPlayer = Players[ePlayer]
+
+	if pPlayer:IsMinorCiv() then return true end
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[14]) ~= 0 then
+		return true
+	else
+		return false
+	end
+end
+GameEvents.CityCanTrain.Add(TradeWithFaith)
+
+
+
+-- ISKANWAYA (PROMOTION HEALING EACH TURN)
+function KallawayaHealers(ePlayer)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:IsMinorCiv() then return end
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[16]) ~= 0 then
+		for unit in pPlayer:Units() do
+			if unit then
+				if unit:GetDamage() > 0 and unit:IsHasPromotion(tPromotionsActiveAbilities[1]) then
+					local pPlot = unit:GetPlot()
+					local iX = pPlot:GetX()
+					local iY = pPlot:GetY()
+					local bPlotMissionary, bPlotHolySite, bPlotMountain = false, false, false
+					local bAdjacentMissionary, bAdjacentHolySite, bAdjacentMountain = false, false, false
+
+					bPlotMissionary = pPlot:GetUnit() and pPlot:GetUnit():GetUnitType() == eUnitMissionary
+					bPlotHolySite = pPlot:GetImprovementType() == eImprovementHolySite
+					bPlotMountain = pPlot:GetPlotType() == tPlotTypes[3]
+
+					if bPlotMissionary or bPlotHolySite or bPlotMountain then
+						unit:ChangeDamage(-10)
+					else
+						for i, direction in ipairs(tDirectionTypes) do
+							local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
+						
+							if pAdjacentPlot then
+								bAdjacentMissionary = pAdjacentPlot:GetUnit() and pAdjacentPlot:GetUnit():GetUnitType() == eUnitMissionary
+								bAdjacentHolySite = pAdjacentPlot:GetImprovementType() == eImprovementHolySite
+								bAdjacentMountain = pAdjacentPlot:GetPlotType() == tPlotTypes[3]
+
+								if bAdjacentMissionary or bAdjacentHolySite or bAdjacentMountain then
+									break
+								end
+							end
+						end
+
+						if bAdjacentMissionary or bAdjacentHolySite or bAdjacentMountain then
+							unit:ChangeDamage(-10)
+						end
+					end
+				end
+			end
+		end
+	end
+end
+
+
+
+function TradeInColombo(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eConnectionType)
+	local pPlayer = Players[eFromPlayer]
+	local pCity = pPlayer:GetCityByID(eFromCity)
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[18]) ~= 0 then
+		if eFromPlayer ~= eToPlayer then
+			for unit in pPlayer:Units() do
+				unit:ChangeDamage(-10)
+			end
+
+			local pColombo = Players[tLostCities["eLostColombo"]]
+
+			if pPlayer:IsHuman() then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "[COLOR_CYAN]" .. pCity:GetName() .. "[ENDCOLOR] finished a [ICON_INTERNATIONAL_TRADE] Trade Route. Desired goods from [COLOR_CYAN]" .. pColombo:GetName() .. "[ENDCOLOR] brought you enough profits to restructure your army and increase the defense of the trade network.", "Trade partners!", pCity:GetX(), pCity:GetY())
+			end
+		end
+	end		
+end
+
+
+
+function MigrationToHongKong(ePlayer)
+	local pPlayer = Players[ePlayer]
+					
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[19]) ~= 0 then
+		local pHongKong = Players[tLostCities["eLostHongKong"]]
+		local pHongKongCity = pHongKong:GetCapitalCity()		
+		local iMigrationThreshold
+		
+		for city in pPlayer:Cities() do
+			iMigrationThreshold = (city:GetPopulation() - pHongKongCity:GetPopulation()) * 10
+			
+			if iMigrationThreshold > 0 then
+				iRolledMigrationChance = RandomNumberBetween(0, 1000)
+				
+				if iRolledMigrationChance < iMigrationThreshold then
+					city:ChangePopulation(-1, true)
+					pHongKongCity:ChangePopulation(1, true)
+
+					local iGoldReward = 150 * (pPlayer:GetCurrentEra() + 1) * (pHongKong:GetMinorCivFriendshipWithMajor(ePlayer) / GameDefines.FRIENDSHIP_THRESHOLD_FRIENDS)
+					
+					pPlayer:ChangeGold(iGoldReward)
+					pHongKong:ChangeMinorCivFriendshipWithMajor(ePlayer, 50)
+
+					if pPlayer:IsHuman() then
+						pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "A citizen migrated from [COLOR_CYAN]" .. city:GetName() .. "[ENDCOLOR] to [COLOR_CYAN]" .. pHongKongCity:GetName() .. "[ENDCOLOR]. [COLOR_CYAN]" .. pHongKong:GetName() .. "[ENDCOLOR] is grateful and it will not leave you without nothing. You receive " .. iGoldReward .. " [ICON_GOLD] Gold and feel a substantial warming of billateral contacts.", "Migration to [COLOR_CYAN]" .. pHongKong:GetName() .. "[ENDCOLOR]!", city:GetX(), city:GetY())
+					end
+
+					break
+				end
+			end
+		end
+	end		
+end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- INITIALIZATION
@@ -1958,9 +2213,11 @@ function SettingUpSpecificEvents()
 				GameEvents.BuildFinished.Add(BuiltMarsh)	
 			elseif sMinorCivType == "MINOR_CIV_CAHOKIA" then	
 				tLostCities["eLostCahokia"] = eCS
+			elseif sMinorCivType == "MINOR_CIV_TIWANAKU" then	
+				tLostCities["eLostTiwanaku"] = eCS
 			
 
-			-- trade routes
+			-- trade routes bonuses
 			elseif sMinorCivType == "MINOR_CIV_CAPE_TOWN" then	
 				tLostCities["eLostCapeTown"] = eCS
 				GameEvents.PlayerTradeRouteCompleted.Add(TradeToTheKing)
@@ -1969,22 +2226,26 @@ function SettingUpSpecificEvents()
 				GameEvents.PlayerTradeRouteCompleted.Add(TradeToTheKing)
 			
 			
-			-- starting building setup
+			-- starting building setup for city-states
 			elseif sMinorCivType == "MINOR_CIV_KIEV" then	
 				tLostCities["eLostKyiv"] = eCS
 				GameEvents.UnitCityFounded.Add(SettledCityStateWithBuilding)
+				GameEvents.PlayerLiberated.Add(LiberatedCityStateWithBuilding)
 			elseif sMinorCivType == "MINOR_CIV_MILAN" then	
 				tLostCities["eLostMilan"] = eCS
 				GameEvents.UnitCityFounded.Add(SettledCityStateWithBuilding)
+				GameEvents.PlayerLiberated.Add(LiberatedCityStateWithBuilding)
 			elseif sMinorCivType == "MINOR_CIV_VILNIUS" then	
 				tLostCities["eLostVilnius"] = eCS
 				GameEvents.UnitCityFounded.Add(SettledCityStateWithBuilding)
+				GameEvents.PlayerLiberated.Add(LiberatedCityStateWithBuilding)
 			elseif sMinorCivType == "MINOR_CIV_VALLETTA" then	
 				tLostCities["eLostValletta"] = eCS
-				GameEvents.UnitCityFounded.Add(SettledCityStateWithBuilding)	
+				GameEvents.UnitCityFounded.Add(SettledCityStateWithBuilding)
+				GameEvents.PlayerLiberated.Add(LiberatedCityStateWithBuilding)	
 			
 			
-			
+			-- gold interests
 			elseif sMinorCivType == "MINOR_CIV_ZURICH" then	
 				tLostCities["eLostZurich"] = eCS
 				GameEvents.PlayerDoTurn.Add(ZurichMerchants)
@@ -2007,7 +2268,7 @@ function SettingUpSpecificEvents()
 				GameEvents.MinorAlliesChanged.Add(JerusalemsDevotionSphere)
 			
 			
-			
+			-- setting up specific building conditions
 			elseif sMinorCivType == "MINOR_CIV_OC_EO" then	
 				tLostCities["eLostOcEo"] = eCS
 				GameEvents.PlayerDoTurn.Add(LordsOfTheGreatGlassRiver)
@@ -2019,6 +2280,12 @@ function SettingUpSpecificEvents()
 				GameEvents.PlayerDoTurn.Add(DrukTsendhen)
 				GameEvents.CityCaptureComplete.Add(DrukTsendhenCapture)
 				GameEvents.PlayerCityFounded.Add(DrukTsendhenNewCity)
+			elseif sMinorCivType == "MINOR_CIV_RISHIKESH" then
+				tLostCities["eLostRishikesh"] = eCS
+				
+				GameEvents.PlayerDoTurn.Add(HimalayanYogi)
+				GameEvents.CityCaptureComplete.Add(HimalayanYogiCapture)
+				GameEvents.PlayerCityFounded.Add(HimalayanYogiNewCity)
 			elseif sMinorCivType == "MINOR_CIV_ANDORRA" then
 				tLostCities["eLostAndorra"] = eCS
 				
@@ -2034,13 +2301,39 @@ function SettingUpSpecificEvents()
 				GameEvents.CityConstructed.Add(ArdentFlameInPiousHeartBuildingConstruction)
 			
 			
-			
+			-- food from killing
 			elseif sMinorCivType == "MINOR_CIV_LEVUKA" then
 				tLostCities["eLostLevuka"] = eCS
 				
 				GameEvents.CityCaptureComplete.Add(CaptureCityForLevuka)
 				GameEvents.PlayerDoTurn.Add(ConquestsForLevuka)
 				GameEvents.BarbariansCampCleared.Add(BarbCampForLevuka)
+			
+			
+			-- buying trade units with faith
+			elseif sMinorCivType == "MINOR_CIV_DALI" then
+				tLostCities["eLostDali"] = eCS
+			
+			
+			-- promotion healing from religious source
+			elseif sMinorCivType == "MINOR_CIV_ISKANWAYA" then
+				tLostCities["eLostIskanwaya"] = eCS
+
+				GameEvents.PlayerDoTurn.Add(KallawayaHealers)
+			
+			
+			-- healing units on trade finish
+			elseif sMinorCivType == "MINOR_CIV_COLOMBO" then
+				tLostCities["eLostColombo"] = eCS
+				
+				GameEvents.PlayerTradeRouteCompleted.Add(TradeInColombo)
+			
+
+			-- citizen migration
+			elseif sMinorCivType == "MINOR_CIV_HONG_KONG" then
+				tLostCities["eLostHongKong"] = eCS
+				
+				GameEvents.PlayerDoTurn.Add(MigrationToHongKong)
 			end
 		end
 	end

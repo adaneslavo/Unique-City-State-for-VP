@@ -1,7 +1,37 @@
 Changelog:
-- added 4 new religious CSs: Bedulu, Dali, Multan and Pagan;
-- added few missing civilopedia texts;
-- added missing flavours for base CSs;
-- added missing resources from MW (Tropical Fish, Giant Tortoise);
-- fixed dummies showing in the city view;
-- numerous text fixes, text unifications, new text icons;
+- new:
+	- added 6 new religious CSs: Bedulu, Dali, Iskanwaya, Multan, Mutitjulu, Pagan, Rishikesh and Tiwanaku;
+	- added few missing civilopedia texts;
+	- finally used a promotion icon made by @gwennog years ago (Iskanwaya);
+	- brand new abilities for base CSs (substituted or expanded existing ones, that felt very passive and boring in the gameplay; mostly +X to certain thing):
+		- Maritime:
+			- Byblos: now gives +5% Production towards all Naval Units and World Wonders;
+		- Mercantile:
+			- Antwerp: lesser bonus to Merchants, but instead you get -10% Gold Purchase bonus;
+			- Colombo: now heals all units on a finished international trade route;
+			- Hong Kong: increases growth and gold per citizen, but at a risk of people migration to Hong Kong; when they do so, you get some reward in Gold and Influence;
+- balanced:
+	- Chevaq's ability is a bit stronger: now 1 Food per 2 Tundra (was 4);
+	- Douala got additional +10% Production boost to Trade Units construction;
+	- fixed and increased Muisca yields in Capital, now 1 per 2 Citizens (was 1 per 50), and modified yields from Empire population, now 1 per 20 Citizens (was 1 per 30);
+	- Nan Mandol's Oceans got additional +1 Food (was only +1 Culture);
+	- reduced Ambracia's Gift Rate boost to +15% (was +50%);
+	- Mounds now cannot be built on Snow;
+	- Marsh's build time is now 600 (was 700) and Mound's build time is now 800 (was 700);
+	- Geneva now produces its yield every 4 Citizens (Faith);
+	- simplified Kuala Lumpur, now Well and Watermill gain +1 Culture (was +5% and +2);
+	- increased Kabul's and Kathmandu's yields to 1.5 per Mountain (was 0.66);
+- fixed:
+	- added missing flavours for base CSs (upsi!);
+	- added missing resources resource boosts for MW (Tropical Fish, Giant Tortoise);
+	- fixed dummies showing in the city view, so now they are not;
+	- now CSs starting with certain building (Kiev, Milan, Vilnius, Valetta), regain them after liberation;
+	- fixed Thimphu lua code on city capture;
+	- added PillageGold column to Mound;
+	- Levuka now has Polynesian artstyle (was African);
+	- fixed building's art alignment;
+	- massive revision of Mound and Cahokia texts;
+	- numerous text fixes, text unifications and new text icons;
+- changed:
+	- numerous lua QoL changes;
+	- now dummy buildings have generic names and description (copy of cs trait), which means less work for me and better view in IGE;
