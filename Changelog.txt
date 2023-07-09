@@ -5,17 +5,21 @@ Changelog:
 	- finally used a promotion icon made by @gwennog years ago (Kallawaya Healers);
 	- brand new abilities for base CSs (substituted or expanded existing ones, that felt very passive and boring in the gameplay; mostly +X to certain thing):
 		- Maritime:
-			- Byblos: now gives +5% Production towards all Naval Units and World Wonders;
+			- Byblos: now gives also +5% Production towards all Naval Units and World Wonders;
+			- Panama City: now boosts TRs and Lakes with Gold and increases Sea TR distance;
 		- Mercantile:
 			- Antwerp: lesser bonus to Merchants, but instead you get -10% Gold Purchase bonus;
-			- Colombo: now heals all units on a finished international TR;
+			- Colombo: now heals all units on a finished international TR; no negative yields; lesser positive yields;
 			- Hong Kong: increases Growth and Gold per Citizen, but at a risk of people migration to Hong Kong; when they do so, you get some reward in Gold and Influence;
+			- Melbourne: lesser bonus Gold from Mines (only), but converts Gold into Food and Border Growth Points;
 		- Cultured:
-			- Florence: additional new ability rarely spawn Great Artist or Great Engineer; 
-			- Kyzyl: additional new ability gives production on tech research; science instead of tourism on Palace and Monument;
-			- Monaco: increases border growth instead of culture;
+			- Florence: additional new ability rarely spawns Great Artist or Great Engineer; 
+			- Kyzyl: additional new ability gives Production on Tech research; Science instead of Tourism on Palace and Monument;
+			- Monaco: increases Border Growth instead of Culture;
+		- Religious:
+			- now can build Colossal Heads Great Person improvements in place of previous bonuses;
 	- added multiple yield gain prompts at the moment of their appearing in the city: Bogota, Cape Town, Manila, Zurich, Levuka, Hong Kong, Kyzyl;
-	- Zurich' main notifications are now not spamming you each turn; instead they show up every 5 turns, and track each player's interests separately;
+	- Zurich' main notifications now are not spamming you each turn; instead they show up every 5 turns, and track each player's interests separately;
 - balanced:
 	- Chevaq's ability is a bit stronger: now 1 Food per 2 Tundra (was 4);
 	- Douala got additional +10% Production boost to Trade Units construction;
