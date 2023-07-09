@@ -1,19 +1,21 @@
 Changelog:
 - new:
-	- added 6 new religious CSs: Bedulu, Dali, Iskanwaya, Multan, Mutitjulu, Pagan, Rishikesh and Tiwanaku;
+	- added 8 new religious CSs: Bedulu, Dali, Iskanwaya, Multan, Mutitjulu, Pagan, Rishikesh and Tiwanaku; each with interesting new abilities and compatible with CSL and MC modmods;
 	- added few missing civilopedia texts;
-	- finally used a promotion icon made by @gwennog years ago (Iskanwaya);
+	- finally used a promotion icon made by @gwennog years ago (Kallawaya Healers);
 	- brand new abilities for base CSs (substituted or expanded existing ones, that felt very passive and boring in the gameplay; mostly +X to certain thing):
 		- Maritime:
 			- Byblos: now gives +5% Production towards all Naval Units and World Wonders;
 		- Mercantile:
 			- Antwerp: lesser bonus to Merchants, but instead you get -10% Gold Purchase bonus;
-			- Colombo: now heals all units on a finished international trade route;
-			- Hong Kong: increases growth and gold per citizen, but at a risk of people migration to Hong Kong; when they do so, you get some reward in Gold and Influence;
+			- Colombo: now heals all units on a finished international TR;
+			- Hong Kong: increases Growth and Gold per Citizen, but at a risk of people migration to Hong Kong; when they do so, you get some reward in Gold and Influence;
 		- Cultured:
 			- Florence: additional new ability rarely spawn Great Artist or Great Engineer; 
 			- Kyzyl: additional new ability gives production on tech research; science instead of tourism on Palace and Monument;
 			- Monaco: increases border growth instead of culture;
+	- added multiple yield gain prompts at the moment of their appearing in the city: Bogota, Cape Town, Manila, Zurich, Levuka, Hong Kong, Kyzyl;
+	- Zurich' main notifications are now not spamming you each turn; instead they show up every 5 turns, and track each player's interests separately;
 - balanced:
 	- Chevaq's ability is a bit stronger: now 1 Food per 2 Tundra (was 4);
 	- Douala got additional +10% Production boost to Trade Units construction;
@@ -22,7 +24,7 @@ Changelog:
 	- reduced Ambracia's Gift Rate boost to +15% (was +50%);
 	- Mounds now cannot be built on Snow;
 	- Marsh's build time is now 600 (was 700) and Mound's build time is now 800 (was 700);
-	- Sofia's boost for GGs and GAs is now 10% (was 5%);
+	- Sofia's boost for GGs and GAs is now +10% (was +5%);
 	- Bylina, Visconti Emissaries and Gate of Dawn now much more powerful: they got +2 points for the respective Great Person;
 	- simplified Kuala Lumpur, now Well and Watermill gain +1 Culture (was +5% and +2);
 - fixed:
