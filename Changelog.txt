@@ -18,12 +18,13 @@ Changelog:
 	- Chevaq's ability is a bit stronger: now 1 Food per 2 Tundra (was 4);
 	- Douala got additional +10% Production boost to Trade Units construction;
 	- fixed and increased Muisca yields in Capital, now 1 per 2 Citizens (was 1 per 50), and modified yields from Empire population, now 1 per 20 Citizens (was 1 per 30);
-	- Nan Mandol's Oceans got additional +1 Food (was only +1 Culture);
+	- Nan Madol's Oceans got additional +1 Food (was only +1 Culture);
 	- reduced Ambracia's Gift Rate boost to +15% (was +50%);
 	- Mounds now cannot be built on Snow;
 	- Marsh's build time is now 600 (was 700) and Mound's build time is now 800 (was 700);
-	- simplified Kuala Lumpur, now Well and Watermill gain +1 Culture (was +5% and +2);
 	- Sofia's boost for GGs and GAs is now 10% (was 5%);
+	- Bylina, Visconti Emissaries and Gate of Dawn now much more powerful: they got +2 points for the respective Great Person;
+	- simplified Kuala Lumpur, now Well and Watermill gain +1 Culture (was +5% and +2);
 - fixed:
 	- added missing flavours for base CSs (upsi!);
 	- added missing resources resource boosts for MW (Tropical Fish, Giant Tortoise);
