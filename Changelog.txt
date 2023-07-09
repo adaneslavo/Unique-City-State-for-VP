@@ -31,7 +31,8 @@ Changelog:
 	- Brussels buffs marshes with additional 1 Gold;
 	- Sofia's boost for GGs and GAs is now +10% (was +5%);
 	- Bylina, Visconti Emissaries and Gate of Dawn now much more powerful: they got +2 points for the respective Great Person;
-	- Bogota has sliglty increased yields for liberation to 20-50 (was 15-45) and significatly for capturing to 40 (was 20).
+	- Bogota has sliglty increased yields for liberation to 20-50 (was 15-45) and significatly for capturing to 40 (was 20);
+	- Manila has now much increased yields from TRs to 25-50 (was 1-15);
 	- simplified Kuala Lumpur, now Well and Watermill gain +1 Culture (was +5% and +2);
 - fixed:
 	- added missing flavours for base CSs (upsi!);
