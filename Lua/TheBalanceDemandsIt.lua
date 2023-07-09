@@ -1407,7 +1407,7 @@ function TradeInManila(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eCon
 	
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[5]) ~= 0 then
 		local pToPlayer = Players[eToPlayer]
-		local iYumYum = pToPlayer:GetCityByID(eToCity):GetPopulation() * RandomNumberBetween(1, 15)
+		local iYumYum = pToPlayer:GetCityByID(eToCity):GetPopulation() * RandomNumberBetween(25, 50)
 		local pPlayerCity = pPlayer:GetCityByID(eFromCity)
 		local pMinorPlayer = Players[tLostCities["eLostManila"]]
 
