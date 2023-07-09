@@ -28,6 +28,7 @@ Changelog:
 	- reduced Ambracia's Gift Rate boost to +15% (was +50%);
 	- Mounds now cannot be built on Snow;
 	- Marsh's build time is now 600 (was 700) and Mound's build time is now 800 (was 700);
+	- Brussels buffs marshes with additional 1 Gold;
 	- Sofia's boost for GGs and GAs is now +10% (was +5%);
 	- Bylina, Visconti Emissaries and Gate of Dawn now much more powerful: they got +2 points for the respective Great Person;
 	- Bogota has sliglty increased yields for liberation to 20-50 (was 15-45) and significatly for capturing to 40 (was 20).
