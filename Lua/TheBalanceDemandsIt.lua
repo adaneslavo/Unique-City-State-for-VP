@@ -1,7 +1,5 @@
 include("FLuaVector.lua")
 
-local eSphere = GameInfoTypes.RESOLUTION_SPHERE_OF_INFLUENCE
-
 local tLostCities = {}
 
 local tEventChoice = {
@@ -92,15 +90,20 @@ local tPoliciesPassiveAbilities = {
 	GameInfoTypes.POLICY_MILITARISTIC_HOSTILE
 }
 
-local eImprovementMarsh = GameInfoTypes.IMPROVEMENT_MARSH
-local eImprovementForest = GameInfoTypes.IMPROVEMENT_PLANT_FOREST
-local eImprovementJungle = GameInfoTypes.IMPROVEMENT_PLANT_JUNGLE
-local eImprovementEmbassy = GameInfoTypes.IMPROVEMENT_EMBASSY
-local eImprovementHolySite = GameInfoTypes.IMPROVEMENT_HOLY_SITE
-local eImprovementFort = GameInfoTypes.IMPROVEMENT_FORT
-local eImprovementManufactory = GameInfoTypes.IMPROVEMENT_MANUFACTORY
-local eImprovementTown = GameInfoTypes.IMPROVEMENT_CUSTOMS_HOUSE
-local eImprovementAcademy = GameInfoTypes.IMPROVEMENT_ACADEMY
+local tImprovementsRegular = {
+	GameInfoTypes.IMPROVEMENT_MARSH,
+	GameInfoTypes.IMPROVEMENT_PLANT_FOREST,
+	GameInfoTypes.IMPROVEMENT_PLANT_JUNGLE
+}
+
+local tImprovementsGreatPeople = {
+	GameInfoTypes.IMPROVEMENT_EMBASSY,
+	GameInfoTypes.IMPROVEMENT_HOLY_SITE,
+	GameInfoTypes.IMPROVEMENT_FORT,
+	GameInfoTypes.IMPROVEMENT_MANUFACTORY,
+	GameInfoTypes.IMPROVEMENT_CUSTOMS_HOUSE,
+	GameInfoTypes.IMPROVEMENT_ACADEMY
+}
 
 local eFeatureMarsh = GameInfoTypes.FEATURE_MARSH
 
@@ -111,13 +114,25 @@ local tPlotTypes = {
 	GameInfoTypes.PLOT_OCEAN
 }
 
-local eUnitGreatDiplomat = GameInfoTypes.UNIT_GREAT_DIPLOMAT
-local eUnitGreatEngineer = GameInfoTypes.UNIT_ENGINEER
-local eUnitGreatArtist = GameInfoTypes.UNIT_ARTIST
-local eUnitWorker = GameInfoTypes.UNIT_WORKER
-local eUnitFishingBoat = GameInfoTypes.UNIT_WORKBOAT
-local eUnitMissionary = GameInfoTypes.UNIT_MISSIONARY
-local eUnitArchaeologist = GameInfoTypes.UNIT_ARCHAEOLOGIST
+local tUnitsGreatPeople = {
+	GameInfoTypes.UNIT_SCIENTIST,
+	GameInfoTypes.UNIT_ENGINEER,
+	GameInfoTypes.UNIT_MERCHANT,
+	GameInfoTypes.UNIT_ARTIST,
+	GameInfoTypes.UNIT_WRITER, -- ??
+	GameInfoTypes.UNIT_MUSICIAN, -- ??
+	GameInfoTypes.UNIT_GREAT_DIPLOMAT, -- ??
+	GameInfoTypes.UNIT_GREAT_GENERAL,
+	GameInfoTypes.UNIT_GREAT_ADMIRAL,
+	GameInfoTypes.UNIT_PROPHET
+}
+
+local tUnitsCivilians = {
+	GameInfoTypes.UNIT_WORKER,
+	GameInfoTypes.UNIT_WORKBOAT,
+	GameInfoTypes.UNIT_MISSIONARY,
+	GameInfoTypes.UNIT_ARCHAEOLOGIST
+}
 
 local tUnitsTrade = {
 	GameInfoTypes.UNIT_CARAVAN,
@@ -129,6 +144,11 @@ local tUnitsTrade = {
 local eTechArchaeology = GameInfoTypes.TECH_ARCHAEOLOGY
 local eArtifactRuin = GameInfoTypes.ARTIFACT_ANCIENT_RUIN
 local eResourceArtifact = GameInfoTypes.RESOURCE_ARTIFACTS
+
+local eSphere = GameInfoTypes.RESOLUTION_SPHERE_OF_INFLUENCE
+
+local tZurichLastInterests = {}
+local tZurichCounter = {}
 
 local tMinorTraits = {
 	GameInfoTypes.MINOR_TRAIT_MARITIME,
@@ -161,7 +181,6 @@ local tDirectionTypes = {
 		DirectionTypes.DIRECTION_WEST,
 		DirectionTypes.DIRECTION_NORTHWEST
 	}
-
 
 -- for CS UU gifts (MinorCivGift=1)
 local tUniqueUnitsFromMinors = {}
@@ -233,14 +252,14 @@ function MinorPlayerDoTurn(ePlayer)
 		
 		-- Embassy part
 		if bIsEmbassyAnOption then
-			if pMinorPlayer:GetImprovementCount(eImprovementEmbassy) > 0 then
+			if pMinorPlayer:GetImprovementCount(tImprovementsGreatPeople[1]) > 0 then
 				if tEmbassies[ePlayer] == nil then
 					local pMinorCapital = pMinorPlayer:GetCapitalCity()
 				
 					for i = 0, pMinorCapital:GetNumCityPlots() - 1, 1 do
 						local pPlot = pMinorCapital:GetCityIndexPlot(i)
 					   
-						if pPlot and pPlot:GetOwner() == ePlayer and pPlot:GetImprovementType() == eImprovementEmbassy then
+						if pPlot and pPlot:GetOwner() == ePlayer and pPlot:GetImprovementType() == tImprovementsGreatPeople[1] then
 							tEmbassies[ePlayer] = pPlot:GetPlayerThatBuiltImprovement()
 							break
 						end
@@ -289,19 +308,6 @@ function MinorPlayerDoTurn(ePlayer)
 	end
 end
 GameEvents.PlayerDoTurn.Add(MinorPlayerDoTurn)
-
--- !!!Moved to previous function (no way for using that one)
---[[function ImbalanceDemandsIt(eMinor, eMajor, bIsAlly, iOldFriendship, iNewFriendship)
-	local pMinorPlayer = Players[eMinor]
-	local pMajorPlayer = Players[eMajor]
-	
-	if bIsAlly then
-		if pMajorPlayer:GetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. GameInfo.MinorCivilizations[pMinorPlayer:GetMinorCivType()].Type]) == 0 and not pMajorPlayer:IsEventChoiceActive(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. GameInfo.MinorCivilizations[minorPlayer:GetMinorCivType()].Type]) then
-			pMajorPlayer:DoEventChoice(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. GameInfo.MinorCivilizations[pMinorPlayer:GetMinorCivType()].Type])
-		end
-	end
-end
-GameEvents.MinorAlliesChanged.Add(ImbalanceDemandsIt)--]]
 
 -- Setting events after Sphere of Influence voting
 function MovingSwiftly(eResolution, eProposer, eChoice, bEnact, bPassed)
@@ -361,7 +367,7 @@ function MaritimeCityStatesBonuses(ePlayer, iX, iY)
 			local eFeature = pPlot:GetFeatureType()
 			
 			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
-				pPlot:SetImprovementType(eImprovementManufactory)
+				pPlot:SetImprovementType(tImprovementsGreatPeople[4])
 				break
 			end
 		end
@@ -546,11 +552,11 @@ function FreeWorkerFromCityState(ePlayer)
 						end
 						
 						if iWorkerOrFishingBoatSpawnChance <= 50 and bIsMajorHasTrueSea then
-							pMajorPlayer:AddFreeUnit(eUnitFishingBoat, UNITAI_DEFENSE)
-							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Fishing Boat', eUnitFishingBoat)
+							pMajorPlayer:AddFreeUnit(tUnitsCivilians[2], UNITAI_DEFENSE)
+							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Fishing Boat', tUnitsCivilians[2])
 						else	
-							pMajorPlayer:AddFreeUnit(eUnitWorker, UNITAI_DEFENSE)
-							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Worker', eUnitWorker)
+							pMajorPlayer:AddFreeUnit(tUnitsCivilians[1], UNITAI_DEFENSE)
+							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Worker', tUnitsCivilians[1])
 						end
 					end
 				end
@@ -588,7 +594,7 @@ function MercantileCityStatesBonuses(ePlayer, iX, iY)
 			local eFeature = pPlot:GetFeatureType()
 			
 			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
-				pPlot:SetImprovementType(eImprovementTown)
+				pPlot:SetImprovementType(tImprovementsGreatPeople[5])
 				break
 			end
 		end
@@ -817,7 +823,7 @@ function CulturedCityStatesBonuses(ePlayer, iX, iY)
 			local eFeature = pPlot:GetFeatureType()
 			
 			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
-				pPlot:SetImprovementType(eImprovementAcademy)
+				pPlot:SetImprovementType(tImprovementsGreatPeople[6])
 				break
 			end
 		end
@@ -933,8 +939,8 @@ function FreeArchaeologistFromCityState(ePlayer)
 
 					if bCanArchaeologistBeSpawned then
 						if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
-							pMajorPlayer:AddFreeUnit(eUnitArchaeologist, UNITAI_DEFENSE)
-								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Archaeologist', eUnitArchaeologist)
+							pMajorPlayer:AddFreeUnit(tUnitsCivilians[4], UNITAI_DEFENSE)
+								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Archaeologist', tUnitsCivilians[4])
 						end
 					end
 				end
@@ -972,7 +978,7 @@ function ReligiousCityStatesBonuses(ePlayer, iX, iY)
 			local eFeature = pPlot:GetFeatureType()
 			
 			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
-				pPlot:SetImprovementType(eImprovementHolySite)
+				pPlot:SetImprovementType(tImprovementsGreatPeople[2])
 				break
 			end
 		end
@@ -1059,8 +1065,8 @@ function FreeMissionariesFromCityState(ePlayer)
 
 					if bCanMissionaryBeSpawned then
 						if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
-							pMajorPlayer:AddFreeUnit(eUnitMissionary, UNITAI_DEFENSE)
-								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Missionary', eUnitMissionary)
+							pMajorPlayer:AddFreeUnit(tUnitsCivilians[3], UNITAI_DEFENSE)
+								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Missionary', tUnitsCivilians[3])
 						end
 					end
 				end
@@ -1098,7 +1104,7 @@ function MilitaristicCityStatesBonuses(ePlayer, iX, iY)
 			local eFeature = pPlot:GetFeatureType()
 			
 			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
-				pPlot:SetImprovementType(eImprovementFort)
+				pPlot:SetImprovementType(tImprovementsGreatPeople[3])
 				break
 			end
 		end
@@ -1296,14 +1302,20 @@ function LiberatedForBogota(ePlayer, eOtherPlayer, eCity)
 	
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[1]) ~= 0 then
 		local iCities = pPlayer:GetNumCities()
+		local pMinorPlayer = Players[tLostCities["eLostBogota"]]
+		local pCapital = pPlayer:GetCapitalCity()	
 		
 		if iCities > 6 then iCities = 6 end
 		
 		local iCultureLiberated = RandomNumberBetween(10, 40) * (pPlayer:GetCurrentEra() + 1) * iCities
 	
 		pPlayer:ChangeJONSCulture(iCultureLiberated)
-	
-		local pMinorPlayer = Players[tLostCities["eLostBogota"]]
+		
+		if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
+			local vCityPosition = PositionCalculator(pCapital:GetX(), pCapital:GetY())
+			
+			Events.AddPopupTextEvent(vCityPosition, "[COLOR_MAGENTA]+" .. iCultureLiberated .. " [ICON_CULTURE][ENDCOLOR]", 1)
+		end
 	
 		if pPlayer:IsHuman() then
 			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "Your liberation efforts do not go unrewarded. [COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR] rewards you with " .. iCultureLiberated .. " [ICON_CULTURE] Culture.", "United Independence!", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
@@ -1326,7 +1338,7 @@ end
 GameEvents.PlayerCanBuild.Add(CanWeBuildMarsh)
 
 function BuiltMarsh(ePlayer, iX, iY, eImprovement)
-	if eImprovement == eImprovementMarsh then
+	if eImprovement == tImprovementsRegular[1] then
 		local pPlot = Map.GetPlot(iX, iY)
 		
 		pPlot:SetImprovementType(-1)
@@ -1367,15 +1379,21 @@ GameEvents.PlayerCanBuild.Add(CanWeBuildSunkenCourtyard)
 -- CAPE TOWN/MANILA (BENEFITS FROM TRADE ROUTES)
 function TradeInCapeTown(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eConnectionType)
 	local pPlayer = Players[eFromPlayer]
-	local pToPlayer = Players[eToPlayer]
 	
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[4]) ~= 0 then
+		local pToPlayer = Players[eToPlayer]
 		local iCahChing = pToPlayer:GetCityByID(eToCity):GetPopulation() * RandomNumberBetween(20, 40)
-		
-		pPlayer:ChangeGold(iCahChing)
-	
+		local pCapital = pPlayer:GetCapitalCity()
 		local pMinorPlayer = Players[tLostCities["eLostCapeTown"]]
 		
+		pPlayer:ChangeGold(iCahChing)
+
+		if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
+			local vCityPosition = PositionCalculator(pCapital:GetX(), pCapital:GetY())
+			
+			Events.AddPopupTextEvent(vCityPosition, "[COLOR_YIELD_GOLD]+" .. iCahChing .. " [ICON_GOLD][ENDCOLOR]", 1)
+		end
+
 		if pPlayer:IsHuman() then
 			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "And Cape of Good Hope it was, [COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR] rewards you with " .. iCahChing .. "[ICON_GOLD] Gold!", "Cape of Good Hope", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
 		end
@@ -1386,16 +1404,22 @@ end
 -- MANILA (YIELDS AT THE END FOR TRADE)
 function TradeInManila(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eConnectionType)
 	local pPlayer = Players[eFromPlayer]
-	local pToPlayer = Players[eToPlayer]
 	
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[5]) ~= 0 then
+		local pToPlayer = Players[eToPlayer]
 		local iYumYum = pToPlayer:GetCityByID(eToCity):GetPopulation() * RandomNumberBetween(1, 15)
 		local pPlayerCity = pPlayer:GetCityByID(eFromCity)
-	
+		local pMinorPlayer = Players[tLostCities["eLostManila"]]
+
 		pPlayerCity:ChangeFood(iYumYum)
 		pPlayerCity:ChangeProduction(iYumYum)
 		
-		local pMinorPlayer = Players[tLostCities["eLostManila"]]
+		if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
+			local vCityPosition = PositionCalculator(pPlayerCity:GetX(), pPlayerCity:GetY())
+			
+			Events.AddPopupTextEvent(vCityPosition, "[COLOR_YIELD_FOOD]+" .. iYumYum .. " [ICON_FOOD][ENDCOLOR]", 1)
+			Events.AddPopupTextEvent(vCityPosition, "[COLOR_YIELD_PRODUCTION]+" .. iYumYum .. " [ICON_PRODUCTION][ENDCOLOR]", 1.5)
+		end
 		
 		if pPlayer:IsHuman() then
 			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "With the Pearl of the Orient, your merchants discovered " .. iYumYum .. "[ICON_FOOD] Food and [ICON_PRODUCTION] Production on their travels!", "Pearl of the Orient", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
@@ -1473,14 +1497,36 @@ function ZurichMerchants(ePlayer)
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[6]) ~= 0 then
 		local iInterest = math.ceil(pPlayer:GetGold() * 0.02)
 		local iInterestCap = 20 * (pPlayer:GetCurrentEra() + 1)
+		local pCapital = pPlayer:GetCapitalCity()
+		local pMinorPlayer = Players[tLostCities["eLostZurich"]]
 		
 		if iInterest > iInterestCap then iInterest = iInterestCap end
 		
 		pPlayer:ChangeGold(iInterest)
-		local pMinorPlayer = Players[tLostCities["eLostZurich"]]
 		
-		if pPlayer:IsHuman() then
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "[COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR] bankers found a discrepency in your spending and saved you " .. iInterest .. " [ICON_GOLD] Gold!", "Money in the Right Hands!", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
+		if tZurichCounter[ePlayer] == nil then
+			tZurichCounter[ePlayer] = 1
+			tZurichLastInterests[ePlayer] = iInterest
+		else
+			tZurichCounter[ePlayer] = tZurichCounter[ePlayer] + 1
+			tZurichLastInterests[ePlayer] = tZurichLastInterests[ePlayer] + iInterest
+		end
+		
+		print("ZurichInterests", ePlayer, "turn:", tZurichCounter[ePlayer], "interests:", iInterest, "total:", tZurichLastInterests[ePlayer])
+		
+		if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
+			local vCityPosition = PositionCalculator(pCapital:GetX(), pCapital:GetY())
+			
+			Events.AddPopupTextEvent(vCityPosition, "[COLOR_YIELD_GOLD]+" .. iInterest .. " [ICON_GOLD][ENDCOLOR]", 1)
+		end
+
+		if tZurichCounter[ePlayer] >= 5 then
+			if pPlayer:IsHuman() then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "[COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR] bankers found few discrepencies in your spendings and saved you " .. tZurichLastInterests[ePlayer] .. " [ICON_GOLD] Gold in last 10 turns!", "Money in the Right Hands!", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
+			end
+
+			tZurichCounter[ePlayer] = 0
+			tZurichLastInterests[ePlayer] = 0
 		end
 	end
 end
@@ -2047,6 +2093,12 @@ function CaptureCityForLevuka(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bC
 		
 		for city in pPlayer:Cities() do
 			city:ChangeFood(iFoodBonus)
+
+			if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
+				local vCityPosition = PositionCalculator(city:GetX(), city:GetY())
+			
+				Events.AddPopupTextEvent(vCityPosition, "[COLOR_YIELD_FOOD]+" .. iFoodBonus .. " [ICON_FOOD][ENDCOLOR]", 1)
+			end
 		end
 		
 		if pPlayer:IsHuman() then
@@ -2099,6 +2151,12 @@ function BarbCampForLevuka(iX, iY, ePlayer)
 		
 		for city in pPlayer:Cities() do
 			city:ChangeFood(iFoodBonus)
+
+			if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
+				local vCityPosition = PositionCalculator(city:GetX(), city:GetY())
+			
+				Events.AddPopupTextEvent(vCityPosition, "[COLOR_YIELD_FOOD]+" .. iFoodBonus .. " [ICON_FOOD][ENDCOLOR]", 1)
+			end
 		end
 			
 		if pPlayer:IsHuman() then
@@ -2128,7 +2186,7 @@ GameEvents.CityCanTrain.Add(TradeWithFaith)
 
 
 -- ISKANWAYA (PROMOTION HEALING EACH TURN)
-function KallawayaHealers(ePlayer)
+function HealersFromIskanwaya(ePlayer)
 	local pPlayer = Players[ePlayer]
 	
 	if pPlayer:IsMinorCiv() then return end
@@ -2143,8 +2201,8 @@ function KallawayaHealers(ePlayer)
 					local bPlotMissionary, bPlotHolySite, bPlotMountain = false, false, false
 					local bAdjacentMissionary, bAdjacentHolySite, bAdjacentMountain = false, false, false
 
-					bPlotMissionary = pPlot:GetUnit() and pPlot:GetUnit():GetUnitType() == eUnitMissionary
-					bPlotHolySite = pPlot:GetImprovementType() == eImprovementHolySite
+					bPlotMissionary = pPlot:GetUnit() and pPlot:GetUnit():GetUnitType() == tUnitsCivilians[3]
+					bPlotHolySite = pPlot:GetImprovementType() == tImprovementsGreatPeople[2]
 					bPlotMountain = pPlot:GetPlotType() == tPlotTypes[3]
 
 					if bPlotMissionary or bPlotHolySite or bPlotMountain then
@@ -2154,8 +2212,8 @@ function KallawayaHealers(ePlayer)
 							local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
 						
 							if pAdjacentPlot then
-								bAdjacentMissionary = pAdjacentPlot:GetUnit() and pAdjacentPlot:GetUnit():GetUnitType() == eUnitMissionary
-								bAdjacentHolySite = pAdjacentPlot:GetImprovementType() == eImprovementHolySite
+								bAdjacentMissionary = pAdjacentPlot:GetUnit() and pAdjacentPlot:GetUnit():GetUnitType() == tUnitsCivilians[3]
+								bAdjacentHolySite = pAdjacentPlot:GetImprovementType() == tImprovementsGreatPeople[2]
 								bAdjacentMountain = pAdjacentPlot:GetPlotType() == tPlotTypes[3]
 
 								if bAdjacentMissionary or bAdjacentHolySite or bAdjacentMountain then
@@ -2176,8 +2234,11 @@ end
 
 
 
+-- HONG KONG (CITIZENS MIGRATING TO CS)
 function MigrationToHongKong(ePlayer)
 	local pPlayer = Players[ePlayer]
+
+	if pPlayer:IsMinorCiv() then return end
 					
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[19]) ~= 0 then
 		local pHongKong = Players[tLostCities["eLostHongKong"]]
@@ -2199,8 +2260,14 @@ function MigrationToHongKong(ePlayer)
 					pPlayer:ChangeGold(iGoldReward)
 					pHongKong:ChangeMinorCivFriendshipWithMajor(ePlayer, 50)
 
+					if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
+						local vCityPosition = PositionCalculator(city:GetX(), city:GetY())
+					
+						Events.AddPopupTextEvent(vCityPosition, "[COLOR_YIELD_GOLD]+" .. iGoldReward .. " [ICON_GOLD][ENDCOLOR]", 1)
+					end
+
 					if pPlayer:IsHuman() then
-						pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "A citizen migrated from [COLOR_CYAN]" .. city:GetName() .. "[ENDCOLOR] to [COLOR_CYAN]" .. pHongKongCity:GetName() .. "[ENDCOLOR]. [COLOR_CYAN]" .. pHongKong:GetName() .. "[ENDCOLOR] is grateful and it will not leave you without nothing. You receive " .. iGoldReward .. " [ICON_GOLD] Gold and feel a substantial warming of billateral contacts.", "Migration to [COLOR_CYAN]" .. pHongKong:GetName() .. "[ENDCOLOR]!", city:GetX(), city:GetY())
+						pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "A citizen migrated from [COLOR_CYAN]" .. city:GetName() .. "[ENDCOLOR] to [COLOR_CYAN]" .. pHongKongCity:GetName() .. "[ENDCOLOR]. [COLOR_CYAN]" .. pHongKong:GetName() .. "[ENDCOLOR] is grateful and it will not leave you without nothing. You receive " .. iGoldReward .. " [ICON_GOLD] Gold and feel a substantial warming of billateral contacts by 50 [ICON_INFLUENCE] Influence.", "Migration to [COLOR_CYAN]" .. pHongKong:GetName() .. "[ENDCOLOR]!", city:GetX(), city:GetY())
 					end
 
 					break
@@ -2212,9 +2279,11 @@ end
 
 
 
--- FLORENCE (SPAWN OF GENG OR GART)
+-- FLORENCE (SPAWN OF GREAT ENGINEER OR GREAT ARTIST)
 function ArtistsInFlorence(ePlayer)
 	local pPlayer = Players[ePlayer]
+
+	if pPlayer:IsMinorCiv() then return end
 					
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[20]) ~= 0 then
 		local iArtistThreshold = 10
@@ -2227,9 +2296,9 @@ function ArtistsInFlorence(ePlayer)
 			local pUnit
 				
 			if iArtistVsEngineer == 0 then
-				pUnit = pPlayer:InitUnit(eUnitGreatArtist, pCapital:GetX(), pCapital:GetY())
+				pUnit = pPlayer:InitUnit(tUnitsGreatPeople[4], pCapital:GetX(), pCapital:GetY())
 			else
-				pUnit = pPlayer:InitUnit(eUnitGreatEngineer, pCapital:GetX(), pCapital:GetY())
+				pUnit = pPlayer:InitUnit(tUnitsGreatPeople[2], pCapital:GetX(), pCapital:GetY())
 			end
 			
 			if pPlayer:IsHuman() then
@@ -2246,6 +2315,7 @@ function ResearchersFromKyzyl(eTeam, eTech, iChange)
 	local pActivePlayer = Players[Game.GetActivePlayer()]
 	local eActiveTeam = pActivePlayer:GetTeam()
 	
+	if pActivePlayer:IsMinorCiv() then return end
 	if eTeam ~= eActiveTeam then return end
 					
 	if pActivePlayer:GetEventChoiceCooldown(tEventChoice[21]) ~= 0 then
@@ -2328,8 +2398,9 @@ function SettingUpSpecificEvents()
 			-- gold interests
 			elseif sMinorCivType == "MINOR_CIV_ZURICH" then	
 				tLostCities["eLostZurich"] = eCS
+				tZurichLastInterests = {}
+				tZurichCounter = {}
 				GameEvents.PlayerDoTurn.Add(ZurichMerchants)
-			
 			
 			-- sphere of influence
 			elseif sMinorCivType == "MINOR_CIV_SIDON" then
@@ -2393,7 +2464,7 @@ function SettingUpSpecificEvents()
 			-- promotion healing from religious source
 			elseif sMinorCivType == "MINOR_CIV_ISKANWAYA" then
 				tLostCities["eLostIskanwaya"] = eCS
-				GameEvents.PlayerDoTurn.Add(KallawayaHealers)
+				GameEvents.PlayerDoTurn.Add(HealersFromIskanwaya)
 			
 
 			-- citizen migration
