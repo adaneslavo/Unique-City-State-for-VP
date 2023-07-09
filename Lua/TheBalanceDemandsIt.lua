@@ -1307,7 +1307,7 @@ function LiberatedForBogota(ePlayer, eOtherPlayer, eCity)
 		
 		if iCities > 6 then iCities = 6 end
 		
-		local iCultureLiberated = RandomNumberBetween(10, 40) * (pPlayer:GetCurrentEra() + 1) * iCities
+		local iCultureLiberated = RandomNumberBetween(20, 50) * (pPlayer:GetCurrentEra() + 1) * iCities
 	
 		pPlayer:ChangeJONSCulture(iCultureLiberated)
 		
