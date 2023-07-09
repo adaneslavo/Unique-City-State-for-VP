@@ -1,3 +1,5 @@
+include("FLuaVector.lua")
+
 local eSphere = GameInfoTypes.RESOLUTION_SPHERE_OF_INFLUENCE
 
 local tLostCities = {}
@@ -21,7 +23,9 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_ISKANWAYA, -- 16
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_TIWANAKU,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_COLOMBO,
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_HONG_KONG
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_HONG_KONG,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_FLORENCE,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_KYZYL -- 21
 }
 
 local tBuildingsActiveAbilities = {
@@ -108,9 +112,11 @@ local tPlotTypes = {
 }
 
 local eUnitGreatDiplomat = GameInfoTypes.UNIT_GREAT_DIPLOMAT
-local eUnitMissionary = GameInfoTypes.UNIT_MISSIONARY
+local eUnitGreatEngineer = GameInfoTypes.UNIT_ENGINEER
+local eUnitGreatArtist = GameInfoTypes.UNIT_ARTIST
 local eUnitWorker = GameInfoTypes.UNIT_WORKER
 local eUnitFishingBoat = GameInfoTypes.UNIT_WORKBOAT
+local eUnitMissionary = GameInfoTypes.UNIT_MISSIONARY
 local eUnitArchaeologist = GameInfoTypes.UNIT_ARCHAEOLOGIST
 
 local tUnitsTrade = {
@@ -193,6 +199,10 @@ local tUniqueUnitsFromMinors = {}
 -----------------------------------------------------------------------------------------------------------
 function RandomNumberBetween(iLower, iHigher)
     return (Game.Rand((iHigher + 1) - iLower, "")) + iLower
+end
+
+function PositionCalculator(i1, i2)
+	return HexToWorld(ToHexFromGrid(Vector2(i1, i2)))
 end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
@@ -2178,9 +2188,9 @@ function MigrationToHongKong(ePlayer)
 			iMigrationThreshold = (city:GetPopulation() - pHongKongCity:GetPopulation()) * 10
 			
 			if iMigrationThreshold > 0 then
-				iRolledMigrationChance = RandomNumberBetween(0, 1000)
+				local iRolledMigrationChance = RandomNumberBetween(1, 1000)
 				
-				if iRolledMigrationChance < iMigrationThreshold then
+				if iRolledMigrationChance <= iMigrationThreshold then
 					city:ChangePopulation(-1, true)
 					pHongKongCity:ChangePopulation(1, true)
 
@@ -2198,6 +2208,70 @@ function MigrationToHongKong(ePlayer)
 			end
 		end
 	end		
+end
+
+
+
+-- FLORENCE (SPAWN OF GENG OR GART)
+function ArtistsInFlorence(ePlayer)
+	local pPlayer = Players[ePlayer]
+					
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[20]) ~= 0 then
+		local iArtistThreshold = 10
+		local iArtistChance = RandomNumberBetween(1, 1000)
+		
+		if iArtistChance <= iArtistThreshold then
+			local pFlorence = Players[tLostCities["eLostFlorence"]]
+			local pCapital = pPlayer:GetCapitalCity()
+			local iArtistVsEngineer = RandomNumberBetween(0, 1)		
+			local pUnit
+				
+			if iArtistVsEngineer == 0 then
+				pUnit = pPlayer:InitUnit(eUnitGreatArtist, pCapital:GetX(), pCapital:GetY())
+			else
+				pUnit = pPlayer:InitUnit(eUnitGreatEngineer, pCapital:GetX(), pCapital:GetY())
+			end
+			
+			if pPlayer:IsHuman() then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "[COLOR_CYAN]" .. pFlorence:GetName() .. "[ENDCOLOR] is a home of artists and engineers, who create outstanding works each day, and night. One of them, " .. pUnit:GetName() .. " decided to work for you!", "A " .. Locale.ConvertTextKey(GameInfo.Units[pUnit:GetUnitType()].Description) .. " arrived from [COLOR_CYAN]" .. pFlorence:GetName() .. "[ENDCOLOR]!", pCapital:GetX(), pCapital:GetY())
+			end
+		end
+	end	
+end
+
+
+
+-- KYZYL (YIELDS ON RESEARCH)
+function ResearchersFromKyzyl(eTeam, eTech, iChange)
+	local pActivePlayer = Players[Game.GetActivePlayer()]
+	local eActiveTeam = pActivePlayer:GetTeam()
+	
+	if eTeam ~= eActiveTeam then return end
+					
+	if pActivePlayer:GetEventChoiceCooldown(tEventChoice[21]) ~= 0 then
+		local pKyzyl = Players[tLostCities["eLostKyzyl"]]
+		local pKyzylCity = pKyzyl:GetCapitalCity()
+		local sKyzylYields = ""
+			
+		for city in pActivePlayer:Cities() do
+			iProductionBoostFromResearch = 15 * (pActivePlayer:GetCurrentEra() + 1) * (RandomNumberBetween(25, 75) / 25)
+		
+			city:ChangeProduction(iProductionBoostFromResearch)
+			sKyzylYields = sKyzylYields .. "[ICON_BULLET]" .. city:GetName() .. ": " .. iProductionBoostFromResearch .. " [ICON_PRODUCTION]"
+			
+			if pActivePlayer:IsHuman() and pActivePlayer:IsTurnActive() then
+				local vCityPosition = PositionCalculator(city:GetX(), city:GetY())
+				
+				Events.AddPopupTextEvent(vCityPosition, "[COLOR_YIELD_PRODUCTION]+" .. iProductionBoostFromResearch .. " [ICON_PRODUCTION][ENDCOLOR]", 1)
+			end
+		end
+		
+		if pActivePlayer:IsHuman() then
+			sKyzylYields = "[COLOR_CYAN]" .. pKyzyl:GetName() .. "[ENDCOLOR] supports your production efforts and sends few specialists to your cities:" .. sKyzylYields
+			
+			pActivePlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, sKyzylYields, "Scientists from [COLOR_CYAN]" .. pKyzyl:GetName() .. "[ENDCOLOR] arrived!", pKyzylCity:GetX(), pKyzylCity:GetY())
+		end	
+	end	
 end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
@@ -2326,6 +2400,18 @@ function SettingUpSpecificEvents()
 			elseif sMinorCivType == "MINOR_CIV_HONG_KONG" then
 				tLostCities["eLostHongKong"] = eCS
 				GameEvents.PlayerDoTurn.Add(MigrationToHongKong)
+			
+
+			-- unit spawn
+			elseif sMinorCivType == "MINOR_CIV_FLORENCE" then
+				tLostCities["eLostFlorence"] = eCS
+				GameEvents.PlayerDoTurn.Add(ArtistsInFlorence)
+
+
+			-- production on research
+			elseif sMinorCivType == "MINOR_CIV_KYZYL" then
+				tLostCities["eLostKyzyl"] = eCS
+				GameEvents.TeamTechResearched.Add(ResearchersFromKyzyl)
 			end
 		end
 	end

@@ -10,6 +10,10 @@ Changelog:
 			- Antwerp: lesser bonus to Merchants, but instead you get -10% Gold Purchase bonus;
 			- Colombo: now heals all units on a finished international trade route;
 			- Hong Kong: increases growth and gold per citizen, but at a risk of people migration to Hong Kong; when they do so, you get some reward in Gold and Influence;
+		- Cultured:
+			- Florence: additional new ability rarely spawn Great Artist or Great Engineer; 
+			- Kyzyl: additional new ability gives production on tech research; science instead of tourism on Palace and Monument;
+			- Monaco: increases border growth instead of culture;
 - balanced:
 	- Chevaq's ability is a bit stronger: now 1 Food per 2 Tundra (was 4);
 	- Douala got additional +10% Production boost to Trade Units construction;
@@ -18,9 +22,8 @@ Changelog:
 	- reduced Ambracia's Gift Rate boost to +15% (was +50%);
 	- Mounds now cannot be built on Snow;
 	- Marsh's build time is now 600 (was 700) and Mound's build time is now 800 (was 700);
-	- Geneva now produces its yield every 4 Citizens (Faith);
 	- simplified Kuala Lumpur, now Well and Watermill gain +1 Culture (was +5% and +2);
-	- increased Kabul's and Kathmandu's yields to 1.5 per Mountain (was 0.66);
+	- Sofia's boost for GGs and GAs is now 10% (was 5%);
 - fixed:
 	- added missing flavours for base CSs (upsi!);
 	- added missing resources resource boosts for MW (Tropical Fish, Giant Tortoise);
