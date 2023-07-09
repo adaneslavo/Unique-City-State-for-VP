@@ -320,7 +320,7 @@ SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ALMATY', 				'[COLOR_MAGENTA]Almatu:[ENDCOLOR]
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ANTANANARIVO', 		'[COLOR_MAGENTA]Pirate Haven:[ENDCOLOR] Military kills generate [ICON_GOLD] Gold equivalent to the killed''s [ICON_STRENGTH] Combat Strength.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ANTWERP', 			'[COLOR_MAGENTA]Economic Prominence:[ENDCOLOR] Merchants gain +1 [ICON_GOLD] Gold. -10% [ICON_GOLD] Gold Purchase Cost.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BELGRADE', 			'[COLOR_MAGENTA]The White Fortress:[ENDCOLOR] Siege Units gain +25 Max HP.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BOGOTA', 				'[COLOR_MAGENTA]United Independence:[ENDCOLOR] Capturing a City grants 20 [ICON_CULTURE] Culture, scaling with Era. Liberating a City grants 15-45 [ICON_CULTURE] Culture, scaling with Era and owned Cities (City scaling caps at 6).[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BOGOTA', 				'[COLOR_MAGENTA]United Independence:[ENDCOLOR] Capturing a City grants 40 [ICON_CULTURE] Culture, scaling with Era. Liberating a City grants 20-50 [ICON_CULTURE] Culture, scaling with Era and owned Cities (City scaling caps at 6).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BRATISLAVA', 			'[COLOR_MAGENTA]Heart of Slavic Culture:[ENDCOLOR] Guilds gain +2 [ICON_CULTURE] Culture and +1 [ICON_TOURISM] Tourism.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BRUSSELS', 			'[COLOR_MAGENTA]Home of the Marsh:[ENDCOLOR] Player can build [COLOR_CYAN]Marshes[ENDCOLOR] (+1 [ICON_FOOD] Food) on coastal Desert, Tundra and Snow tiles. Marshes gain +1 [ICON_CULTURE] Culture.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BUCHAREST', 			'[COLOR_MAGENTA]Paris of the East:[ENDCOLOR] [ICON_GREAT_WORK] Great Works gain +1 [ICON_CULTURE] Culture.[NEWLINE]' UNION ALL
@@ -883,7 +883,7 @@ SELECT 		'POLICY_LHASA', 'YIELD_FAITH', 				25;
 
 INSERT INTO Policy_ConquerorYield 
 			(PolicyType, 		YieldType, 			Yield)
-SELECT 		'POLICY_BOGOTA', 	'YIELD_CULTURE', 	20;
+SELECT 		'POLICY_BOGOTA', 	'YIELD_CULTURE', 	40;
 
 INSERT INTO Policy_YieldChangeTradeRoute 
 			(PolicyType, 		YieldType, 			Yield)
