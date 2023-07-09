@@ -37,6 +37,7 @@ Changelog:
 	- fixed dummies showing in the city view, so now they are not;
 	- now CSs starting with certain building (Kiev, Milan, Vilnius, Valetta), regain them after liberation;
 	- fixed Thimphu lua code on city capture;
+	- Antananarivo promotion now triggers;
 	- added PillageGold column to Mound;
 	- Levuka now has Polynesian artstyle (was African);
 	- fixed building's art alignment;
