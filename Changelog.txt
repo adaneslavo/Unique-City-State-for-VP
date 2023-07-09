@@ -12,6 +12,7 @@ Changelog:
 			- Colombo: now heals all units on a finished international TR; no negative yields; lesser positive yields;
 			- Hong Kong: increases Growth and Gold per Citizen, but at a risk of people migration to Hong Kong; when they do so, you get some reward in Gold and Influence;
 			- Melbourne: lesser bonus Gold from Mines (only), but converts Gold into Food and Border Growth Points;
+			- Tyre: added faster construction of Archaeologists, deleted Great Works bonus, and added instant yields after WW construction;
 		- Cultured:
 			- Florence: additional new ability rarely spawns Great Artist or Great Engineer; 
 			- Kyzyl: additional new ability gives Production on Tech research; Science instead of Tourism on Palace and Monument;
