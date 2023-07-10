@@ -43,6 +43,7 @@ Changelog:
 	- fixed Thimphu lua code on city capture;
 	- Antananarivo promotion now triggers;
 	- added PillageGold column to Mound;
+	- fixed ReligiousUnrest in Wittenberg;
 	- Levuka now has Polynesian artstyle (was African);
 	- fixed building's art alignment;
 	- massive revision of Mound and Cahokia texts;

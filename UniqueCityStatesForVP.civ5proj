@@ -75,7 +75,12 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       </Association>
     </ModBlockers>
     <ModActions>
-      <Action xmlns="">
+      <Action>
+        <Set>OnModActivated</Set>
+        <Type>UpdateDatabase</Type>
+        <FileName>XML/UCSTexts.xml</FileName>
+      </Action>
+      <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
         <FileName>SQL/Bonuses.sql</FileName>
@@ -104,14 +109,48 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
   <ItemGroup>
     <Folder Include="Art" />
     <Folder Include="Art\Model" />
+    <Folder Include="Art\Model\ColossalHead" />
     <Folder Include="Art\Model\SunkenCourtyard" />
     <Folder Include="Art\SV_Icons" />
     <Folder Include="Lua" />
+    <Folder Include="XML" />
     <Folder Include="Sound" />
     <Folder Include="SQL" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Art\AllianceShift.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\ColossalHead\olmec_colossalheads.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\ColossalHead\olmec_colossalheads.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\ColossalHead\olmec_colossalheads_pl.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\ColossalHead\olmec_heads.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\ColossalHead\olmec_heads_diff.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\ColossalHead\olmec_heads_pl.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\ColossalHead\olmec_heads_pl_diff.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\ColossalHead\olmec_head_decal_01.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
@@ -156,6 +195,14 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="Art\Model\SunkenCourtyard\templete_sref.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\SV_Icons\sv_BuildColossalHead.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\SV_Icons\sv_BuildFuneraryTower.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
@@ -240,6 +287,10 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="SQL\Bonuses.sql">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="XML\UCSTexts.xml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>

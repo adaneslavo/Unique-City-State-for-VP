@@ -1,5 +1,7 @@
 include("FLuaVector.lua")
 
+local L = Locale.ConvertTextKey
+
 local tLostCities = {}
 
 local tEventChoice = {
@@ -23,7 +25,8 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_COLOMBO,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_HONG_KONG,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_FLORENCE,
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_KYZYL -- 21
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_KYZYL, -- 21
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_TYRE
 }
 
 local tBuildingsActiveAbilities = {
@@ -244,7 +247,7 @@ function MinorPlayerDoTurn(ePlayer)
 					pMajorPlayer:DoEventChoice(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType])
 					
 					if pMajorPlayer:IsHuman() then
-						pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "You became an Ally of [COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR] and you are first in queue to benefit from the knowledge, technologies, experience and informations of its citizens. Watch for the new bonuses from this City-State.", "City-State's Alliance bonuses!", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
+						pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, L("TXT_KEY_UCS_BONUS_ALLY", pMinorPlayer:GetName()), L("TXT_KEY_UCS_BONUS_ALLY_TITLE"), pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
 					end
 				end
 			end
@@ -276,7 +279,7 @@ function MinorPlayerDoTurn(ePlayer)
 					pMajorPlayer:DoEventChoice(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType])
 					
 					if pMajorPlayer:IsHuman() then
-						pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "You established an Embassy in [COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR], therefore you gain a permanent access to the knowledge, technologies, experience and informations of its citizens. Watch for the new bonuses from this City-State.", "City-State's permanent bonuses from an Embassy!", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
+						pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, L("TXT_KEY_UCS_BONUS_EMBASSY", pMinorPlayer:GetName()), L("TXT_KEY_UCS_BONUS_EMBASSY_TITLE"), pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
 					end
 				end
 			end
@@ -298,7 +301,7 @@ function MinorPlayerDoTurn(ePlayer)
 							pPlayer:DoEventChoice(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType])
 							
 							if pPlayer:IsHuman() then
-								pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "Now you are under the influence of [COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR] and may benefit from the knowledge, technologies, experience and informations of its citizens. Watch for the new bonuses from this City-State.", "Overwhelming influence with a City-State!", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
+								pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, L("TXT_KEY_UCS_BONUS_INFLUENCE", pMinorPlayer:GetName()), L("TXT_KEY_UCS_BONUS_INFLUENCE_TITLE"), pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
 							end
 						end
 					end
@@ -2327,7 +2330,7 @@ function ResearchersFromKyzyl(eTeam, eTech, iChange)
 			iProductionBoostFromResearch = 15 * (pActivePlayer:GetCurrentEra() + 1) * (RandomNumberBetween(25, 75) / 25)
 		
 			city:ChangeProduction(iProductionBoostFromResearch)
-			sKyzylYields = sKyzylYields .. "[ICON_BULLET]" .. city:GetName() .. ": " .. iProductionBoostFromResearch .. " [ICON_PRODUCTION]"
+			sKyzylYields = sKyzylYields .. "[NEWLINE][ICON_BULLET]" .. city:GetName() .. ": " .. iProductionBoostFromResearch .. " [ICON_PRODUCTION]"
 			
 			if pActivePlayer:IsHuman() and pActivePlayer:IsTurnActive() then
 				local vCityPosition = PositionCalculator(city:GetX(), city:GetY())
@@ -2337,11 +2340,33 @@ function ResearchersFromKyzyl(eTeam, eTech, iChange)
 		end
 		
 		if pActivePlayer:IsHuman() then
-			sKyzylYields = "[COLOR_CYAN]" .. pKyzyl:GetName() .. "[ENDCOLOR] supports your production efforts and sends few specialists to your cities:" .. sKyzylYields
-			
-			pActivePlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, sKyzylYields, "Scientists from [COLOR_CYAN]" .. pKyzyl:GetName() .. "[ENDCOLOR] arrived!", pKyzylCity:GetX(), pKyzylCity:GetY())
+			pActivePlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, L("TXT_KEY_UCS_BONUS_KYZYL", pKyzyl:GetName(), sKyzylYields), L("TXT_KEY_UCS_BONUS_KYZYL_TITLE", pKyzyl:GetName()), pKyzylCity:GetX(), pKyzylCity:GetY())
 		end	
 	end	
+end
+
+
+
+-- TYRE (TOURISM FROM WW CONSTRUCTION)
+function TourismFromTyre(ePlayer, eCity, eBuilding, bGold, bFaith) 
+	local bBuildingSplash = GameInfo.Buildings[eBuilding].WonderSplashImage ~= nil
+	local bBuildingCorporation = GameInfo.Buildings[eBuilding].IsCorporation == 1
+	
+	if bBuildingSplash and not bBuildingCorporation then
+		local pPlayer = Players[ePlayer]
+	
+		if pPlayer:GetEventChoiceCooldown(tEventChoice[22]) ~= 0 then
+			local pCity = pPlayer:GetCityByID(eCity)
+			local iTourismBoost = 40 * (pPlayer:GetCurrentEra() + 1)
+			local pTyre = Players[tLostCities["eLostTyre"]]
+	
+			pPlayer:DoInstantYield(GameInfoTypes.YIELD_TOURISM, iTourismBoost, true, eCity)
+
+			if pPlayer:IsHuman() then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "You finished a World Wonder. Another reason to come and visit your magnificient city. [COLOR_CYAN]" .. pTyre:GetName() .. "[ENDCOLOR] is admired and sends first visitors to check the quality and spread the information.", "[COLOR_CYAN]" .. pTyre:GetName() .. "[ENDCOLOR] visits new World Wonder!", pCity:GetX(), pCity:GetY())
+			end	
+		end
+	end
 end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
@@ -2483,6 +2508,12 @@ function SettingUpSpecificEvents()
 			elseif sMinorCivType == "MINOR_CIV_KYZYL" then
 				tLostCities["eLostKyzyl"] = eCS
 				GameEvents.TeamTechResearched.Add(ResearchersFromKyzyl)
+
+
+			-- tourism from WWs
+			elseif sMinorCivType == "MINOR_CIV_TYRE" then
+				tLostCities["eLostTyre"] = eCS
+				GameEvents.CityConstructed.Add(TourismFromTyre)
 			end
 		end
 	end
