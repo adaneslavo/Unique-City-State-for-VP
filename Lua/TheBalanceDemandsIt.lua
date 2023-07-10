@@ -26,7 +26,8 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_HONG_KONG,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_FLORENCE,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_KYZYL, -- 21
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_TYRE
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_TYRE,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_LA_VENTA
 }
 
 local tBuildingsActiveAbilities = {
@@ -1312,16 +1313,17 @@ function LiberatedForBogota(ePlayer, eOtherPlayer, eCity)
 		
 		local iCultureLiberated = RandomNumberBetween(20, 50) * (pPlayer:GetCurrentEra() + 1) * iCities
 	
-		pPlayer:ChangeJONSCulture(iCultureLiberated)
+		pPlayer:DoInstantYield(GameInfoTypes.YIELD_CULTURE, iCultureLiberated, false, pCapital:GetID())
+		--pPlayer:ChangeJONSCulture(iCultureLiberated)
 		
-		if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
+		--[[if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
 			local vCityPosition = PositionCalculator(pCapital:GetX(), pCapital:GetY())
 			
 			Events.AddPopupTextEvent(vCityPosition, "[COLOR_MAGENTA]+" .. iCultureLiberated .. " [ICON_CULTURE][ENDCOLOR]", 1)
-		end
+		end--]]
 	
 		if pPlayer:IsHuman() then
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "Your liberation efforts do not go unrewarded. [COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR] rewards you with " .. iCultureLiberated .. " [ICON_CULTURE] Culture.", "United Independence!", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, L("TXT_KEY_UCS_BONUS_BOGOTA", pMinorPlayer:GetName(), iCultureLiberated), L("TXT_KEY_UCS_BONUS_BOGOTA_TITLE"), pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
 		end
 	end
 end
@@ -1379,6 +1381,20 @@ GameEvents.PlayerCanBuild.Add(CanWeBuildSunkenCourtyard)
 
 
 
+-- LA VENTA (IMPROVEMENT COLOSSAL HEAD)
+function CanWeBuildColossalHead(ePlayer, eUnit, iX, iY, eBuild)
+	if eBuild ~= GameInfoTypes.BUILD_BIG_HEAD then return true end
+	
+	local pPlayer = Players[ePlayer]
+	
+	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[23]) > 0) then return false end
+	
+	return true
+end
+GameEvents.PlayerCanBuild.Add(CanWeBuildColossalHead)
+
+
+
 -- CAPE TOWN/MANILA (BENEFITS FROM TRADE ROUTES)
 function TradeInCapeTown(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eConnectionType)
 	local pPlayer = Players[eFromPlayer]
@@ -1386,19 +1402,21 @@ function TradeInCapeTown(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eC
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[4]) ~= 0 then
 		local pToPlayer = Players[eToPlayer]
 		local iCahChing = pToPlayer:GetCityByID(eToCity):GetPopulation() * RandomNumberBetween(20, 40)
-		local pCapital = pPlayer:GetCapitalCity()
+		--local pCapital = pPlayer:GetCapitalCity()
+		local pPlayerCity = pPlayer:GetCityByID(eFromCity)
 		local pMinorPlayer = Players[tLostCities["eLostCapeTown"]]
 		
-		pPlayer:ChangeGold(iCahChing)
+		pPlayer:DoInstantYield(GameInfoTypes.YIELD_GOLD, iCahChing, false, eFromCity)
+		--pPlayer:ChangeGold(iCahChing)
 
-		if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
+		--[[if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
 			local vCityPosition = PositionCalculator(pCapital:GetX(), pCapital:GetY())
 			
 			Events.AddPopupTextEvent(vCityPosition, "[COLOR_YIELD_GOLD]+" .. iCahChing .. " [ICON_GOLD][ENDCOLOR]", 1)
-		end
+		end--]]
 
 		if pPlayer:IsHuman() then
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "And Cape of Good Hope it was, [COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR] rewards you with " .. iCahChing .. "[ICON_GOLD] Gold!", "Cape of Good Hope", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, L("TXT_KEY_UCS_BONUS_CAPE_TOWN", pMinorPlayer:GetName(), iCahChing), L("TXT_KEY_UCS_BONUS_CAPE_TOWN_TITLE"), pPlayerCity:GetX(), pPlayerCity:GetY())
 		end
 	end
 end
@@ -1414,18 +1432,20 @@ function TradeInManila(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eCon
 		local pPlayerCity = pPlayer:GetCityByID(eFromCity)
 		local pMinorPlayer = Players[tLostCities["eLostManila"]]
 
-		pPlayerCity:ChangeFood(iYumYum)
-		pPlayerCity:ChangeProduction(iYumYum)
+		pPlayer:DoInstantYield(GameInfoTypes.YIELD_FOOD, iYumYum, false, eFromCity)
+		pPlayer:DoInstantYield(GameInfoTypes.YIELD_PRODUCTION, iYumYum, false, eFromCity)
+		--pPlayerCity:ChangeFood(iYumYum)
+		--pPlayerCity:ChangeProduction(iYumYum)
 		
-		if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
+		--[[if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
 			local vCityPosition = PositionCalculator(pPlayerCity:GetX(), pPlayerCity:GetY())
 			
 			Events.AddPopupTextEvent(vCityPosition, "[COLOR_YIELD_FOOD]+" .. iYumYum .. " [ICON_FOOD][ENDCOLOR]", 1)
 			Events.AddPopupTextEvent(vCityPosition, "[COLOR_YIELD_PRODUCTION]+" .. iYumYum .. " [ICON_PRODUCTION][ENDCOLOR]", 1.5)
-		end
+		end--]]
 		
-		if pPlayer:IsHuman() then
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "With the Pearl of the Orient, your merchants discovered " .. iYumYum .. "[ICON_FOOD] Food and [ICON_PRODUCTION] Production on their travels!", "Pearl of the Orient", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
+		if pPlayer:IsHuman() then 
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, L("TXT_KEY_UCS_BONUS_MANILA", pMinorPlayer:GetName(), iYumYum), L("TXT_KEY_UCS_BONUS_MANILA_TITLE"), pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
 		end
 	end
 end
@@ -1444,7 +1464,7 @@ function TradeInColombo(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eCo
 			local pColombo = Players[tLostCities["eLostColombo"]]
 
 			if pPlayer:IsHuman() then
-				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "[COLOR_CYAN]" .. pCity:GetName() .. "[ENDCOLOR] finished a [ICON_INTERNATIONAL_TRADE] Trade Route. Desired goods from [COLOR_CYAN]" .. pColombo:GetName() .. "[ENDCOLOR] brought you enough profits to restructure your army and increase the defense of the trade network.", "Trade partners!", pCity:GetX(), pCity:GetY())
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, L("TXT_KEY_UCS_BONUS_COLOMBO", pCity:GetName(), pMinorPlayer:GetName()), L("TXT_KEY_UCS_BONUS_COLOMBO_TITLE"), pCity:GetX(), pCity:GetY())
 			end
 		end
 	end		
@@ -1502,10 +1522,12 @@ function ZurichMerchants(ePlayer)
 		local iInterestCap = 20 * (pPlayer:GetCurrentEra() + 1)
 		local pCapital = pPlayer:GetCapitalCity()
 		local pMinorPlayer = Players[tLostCities["eLostZurich"]]
+		local iCounterThreshold = 5
 		
 		if iInterest > iInterestCap then iInterest = iInterestCap end
 		
-		pPlayer:ChangeGold(iInterest)
+		pPlayer:DoInstantYield(GameInfoTypes.YIELD_GOLD, iInterest, false, pCapital:GetID())
+		--pPlayer:ChangeGold(iInterest)
 		
 		if tZurichCounter[ePlayer] == nil then
 			tZurichCounter[ePlayer] = 1
@@ -1517,15 +1539,15 @@ function ZurichMerchants(ePlayer)
 		
 		print("ZurichInterests", ePlayer, "turn:", tZurichCounter[ePlayer], "interests:", iInterest, "total:", tZurichLastInterests[ePlayer])
 		
-		if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
+		--[[if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
 			local vCityPosition = PositionCalculator(pCapital:GetX(), pCapital:GetY())
 			
 			Events.AddPopupTextEvent(vCityPosition, "[COLOR_YIELD_GOLD]+" .. iInterest .. " [ICON_GOLD][ENDCOLOR]", 1)
-		end
+		end--]]
 
-		if tZurichCounter[ePlayer] >= 5 then
+		if tZurichCounter[ePlayer] >= iCounterThreshold then
 			if pPlayer:IsHuman() then
-				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "[COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR] bankers found few discrepencies in your spendings and saved you " .. tZurichLastInterests[ePlayer] .. " [ICON_GOLD] Gold in last 10 turns!", "Money in the Right Hands!", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, L("TXT_KEY_UCS_BONUS_ZURICH", pMinorPlayer:GetName(), tZurichLastInterests[ePlayer], iCounterThreshold), L("TXT_KEY_UCS_BONUS_ZURICH_TITLE"), pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
 			end
 
 			tZurichCounter[ePlayer] = 0
@@ -1553,7 +1575,7 @@ function JerusalemsDevotion(ePlayer)
 						pMinorCapitalCity:SetNumRealBuilding(tBuildingsActiveAbilities[10], 1)
 						
 						if pMajorPlayer:IsHuman() then
-							pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "[COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR] adopted your main Religion. Now they spread your word over the world.", "Religion transfer to [COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR]", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
+							pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, L("TXT_KEY_UCS_BONUS_JERUSALEM_RELIGION", pMinorPlayer:GetName()), L("TXT_KEY_UCS_BONUS_JERUSALEM_RELIGION_TITLE", pMinorPlayer:GetName()), pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
 						end
             		end
         		
@@ -1574,7 +1596,7 @@ function JerusalemsDevotionSphere(eMinor, eMajor, bIsAlly, iOldFriendship, iNewF
             	Game.DoEnactResolution(eSphere, tLostCities["eLostJerusalem"], eMajor)
             			
             	if pMajorPlayer:IsHuman() then
-            		pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "In recognition and awe of your holiness, the leaders of [COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR] pledge their loyalty to you in the form of a [COLOR_POSITIVE_TEXT]Sphere of Influence[ENDCOLOR].", "[COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR]'s Sphere of Influence", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
+            		pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, L("TXT_KEY_UCS_BONUS_JERUSALEM_SPHERE", pMinorPlayer:GetName()), L("TXT_KEY_UCS_BONUS_JERUSALEM_SPHERE_TITLE", pMinorPlayer:GetName()), pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
             	end
 			end
         end
@@ -1593,7 +1615,7 @@ function DestroyLifeForSidon(ePlayer, eCS, iGold, eUnitType, iPlotX, iPlotY)
 		local pMinorPlayer = Players[tLostCities["eLostSidon"]]
 		
 		if pPlayer:IsHuman() then
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "In recognition and awe of your powers, the leaders of [COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR] pledge their loyalty to you in the form of a [COLOR_POSITIVE_TEXT]Sphere of Influence[ENDCOLOR].", "[COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR]'s Sphere of Influence", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, L("TXT_KEY_UCS_BONUS_SIDON", pMinorPlayer:GetName()), L("TXT_KEY_UCS_BONUS_SIDON_TITLE", pMinorPlayer:GetName()), pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
 		end
 	end
 end
@@ -1618,7 +1640,7 @@ function BuiltWonderForLhasa(ePlayer, eCity, eBuilding, bGold, bFaith)
 		local pMinorPlayer = Players[tLostCities["eLostLhasa"]]
 		
 		if pPlayer:IsHuman() then
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "Citizens of [COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR] awe you for your recent cunstruction efforts. They swear loyality and offer you services in return for the [COLOR_POSITIVE_TEXT]Sphere of Influence[ENDCOLOR].", "Sphere of Influence over [COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR]", pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, L("TXT_KEY_UCS_BONUS_LHASA", pMinorPlayer:GetName()), L("TXT_KEY_UCS_BONUS_LHASA_TITLE", pMinorPlayer:GetName()), pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
 		end
 	end
 end
@@ -2095,17 +2117,18 @@ function CaptureCityForLevuka(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bC
 		local iFoodBonus = math.ceil(((iCurrentEraModifier * iGameSpeedGoldenAgeModifier) / 100) / iOwnedCities)
 		
 		for city in pPlayer:Cities() do
-			city:ChangeFood(iFoodBonus)
+			pPlayer:DoInstantYield(GameInfoTypes.YIELD_FOOD, iFoodBonus, false, city:GetID())
+			--city:ChangeFood(iFoodBonus)
 
-			if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
+			--[[if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
 				local vCityPosition = PositionCalculator(city:GetX(), city:GetY())
 			
 				Events.AddPopupTextEvent(vCityPosition, "[COLOR_YIELD_FOOD]+" .. iFoodBonus .. " [ICON_FOOD][ENDCOLOR]", 1)
-			end
+			end--]]
 		end
 		
 		if pPlayer:IsHuman() then
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "[COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR] grants you " .. iFoodBonus .. " [ICON_FOOD] in each of your Cities for successful capture. They awe you.", "City captured for [COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR]", iX, iY)
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, L("TXT_KEY_UCS_BONUS_LEVUKA_CONQUEST", pMinorPlayer:GetName(), iFoodBonus), L("TXT_KEY_UCS_BONUS_LEVUKA_CONQUEST_TITLE", pMinorPlayer:GetName()), iX, iY)
 		end
 		
 		ConquestsForLevuka(eNewOwner)
@@ -2153,17 +2176,18 @@ function BarbCampForLevuka(iX, iY, ePlayer)
 		local iFoodBonus = math.ceil(((iCurrentEraModifier * iGameSpeedGoldenAgeModifier) / 100) / iCities)
 		
 		for city in pPlayer:Cities() do
-			city:ChangeFood(iFoodBonus)
+			pPlayer:DoInstantYield(GameInfoTypes.YIELD_FOOD, iFoodBonus, false, city:GetID())
+			--city:ChangeFood(iFoodBonus)
 
-			if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
+			--[[if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
 				local vCityPosition = PositionCalculator(city:GetX(), city:GetY())
 			
 				Events.AddPopupTextEvent(vCityPosition, "[COLOR_YIELD_FOOD]+" .. iFoodBonus .. " [ICON_FOOD][ENDCOLOR]", 1)
-			end
+			end--]]
 		end
 			
 		if pPlayer:IsHuman() then
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "[COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR] grants you " .. iFoodBonus .. " [ICON_FOOD] in each of your Cities for clearing a Barbarian Camp. They are very grateful for your help.", "Barbarian Camp cleared for [COLOR_CYAN]" .. pMinorPlayer:GetName() .. "[ENDCOLOR]", iX, iY)
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, L("TXT_KEY_UCS_BONUS_LEVUKA_BARBARIANS", pMinorPlayer:GetName(), iFoodBonus), L("TXT_KEY_UCS_BONUS_LEVUKA_BARBARIANS_TITLE", pMinorPlayer:GetName()), iX, iY)
 		end
 	end
 end
@@ -2255,22 +2279,25 @@ function MigrationToHongKong(ePlayer)
 				local iRolledMigrationChance = RandomNumberBetween(1, 1000)
 				
 				if iRolledMigrationChance <= iMigrationThreshold then
+					local iInfluece = 50
+					
 					city:ChangePopulation(-1, true)
 					pHongKongCity:ChangePopulation(1, true)
 
 					local iGoldReward = 150 * (pPlayer:GetCurrentEra() + 1) * (pHongKong:GetMinorCivFriendshipWithMajor(ePlayer) / GameDefines.FRIENDSHIP_THRESHOLD_FRIENDS)
-					
-					pPlayer:ChangeGold(iGoldReward)
-					pHongKong:ChangeMinorCivFriendshipWithMajor(ePlayer, 50)
 
-					if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
+					pPlayer:DoInstantYield(GameInfoTypes.YIELD_GOLD, iGoldReward, false, city:GetID())
+					--pPlayer:ChangeGold(iGoldReward)
+					pHongKong:ChangeMinorCivFriendshipWithMajor(ePlayer, iInfluece)
+
+					--[[if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
 						local vCityPosition = PositionCalculator(city:GetX(), city:GetY())
 					
 						Events.AddPopupTextEvent(vCityPosition, "[COLOR_YIELD_GOLD]+" .. iGoldReward .. " [ICON_GOLD][ENDCOLOR]", 1)
-					end
+					end--]]
 
 					if pPlayer:IsHuman() then
-						pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "A citizen migrated from [COLOR_CYAN]" .. city:GetName() .. "[ENDCOLOR] to [COLOR_CYAN]" .. pHongKongCity:GetName() .. "[ENDCOLOR]. [COLOR_CYAN]" .. pHongKong:GetName() .. "[ENDCOLOR] is grateful and it will not leave you without nothing. You receive " .. iGoldReward .. " [ICON_GOLD] Gold and feel a substantial warming of billateral contacts by 50 [ICON_INFLUENCE] Influence.", "Migration to [COLOR_CYAN]" .. pHongKong:GetName() .. "[ENDCOLOR]!", city:GetX(), city:GetY())
+						pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, L("TXT_KEY_UCS_BONUS_HONG_KONG", city:GetName(), pHongKongCity:GetName(), pHongKong:GetName(), iGoldReward, iInfluence), L("TXT_KEY_UCS_BONUS_HONG_KONG_TITLE", pHongKong:GetName()), city:GetX(), city:GetY())
 					end
 
 					break
@@ -2305,7 +2332,7 @@ function ArtistsInFlorence(ePlayer)
 			end
 			
 			if pPlayer:IsHuman() then
-				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "[COLOR_CYAN]" .. pFlorence:GetName() .. "[ENDCOLOR] is a home of artists and engineers, who create outstanding works each day, and night. One of them, " .. pUnit:GetName() .. " decided to work for you!", "A " .. Locale.ConvertTextKey(GameInfo.Units[pUnit:GetUnitType()].Description) .. " arrived from [COLOR_CYAN]" .. pFlorence:GetName() .. "[ENDCOLOR]!", pCapital:GetX(), pCapital:GetY())
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, L("TXT_KEY_UCS_BONUS_FLORENCE", pFlorence:GetName(), pUnit:GetName()), L("TXT_KEY_UCS_BONUS_FLORENCE_TITLE", Locale.ConvertTextKey(GameInfo.Units[pUnit:GetUnitType()].Description), pFlorence:GetName()), pCapital:GetX(), pCapital:GetY())
 			end
 		end
 	end	
@@ -2328,15 +2355,16 @@ function ResearchersFromKyzyl(eTeam, eTech, iChange)
 			
 		for city in pActivePlayer:Cities() do
 			iProductionBoostFromResearch = 15 * (pActivePlayer:GetCurrentEra() + 1) * (RandomNumberBetween(25, 75) / 25)
-		
-			city:ChangeProduction(iProductionBoostFromResearch)
+
+			pActivePlayer:DoInstantYield(GameInfoTypes.YIELD_PRODUCTION, iProductionBoostFromResearch, false, city:GetID())
+			--city:ChangeProduction(iProductionBoostFromResearch)
 			sKyzylYields = sKyzylYields .. "[NEWLINE][ICON_BULLET]" .. city:GetName() .. ": " .. iProductionBoostFromResearch .. " [ICON_PRODUCTION]"
 			
-			if pActivePlayer:IsHuman() and pActivePlayer:IsTurnActive() then
+			--[[if pActivePlayer:IsHuman() and pActivePlayer:IsTurnActive() then
 				local vCityPosition = PositionCalculator(city:GetX(), city:GetY())
 				
 				Events.AddPopupTextEvent(vCityPosition, "[COLOR_YIELD_PRODUCTION]+" .. iProductionBoostFromResearch .. " [ICON_PRODUCTION][ENDCOLOR]", 1)
-			end
+			end--]]
 		end
 		
 		if pActivePlayer:IsHuman() then
@@ -2360,10 +2388,10 @@ function TourismFromTyre(ePlayer, eCity, eBuilding, bGold, bFaith)
 			local iTourismBoost = 40 * (pPlayer:GetCurrentEra() + 1)
 			local pTyre = Players[tLostCities["eLostTyre"]]
 	
-			pPlayer:DoInstantYield(GameInfoTypes.YIELD_TOURISM, iTourismBoost, true, eCity)
+			pPlayer:DoInstantYield(GameInfoTypes.YIELD_TOURISM, iTourismBoost, false, eCity)
 
 			if pPlayer:IsHuman() then
-				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, "You finished a World Wonder. Another reason to come and visit your magnificient city. [COLOR_CYAN]" .. pTyre:GetName() .. "[ENDCOLOR] is admired and sends first visitors to check the quality and spread the information.", "[COLOR_CYAN]" .. pTyre:GetName() .. "[ENDCOLOR] visits new World Wonder!", pCity:GetX(), pCity:GetY())
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_MET_MINOR, L("TXT_KEY_UCS_BONUS_TYRE", pTyre:GetName(), iTourismBoost), L("TXT_KEY_UCS_BONUS_TYRE_TITLE", pTyre:GetName()), pCity:GetX(), pCity:GetY())
 			end	
 		end
 	end
