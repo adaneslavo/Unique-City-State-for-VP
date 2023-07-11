@@ -19,7 +19,7 @@ Changelog:
 			- Monaco: increases Border Growth instead of Culture;
 		- Religious:
 			- now can build Colossal Heads Great Person improvements in place of previous bonuses;
-	- added multiple yield gain prompts at the moment of their appearing in the city: Bogota, Cape Town, Manila, Zurich, Levuka, Hong Kong, Kyzyl;
+	- added multiple yield gain prompts at the moment of their appearing in the city: Bogota, Cape Town, Manila, Zurich, Levuka, Hong Kong, Kyzyl, Tyre;
 	- Zurich' main notifications now are not spamming you each turn; instead they show up every 5 turns, and track each player's interests separately;
 - balanced:
 	- Chevaq's ability is a bit stronger: now 1 Food per 2 Tundra (was 4);
@@ -50,4 +50,5 @@ Changelog:
 	- numerous text fixes, text unifications and new text icons;
 - changed:
 	- numerous lua QoL changes;
+	- moved all lua texts to xml file (supports localizations);
 	- now dummy buildings have generic names and description (copy of cs trait), which means less work for me and better view in IGE;
