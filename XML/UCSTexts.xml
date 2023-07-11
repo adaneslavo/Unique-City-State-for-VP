@@ -101,13 +101,16 @@
 			<Text>A {1_GreatPerson} arrived from [COLOR_CYAN]{2_Florence}[ENDCOLOR]!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_KYZYL">
-			<Text>[COLOR_CYAN]{1_Kyzyl}[ENDCOLOR] supports your production efforts and sends few specialists to your cities:{2_CitiesList}</Text>
+			<Text>[COLOR_CYAN]{1_Kyzyl}[ENDCOLOR] supports your production efforts and sends few specialists to your cities:</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_KYZYL_EXTENDED">
+			<Text>[COLOR_CYAN]Kyzyl[ENDCOLOR] supports your production efforts and sends few specialists to your cities:[NEWLINE][ICON_BULLET]CityList</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_KYZYL_TITLE">
 			<Text>Scientists from [COLOR_CYAN]{1_Kyzyl}[ENDCOLOR] arrived!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_TYRE">
-			<Text>You finished a World Wonder - another reason to come and visit your magnificient city. [COLOR_CYAN]{1_Tyre}[ENDCOLOR] is admired and sends first visitors to check the quality and spread the information increasing your tourism income by {2_Tourism} [ICON_TOURISM] Tourism.</Text>
+			<Text>You finished [COLOR_YIELD_FOOD]{1_WorldWonder}[ENDCOLOR] - another reason to come and visit your magnificient city. [COLOR_CYAN]{2_Tyre}[ENDCOLOR] is admired and sends first visitors to check the quality and spread the information increasing your tourism income by {3_Tourism} [ICON_TOURISM] Tourism.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_TYRE_TITLE">
 			<Text>[COLOR_CYAN]{1_Tyre}[ENDCOLOR] visits new World Wonder!</Text>

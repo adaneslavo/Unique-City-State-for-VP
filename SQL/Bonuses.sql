@@ -321,98 +321,98 @@ SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ANTANANARIVO', 		'[COLOR_MAGENTA]Pirate Haven:
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ANTWERP', 			'[COLOR_MAGENTA]Economic Prominence:[ENDCOLOR] Merchants gain +1 [ICON_GOLD] Gold. -10% [ICON_GOLD] Gold Purchase Cost.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BELGRADE', 			'[COLOR_MAGENTA]The White Fortress:[ENDCOLOR] Siege Units gain +25 Max HP.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BOGOTA', 				'[COLOR_MAGENTA]United Independence:[ENDCOLOR] Capturing a City grants 40 [ICON_CULTURE] Culture, scaling with Era. Liberating a City grants 20-50 [ICON_CULTURE] Culture, scaling with Era and owned Cities (City scaling caps at 6).[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BRATISLAVA', 			'[COLOR_MAGENTA]Heart of Slavic Culture:[ENDCOLOR] Guilds gain +2 [ICON_CULTURE] Culture and +1 [ICON_TOURISM] Tourism.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BRUSSELS', 			'[COLOR_MAGENTA]Home of the Marsh:[ENDCOLOR] Marshes gain +1 [ICON_GOLD] Gold and +1 [ICON_CULTURE] Culture. Player can build [COLOR_CYAN]Marshes[ENDCOLOR] (+1 [ICON_FOOD] Food) on coastal Desert, Tundra and Snow tiles.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BRATISLAVA', 			'[COLOR_MAGENTA]Heart of Slavic Culture:[ENDCOLOR] [COLOR_YIELD_FOOD]Guilds[ENDCOLOR] gain +2 [ICON_CULTURE] Culture and +1 [ICON_TOURISM] Tourism.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BRUSSELS', 			'[COLOR_MAGENTA]Home of the Marsh:[ENDCOLOR] [COLOR_CITY_GREEN]Marshes[ENDCOLOR] gain +1 [ICON_GOLD] Gold and +1 [ICON_CULTURE] Culture. Player can build [COLOR_CYAN]Marshes[ENDCOLOR] (+1 [ICON_FOOD] Food) on coastal Desert, Tundra and Snow tiles.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BUCHAREST', 			'[COLOR_MAGENTA]Paris of the East:[ENDCOLOR] [ICON_GREAT_WORK] Great Works gain +1 [ICON_CULTURE] Culture.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BUDAPEST', 			'[COLOR_MAGENTA]Pearl of Danube:[ENDCOLOR] Player receives +5 [ICON_RES_HORSE] Horses (can be traded and they are counted toward Monopolies).[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BUENOS_AIRES', 		'[COLOR_MAGENTA]Vox Populi:[ENDCOLOR] Bonus Resources gain +1 [ICON_CULTURE] Culture.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BYBLOS', 				'[COLOR_MAGENTA]Byblos Cedar:[ENDCOLOR] Fishing Boats gain +1 [ICON_FOOD] Food. Cities gain +5% [ICON_PRODUCTION] Production towards [ICON_WONDER] World Wonders and all Naval Units.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_CAHOKIA', 			'[COLOR_MAGENTA]Monks Mound:[ENDCOLOR] Player can build a [COLOR_CITY_BROWN]Mounds[ENDCOLOR] improvement (not adjacent). +1 [ICON_GOLD] Gold. +1 [ICON_GOLD] Gold and +1 [ICON_PEACE] Faith, if the Player has access to [COLOR_CYAN]Cahokia[ENDCOLOR]''s bonuses. +1 [ICON_GOLDEN_AGE] Golden Age Point, if next to a City. +1 [ICON_RESEARCH] Science with [COLOR_CYAN]Architecture[ENDCOLOR]. Towns and Villages gain +1 [ICON_GOLD] Gold, if next to a [COLOR_CITY_BROWN]Mound[ENDCOLOR]. Units gain +15% [ICON_STRENGTH] Defensive CS, when on a [COLOR_CITY_BROWN]Mound[ENDCOLOR].[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BUENOS_AIRES', 		'[COLOR_MAGENTA]Vox Populi:[ENDCOLOR] [COLOR-GREY]Bonus Resources[ENDCOLOR] gain +1 [ICON_CULTURE] Culture.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BYBLOS', 				'[COLOR_MAGENTA]Byblos Cedar:[ENDCOLOR] [COLOR_CITY_BROWN]Fishing Boats[ENDCOLOR] gain +1 [ICON_FOOD] Food. Cities gain +5% [ICON_PRODUCTION] Production towards [ICON_WONDER] World Wonders and all Naval Units.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_CAHOKIA', 			'[COLOR_MAGENTA]Monks Mound:[ENDCOLOR] Player can build a [COLOR_CITY_BROWN]Mounds[ENDCOLOR] improvement (not adjacent). +1 [ICON_GOLD] Gold. +1 [ICON_GOLD] Gold and +1 [ICON_PEACE] Faith, if the Player has access to [COLOR_CYAN]Cahokia[ENDCOLOR]''s bonuses. +1 [ICON_GOLDEN_AGE] Golden Age Point, if next to a City. +1 [ICON_RESEARCH] Science with [COLOR_CYAN]Architecture[ENDCOLOR]. [COLOR_CITY_BROWN]Towns[ENDCOLOR] and [COLOR_CITY_BROWN]Villages[ENDCOLOR] gain +1 [ICON_GOLD] Gold, if next to a [COLOR_CITY_BROWN]Mound[ENDCOLOR]. Units gain +15% [ICON_STRENGTH] Defensive CS, when on a [COLOR_CITY_BROWN]Mound[ENDCOLOR].[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_CAPE_TOWN', 			'[COLOR_MAGENTA]Cape of Good Hope:[ENDCOLOR] +10% [ICON_INTERNATIONAL_TRADE] Trade Route Maximum Range. Finishing a [ICON_INTERNATIONAL_TRADE] Trade Route grants 20-40 [ICON_GOLD] Gold, scaling with the Destination City''s [ICON_CITIZEN] Population.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_COLOMBO', 			'[COLOR_MAGENTA]Home of Cinnamon:[ENDCOLOR] Forests and Jungles gain +1 [ICON_GOLD] Gold. Player allied with [COLOR_CYAN]Colombo[ENDCOLOR] heals all his units by 10 HP each time the [ICON_INTERNATIONAL_TRADE] Trade Route originated from a City owned by that Player finishes.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_FLORENCE', 			'[COLOR_MAGENTA]Cradle of the Renaissance:[ENDCOLOR] Quarries gain +1 [ICON_CULTURE] Culture. Artists gain +1 [ICON_GOLDEN_AGE] Golden Age Points. Ally of [COLOR_CYAN]Florence[ENDCOLOR] has 1% chance per turn of spawning the [ICON_GREAT_ARTIST] Great Artist or [ICON_GREAT_ENGINEER] Great Engineer in the Capital.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_COLOMBO', 			'[COLOR_MAGENTA]Home of Cinnamon:[ENDCOLOR] [COLOR_CITY_GREEN]Forests[ENDCOLOR] and [COLOR_CITY_GREEN]Jungles[ENDCOLOR] gain +1 [ICON_GOLD] Gold. Player allied with [COLOR_CYAN]Colombo[ENDCOLOR] heals all his units by 10 HP each time the [ICON_INTERNATIONAL_TRADE] Trade Route originated from a City owned by that Player finishes.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_FLORENCE', 			'[COLOR_MAGENTA]Cradle of the Renaissance:[ENDCOLOR] [COLOR_CITY_BROWN]Quarries[ENDCOLOR] gain +1 [ICON_CULTURE] Culture. Artists gain +1 [ICON_GOLDEN_AGE] Golden Age Points. Ally of [COLOR_CYAN]Florence[ENDCOLOR] has 1% chance per turn of spawning the [ICON_GREAT_ARTIST] Great Artist or [ICON_GREAT_ENGINEER] Great Engineer in the Capital.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_GENEVA', 				'[COLOR_MAGENTA]L''Escalade:[ENDCOLOR] Cities gain +1 [ICON_PEACE] Faith for every 5 [ICON_CITIZEN] Citizens.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_GENOA', 				'[COLOR_MAGENTA]La Superba:[ENDCOLOR] Player gains 50 [ICON_GOLD] Gold and 15 [ICON_GOLDEN_AGE] Golden Age Points, scaling with Era, upon a birth of a [ICON_GREAT_PEOPLE] Great Person, scaling with Era.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_GENOA', 				'[COLOR_MAGENTA]La Superba:[ENDCOLOR] Player gains 50 [ICON_GOLD] Gold and 15 [ICON_GOLDEN_AGE] Golden Age Points, scaling with Era, upon a birth of a [ICON_GREAT_PEOPLE] [COLOR_YIELD_GOLD]Great Person[ENDCOLOR], scaling with Era.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_HANOI', 				'[COLOR_MAGENTA]Patriotism:[ENDCOLOR] Military Units gain +10% [ICON_STRENGTH] Combat Strength inside Friendly Territories.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_HONG_KONG', 			'[COLOR_MAGENTA]Prosperous:[ENDCOLOR] Cities gain +5% [ICON_FOOD] Growth and +1 [ICON_GOLD] Gold for every 6 [ICON_CITIZEN] Citizens. Each turn there''s a chance that 1 [ICON_CITIZEN] Citizen from 1 Player''s City will migrate to [COLOR_CYAN]Hong Kong[ENDCOLOR]. If it does, Player receives 150 [ICON_GOLD] Gold, scaling with Era and current [ICON_INFLUENCE] Influence level with [ICON_CYAN]Hong Kong[ENDCOLOR], and an additional 50 [ICON_INFLUENCE] Influence with [COLOR_CYAN]Hong Kong[ENDCOLOR]. Chance of migration starts from 0%, if the City has equal [ICON_CITIZEN] Citizens to [COLOR_CYAN]Hong Kong[ENDCOLOR], and grows by 1% with each [ICON_CITIZEN] Citizen above that number.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_IFE', 				'[COLOR_MAGENTA]Yoruba:[ENDCOLOR] Player gains 3 [ICON_PEACE] Faith, scaling with Era, when a City expands its borders. Shrines gain +2 [ICON_CULTURE_LOCAL] Border Growth Points.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_JERUSALEM', 			'[COLOR_MAGENTA]Holy Lands:[ENDCOLOR] Holy Sites gain +1 [ICON_PEACE] Faith. [COLOR_CYAN]Jerusalem[ENDCOLOR] will adopt the Majority Religion of its Ally and gains at the same time permanent +100% Religious Pressure (stays on Capture). [COLOR_CYAN]Jerusalem[ENDCOLOR] has a religious pressure equal to a Holy City. When there''s a change of alliance, new Ally will gain a [COLOR_POSITIVE_TEXT]Sphere of Influence[ENDCOLOR] with [COLOR_CYAN]Jerusalem[ENDCOLOR], if the World Congress has been founded.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KABUL', 				'[COLOR_MAGENTA]Paradise on Earth:[ENDCOLOR] Cities gain +0.66 [ICON_CULTURE] Culture for every Mountain tile within their workable radius.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KATHMANDU', 			'[COLOR_MAGENTA]The Mountain:[ENDCOLOR] Cities gain +0.66 [ICON_PEACE] Faith for every Mountain tile within their workable radius.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KIEV', 				'[COLOR_MAGENTA]Stories of Old:[ENDCOLOR] Player can construct [COLOR_POSITIVE_TEXT]Bylina[ENDCOLOR] (+2 [ICON_GREAT_MUSICIAN]; +1 slot for [ICON_GREAT_MUSICIAN] Musician). +5% [ICON_GREAT_MUSICIAN] Great Musicians generation.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KUALA_LUMPUR', 		'[COLOR_MAGENTA]Muddy Rivers:[ENDCOLOR] Wells and Watermills gain +1 [ICON_CULTURE] Culture.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KYZYL', 				'[COLOR_MAGENTA]Center of Asia:[ENDCOLOR] Palace and Monuments gain +1 [ICON_RESEARCH] Science. Cities gain 15-45 [ICON_PRODUCTION] Production, scaling with Era, upon a researching of a Technology.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LA_VENTA', 			'[COLOR_MAGENTA]Ceremonial Creations:[ENDCOLOR] Player can build a [COLOR_CITY_BROWN]Colossal Head[ENDCOLOR] improvement on Plains or Grassland tiles with Forest or Jungle by expending the [ICON_GREAT_ARTIST] Great Artist, [ICON_GREAT_ENGINEER] Great Engineer, [ICON_GREAT_SCIENTIST] Great Scientist or [ICON_PROPHET] Great Prophet. +1 [ICON_RESEARCH] Science and +1 [ICON_CULTURE] Culture. +2 [ICON_RESEARCH] Science and +2 [ICON_CULTURE] Culture, if the Player has access to [COLOR_CYAN]La Venta[ENDCOLOR]''s bonuses. +1 [ICON_GOLDEN_AGE] Golden Age Point, if next to a City, [ICON_RES_STONE] Stone or [ICON_RES_MARBLE] Marble. +3 [ICON_GOLDEN_AGE] Golden Age Points with [COLOR_CYAN]Machinery[ENDCOLOR], +2 [ICON_RESEARCH] Science with [COLOR_CYAN]Architecture[ENDCOLOR] and +2 [ICON_PRODUCTION] Production with [COLOR_CYAN]Scientific Theory[ENDCOLOR]. +1 [ICON_GOLDEN_AGE] Golden Age Point, +1 [ICON_GREAT_GENERAL] Great General Point and +1 [ICON_GREAT_ADMIRAL] Great Admiral Point, if there are 2 adjacent [COLOR_CITY_BROWN]Colossal Heads[ENDCOLOR]. Farms, Mines and Quarries gain +1 [ICON_PRODUCTION] Production, if next to a [COLOR_CITY_BROWN]Colossal Head[ENDCOLOR].[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LHASA', 				'[COLOR_MAGENTA]A Place Among the Gods:[ENDCOLOR] Player gains 25 [ICON_PEACE] Faith, scaling with Era, upon a birth of a [ICON_GREAT_PEOPLE] Great Person, scaling with Era. The [COLOR_CYAN]Potala Palace[ENDCOLOR] World Wonder will be available for construction after the foundation of World Congress. Constructing the [COLOR_CYAN]Potala Palace[ENDCOLOR] grants a [COLOR_POSITIVE_TEXT]Sphere of Influence[ENDCOLOR] with [COLOR_CYAN]Lhasa[ENDCOLOR].[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MALACCA', 			'[COLOR_MAGENTA]Strait Settlements:[ENDCOLOR] Luxury Resources gain +1 [ICON_GOLD] Gold.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_IFE', 				'[COLOR_MAGENTA]Yoruba:[ENDCOLOR] [COLOR_YIELD_FOOD]Shrines[COLOR_CITY_BLUE] gain +2 [ICON_CULTURE_LOCAL] Border Growth Points. Player gains 3 [ICON_PEACE] Faith, scaling with Era, when a City expands its borders.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_JERUSALEM', 			'[COLOR_MAGENTA]Holy Lands:[ENDCOLOR] [COLOR_CITY_BROWN]Holy Sites[ENDCOLOR] gain +1 [ICON_PEACE] Faith. [COLOR_CYAN]Jerusalem[ENDCOLOR] will adopt the Majority Religion of its Ally and gains at the same time permanent +100% Religious Pressure (stays on Capture). [COLOR_CYAN]Jerusalem[ENDCOLOR] has a religious pressure equal to a Holy City. When there''s a change of alliance, new Ally will gain a [COLOR_POSITIVE_TEXT]Sphere of Influence[ENDCOLOR] with [COLOR_CYAN]Jerusalem[ENDCOLOR], if the World Congress has been founded.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KABUL', 				'[COLOR_MAGENTA]Paradise on Earth:[ENDCOLOR] Cities gain +0.66 [ICON_CULTURE] Culture for every [COLOR_CITY_BLUE]Mountain[ENDCOLOR] tile within their workable radius.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KATHMANDU', 			'[COLOR_MAGENTA]The Mountain:[ENDCOLOR] Cities gain +0.66 [ICON_PEACE] Faith for every [COLOR_CITY_BLUE]Mountain[ENDCOLOR] tile within their workable radius.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KIEV', 				'[COLOR_MAGENTA]Stories of Old:[ENDCOLOR] Player can construct [COLOR_YIELD_FOOD]Bylina[ENDCOLOR] (+2 [ICON_GREAT_MUSICIAN]; +1 slot for [ICON_GREAT_MUSICIAN] Musician). +5% [ICON_GREAT_MUSICIAN] Great Musicians generation.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KUALA_LUMPUR', 		'[COLOR_MAGENTA]Muddy Rivers:[ENDCOLOR] [COLOR_YIELD_FOOD]Wells[ENDCOLOR] and [COLOR_YIELD_FOOD]Watermills[ENDCOLOR] gain +1 [ICON_CULTURE] Culture.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KYZYL', 				'[COLOR_MAGENTA]Center of Asia:[ENDCOLOR] [COLOR_YIELD_FOOD]Palace[ENDCOLOR] and [COLOR_YIELD_FOOD]Monuments[ENDCOLOR] gain +1 [ICON_RESEARCH] Science. Cities gain 15-45 [ICON_PRODUCTION] Production, scaling with Era, upon a researching of a Technology.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LA_VENTA', 			'[COLOR_MAGENTA]Ceremonial Creations:[ENDCOLOR] Player can build a [COLOR_CITY_BROWN]Colossal Head[ENDCOLOR] improvement on [COLOR_CITY_BLUE]Plains[ENDCOLOR] or [COLOR_CITY_BLUE]Grassland[ENDCOLOR] tiles with [COLOR_CITY_BLUE]Forest[ENDCOLOR] or [COLOR_CITY_BLUE]Jungle[ENDCOLOR] by expending the [ICON_GREAT_ARTIST] [COLOR_YIELD_GOLD]Great Artist[ENDCOLOR], [ICON_GREAT_ENGINEER] [COLOR_YIELD_GOLD]Great Engineer[ENDCOLOR], [ICON_GREAT_SCIENTIST] [COLOR_YIELD_GOLD]Great Scientist[ENDCOLOR] or [ICON_PROPHET] [COLOR_YIELD_GOLD]Great Prophet[ENDCOLOR]. +1 [ICON_RESEARCH] Science and +1 [ICON_CULTURE] Culture. +2 [ICON_RESEARCH] Science and +2 [ICON_CULTURE] Culture, if the Player has access to [COLOR_CYAN]La Venta[ENDCOLOR]''s bonuses. +1 [ICON_GOLDEN_AGE] Golden Age Point, if next to a City, [ICON_RES_STONE] [COLOR_GREY]Stone[ENDCOLOR] or [ICON_RES_MARBLE] [COLOR_GREY]Marble[ENDCOLOR]. +3 [ICON_GOLDEN_AGE] Golden Age Points with [COLOR_CYAN]Machinery[ENDCOLOR], +2 [ICON_RESEARCH] Science with [COLOR_CYAN]Architecture[ENDCOLOR] and +2 [ICON_PRODUCTION] Production with [COLOR_CYAN]Scientific Theory[ENDCOLOR]. +1 [ICON_GOLDEN_AGE] Golden Age Point, +1 [ICON_GREAT_GENERAL] Great General Point and +1 [ICON_GREAT_ADMIRAL] Great Admiral Point, if there are 2 adjacent [COLOR_CITY_BROWN]Colossal Heads[ENDCOLOR]. [COLOR_CITY_BROWN]Farms[ENDCOLOR], [COLOR_CITY_BROWN]Mines[ENDCOLOR] and [COLOR_CITY_BROWN]Quarries[ENDCOLOR] gain +1 [ICON_PRODUCTION] Production, if next to a [COLOR_CITY_BROWN]Colossal Head[ENDCOLOR].[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LHASA', 				'[COLOR_MAGENTA]A Place Among the Gods:[ENDCOLOR] Player gains 25 [ICON_PEACE] Faith, scaling with Era, upon a birth of a [ICON_GREAT_PEOPLE] [COLOR_YIELD_GOLD]Great Person[ENDCOLOR], scaling with Era. The [COLOR_YIELD_FOOD]Potala Palace[ENDCOLOR] World Wonder will be available for construction after the foundation of [COLOR_POSITIVE_TEXT]World Congress[ENDCOLOR]. Constructing the [COLOR_CYAN]Potala Palace[ENDCOLOR] grants a [COLOR_POSITIVE_TEXT]Sphere of Influence[ENDCOLOR] with [COLOR_CYAN]Lhasa[ENDCOLOR].[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MALACCA', 			'[COLOR_MAGENTA]Strait Settlements:[ENDCOLOR] [COLOR_GREY]Luxury Resources[ENDCOLOR] gain +1 [ICON_GOLD] Gold.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MANILA', 				'[COLOR_MAGENTA]Pearl of the Orient:[ENDCOLOR] Finishing a [ICON_INTERNATIONAL_TRADE] Trade Route grants 25-50 [ICON_FOOD] Food and [ICON_PRODUCTION] Production in the City, scaling with the Destination City''s [ICON_CITIZEN] Population.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MBANZA_KONGO', 		'[COLOR_MAGENTA]Manikongo Glory:[ENDCOLOR] Land Military Units gain +15% [ICON_STRENGTH] Combat Strength when fighting in Forest, Jungle, Marsh and Flood Plains.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MELBOURNE', 			'[COLOR_MAGENTA]Gold Rush:[ENDCOLOR] Mines gain +1 [ICON_GOLD] Gold. Cities convert 5% of [ICON_GOLD] Gold into [ICON_FOOD] Food and 2% of [ICON_GOLD] Gold into [ICON_CULTURE_LOCAL] Border Growth Points.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MILAN', 				'[COLOR_MAGENTA]House of Visconti:[ENDCOLOR] Player can construct [COLOR_CYAN]Visconti Emissaries[ENDCOLOR] (+2 [ICON_GREAT_ARTIST]; +1 slot for [ICON_GREAT_ARTIST] Artist). +5% [ICON_GREAT_ARTIST] Great Artists generation.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MOGADISHU', 			'[COLOR_MAGENTA]Maritime Growth:[ENDCOLOR] Oceans and Flood Plains gain +1 [ICON_FOOD] Food.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MOMBASA', 			'[COLOR_MAGENTA]Unity for Development:[ENDCOLOR] Bonus Resources gain +1 [ICON_FOOD] Food.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MONACO', 				'[COLOR_MAGENTA]Banking Haven:[ENDCOLOR] Markets and Banks gain +1 [ICON_CULTURE_LOCAL] Border Growth Point.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ORMUS', 				'[COLOR_MAGENTA]Jewel of the Ring:[ENDCOLOR] Luxury Resources gain +1 [ICON_FOOD] Food.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_PANAMA_CITY', 		'[COLOR_MAGENTA]Panama Canal:[ENDCOLOR] Lakes gain +1 [ICON_GOLD] Gold. +10% [ICON_CARGO_SHIP] Sea Trade Route Maximum Range. International [ICON_CARGO_SHIP] Sea Trade Routes grant +1 [ICON_GOLD] Gold to both: Origin and Destination City.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_PRAGUE', 				'[COLOR_MAGENTA]Vysehrad:[ENDCOLOR] Walls and Castles gain +1 [ICON_CULTURE] Culture.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_QUEBEC_CITY', 		'[COLOR_MAGENTA]Fur and Lumber:[ENDCOLOR] Camps and Lumbermills gain +1 [ICON_GOLD] Gold.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_RAGUSA', 				'[COLOR_MAGENTA]Maritime Suzerainty:[ENDCOLOR] Each City-State Alliance grants +1 [ICON_FOOD] Food to all Cities. Embassies gain +1 [ICON_FOOD] Food.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MELBOURNE', 			'[COLOR_MAGENTA]Gold Rush:[ENDCOLOR] [COLOR_CITY_BROWN]Mines[ENDCOLOR] gain +1 [ICON_GOLD] Gold. Cities convert 10% of [ICON_GOLD] Gold into [ICON_FOOD] Food and 5% of [ICON_GOLD] Gold into [ICON_CULTURE_LOCAL] Border Growth Points.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MILAN', 				'[COLOR_MAGENTA]House of Visconti:[ENDCOLOR] Player can construct [COLOR_YIELD_FOOD]Visconti Emissaries[ENDCOLOR] (+2 [ICON_GREAT_ARTIST]; +1 slot for [ICON_GREAT_ARTIST] Artist). +5% [ICON_GREAT_ARTIST] Great Artists generation.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MOGADISHU', 			'[COLOR_MAGENTA]Maritime Growth:[ENDCOLOR] [COLOR_CITY_BLUE]Oceans[ENDCOLOR] and [COLOR_CITY_GREEN]Flood Plains[ENDCOLOR] gain +1 [ICON_FOOD] Food.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MOMBASA', 			'[COLOR_MAGENTA]Unity for Development:[ENDCOLOR] [COLOR_GREY]Bonus Resources[ENDOLOR] gain +1 [ICON_FOOD] Food.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MONACO', 				'[COLOR_MAGENTA]Banking Haven:[ENDCOLOR] [COLOR_YIELD_FOOD]Markets[ENDOLOR] and [COLOR_YIELD_FOOD]Banks[ENDOLOR] gain +1 [ICON_CULTURE_LOCAL] Border Growth Point.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ORMUS', 				'[COLOR_MAGENTA]Jewel of the Ring:[ENDCOLOR] [COLOR_GREY]Luxury Resources[ENDOLOR] gain +1 [ICON_FOOD] Food.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_PANAMA_CITY', 		'[COLOR_MAGENTA]Panama Canal:[ENDCOLOR] [COLOR_CITY_GREEN]Lakes[ENDOLOR] gain +1 [ICON_GOLD] Gold. +10% [ICON_CARGO_SHIP] Sea Trade Route Maximum Range. International [ICON_CARGO_SHIP] Sea Trade Routes grant +1 [ICON_GOLD] Gold to both: Origin and Destination City.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_PRAGUE', 				'[COLOR_MAGENTA]Vysehrad:[ENDCOLOR] [COLOR_YIELD_FOOD]Walls[ENDOLOR] and [COLOR_YIELD_FOOD]Castles[ENDOLOR] gain +1 [ICON_CULTURE] Culture.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_QUEBEC_CITY', 		'[COLOR_MAGENTA]Fur and Lumber:[ENDCOLOR] [COLOR_CITY_BROWN]Camps[ENDCOLOR] and [COLOR_CITY_BROWN]Lumbermills[ENDCOLOR] gain +1 [ICON_GOLD] Gold.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_RAGUSA', 				'[COLOR_MAGENTA]Maritime Suzerainty:[ENDCOLOR] Each City-State Alliance grants +1 [ICON_FOOD] Food to all Cities. [COLOR_CITY_BROWN]Embassies[ENDCOLOR] gain +1 [ICON_FOOD] Food.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_RIGA', 				'[COLOR_MAGENTA]Latvian Commercialism:[ENDCOLOR] Cities gain +3% [ICON_FOOD] Food.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SAMARKAND', 			'[COLOR_MAGENTA]The Sogd:[ENDCOLOR] [ICON_INTERNATIONAL_TRADE] International Trade Routes grant +4 [ICON_GOLD] Gold to both: Origin and Destination City.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SIDON', 				'[COLOR_MAGENTA]Neighborhood Bully:[ENDCOLOR] Player can gain a [COLOR_POSITIVE_TEXT]Sphere of Influence[ENDCOLOR] with [COLOR_CYAN]Sidon[ENDCOLOR] for bullying another City-State. Military Units inside Enemy Territories heal an additional 5 HP per turn.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SINGAPORE', 			'[COLOR_MAGENTA]Developed Wealth:[ENDCOLOR] Diplomatic Units gain the [COLOR_POSITIVE_TEXT]Nobility[ENDCOLOR] promotion (+15 [ICON_INFLUENCE] Influence to Diplomatic Missions).[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SOFIA', 				'[COLOR_MAGENTA]Serdica:[ENDCOLOR] [ICON_GREAT_GENERAL] Great Generals and [ICON_GREAT_ADMIRAL] Great Admirals gain +10% [ICON_STRENGTH] Combat Effectiveness Bonus.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SINGAPORE', 			'[COLOR_MAGENTA]Developed Wealth:[ENDCOLOR] Diplomatic Units gain the [COLOR_WATER_TEXT]Nobility[ENDCOLOR] promotion (+15 [ICON_INFLUENCE] Influence to Diplomatic Missions).[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SOFIA', 				'[COLOR_MAGENTA]Serdica:[ENDCOLOR] [ICON_GREAT_GENERAL] [COLOR_YIELD_GOLD]Great Generals[ENDCOLOR] and [ICON_GREAT_ADMIRAL] [COLOR_YIELD_GOLD]Great Admirals[ENDCOLOR] gain +10% [ICON_STRENGTH] Combat Effectiveness Bonus.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SYDNEY', 				'[COLOR_MAGENTA]Capital Infrastructure:[ENDCOLOR] [ICON_HAPPINESS_1] WLTKD generate +5% [ICON_FOOD] Food.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_TYRE', 				'[COLOR_MAGENTA]Ruins of the Ancient World:[ENDCOLOR] [ICON_ARTIFACT] Landmarks gain +2 [ICON_GOLD] Gold. Cities gain +10% Production towards [ICON_ARTIFACT] Archaeologists. Player gains 40 [ICON_TOURISM] Tourism, scaling with Era, upon a construction of a [ICON_WONDER] World Wonder.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_TYRE', 				'[COLOR_MAGENTA]Ruins of the Ancient World:[ENDCOLOR] [ICON_VP_ARTIFACT] [COLOR_CITY_BROWN]Landmarks[ENDCOLOR] gain +2 [ICON_GOLD] Gold. Cities gain +10% Production towards [ICON_VP_ARTIFACT] [COLOR_YIELD_GOLD]Archaeologists[ENDCOLOR]. Player gains 20-40 [ICON_TOURISM] Tourism, scaling with Era and number of [ICON_WONDER] World Wonders, upon a construction of a [ICON_WONDER] World Wonder.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_UR', 					'[COLOR_MAGENTA]Cradle of Civilization:[ENDCOLOR] [ICON_TRADE] City Connections generate +2 [ICON_FOOD] Food.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_VALLETTA', 			'[COLOR_MAGENTA]The Grand Harbor:[ENDCOLOR] Player can construct [COLOR_CYAN]The Grand Harbor[ENDCOLOR] (+25 City HP, +15 XP to newly trained Naval Units).[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_VANCOUVER', 			'[COLOR_MAGENTA]Terminal City:[ENDCOLOR] Villages and [ICON_GREAT_PEOPLE] Great People Improvements gain +1 [ICON_FOOD] Food.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_VALLETTA', 			'[COLOR_MAGENTA]The Grand Harbor:[ENDCOLOR] Player can construct [COLOR_YIELD_FOOD]The Grand Harbor[ENDCOLOR] (+25 City HP, +15 XP to newly trained Naval Units).[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_VANCOUVER', 			'[COLOR_MAGENTA]Terminal City:[ENDCOLOR] [COLOR_CITY_BROWN]Villages[ENDCOLOR] and [ICON_GREAT_PEOPLE] [COLOR_CITY_BROWN]Great People Improvements[ENDCOLOR] gain +1 [ICON_FOOD] Food.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_VATICAN_CITY', 		'[COLOR_MAGENTA]Conclave:[ENDCOLOR] -10% [ICON_PEACE] Faith Purchase Cost.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_VILNIUS', 			'[COLOR_MAGENTA]Athens of the North:[ENDCOLOR] Player can construct [COLOR_CYAN]The Gate of Dawn[ENDCOLOR] (+2 [ICON_GREAT_WRITER]; +1 slot for [ICON_GREAT_WRITER] Writer). Writers gain +1 [ICON_GOLD] Gold.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_WELLINGTON', 			'[COLOR_MAGENTA]Te Whanga-nui-a-Tara:[ENDCOLOR] Strategic Resources gain +1 [ICON_FOOD] Food.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_VILNIUS', 			'[COLOR_MAGENTA]Athens of the North:[ENDCOLOR] Player can construct [COLOR_YIELD_FOOD]The Gate of Dawn[ENDCOLOR] (+2 [ICON_GREAT_WRITER]; +1 slot for [ICON_GREAT_WRITER] Writer). Writers gain +1 [ICON_GOLD] Gold.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_WELLINGTON', 			'[COLOR_MAGENTA]Te Whanga-nui-a-Tara:[ENDCOLOR] [COLOR_GREY]Strategic Resources[ENDCOLOR] gain +1 [ICON_FOOD] Food.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_WITTENBERG', 			'[COLOR_MAGENTA]Birth of the Reformation:[ENDCOLOR] -5% [ICON_HAPPINESS_3] Religious Unrest in all Cities. Civil Servants and Laborers gain +1 [ICON_PEACE] Faith.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_YEREVAN', 			'[COLOR_MAGENTA]Art of War:[ENDCOLOR] Military kills generate [ICON_CULTURE] Culture equivalent to 50% of the killed''s [ICON_STRENGTH] Combat Strength.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ZANZIBAR', 			'[COLOR_MAGENTA]The Spice Islands:[ENDCOLOR] Bonus and Strategic Resources gain +1 [ICON_GOLD] Gold.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ZANZIBAR', 			'[COLOR_MAGENTA]The Spice Islands:[ENDCOLOR] [COLOR_GREY]Bonus and Strategic Resources[ENDCOLOR] gain +1 [ICON_GOLD] Gold.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ZURICH', 				'[COLOR_MAGENTA]Banking Establishments:[ENDCOLOR] Treasury produces +2% [ICON_GOLD] Gold as interest (caps at 20 [ICON_GOLD] Gold for each Era) per turn.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_CLERMONT', 			'[COLOR_MAGENTA]Crusader''s Zeal:[ENDCOLOR] Newly-produced Melee and Gunpowder Units gain a random 10-turn promotion after their first combat. Military Units gain +15% XP from combat.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_HONDURAS', 			'[COLOR_MAGENTA]Banana Republic:[ENDCOLOR] Resources granted from City-States count toward Global Monopolies (doesn''t stack with [COLOR_CYAN]Exchange Markets[ENDCOLOR] policy).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_AUCKLAND', 			'[COLOR_MAGENTA]City of Sails:[ENDCOLOR] Coastal Cities gain +3 [ICON_FOOD] Food.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ARMAGH', 				'[COLOR_MAGENTA]Patron of Saints:[ENDCOLOR] Player can purchase Irish Saints (as buildings) with [ICON_PEACE] Faith (requires a Majority Religion). Saints help with [ICON_HAPPINESS_1] Happiness management and provide some yields. You can choose only one Saint out of four possible in each City.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MUSCAT', 				'[COLOR_MAGENTA]Cryptus Portus:[ENDCOLOR] Lighthouses, Harbors, Seaports and Drydocks gain +1 [ICON_GOLD] Gold.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_GRANADA', 			'[COLOR_MAGENTA]Alcázars:[ENDCOLOR] Forts, Citadels and Pontoon Bridges gain +1 [ICON_CULTURE] Culture.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_NANMANDOL', 			'[COLOR_MAGENTA]Reef of Heaven:[ENDCOLOR] Oceans gain +1 [ICON_FOOD] Food and +1 [ICON_CULTURE] Culture.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ARMAGH', 				'[COLOR_MAGENTA]Patron of Saints:[ENDCOLOR] Player can purchase [COLOR_YIELD_FOOD]Irish Saints[ENDCOLOR] (as buildings) with [ICON_PEACE] Faith (requires a Majority Religion). Saints help with [ICON_HAPPINESS_1] Happiness management and provide some yields. You can choose only one Saint out of four possible in each City.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MUSCAT', 				'[COLOR_MAGENTA]Cryptus Portus:[ENDCOLOR] [COLOR_YIELD_FOOD]Lighthouses[ENDCOLOR], [COLOR_YIELD_FOOD]Harbors[ENDCOLOR], [COLOR_YIELD_FOOD]Seaports[ENDCOLOR] and [COLOR_YIELD_FOOD]Drydocks[ENDCOLOR] gain +1 [ICON_GOLD] Gold.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_GRANADA', 			'[COLOR_MAGENTA]Alcázars:[ENDCOLOR] [COLOR_CITY_BROWN]Forts[ENDCOLOR], [COLOR_CITY_BROWN]Citadels[ENDCOLOR] and [COLOR_CITY_BROWN]Pontoon Bridges[ENDCOLOR] gain +1 [ICON_CULTURE] Culture.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_NANMANDOL', 			'[COLOR_MAGENTA]Reef of Heaven:[ENDCOLOR] [COLOR_CITY_BLUE]Oceans[ENDCOLOR] gain +1 [ICON_FOOD] Food and +1 [ICON_CULTURE] Culture.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_GWYNEDD', 			'[COLOR_MAGENTA]Cyfraith Hywel:[ENDCOLOR] +10% [ICON_CULTURE] Culture during [ICON_GOLDEN_AGE] Golden Ages.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MUISCA', 				'[COLOR_MAGENTA]The Golden One:[ENDCOLOR] Capital gains +1 [ICON_GOLD] Gold for its every 2 [ICON_CITIZEN] Citizens and +1 [ICON_GOLD] Gold for every 20 [ICON_CITIZEN] Citizens in your Empire.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LACONIA', 			'[COLOR_MAGENTA]Spartan Discipline:[ENDCOLOR] Land Military Units gain +15% [ICON_STRENGTH] Combat Strength when adjacent to a Friendly Unit.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_CHEVAK', 				'[COLOR_MAGENTA]Cev''aq:[ENDCOLOR] +1 [ICON_FOOD] Food for every 2 worked Tundra tiles, or 3 Snow tiles within workable radius.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_CHEVAK', 				'[COLOR_MAGENTA]Cev''aq:[ENDCOLOR] +1 [ICON_FOOD] Food for every 2 worked [COLOR_CITY_BLUE]Tundra[ENDCOLOR] tiles, or 3 [COLOR_CITY_BLUE]Snow[ENDCOLOR] tiles within workable radius.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SANTO_DOMINGO', 		'[COLOR_MAGENTA]Caribbean''s Gateway:[ENDCOLOR] Each currently applied Happiness or flat-yield Global Monopoly modifier gains an additional +3 bonus.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MANAGUA', 			'[COLOR_MAGENTA]Place of the Big Man:[ENDCOLOR] Each currently applied percentage-based Global Monopoly modifier gains an additional +7% bonus.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ODENSO', 				'[COLOR_MAGENTA]Lord of the Hunt:[ENDCOLOR] Military Units gain +1 [ICON_VIEW_CITY] Sight and heal an additional 5 HP per turn inside Neutral Territories.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_YANGCHENG', 			'[COLOR_MAGENTA]Year of the Animal:[ENDCOLOR] Animal Resources gain +1 [ICON_PEACE] Faith.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_YANGCHENG', 			'[COLOR_MAGENTA]Year of the Animal:[ENDCOLOR] [COLOR_GREY]Animal Resources[ENDCOLOR] gain +1 [ICON_PEACE] Faith.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_PHANOTEUS', 			'[COLOR_MAGENTA]Gift of Promethesus:[ENDCOLOR] Adds a flat chance to [COLOR_POSITIVE_TEXT]Rig Elections[ENDCOLOR] or [COLOR_POSITIVE_TEXT]Start a Coup[ENDCOLOR] in City-States. [ICON_SPY] Security Level and speed to complete Spy Events is increased by +20%.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_DOUALA', 				'[COLOR_MAGENTA]Minature Continent:[ENDCOLOR] +1 [ICON_INTERNATIONAL_TRADE] Trade Route. +10% [ICON_PRODUCTION] Production towards Trade Units[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_DOUALA', 				'[COLOR_MAGENTA]Minature Continent:[ENDCOLOR] +1 [ICON_INTERNATIONAL_TRADE] Trade Route. +10% [ICON_PRODUCTION] Production towards [COLOR_YIELD_GOLD]Trade Units[ENDCOLOR][NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_AMBRACIA', 			'[COLOR_MAGENTA]Mercenaries of Pyrrhus:[ENDCOLOR] Land Military Units generate +5% [ICON_PRODUCTION] Production when Garrisoned in the City. +10% [ICON_WAR] Militaristic City-State Gift Rate.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_DJIBOUTI', 			'[COLOR_MAGENTA]Ta Netjeru:[ENDCOLOR] -5% [ICON_HAPPINESS_3] Poverty in all Cities.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_DODOMA', 				'[COLOR_MAGENTA]Sail in the Wilderness:[ENDCOLOR] Military Naval Units gain +5% [ICON_STRENGTH] Combat Strength and +1 [ICON_MOVES] Movement Point.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_FAYA', 				'[COLOR_MAGENTA]Spoils of War:[ENDCOLOR] Military kills generate [ICON_RESEARCH] Science equivalent to 50% of the killed''s [ICON_STRENGTH] Combat Strength.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KIGALI', 				'[COLOR_MAGENTA]Double Shift Curriculum:[ENDCOLOR] -5% [ICON_HAPPINESS_3] Illiteracy in all Cities.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LEVUKA', 				'[COLOR_MAGENTA]Destroyer of Bau:[ENDCOLOR] Player gains [ICON_FOOD] Food, scaling with Era, when killing Barbarians, clearing Barbarian Encampments or conquering enemy Cities. +1 [ICON_GREAT_GENERAL] Great General Point in the Capital per owned conquered City.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_QUELIMANE', 			'[COLOR_MAGENTA]River of the Good Signs:[ENDCOLOR] River tiles gain +1 [ICON_GOLDEN_AGE] Golden Age Point.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LEVUKA', 				'[COLOR_MAGENTA]Destroyer of Bau:[ENDCOLOR] Player gains [ICON_FOOD] Food, scaling with Era, when killing Barbarians, clearing Barbarian Encampments (30-75 [ICON_FOOD] Food) or conquering enemy Cities (100-200 [ICON_FOOD] Food). +1 [ICON_GREAT_GENERAL] Great General Point in the Capital per owned conquered City.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_QUELIMANE', 			'[COLOR_MAGENTA]River of the Good Signs:[ENDCOLOR] [COLOR_CITY_GREEN]River[ENDCOLOR] tiles gain +1 [ICON_GOLDEN_AGE] Golden Age Point.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SIERRA_LEONE', 		'[COLOR_MAGENTA]Realm of the Free:[ENDCOLOR] -5% [ICON_HAPPINESS_3] Boredom in all Cities.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SURREY', 				'[COLOR_MAGENTA]Magnificence in Flying Machines:[ENDCOLOR] Fighters and Bombers gain +10% [ICON_STRENGTH] Combat Strength against [COLOR_POSITIVE_TEXT]Land and Naval Units[ENDCOLOR].[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_TAIWAN', 				'[COLOR_MAGENTA]Taiwanese Miracle:[ENDCOLOR] +5% [ICON_RESEARCH] Science from the Research Process. Converts 2% of [ICON_RESEARCH] Science into [ICON_FOOD] Food.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_OC_EO', 				'[COLOR_MAGENTA]Lords of the Great Glass River:[ENDCOLOR] +1 [ICON_CULTURE_LOCAL] Border Growth Point in all Coastal Cities and +1 [ICON_HAPPINESS_1] Happiness in Empire for each active International [ICON_CARGO_SHIP] Sea Trade Route.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_THIMPHU', 			'[COLOR_MAGENTA]Druk Tsendhen:[ENDCOLOR] Cities on Hill gain +3 [ICON_CULTURE] Culture.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ANDORRA', 			'[COLOR_MAGENTA]Pyrenean Paréage:[ENDCOLOR] +1 [ICON_TOURISM] Tourism for every Mountain tile within their workable radius. -10% [ICON_HAPPINESS_3] Boredom in Cities with Mountains nearby.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_CANOSSA', 			'[COLOR_MAGENTA]Ardent Flame in Pious Heart:[ENDCOLOR] Civil Servants gain +1 [ICON_PEACE] Faith. +1 [ICON_DIPLOMAT] Great Diplomat Point, if City has a Temple.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BEDULU', 				'[COLOR_MAGENTA]Isle of Gods:[ENDCOLOR] Sea Resources gain +1 [ICON_PEACE] Faith. Cities gain +1 [ICON_PEACE] Faith for every 2 worked Jungle tiles.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_DALI', 				'[COLOR_MAGENTA]Tea Horse Road:[ENDCOLOR] Player can purchase [ICON_CARAVAN] Caravans with [ICON_PEACE] Faith. All [ICON_INTERNATIONAL_TRADE] Trade Routes gain +10% [ICON_PEACE] Religious Presure.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MULTAN', 				'[COLOR_MAGENTA]City of Saints:[ENDCOLOR] Cities gain 10 [ICON_PEACE] Faith, scaling with Era, whenever a [ICON_CITIZEN] Citizen is born. Owned [ICON_MISSIONARY] Missionaries can spread religion 1 additional time.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BAGAN', 				'[COLOR_MAGENTA]Land of Thousand Pagodas:[ENDCOLOR] Temples gain +1 [ICON_HAPPINESS_1] Happiness. Cities gain 10 [ICON_PEACE] Faith, scaling with Era, upon a Building construction.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_RISHIKESH', 			'[COLOR_MAGENTA]Himalayan Yogi:[ENDCOLOR] Player can construct [COLOR_POSITIVE_TEXT]Ashram[ENDCOLOR] ([ICON_RESEARCH], [ICON_PEACE], [ICON_TOURISM], [ICON_HAPPINESS_3]). Cities on River gain +2 [ICON_PEACE] Faith.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MUTITJULU', 			'[COLOR_MAGENTA]Tjukurpa:[ENDCOLOR] Cities gain +1 [ICON_GOLDEN_AGE] Golden Age Point for every 2 worked Deserts. Natural Wonders gain +3 [ICON_PEACE] Faith and Deserts gain +1 [ICON_PEACE] Faith.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ISKANWAYA', 			'[COLOR_MAGENTA]Kallawaya Healers:[ENDCOLOR] Units automatically heal by 10 HP per turn, if they are adjacent to owned Religious Units, Holy Sites or Mountains. Aqueducts gain +1 [ICON_PEACE] Faith.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_TIWANAKU', 			'[COLOR_MAGENTA]Hana Pacha:[ENDCOLOR] Player can build a [COLOR_CITY_BROWN]Sunken Courtyard[ENDCOLOR] improvement on flat Plains, Tundra or Desert tiles by expending a [ICON_MISSIONARY] Missionary (not adjacent). +1 [ICON_PEACE] Faith. +1 [ICON_CULTURE] Culture and +1 [ICON_PEACE] Faith, if the Player has access to [COLOR_CYAN]Tiwanaku[ENDCOLOR]''s bonuses. +1 [ICON_RESEARCH] Science, if next to a City. +1 [ICON_TOURISM] Tourism with [COLOR_CYAN]Archaeology[ENDCOLOR]. Mountains gain +1 [ICON_CULTURE] Culture and +1 [ICON_PEACE] Faith, if next to a [COLOR_CITY_BROWN]Sunken Courtyard[ENDCOLOR].[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_TAIWAN', 				'[COLOR_MAGENTA]Taiwanese Miracle:[ENDCOLOR] Cities gain +10% [ICON_RESEARCH] Science from the Research Process. Converts 15% of [ICON_RESEARCH] Science into [ICON_FOOD] Food.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_OC_EO', 				'[COLOR_MAGENTA]Lords of the Great Glass River:[ENDCOLOR] Coastal Cities gain +1 [ICON_CULTURE_LOCAL] Border Growth Point. +1 [ICON_HAPPINESS_1] Happiness in Empire for each active International [ICON_CARGO_SHIP] Sea Trade Route.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_THIMPHU', 			'[COLOR_MAGENTA]Druk Tsendhen:[ENDCOLOR] Cities on [COLOR_CYAN]Hill[ENDCOLOR] gain +3 [ICON_CULTURE] Culture.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ANDORRA', 			'[COLOR_MAGENTA]Pyrenean Paréage:[ENDCOLOR] +1 [ICON_TOURISM] Tourism for every [COLOR_CITY_BLUE]Mountain[ENDCOLOR] tile within their workable radius. -10% [ICON_HAPPINESS_3] Boredom in Cities with [COLOR_CITY_BLUE]Mountains[ENDCOLOR] nearby.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_CANOSSA', 			'[COLOR_MAGENTA]Ardent Flame in Pious Heart:[ENDCOLOR] [COLOR_YIELD_GOLD]Civil Servants[ENDCOLOR] gain +1 [ICON_PEACE] Faith. +1 [ICON_DIPLOMAT] Great Diplomat Point, if City has a [COLOR_YIELD_FOOD]Temple[ENDCOLOR].[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BEDULU', 				'[COLOR_MAGENTA]Isle of Gods:[ENDCOLOR] [COLOR_GREY]Sea Resources[ENDCOLOR] gain +1 [ICON_PEACE] Faith. Cities gain +1 [ICON_PEACE] Faith for every 2 worked [COLOR_CITY_GREEN]Jungle[ENDCOLOR] tiles.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_DALI', 				'[COLOR_MAGENTA]Tea Horse Road:[ENDCOLOR] Player can purchase [ICON_CARAVAN] [COLOR_YIELD_GOLD]Caravans[ENDCOLOR] with [ICON_PEACE] Faith. All [ICON_INTERNATIONAL_TRADE] Trade Routes gain +10% [ICON_PEACE] Religious Presure.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MULTAN', 				'[COLOR_MAGENTA]City of Saints:[ENDCOLOR] Cities gain 10 [ICON_PEACE] Faith, scaling with Era, whenever a [ICON_CITIZEN] Citizen is born. Owned [ICON_MISSIONARY] [COLOR_YIELD_GOLD]Missionaries[ENDCOLOR] can spread religion 1 additional time.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BAGAN', 				'[COLOR_MAGENTA]Land of Thousand Pagodas:[ENDCOLOR] [COLOR_YIELD_FOOD]Temples[ENDCOLOR] gain +1 [ICON_HAPPINESS_1] Happiness. Cities gain 10 [ICON_PEACE] Faith, scaling with Era, upon a Building construction.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_RISHIKESH', 			'[COLOR_MAGENTA]Himalayan Yogi:[ENDCOLOR] Player can construct an [COLOR_YIELD_FOOD]Ashram[ENDCOLOR] ([ICON_RESEARCH], [ICON_PEACE], [ICON_TOURISM], [ICON_HAPPINESS_3]). Cities on [COLOR_CITY_GREEN]River[ENDCOLOR] gain +2 [ICON_PEACE] Faith.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MUTITJULU', 			'[COLOR_MAGENTA]Tjukurpa:[ENDCOLOR] Cities gain +1 [ICON_GOLDEN_AGE] Golden Age Point for every 2 worked [COLOR_CITY_BLUE]Deserts[ENDCOLOR]. [COLOR_WHITE]Natural Wonders[ENDCOLOR] gain +3 [ICON_PEACE] Faith and [COLOR_CITY_BLUE]Deserts[ENDCOLOR] gain +1 [ICON_PEACE] Faith.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ISKANWAYA', 			'[COLOR_MAGENTA]Kallawaya Healers:[ENDCOLOR] [COLOR_YIELD_FOOD]Aqueducts[ENDCOLOR] gain +1 [ICON_PEACE] Faith. Units automatically heal by 10 HP per turn, if they are adjacent to owned [COLOR_YIELD_GOLD]Religious Units[ENDCOLOR], [COLOR_CITY_BROWN]Holy Sites[ENDCOLOR] or [COLOR_CITY_BLUE]Mountains[ENDCOLOR].[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_TIWANAKU', 			'[COLOR_MAGENTA]Hana Pacha:[ENDCOLOR] Player can build a [COLOR_CITY_BROWN]Sunken Courtyard[ENDCOLOR] improvement on flat [COLOR_CITY_BLUE]Plains[ENDCOLOR], [COLOR_CITY_BLUE]Tundra[ENDCOLOR] or [COLOR_CITY_BLUE]Desert[ENDCOLOR] tiles by expending a [ICON_MISSIONARY] [COLOR_YIELD_GOLD]Missionary[ENDCOLOR] (not adjacent). +1 [ICON_PEACE] Faith. +1 [ICON_CULTURE] Culture and +1 [ICON_PEACE] Faith, if the Player has access to [COLOR_CYAN]Tiwanaku[ENDCOLOR]''s bonuses. +1 [ICON_RESEARCH] Science, if next to a City. +1 [ICON_TOURISM] Tourism with [COLOR_CYAN]Archaeology[ENDCOLOR]. Mountains gain +1 [ICON_CULTURE] Culture and +1 [ICON_PEACE] Faith, if next to a [COLOR_CITY_BROWN]Sunken Courtyard[ENDCOLOR].[NEWLINE]' UNION ALL
 -- promotions
 SELECT 'TXT_KEY_PROMOTION_ANTANANARIVO', 				'Pirate Haven' UNION ALL
 SELECT 'TXT_KEY_PROMOTION_ANTANANARIVO_HELP', 				'Military kills generate [ICON_GOLD] Gold equivalent to the killed''s [ICON_STRENGTH] Combat Strength.' UNION ALL
@@ -641,36 +641,36 @@ SELECT 		'MINOR_CIV_MUTITJULU', 		'TXT_KEY_CITYSTATE_MUTITJULU' UNION ALL
 SELECT 		'MINOR_CIV_ISKANWAYA', 		'TXT_KEY_CITYSTATE_ISKANWAYA' UNION ALL
 SELECT 		'MINOR_CIV_TIWANAKU', 		'TXT_KEY_CITYSTATE_TIWANAKU';
 
---DELETE FROM MinorCivilization_Flavors;
+DELETE FROM MinorCivilization_Flavors;
 
 INSERT INTO MinorCivilization_Flavors
 			(MinorCivType, 				FlavorType, 				Flavor)
 -- Base
-SELECT 'MINOR_CIV_ALMATY', 				'FLAVOR_EXPANSION', 			9 UNION ALL
+SELECT 'MINOR_CIV_ALMATY', 				'FLAVOR_EXPANSION', 		9 UNION ALL
 SELECT 'MINOR_CIV_ALMATY', 				'FLAVOR_OFFENSE', 			4 UNION ALL
 SELECT 'MINOR_CIV_ALMATY', 				'FLAVOR_RELIGION', 			2 UNION ALL
-SELECT 'MINOR_CIV_ANTANANARIVO', 		'FLAVOR_GOLD', 			7 UNION ALL
+SELECT 'MINOR_CIV_ANTANANARIVO', 		'FLAVOR_GOLD', 				7 UNION ALL
 SELECT 'MINOR_CIV_ANTANANARIVO', 		'FLAVOR_NAVAL', 			5 UNION ALL
 SELECT 'MINOR_CIV_ANTANANARIVO', 		'FLAVOR_OFFENSE', 			3 UNION ALL
-SELECT 'MINOR_CIV_ANTWERP', 			'FLAVOR_GOLD', 			8 UNION ALL
-SELECT 'MINOR_CIV_ANTWERP', 			'FLAVOR_MILITARY_TRAINING', 			7 UNION ALL
-SELECT 'MINOR_CIV_BELGRADE', 			'FLAVOR_CITY_DEFENSE', 			7 UNION ALL
+SELECT 'MINOR_CIV_ANTWERP', 			'FLAVOR_GOLD', 				8 UNION ALL
+SELECT 'MINOR_CIV_ANTWERP', 			'FLAVOR_MILITARY_TRAINING', 7 UNION ALL
+SELECT 'MINOR_CIV_BELGRADE', 			'FLAVOR_CITY_DEFENSE', 		7 UNION ALL
 SELECT 'MINOR_CIV_BELGRADE', 			'FLAVOR_OFFENSE', 			6 UNION ALL
 SELECT 'MINOR_CIV_BELGRADE', 			'FLAVOR_DEFENSE', 			2 UNION ALL
 SELECT 'MINOR_CIV_BOGOTA', 				'FLAVOR_CULTURE', 			7 UNION ALL
 SELECT 'MINOR_CIV_BOGOTA', 				'FLAVOR_WONDER', 			6 UNION ALL
 SELECT 'MINOR_CIV_BOGOTA', 				'FLAVOR_GROWTH', 			2 UNION ALL
 SELECT 'MINOR_CIV_BRATISLAVA', 			'FLAVOR_CULTURE', 			9 UNION ALL
-SELECT 'MINOR_CIV_BRATISLAVA', 			'FLAVOR_EXPANSION', 			4 UNION ALL
+SELECT 'MINOR_CIV_BRATISLAVA', 			'FLAVOR_EXPANSION', 		4 UNION ALL
 SELECT 'MINOR_CIV_BRATISLAVA', 			'FLAVOR_RELIGION', 			2 UNION ALL
 SELECT 'MINOR_CIV_BRUSSELS', 			'FLAVOR_WONDER', 			7 UNION ALL
 SELECT 'MINOR_CIV_BRUSSELS', 			'FLAVOR_GROWTH', 			5 UNION ALL
 SELECT 'MINOR_CIV_BRUSSELS', 			'FLAVOR_OFFENSE', 			3 UNION ALL
 SELECT 'MINOR_CIV_BUCHAREST', 			'FLAVOR_CULTURE', 			9 UNION ALL
 SELECT 'MINOR_CIV_BUCHAREST', 			'FLAVOR_DEFENSE', 			6 UNION ALL
-SELECT 'MINOR_CIV_BUDAPEST', 			'FLAVOR_EXPANSION', 			7 UNION ALL
+SELECT 'MINOR_CIV_BUDAPEST', 			'FLAVOR_EXPANSION', 		7 UNION ALL
 SELECT 'MINOR_CIV_BUDAPEST', 			'FLAVOR_RELIGION', 			5 UNION ALL
-SELECT 'MINOR_CIV_BUDAPEST', 			'', 			0 UNION ALL
+SELECT 'MINOR_CIV_BUDAPEST', 			'FLAVOR_WONDER', 			3 UNION ALL
 SELECT 'MINOR_CIV_BUENOS_AIRES', 		'FLAVOR_CULTURE', 			8 UNION ALL
 SELECT 'MINOR_CIV_BUENOS_AIRES', 		'FLAVOR_GROWTH', 			4 UNION ALL
 SELECT 'MINOR_CIV_BUENOS_AIRES', 		'FLAVOR_WONDER', 			3 UNION ALL
@@ -678,35 +678,35 @@ SELECT 'MINOR_CIV_BYBLOS', 				'FLAVOR_GROWTH', 			10 UNION ALL
 SELECT 'MINOR_CIV_BYBLOS', 				'FLAVOR_CULTURE', 			3 UNION ALL
 SELECT 'MINOR_CIV_BYBLOS', 				'FLAVOR_WONDER', 			2 UNION ALL
 SELECT 'MINOR_CIV_CAHOKIA', 			'FLAVOR_WONDER', 			9 UNION ALL
-SELECT 'MINOR_CIV_CAHOKIA', 			'FLAVOR_GOLD', 			6 UNION ALL
-SELECT 'MINOR_CIV_CAPE_TOWN', 			'FLAVOR_GOLD', 			9 UNION ALL
+SELECT 'MINOR_CIV_CAHOKIA', 			'FLAVOR_GOLD', 				6 UNION ALL
+SELECT 'MINOR_CIV_CAPE_TOWN', 			'FLAVOR_GOLD', 				9 UNION ALL
 SELECT 'MINOR_CIV_CAPE_TOWN', 			'FLAVOR_GROWTH', 			4 UNION ALL
 SELECT 'MINOR_CIV_CAPE_TOWN', 			'FLAVOR_DEFENSE', 			2 UNION ALL
 SELECT 'MINOR_CIV_COLOMBO', 			'FLAVOR_GROWTH', 			8 UNION ALL
-SELECT 'MINOR_CIV_COLOMBO', 			'FLAVOR_GOLD', 			7 UNION ALL
+SELECT 'MINOR_CIV_COLOMBO', 			'FLAVOR_GOLD', 				7 UNION ALL
 SELECT 'MINOR_CIV_FLORENCE', 			'FLAVOR_WONDER', 			10 UNION ALL
 SELECT 'MINOR_CIV_FLORENCE', 			'FLAVOR_CULTURE', 			5 UNION ALL
 SELECT 'MINOR_CIV_GENEVA', 				'FLAVOR_RELIGION', 			8 UNION ALL
-SELECT 'MINOR_CIV_GENEVA', 				'FLAVOR_EXPANSION', 			3 UNION ALL
+SELECT 'MINOR_CIV_GENEVA', 				'FLAVOR_EXPANSION', 		3 UNION ALL
 SELECT 'MINOR_CIV_GENEVA', 				'FLAVOR_WONDER', 			2 UNION ALL
 SELECT 'MINOR_CIV_GENEVA', 				'FLAVOR_OFFENSE', 			2 UNION ALL
 SELECT 'MINOR_CIV_GENOA', 				'FLAVOR_NAVAL', 			7 UNION ALL
-SELECT 'MINOR_CIV_GENOA', 				'FLAVOR_GOLD', 			6 UNION ALL
-SELECT 'MINOR_CIV_GENOA', 				'FLAVOR_MILITARY_TRAINING', 			2 UNION ALL
+SELECT 'MINOR_CIV_GENOA', 				'FLAVOR_GOLD', 				6 UNION ALL
+SELECT 'MINOR_CIV_GENOA', 				'FLAVOR_MILITARY_TRAINING', 2 UNION ALL
 SELECT 'MINOR_CIV_HANOI', 				'FLAVOR_GROWTH', 			5 UNION ALL
-SELECT 'MINOR_CIV_HANOI', 				'FLAVOR_GOLD', 			4 UNION ALL
-SELECT 'MINOR_CIV_HANOI', 				'FLAVOR_CITY_DEFENSE', 			4 UNION ALL
+SELECT 'MINOR_CIV_HANOI', 				'FLAVOR_GOLD', 				4 UNION ALL
+SELECT 'MINOR_CIV_HANOI', 				'FLAVOR_CITY_DEFENSE', 		4 UNION ALL
 SELECT 'MINOR_CIV_HANOI', 				'FLAVOR_RELIGION', 			2 UNION ALL
 SELECT 'MINOR_CIV_HONG_KONG', 			'FLAVOR_GROWTH', 			7 UNION ALL
-SELECT 'MINOR_CIV_HONG_KONG', 			'FLAVOR_GOLD', 			5 UNION ALL
+SELECT 'MINOR_CIV_HONG_KONG', 			'FLAVOR_GOLD', 				5 UNION ALL
 SELECT 'MINOR_CIV_HONG_KONG', 			'FLAVOR_CULTURE', 			3 UNION ALL
 SELECT 'MINOR_CIV_IFE', 				'FLAVOR_CULTURE', 			6 UNION ALL
 SELECT 'MINOR_CIV_IFE', 				'FLAVOR_RELIGION', 			4 UNION ALL
-SELECT 'MINOR_CIV_IFE', 				'FLAVOR_GOLD', 			3 UNION ALL
+SELECT 'MINOR_CIV_IFE', 				'FLAVOR_GOLD', 				3 UNION ALL
 SELECT 'MINOR_CIV_IFE', 				'FLAVOR_GROWTH', 			2 UNION ALL
 SELECT 'MINOR_CIV_JERUSALEM', 			'FLAVOR_RELIGION', 			10 UNION ALL
-SELECT 'MINOR_CIV_JERUSALEM', 			'FLAVOR_EXPANSION', 			3 UNION ALL
-SELECT 'MINOR_CIV_JERUSALEM', 			'FLAVOR_GOLD', 			2 UNION ALL
+SELECT 'MINOR_CIV_JERUSALEM', 			'FLAVOR_EXPANSION', 		3 UNION ALL
+SELECT 'MINOR_CIV_JERUSALEM', 			'FLAVOR_GOLD', 				2 UNION ALL
 SELECT 'MINOR_CIV_KABUL', 				'FLAVOR_CULTURE', 			8 UNION ALL
 SELECT 'MINOR_CIV_KABUL', 				'FLAVOR_OFFENSE', 			4 UNION ALL
 SELECT 'MINOR_CIV_KABUL', 				'FLAVOR_WONDER', 			3 UNION ALL
@@ -716,9 +716,9 @@ SELECT 'MINOR_CIV_KATHMANDU', 			'FLAVOR_GROWTH', 			4 UNION ALL
 SELECT 'MINOR_CIV_KIEV', 				'FLAVOR_OFFENSE', 			8 UNION ALL
 SELECT 'MINOR_CIV_KIEV', 				'FLAVOR_CULTURE', 			4 UNION ALL
 SELECT 'MINOR_CIV_KIEV', 				'FLAVOR_RELIGION', 			3 UNION ALL
-SELECT 'MINOR_CIV_KUALA_LUMPUR', 		'FLAVOR_GOLD', 			7 UNION ALL
+SELECT 'MINOR_CIV_KUALA_LUMPUR', 		'FLAVOR_GOLD', 				7 UNION ALL
 SELECT 'MINOR_CIV_KUALA_LUMPUR', 		'FLAVOR_GROWTH', 			6 UNION ALL
-SELECT 'MINOR_CIV_KUALA_LUMPUR', 		'FLAVOR_CITY_DEFENSE', 			2 UNION ALL
+SELECT 'MINOR_CIV_KUALA_LUMPUR', 		'FLAVOR_CITY_DEFENSE', 		2 UNION ALL
 SELECT 'MINOR_CIV_KYZYL', 				'FLAVOR_CULTURE', 			9 UNION ALL
 SELECT 'MINOR_CIV_KYZYL', 				'FLAVOR_DEFENSE', 			2 UNION ALL
 SELECT 'MINOR_CIV_KYZYL', 				'FLAVOR_RELIGION', 			2 UNION ALL
@@ -1549,13 +1549,13 @@ SELECT 		'BUILDING_RELIGIOUS_NEUTRAL', 	'YIELD_FOOD', 				1;
 
 INSERT INTO Building_YieldFromProcessModifier
 			(BuildingType, 			YieldType, 			Yield)
-SELECT 		'BUILDING_TAIWAN', 		'YIELD_SCIENCE', 	5;
+SELECT 		'BUILDING_TAIWAN', 		'YIELD_SCIENCE', 	10;
 
 INSERT INTO Building_YieldFromYieldPercent
 			(BuildingType,			YieldIn,			YieldOut,				Value) 
-SELECT		'BUILDING_TAIWAN',		'YIELD_SCIENCE',	'YIELD_FOOD',			5 UNION ALL
-SELECT		'BUILDING_MELBOURNE',	'YIELD_GOLD',		'YIELD_FOOD',			5 UNION ALL
-SELECT		'BUILDING_MELBOURNE',	'YIELD_GOLD',		'YIELD_CULTURE_LOCAL',	2 UNION ALL
+SELECT		'BUILDING_TAIWAN',		'YIELD_SCIENCE',	'YIELD_FOOD',			15 UNION ALL
+SELECT		'BUILDING_MELBOURNE',	'YIELD_GOLD',		'YIELD_FOOD',			10 UNION ALL
+SELECT		'BUILDING_MELBOURNE',	'YIELD_GOLD',		'YIELD_CULTURE_LOCAL',	5 UNION ALL
 SELECT		'BUILDING_MERCANTILE',	'YIELD_GOLD',		'YIELD_FOOD',			5 UNION ALL
 SELECT		'BUILDING_MERCANTILE',	'YIELD_GOLD',		'YIELD_PRODUCTION',		5;
 
@@ -2187,7 +2187,7 @@ INSERT INTO Builds
 SELECT 		'BUILD_MARSH', 			600, 	'IMPROVEMENT_MARSH', 		'TXT_KEY_BUILD_MARSH',			'TXT_KEY_BUILD_MARSH_HELP',			'ENTITY_EVENT_IRRIGATE', 	0,		'KB_M', 	97, 			1, 			'UCS_IMPROVEMENT_ATLAS' UNION ALL
 SELECT 		'BUILD_MOUND',			800, 	'IMPROVEMENT_MOUND', 		'TXT_KEY_BUILD_MOUND',			'TXT_KEY_BUILD_MOUND_HELP',			'ENTITY_EVENT_BUILD', 		0,		'KB_D', 	1, 				0, 			'UNIT_ACTION_KUNA' UNION ALL
 SELECT 		'BUILD_SUNK_COURT', 	1, 		'IMPROVEMENT_SUNK_COURT', 	'TXT_KEY_BUILD_SUNK_COURT', 	'TXT_KEY_BUILD_SUNK_COURT_HELP',	'ENTITY_EVENT_BUILD', 		1,		'KB_S', 	1, 				3, 			'UCS_IMPROVEMENT_ATLAS' UNION ALL
-SELECT 		'BUILD_BIG_HEAD', 		1, 		'IMPROVEMENT_BIG_HEAD', 	'TXT_KEY_BUILD_BIG_HEAD', 		'TXT_KEY_BUILD_BIG_HEAD_HELP',		'ENTITY_EVENT_BUILD', 		1,		'KB_S', 	1, 				7, 			'UCS_IMPROVEMENT_ATLAS';
+SELECT 		'BUILD_BIG_HEAD', 		1, 		'IMPROVEMENT_BIG_HEAD', 	'TXT_KEY_BUILD_BIG_HEAD', 		'TXT_KEY_BUILD_BIG_HEAD_HELP',		'ENTITY_EVENT_BUILD', 		1,		'KB_S', 	1, 				5, 			'UCS_IMPROVEMENT_ATLAS';
 
 INSERT INTO Unit_Builds 
 			(UnitType, 			BuildType)
