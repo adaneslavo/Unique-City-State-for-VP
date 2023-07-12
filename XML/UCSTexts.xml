@@ -52,6 +52,12 @@
 		<Row Tag="TXT_KEY_UCS_BONUS_ZURICH_TITLE">
 			<Text>Money in the right hands</Text>
 		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_ZURICH_STOP_ALLY">
+			<Text>You are no longer an Ally of [COLOR_CYAN]{1_Zurich}[ENDCOLOR]. Be sure to establish an Embassy to keep working on your interests. In last {2_Turns} they managed to save you {3_Interests} [ICON_GOLD] Gold.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_ZURICH_STOP_ALLY_TITLE">
+			<Text>Your treasury is endangered!</Text>
+		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_JERUSALEM_RELIGION">
 			<Text>[COLOR_CYAN]{1_Jerusalem}[ENDCOLOR] adopted your main Religion. Now they spread your word over the world.</Text>
 		</Row>
@@ -101,10 +107,7 @@
 			<Text>A {1_GreatPerson} arrived from [COLOR_CYAN]{2_Florence}[ENDCOLOR]!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_KYZYL">
-			<Text>[COLOR_CYAN]{1_Kyzyl}[ENDCOLOR] supports your production efforts and sends few specialists to your cities:</Text>
-		</Row>
-		<Row Tag="TXT_KEY_UCS_BONUS_KYZYL_EXTENDED">
-			<Text>[COLOR_CYAN]Kyzyl[ENDCOLOR] supports your production efforts and sends few specialists to your cities:[NEWLINE][ICON_BULLET]CityList</Text>
+			<Text>[COLOR_CYAN]{1_Kyzyl}[ENDCOLOR] supports your production efforts and sends few specialists to your cities: {2_CityList}</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_KYZYL_TITLE">
 			<Text>Scientists from [COLOR_CYAN]{1_Kyzyl}[ENDCOLOR] arrived!</Text>
