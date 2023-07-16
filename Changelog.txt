@@ -3,30 +3,13 @@ Changelog:
 	- added 8 new religious CSs: Bedulu, Dali, Iskanwaya, Multan, Mutitjulu, Pagan, Rishikesh and Tiwanaku; each with interesting new abilities and compatible with CSL and MC modmods;
 	- added few missing civilopedia texts;
 	- finally used a promotion icon made by @gwennog years ago (Kallawaya Healers);
-	- brand new abilities for base CSs (substituted or expanded existing ones, that felt very passive and boring in the gameplay; mostly +X to certain thing):
-		- Maritime:
-			- Byblos: now gives also +5% Production towards all Naval Units and World Wonders;
-			- Panama City: now boosts TRs and Lakes with Gold and increases Sea TR distance;
-			- Wellington: player now gets additional copies of Strategic Resources;
-		- Mercantile:
-			- Antwerp: lesser bonus to Merchants, but instead you get -10% Gold Purchase bonus;
-			- Colombo: now heals all units on a finished international TR; no negative yields; lesser positive yields;
-			- Hong Kong: increases Growth and Gold per Citizen, but at a risk of people migration to Hong Kong; when they do so, you get some reward in Gold and Influence;
-			- Melbourne: lesser bonus Gold from Mines (only), but converts Gold into Food and Border Growth Points;
-			- Tyre: added faster construction of Archaeologists, deleted Great Works bonus, and added instant yields after WW construction;
-		- Cultured:
-			- Florence: additional new ability rarely spawns Great Artist or Great Engineer; 
-			- Kabul: units get new defensive Promotion if close to a Mountain;
-			- Kyzyl: additional new ability gives Production on Tech research; Science instead of Tourism on Palace and Monument;
-			- Monaco: increases Border Growth instead of Culture;
-		- Religious:
-			- now can build Colossal Heads Great Person improvements in place of previous bonuses;
-	- added multiple yield gain prompts at the moment of their appearing in the city: Bogota, Cape Town, Manila, Zurich, Levuka, Hong Kong, Kyzyl, Tyre;
+	- almost all CSs got new abilities or revamped existing ones (mostly +X to certain thing were changed);
+	- added multiple yield gain prompts at the moment of their appearing in the city: Bogota, Cape Town, Manila, Zurich, Levuka, Hong Kong, Kyzyl, Tyre and so on...;
 	- Zurich' main notifications now are not spamming you each turn; instead they show up every 5 turns, and track each player's interests separately;
-- balanced:
-	- Chevaq's ability is a bit stronger: now 1 Food per 2 Tundra (was 4);
-	- Douala got additional +10% Production boost to Trade Units construction;
-	- fixed and increased Muisca yields in Capital, now 1 per 2 Citizens (was 1 per 50), and modified yields from Empire population, now 1 per 20 Citizens (was 1 per 30);
+	- Zurich gives a notification about latest savings if you are no longer an Ally; there's a special notification after game load when all data is zeroed;
+	- capturing mechanics for Bogota moved to lua to add proper notification;
+- balanced (most important changes):
+	- fixed and increased Muisca yields in Capital, now 1 per 3 Citizens (was 1 per 50), and modified yields from Empire population, now 1 per 20 Citizens (was 1 per 30);
 	- Nan Madol's Oceans got additional +1 Food (was only +1 Culture);
 	- reduced Ambracia's Gift Rate boost to +15% (was +50%);
 	- Mounds now cannot be built on Snow;
@@ -34,12 +17,14 @@ Changelog:
 	- Brussels buffs marshes with additional 1 Gold;
 	- Sofia's boost for GGs and GAs is now +10% (was +5%);
 	- Bylina, Visconti Emissaries and Gate of Dawn now much more powerful: they got +2 points for the respective Great Person;
-	- Bogota has sliglty increased yields for liberation to 20-50 (was 15-45) and significatly for capturing to 40 (was 20);
-	- Manila has now much increased yields from TRs to 25-50 (was 1-15);
+	- Bogota has sliglty changed yields for liberation to 20-30 (was 15-45) and significatly for capturing to 30 (was 20);
+	- Manila has now much increased yields from TRs to 25-50 (was 1-15) and scales down with the number of Trade Routes;
+	- Cape Town like Manila scales down with the number of Trade Routes;
 	- simplified Kuala Lumpur, now Well and Watermill gain +1 Culture (was +5% and +2);
 	- Levuka yields from capture and clearing camps greatly incresed and randomized; now yields for capture are bigger than for a clearing camp;
 	- Taipei yields boosted to +10% from processes (was +5%) and 15% conversion rate (was 2%);
 	- Zurich interests now not rounded (were rounded down);
+	- and many minor stuff I changed in the meantime, but forgot to include;
 - fixed:
 	- added missing flavours for base CSs (upsi!);
 	- added missing resources resource boosts for MW (Tropical Fish, Giant Tortoise);
@@ -58,3 +43,4 @@ Changelog:
 		- moved all lua texts to xml file (supports localizations);
 		- now dummy buildings have generic names and description (copy of cs trait), which means less work for me and better view in IGE;
 		- added color indicators in texts for terrain, feature, improvement and so on...;
+		- renamed some abilities for better flavour;
