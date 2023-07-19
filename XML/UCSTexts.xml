@@ -147,6 +147,12 @@
 		<Row Tag="TXT_KEY_UCS_BONUS_PRAGUE_TITLE">
 			<Text>Glorious death during a mission!</Text>
 		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_SINGAPORE">
+			<Text>Wise diplomats from [COLOR_CYAN]{1_Singapore}[ENDCOLOR] finished their negotiations with a great success giving increasing your influence in a [COLOR_CYAN]{2_CityState}[ENDCOLOR], but it's not everything! In addition they managed to get some fundings for your upcoming projects from local sponsors. Your treasury enriches by {3_Gold} [ICON_GOLD] Gold.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_SINGAPORE_TITLE">
+			<Text>Diplomatic success!</Text>
+		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_SYDNEY">
 			<Text>[COLOR_CYAN]{1_Sydney}[ENDCOLOR] is known from organizing huge and spectacular events. Many artists and creators arrive there to present their works to the wider audience. Because [COLOR_CYAN]{2_City}[ENDCOLOR] is about to glorify your rulings, part of these people come to your city instead, increasing the progress towards [ICON_GREAT_ARTIST] {3_GreatArtist}, [ICON_GREAT_WRITER] {4_GreatWriter} and [ICON_GREAT_MUSICIAN] {5_GreatMusician} by {6_PointsArtist}, {7_PointsWriter} and {8_PointsMusician} [ICON_GREAT_PEOPLE] Great People Points respectively.</Text>
 		</Row>

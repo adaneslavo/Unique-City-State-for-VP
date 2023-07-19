@@ -33,7 +33,9 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_QUEBEC_CITY, -- 26
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_PRAGUE,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SYDNEY,
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_GWYNEDD
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_GWYNEDD,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SINGAPORE,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_RAGUSA -- 31
 }
 
 local tBuildingsActiveAbilities = {
@@ -54,7 +56,8 @@ local tBuildingsActiveAbilities = {
 	GameInfoTypes.BUILDING_WELLINGTON_OIL,
 	GameInfoTypes.BUILDING_WELLINGTON_ALUMINUM, -- 16
 	GameInfoTypes.BUILDING_WELLINGTON_URANIUM,
-	GameInfoTypes.BUILDING_WELLINGTON_PAPER
+	GameInfoTypes.BUILDING_WELLINGTON_PAPER,
+	GameInfoTypes.BUILDING_RAGUSA_2
 }
 
 local tPromotionsActiveAbilities = {
@@ -1423,6 +1426,10 @@ function CanWeBuildMarsh(ePlayer, eUnit, iX, iY, eBuild)
 	
 	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[2]) > 0) then return false end
 	
+	local pPlot = Map.GetPlot(iX, iY)
+	
+	if pPlot and not pPlot:IsCoastalLand() then return false end
+	
 	return true
 end
 GameEvents.PlayerCanBuild.Add(CanWeBuildMarsh)
@@ -1946,6 +1953,77 @@ end
 
 
 
+-- RAGUSA (CITY ON COAST?)
+function MaritimeSuzerainty(ePlayer)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:IsMinorCiv() then return end
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[31]) ~= 0 then
+		for city in pPlayer:Cities() do
+			local pPlot = city:Plot()
+			
+			if pPlot then
+				if pPlot:IsCoastalCity() then
+					city:SetNumRealBuilding(tBuildingsActiveAbilities[19], 1)
+				end
+			end
+		end
+	else
+		if pPlayer:CountNumBuildings(tBuildingsActiveAbilities[19]) > 0 then
+			if not pPlayer:IsEventChoiceActive(tEventChoice[31]) then
+				for city in pPlayer:Cities() do
+					city:SetNumRealBuilding(tBuildingsActiveAbilities[19], 0)
+				end
+			end
+		end
+	end
+end
+
+function MaritimeSuzeraintyCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
+	local pNewOwner = Players[eNewOwner]
+	
+	if pNewOwner:GetEventChoiceCooldown(tEventChoice[31]) ~= 0 then
+		local pPlot = Map.GetPlot(iX, iY)
+			
+		if pPlot then
+			local pConqCity = pPlot:GetWorkingCity()
+			
+			if pConqCity:IsCoastalCity() then
+				pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[19], 1)
+			end
+		end
+	else
+		if not pNewOwner:IsEventChoiceActive(tEventChoice[31]) then
+			local pPlot = Map.GetPlot(iX, iY)
+			
+			if pPlot then
+				local pConqCity = pPlot:GetWorkingCity()
+			
+				pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[19], 0)
+			end
+		end
+	end
+end
+
+function MaritimeSuzeraintyNewCity(ePlayer, iX, iY)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[31]) ~= 0 then
+		local pPlot = Map.GetPlot(iX, iY)
+				
+		if pPlot then
+			local pCity = pPlot:GetWorkingCity()
+			
+			if pPlot:IsCoastalCity() then		
+				pCity:SetNumRealBuilding(tBuildingsActiveAbilities[19], 1)
+			end
+		end
+	end
+end
+
+
+
 -- RISHIKESH (CITY ON RIVER?)
 function HimalayanYogi(ePlayer)
 	local pPlayer = Players[ePlayer]
@@ -1954,11 +2032,9 @@ function HimalayanYogi(ePlayer)
 	
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[15]) ~= 0 then
 		for city in pPlayer:Cities() do
-			-- culture on hill
 			local pPlot = city:Plot()
 			
 			if pPlot then
-				-- faith for river
 				if pPlot:IsRiver() then
 					city:SetNumRealBuilding(tBuildingsActiveAbilities[11], 1)
 				end
@@ -1982,7 +2058,6 @@ function HimalayanYogiCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bC
 		local pPlot = Map.GetPlot(iX, iY)
 		
 		if pPlot then
-			-- faith for river
 			if pPlot:IsRiver() then
 				local pCity = pPlot:GetWorkingCity()
 				
@@ -2009,7 +2084,6 @@ function HimalayanYogiNewCity(ePlayer, iX, iY)
 		local pPlot = Map.GetPlot(iX, iY)
 				
 		if pPlot then
-			-- faith for river
 			if pPlot:IsRiver() then
 				local pCity = pPlot:GetWorkingCity()
 			
@@ -2640,7 +2714,7 @@ end
 
 
 --PRAGUE (MISSIONARY EXPENDED YIELDS)
-function SpreadTheFaithInPrussia(eUnitOwner, eUnit, iX, iY, bDelay, eKillerPlayer)
+function SpreadTheFaithInPrussia(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKillerPlayer)
 	local pPlayer = Players[eUnitOwner]
 
 	if pPlayer:IsMinorCiv() then return end
@@ -2668,6 +2742,55 @@ function SpreadTheFaithInPrussia(eUnitOwner, eUnit, iX, iY, bDelay, eKillerPlaye
 			
 			if pPlayer:IsHuman() then
 				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_PRAGUE", pPrague:GetName(), iFaithFromDeath, iCultureFromDeath), L("TXT_KEY_UCS_BONUS_PRAGUE_TITLE"), pCapital:GetX(), pCapital:GetY())
+			end	
+		end
+	end
+end
+
+
+
+--SINGAPORE (GOLD FROM DIPLOMACY)
+function WiseDiplomatsFromSingapore(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKillerPlayer)
+	if eKillerPlayer ~= -1 then return end
+	
+	local pPlayer = Players[eUnitOwner]
+
+	if pPlayer:IsMinorCiv() then return end
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[30]) ~= 0 then
+		local pUnit = pPlayer:GetUnitByID(eUnit)
+			
+		-- event triggers twice on each death, so this should prevent it
+		if bBlockedUnitFromThePreKillEvent == true then
+			bBlockedUnitFromThePreKillEvent = false
+		else
+			bBlockedUnitFromThePreKillEvent = true
+		end
+		
+		if pUnit:GetUnitCombatType() == GameInfoTypes.UNITCOMBAT_DIPLOMACY and not bBlockedUnitFromThePreKillEvent then
+			local iBaseYield = 20
+			local iEraModifier = pPlayer:GetCurrentEra() + 1
+			
+			local pCityStateFrom = Players[Map.GetPlot(iX, iY):GetOwner()]
+			local iCurrentInfluenceWithCityState = pCityStateFrom:GetMinorCivFriendshipWithMajor(eUnitOwner)
+			local iInfluenceModifier = 1
+
+			if iCurrentInfluenceWithCityState >= GameDefines.FRIENDSHIP_THRESHOLD_ALLIES then
+				iInfluenceModifier = 1.5
+			elseif iCurrentInfluenceWithCityState >= 2 * GameDefines.FRIENDSHIP_THRESHOLD_ALLIES then
+				iInfluenceModifier = 2.5
+			elseif iCurrentInfluenceWithCityState < 0 then
+				iInfluenceModifier = 0.5
+			end
+			
+			local iDiploWealth = iBaseYield * iEraModifier * iInfluenceModifier	
+			local pCapital = pPlayer:GetCapitalCity()
+			local pSingapore = Players[tLostCities["eLostSingapore"]]
+			
+			pPlayer:DoInstantYield(GameInfoTypes.YIELD_GOLD, iDiploWealth, true, pCapital:GetID())
+			
+			if pPlayer:IsHuman() then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_SINGAPORE", pSingapore:GetName(), pCityStateFrom:GetName(), iDiploWealth), L("TXT_KEY_UCS_BONUS_SINGAPORE_TITLE"), pCapital:GetX(), pCapital:GetY())
 			end	
 		end
 	end
@@ -2855,6 +2978,11 @@ function SettingUpSpecificEvents()
 				GameEvents.PlayerDoTurn.Add(DrukTsendhen)
 				GameEvents.CityCaptureComplete.Add(DrukTsendhenCapture)
 				GameEvents.PlayerCityFounded.Add(DrukTsendhenNewCity)
+			elseif sMinorCivType == "MINOR_CIV_RAGUSA" then
+				tLostCities["eLostRagusa"] = eCS
+				GameEvents.PlayerDoTurn.Add(MaritimeSuzerainty)
+				GameEvents.CityCaptureComplete.Add(MaritimeSuzeraintyCapture)
+				GameEvents.PlayerCityFounded.Add(MaritimeSuzeraintyNewCity)
 			elseif sMinorCivType == "MINOR_CIV_RISHIKESH" then
 				tLostCities["eLostRishikesh"] = eCS
 				GameEvents.PlayerDoTurn.Add(HimalayanYogi)
@@ -2936,13 +3064,16 @@ function SettingUpSpecificEvents()
 				GameEvents.TileFeatureChanged.Add(FeatureCutByQuebec)
 
 
-			-- yields from expending or getting killed missionary
+			-- prekill
 			elseif sMinorCivType == "MINOR_CIV_PRAGUE" then
 				tLostCities["eLostPrague"] = eCS
 				GameEvents.UnitPrekill.Add(SpreadTheFaithInPrussia)
+			elseif sMinorCivType == "MINOR_CIV_SINGAPORE" then
+				tLostCities["eLostSingapore"] = eCS
+				GameEvents.UnitPrekill.Add(WiseDiplomatsFromSingapore)
 
 
-			-- GPP from WLTKD start
+			-- WLTKD
 			elseif sMinorCivType == "MINOR_CIV_SYDNEY" then
 				tLostCities["eLostSydney"] = eCS
 				GameEvents.CityBeginsWLTKD.Add(GenerateGPPBySydney)
