@@ -1,3 +1,28 @@
+This is the update probably all of you awaited for a very long time. After important v12 fixing few crucial bugs, I decided (after the small talk with @Jarcast) to expand the mod a bit after months of neglecting.
+
+The core of the v13 update are of course new City-States you can integrate with. There are 8 new Religious City-States, all with new abilities. Everything is comptible with CSL, PO and MC mods (all these modmods are updated and linked in my signature).
+
+Of course, new City-States are not everything. Because many people complained about how plain and useless are the CSs abilities, I decided  (with help of @Flamingcheesepie) to spend almost 70% of time on reworking all so far coded (partially by @enginseer, partially by me) abilities. There were few goals I had in mind doing this rework:
+a) make the abilities stronger and with more impact on gameplay (no more abilities adding only +x yields on certain buildings, improvements or resources);
+b) add some abilities introcuving new improvemnts, buildings, units or resources;
+c) "spread" the abilities to allow the player use them in different situations and gameplay styles (each ability with few exceptions consists of at least 2 smaller parts focusing on different things, together creating the complete thematic flavour);
+d) change some abilities to fit more the historical accuracy of the nation or leader of particular City-State;
+
+With this in mind, almost 90% of the abilities were reworked and in rest there could be small value tweaks or other minor changes. Have that in mind when playing the v13 for the first time, and report any crucial bugs you notice or some feedback info about how weak or how strong certain abilities are.
+
+Beside that I expanded lua abilities with very rich notifications explaining the most important events that can happen and did hundreds of small tweaks and fixes of bugs I found during long hours of my work.
+
+Last thing worth mentioning is a total rework of current texts of the CSs abilities. There are now filled with new icons, including those added in latest VP versions. Text are enriched with colours (colour code copied from MW mod) informing about what is the topic of the buff (f.e. brown=improvement, dark blue=terrain, etc.). Of course there were also multiple minor fixes, adding more details, improving readability, and dozens of text fixes.
+
+I hope you'll enjoy the mod, as I enjoyed the work on that version. OF course it's not the end, but an important stage was ended. Now I can start working on new CSs and when I get some feedback from you, I will surely try to balance the stuff from this update.
+
+I hope also more people will try this mod, as it is now much more similar to Civ6's Suzerain mod in terms of ability power and their diversity.
+
+Below I share with the link where we did deep planning phase for ability ideas and new City-States. Here you can look at them in a pleasant way without running the game:
+https://docs.google.com/spreadsheets/d/1EcUf2A1Marl5fi7q9LYKWtTAAnpisnffVmjMRphmmAI/edit?usp=sharing
+
+
+
 Changelog:
 - new:
 	- added 8 new religious CSs: Bedulu, Dali, Iskanwaya, Multan, Mutitjulu, Pagan, Rishikesh and Tiwanaku; each with interesting new abilities and compatible with CSL and MC modmods;
@@ -21,21 +46,24 @@ Changelog:
 	- Bogota has sliglty changed yields for liberation to 20-30 (was 15-45) and significatly for capturing to 30 (was 20);
 	- Manila has now much increased yields from TRs to 25-50 (was 1-15) and scales down with the number of Trade Routes;
 	- Cape Town like Manila scales down with the number of Trade Routes;
-	- simplified Kuala Lumpur, now Well and Watermill gain +1 Culture (was +5% and +2);
+	- Kathmandu's ability moved to Lhasa and Lhasa's moved to Geneva;
 	- Levuka yields from capture and clearing camps greatly incresed and randomized; now yields for capture are bigger than for a clearing camp;
 	- Taipei yields boosted to +10% from processes (was +5%) and 15% conversion rate (was 2%);
 	- Zurich interests now not rounded (were rounded down);
-	- and many minor stuff I changed in the meantime, but forgot to include;
+	- ...
+	- and hundreds of minor stuff changes in the meantime;
 - fixed:
 	- added missing flavours for base CSs (upsi!);
 	- added missing resources resource boosts for MW (Tropical Fish, Giant Tortoise);
 	- fixed dummies showing in the city view, so now they are not;
+	- fixed Era scaling in custom lua functions - now scales from classical;
 	- now CSs starting with certain building (Kiev, Milan, Vilnius, Valetta), regain them after liberation;
 	- fixed Thimphu lua code on city capture;
 	- Brussel's Marsh is restricted to Coastal tiles (it could be built anywhere);
 	- Antananarivo promotion now triggers;
 	- added PillageGold column to Mound;
 	- fixed ReligiousUnrest in Wittenberg;
+	- moved yields on birth from sql to lua to be real "on birth" (was "on expend");
 	- Levuka now has Polynesian artstyle (was African);
 	- fixed building's art alignment;
 	- numerous text fixes, text unifications and new text icons;

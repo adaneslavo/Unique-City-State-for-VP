@@ -159,5 +159,41 @@
 		<Row Tag="TXT_KEY_UCS_BONUS_SYDNEY_TITLE">
 			<Text>Creators boom!</Text>
 		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_VATICAN_KATZBALGER_A">
+			<Text>You hired a [COLOR_CYAN]{1_SwissGuard}[ENDCOLOR] from [COLOR_CYAN]{2_VaticanCity}[ENDCOLOR]. Beside its obvious military value, it can also generate something more valuable each turn - an extraordinary religious experience.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_VATICAN_KATZBALGER_B">
+			<Text>You hired a [COLOR_CYAN]{1_SwissGuard}[ENDCOLOR] from [COLOR_CYAN]{2_VaticanCity}[ENDCOLOR]. Beside its obvious military value, it can also generate something more valuable each turn - an extraordinary religious and cultural experience. God bless the [COLOR_CYAN]Radio[ENDCOLOR]!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_VATICAN_KATZBALGER_C">
+			<Text>You hired a [COLOR_CYAN]{1_SwissGuard}[ENDCOLOR] from [COLOR_CYAN]{2_VaticanCity}[ENDCOLOR]. Beside its obvious military value, it can also generate something more valuable each turn - an extraordinary religious and cultural experience, as well as increased tourism output. God bless the [COLOR_CYAN]Radio[ENDCOLOR] and all kinds of [COLOR_CYAN]Telecommunications[ENDCOLOR]!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_VATICAN_KATZBALGER_TITLE">
+			<Text>Guard the Pope!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_YANGCHENG">
+			<Text>Wise lords from [COLOR_CYAN]{1_Yangcheng}[ENDCOLOR] want to celebrate Chinese New Year together and share all its perks with you. Enrich your religious rituals with additional {2_Faith} [ICON_PEACE] Faith and be grateful to your new [COLOR_HIGHLIGHT_TEXT]{3_Animal}[ENDCOLOR] patron, which grants you {4_BonusYields} in your [ICON_CAPITAL] Capital.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_YANGCHENG_TITLE">
+			<Text>Year of the {1_Animal}!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_IFE">
+			<Text>Recently trained {1_DiploUnit} from [COLOR_CYAN]{2_Ife}[ENDCOLOR] knows how to perform wise diplomatic actions and also can perform some magical rituals that may help in negotiations giving you {3_Faith} [ICON_PEACE] Faith.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_IFE_TITLE">
+			<Text>Yoruba diplomacy!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_GENEVA">
+			<Text>[COLOR_CYAN]{1_Geneva}[ENDCOLOR] is a city of chances for those brave men and women, who want to change their lives. Many educated personas arrive here to help improving the city and create an ideal society. One of them, {2_GreatPerson} came here today, enriching local religious community with {3_Faith} [ICON_PEACE] Faith.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_GENEVA_TITLE">
+			<Text>Good place to live!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_GENOA">
+			<Text>Merchants from [COLOR_CYAN]{1_Genoa}[ENDCOLOR] look for every opportunity to become rich and to introduce their hometown into a golden age. Their last target, {2_GreatPerson} might help with that. Recent actions grant you additional {3_Gold} [ICON_GOLD] Gold and {4_GoldenAge} [ICON_GOLDEN_AGE] Golden Age Points.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_GENOA_TITLE">
+			<Text>Golden people!</Text>
+		</Row>
 	</Language_en_US>
 </GameData>

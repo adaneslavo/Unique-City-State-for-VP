@@ -109,8 +109,12 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
   <ItemGroup>
     <Folder Include="Art" />
     <Folder Include="Art\Model" />
-    <Folder Include="Art\Model\ColossalHead" />
-    <Folder Include="Art\Model\SunkenCourtyard" />
+    <Folder Include="Art\Model\Improvements" />
+    <Folder Include="Art\Model\Improvements\ColossalHead\" />
+    <Folder Include="Art\Model\Improvements\SunkenCourtyard\" />
+    <Folder Include="Art\Model\Units" />
+    <Folder Include="Art\Model\Units\Ghurka" />
+    <Folder Include="Art\Model\Units\SwissGuard\" />
     <Folder Include="Art\SV_Icons" />
     <Folder Include="Lua" />
     <Folder Include="XML" />
@@ -122,63 +126,95 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\ColossalHead\olmec_colossalheads.fxsxml">
+    <Content Include="Art\Model\Improvements\ColossalHead\olmec_colossalheads.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\ColossalHead\olmec_colossalheads.gr2">
+    <Content Include="Art\Model\Improvements\ColossalHead\olmec_colossalheads.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\ColossalHead\olmec_colossalheads_pl.fxsxml">
+    <Content Include="Art\Model\Improvements\ColossalHead\olmec_colossalheads_pl.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\ColossalHead\olmec_heads.gr2">
+    <Content Include="Art\Model\Improvements\ColossalHead\olmec_heads.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\ColossalHead\olmec_heads_diff.dds">
+    <Content Include="Art\Model\Improvements\ColossalHead\olmec_heads_diff.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\ColossalHead\olmec_heads_pl.gr2">
+    <Content Include="Art\Model\Improvements\ColossalHead\olmec_heads_pl.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\ColossalHead\olmec_heads_pl_diff.dds">
+    <Content Include="Art\Model\Improvements\ColossalHead\olmec_heads_pl_diff.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\ColossalHead\olmec_head_decal_01.dds">
+    <Content Include="Art\Model\Improvements\ColossalHead\olmec_head_decal_01.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\SunkenCourtyard\chatallatadecal.dds">
+    <Content Include="Art\Model\Improvements\SunkenCourtyard\chatallatadecal.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\SunkenCourtyard\chatallata_6.fxsxml">
+    <Content Include="Art\Model\Improvements\SunkenCourtyard\chatallata_6.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\SunkenCourtyard\chatallata_6.gr2">
+    <Content Include="Art\Model\Improvements\SunkenCourtyard\chatallata_6.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\SunkenCourtyard\kalasasaya_diff.dds">
+    <Content Include="Art\Model\Improvements\SunkenCourtyard\kalasasaya_diff.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\SunkenCourtyard\kalasasaya_sref.dds">
+    <Content Include="Art\Model\Improvements\SunkenCourtyard\kalasasaya_sref.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\SunkenCourtyard\templete_diff.dds">
+    <Content Include="Art\Model\Improvements\SunkenCourtyard\templete_diff.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\SunkenCourtyard\templete_sref.dds">
+    <Content Include="Art\Model\Improvements\SunkenCourtyard\templete_sref.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Units\Ghurka\gurkha.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Units\Ghurka\gurkha.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Units\Ghurka\gurkha_diff.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Units\Ghurka\gurkha_sref.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Units\SwissGuard\reislaufer.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Units\SwissGuard\reislaufer.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Units\SwissGuard\reislaufer_diff.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Units\SwissGuard\reislaufer_sref.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
@@ -199,6 +235,14 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="Art\SV_Icons\sv_BuildTotemPole.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\SV_Icons\sv_UnitGurkha.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\SV_Icons\sv_UnitSwissGuard.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
@@ -255,6 +299,34 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="Art\UCS_Promotions_256.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\UCS_Units_032.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\UCS_Units_045.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\UCS_Units_064.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\UCS_Units_080.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\UCS_Units_128.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\UCS_Units_256.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\UCS_UnitsFlags_032.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>

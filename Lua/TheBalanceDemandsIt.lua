@@ -35,7 +35,14 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SYDNEY,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_GWYNEDD,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SINGAPORE,
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_RAGUSA -- 31
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_RAGUSA, -- 31
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_VATICAN_CITY,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_KATHMANDU,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_YANGCHENG,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_IFE,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_GENEVA, -- 36
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_GENOA,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SIERRA_LEONE
 }
 
 local tBuildingsActiveAbilities = {
@@ -62,7 +69,9 @@ local tBuildingsActiveAbilities = {
 
 local tPromotionsActiveAbilities = {
 	GameInfoTypes.PROMOTION_ISKANWAYA, -- 1
-	GameInfoTypes.PROMOTION_KABUL
+	GameInfoTypes.PROMOTION_KABUL,
+	GameInfoTypes.PROMOTION_GUARDIA_SVIZZERA,
+	GameInfoTypes.PROMOTION_KATZBALGER
 }
 
 local tBuildingsPassiveAbilities = {
@@ -149,13 +158,15 @@ local tDomainTypes = {
 	GameInfoTypes.DOMAIN_AIR
 }
 
-local tSpecialistsTypes = {
+local tSpecialistTypes = {
 	GameInfoTypes.SPECIALIST_SCIENTIST,
 	GameInfoTypes.SPECIALIST_ENGINEER,
 	GameInfoTypes.SPECIALIST_MERCHANT,
 	GameInfoTypes.SPECIALIST_ARTIST,
 	GameInfoTypes.SPECIALIST_WRITER,
-	GameInfoTypes.SPECIALIST_MUSICIAN -- more?
+	GameInfoTypes.SPECIALIST_MUSICIAN,
+	GameInfoTypes.SPECIALIST_CITIZEN,
+	GameInfoTypes.SPECIALIST_CIVIL_SERVANT
 }
 
 local tUnitsGreatPeople = {
@@ -182,7 +193,12 @@ local tUnitsTrade = {
 	GameInfoTypes.UNIT_CARAVAN,
 	GameInfoTypes.UNIT_CARGO_SHIP,
 	GameInfoTypes.UNIT_CARAVAN_OF_DALI,
-	--GameInfoTypes.UNIT_CARGO_SHIP_OF_DALI -- unused because of VP's dll constraints
+	--GameInfoTypes.UNIT_CARGO_SHIP_OF_DALI -- unused because of VP's dll constraints (Spain)
+}
+
+local tUnitsMilitary = {
+	GameInfoTypes.UNIT_SWISS_GUARD,
+	GameInfoTypes.UNIT_GURKHA
 }
 
 local tResourcesStrategic = {
@@ -195,7 +211,12 @@ local tResourcesStrategic = {
 	GameInfoTypes.RESOURCE_PAPER
 }
 
-local eTechArchaeology = GameInfoTypes.TECH_ARCHAEOLOGY
+local tTechnologyTypes = {
+	GameInfoTypes.TECH_ARCHAEOLOGY,
+	GameInfoTypes.TECH_RADIO,
+	GameInfoTypes.TECH_TELECOM
+}
+
 local eArtifactRuin = GameInfoTypes.ARTIFACT_ANCIENT_RUIN
 local eResourceArtifact = GameInfoTypes.RESOURCE_ARTIFACTS
 
@@ -1000,7 +1021,7 @@ function FreeArchaeologistFromCityState(ePlayer)
 					if not pMajorPlayer:IsEverAlive() then break end
 					
 					local pMajorTeam = Teams[pMajorPlayer:GetTeam()]
-					local bCanArchaeologistBeSpawned = pMajorTeam:IsHasTech(eTechArchaeology)
+					local bCanArchaeologistBeSpawned = pMajorTeam:IsHasTech(tTechnologyTypes[1])
 
 					if bCanArchaeologistBeSpawned then
 						if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
@@ -1374,12 +1395,12 @@ function LiberatedForBogota(ePlayer, eOtherPlayer, eCity)
 		if iCities > 6 then iCities = 6 end
 
 		local iBaseYield = RandomNumberBetween(20, 30)
-		local iEraModifier = pPlayer:GetCurrentEra() + 1
+		local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
 		local iCultureLiberated = iBaseYield * iEraModifier * iCities
 	
 		pPlayer:DoInstantYield(GameInfoTypes.YIELD_CULTURE, iCultureLiberated, true, pCapital:GetID())
 		
-		for eplayer = 0, GameDefines.MAX_CIV_PLAYERS - 1 - 1, 1 do
+		for eplayer = 0, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
 			local pPlayer = Players[eplayer]
 
 			if pPlayer:IsAlive() then
@@ -1412,6 +1433,81 @@ function CapturedForBogota(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConq
 		
 		if pPlayer:IsHuman() then
 			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_BOGOTA_CAPTURE", pMinorPlayer:GetName(), iCultureCaptured), L("TXT_KEY_UCS_BONUS_BOGOTA_CAPTURE_TITLE", pMinorPlayer:GetName()), iX, iY)
+		end
+	end
+end
+
+
+
+-- LEVUKA (GROWTH FROM KILLING AND CONQUER)
+function CaptureCityForLevuka(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
+	local pPlayer = Players[eNewOwner]
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[13]) ~= 0 then
+		local pMinorPlayer = Players[tLostCities["eLostLevuka"]]
+		
+		local iBaseYield = RandomNumberBetween(100, 200)
+		local iCurrentEraModifier = pPlayer:GetCurrentEra() + 1
+		local iOwnedCities = pPlayer:GetNumCities()
+		local iFoodBonus = (iBaseYield * iCurrentEraModifier) / iOwnedCities
+		
+		for city in pPlayer:Cities() do
+			pPlayer:DoInstantYield(GameInfoTypes.YIELD_FOOD, iFoodBonus, true, city:GetID())
+		end
+		
+		if pPlayer:IsHuman() then
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_LEVUKA_CONQUEST", pMinorPlayer:GetName(), iFoodBonus), L("TXT_KEY_UCS_BONUS_LEVUKA_CONQUEST_TITLE"), iX, iY)
+		end
+		
+		ConquestsForLevuka(eNewOwner)
+	end
+end
+
+function ConquestsForLevuka(ePlayer)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:IsMinorCiv() then return end
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[13]) ~= 0 then
+		local iConqueredCities = 0
+		
+		for city in pPlayer:Cities() do
+			if city:GetOwner() ~= city:GetOriginalOwner() then
+				iConqueredCities = iConqueredCities + 1
+			end
+		end
+		
+		pPlayer:GetCapitalCity():SetNumRealBuilding(tBuildingsActiveAbilities[9], iConqueredCities)
+	else
+		if pPlayer:CountNumBuildings(tBuildingsActiveAbilities[9]) > 0 then
+			if not pPlayer:IsEventChoiceActive(tEventChoice[13]) then
+				pPlayer:GetCapitalCity():SetNumRealBuilding(tBuildingsActiveAbilities[9], 0)
+			end
+		end
+	end
+end
+
+function BarbCampForLevuka(iX, iY, ePlayer)
+    local pPlayer = Players[ePlayer]
+    local pTeam = Teams[pPlayer:GetTeam()]
+   
+	if not pPlayer:IsAlive() then return end
+	if pPlayer:IsMinorCiv() then return end
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[13]) ~= 0 then
+		local pMinorPlayer = Players[tLostCities["eLostLevuka"]]
+		
+		local iBaseYield = RandomNumberBetween(30, 75)
+		local iCurrentEraModifier = pPlayer:GetCurrentEra() + 1
+		local iOwnedCities = pPlayer:GetNumCities()
+		local iFoodBonus = (iBaseYield * iCurrentEraModifier) / iOwnedCities
+		
+		for city in pPlayer:Cities() do
+			pPlayer:DoInstantYield(GameInfoTypes.YIELD_FOOD, iFoodBonus, true, city:GetID())
+		end
+			
+		if pPlayer:IsHuman() then
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_LEVUKA_BARBARIANS", pMinorPlayer:GetName(), iFoodBonus), L("TXT_KEY_UCS_BONUS_LEVUKA_BARBARIANS_TITLE"), iX, iY)
 		end
 	end
 end
@@ -1956,17 +2052,13 @@ end
 -- RAGUSA (CITY ON COAST?)
 function MaritimeSuzerainty(ePlayer)
 	local pPlayer = Players[ePlayer]
-	
+			
 	if pPlayer:IsMinorCiv() then return end
 	
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[31]) ~= 0 then
 		for city in pPlayer:Cities() do
-			local pPlot = city:Plot()
-			
-			if pPlot then
-				if pPlot:IsCoastalCity() then
-					city:SetNumRealBuilding(tBuildingsActiveAbilities[19], 1)
-				end
+			if city:IsCoastal(10) then
+				city:SetNumRealBuilding(tBuildingsActiveAbilities[19], 1)
 			end
 		end
 	else
@@ -1989,7 +2081,7 @@ function MaritimeSuzeraintyCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPo
 		if pPlot then
 			local pConqCity = pPlot:GetWorkingCity()
 			
-			if pConqCity:IsCoastalCity() then
+			if pConqCity:IsCoastal(10) then
 				pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[19], 1)
 			end
 		end
@@ -2015,7 +2107,7 @@ function MaritimeSuzeraintyNewCity(ePlayer, iX, iY)
 		if pPlot then
 			local pCity = pPlot:GetWorkingCity()
 			
-			if pPlot:IsCoastalCity() then		
+			if pCity:IsCoastal(10) then		
 				pCity:SetNumRealBuilding(tBuildingsActiveAbilities[19], 1)
 			end
 		end
@@ -2272,82 +2364,6 @@ end
 
 
 
--- LEVUKA (GROWTH FROM KILLING AND CONQUER)
-function CaptureCityForLevuka(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
-	local pPlayer = Players[eNewOwner]
-	
-	if pPlayer:GetEventChoiceCooldown(tEventChoice[13]) ~= 0 then
-		local pMinorPlayer = Players[tLostCities["eLostLevuka"]]
-		
-		local iBaseYield = RandomNumberBetween(100, 200)
-		local iCurrentEraModifier = pPlayer:GetCurrentEra() + 1
-		local iOwnedCities = pPlayer:GetNumCities()
-		local iFoodBonus = (iBaseYield * iCurrentEraModifier) / iOwnedCities
-		
-		for city in pPlayer:Cities() do
-			pPlayer:DoInstantYield(GameInfoTypes.YIELD_FOOD, iFoodBonus, true, city:GetID())
-		end
-		
-		if pPlayer:IsHuman() then
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_LEVUKA_CONQUEST", pMinorPlayer:GetName(), iFoodBonus), L("TXT_KEY_UCS_BONUS_LEVUKA_CONQUEST_TITLE"), iX, iY)
-		end
-		
-		ConquestsForLevuka(eNewOwner)
-	end
-end
-
-function ConquestsForLevuka(ePlayer)
-	local pPlayer = Players[ePlayer]
-	
-	if pPlayer:IsMinorCiv() then return end
-	
-	if pPlayer:GetEventChoiceCooldown(tEventChoice[13]) ~= 0 then
-		local iConqueredCities = 0
-		
-		for city in pPlayer:Cities() do
-			if city:GetOwner() ~= city:GetOriginalOwner() then
-				iConqueredCities = iConqueredCities + 1
-			end
-		end
-		
-		pPlayer:GetCapitalCity():SetNumRealBuilding(tBuildingsActiveAbilities[9], iConqueredCities)
-	else
-		if pPlayer:CountNumBuildings(tBuildingsActiveAbilities[9]) > 0 then
-			if not pPlayer:IsEventChoiceActive(tEventChoice[13]) then
-				pPlayer:GetCapitalCity():SetNumRealBuilding(tBuildingsActiveAbilities[9], 0)
-			end
-		end
-	end
-end
-
--- CLEAR BARB CAMP
-function BarbCampForLevuka(iX, iY, ePlayer)
-    local pPlayer = Players[ePlayer]
-    local pTeam = Teams[pPlayer:GetTeam()]
-   
-	if not pPlayer:IsAlive() then return end
-	if pPlayer:IsMinorCiv() then return end
-	
-	if pPlayer:GetEventChoiceCooldown(tEventChoice[13]) ~= 0 then
-		local pMinorPlayer = Players[tLostCities["eLostLevuka"]]
-		
-		local iBaseYield = RandomNumberBetween(30, 75)
-		local iCurrentEraModifier = pPlayer:GetCurrentEra() + 1
-		local iOwnedCities = pPlayer:GetNumCities()
-		local iFoodBonus = (iBaseYield * iCurrentEraModifier) / iOwnedCities
-		
-		for city in pPlayer:Cities() do
-			pPlayer:DoInstantYield(GameInfoTypes.YIELD_FOOD, iFoodBonus, true, city:GetID())
-		end
-			
-		if pPlayer:IsHuman() then
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_LEVUKA_BARBARIANS", pMinorPlayer:GetName(), iFoodBonus), L("TXT_KEY_UCS_BONUS_LEVUKA_BARBARIANS_TITLE"), iX, iY)
-		end
-	end
-end
-
-
-
 -- DALI (BUYING TRADE UNITS WITH FAITH)
 function TradeWithFaith(ePlayer, eCity, eUnit)
 	if eUnit ~= tUnitsTrade[3] --[[and eUnit ~= tUnitsTrade[4]--]] then return true end
@@ -2363,6 +2379,145 @@ function TradeWithFaith(ePlayer, eCity, eUnit)
 	end
 end
 GameEvents.CityCanTrain.Add(TradeWithFaith)
+
+
+
+-- VATICAN CITY (SWISS GUARD FUNCTIONS)
+function CanBuySwissGuard(ePlayer, eCity, eUnit)
+	if eUnit ~= tUnitsMilitary[1] then return true end
+	
+	local pPlayer = Players[ePlayer]
+
+	if pPlayer:IsMinorCiv() then return true end
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[32]) ~= 0 then
+		return true
+	else
+		return false
+	end
+end
+GameEvents.CityCanTrain.Add(CanBuySwissGuard)
+
+function SwissGuardHealingAttack(eAttackingPlayer, eAttackingUnit, iAttackerDamage, iAttackerFinalDamage, iAttackerMaxHP, eDefendingPlayer, eDefendingUnit, iDefenderDamage, iDefenderFinalDamage, iDefenderMaxHP, eInterceptingPlayer, eInterceptingUnit, iInterceptorDamage, iX, iY)
+	local pAttackingPlayer = Players[eAttackingPlayer]
+	
+	if not (pAttackingPlayer and (iDefenderFinalDamage >= iDefenderMaxHP)) then return end
+	
+	local pAttackingUnit = pAttackingPlayer:GetUnitByID(eAttackingUnit)
+		
+	if pAttackingUnit:IsHasPromotion(tPromotionsActiveAbilities[3]) then
+		local pPlot = Map.GetPlot(iX, iY)
+		local pCity = pPlot:GetWorkingCity()
+		local bInRangeOfCapital, bInRangeOfHolyCity = false, false
+
+		if pCity == nil then return end
+
+		bInRangeOfCapital = pCity:IsCapital() and pCity:GetOwner() == eAttackingPlayer
+		bInRangeOfHolyCity = pCity:IsHolyCityAnyReligion() and pCity:GetOwner() == eAttackingPlayer
+
+		if bInRangeOfHolyCity then
+			pAttackingUnit:ChangeDamage(-40)
+		elseif bInRangeOfCapital then
+			pAttackingUnit:ChangeDamage(-30)
+		else
+			pAttackingUnit:ChangeDamage(-10)
+		end
+	end
+end
+
+function SwissGuardHealingDefend(eAttackingPlayer, eAttackingUnit, iAttackerDamage, iAttackerFinalDamage, iAttackerMaxHP, eDefendingPlayer, eDefendingUnit, iDefenderDamage, iDefenderFinalDamage, iDefenderMaxHP, eInterceptingPlayer, eInterceptingUnit, iInterceptorDamage, iX, iY)
+	local pDefendingPlayer = Players[eDefendingPlayer]
+	
+	if not (pDefendingPlayer and (iAttackerFinalDamage >= iAttackerMaxHP)) then return end
+	
+	local pDefendingUnit = pDefendingPlayer:GetUnitByID(eDefendingUnit)
+		
+	if pDefendingUnit:IsHasPromotion(tPromotionsActiveAbilities[3]) then
+		local pPlot = Map.GetPlot(iX, iY)
+		local pCity = pPlot:GetWorkingCity()
+		local bInRangeOfCapital, bInRangeOfHolyCity = false, false
+
+		if pCity == nil then return end
+
+		bInRangeOfCapital = pCity:IsCapital() and pCity:GetOwner() == eDefendingPlayer
+		bInRangeOfHolyCity = pCity:IsHolyCityAnyReligion() and pCity:GetOwner() == eDefendingPlayer
+
+		if bInRangeOfHolyCity then
+			pDefendingUnit:ChangeDamage(-40)
+		elseif bInRangeOfCapital then
+			pDefendingUnit:ChangeDamage(-30)
+		else
+			pDefendingUnit:ChangeDamage(-10)
+		end
+	end
+end
+
+function SwissGuardYields(ePlayer)
+	local pPlayer = Players[ePlayer]
+	
+	if not pPlayer:IsAlive() then return end
+
+	local iSwissGuards = pPlayer:GetUnitClassCount(GameInfoTypes.UNITCLASS_SWISS_GUARD)
+	
+	if iSwissGuards == 0 then return end
+
+	local pTeam = Teams[pPlayer:GetTeam()]
+	local bRadio = pTeam:IsHasTech(tTechnologyTypes[2])
+	local bTelecom = pTeam:IsHasTech(tTechnologyTypes[3])
+	local pCapital = pPlayer:GetCapitalCity()
+	local iBaseYield = 2 * iSwissGuards
+	
+	pPlayer:DoInstantYield(GameInfoTypes.YIELD_FAITH, iBaseYield, true, pCapital:GetID())
+
+	if bRadio then
+		pPlayer:DoInstantYield(GameInfoTypes.YIELD_CULTURE, iBaseYield, true, pCapital:GetID())
+	end
+
+	if bTelecom then
+		pPlayer:DoInstantYield(GameInfoTypes.YIELD_TOURISM, iBaseYield, true, pCapital:GetID())
+	end
+end
+
+function SwissGuardYieldsNotification(ePlayer, eCity, eUnit, bGold, bFaith)	
+	local pPlayer = Players[ePlayer]
+	local pUnit = pPlayer:GetUnitByID(eUnit)
+
+	if pUnit:GetUnitType() == tUnitsMilitary[1] then
+		local pTeam = Teams[pPlayer:GetTeam()]
+		local bRadio = pTeam:IsHasTech(tTechnologyTypes[2])
+		local bTelecom = pTeam:IsHasTech(tTechnologyTypes[3])
+		local pCity = pPlayer:GetCityByID(eCity)
+		local pVaticanCity = Players[tLostCities["eLostVaticanCity"]]
+		
+		if pPlayer:IsHuman() then
+			if bTelecom then		
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_VATICAN_KATZBALGER_C", pUnit:GetName(), pVaticanCity:GetName()), L("TXT_KEY_UCS_BONUS_VATICAN_KATZBALGER_TITLE"), pCity:GetX(), pCity:GetY())
+			elseif bRadio then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_VATICAN_KATZBALGER_B", pUnit:GetName(), pVaticanCity:GetName()), L("TXT_KEY_UCS_BONUS_VATICAN_KATZBALGER_TITLE"), pCity:GetX(), pCity:GetY())
+			else
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_VATICAN_KATZBALGER_A", pUnit:GetName(), pVaticanCity:GetName()), L("TXT_KEY_UCS_BONUS_VATICAN_KATZBALGER_TITLE"), pCity:GetX(), pCity:GetY())
+			end		
+		end
+	end
+end
+
+
+
+-- KATHMANDU (GURKHA FUNCTIONS)
+function CanBuyGurkha(ePlayer, eCity, eUnit)
+	if eUnit ~= tUnitsMilitary[2] then return true end
+	
+	local pPlayer = Players[ePlayer]
+
+	if pPlayer:IsMinorCiv() then return true end
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[33]) ~= 0 then
+		return true
+	else
+		return false
+	end
+end
+GameEvents.CityCanTrain.Add(CanBuyGurkha)
 
 
 
@@ -2409,153 +2564,6 @@ function HealersFromIskanwaya(ePlayer)
 					end
 				end
 			end
-		end
-	end
-end
-
-
-
--- HONG KONG (CITIZENS MIGRATING TO CS)
-function MigrationToHongKong(ePlayer)
-	local pPlayer = Players[ePlayer]
-
-	if pPlayer:IsMinorCiv() then return end
-					
-	if pPlayer:GetEventChoiceCooldown(tEventChoice[19]) ~= 0 then
-		local pHongKong = Players[tLostCities["eLostHongKong"]]
-		local pHongKongCity = pHongKong:GetCapitalCity()		
-		
-		for city in pPlayer:Cities() do
-			local iMigrationThreshold = (city:GetPopulation() - pHongKongCity:GetPopulation()) * 10
-			local iCurrentInfluenceWithHongKong = pHongKong:GetMinorCivFriendshipWithMajor(ePlayer)
-
-			if iMigrationThreshold > 0 and iCurrentInfluenceWithHongKong >= GameDefines.FRIENDSHIP_THRESHOLD_FRIENDS then
-				local iRolledMigrationChance = RandomNumberBetween(1, 1000)
-				
-				if iRolledMigrationChance <= iMigrationThreshold then
-					local iInfluence = 30
-					local iBaseYield = RandomNumberBetween(100, 150)
-					local iEraModifier = pPlayer:GetCurrentEra() + 1
-					
-					-- setting the peak to last forever
-					if iCurrentInfluenceWithHongKong >= 570 then iCurrentInfluenceWithHongKong = 570 end
-
-					local iInfluenceModifier = iCurrentInfluenceWithHongKong / GameDefines.FRIENDSHIP_THRESHOLD_ALLIES
-					
-					-- setting the somewhat logarithmic curve, because linear was too high
-					local iFactor1 = 1.5
-					local iFactor2 = 750
-					local iInfluenceCapModifier = (iFactor1 - (iCurrentInfluenceWithHongKong - GameDefines.FRIENDSHIP_THRESHOLD_FRIENDS) / iFactor2) / iFactor1 -- for more info look at the excel calculations
-
-					city:ChangePopulation(-1, true)
-					pHongKongCity:ChangePopulation(1, true)
-
-					local iGoldReward = math.ceil(iBaseYield * iEraModifier * iInfluenceModifier * iInfluenceCapModifier)
-
-					pPlayer:DoInstantYield(GameInfoTypes.YIELD_GOLD, iGoldReward, false, city:GetID())
-					pHongKong:ChangeMinorCivFriendshipWithMajor(ePlayer, iInfluence)
-
-					if pPlayer:IsHuman() then
-						pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_HONG_KONG", city:GetName(), pHongKongCity:GetName(), pHongKong:GetName(), iGoldReward, iInfluence), L("TXT_KEY_UCS_BONUS_HONG_KONG_TITLE"), city:GetX(), city:GetY())
-					end
-
-					break
-				end
-			end
-		end
-	end		
-end
-
-
-
--- FLORENCE (SPAWN OF GREAT ENGINEER OR GREAT ARTIST)
-function ArtistsInFlorence(ePlayer)
-	local pPlayer = Players[ePlayer]
-
-	if pPlayer:IsMinorCiv() then return end
-					
-	if pPlayer:GetEventChoiceCooldown(tEventChoice[20]) ~= 0 then
-		local iArtistThreshold = 10
-		local iArtistChance = RandomNumberBetween(1, 1000)
-		
-		if iArtistChance <= iArtistThreshold then
-			local pFlorence = Players[tLostCities["eLostFlorence"]]
-			local pCapital = pPlayer:GetCapitalCity()
-			local iArtistVsEngineer = RandomNumberBetween(0, 1)		
-			local pUnit
-				
-			if iArtistVsEngineer == 0 then
-				pUnit = pPlayer:InitUnit(tUnitsGreatPeople[4], pCapital:GetX(), pCapital:GetY())
-			else
-				pUnit = pPlayer:InitUnit(tUnitsGreatPeople[2], pCapital:GetX(), pCapital:GetY())
-			end
-			
-			if pPlayer:IsHuman() then
-				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_FLORENCE", pFlorence:GetName(), pUnit:GetName()), L("TXT_KEY_UCS_BONUS_FLORENCE_TITLE", L(GameInfo.Units[pUnit:GetUnitType()].Description)), pCapital:GetX(), pCapital:GetY())
-			end
-		end
-	end	
-end
-
-
-
--- KYZYL (YIELDS ON RESEARCH)
-function ResearchersFromKyzyl(eTeam, eTech, iChange)
-	local pActivePlayer = Players[Game.GetActivePlayer()]
-	local eActiveTeam = pActivePlayer:GetTeam()
-	
-	if pActivePlayer:IsMinorCiv() then return end
-	if eTeam ~= eActiveTeam then return end
-					
-	if pActivePlayer:GetEventChoiceCooldown(tEventChoice[21]) ~= 0 then
-		local pCapital = pActivePlayer:GetCapitalCity()
-		local pKyzyl = Players[tLostCities["eLostKyzyl"]]
-		local sKyzylYields = ""
-		
-		for city in pActivePlayer:Cities() do
-			local iBaseYield = RandomNumberBetween(5, 20)
-			local iEraModifier = pActivePlayer:GetCurrentEra() + 1
-			local iOwnedCities = pActivePlayer:GetNumCities()
-
-			if iOwnedCities > 8 then iOwnedCities = 8 end
-
-			local iCitiesNumberDismodifier = 1 - ((iOwnedCities - 1) * 0.1)
-			local iProductionBoostFromResearch = iBaseYield * iEraModifier * iCitiesNumberDismodifier
-
-			pActivePlayer:DoInstantYield(GameInfoTypes.YIELD_PRODUCTION, iProductionBoostFromResearch, true, city:GetID())
-
-			sKyzylYields = sKyzylYields .. "[NEWLINE][ICON_BULLET] " .. city:GetName() .. ": " .. iProductionBoostFromResearch .. " [ICON_PRODUCTION]"
-		end
-		
-		if pActivePlayer:IsHuman() then
-			pActivePlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_KYZYL", pKyzyl:GetName(), sKyzylYields), L("TXT_KEY_UCS_BONUS_KYZYL_TITLE"), pCapital:GetX(), pCapital:GetY())
-		end	
-	end	
-end
-
-
-
--- TYRE (TOURISM FROM WW CONSTRUCTION)
-function TourismFromTyre(ePlayer, eCity, eBuilding, bGold, bFaith) 
-	local bBuildingSplash = GameInfo.Buildings[eBuilding].WonderSplashImage ~= nil
-	local bBuildingCorporation = GameInfo.Buildings[eBuilding].IsCorporation == 1
-	
-	if bBuildingSplash and not bBuildingCorporation then
-		local pPlayer = Players[ePlayer]
-	
-		if pPlayer:GetEventChoiceCooldown(tEventChoice[22]) ~= 0 then
-			local pCity = pPlayer:GetCityByID(eCity)
-			local iBaseYield = RandomNumberBetween(20, 40)
-			local iWonderModifier = 1 + (pCity:GetNumWorldWonders() * 0.2)
-			local iEraModifier = pPlayer:GetCurrentEra() + 1
-			local iTourismBoost = iBaseYield * iWonderModifier * iEraModifier
-			local pTyre = Players[tLostCities["eLostTyre"]]
-	
-			pPlayer:DoInstantYield(GameInfoTypes.YIELD_TOURISM, iTourismBoost, true, eCity)
-
-			if pPlayer:IsHuman() then
-				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_TYRE", L(GameInfo.Buildings[eBuilding].Description), pTyre:GetName(), iTourismBoost), L("TXT_KEY_UCS_BONUS_TYRE_TITLE"), pCity:GetX(), pCity:GetY())
-			end	
 		end
 	end
 end
@@ -2643,6 +2651,153 @@ end
 
 
 
+-- HONG KONG (CITIZENS MIGRATING TO CS)
+function MigrationToHongKong(ePlayer)
+	local pPlayer = Players[ePlayer]
+
+	if pPlayer:IsMinorCiv() then return end
+					
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[19]) ~= 0 then
+		local pHongKong = Players[tLostCities["eLostHongKong"]]
+		local pHongKongCity = pHongKong:GetCapitalCity()		
+		
+		for city in pPlayer:Cities() do
+			local iMigrationThreshold = (city:GetPopulation() - pHongKongCity:GetPopulation()) * 10
+			local iCurrentInfluenceWithHongKong = pHongKong:GetMinorCivFriendshipWithMajor(ePlayer)
+
+			if iMigrationThreshold > 0 and iCurrentInfluenceWithHongKong >= GameDefines.FRIENDSHIP_THRESHOLD_FRIENDS then
+				local iRolledMigrationChance = RandomNumberBetween(1, 1000)
+				
+				if iRolledMigrationChance <= iMigrationThreshold then
+					local iInfluence = 30
+					local iBaseYield = RandomNumberBetween(100, 150)
+					local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
+					
+					-- setting the peak to last forever
+					if iCurrentInfluenceWithHongKong >= 570 then iCurrentInfluenceWithHongKong = 570 end
+
+					local iInfluenceModifier = iCurrentInfluenceWithHongKong / GameDefines.FRIENDSHIP_THRESHOLD_ALLIES
+					
+					-- setting the somewhat logarithmic curve, because linear was too high
+					local iFactor1 = 1.5
+					local iFactor2 = 750
+					local iInfluenceCapModifier = (iFactor1 - (iCurrentInfluenceWithHongKong - GameDefines.FRIENDSHIP_THRESHOLD_FRIENDS) / iFactor2) / iFactor1 -- for more info look at the excel calculations
+
+					city:ChangePopulation(-1, true)
+					pHongKongCity:ChangePopulation(1, true)
+
+					local iGoldReward = math.ceil(iBaseYield * iEraModifier * iInfluenceModifier * iInfluenceCapModifier)
+
+					pPlayer:DoInstantYield(GameInfoTypes.YIELD_GOLD, iGoldReward, true, city:GetID())
+					pHongKong:ChangeMinorCivFriendshipWithMajor(ePlayer, iInfluence)
+
+					if pPlayer:IsHuman() then
+						pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_HONG_KONG", city:GetName(), pHongKongCity:GetName(), pHongKong:GetName(), iGoldReward, iInfluence), L("TXT_KEY_UCS_BONUS_HONG_KONG_TITLE"), city:GetX(), city:GetY())
+					end
+
+					break
+				end
+			end
+		end
+	end		
+end
+
+
+
+-- FLORENCE (SPAWN OF GREAT ENGINEER OR GREAT ARTIST)
+function ArtistsInFlorence(ePlayer)
+	local pPlayer = Players[ePlayer]
+
+	if pPlayer:IsMinorCiv() then return end
+					
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[20]) ~= 0 then
+		local iArtistThreshold = 10
+		local iArtistChance = RandomNumberBetween(1, 1000)
+		
+		if iArtistChance <= iArtistThreshold then
+			local pFlorence = Players[tLostCities["eLostFlorence"]]
+			local pCapital = pPlayer:GetCapitalCity()
+			local iArtistVsEngineer = RandomNumberBetween(0, 1)		
+			local pUnit
+				
+			if iArtistVsEngineer == 0 then
+				pUnit = pPlayer:InitUnit(tUnitsGreatPeople[4], pCapital:GetX(), pCapital:GetY())
+			else
+				pUnit = pPlayer:InitUnit(tUnitsGreatPeople[2], pCapital:GetX(), pCapital:GetY())
+			end
+			
+			if pPlayer:IsHuman() then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_FLORENCE", pFlorence:GetName(), pUnit:GetName()), L("TXT_KEY_UCS_BONUS_FLORENCE_TITLE", L(GameInfo.Units[pUnit:GetUnitType()].Description)), pCapital:GetX(), pCapital:GetY())
+			end
+		end
+	end	
+end
+
+
+
+-- KYZYL (YIELDS ON RESEARCH)
+function ResearchersFromKyzyl(eTeam, eTech, iChange)
+	local pActivePlayer = Players[Game.GetActivePlayer()]
+	local eActiveTeam = pActivePlayer:GetTeam()
+	
+	if pActivePlayer:IsMinorCiv() then return end
+	if eTeam ~= eActiveTeam then return end
+					
+	if pActivePlayer:GetEventChoiceCooldown(tEventChoice[21]) ~= 0 then
+		local pCapital = pActivePlayer:GetCapitalCity()
+		local pKyzyl = Players[tLostCities["eLostKyzyl"]]
+		local sKyzylYields = ""
+		
+		for city in pActivePlayer:Cities() do
+			local iBaseYield = RandomNumberBetween(5, 20)
+			local iEraModifier = math.max(1, pActivePlayer:GetCurrentEra())
+			local iOwnedCities = pActivePlayer:GetNumCities()
+
+			if iOwnedCities > 8 then iOwnedCities = 8 end
+
+			local iCitiesNumberDismodifier = 1 - ((iOwnedCities - 1) * 0.1)
+			local iProductionBoostFromResearch = iBaseYield * iEraModifier * iCitiesNumberDismodifier
+
+			pActivePlayer:DoInstantYield(GameInfoTypes.YIELD_PRODUCTION, iProductionBoostFromResearch, true, city:GetID())
+
+			sKyzylYields = sKyzylYields .. "[NEWLINE][ICON_BULLET] " .. city:GetName() .. ": " .. iProductionBoostFromResearch .. " [ICON_PRODUCTION]"
+		end
+		
+		if pActivePlayer:IsHuman() then
+			pActivePlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_KYZYL", pKyzyl:GetName(), sKyzylYields), L("TXT_KEY_UCS_BONUS_KYZYL_TITLE"), pCapital:GetX(), pCapital:GetY())
+		end	
+	end	
+end
+
+
+
+-- TYRE (TOURISM FROM WW CONSTRUCTION)
+function TourismFromTyre(ePlayer, eCity, eBuilding, bGold, bFaith) 
+	local bBuildingSplash = GameInfo.Buildings[eBuilding].WonderSplashImage ~= nil
+	local bBuildingCorporation = GameInfo.Buildings[eBuilding].IsCorporation == 1
+	
+	if bBuildingSplash and not bBuildingCorporation then
+		local pPlayer = Players[ePlayer]
+	
+		if pPlayer:GetEventChoiceCooldown(tEventChoice[22]) ~= 0 then
+			local pCity = pPlayer:GetCityByID(eCity)
+			local iBaseYield = RandomNumberBetween(20, 40)
+			local iWonderModifier = 1 + (pCity:GetNumWorldWonders() * 0.2)
+			local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
+			local iTourismBoost = iBaseYield * iWonderModifier * iEraModifier
+			local pTyre = Players[tLostCities["eLostTyre"]]
+	
+			pPlayer:DoInstantYield(GameInfoTypes.YIELD_TOURISM, iTourismBoost, true, eCity)
+
+			if pPlayer:IsHuman() then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_TYRE", L(GameInfo.Buildings[eBuilding].Description), pTyre:GetName(), iTourismBoost), L("TXT_KEY_UCS_BONUS_TYRE_TITLE"), pCity:GetX(), pCity:GetY())
+			end	
+		end
+	end
+end
+
+
+
 -- WELLINGTON (ADDS STRATEGIC RESOURCES)
 function EvenMoreStrategicResources(ePlayer)
 	local pPlayer = Players[ePlayer]
@@ -2690,12 +2845,17 @@ function FeatureCutByQuebec(iX, iY, eOwner, eOldFeature, eNewFeature)
 	if eNewFeature ~= -1 then return end
 	if eOldFeature == tFeatureTypes[1] or eOldFeature == tFeatureTypes[2] then
 		local pPlayer = Players[eOwner]
+		
+		if pPlayer == nil then
+			print("QUEBEC-city founded?")
+			pPlayer = Players[Map.GetPlot(iX, iY):GetOwner()]
+		end
 
 		if pPlayer:IsMinorCiv() then return end
 
-		if pPlayer:GetEventChoiceCooldown(tEventChoice[26]) ~= 0 then -- change to 26!!!
+		if pPlayer:GetEventChoiceCooldown(tEventChoice[26]) ~= 0 then
 			local iBaseYield = 10
-			local iEraModifier = ((pPlayer:GetCurrentEra() - 1) * 0.7) + 1
+			local iEraModifier = ((math.max(1, pPlayer:GetCurrentEra()) - 1) * 0.7) + 1
 			local iCutExtraYield = iBaseYield * iEraModifier
 			local pPlot = Map.GetPlot(iX, iY)
 			local pCity = pPlot:GetWorkingCity()
@@ -2731,7 +2891,7 @@ function SpreadTheFaithInPrussia(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, e
 
 		if pUnit:GetUnitType() == tUnitsCivilians[3] and not bBlockedUnitFromThePreKillEvent then
 			local iBaseYield = RandomNumberBetween(10, 30)
-			local iEraModifier = pPlayer:GetCurrentEra() + 1
+			local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
 			local iCultureFromDeath = iBaseYield * iEraModifier
 			local iFaithFromDeath = iCultureFromDeath * 2			
 			local pCapital = pPlayer:GetCapitalCity()
@@ -2769,7 +2929,7 @@ function WiseDiplomatsFromSingapore(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay
 		
 		if pUnit:GetUnitCombatType() == GameInfoTypes.UNITCOMBAT_DIPLOMACY and not bBlockedUnitFromThePreKillEvent then
 			local iBaseYield = 20
-			local iEraModifier = pPlayer:GetCurrentEra() + 1
+			local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
 			
 			local pCityStateFrom = Players[Map.GetPlot(iX, iY):GetOwner()]
 			local iCurrentInfluenceWithCityState = pCityStateFrom:GetMinorCivFriendshipWithMajor(eUnitOwner)
@@ -2808,16 +2968,16 @@ function GenerateGPPBySydney(eCityOwner, iX, iY, iTurns)
 		local iBaseYieldArtist = RandomNumberBetween(5, 20)
 		local iBaseYieldWriter = RandomNumberBetween(5, 20)
 		local iBaseYieldMusician = RandomNumberBetween(5, 20)
-		local iEraModifier = pPlayer:GetCurrentEra() + 1
+		local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
 		local iBoost1 = iBaseYieldArtist * iEraModifier
 		local iBoost2 = iBaseYieldWriter * iEraModifier
 		local iBoost3 = iBaseYieldMusician * iEraModifier
 		local pCity = Map.GetPlot(iX, iY):GetWorkingCity()
 		local pSydney = Players[tLostCities["eLostSydney"]]
 
-		pCity:ChangeSpecialistGreatPersonProgressTimes100(tSpecialistsTypes[4], iBoost1 * 100)
-		pCity:ChangeSpecialistGreatPersonProgressTimes100(tSpecialistsTypes[5], iBoost2 * 100)
-		pCity:ChangeSpecialistGreatPersonProgressTimes100(tSpecialistsTypes[6], iBoost3 * 100)
+		pCity:ChangeSpecialistGreatPersonProgressTimes100(tSpecialistTypes[4], iBoost1 * 100)
+		pCity:ChangeSpecialistGreatPersonProgressTimes100(tSpecialistTypes[5], iBoost2 * 100)
+		pCity:ChangeSpecialistGreatPersonProgressTimes100(tSpecialistTypes[6], iBoost3 * 100)
 
 		if pPlayer:IsHuman() then
 			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_SYDNEY", pSydney:GetName(), pCity:GetName(), L(GameInfo.Units[tUnitsGreatPeople[4]].Description), L(GameInfo.Units[tUnitsGreatPeople[5]].Description), L(GameInfo.Units[tUnitsGreatPeople[6]].Description), iBoost1, iBoost2, iBoost3), L("TXT_KEY_UCS_BONUS_SYDNEY_TITLE"), pCity:GetX(), pCity:GetY())
@@ -2884,6 +3044,241 @@ function WeLoveGwyneddSoMuchOnEventOff(ePlayer, eEventChoiceType)
 	end
 end
 
+
+
+-- YANGCHENG (FAITH ON ERA CHANGE)
+function YearOfTheAnimal(eTeam, eEra, bFirst)
+	for eplayer = 0, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
+		local pPlayer = Players[eplayer]
+
+		if pPlayer and pPlayer:IsAlive() then
+			if pPlayer:IsMinorCiv() then return end
+
+			local ePlayerTeam = pPlayer:GetTeam()
+
+			if ePlayerTeam == eTeam then
+				if pPlayer:GetEventChoiceCooldown(tEventChoice[34]) ~= 0 then
+					local iRandomAnimal = RandomNumberBetween(1, 12)
+					local sAnimal, sAnimalBonusYield, sAnimalBonusYield2, sAnimalBonusYieldText = "", "", "", ""
+					local iAnimalBonusYield, iAnimalBonusYield2, eAnimalBonusYield, eAnimalBonusYield2 = 0, 0, 0, 0
+					local iBaseYield = 70
+					local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
+					local iFirstModifier = 1
+					local pCapital = pPlayer:GetCapitalCity()
+					local pYangcheng = Players[tLostCities["eLostYangcheng"]]
+
+					if bFirst then
+						iFirstModifier = 1.3
+					end
+
+					local iAnimalFaith = iBaseYield * iEraModifier * iFirstModifier
+				
+					if pPlayer:IsHuman() then
+						if iRandomAnimal == 1 then
+							sAnimal = "Rat"
+							iAnimalBonusYield = iAnimalFaith / 6
+							eAnimalBonusYield = GameInfoTypes.YIELD_TOURISM
+							sAnimalBonusYield = " [ICON_TOURISM] Tourism"
+						elseif iRandomAnimal == 2 then
+							sAnimal = "Ox"
+							iAnimalBonusYield = iAnimalFaith / 4
+							eAnimalBonusYield = GameInfoTypes.YIELD_PRODUCTION
+							sAnimalBonusYield = " [ICON_PRODUCTION] Production"
+						elseif iRandomAnimal == 3 then
+							sAnimal = "Tiger"
+							iAnimalBonusYield = iAnimalFaith / 5
+							eAnimalBonusYield = GameInfoTypes.YIELD_GREAT_GENERAL_POINTS
+							sAnimalBonusYield = " [ICON_GREAT_GENERAL] Great General Points"
+						elseif iRandomAnimal == 4 then
+							sAnimal = "Rabbit"
+							iAnimalBonusYield = iAnimalFaith / 5
+							eAnimalBonusYield = GameInfoTypes.YIELD_FAITH
+							sAnimalBonusYield = " [ICON_PEACE] Faith"
+						elseif iRandomAnimal == 5 then
+							sAnimal = "Dragon"
+							iAnimalBonusYield = iAnimalFaith / 7
+							eAnimalBonusYield = GameInfoTypes.YIELD_GREAT_ADMIRAL_POINTS
+							sAnimalBonusYield = " [ICON_GREAT_ADMIRAL] Great Admiral Points"
+						elseif iRandomAnimal == 6 then
+							sAnimal = "Snake"
+							iAnimalBonusYield = iAnimalFaith / 6
+							eAnimalBonusYield = GameInfoTypes.YIELD_CULTURE
+							sAnimalBonusYield = " [ICON_CULTURE] Culture"
+						elseif iRandomAnimal == 7 then
+							sAnimal = "Horse"
+							iAnimalBonusYield = iAnimalFaith / 4
+							eAnimalBonusYield = GameInfoTypes.YIELD_GOLD
+							sAnimalBonusYield = " [ICON_GOLD] Gold"
+						elseif iRandomAnimal == 8 then
+							sAnimal = "Goat"
+							iAnimalBonusYield = iAnimalFaith / 4
+							eAnimalBonusYield = GameInfoTypes.YIELD_FOOD
+							sAnimalBonusYield = " [ICON_FOOD] Food"
+							iAnimalBonusYield2 = iAnimalFaith / 6
+							eAnimalBonusYield2 = GameInfoTypes.YIELD_PRODUCTION
+							sAnimalBonusYield2 = " [ICON_PRODUCTION] Production"
+						elseif iRandomAnimal == 9 then
+							sAnimal = "Monkey"
+							iAnimalBonusYield = iAnimalFaith / 6
+							eAnimalBonusYield = GameInfoTypes.YIELD_SCIENCE
+							sAnimalBonusYield = " [ICON_RESEARCH] Science"
+						elseif iRandomAnimal == 10 then
+							sAnimal = "Rooster"
+							iAnimalBonusYield = iAnimalFaith / 7
+							eAnimalBonusYield = GameInfoTypes.YIELD_GOLDEN_AGE_POINTS
+							sAnimalBonusYield = " [ICON_GOLDEN_AGE] Golden Age Points"
+						elseif iRandomAnimal == 11 then
+							sAnimal = "Dog"
+							iAnimalBonusYield = iAnimalFaith / 2
+							eAnimalBonusYield = GameInfoTypes.YIELD_CULTURE_LOCAL
+							sAnimalBonusYield = " [ICON_CULTURE_LOCAL] Border Growth Points"
+						elseif iRandomAnimal == 12 then
+							sAnimal = "Pig"
+							iAnimalBonusYield = iAnimalFaith / 3
+							eAnimalBonusYield = GameInfoTypes.YIELD_FOOD
+							sAnimalBonusYield = " [ICON_FOOD] Food"
+						end
+
+						pPlayer:DoInstantYield(GameInfoTypes.YIELD_FAITH, iAnimalFaith, true, pCapital:GetID())
+						pPlayer:DoInstantYield(eAnimalBonusYield, iAnimalBonusYield, true, pCapital:GetID())
+
+						iAnimalBonusYield = math.floor(iAnimalBonusYield)
+						iAnimalBonusYield2 = math.floor(iAnimalBonusYield2)
+
+						if iRandomAnimal == 8 then -- GOAT (2 yields exception)
+							pPlayer:DoInstantYield(eAnimalBonusYield2, iAnimalBonusYield2, true, pCapital:GetID())
+							sAnimalBonusYieldText = iAnimalBonusYield .. sAnimalBonusYield .. " and " .. iAnimalBonusYield2 .. sAnimalBonusYield2
+						else
+							sAnimalBonusYieldText = iAnimalBonusYield .. sAnimalBonusYield
+						end
+
+						pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_YANGCHENG", pYangcheng:GetName(), iAnimalFaith, sAnimal, sAnimalBonusYieldText), L("TXT_KEY_UCS_BONUS_YANGCHENG_TITLE", sAnimal), pCapital:GetX(), pCapital:GetY())
+					end
+				end
+			end
+		end
+	end
+end
+
+
+
+-- IFE (FAITH ON TRAINED DIPLO UNITS)
+function FaithForDiploFromIfe(ePlayer, eCity, eUnit, bGold, bFaith)	
+	local pPlayer = Players[ePlayer]
+	local pUnit = pPlayer:GetUnitByID(eUnit)
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[35]) ~= 0 then
+		if pUnit:GetUnitCombatType() == GameInfoTypes.UNITCOMBAT_DIPLOMACY then
+			local iBaseYield = 30
+			local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
+			local iYoruba = iBaseYield * iEraModifier		
+			local pCity = pPlayer:GetCityByID(eCity)
+			local pIfe = Players[tLostCities["eLostIfe"]]
+		
+			pPlayer:DoInstantYield(GameInfoTypes.YIELD_FAITH, iYoruba, true, pCity:GetID())
+						
+			if pPlayer:IsHuman() then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_IFE", pUnit:GetName(), pIfe:GetName(), iYoruba), L("TXT_KEY_UCS_BONUS_IFE_TITLE"), pCity:GetX(), pCity:GetY())		
+			end
+		end
+	end
+end
+
+function FaithForDiploFromIfeSpawn(eUnitOwner, eUnit, eUnitType, iX, iY)	
+	local pPlayer = Players[eUnitOwner]
+	local pUnit = pPlayer:GetUnitByID(eUnit)
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[35]) ~= 0 then
+		local iBaseYield = 30
+		local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
+		local iYoruba = iBaseYield * iEraModifier		
+		local pCity = Map.GetPlot(iX, iY):GetWorkingCity()
+		local pIfe = Players[tLostCities["eLostIfe"]]
+		
+		if pUnit:GetUnitCombatType() == GameInfoTypes.UNITCOMBAT_DIPLOMACY then
+			pPlayer:DoInstantYield(GameInfoTypes.YIELD_FAITH, iYoruba, true, pCity:GetID())
+						
+			if pPlayer:IsHuman() then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_IFE", pUnit:GetName(), pIfe:GetName(), iYoruba), L("TXT_KEY_UCS_BONUS_IFE_TITLE"), pCity:GetX(), pCity:GetY())		
+			end
+		elseif pUnit:GetUnitType() == tUnitsGreatPeople[7] then
+			iYoruba = iYoruba * 2
+
+			pPlayer:DoInstantYield(GameInfoTypes.YIELD_FAITH, iYoruba, true, pCity:GetID())
+						
+			if pPlayer:IsHuman() then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_IFE", pUnit:GetName(), pIfe:GetName(), iYoruba), L("TXT_KEY_UCS_BONUS_IFE_TITLE"), pCity:GetX(), pCity:GetY())		
+			end
+		end
+	end
+end
+
+
+
+-- GENEVA (FAITH ON TRAINED GP UNITS)
+function FaithForGPFromGeneva(eUnitOwner, eUnit, eUnitType, iX, iY)	
+	local pPlayer = Players[eUnitOwner]
+	local pUnit = pPlayer:GetUnitByID(eUnit)
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[36]) ~= 0 then
+		if pUnit:GetUnitCombatType() == GameInfoTypes.UNITCOMBAT_SPECIAL_PEOPLE then
+			local iBaseYield = 25
+			local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
+			local iEscalade = iBaseYield * iEraModifier		
+			local pCity = Map.GetPlot(iX, iY):GetWorkingCity()
+			local pGeneva = Players[tLostCities["eLostGeneva"]]
+		
+			pPlayer:DoInstantYield(GameInfoTypes.YIELD_FAITH, iEscalade, true, pCity:GetID())
+						
+			if pPlayer:IsHuman() then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_GENEVA", pGeneva:GetName(), pUnit:GetName(), iEscalade), L("TXT_KEY_UCS_BONUS_GENEVA_TITLE"), pCity:GetX(), pCity:GetY())		
+			end
+		end
+	end
+end
+
+
+
+-- GENOA (GOLD ON TRAINED GP UNITS)
+function GoldForGPFromGenoa(eUnitOwner, eUnit, eUnitType, iX, iY)	
+	local pPlayer = Players[eUnitOwner]
+	local pUnit = pPlayer:GetUnitByID(eUnit)
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[37]) ~= 0 then
+		if pUnit:GetUnitCombatType() == GameInfoTypes.UNITCOMBAT_SPECIAL_PEOPLE then
+			local iBaseYield1 = 50
+			local iBaseYield2 = 15
+			local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
+			local iLa = iBaseYield1 * iEraModifier
+			local iSuperba = iBaseYield2 * iEraModifier		
+			local pCity = Map.GetPlot(iX, iY):GetWorkingCity()
+			local pGenoa = Players[tLostCities["eLostGenoa"]]
+		
+			pPlayer:DoInstantYield(GameInfoTypes.YIELD_GOLD, iLa, true, pCity:GetID())
+			pPlayer:DoInstantYield(GameInfoTypes.YIELD_GOLDEN_AGE_POINTS, iSuperba, true, pCity:GetID())
+						
+			if pPlayer:IsHuman() then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_GENOA", pGenoa:GetName(), pUnit:GetName(), iLa, iSuperba), L("TXT_KEY_UCS_BONUS_GENOA_TITLE"), pCity:GetX(), pCity:GetY())		
+			end
+		end
+	end
+end
+
+
+
+-- SIERRA LEONE (CULTURE PER WORKER)
+function CulturePerWorker(ePlayer)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:IsMinorCiv() then return end
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[38]) ~= 0 then
+		local pCapital = pPlayer:GetCapitalCity()
+		local iWorkers = pPlayer:GetUnitClassCount(GameInfoTypes.UNITCLASS_WORKER)
+
+		pPlayer:DoInstantYield(GameInfoTypes.YIELD_CULTURE, iWorkers, true, pCapital:GetID())
+	end
+end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- INITIALIZATION
@@ -2892,10 +3287,16 @@ function SettingUpSpecificEvents()
 		if pCS:IsMinorCiv() then		
 			local sMinorCivType = GameInfo.MinorCivilizations[pCS:GetMinorCivType()].Type
 		
+			-- unit actions effects
 			if sMinorCivType == "MINOR_CIV_BOGOTA" then	
 				tLostCities["eLostBogota"] = eCS
 				GameEvents.PlayerLiberated.Add(LiberatedForBogota)		
 				GameEvents.CityCaptureComplete.Add(CapturedForBogota)
+			elseif sMinorCivType == "MINOR_CIV_LEVUKA" then
+				tLostCities["eLostLevuka"] = eCS
+				GameEvents.CityCaptureComplete.Add(CaptureCityForLevuka)
+				GameEvents.PlayerDoTurn.Add(ConquestsForLevuka)
+				GameEvents.BarbariansCampCleared.Add(BarbCampForLevuka)
 				
 			
 			-- improvements
@@ -3001,23 +3402,28 @@ function SettingUpSpecificEvents()
 				GameEvents.CityConstructed.Add(ArdentFlameInPiousHeartBuildingConstruction)
 			
 			
-			-- food from killing
-			elseif sMinorCivType == "MINOR_CIV_LEVUKA" then
-				tLostCities["eLostLevuka"] = eCS
-				GameEvents.CityCaptureComplete.Add(CaptureCityForLevuka)
-				GameEvents.PlayerDoTurn.Add(ConquestsForLevuka)
-				GameEvents.BarbariansCampCleared.Add(BarbCampForLevuka)
-			
-			
-			-- buying trade units with faith
+			-- new/exclusive units
 			elseif sMinorCivType == "MINOR_CIV_DALI" then
 				tLostCities["eLostDali"] = eCS
+			elseif sMinorCivType == "MINOR_CIV_VATICAN_CITY" then
+				tLostCities["eLostVaticanCity"] = eCS
+				GameEvents.CombatEnded.Add(SwissGuardHealingAttack)
+				GameEvents.CombatEnded.Add(SwissGuardHealingDefend)
+				GameEvents.PlayerDoTurn.Add(SwissGuardYields)
+				GameEvents.CityTrained.Add(SwissGuardYieldsNotification)
+			elseif sMinorCivType == "MINOR_CIV_KATHMANDU" then
+				tLostCities["eLostKathmandu"] = eCS
 			
 			
-			-- promotion healing from religious source
+			-- promotions effects
 			elseif sMinorCivType == "MINOR_CIV_ISKANWAYA" then
 				tLostCities["eLostIskanwaya"] = eCS
 				GameEvents.PlayerDoTurn.Add(HealersFromIskanwaya)
+			elseif sMinorCivType == "MINOR_CIV_KABUL" then
+				tLostCities["eLostKabul"] = eCS
+				GameEvents.UnitSetXY.Add(MujahideensFromKabulOnMove)
+				GameEvents.EventChoiceActivated.Add(MujahideensFromKabulOnEventOn)
+				GameEvents.EventChoiceEnded.Add(MujahideensFromKabulOnEventOff)
 			
 
 			-- citizen migration
@@ -3026,30 +3432,22 @@ function SettingUpSpecificEvents()
 				GameEvents.PlayerDoTurn.Add(MigrationToHongKong)
 			
 
-			-- unit spawn
+			-- GP spawn
 			elseif sMinorCivType == "MINOR_CIV_FLORENCE" then
 				tLostCities["eLostFlorence"] = eCS
 				GameEvents.PlayerDoTurn.Add(ArtistsInFlorence)
 
 
-			-- production on research
+			-- tech researched effects
 			elseif sMinorCivType == "MINOR_CIV_KYZYL" then
 				tLostCities["eLostKyzyl"] = eCS
 				GameEvents.TeamTechResearched.Add(ResearchersFromKyzyl)
 
 
-			-- tourism from WWs
+			-- building construction effects
 			elseif sMinorCivType == "MINOR_CIV_TYRE" then
 				tLostCities["eLostTyre"] = eCS
 				GameEvents.CityConstructed.Add(TourismFromTyre)
-
-
-			-- promotion if mountain nearby
-			elseif sMinorCivType == "MINOR_CIV_KABUL" then
-				tLostCities["eLostKabul"] = eCS
-				GameEvents.UnitSetXY.Add(MujahideensFromKabulOnMove)
-				GameEvents.EventChoiceActivated.Add(MujahideensFromKabulOnEventOn)
-				GameEvents.EventChoiceEnded.Add(MujahideensFromKabulOnEventOff)
 				
 
 			-- multiplication of strategic resources
@@ -3058,13 +3456,13 @@ function SettingUpSpecificEvents()
 				GameEvents.PlayerDoTurn.Add(EvenMoreStrategicResources)
 
 
-			-- yields from cutting features
+			-- changing feature yields
 			elseif sMinorCivType == "MINOR_CIV_QUEBEC_CITY" then
 				tLostCities["eLostQuebecCity"] = eCS
 				GameEvents.TileFeatureChanged.Add(FeatureCutByQuebec)
 
 
-			-- prekill
+			-- prekill effects
 			elseif sMinorCivType == "MINOR_CIV_PRAGUE" then
 				tLostCities["eLostPrague"] = eCS
 				GameEvents.UnitPrekill.Add(SpreadTheFaithInPrussia)
@@ -3073,7 +3471,7 @@ function SettingUpSpecificEvents()
 				GameEvents.UnitPrekill.Add(WiseDiplomatsFromSingapore)
 
 
-			-- WLTKD
+			-- WLTKD start/end effects
 			elseif sMinorCivType == "MINOR_CIV_SYDNEY" then
 				tLostCities["eLostSydney"] = eCS
 				GameEvents.CityBeginsWLTKD.Add(GenerateGPPBySydney)
@@ -3083,6 +3481,31 @@ function SettingUpSpecificEvents()
 				GameEvents.CityExtendsWLTKD.Add(WeLoveGwyneddSoMuch) -- city already celebrating WLTKD, which then gets extended	
 				GameEvents.EventChoiceActivated.Add(WeLoveGwyneddSoMuchOnEventOn)
 				GameEvents.EventChoiceEnded.Add(WeLoveGwyneddSoMuchOnEventOff)
+
+
+			-- era change yields
+			elseif sMinorCivType == "MINOR_CIV_YANGCHENG" then
+				tLostCities["eLostYangcheng"] = eCS
+				GameEvents.TeamSetEra.Add(YearOfTheAnimal)
+
+
+			-- trained unit effects
+			elseif sMinorCivType == "MINOR_CIV_IFE" then
+				tLostCities["eLostIfe"] = eCS
+				GameEvents.CityTrained.Add(FaithForDiploFromIfe)
+				GameEvents.UnitCreated.Add(FaithForDiploFromIfeSpawn)				
+			elseif sMinorCivType == "MINOR_CIV_GENEVA" then
+				tLostCities["eLostGeneva"] = eCS
+				GameEvents.UnitCreated.Add(FaithForGPFromGeneva)
+			elseif sMinorCivType == "MINOR_CIV_GENOA" then
+				tLostCities["eLostGenoa"] = eCS
+				GameEvents.UnitCreated.Add(GoldForGPFromGenoa)
+
+
+			-- yield per unit
+			elseif sMinorCivType == "MINOR_CIV_SIERRA_LEONE" then
+				tLostCities["eLostSierraLeone"] = eCS
+				GameEvents.PlayerDoTurn.Add(CulturePerWorker)
 			end
 		end
 	end
