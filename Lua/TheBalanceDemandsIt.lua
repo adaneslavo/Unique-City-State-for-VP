@@ -1,5 +1,6 @@
 include("FLuaVector.lua")
 
+-- 35 variables so far coded (max 60)
 local L = Locale.ConvertTextKey
 
 local tLostCities = {}
@@ -42,18 +43,23 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_IFE,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_GENEVA, -- 36
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_GENOA,
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SIERRA_LEONE
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SIERRA_LEONE,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_KARYES,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SGAANG,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_NYARYANA_MARQ, -- 41
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_ADEJE,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_WOOTEI_NIICIE
 }
 
 local tBuildingsActiveAbilities = {
 	GameInfoTypes.BUILDING_LHASA, -- 1
-	GameInfoTypes.BUILDING_OC_EO,
 	GameInfoTypes.BUILDING_OC_EO_2,
+	GameInfoTypes.BUILDING_OC_EO_3,
 	GameInfoTypes.BUILDING_THIMPHU,
 	GameInfoTypes.BUILDING_THIMPHU_2,
-	GameInfoTypes.BUILDING_ANDORRA, -- 6
+	GameInfoTypes.BUILDING_ANDORRA_2, -- 6
 	GameInfoTypes.BUILDING_CANOSSA,
-	GameInfoTypes.BUILDING_TEMPLE,
+	GameInfoTypes.BUILDING_WOOTEI_NIICIE_2, -- inserted instead temple
 	GameInfoTypes.BUILDING_LEVUKA,
 	GameInfoTypes.BUILDING_JERUSALEM,
 	GameInfoTypes.BUILDING_RISHIKESH_2, -- 11
@@ -64,7 +70,13 @@ local tBuildingsActiveAbilities = {
 	GameInfoTypes.BUILDING_WELLINGTON_ALUMINUM, -- 16
 	GameInfoTypes.BUILDING_WELLINGTON_URANIUM,
 	GameInfoTypes.BUILDING_WELLINGTON_PAPER,
-	GameInfoTypes.BUILDING_RAGUSA_2
+	GameInfoTypes.BUILDING_RAGUSA_2,
+	GameInfoTypes.BUILDING_KARYES
+}
+
+local tBuildingClasses = {
+	GameInfoTypes.BUILDINGCLASS_TEMPLE,
+	GameInfoTypes.BUILDINGCLASS_CARAVANSARY
 }
 
 local tPromotionsActiveAbilities = {
@@ -123,7 +135,9 @@ local tPoliciesPassiveAbilities = {
 local tImprovementsRegular = {
 	GameInfoTypes.IMPROVEMENT_MARSH,
 	GameInfoTypes.IMPROVEMENT_PLANT_FOREST,
-	GameInfoTypes.IMPROVEMENT_PLANT_JUNGLE
+	GameInfoTypes.IMPROVEMENT_PLANT_JUNGLE,
+	GameInfoTypes.IMPROVEMENT_DOGO_CANARIO,
+	GameInfoTypes.IMPROVEMENT_MONASTERY
 }
 
 local tImprovementsGreatPeople = {
@@ -201,6 +215,10 @@ local tUnitsMilitary = {
 	GameInfoTypes.UNIT_GURKHA
 }
 
+local tResourcesLuxury = {
+	GameInfoTypes.RESOURCE_DOGO_CANARIO
+}
+
 local tResourcesStrategic = {
 	GameInfoTypes.RESOURCE_HORSE,
 	GameInfoTypes.RESOURCE_IRON,
@@ -229,6 +247,8 @@ local tZurichLastInterests = {}
 local tZurichCounter = {}
 -- PRAGUE
 local bBlockedUnitFromThePreKillEvent = false
+-- KARYES
+local tCitiesWithEnoughMonasteries = {}
 
 
 -- for city-states' verification
@@ -1583,6 +1603,139 @@ GameEvents.PlayerCanBuild.Add(CanWeBuildColossalHead)
 
 
 
+-- KARYES (IMPROVEMENT MONASTERY, BONUSES FROM MONASTERIES)
+function CanWeBuildMonastery(ePlayer, eUnit, iX, iY, eBuild)
+	if eBuild ~= GameInfoTypes.BUILD_MONASTERY then return true end
+	
+	local pPlayer = Players[ePlayer]
+	
+	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[39]) > 0) then return false end
+	
+	for i, direction in ipairs(tDirectionTypes) do
+		local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
+						
+		if pAdjacentPlot and pAdjacentPlot:IsCity() then return false end
+	end
+
+	return true
+end
+GameEvents.PlayerCanBuild.Add(CanWeBuildMonastery)
+
+function BuiltMonastery(ePlayer, iX, iY, eImprovement)
+	if eImprovement == tImprovementsRegular[5] then
+		CheckAllMonasteries()
+	end
+end
+
+function MonasteryPillagedOrDestroyed(iX, iY, ePlotOwner, eOldImprovement, eNewImprovement, bPillaged)
+	if eOldImprovement ~= tImprovementsRegular[5] then return end
+	
+	CheckAllMonasteries()
+end
+
+function PlaceDummiesForMonasteries()
+	for eplayer = 0, GameDefines.MAX_MAJOR_CIVS-1, 1 do
+		local pPlayer = Players[eplayer]
+	
+		if pPlayer:IsAlive() then
+			if pPlayer:GetEventChoiceCooldown(tEventChoice[39]) ~= 0 then	
+				for city in pPlayer:Cities() do
+					if tCitiesWithEnoughMonasteries[city:GetID()] then
+						city:SetNumRealBuilding(tBuildingsActiveAbilities[20], 1)
+					else
+						city:SetNumRealBuilding(tBuildingsActiveAbilities[20], 0)
+					end
+				end
+			else
+				for city in pPlayer:Cities() do
+					city:SetNumRealBuilding(tBuildingsActiveAbilities[20], 0)
+				end
+			end
+		end
+	end
+end
+
+function CheckAllMonasteries()
+	for eplayer = 0, GameDefines.MAX_MAJOR_CIVS-1, 1 do
+		local pPlayer = Players[eplayer]
+	
+		if pPlayer:IsAlive() then
+			for city in pPlayer:Cities() do
+				local iMonasteries = 0
+
+				for iplot = 0, city:GetNumCityPlots() - 1 do
+					local pPlot = city:GetCityIndexPlot(iplot)
+					local eImprovementType = pPlot:GetImprovementType()
+					
+					if eImprovementType == tImprovementsRegular[5] and not pPlot:IsImprovementPillaged() then
+						iMonasteries = iMonasteries + 1
+					end
+					
+					if iMonasteries >= 3 then
+						tCitiesWithEnoughMonasteries[city:GetID()] = true
+						break
+					end
+				end
+			end
+		end
+	end
+
+	PlaceDummiesForMonasteries()
+end
+
+
+
+-- SGAANG GWAAY (IMPROVEMENT TOTEM POLE)
+function CanWeBuildTotemPole(ePlayer, eUnit, iX, iY, eBuild)
+	if eBuild ~= GameInfoTypes.BUILD_TOTEM_POLE then return true end
+	
+	local pPlayer = Players[ePlayer]
+	
+	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[40]) > 0) then return false end
+	
+	return true
+end
+GameEvents.PlayerCanBuild.Add(CanWeBuildTotemPole)
+
+
+
+-- NYARYANA MARQ (IMPROVEMENT CHUM)
+function CanWeBuildChum(ePlayer, eUnit, iX, iY, eBuild)
+	if eBuild ~= GameInfoTypes.BUILD_CHUM then return true end
+	
+	local pPlayer = Players[ePlayer]
+	
+	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[41]) > 0) then return false end
+	
+	return true
+end
+GameEvents.PlayerCanBuild.Add(CanWeBuildChum)
+
+
+
+-- ADEJE (IMPROVEMENT/RESOURCE DOGO CANARIO)
+function CanWeBuildDogoCanario(ePlayer, eUnit, iX, iY, eBuild)
+	if eBuild ~= GameInfoTypes.BUILD_DOGO_CANARIO then return true end
+	
+	local pPlayer = Players[ePlayer]
+	
+	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[42]) > 0) then return false end
+	
+	return true
+end
+GameEvents.PlayerCanBuild.Add(CanWeBuildDogoCanario)
+
+function BuiltDogoCanario(ePlayer, iX, iY, eImprovement)
+	if eImprovement == tImprovementsRegular[4] then
+		local pPlot = Map.GetPlot(iX, iY)
+		
+		pPlot:SetImprovementType(-1)
+		pPlot:SetResourceType(tResourcesLuxury[1], 1)
+	end
+end
+
+
+
 -- CAPE TOWN (BENEFITS FROM TRADE ROUTES)
 function TradeInCapeTown(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eConnectionType)
 	local pPlayer = Players[eFromPlayer]
@@ -1845,7 +1998,58 @@ end
 
 
 -- ÓC EO (TRADE ROUTES INTO GROWTH)
-function LordsOfTheGreatGlassRiver(ePlayer)
+	--[[		
+	Domain - DomainTypes.DOMAIN_LAND or DomainTypes.DOMAIN_SEA (int)
+	TurnsLeft - turns left before the trade route can be reassigned (int)
+	FromCivilizationType - eg GameInfoTypes.CIVILIZATION_ENGLAND (int)
+	FromID - from player ID (int)
+	FromCityName - from city name (string)
+	FromCity - from city (Lua pCity object)
+	ToCivilizationType - to player civ type (int)
+	ToID - to player ID (int)
+	ToCityName - to city name (string)
+	ToCity - to city (Lua pCity object)
+	FromGPT - route yield (int)
+	ToGPT - route yield (int)
+	ToFood - route yield (int)
+	ToProduction - route yield (int)
+	FromScience - route yield (int)
+	ToScience - route yield (int)
+	ToReligion - to religion type (or -1) (int)
+	ToPressure - to pressure (int)
+	FromReligion - from religion type (or -1) (int)
+	FromPressure - from pressure (int)
+	FromTourism - from tourism (int)
+	ToTourism - to tourism (int) --]]
+
+function LordsOfTheGreatGlassRiverOnEventOn(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[9] then
+		local pPlayer = Players[ePlayer]
+		local iInternationalSeaTradeRoutes = InternationalSeaTradeRoutes(ePlayer, pPlayer)
+		local pCapitalCity = pPlayer:GetCapitalCity()
+		
+		for city in pPlayer:Cities() do
+			if city:IsCoastal(10) then
+				city:SetNumRealBuilding(tBuildingsActiveAbilities[2], iInternationalSeaTradeRoutes)
+			end
+		end
+		
+		pCapitalCity:SetNumRealBuilding(tBuildingsActiveAbilities[3], iInternationalSeaTradeRoutes)
+	end
+end
+
+function LordsOfTheGreatGlassRiverOnEventOff(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[9] then
+		local pPlayer = Players[ePlayer]
+	
+		for city in pPlayer:Cities() do
+			city:SetNumRealBuilding(tBuildingsActiveAbilities[2], 0)
+			city:SetNumRealBuilding(tBuildingsActiveAbilities[3], 0)
+		end
+	end
+end
+
+--[[function LordsOfTheGreatGlassRiver(ePlayer)
 	local pPlayer = Players[ePlayer]
 	
 	if pPlayer:IsMinorCiv() then return end
@@ -1872,31 +2076,8 @@ function LordsOfTheGreatGlassRiver(ePlayer)
 		end
 	end
 	
-	--[[		
-	Domain - DomainTypes.DOMAIN_LAND or DomainTypes.DOMAIN_SEA (int)
-	TurnsLeft - turns left before the trade route can be reassigned (int)
-	FromCivilizationType - eg GameInfoTypes.CIVILIZATION_ENGLAND (int)
-	FromID - from player ID (int)
-	FromCityName - from city name (string)
-	FromCity - from city (Lua pCity object)
-	ToCivilizationType - to player civ type (int)
-	ToID - to player ID (int)
-	ToCityName - to city name (string)
-	ToCity - to city (Lua pCity object)
-	FromGPT - route yield (int)
-	ToGPT - route yield (int)
-	ToFood - route yield (int)
-	ToProduction - route yield (int)
-	FromScience - route yield (int)
-	ToScience - route yield (int)
-	ToReligion - to religion type (or -1) (int)
-	ToPressure - to pressure (int)
-	FromReligion - from religion type (or -1) (int)
-	FromPressure - from pressure (int)
-	FromTourism - from tourism (int)
-	ToTourism - to tourism (int)
-	--]]
-end
+	
+end--]]
 
 function LordsOfTheGreatGlassRiverCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
 	local pNewOwner = Players[eNewOwner]
@@ -1941,6 +2122,8 @@ function LordsOfTheGreatGlassRiverNewCity(ePlayer, iX, iY)
 	end
 end
 
+-- function SetDummiesOnUnitActionChange(ePlayer, iUnit)
+
 function InternationalSeaTradeRoutes(ePlayer, pPlayer)
 	local iInternationalSeaTradeRoutes = 0
 	
@@ -1956,12 +2139,10 @@ end
 
 
 -- THIMPHU (CITY ON HILL?)
-function DrukTsendhen(ePlayer)
-	local pPlayer = Players[ePlayer]
+function DrukTsendhenOnEventOn(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[10] then
+		local pPlayer = Players[ePlayer]
 	
-	if pPlayer:IsMinorCiv() then return end
-	
-	if pPlayer:GetEventChoiceCooldown(tEventChoice[10]) ~= 0 then
 		for city in pPlayer:Cities() do
 			-- culture on hill
 			local pPlot = city:Plot()
@@ -1979,14 +2160,16 @@ function DrukTsendhen(ePlayer)
 			
 			city:SetNumRealBuilding(tBuildingsActiveAbilities[5], iDefenseToAdd)
 		end
-	else
-		if pPlayer:CountNumBuildings(tBuildingsActiveAbilities[4]) > 0 or pPlayer:CountNumBuildings(tBuildingsActiveAbilities[5]) > 0 then
-			if not pPlayer:IsEventChoiceActive(tEventChoice[10]) then
-				for city in pPlayer:Cities() do
-					city:SetNumRealBuilding(tBuildingsActiveAbilities[4], 0)
-					city:SetNumRealBuilding(tBuildingsActiveAbilities[5], 0)
-				end
-			end
+	end
+end
+
+function DrukTsendhenOnEventOff(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[10] then
+		local pPlayer = Players[ePlayer]
+	
+		for city in pPlayer:Cities() do
+			city:SetNumRealBuilding(tBuildingsActiveAbilities[4], 0)
+			city:SetNumRealBuilding(tBuildingsActiveAbilities[5], 0)
 		end
 	end
 end
@@ -2040,7 +2223,7 @@ function DrukTsendhenNewCity(ePlayer, iX, iY)
 			end
 			
 			-- culture to defense conversion
-			local iDefenseToAdd = city:GetJONSCulturePerTurn()
+			local iDefenseToAdd = pCity:GetJONSCulturePerTurn()
 			
 			pCity:SetNumRealBuilding(tBuildingsActiveAbilities[5], iDefenseToAdd)
 		end
@@ -2050,24 +2233,24 @@ end
 
 
 -- RAGUSA (CITY ON COAST?)
-function MaritimeSuzerainty(ePlayer)
-	local pPlayer = Players[ePlayer]
-			
-	if pPlayer:IsMinorCiv() then return end
+function MaritimeSuzeraintyOnEventOn(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[31] then
+		local pPlayer = Players[ePlayer]
 	
-	if pPlayer:GetEventChoiceCooldown(tEventChoice[31]) ~= 0 then
 		for city in pPlayer:Cities() do
 			if city:IsCoastal(10) then
 				city:SetNumRealBuilding(tBuildingsActiveAbilities[19], 1)
 			end
 		end
-	else
-		if pPlayer:CountNumBuildings(tBuildingsActiveAbilities[19]) > 0 then
-			if not pPlayer:IsEventChoiceActive(tEventChoice[31]) then
-				for city in pPlayer:Cities() do
-					city:SetNumRealBuilding(tBuildingsActiveAbilities[19], 0)
-				end
-			end
+	end
+end
+
+function MaritimeSuzeraintyOnEventOff(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[31] then
+		local pPlayer = Players[ePlayer]
+	
+		for city in pPlayer:Cities() do
+			city:SetNumRealBuilding(tBuildingsActiveAbilities[19], 0)
 		end
 	end
 end
@@ -2117,12 +2300,10 @@ end
 
 
 -- RISHIKESH (CITY ON RIVER?)
-function HimalayanYogi(ePlayer)
-	local pPlayer = Players[ePlayer]
+function HimalayanYogiOnEventOn(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[15] then
+		local pPlayer = Players[ePlayer]
 	
-	if pPlayer:IsMinorCiv() then return end
-	
-	if pPlayer:GetEventChoiceCooldown(tEventChoice[15]) ~= 0 then
 		for city in pPlayer:Cities() do
 			local pPlot = city:Plot()
 			
@@ -2132,13 +2313,15 @@ function HimalayanYogi(ePlayer)
 				end
 			end
 		end
-	else
-		if pPlayer:CountNumBuildings(tBuildingsActiveAbilities[11]) > 0 then
-			if not pPlayer:IsEventChoiceActive(tEventChoice[15]) then
-				for city in pPlayer:Cities() do
-					city:SetNumRealBuilding(tBuildingsActiveAbilities[11], 0)
-				end
-			end
+	end
+end
+
+function HimalayanYogiOnEventOff(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[15] then
+		local pPlayer = Players[ePlayer]
+	
+		for city in pPlayer:Cities() do
+			city:SetNumRealBuilding(tBuildingsActiveAbilities[11], 0)
 		end
 	end
 end
@@ -2151,9 +2334,9 @@ function HimalayanYogiCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bC
 		
 		if pPlot then
 			if pPlot:IsRiver() then
-				local pCity = pPlot:GetWorkingCity()
+				local pConqCity = pPlot:GetWorkingCity()
 				
-				pCity:SetNumRealBuilding(tBuildingsActiveAbilities[11], 1)
+				pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[11], 1)
 			end
 		end
 	else
@@ -2188,39 +2371,36 @@ end
 
 
 -- ANDORRA (MOUNTAIN NEARBY?)
-function PyreneanPareage(ePlayer)
-	local pPlayer = Players[ePlayer]
+function PyreneanPareageOnEventOn(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[11] then
+		local pPlayer = Players[ePlayer]
 	
-	if pPlayer:IsMinorCiv() then return end
-	
-	if pPlayer:GetEventChoiceCooldown(tEventChoice[11]) ~= 0 then
 		for city in pPlayer:Cities() do
-			if not city:IsHasBuilding(tBuildingsActiveAbilities[6]) then
-				for i = 1, city:GetNumCityPlots() - 1, 1 do
-					local pPlot = city:GetCityIndexPlot(i)
-					
-					if pPlot then
-						local ePlot = pPlot:GetPlotType()
+			local iCityX = city:GetX()
+			local iCityY = city:GetY()
+
+			for i, direction in ipairs(tDirectionTypes) do
+				local pPlot = Map.PlotDirection(iCityX, iCityY, direction)
 						
-						if ePlot == tPlotTypes[3] then
-							city:SetNumRealBuilding(tBuildingsActiveAbilities[6], 1)
-							break
-						end
-					end
-					
-					if i >= 6 then
+				if pPlot then
+					local ePlot = pPlot:GetPlotType()
+						
+					if ePlot == tPlotTypes[3] then
+						city:SetNumRealBuilding(tBuildingsActiveAbilities[6], 1)
 						break
 					end
 				end
-			end
+			end			
 		end
-	else
-		if pPlayer:CountNumBuildings(tBuildingsActiveAbilities[6]) > 0 then
-			if not pPlayer:IsEventChoiceActive(tEventChoice[11]) then
-				for city in pPlayer:Cities() do
-					city:SetNumRealBuilding(tBuildingsActiveAbilities[6], 0)
-				end
-			end
+	end
+end
+
+function PyreneanPareageOnEventOff(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[11] then
+		local pPlayer = Players[ePlayer]
+	
+		for city in pPlayer:Cities() do
+			city:SetNumRealBuilding(tBuildingsActiveAbilities[6], 0)
 		end
 	end
 end
@@ -2231,20 +2411,16 @@ function PyreneanPareageCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, 
 	local pConqCity = pPlot:GetWorkingCity()
 			
 	if pNewOwner:GetEventChoiceCooldown(tEventChoice[11]) ~= 0 then
-		for i = 1, pConqCity:GetNumCityPlots() - 1, 1 do
-			local pPlot = pConqCity:GetCityIndexPlot(i)
-			
+		for i, direction in ipairs(tDirectionTypes) do
+			local pPlot = Map.PlotDirection(iX, iY, direction)
+						
 			if pPlot then
 				local ePlot = pPlot:GetPlotType()
-				
+						
 				if ePlot == tPlotTypes[3] then
 					pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[6], 1)
 					break
 				end
-			end
-			
-			if i >= 6 then
-				break
 			end
 		end
 	else
@@ -2258,24 +2434,16 @@ function PyreneanPareageNewCity(ePlayer, iX, iY)
 	local pPlayer = Players[ePlayer]
 	
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[11]) ~= 0 then
-		local pPlot = Map.GetPlot(iX, iY)
-		
-		if pPlot then
-			local pCity = pPlot:GetWorkingCity()	
+		for i, direction in ipairs(tDirectionTypes) do
+			local pPlot = Map.PlotDirection(iX, iY, direction)
+						
+			if pPlot then
+				local ePlot = pPlot:GetPlotType()
+						
+				if ePlot == tPlotTypes[3] then
+					local pCity = pPlot:GetWorkingCity()	
 			
-			for i = 1, pCity:GetNumCityPlots() - 1, 1 do
-				local pPlotAround = pCity:GetCityIndexPlot(i)
-				
-				if pPlotAround then
-					local ePlot = pPlotAround:GetPlotType()
-					
-					if ePlot == tPlotTypes[3] then
-						pCity:SetNumRealBuilding(tBuildingsActiveAbilities[6], 1)
-						break
-					end
-				end
-				
-				if i >= 6 then
+					pCity:SetNumRealBuilding(tBuildingsActiveAbilities[6], 1)
 					break
 				end
 			end
@@ -2286,26 +2454,26 @@ end
 
 
 -- CANOSSA (TEMPLE BUILT?)
-function ArdentFlameInPiousHeart(ePlayer)
-	local pPlayer = Players[ePlayer]
+function ArdentFlameInPiousHeartOnEventOn(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[12] then
+		local pPlayer = Players[ePlayer]
 	
-	if pPlayer:IsMinorCiv() then return end
-	
-	if pPlayer:GetEventChoiceCooldown(tEventChoice[12]) ~= 0 then
 		for city in pPlayer:Cities() do
-			if city:IsHasBuilding(tBuildingsActiveAbilities[8]) then
+			if city:HasBuildingClass(tBuildingClasses[1]) then
 				city:SetNumRealBuilding(tBuildingsActiveAbilities[7], 1)
 			else
 				city:SetNumRealBuilding(tBuildingsActiveAbilities[7], 0)
 			end
 		end
-	else
-		if pPlayer:CountNumBuildings(tBuildingsActiveAbilities[7]) > 0 then
-			if not pPlayer:IsEventChoiceActive(tEventChoice[12]) then
-				for city in pPlayer:Cities() do
-					city:SetNumRealBuilding(tBuildingsActiveAbilities[7], 0)
-				end
-			end
+	end
+end
+
+function ArdentFlameInPiousHeartOnEventOff(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[12] then
+		local pPlayer = Players[ePlayer]
+	
+		for city in pPlayer:Cities() do
+			city:SetNumRealBuilding(tBuildingsActiveAbilities[7], 0)
 		end
 	end
 end
@@ -2316,7 +2484,7 @@ function ArdentFlameInPiousHeartCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner
 	local pConqCity = pPlot:GetWorkingCity()
 			
 	if pNewOwner:GetEventChoiceCooldown(tEventChoice[12]) ~= 0 then
-		if pConqCity:IsHasBuilding(tBuildingsActiveAbilities[8]) then
+		if pConqCity:HasBuildingClass(tBuildingClasses[1]) then
 			pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[7], 1)
 		else
 			pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[7], 0)
@@ -2337,29 +2505,119 @@ function ArdentFlameInPiousHeartNewCity(ePlayer, iX, iY)
 		if pPlot then
 			local pCity = pPlot:GetWorkingCity()	
 
-			if pCity:IsHasBuilding(tBuildingsActiveAbilities[8]) then
+			if pCity:HasBuildingClass(tBuildingClasses[1]) then
 				pCity:SetNumRealBuilding(tBuildingsActiveAbilities[7], 1)
-			else
-				pCity:SetNumRealBuilding(tBuildingsActiveAbilities[7], 0)
 			end
 		end
 	end
 end
 
 function ArdentFlameInPiousHeartBuildingConstruction(ePlayer, eCity, eBuilding, bGold, bFaith) 
-	if eBuilding == tBuildingsActiveAbilities[8] then
+	if GameInfo.Buildings[eBuilding].BuildingClass == 'BUILDINGCLASS_TEMPLE' then
 		local pPlayer = Players[ePlayer]
 	
 		if pPlayer:GetEventChoiceCooldown(tEventChoice[12]) ~= 0 then
-			local pPlot = Map.GetPlot(iX, iY)
-			
-			if pPlot then
-				local pCity = pPlot:GetWorkingCity()	
+			local pCity = pPlayer:GetCityByID(eCity)
 
-				pCity:SetNumRealBuilding(tBuildingsActiveAbilities[7], 1)
+			pCity:SetNumRealBuilding(tBuildingsActiveAbilities[7], 1)
+		end
+	end
+end
+
+
+
+-- WOOTEI-NIICIE (CARAVANSARY BUILT? HORSES NEARBY?)
+function PeopleOfTheBlueSkyOnEventOn(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[43] then
+		local pPlayer = Players[ePlayer]
+	
+		for city in pPlayer:Cities() do
+			if city:HasBuildingClass(tBuildingClasses[2]) then
+				city:SetNumRealBuilding(tBuildingsActiveAbilities[8], 1)
+			else
+				city:SetNumRealBuilding(tBuildingsActiveAbilities[8], 0)
 			end
 		end
 	end
+end
+
+function PeopleOfTheBlueSkyOnEventOff(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[43] then
+		local pPlayer = Players[ePlayer]
+	
+		for city in pPlayer:Cities() do
+			city:SetNumRealBuilding(tBuildingsActiveAbilities[8], 0)
+		end
+	end
+end
+
+function PeopleOfTheBlueSkyCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
+	local pNewOwner = Players[eNewOwner]
+	local pPlot = Map.GetPlot(iX, iY)
+	local pConqCity = pPlot:GetWorkingCity()
+			
+	if pNewOwner:GetEventChoiceCooldown(tEventChoice[43]) ~= 0 then
+		if pConqCity:HasBuildingClass(tBuildingClasses[2]) then
+			pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[8], 1)
+		else
+			pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[8], 0)
+		end
+	else
+		if not pNewOwner:IsEventChoiceActive(tEventChoice[43]) then
+			pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[8], 0)
+		end
+	end
+end
+
+function PeopleOfTheBlueSkyNewCity(ePlayer, iX, iY)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[43]) ~= 0 then
+		local pPlot = Map.GetPlot(iX, iY)
+		
+		if pPlot then
+			local pCity = pPlot:GetWorkingCity()	
+
+			if pCity:HasBuildingClass(tBuildingClasses[2]) then
+				pCity:SetNumRealBuilding(tBuildingsActiveAbilities[8], 1)
+			end
+		end
+	end
+end
+
+function PeopleOfTheBlueSkyBuildingConstruction(ePlayer, eCity, eBuilding, bGold, bFaith) 
+	if GameInfo.Buildings[eBuilding].BuildingClass == 'BUILDINGCLASS_CARAVANSARY' then
+		local pPlayer = Players[ePlayer]
+	
+		if pPlayer:GetEventChoiceCooldown(tEventChoice[43]) ~= 0 then
+			local pCity = pPlayer:GetCityByID(eCity)
+
+			pCity:SetNumRealBuilding(tBuildingsActiveAbilities[8], 1)
+		end
+	end
+end
+
+
+
+-- KARYES PART 2
+function MonasteriesOnEventOn(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[39] then
+		PlaceDummiesForMonasteries()
+	end
+end
+
+function MonasteriesOnEventOff(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[39] then
+		PlaceDummiesForMonasteries()
+	end
+end
+
+function MonasteriesCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
+	CheckAllMonasteries()
+end
+
+function MonasteriesNewCity(ePlayer, iX, iY)
+	CheckAllMonasteries()
 end
 
 
@@ -2847,7 +3105,6 @@ function FeatureCutByQuebec(iX, iY, eOwner, eOldFeature, eNewFeature)
 		local pPlayer = Players[eOwner]
 		
 		if pPlayer == nil then
-			print("QUEBEC-city founded?")
 			pPlayer = Players[Map.GetPlot(iX, iY):GetOwner()]
 		end
 
@@ -3299,14 +3556,31 @@ function SettingUpSpecificEvents()
 				GameEvents.BarbariansCampCleared.Add(BarbCampForLevuka)
 				
 			
-			-- improvements
+			-- improvements/resources
 			elseif sMinorCivType == "MINOR_CIV_BRUSSELS" then	
 				tLostCities["eLostBrussels"] = eCS
-				GameEvents.BuildFinished.Add(BuiltMarsh)	
+				GameEvents.BuildFinished.Add(BuiltMarsh)
 			elseif sMinorCivType == "MINOR_CIV_CAHOKIA" then	
 				tLostCities["eLostCahokia"] = eCS
 			elseif sMinorCivType == "MINOR_CIV_TIWANAKU" then	
 				tLostCities["eLostTiwanaku"] = eCS
+			elseif sMinorCivType == "MINOR_CIV_KARYES" then	
+				tLostCities["eLostKaryes"] = eCS
+				GameEvents.BuildFinished.Add(BuiltMonastery)
+				GameEvents.TileImprovementChanged.Add(MonasteryPillagedOrDestroyed)
+				GameEvents.EventChoiceActivated.Add(MonasteriesOnEventOn)
+				GameEvents.EventChoiceEnded.Add(MonasteriesOnEventOff)
+				GameEvents.CityCaptureComplete.Add(MonasteriesCapture)
+				GameEvents.PlayerCityFounded.Add(MonasteriesNewCity)
+
+				CheckAllMonasteries()
+			elseif sMinorCivType == "MINOR_CIV_SGAANG" then	
+				tLostCities["eLostSGaang"] = eCS
+			elseif sMinorCivType == "MINOR_CIV_NYARYANA_MARQ" then	
+				tLostCities["eLostNyaryanaMarq"] = eCS
+			elseif sMinorCivType == "MINOR_CIV_ADEJE" then	
+				tLostCities["eLostAdeje"] = eCS
+				GameEvents.BuildFinished.Add(BuiltDogoCanario)
 			
 
 			-- trade routes bonuses
@@ -3371,35 +3645,50 @@ function SettingUpSpecificEvents()
 			-- setting up specific building conditions
 			elseif sMinorCivType == "MINOR_CIV_OC_EO" then	
 				tLostCities["eLostOcEo"] = eCS
-				GameEvents.PlayerDoTurn.Add(LordsOfTheGreatGlassRiver)
+				--GameEvents.PlayerDoTurn.Add(LordsOfTheGreatGlassRiver)
+				GameEvents.EventChoiceActivated.Add(LordsOfTheGreatGlassRiverOnEventOn)
+				GameEvents.EventChoiceEnded.Add(LordsOfTheGreatGlassRiverOnEventOff)
 				GameEvents.CityCaptureComplete.Add(LordsOfTheGreatGlassRiverCapture)
 				GameEvents.PlayerCityFounded.Add(LordsOfTheGreatGlassRiverNewCity)
+				Events.UnitActionChanged.Add(LordsOfTheGreatGlassRiverActionChange)
 			elseif sMinorCivType == "MINOR_CIV_THIMPHU" then
 				tLostCities["eLostThimphu"] = eCS
-				GameEvents.PlayerDoTurn.Add(DrukTsendhen)
+				GameEvents.EventChoiceActivated.Add(DrukTsendhenOnEventOn)
+				GameEvents.EventChoiceEnded.Add(DrukTsendhenOnEventOff)
 				GameEvents.CityCaptureComplete.Add(DrukTsendhenCapture)
 				GameEvents.PlayerCityFounded.Add(DrukTsendhenNewCity)
 			elseif sMinorCivType == "MINOR_CIV_RAGUSA" then
 				tLostCities["eLostRagusa"] = eCS
-				GameEvents.PlayerDoTurn.Add(MaritimeSuzerainty)
+				GameEvents.EventChoiceActivated.Add(MaritimeSuzeraintyOnEventOn)
+				GameEvents.EventChoiceEnded.Add(MaritimeSuzeraintyOnEventOff)
 				GameEvents.CityCaptureComplete.Add(MaritimeSuzeraintyCapture)
 				GameEvents.PlayerCityFounded.Add(MaritimeSuzeraintyNewCity)
 			elseif sMinorCivType == "MINOR_CIV_RISHIKESH" then
 				tLostCities["eLostRishikesh"] = eCS
-				GameEvents.PlayerDoTurn.Add(HimalayanYogi)
+				GameEvents.EventChoiceActivated.Add(HimalayanYogiOnEventOn)
+				GameEvents.EventChoiceEnded.Add(HimalayanYogiOnEventOff)
 				GameEvents.CityCaptureComplete.Add(HimalayanYogiCapture)
 				GameEvents.PlayerCityFounded.Add(HimalayanYogiNewCity)
 			elseif sMinorCivType == "MINOR_CIV_ANDORRA" then
 				tLostCities["eLostAndorra"] = eCS
-				GameEvents.PlayerDoTurn.Add(PyreneanPareage)
+				GameEvents.EventChoiceActivated.Add(PyreneanPareageOnEventOn)
+				GameEvents.EventChoiceEnded.Add(PyreneanPareageOnEventOff)
 				GameEvents.CityCaptureComplete.Add(PyreneanPareageCapture)
 				GameEvents.PlayerCityFounded.Add(PyreneanPareageNewCity)
 			elseif sMinorCivType == "MINOR_CIV_CANOSSA" then
 				tLostCities["eLostCanossa"] = eCS
-				GameEvents.PlayerDoTurn.Add(ArdentFlameInPiousHeart)
+				GameEvents.EventChoiceActivated.Add(ArdentFlameInPiousHeartOnEventOn)
+				GameEvents.EventChoiceEnded.Add(ArdentFlameInPiousHeartOnEventOff)
 				GameEvents.CityCaptureComplete.Add(ArdentFlameInPiousHeartCapture)
 				GameEvents.PlayerCityFounded.Add(ArdentFlameInPiousHeartNewCity)
 				GameEvents.CityConstructed.Add(ArdentFlameInPiousHeartBuildingConstruction)
+			elseif sMinorCivType == "MINOR_CIV_WOOTEI_NIICIE" then
+				tLostCities["eLostWooteiNiicie"] = eCS
+				GameEvents.EventChoiceActivated.Add(PeopleOfTheBlueSkyOnEventOn)
+				GameEvents.EventChoiceEnded.Add(PeopleOfTheBlueSkyOnEventOff)
+				GameEvents.CityCaptureComplete.Add(PeopleOfTheBlueSkyCapture)
+				GameEvents.PlayerCityFounded.Add(PeopleOfTheBlueSkyNewCity)
+				GameEvents.CityConstructed.Add(PeopleOfTheBlueSkyBuildingConstruction)
 			
 			
 			-- new/exclusive units

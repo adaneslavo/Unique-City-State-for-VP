@@ -1,0 +1,9 @@
+<Asset>
+  <Mesh file="monolith_amer_er_hb.gr2" source="Max" />
+  <Texture file="Landmark_amr_er_hb.dds" source="Max" />
+  <Texture file="Landmark_AMR_SREF.dds" source="Max" />
+  <Texture file="Landmark_Decal_AMR_D.dds" source="Max" />
+  <Texture file="Landmark_Decal_AMR_H.dds" source="Max" />
+  <Texture file="Landmark_Decal_AMR_S.dds" source="Max" />
+  <Texture file="Generic_Grey_8.dds" source="Max" />
+</Asset>
