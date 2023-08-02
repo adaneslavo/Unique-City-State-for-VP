@@ -332,6 +332,22 @@ if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
 			
 	Events.AddPopupTextEvent(vCityPosition, "[COLOR_MAGENTA]+" .. iCultureLiberated .. " [ICON_CULTURE][ENDCOLOR]", 1)
 end--]]
+
+
+
+-- GREAT TEST!!!
+--[[function AddCS(ePlayer)
+	local pPlayer = Players[ePlayer]
+	local i = 0
+
+	for unit in pPlayer:Units() do
+		unit:SetBaseCombatStrength(unit:GetBaseCombatStrength() + 10)
+		i = i + 1
+
+		if i == 5 then break end
+	end
+end
+GameEvents.PlayerDoTurn.Add(AddCS)--]]
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- Resetting cooldown for active events for civs passing the threshold and setting new events

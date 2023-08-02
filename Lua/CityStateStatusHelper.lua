@@ -444,34 +444,39 @@ function GetCityStateStatusToolTip( majorPlayerID, minorPlayerID, isFullInfo )
 				end
 			end
 		end
+
 		-- Status
 		tip = tip .. " " .. GetCityStateStatusText( majorPlayerID, minorPlayerID )
 		table_insert( tips, tip )
 		table_insert( tips, newLine .. L("TXT_KEY_CS_ACTIVE_BONUS_HEADER"))
 		table_insert( tips, L("TXT_KEY_CSTRAIT_" .. GameInfo.MinorCivilizations[minorPlayer:GetMinorCivType()].Type))
 		
-		 -- Traits and Personalities
-        local eMinorTrait = GetCityStateTraitKey(minorPlayerID)
-        local eMinorPersonality = minorPlayer:GetPersonality()
+		-- Traits and Personalities
+		local bShowPassives = GameInfo.COMMUNITY{Type="UCS-PASSIVE"}()
+
+        if bShowPassives then
+			local eMinorTrait = GetCityStateTraitKey(minorPlayerID)
+			local eMinorPersonality = minorPlayer:GetPersonality()
       
-        local sMinorPersonalityStr = ""
-        if eMinorPersonality == MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_FRIENDLY then
-            sMinorPersonalityStr = "FRIENDLY"
-        elseif eMinorPersonality == MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_NEUTRAL then
-            sMinorPersonalityStr = "NEUTRAL"
-        elseif eMinorPersonality == MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_HOSTILE then
-            sMinorPersonalityStr = "HOSTILE"
-        end
+			local sMinorPersonalityStr = ""
+			if eMinorPersonality == MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_FRIENDLY then
+				sMinorPersonalityStr = "FRIENDLY"
+			elseif eMinorPersonality == MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_NEUTRAL then
+				sMinorPersonalityStr = "NEUTRAL"
+			elseif eMinorPersonality == MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_HOSTILE then
+				sMinorPersonalityStr = "HOSTILE"
+			end
 		
-		local sMinorTraitText = ""
-		local sMinorPersonalityTraitText = ""
+			local sMinorTraitText = ""
+			local sMinorPersonalityTraitText = ""
 		
-		sMinorTraitText = L("TXT_KEY_" .. eMinorTrait .. "_BONUS")
-		sMinorPersonalityTraitText = L("TXT_KEY_" .. eMinorTrait .. "_" .. sMinorPersonalityStr .. "_BONUS")
+			sMinorTraitText = L("TXT_KEY_" .. eMinorTrait .. "_BONUS")
+			sMinorPersonalityTraitText = L("TXT_KEY_" .. eMinorTrait .. "_" .. sMinorPersonalityStr .. "_BONUS")
 		
-		table_insert( tips, L("TXT_KEY_CS_PASSIVE_BONUS_HEADER"))
-		table_insert( tips, sMinorTraitText)
-		table_insert( tips, sMinorPersonalityTraitText .. newLine)
+			table_insert( tips, L("TXT_KEY_CS_PASSIVE_BONUS_HEADER"))
+			table_insert( tips, sMinorTraitText)
+			table_insert( tips, sMinorPersonalityTraitText .. newLine)
+		end
 		
 		-- Minor Civ UU gifts
 		if minorPlayer:IsMinorCivHasUniqueUnit() then
