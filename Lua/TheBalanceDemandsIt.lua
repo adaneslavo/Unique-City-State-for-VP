@@ -83,7 +83,22 @@ local tPromotionsActiveAbilities = {
 	GameInfoTypes.PROMOTION_ISKANWAYA, -- 1
 	GameInfoTypes.PROMOTION_KABUL,
 	GameInfoTypes.PROMOTION_GUARDIA_SVIZZERA,
-	GameInfoTypes.PROMOTION_KATZBALGER
+	GameInfoTypes.PROMOTION_KATZBALGER,
+	GameInfoTypes.PROMOTION_SIKH,
+	GameInfoTypes.PROMOTION_SIKH_SWORD, -- 6
+	GameInfoTypes.PROMOTION_SIKH_KNIFE,
+	GameInfoTypes.PROMOTION_SIKH_DISC,
+	GameInfoTypes.PROMOTION_SIKH_BOW,
+	GameInfoTypes.PROMOTION_SIKH_TRIDENT,
+	GameInfoTypes.PROMOTION_SIKH_DAGGER, -- 11
+	GameInfoTypes.PROMOTION_SIKH_MUSKET,
+	GameInfoTypes.PROMOTION_SIKH_SHIELD,
+	GameInfoTypes.PROMOTION_SIKH_CHAINMAIL,
+	GameInfoTypes.PROMOTION_SIKH_ROBE,
+	GameInfoTypes.PROMOTION_SIKH_SHOES, -- 16
+	GameInfoTypes.PROMOTION_SIKH_TURBAN,
+	GameInfoTypes.PROMOTION_SIKH_MARTIAL_ART,
+	GameInfoTypes.PROMOTION_SIKH_BRACELET
 }
 
 local tBuildingsPassiveAbilities = {
@@ -138,6 +153,14 @@ local tImprovementsRegular = {
 	GameInfoTypes.IMPROVEMENT_PLANT_JUNGLE,
 	GameInfoTypes.IMPROVEMENT_DOGO_CANARIO,
 	GameInfoTypes.IMPROVEMENT_MONASTERY
+}
+
+local tImprovementsUCS = {
+	GameInfoTypes.IMPROVEMENT_MOUND,
+	GameInfoTypes.IMPROVEMENT_SUNK_COURT,
+	GameInfoTypes.IMPROVEMENT_MONASTERY,
+	GameInfoTypes.IMPROVEMENT_TOTEM_POLE,
+	GameInfoTypes.IMPROVEMENT_CHUM
 }
 
 local tImprovementsGreatPeople = {
@@ -332,22 +355,6 @@ if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
 			
 	Events.AddPopupTextEvent(vCityPosition, "[COLOR_MAGENTA]+" .. iCultureLiberated .. " [ICON_CULTURE][ENDCOLOR]", 1)
 end--]]
-
-
-
--- GREAT TEST!!!
---[[function AddCS(ePlayer)
-	local pPlayer = Players[ePlayer]
-	local i = 0
-
-	for unit in pPlayer:Units() do
-		unit:SetBaseCombatStrength(unit:GetBaseCombatStrength() + 10)
-		i = i + 1
-
-		if i == 5 then break end
-	end
-end
-GameEvents.PlayerDoTurn.Add(AddCS)--]]
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- Resetting cooldown for active events for civs passing the threshold and setting new events
@@ -1547,6 +1554,33 @@ function BarbCampForLevuka(iX, iY, ePlayer)
 		end
 	end
 end
+
+
+
+-- OVERALL IMPROVEMENT CHANGE RESTRICTION
+function CanWeSubstituteImprovement(ePlayer, eUnit, iX, iY, eBuild)
+	local pPlot = Map.GetPlot(iX, iY)
+	local eCurrentImprovementType = pPlot:GetImprovementType()
+	
+	for i, eimprovement in ipairs(tImprovementsUCS) do
+		print("SUBSTITUTE", eimprovement, eCurrentImprovementType)
+		
+		if  eimprovement == eCurrentImprovementType then
+			local eResourceTypeUnderneath = pPlot:GetResourceType()
+			
+			if eResourceTypeUnderneath ~= -1 then
+				print("SUBSTITUTE-UCS-ALLOW", eResourceTypeUnderneath)
+				return true
+			else
+				print("SUBSTITUTE-UCS-DENY", eResourceTypeUnderneath)
+				return false
+			end
+		end
+	end
+
+	return true
+end
+GameEvents.PlayerCanBuild.Add(CanWeSubstituteImprovement)
 
 
 
@@ -3552,6 +3586,45 @@ function CulturePerWorker(ePlayer)
 		pPlayer:DoInstantYield(GameInfoTypes.YIELD_CULTURE, iWorkers, true, pCapital:GetID())
 	end
 end
+
+
+
+-- LAHORE (FUTURE) (INCREASING UNIT CS)
+function NihangPromoted(eUnitOwner, eUnit, ePromotion)
+	--[[ 
+	PROMOTION_SIKH = 5
+	PROMOTION_SIKH_SWORD = 6
+	PROMOTION_SIKH_KNIFE = 7
+	PROMOTION_SIKH_DISC = 8
+	PROMOTION_SIKH_BOW = 9
+	PROMOTION_SIKH_TRIDENT = 10
+	PROMOTION_SIKH_DAGGER = 11
+	PROMOTION_SIKH_MUSKET = 12
+	PROMOTION_SIKH_SHIELD = 13
+	PROMOTION_SIKH_CHAINMAIL = 14
+	PROMOTION_SIKH_ROBE = 15
+	PROMOTION_SIKH_SHOES = 16
+	PROMOTION_SIKH_TURBAN = 17
+	PROMOTION_SIKH_MARTIAL_ART = 18
+	PROMOTION_SIKH_BRACELET = 19 --]]
+	
+	if ePromotion == tPromotionsActiveAbilities[6] or ePromotion == tPromotionsActiveAbilities[13] 
+		or ePromotion == tPromotionsActiveAbilities[15] or ePromotion == tPromotionsActiveAbilities[17] then
+		unit:SetBaseCombatStrength(unit:GetBaseCombatStrength() + 1)
+	elseif ePromotion == tPromotionsActiveAbilities[14] then
+		unit:SetBaseCombatStrength(unit:GetBaseCombatStrength() + 2)
+	elseif ePromotion == tPromotionsActiveAbilities[7] or ePromotion == tPromotionsActiveAbilities[9]
+		or ePromotion == tPromotionsActiveAbilities[10] or ePromotion == tPromotionsActiveAbilities[16] then
+		unit:SetBaseCombatStrength(unit:GetBaseCombatStrength() + 3)
+	elseif ePromotion == tPromotionsActiveAbilities[11] or ePromotion == tPromotionsActiveAbilities[12] or ePromotion == tPromotionsActiveAbilities[18] then
+		unit:SetBaseCombatStrength(unit:GetBaseCombatStrength() + 4)
+	elseif ePromotion == tPromotionsActiveAbilities[19] then
+		unit:SetBaseCombatStrength(unit:GetBaseCombatStrength() + 6)
+	elseif ePromotion == tPromotionsActiveAbilities[5] or ePromotion == tPromotionsActiveAbilities[8] then
+		-- nothing
+	end
+end
+GameEvents.UnitPromoted.Add(NihangPromoted)
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- INITIALIZATION
