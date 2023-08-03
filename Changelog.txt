@@ -15,7 +15,9 @@ Changelog:
 	- new Promotions:
 		- Master of Cold Waters (exclusive for SGaang Gwaay);
 		- Climber of Mount Athos (exclusive for Karyes);
-	- now CSs' passive abilities are hidden by default making the tootlip much more pleasant to watch; you can enable them back in the Bonuses.sql file changing "UCS-PASSIVE" value from 0 to 1;
+	- now CSs' passive abilities are hidden by default making the tootlip much more pleasant to watch; you can enable them back in the Bonuses.sql file changing "UCS-PASSIVES-SHOW" value from 0 to 1;
+	- now CSs' passive can be enabled (disbaled by default) in the Bonuses.sql file changing "UCS-PASSIVES-ON" value from 0 to 1;
+	- diplo actions in CS territory make them expand their border with 1/10th of the Influence value (copied the mechanics from Civ 6);
 - balanced:
 	- Oc Eo: added +20% Sea Trade Route Range;
 	- Clermont promotions changes:

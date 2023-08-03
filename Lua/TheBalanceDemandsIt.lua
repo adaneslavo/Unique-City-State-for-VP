@@ -344,6 +344,7 @@ local tUniqueUnitsFromMinors = {}
 	}
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
+-- RNG
 function RandomNumberBetween(iLower, iHigher)
     return (Game.Rand((iHigher + 1) - iLower, "")) + iLower
 end
@@ -351,6 +352,17 @@ end
 -- position calculator for custom positioning of floating text prompts (yields, additional info)
 function PositionCalculator(i1, i2)
 	return HexToWorld(ToHexFromGrid(Vector2(i1, i2)))
+end
+
+-- Notifications for CS passive gifts
+function UnitNotificationLoad(pMinorPlayer, pMajorPlayer, sUnitName, eUnitType)
+	pMajorCapitalCity = pMajorPlayer:GetCapitalCity()
+	pMinorCapitalCity = pMinorPlayer:GetCapitalCity()
+	sMinorCityName = pMinorCapitalCity:GetName()
+
+	if pMajorPlayer:IsHuman() then
+		pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_GREAT_PERSON_ACTIVE_PLAYER, L("TXT_KEY_UCS_PASSIVES_GIFTS", sUnitName, sMinorCityName), L("TXT_KEY_UCS_PASSIVES_GIFTS_TITLE"), pMajorCapitalCity:GetX(), pMajorCapitalCity:GetY(), eUnitType, false)
+	end
 end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
@@ -453,6 +465,51 @@ function MovingSwiftly(eResolution, eProposer, eChoice, bEnact, bPassed)
 end
 GameEvents.ResolutionResult.Add(MovingSwiftly)
 
+-- Border  expansion on Diplo Actions
+function DiplomaticExpansion(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKillerPlayer)
+	if eKillerPlayer ~= -1 then return end
+	
+	local pPlayer = Players[eUnitOwner]
+
+	if pPlayer:IsMinorCiv() then return end
+	
+	local pUnit = pPlayer:GetUnitByID(eUnit)
+			
+	-- event triggers twice on each death, so this should prevent it
+	if bBlockedUnitFromThePreKillEvent == true then
+		bBlockedUnitFromThePreKillEvent = false
+	else
+		bBlockedUnitFromThePreKillEvent = true
+	end
+	
+	if bBlockedUnitFromThePreKillEvent then
+		if pUnit:GetUnitCombatType() == GameInfoTypes.UNITCOMBAT_DIPLOMACY or pUnit:GetUnitType() == tUnitsGreatPeople[7] then
+			local iInfluence = 0
+			local iModifier = 0
+
+			for promotion in DB.Query("SELECT UnitPromotions.ID, UnitPromotions.DiploMissionInfluence FROM UnitPromotions WHERE DiploMissionInfluence > 0") do
+				if pUnit:IsHasPromotion(promotion.ID) then
+					iInfluence = iInfluence + promotion.DiploMissionInfluence
+				end
+			end
+
+			for policy in DB.Query("SELECT Policies.ID, Policies.MissionInfluenceModifier FROM Policies WHERE MissionInfluenceModifier > 0") do
+				if pPlayer:HasPolicy(policy.ID) then
+					iModifier = iModifier + policy.MissionInfluenceModifier
+				end
+			end
+
+			local iTotalInfluence = iInfluence * (1 + (iModifier / 100))
+			local iBorderGrowthBonus = iTotalInfluence / 10
+			local pPlot = Map.GetPlot(iX, iY)
+			local pMinorCity = pPlot:GetWorkingCity()
+
+			pMinorCity:ChangeJONSCultureStored(iBorderGrowthBonus)
+		end
+	end
+end
+GameEvents.UnitPrekill.Add(DiplomaticExpansion)
+
 -- Setting the specicifc removing conditions for UCSTI
 function CanWeSubstituteImprovement(ePlayer, eUnit, iX, iY, eBuild)
 	local pPlot = Map.GetPlot(iX, iY)
@@ -460,16 +517,12 @@ function CanWeSubstituteImprovement(ePlayer, eUnit, iX, iY, eBuild)
 	
 	if eCurrentImprovementType ~= -1 then
 		for i, eimprovement in ipairs(tImprovementsUCS) do
-			print("SUBSTITUTE", eimprovement, eCurrentImprovementType)
-		
 			if  eimprovement == eCurrentImprovementType then
 				local eResourceTypeUnderneath = pPlot:GetResourceType()
 			
 				if eResourceTypeUnderneath ~= -1 then
-					print("SUBSTITUTE-UCS-ALLOW", eResourceTypeUnderneath)
 					return true
 				else
-					print("SUBSTITUTE-UCS-DENY", eResourceTypeUnderneath)
 					return false
 				end
 			end
@@ -477,17 +530,6 @@ function CanWeSubstituteImprovement(ePlayer, eUnit, iX, iY, eBuild)
 	end
 
 	return true
-end
------------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------------
-function UnitNotificationLoad(pMinorPlayer, pMajorPlayer, sUnitName, eUnitType)
-	pMajorCapitalCity = pMajorPlayer:GetCapitalCity()
-	pMinorCapitalCity = pMinorPlayer:GetCapitalCity()
-	sMinorCityName = pMinorCapitalCity:GetName()
-
-	if pMajorPlayer:IsHuman() then
-		pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_GREAT_PERSON_ACTIVE_PLAYER, L("TXT_KEY_UCS_PASSIVES_GIFTS", sUnitName, sMinorCityName), L("TXT_KEY_UCS_PASSIVES_GIFTS_TITLE"), pMajorCapitalCity:GetX(), pMajorCapitalCity:GetY(), eUnitType, false)
-	end
 end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
@@ -2671,7 +2713,7 @@ GameEvents.CityCanTrain.Add(TradeWithFaith)
 
 function DummyTechHorsebackRiding(eTeam, eTech, iChange)
 	if eTech ~= tTechnologyTypes[4] then return end
-	print("TECH_DUMMY_HORSEBACK_RIDING")
+	
 	local pActivePlayer = Players[Game.GetActivePlayer()]
 	
 	if pActivePlayer:IsMinorCiv() then return end
@@ -2679,8 +2721,6 @@ function DummyTechHorsebackRiding(eTeam, eTech, iChange)
 	local pActiveTeam = Teams[pActivePlayer:GetTeam()]
 	
 	pActiveTeam:SetHasTech(tTechnologyTypes[5], true)
-
-	print("TECH_DUMMY_HORSEBACK_RIDING_SET")
 end
 
 
@@ -3618,7 +3658,7 @@ function NihangPromoted(eUnitOwner, eUnit, ePromotion)
 		-- nothing
 	end
 end
-GameEvents.UnitPromoted.Add(NihangPromoted)
+--GameEvents.UnitPromoted.Add(NihangPromoted)
 
 function RiposteFromNihang(eAttackingPlayer, eAttackingUnit, iAttackerDamage, iAttackerFinalDamage, iAttackerMaxHP, eDefendingPlayer, eDefendingUnit, iDefenderDamage, iDefenderFinalDamage, iDefenderMaxHP, eInterceptingPlayer, eInterceptingUnit, iInterceptorDamage, iX, iY)
 	if not ((iAttackerFinalDamage < iAttackerMaxHP) and (iDefenderFinalDamage < iDefenderMaxHP)) then return end
@@ -3626,37 +3666,42 @@ function RiposteFromNihang(eAttackingPlayer, eAttackingUnit, iAttackerDamage, iA
 	local pDefendingPlayer = Players[eDefendingPlayer]
 	local pDefendingUnit = pDefendingPlayer:GetUnitByID(eDefendingUnit)
 		
-	--if pDefendingUnit and pDefendingUnit:IsHasPromotion(tPromotionsActiveAbilities[10]) then
+	if pDefendingUnit and pDefendingUnit:IsHasPromotion(tPromotionsActiveAbilities[10]) then
 		local pAttackingPlayer = Players[eAttackingPlayer]
 		local pAttackingUnit = pAttackingPlayer:GetUnitByID(eAttackingUnit)
 		
 		if pAttackingUnit then
 			local iRiposteDamage = 0.2 * iDefenderDamage
+			local iTotalDamageWithRiposte = iAttackerFinalDamage + iRiposteDamage
 			
 			pAttackingUnit:ChangeDamage(iRiposteDamage)
 
 			if pAttackingPlayer:IsHuman() and pAttackingPlayer:IsTurnActive() then
-				local vUnitPosition = PositionCalculator(pAttackingUnit:GetX(), pAttackingUnit:GetY())
-			
-				Events.AddPopupTextEvent(vUnitPosition, "[COLOR:6:82:255:255]Trehsool Mukh used![ENDCOLOR]", 0.5)
+				local vUnitPosition = PositionCalculator(iX, iY)
+				
+				Events.AddPopupTextEvent(vUnitPosition, "[COLOR:6:82:255:255]Trehsool Mukh used![ENDCOLOR]", 1.3)
+
+				if iTotalDamageWithRiposte >= iAttackerMaxHP then
+					pAttackingPlayer:AddNotification(NotificationTypes.NOTIFICATION_UNIT_DIED, L("TXT_KEY_UCS_NIHANG_RIPOSTED"), L("TXT_KEY_UCS_NIHANG_RIPOSTED_TITLE"), iX, iY, pAttackingUnit:GetUnitType())		
+				end
 			end
 
-			if pDefendingPlayer:IsHuman() and pDefendingPlayer:IsTurnActive() then
-				local vUnitPosition = PositionCalculator(pAttackingUnit:GetX(), pAttackingUnit:GetY())
-			
-				Events.AddPopupTextEvent(vUnitPosition, "[COLOR:6:82:255:255]Trehsool Mukh used![ENDCOLOR]", 0.5)
+			if pDefendingPlayer:IsHuman() then
+				local vUnitPosition = PositionCalculator(iX, iY)
+				
+				Events.AddPopupTextEvent(vUnitPosition, "[COLOR:6:82:255:255]Trehsool Mukh used![ENDCOLOR]", 1.3)
 			end
 		end
-	--end
+	end
 end
-GameEvents.CombatEnded.Add(RiposteFromNihang)
+--GameEvents.CombatEnded.Add(RiposteFromNihang)
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- INITIALIZATION
 function SettingUpSpecificEvents()
-	--local bEnablePassives = GameInfo.COMMUNITY{Type="UCS-PASSIVES-ON"}()
+	local bEnablePassives = GameInfo.Community{Type="UCS-PASSIVES-ON"}().Value == 1
 
-	--if bEnablePassives then
+	if bEnablePassives then
 		GameEvents.PlayerCityFounded.Add(MaritimeCityStatesBonuses)
 		GameEvents.PlayerLiberated.Add(MaritimeCityStatesBonusesLiberated)
 		GameEvents.PlayerDoTurn.Add(FreeWorkerFromCityState)
@@ -3672,7 +3717,7 @@ function SettingUpSpecificEvents()
 		GameEvents.PlayerCityFounded.Add(MilitaristicCityStatesBonuses)
 		GameEvents.PlayerLiberated.Add(MilitaristicCityStatesBonusesLiberated)
 		GameEvents.CityTrained.Add(CityStateTrainedUU)
-	--end
+	end
 	
 	-- active abilities
 	for eCS, pCS in pairs(Players) do

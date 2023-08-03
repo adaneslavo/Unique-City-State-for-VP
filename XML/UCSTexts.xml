@@ -28,6 +28,14 @@
 		<Row Tag="TXT_KEY_UCS_PASSIVES_GIFTS_TITLE">
 			<Text>Civilians arrived from friendly City-State!</Text>
 		</Row>
+
+		<!-- notifications for unit actions -->
+		<Row Tag="TXT_KEY_UCS_NIHANG_RIPOSTED">
+			<Text>Your unit wasn't aware of [COLOR:6:82:255:255]Nihang[ENDCOLOR]'s secret weapon, small golden trident called [COLOR:6:82:255:255]Trehsool Mukh[ENDCOLOR], hidden in his turban. Unfortunately this unexpected riposte was deadly for your unit. Be more careful next time!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_NIHANG_RIPOSTED_TITLE">
+			<Text>Nihang's revenge!</Text>
+		</Row>
 		
 		<!-- notifications for CSs' lua custom events -->
 		<Row Tag="TXT_KEY_UCS_BONUS_BOGOTA_LIBERATION">
