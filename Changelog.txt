@@ -38,6 +38,7 @@ Changelog:
 	- Andorra's dummies now reordered ("*_2" is given by lua);
 	- "building based" lua abilities now use GameEvents based on changing event states instead of turn ending (great increase on turn performance);
 	- added Improvement_Flavors for all currently added improvements and a resource;
+	- fake Caravan unit for Dali is now hidden in the tech tree;
 - fixed:
 	- added pillaged model for Colossal Head and Sunken Courtyard improvement;
 	- Parihaka and Nan Madol have now Polynesian artstyle;

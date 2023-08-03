@@ -119,6 +119,7 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
     <Folder Include="Art\Model\Resources\DogoCanario" />
     <Folder Include="Art\Model\Units" />
     <Folder Include="Art\Model\Units\Ghurka" />
+    <Folder Include="Art\Model\Units\Nihang" />
     <Folder Include="Art\Model\Units\SwissGuard\" />
     <Folder Include="Art\FontIcons" />
     <Folder Include="Art\SV_Icons" />
@@ -380,6 +381,18 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
+    <Content Include="Art\Model\Units\Nihang\Akali.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Units\Nihang\Akali.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Units\Nihang\Akali.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
     <Content Include="Art\Model\Units\SwissGuard\reislaufer.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
@@ -429,6 +442,10 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="Art\SV_Icons\sv_UnitGurkha.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\SV_Icons\sv_UnitNihang.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>

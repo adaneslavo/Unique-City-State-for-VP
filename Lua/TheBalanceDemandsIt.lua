@@ -255,7 +255,9 @@ local tResourcesStrategic = {
 local tTechnologyTypes = {
 	GameInfoTypes.TECH_ARCHAEOLOGY,
 	GameInfoTypes.TECH_RADIO,
-	GameInfoTypes.TECH_TELECOM
+	GameInfoTypes.TECH_TELECOM,
+	GameInfoTypes.TECH_HORSEBACK_RIDING,
+	GameInfoTypes.TECH_HORSEBACK_RIDING_DUMMY
 }
 
 local eArtifactRuin = GameInfoTypes.ARTIFACT_ANCIENT_RUIN
@@ -296,6 +298,7 @@ local bIsAllyAnOption = true
 local bIsEmbassyAnOption = true
 local bIsPseudoAllyAnOption = true
 local tEmbassies = {}
+
 
 -- for plot iteration
 local tDirectionTypes = {
@@ -346,15 +349,9 @@ function RandomNumberBetween(iLower, iHigher)
 end
 
 -- position calculator for custom positioning of floating text prompts (yields, additional info)
---[[function PositionCalculator(i1, i2)
+function PositionCalculator(i1, i2)
 	return HexToWorld(ToHexFromGrid(Vector2(i1, i2)))
 end
-
-if pPlayer:IsHuman() and pPlayer:IsTurnActive() then
-	local vCityPosition = PositionCalculator(pCapital:GetX(), pCapital:GetY())
-			
-	Events.AddPopupTextEvent(vCityPosition, "[COLOR_MAGENTA]+" .. iCultureLiberated .. " [ICON_CULTURE][ENDCOLOR]", 1)
-end--]]
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- Resetting cooldown for active events for civs passing the threshold and setting new events
@@ -455,6 +452,32 @@ function MovingSwiftly(eResolution, eProposer, eChoice, bEnact, bPassed)
 	end
 end
 GameEvents.ResolutionResult.Add(MovingSwiftly)
+
+-- Setting the specicifc removing conditions for UCSTI
+function CanWeSubstituteImprovement(ePlayer, eUnit, iX, iY, eBuild)
+	local pPlot = Map.GetPlot(iX, iY)
+	local eCurrentImprovementType = pPlot:GetImprovementType()
+	
+	if eCurrentImprovementType ~= -1 then
+		for i, eimprovement in ipairs(tImprovementsUCS) do
+			print("SUBSTITUTE", eimprovement, eCurrentImprovementType)
+		
+			if  eimprovement == eCurrentImprovementType then
+				local eResourceTypeUnderneath = pPlot:GetResourceType()
+			
+				if eResourceTypeUnderneath ~= -1 then
+					print("SUBSTITUTE-UCS-ALLOW", eResourceTypeUnderneath)
+					return true
+				else
+					print("SUBSTITUTE-UCS-DENY", eResourceTypeUnderneath)
+					return false
+				end
+			end
+		end
+	end
+
+	return true
+end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 function UnitNotificationLoad(pMinorPlayer, pMajorPlayer, sUnitName, eUnitType)
@@ -599,8 +622,7 @@ function MaritimeCityStatesBonuses(ePlayer, iX, iY)
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[4], 1)
 	end
 end
-GameEvents.PlayerCityFounded.Add(MaritimeCityStatesBonuses)
-
+	
 function MaritimeCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 	local pPlayer = Players[eOtherPlayer]
 	
@@ -633,8 +655,7 @@ function MaritimeCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[4], 1)
 	end
 end
-GameEvents.PlayerLiberated.Add(MaritimeCityStatesBonusesLiberated)
-
+	
 function FreeWorkerFromCityState(ePlayer)
 	local pPlayer = Players[ePlayer]
 	
@@ -693,8 +714,7 @@ function FreeWorkerFromCityState(ePlayer)
 		end
 	end
 end
-GameEvents.PlayerDoTurn.Add(FreeWorkerFromCityState)
-
+	
 
 -- MERCANTILE
 function MercantileCityStatesBonuses(ePlayer, iX, iY)
@@ -825,8 +845,7 @@ function MercantileCityStatesBonuses(ePlayer, iX, iY)
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[8], 1)
 	end
 end
-GameEvents.PlayerCityFounded.Add(MercantileCityStatesBonuses)
-
+	
 function MercantileCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 	local pPlayer = Players[eOtherPlayer]
 	
@@ -858,8 +877,7 @@ function MercantileCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[8], 1)
 	end
 end
-GameEvents.PlayerLiberated.Add(MercantileCityStatesBonusesLiberated)
-
+	
 function FreeCaravanFromCityState(ePlayer)
 	local pPlayer = Players[ePlayer]
 	
@@ -922,8 +940,7 @@ function FreeCaravanFromCityState(ePlayer)
 		end
 	end
 end
-GameEvents.PlayerDoTurn.Add(FreeCaravanFromCityState)
-
+	
 
 -- CULTURED
 function CulturedCityStatesBonuses(ePlayer, iX, iY)
@@ -1010,8 +1027,7 @@ function CulturedCityStatesBonuses(ePlayer, iX, iY)
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[12], 1)
 	end
 end
-GameEvents.PlayerCityFounded.Add(CulturedCityStatesBonuses)
-
+	
 function CulturedCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 	local pPlayer = Players[eOtherPlayer]
 	
@@ -1043,8 +1059,7 @@ function CulturedCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[12], 1)
 	end
 end
-GameEvents.PlayerLiberated.Add(CulturedCityStatesBonusesLiberated)
-
+	
 function FreeArchaeologistFromCityState(ePlayer)
 	local pPlayer = Players[ePlayer]
 	
@@ -1077,8 +1092,7 @@ function FreeArchaeologistFromCityState(ePlayer)
 		end
 	end
 end
-GameEvents.PlayerDoTurn.Add(FreeArchaeologistFromCityState)
-
+	
 
 -- RELIGIOUS
 function ReligiousCityStatesBonuses(ePlayer, iX, iY)
@@ -1136,8 +1150,7 @@ function ReligiousCityStatesBonuses(ePlayer, iX, iY)
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[16], 1)
 	end
 end
-GameEvents.PlayerCityFounded.Add(ReligiousCityStatesBonuses)
-
+	
 function ReligiousCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 	local pPlayer = Players[eOtherPlayer]
 	
@@ -1170,8 +1183,7 @@ function ReligiousCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[16], 1)
 	end
 end
-GameEvents.PlayerLiberated.Add(ReligiousCityStatesBonusesLiberated)
-
+	
 function FreeMissionariesFromCityState(ePlayer)
 	local pPlayer = Players[ePlayer]
 	
@@ -1203,8 +1215,7 @@ function FreeMissionariesFromCityState(ePlayer)
 		end
 	end
 end
-GameEvents.PlayerDoTurn.Add(FreeMissionariesFromCityState)
-
+	
 
 -- MILITARISTIC
 function MilitaristicCityStatesBonuses(ePlayer, iX, iY)
@@ -1342,8 +1353,7 @@ function MilitaristicCityStatesBonuses(ePlayer, iX, iY)
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[20], 1)
 	end
 end
-GameEvents.PlayerCityFounded.Add(MilitaristicCityStatesBonuses)
-
+	
 function MilitaristicCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 	local pPlayer = Players[eOtherPlayer]
 	
@@ -1377,8 +1387,7 @@ function MilitaristicCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[20], 1)
 	end
 end
-GameEvents.PlayerLiberated.Add(MilitaristicCityStatesBonusesLiberated)
-
+	
 function CityStateTrainedUU(ePlayer, eCity, eUnit, bGold, bFaith)
 	local pPlayer = Players[ePlayer]
 
@@ -1422,7 +1431,6 @@ function CityStateTrainedUU(ePlayer, eCity, eUnit, bGold, bFaith)
 		end
 	end
 end
-GameEvents.CityTrained.Add(CityStateTrainedUU)
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- BOGOTA (CULTURE FROM LIBERATION)
@@ -1554,33 +1562,6 @@ function BarbCampForLevuka(iX, iY, ePlayer)
 		end
 	end
 end
-
-
-
--- OVERALL IMPROVEMENT CHANGE RESTRICTION
-function CanWeSubstituteImprovement(ePlayer, eUnit, iX, iY, eBuild)
-	local pPlot = Map.GetPlot(iX, iY)
-	local eCurrentImprovementType = pPlot:GetImprovementType()
-	
-	for i, eimprovement in ipairs(tImprovementsUCS) do
-		print("SUBSTITUTE", eimprovement, eCurrentImprovementType)
-		
-		if  eimprovement == eCurrentImprovementType then
-			local eResourceTypeUnderneath = pPlot:GetResourceType()
-			
-			if eResourceTypeUnderneath ~= -1 then
-				print("SUBSTITUTE-UCS-ALLOW", eResourceTypeUnderneath)
-				return true
-			else
-				print("SUBSTITUTE-UCS-DENY", eResourceTypeUnderneath)
-				return false
-			end
-		end
-	end
-
-	return true
-end
-GameEvents.PlayerCanBuild.Add(CanWeSubstituteImprovement)
 
 
 
@@ -2688,6 +2669,20 @@ function TradeWithFaith(ePlayer, eCity, eUnit)
 end
 GameEvents.CityCanTrain.Add(TradeWithFaith)
 
+function DummyTechHorsebackRiding(eTeam, eTech, iChange)
+	if eTech ~= tTechnologyTypes[4] then return end
+	print("TECH_DUMMY_HORSEBACK_RIDING")
+	local pActivePlayer = Players[Game.GetActivePlayer()]
+	
+	if pActivePlayer:IsMinorCiv() then return end
+	
+	local pActiveTeam = Teams[pActivePlayer:GetTeam()]
+	
+	pActiveTeam:SetHasTech(tTechnologyTypes[5], true)
+
+	print("TECH_DUMMY_HORSEBACK_RIDING_SET")
+end
+
 
 
 -- VATICAN CITY (SWISS GUARD FUNCTIONS)
@@ -3591,22 +3586,21 @@ end
 
 -- LAHORE (FUTURE) (INCREASING UNIT CS)
 function NihangPromoted(eUnitOwner, eUnit, ePromotion)
-	--[[ 
-	PROMOTION_SIKH = 5
-	PROMOTION_SIKH_SWORD = 6
-	PROMOTION_SIKH_KNIFE = 7
-	PROMOTION_SIKH_DISC = 8
-	PROMOTION_SIKH_BOW = 9
-	PROMOTION_SIKH_TRIDENT = 10
-	PROMOTION_SIKH_DAGGER = 11
-	PROMOTION_SIKH_MUSKET = 12
-	PROMOTION_SIKH_SHIELD = 13
-	PROMOTION_SIKH_CHAINMAIL = 14
-	PROMOTION_SIKH_ROBE = 15
-	PROMOTION_SIKH_SHOES = 16
-	PROMOTION_SIKH_TURBAN = 17
-	PROMOTION_SIKH_MARTIAL_ART = 18
-	PROMOTION_SIKH_BRACELET = 19 --]]
+	--[[PROMOTION_SIKH = 5
+		PROMOTION_SIKH_SWORD = 6
+		PROMOTION_SIKH_KNIFE = 7
+		PROMOTION_SIKH_DISC = 8
+		PROMOTION_SIKH_BOW = 9
+		PROMOTION_SIKH_TRIDENT = 10
+		PROMOTION_SIKH_DAGGER = 11
+		PROMOTION_SIKH_MUSKET = 12
+		PROMOTION_SIKH_SHIELD = 13
+		PROMOTION_SIKH_CHAINMAIL = 14
+		PROMOTION_SIKH_ROBE = 15
+		PROMOTION_SIKH_SHOES = 16
+		PROMOTION_SIKH_TURBAN = 17
+		PROMOTION_SIKH_MARTIAL_ART = 18
+		PROMOTION_SIKH_BRACELET = 19 --]]
 	
 	if ePromotion == tPromotionsActiveAbilities[6] or ePromotion == tPromotionsActiveAbilities[13] 
 		or ePromotion == tPromotionsActiveAbilities[15] or ePromotion == tPromotionsActiveAbilities[17] then
@@ -3625,10 +3619,62 @@ function NihangPromoted(eUnitOwner, eUnit, ePromotion)
 	end
 end
 GameEvents.UnitPromoted.Add(NihangPromoted)
+
+function RiposteFromNihang(eAttackingPlayer, eAttackingUnit, iAttackerDamage, iAttackerFinalDamage, iAttackerMaxHP, eDefendingPlayer, eDefendingUnit, iDefenderDamage, iDefenderFinalDamage, iDefenderMaxHP, eInterceptingPlayer, eInterceptingUnit, iInterceptorDamage, iX, iY)
+	if not ((iAttackerFinalDamage < iAttackerMaxHP) and (iDefenderFinalDamage < iDefenderMaxHP)) then return end
+	
+	local pDefendingPlayer = Players[eDefendingPlayer]
+	local pDefendingUnit = pDefendingPlayer:GetUnitByID(eDefendingUnit)
+		
+	--if pDefendingUnit and pDefendingUnit:IsHasPromotion(tPromotionsActiveAbilities[10]) then
+		local pAttackingPlayer = Players[eAttackingPlayer]
+		local pAttackingUnit = pAttackingPlayer:GetUnitByID(eAttackingUnit)
+		
+		if pAttackingUnit then
+			local iRiposteDamage = 0.2 * iDefenderDamage
+			
+			pAttackingUnit:ChangeDamage(iRiposteDamage)
+
+			if pAttackingPlayer:IsHuman() and pAttackingPlayer:IsTurnActive() then
+				local vUnitPosition = PositionCalculator(pAttackingUnit:GetX(), pAttackingUnit:GetY())
+			
+				Events.AddPopupTextEvent(vUnitPosition, "[COLOR:6:82:255:255]Trehsool Mukh used![ENDCOLOR]", 0.5)
+			end
+
+			if pDefendingPlayer:IsHuman() and pDefendingPlayer:IsTurnActive() then
+				local vUnitPosition = PositionCalculator(pAttackingUnit:GetX(), pAttackingUnit:GetY())
+			
+				Events.AddPopupTextEvent(vUnitPosition, "[COLOR:6:82:255:255]Trehsool Mukh used![ENDCOLOR]", 0.5)
+			end
+		end
+	--end
+end
+GameEvents.CombatEnded.Add(RiposteFromNihang)
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- INITIALIZATION
 function SettingUpSpecificEvents()
+	--local bEnablePassives = GameInfo.COMMUNITY{Type="UCS-PASSIVES-ON"}()
+
+	--if bEnablePassives then
+		GameEvents.PlayerCityFounded.Add(MaritimeCityStatesBonuses)
+		GameEvents.PlayerLiberated.Add(MaritimeCityStatesBonusesLiberated)
+		GameEvents.PlayerDoTurn.Add(FreeWorkerFromCityState)
+		GameEvents.PlayerCityFounded.Add(MercantileCityStatesBonuses)
+		GameEvents.PlayerLiberated.Add(MercantileCityStatesBonusesLiberated)
+		GameEvents.PlayerDoTurn.Add(FreeCaravanFromCityState)
+		GameEvents.PlayerCityFounded.Add(CulturedCityStatesBonuses)
+		GameEvents.PlayerLiberated.Add(CulturedCityStatesBonusesLiberated)
+		GameEvents.PlayerDoTurn.Add(FreeArchaeologistFromCityState)
+		GameEvents.PlayerCityFounded.Add(ReligiousCityStatesBonuses)
+		GameEvents.PlayerLiberated.Add(ReligiousCityStatesBonusesLiberated)
+		GameEvents.PlayerDoTurn.Add(FreeMissionariesFromCityState)
+		GameEvents.PlayerCityFounded.Add(MilitaristicCityStatesBonuses)
+		GameEvents.PlayerLiberated.Add(MilitaristicCityStatesBonusesLiberated)
+		GameEvents.CityTrained.Add(CityStateTrainedUU)
+	--end
+	
+	-- active abilities
 	for eCS, pCS in pairs(Players) do
 		if pCS:IsMinorCiv() then		
 			local sMinorCivType = GameInfo.MinorCivilizations[pCS:GetMinorCivType()].Type
@@ -3645,28 +3691,38 @@ function SettingUpSpecificEvents()
 				GameEvents.BarbariansCampCleared.Add(BarbCampForLevuka)
 				
 			
-			-- improvements/resources
+			-- improvements
+			elseif sMinorCivType == "MINOR_CIV_CAHOKIA" or sMinorCivType == "MINOR_CIV_TIWANAKU" or sMinorCivType == "MINOR_CIV_KARYES" 
+				or sMinorCivType == "MINOR_CIV_SGAANG" or sMinorCivType == "MINOR_CIV_NYARYANA_MARQ" or sMinorCivType == "MINOR_CIV_LA_VENTA" then
+				GameEvents.PlayerCanBuild.Add(CanWeSubstituteImprovement)
+			
+				if sMinorCivType == "MINOR_CIV_CAHOKIA" then	
+					tLostCities["eLostCahokia"] = eCS
+				elseif sMinorCivType == "MINOR_CIV_TIWANAKU" then	
+					tLostCities["eLostTiwanaku"] = eCS
+				elseif sMinorCivType == "MINOR_CIV_SGAANG" then	
+					tLostCities["eLostSGaang"] = eCS
+				elseif sMinorCivType == "MINOR_CIV_NYARYANA_MARQ" then	
+					tLostCities["eLostNyaryanaMarq"] = eCS
+				elseif sMinorCivType == "MINOR_CIV_LA_VENTA" then	
+					tLostCities["eLostLaVenta"] = eCS
+				elseif sMinorCivType == "MINOR_CIV_KARYES" then	
+					tLostCities["eLostKaryes"] = eCS
+					GameEvents.BuildFinished.Add(BuiltMonastery)
+					GameEvents.TileImprovementChanged.Add(MonasteryPillagedOrDestroyed)
+					GameEvents.EventChoiceActivated.Add(MonasteriesOnEventOn)
+					GameEvents.EventChoiceEnded.Add(MonasteriesOnEventOff)
+					GameEvents.CityCaptureComplete.Add(MonasteriesCapture)
+					GameEvents.PlayerCityFounded.Add(MonasteriesNewCity)
+
+					CheckAllMonasteries()
+				end
+
+
+			-- resources/features
 			elseif sMinorCivType == "MINOR_CIV_BRUSSELS" then	
 				tLostCities["eLostBrussels"] = eCS
 				GameEvents.BuildFinished.Add(BuiltMarsh)
-			elseif sMinorCivType == "MINOR_CIV_CAHOKIA" then	
-				tLostCities["eLostCahokia"] = eCS
-			elseif sMinorCivType == "MINOR_CIV_TIWANAKU" then	
-				tLostCities["eLostTiwanaku"] = eCS
-			elseif sMinorCivType == "MINOR_CIV_KARYES" then	
-				tLostCities["eLostKaryes"] = eCS
-				GameEvents.BuildFinished.Add(BuiltMonastery)
-				GameEvents.TileImprovementChanged.Add(MonasteryPillagedOrDestroyed)
-				GameEvents.EventChoiceActivated.Add(MonasteriesOnEventOn)
-				GameEvents.EventChoiceEnded.Add(MonasteriesOnEventOff)
-				GameEvents.CityCaptureComplete.Add(MonasteriesCapture)
-				GameEvents.PlayerCityFounded.Add(MonasteriesNewCity)
-
-				CheckAllMonasteries()
-			elseif sMinorCivType == "MINOR_CIV_SGAANG" then	
-				tLostCities["eLostSGaang"] = eCS
-			elseif sMinorCivType == "MINOR_CIV_NYARYANA_MARQ" then	
-				tLostCities["eLostNyaryanaMarq"] = eCS
 			elseif sMinorCivType == "MINOR_CIV_ADEJE" then	
 				tLostCities["eLostAdeje"] = eCS
 				GameEvents.BuildFinished.Add(BuiltDogoCanario)
@@ -3783,6 +3839,7 @@ function SettingUpSpecificEvents()
 			-- new/exclusive units
 			elseif sMinorCivType == "MINOR_CIV_DALI" then
 				tLostCities["eLostDali"] = eCS
+				GameEvents.TeamTechResearched.Add(DummyTechHorsebackRiding)
 			elseif sMinorCivType == "MINOR_CIV_VATICAN_CITY" then
 				tLostCities["eLostVaticanCity"] = eCS
 				GameEvents.CombatEnded.Add(SwissGuardHealingAttack)

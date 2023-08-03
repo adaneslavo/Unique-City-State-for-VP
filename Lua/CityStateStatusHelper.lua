@@ -452,7 +452,7 @@ function GetCityStateStatusToolTip( majorPlayerID, minorPlayerID, isFullInfo )
 		table_insert( tips, L("TXT_KEY_CSTRAIT_" .. GameInfo.MinorCivilizations[minorPlayer:GetMinorCivType()].Type))
 		
 		-- Traits and Personalities
-		local bShowPassives = GameInfo.COMMUNITY{Type="UCS-PASSIVE"}()
+		local bShowPassives = GameInfo.COMMUNITY{Type="UCS-PASSIVE-SHOW"}()
 
         if bShowPassives then
 			local eMinorTrait = GetCityStateTraitKey(minorPlayerID)
