@@ -104,7 +104,10 @@ local tPromotionsActiveAbilities = {
 local tBuildingsPassiveAbilities = {
 	GameInfoTypes.BUILDING_CS_STRENGTH_FRIENDLY, -- 1
 	GameInfoTypes.BUILDING_CS_STRENGTH_NEUTRAL,
-	GameInfoTypes.BUILDING_CS_STRENGTH_HOSTILE
+	GameInfoTypes.BUILDING_CS_STRENGTH_HOSTILE,
+	GameInfoTypes.BUILDING_CS_RELIGION_FRIENDLY,
+	GameInfoTypes.BUILDING_CS_RELIGION_NEUTRAL,
+	GameInfoTypes.BUILDING_CS_RELIGION_HOSTILE -- 6
 	
 	--GameInfoTypes.BUILDING_MARITIME, -- 1
 	--GameInfoTypes.BUILDING_MARITIME_FRIENDLY,
@@ -1289,6 +1292,15 @@ function ReligiousCityStatesBonuses(ePlayer, iX, iY)
 	
 	-- policy
 	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[5], true)
+
+	-- buildings
+	if eMinorPersonality == tMinorPersonalities[1] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[4], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[4]) + 1)
+	elseif eMinorPersonality == tMinorPersonalities[2] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[5], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[5]) + 1)
+	elseif eMinorPersonality == tMinorPersonalities[3] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[6], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[6]) + 1)
+	end
 end
 	
 function ReligiousCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
@@ -1307,6 +1319,15 @@ function ReligiousCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 	
 	-- policy
 	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[5], true)
+
+	-- buildings
+	if eMinorPersonality == tMinorPersonalities[1] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[4], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[4]) + 1)
+	elseif eMinorPersonality == tMinorPersonalities[2] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[5], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[5]) + 1)
+	elseif eMinorPersonality == tMinorPersonalities[3] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[6], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[6]) + 1)
+	end
 end
 	
 function FreeMissionariesFromCityState(ePlayer)
