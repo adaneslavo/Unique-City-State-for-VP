@@ -1,3 +1,9 @@
+This update contains also total rework of city-state's passives mechanic and also introduces new active-passive mechanic ability, which sound bad, but is really simple. First, I didn't like the currnt state of pssives and how they evolved. It was a nice concept, but turn out to be really complicated and difficult to understand, epecially when player had no imapct on it at all. In its place I introduced new active-passive mechanic. It means that some Major player actions on city-states, apart from gaining some stuff for themselves like gaining additional yields or gaining access to unique abilities I hope you like very much after rework, may change the city-state behaviour somehow. Seems complicated? So few examples:
+1. Each diplomatic mission performed in a City-State increase contribute to their border growth, incresing their territory.
+2. Each diplomatic mission performed in a City-State increase their defensive capabilities (CS), and the value of change depends on City-State Personality (less in Friendly, more in Hostile).
+3. Completing a quest gives you 1 Suzerain point with that City-State. These Suzerain points...
+
+
 Changelog:
 - added:
 	- new City-States:
@@ -11,11 +17,10 @@ Changelog:
 		- Monastery (exclusive for Karyes);
 		- Chum (exclusive for Nyar'yana Marq);
 		- Totem Pole (exclusive for SGaang Gwaay);
-		- Deus Vult! (6th promotion exclusive to Clermont, that can be randomly chosen);
 	- new Promotions:
 		- Master of Cold Waters (exclusive for SGaang Gwaay);
 		- Climber of Mount Athos (exclusive for Karyes);
-	
+		- Deus Vult! (6th promotion exclusive to Clermont, that can be randomly chosen);
 - balanced:
 	- reworked the CS passives system:
 		- diplo actions in CS territory make them expand their border with 1/10th of the Influence value (copied the mechanics from Civ 6);
@@ -28,13 +33,13 @@ Changelog:
 			- religious CS spawns a ???
 		- now CSs' passive abilities are hidden by default making the tootlip much more pleasant to watch; you can enable them back in the Bonuses.sql file changing "UCS-PASSIVES-SHOW" value from 0 to 1;
 		- now CSs' passive can be enabled (enabled by default) in the Bonuses.sql file changing "UCS-PASSIVES-ON" value from 0 to 1;
-	
 	- Oc Eo: added +20% Sea Trade Route Range;
 	- Clermont promotions changes:
 		- now granted promotions are permanent instead of temporary (were 10-turn);
 		- slightly nerfed down each of 5 promotions;
 		- added 1 new promotion to the pool (Deus Vult!);
-		- all random promotions have now unique colouring (like Bushido's or Kris' promotions)
+		- all random promotions have now unique colouring (like Bushido's or Kris' promotions);
+		- Blessing of Clermont now has "question mark" icon (like base Bushido's or Kris' promotions);
 	- Colossal Head changes:
 		- tech yields changed;
 		- now has more base yields, less yields from being allied;
