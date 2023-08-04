@@ -102,49 +102,59 @@ local tPromotionsActiveAbilities = {
 }
 
 local tBuildingsPassiveAbilities = {
-	GameInfoTypes.BUILDING_MARITIME, -- 1
-	GameInfoTypes.BUILDING_MARITIME_FRIENDLY,
-	GameInfoTypes.BUILDING_MARITIME_NEUTRAL,
-	GameInfoTypes.BUILDING_MARITIME_HOSTILE,
-	GameInfoTypes.BUILDING_MERCANTILE,
-	GameInfoTypes.BUILDING_MERCANTILE_FRIENDLY, -- 6
-	GameInfoTypes.BUILDING_MERCANTILE_NEUTRAL,
-	GameInfoTypes.BUILDING_MERCANTILE_HOSTILE,
-	GameInfoTypes.BUILDING_CULTURED,
-	GameInfoTypes.BUILDING_CULTURED_FRIENDLY,
-	GameInfoTypes.BUILDING_CULTURED_NEUTRAL, -- 11
-	GameInfoTypes.BUILDING_CULTURED_HOSTILE,
-	GameInfoTypes.BUILDING_RELIGIOUS,
-	GameInfoTypes.BUILDING_RELIGIOUS_FRIENDLY,
-	GameInfoTypes.BUILDING_RELIGIOUS_NEUTRAL,
-	GameInfoTypes.BUILDING_RELIGIOUS_HOSTILE, -- 16
-	GameInfoTypes.BUILDING_MILITARISTIC,
-	GameInfoTypes.BUILDING_MILITARISTIC_FRIENDLY,
-	GameInfoTypes.BUILDING_MILITARISTIC_NEUTRAL,
-	GameInfoTypes.BUILDING_MILITARISTIC_HOSTILE
+	GameInfoTypes.BUILDING_CS_STRENGTH_FRIENDLY, -- 1
+	GameInfoTypes.BUILDING_CS_STRENGTH_NEUTRAL,
+	GameInfoTypes.BUILDING_CS_STRENGTH_HOSTILE
+	
+	--GameInfoTypes.BUILDING_MARITIME, -- 1
+	--GameInfoTypes.BUILDING_MARITIME_FRIENDLY,
+	--GameInfoTypes.BUILDING_MARITIME_NEUTRAL,
+	--GameInfoTypes.BUILDING_MARITIME_HOSTILE,
+	--GameInfoTypes.BUILDING_MERCANTILE,
+	--GameInfoTypes.BUILDING_MERCANTILE_FRIENDLY, -- 6
+	--GameInfoTypes.BUILDING_MERCANTILE_NEUTRAL,
+	--GameInfoTypes.BUILDING_MERCANTILE_HOSTILE,
+	--GameInfoTypes.BUILDING_CULTURED,
+	--GameInfoTypes.BUILDING_CULTURED_FRIENDLY,
+	--GameInfoTypes.BUILDING_CULTURED_NEUTRAL, -- 11
+	--GameInfoTypes.BUILDING_CULTURED_HOSTILE,
+	--GameInfoTypes.BUILDING_RELIGIOUS,
+	--GameInfoTypes.BUILDING_RELIGIOUS_FRIENDLY,
+	--GameInfoTypes.BUILDING_RELIGIOUS_NEUTRAL,
+	--GameInfoTypes.BUILDING_RELIGIOUS_HOSTILE, -- 16
+	--GameInfoTypes.BUILDING_MILITARISTIC,
+	--GameInfoTypes.BUILDING_MILITARISTIC_FRIENDLY,
+	--GameInfoTypes.BUILDING_MILITARISTIC_NEUTRAL,
+	--GameInfoTypes.BUILDING_MILITARISTIC_HOSTILE
 }
 
 local tPoliciesPassiveAbilities = {
-	GameInfoTypes.POLICY_MARITIME, -- 1
-	GameInfoTypes.POLICY_MARITIME_FRIENDLY,
-	GameInfoTypes.POLICY_MARITIME_NEUTRAL,
-	GameInfoTypes.POLICY_MARITIME_HOSTILE,
-	GameInfoTypes.POLICY_MERCANTILE,
-	GameInfoTypes.POLICY_MERCANTILE_FRIENDLY, -- 6
-	GameInfoTypes.POLICY_MERCANTILE_NEUTRAL,
-	GameInfoTypes.POLICY_MERCANTILE_HOSTILE,
-	GameInfoTypes.POLICY_CULTURED,
-	GameInfoTypes.POLICY_CULTURED_FRIENDLY,
-	GameInfoTypes.POLICY_CULTURED_NEUTRAL, -- 11
-	GameInfoTypes.POLICY_CULTURED_HOSTILE,
-	GameInfoTypes.POLICY_RELIGIOUS,
-	GameInfoTypes.POLICY_RELIGIOUS_FRIENDLY,
-	GameInfoTypes.POLICY_RELIGIOUS_NEUTRAL,
-	GameInfoTypes.POLICY_RELIGIOUS_HOSTILE, -- 16
-	GameInfoTypes.POLICY_MILITARISTIC,
-	GameInfoTypes.POLICY_MILITARISTIC_FRIENDLY,
-	GameInfoTypes.POLICY_MILITARISTIC_NEUTRAL,
-	GameInfoTypes.POLICY_MILITARISTIC_HOSTILE
+	GameInfoTypes.POLICY_CS_MARITIME,
+	GameInfoTypes.POLICY_CS_MERCANTILE,
+	GameInfoTypes.POLICY_CS_MILITARISTIC,
+	GameInfoTypes.POLICY_CS_CULTURED,
+	GameInfoTypes.POLICY_CS_RELIGIOUS
+	
+	--GameInfoTypes.POLICY_MARITIME, -- 1
+	--GameInfoTypes.POLICY_MARITIME_FRIENDLY,
+	--GameInfoTypes.POLICY_MARITIME_NEUTRAL,
+	--GameInfoTypes.POLICY_MARITIME_HOSTILE,
+	--GameInfoTypes.POLICY_MERCANTILE,
+	--GameInfoTypes.POLICY_MERCANTILE_FRIENDLY, -- 6
+	--GameInfoTypes.POLICY_MERCANTILE_NEUTRAL,
+	--GameInfoTypes.POLICY_MERCANTILE_HOSTILE,
+	--GameInfoTypes.POLICY_CULTURED,
+	--GameInfoTypes.POLICY_CULTURED_FRIENDLY,
+	--GameInfoTypes.POLICY_CULTURED_NEUTRAL, -- 11
+	--GameInfoTypes.POLICY_CULTURED_HOSTILE,
+	--GameInfoTypes.POLICY_RELIGIOUS,
+	--GameInfoTypes.POLICY_RELIGIOUS_FRIENDLY,
+	--GameInfoTypes.POLICY_RELIGIOUS_NEUTRAL,
+	--GameInfoTypes.POLICY_RELIGIOUS_HOSTILE, -- 16
+	--GameInfoTypes.POLICY_MILITARISTIC,
+	--GameInfoTypes.POLICY_MILITARISTIC_FRIENDLY,
+	--GameInfoTypes.POLICY_MILITARISTIC_NEUTRAL,
+	--GameInfoTypes.POLICY_MILITARISTIC_HOSTILE
 }
 
 local tImprovementsRegular = {
@@ -503,8 +513,18 @@ function DiplomaticExpansion(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKill
 			local iBorderGrowthBonus = iTotalInfluence / 10
 			local pPlot = Map.GetPlot(iX, iY)
 			local pMinorCity = pPlot:GetWorkingCity()
+			local pMinorPlayer = Players[pPlot:GetOwner()]
+			local eMinorPersonality = pMinorPlayer:GetPersonality()
 
 			pMinorCity:ChangeJONSCultureStored(iBorderGrowthBonus)
+
+			if eMinorPersonality == tMinorPersonalities[1] then
+				pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[1], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[1]) + 1)
+			elseif eMinorPersonality == tMinorPersonalities[2] then
+				pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[2], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[2]) + 1)
+			elseif eMinorPersonality == tMinorPersonalities[3] then
+				pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[3], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[3]) + 1)
+			end
 		end
 	end
 end
@@ -645,24 +665,8 @@ function MaritimeCityStatesBonuses(ePlayer, iX, iY)
 		end
 	until (bBonusPlaced or #tBonusResourcesIDs == 0)
 	
-	-- rest
-	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[1], 1)
+	-- policy
 	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[1], true)
-	
-	-- Maritime - Friendly
-	if eMinorPersonality == tMinorPersonalities[1] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[2], 1)
-	end
-	
-	-- Maritime - Neutral
-	if eMinorPersonality == tMinorPersonalities[2] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[3], 1)
-	end
-	
-	-- Maritime - Hostile
-	if eMinorPersonality == tMinorPersonalities[3] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[4], 1)
-	end
 end
 	
 function MaritimeCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
@@ -679,23 +683,8 @@ function MaritimeCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 	
 	local pMinorCapital = pPlayer:GetCapitalCity()
 	
-	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[1], 1)
+	-- policy
 	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[1], true)
-	
-	-- Maritime - Friendly
-	if eMinorPersonality == tMinorPersonalities[1] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[2], 1)
-	end
-	
-	-- Maritime - Neutral
-	if eMinorPersonality == tMinorPersonalities[2] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[3], 1)
-	end
-	
-	-- Maritime - Hostile
-	if eMinorPersonality == tMinorPersonalities[3] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[4], 1)
-	end
 end
 	
 function FreeWorkerFromCityState(ePlayer)
@@ -869,23 +858,8 @@ function MercantileCityStatesBonuses(ePlayer, iX, iY)
 		end
 	until (bLuxuryPlaced or #tLuxuryResourcesIDs == 0)
 	
-	-- rest
-	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[5], 1)
-	
-	-- Mercantile - Friendly
-	if eMinorPersonality == tMinorPersonalities[1] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[6], 1)
-	end
-	
-	-- Mercantile - Neutral
-	if eMinorPersonality == tMinorPersonalities[2] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[7], 1)
-	end
-	
-	-- Mercantile - Hostile
-	if eMinorPersonality == tMinorPersonalities[3] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[8], 1)
-	end
+	-- policy
+	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[2], true)
 end
 	
 function MercantileCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
@@ -902,22 +876,8 @@ function MercantileCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 	
 	local pMinorCapital = pPlayer:GetCapitalCity()
 	
-	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[5], 1)
-	
-	-- Mercantile - Friendly
-	if eMinorPersonality == tMinorPersonalities[1] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[6], 1)
-	end
-	
-	-- Mercantile - Neutral
-	if eMinorPersonality == tMinorPersonalities[2] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[7], 1)
-	end
-	
-	-- Mercantile - Hostile
-	if eMinorPersonality == tMinorPersonalities[3] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[8], 1)
-	end
+	-- policy
+	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[2], true)
 end
 	
 function FreeCaravanFromCityState(ePlayer)
@@ -975,281 +935,6 @@ function FreeCaravanFromCityState(ePlayer)
 								pMajorPlayer:AddFreeUnit(tUnitsTrade[1], UNITAI_DEFENSE)
 								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Caravan', tUnitsTrade[1])
 							end
-						end
-					end
-				end
-			end
-		end
-	end
-end
-	
-
--- CULTURED
-function CulturedCityStatesBonuses(ePlayer, iX, iY)
-	local pPlayer = Players[ePlayer]
-	
-	if not pPlayer:IsMinorCiv() then return end
-	
-	local eMinorType = pPlayer:GetMinorCivType()
-	local eMinorTrait = pPlayer:GetMinorCivTrait()
-	local eMinorPersonality = pPlayer:GetPersonality()
-	
-	-- Cultured
-	-- Academy
-	if eMinorTrait ~= tMinorTraits[3] then return end
-	
-	local pMinorCapital = pPlayer:GetCapitalCity()
-
-	for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
-		local pPlot = pMinorCapital:GetCityIndexPlot(i)
-		
-		if pPlot then
-			local bIsCity = pPlot:IsCity()
-			local ePlot = pPlot:GetPlotType()
-			local eResource = pPlot:GetResourceType()
-			local eImprovement = pPlot:GetImprovementType()
-			local eFeature = pPlot:GetFeatureType()
-			
-			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
-				pPlot:SetImprovementType(tImprovementsGreatPeople[6])
-				break
-			end
-		end
-		
-		if i >= 18 then
-			break
-		end
-	end
-	
-	-- Artifact
-	local tArtifactSpots = {}
-
-	for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
-		local pPlot = pMinorCapital:GetCityIndexPlot(i)
-			
-		if pPlot then
-			local bIsCity = pPlot:IsCity()
-			local bIsWater = pPlot:IsWater()
-			local bIsMountain = pPlot:GetPlotType() == 0
-			local eImprovement = pPlot:GetImprovementType()
-			local eResource = pPlot:GetResourceType()
-				
-			if not bIsWater and not bIsMountain and not bIsCity and eResource == -1 and eImprovement == -1 then
-				table.insert(tArtifactSpots, pPlot)
-			end
-		end
-			
-		if i >= 18 then
-			break
-		end
-	end
-
-	if #tArtifactSpots > 0 then
-		local pChosenPlot = table.remove(tArtifactSpots, #tArtifactSpots)
-		
-		pChosenPlot:SetArchaeologicalRecord(eArtifactRuin, GameInfoTypes.ERA_ANCIENT, pPlayer:GetID())
-		pChosenPlot:SetResourceType(eResourceArtifact, 1)
-	end
-
-	-- rest
-	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[9], 1)
-	
-	-- Cultured - Friendly
-	if eMinorPersonality == tMinorPersonalities[1] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[10], 1)
-	end
-	
-	-- Cultured - Neutral
-	if eMinorPersonality == tMinorPersonalities[2] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[11], 1)
-	end
-	
-	-- Cultured - Hostile
-	if eMinorPersonality == tMinorPersonalities[3] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[12], 1)
-	end
-end
-	
-function CulturedCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
-	local pPlayer = Players[eOtherPlayer]
-	
-	if not pPlayer:IsMinorCiv() then return end
-	
-	local eMinorType = pPlayer:GetMinorCivType()
-	local eMinorTrait = pPlayer:GetMinorCivTrait()
-	local eMinorPersonality = pPlayer:GetPersonality()
-	
-	-- Maritime
-	if eMinorTrait ~= tMinorTraits[3] then return end
-	
-	local pMinorCapital = pPlayer:GetCapitalCity()
-	
-	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[9], 1)
-	
-	-- Cultured - Friendly
-	if eMinorPersonality == tMinorPersonalities[1] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[10], 1)
-	end
-	
-	-- Cultured - Neutral
-	if eMinorPersonality == tMinorPersonalities[2] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[11], 1)
-	end
-	
-	-- Cultured - Hostile
-	if eMinorPersonality == tMinorPersonalities[3] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[12], 1)
-	end
-end
-	
-function FreeArchaeologistFromCityState(ePlayer)
-	local pPlayer = Players[ePlayer]
-	
-	if not pPlayer:IsMinorCiv() then return end
-	
-	local pMinorCapital = pPlayer:GetCapitalCity()
-	
-	if pMinorCapital == nil then return end
-	
-	if pMinorCapital:IsHasBuilding(tBuildingsPassiveAbilities[10]) then
-		local iArchaeologistSpawnChance = RandomNumberBetween(1, 100)
-		
-		if iArchaeologistSpawnChance <= 1 then
-			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
-				if pMajorPlayer and pMajorPlayer:IsAlive() then
-					if pMajorPlayer:IsMinorCiv() then break end
-					if not pMajorPlayer:IsEverAlive() then break end
-					
-					local pMajorTeam = Teams[pMajorPlayer:GetTeam()]
-					local bCanArchaeologistBeSpawned = pMajorTeam:IsHasTech(tTechnologyTypes[1])
-
-					if bCanArchaeologistBeSpawned then
-						if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
-							pMajorPlayer:AddFreeUnit(tUnitsCivilians[4], UNITAI_DEFENSE)
-								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Archaeologist', tUnitsCivilians[4])
-						end
-					end
-				end
-			end
-		end
-	end
-end
-	
-
--- RELIGIOUS
-function ReligiousCityStatesBonuses(ePlayer, iX, iY)
-	local pPlayer = Players[ePlayer]
-	
-	if not pPlayer:IsMinorCiv() then return end
-	
-	local eMinorType = pPlayer:GetMinorCivType()
-	local eMinorTrait = pPlayer:GetMinorCivTrait()
-	local eMinorPersonality = pPlayer:GetPersonality()
-	
-	-- Religious
-	-- Holy Site
-	if eMinorTrait ~= tMinorTraits[4] then return end
-	
-	local pMinorCapital = pPlayer:GetCapitalCity()
-
-	for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
-		local pPlot = pMinorCapital:GetCityIndexPlot(i)
-		
-		if pPlot then
-			local bIsCity = pPlot:IsCity()
-			local ePlot = pPlot:GetPlotType()
-			local eResource = pPlot:GetResourceType()
-			local eImprovement = pPlot:GetImprovementType()
-			local eFeature = pPlot:GetFeatureType()
-			
-			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
-				pPlot:SetImprovementType(tImprovementsGreatPeople[2])
-				break
-			end
-		end
-		
-		if i >= 18 then
-			break
-		end
-	end
-	
-	-- rest
-	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[13], 1)
-	
-	-- Religious - Friendly
-	if eMinorPersonality == tMinorPersonalities[1] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[14], 1)
-		pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[14], true)
-	end
-	
-	-- Religious - Neutral
-	if eMinorPersonality == tMinorPersonalities[2] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[15], 1)
-	end
-	
-	-- Religious - Hostile
-	if eMinorPersonality == tMinorPersonalities[3] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[16], 1)
-	end
-end
-	
-function ReligiousCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
-	local pPlayer = Players[eOtherPlayer]
-	
-	if not pPlayer:IsMinorCiv() then return end
-	
-	local eMinorType = pPlayer:GetMinorCivType()
-	local eMinorTrait = pPlayer:GetMinorCivTrait()
-	local eMinorPersonality = pPlayer:GetPersonality()
-	
-	-- Maritime
-	if eMinorTrait ~= tMinorTraits[4] then return end
-	
-	local pMinorCapital = pPlayer:GetCapitalCity()
-	
-	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[13], 1)
-	
-	-- Religious - Friendly
-	if eMinorPersonality == tMinorPersonalities[1] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[14], 1)
-		pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[14], true)
-	end
-	
-	-- Religious - Neutral
-	if eMinorPersonality == tMinorPersonalities[2] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[15], 1)
-	end
-	
-	-- Religious - Hostile
-	if eMinorPersonality == tMinorPersonalities[3] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[16], 1)
-	end
-end
-	
-function FreeMissionariesFromCityState(ePlayer)
-	local pPlayer = Players[ePlayer]
-	
-	if not pPlayer:IsMinorCiv() then return end
-	
-	local pMinorCapital = pPlayer:GetCapitalCity()
-	
-	if pMinorCapital == nil then return end
-	
-	if pMinorCapital:IsHasBuilding(tBuildingsPassiveAbilities[14]) then
-		local iMissionarySpawnChance = RandomNumberBetween(1, 100)
-		
-		if iMissionarySpawnChance <= 1 then
-			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
-				if pMajorPlayer and pMajorPlayer:IsAlive() then
-					if pMajorPlayer:IsMinorCiv() then break end
-					if not pMajorPlayer:IsEverAlive() then break end
-					
-					local bCanMissionaryBeSpawned = pMajorPlayer:HasCreatedReligion() or pMajorPlayer:GetCapitalCity():GetReligiousMajority() > 0
-
-					if bCanMissionaryBeSpawned then
-						if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
-							pMajorPlayer:AddFreeUnit(tUnitsCivilians[3], UNITAI_DEFENSE)
-								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Missionary', tUnitsCivilians[3])
 						end
 					end
 				end
@@ -1375,25 +1060,8 @@ function MilitaristicCityStatesBonuses(ePlayer, iX, iY)
 		end
 	until (bStrategicPlaced or #tStrategicResourcesIDs == 0)
 	
-	-- rest
-	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[17], 1)
-	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[17], true)
-	
-	-- Militaristic - Friendly
-	if eMinorPersonality == tMinorPersonalities[1] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[18], 1)
-		pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[18], true)
-	end
-	
-	-- Militaristic - Neutral
-	if eMinorPersonality == tMinorPersonalities[2] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[19], 1)
-	end
-	
-	-- Militaristic - Hostile
-	if eMinorPersonality == tMinorPersonalities[3] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[20], 1)
-	end
+	-- policy
+	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[3], true)
 end
 	
 function MilitaristicCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
@@ -1410,24 +1078,8 @@ function MilitaristicCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 	
 	local pMinorCapital = pPlayer:GetCapitalCity()
 	
-	pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[17], 1)
-	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[17], true)
-	
-	-- Militaristic - Friendly
-	if eMinorPersonality == tMinorPersonalities[1] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[18], 1)
-		pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[18], true)
-	end
-	
-	-- Militaristic - Neutral
-	if eMinorPersonality == tMinorPersonalities[2] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[19], 1)
-	end
-	
-	-- Militaristic - Hostile
-	if eMinorPersonality == tMinorPersonalities[3] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[20], 1)
-	end
+	-- policy
+	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[3], true)
 end
 	
 function CityStateTrainedUU(ePlayer, eCity, eUnit, bGold, bFaith)
@@ -1469,6 +1121,221 @@ function CityStateTrainedUU(ePlayer, eCity, eUnit, bGold, bFaith)
 			if pTeam:IsHasTech(ePrereqTech) then
 				pUnit:Kill()
 				pPlayer:AddFreeUnit(eUniqueUnit, UNITAI_DEFENSE)
+			end
+		end
+	end
+end
+	
+
+-- CULTURED
+function CulturedCityStatesBonuses(ePlayer, iX, iY)
+	local pPlayer = Players[ePlayer]
+	
+	if not pPlayer:IsMinorCiv() then return end
+	
+	local eMinorType = pPlayer:GetMinorCivType()
+	local eMinorTrait = pPlayer:GetMinorCivTrait()
+	local eMinorPersonality = pPlayer:GetPersonality()
+	
+	-- Cultured
+	-- Academy
+	if eMinorTrait ~= tMinorTraits[3] then return end
+	
+	local pMinorCapital = pPlayer:GetCapitalCity()
+
+	for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
+		local pPlot = pMinorCapital:GetCityIndexPlot(i)
+		
+		if pPlot then
+			local bIsCity = pPlot:IsCity()
+			local ePlot = pPlot:GetPlotType()
+			local eResource = pPlot:GetResourceType()
+			local eImprovement = pPlot:GetImprovementType()
+			local eFeature = pPlot:GetFeatureType()
+			
+			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
+				pPlot:SetImprovementType(tImprovementsGreatPeople[6])
+				break
+			end
+		end
+		
+		if i >= 18 then
+			break
+		end
+	end
+	
+	-- Artifact
+	local tArtifactSpots = {}
+
+	for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
+		local pPlot = pMinorCapital:GetCityIndexPlot(i)
+			
+		if pPlot then
+			local bIsCity = pPlot:IsCity()
+			local bIsWater = pPlot:IsWater()
+			local bIsMountain = pPlot:GetPlotType() == 0
+			local eImprovement = pPlot:GetImprovementType()
+			local eResource = pPlot:GetResourceType()
+				
+			if not bIsWater and not bIsMountain and not bIsCity and eResource == -1 and eImprovement == -1 then
+				table.insert(tArtifactSpots, pPlot)
+			end
+		end
+			
+		if i >= 18 then
+			break
+		end
+	end
+
+	if #tArtifactSpots > 0 then
+		local pChosenPlot = table.remove(tArtifactSpots, #tArtifactSpots)
+		
+		pChosenPlot:SetArchaeologicalRecord(eArtifactRuin, GameInfoTypes.ERA_ANCIENT, pPlayer:GetID())
+		pChosenPlot:SetResourceType(eResourceArtifact, 1)
+	end
+	
+	-- policy
+	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[4], true)
+end
+	
+function CulturedCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
+	local pPlayer = Players[eOtherPlayer]
+	
+	if not pPlayer:IsMinorCiv() then return end
+	
+	local eMinorType = pPlayer:GetMinorCivType()
+	local eMinorTrait = pPlayer:GetMinorCivTrait()
+	local eMinorPersonality = pPlayer:GetPersonality()
+	
+	-- Maritime
+	if eMinorTrait ~= tMinorTraits[3] then return end
+	
+	local pMinorCapital = pPlayer:GetCapitalCity()
+	
+	-- policy
+	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[4], true)
+end
+	
+function FreeArchaeologistFromCityState(ePlayer)
+	local pPlayer = Players[ePlayer]
+	
+	if not pPlayer:IsMinorCiv() then return end
+	
+	local pMinorCapital = pPlayer:GetCapitalCity()
+	
+	if pMinorCapital == nil then return end
+	
+	if pMinorCapital:IsHasBuilding(tBuildingsPassiveAbilities[10]) then
+		local iArchaeologistSpawnChance = RandomNumberBetween(1, 100)
+		
+		if iArchaeologistSpawnChance <= 1 then
+			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
+				if pMajorPlayer and pMajorPlayer:IsAlive() then
+					if pMajorPlayer:IsMinorCiv() then break end
+					if not pMajorPlayer:IsEverAlive() then break end
+					
+					local pMajorTeam = Teams[pMajorPlayer:GetTeam()]
+					local bCanArchaeologistBeSpawned = pMajorTeam:IsHasTech(tTechnologyTypes[1])
+
+					if bCanArchaeologistBeSpawned then
+						if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
+							pMajorPlayer:AddFreeUnit(tUnitsCivilians[4], UNITAI_DEFENSE)
+								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Archaeologist', tUnitsCivilians[4])
+						end
+					end
+				end
+			end
+		end
+	end
+end
+	
+
+-- RELIGIOUS
+function ReligiousCityStatesBonuses(ePlayer, iX, iY)
+	local pPlayer = Players[ePlayer]
+	
+	if not pPlayer:IsMinorCiv() then return end
+	
+	local eMinorType = pPlayer:GetMinorCivType()
+	local eMinorTrait = pPlayer:GetMinorCivTrait()
+	local eMinorPersonality = pPlayer:GetPersonality()
+	
+	-- Religious
+	-- Holy Site
+	if eMinorTrait ~= tMinorTraits[4] then return end
+	
+	local pMinorCapital = pPlayer:GetCapitalCity()
+
+	for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
+		local pPlot = pMinorCapital:GetCityIndexPlot(i)
+		
+		if pPlot then
+			local bIsCity = pPlot:IsCity()
+			local ePlot = pPlot:GetPlotType()
+			local eResource = pPlot:GetResourceType()
+			local eImprovement = pPlot:GetImprovementType()
+			local eFeature = pPlot:GetFeatureType()
+			
+			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
+				pPlot:SetImprovementType(tImprovementsGreatPeople[2])
+				break
+			end
+		end
+		
+		if i >= 18 then
+			break
+		end
+	end
+	
+	-- policy
+	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[5], true)
+end
+	
+function ReligiousCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
+	local pPlayer = Players[eOtherPlayer]
+	
+	if not pPlayer:IsMinorCiv() then return end
+	
+	local eMinorType = pPlayer:GetMinorCivType()
+	local eMinorTrait = pPlayer:GetMinorCivTrait()
+	local eMinorPersonality = pPlayer:GetPersonality()
+	
+	-- Maritime
+	if eMinorTrait ~= tMinorTraits[4] then return end
+	
+	local pMinorCapital = pPlayer:GetCapitalCity()
+	
+	-- policy
+	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[5], true)
+end
+	
+function FreeMissionariesFromCityState(ePlayer)
+	local pPlayer = Players[ePlayer]
+	
+	if not pPlayer:IsMinorCiv() then return end
+	
+	local pMinorCapital = pPlayer:GetCapitalCity()
+	
+	if pMinorCapital == nil then return end
+	
+	if pMinorCapital:IsHasBuilding(tBuildingsPassiveAbilities[14]) then
+		local iMissionarySpawnChance = RandomNumberBetween(1, 100)
+		
+		if iMissionarySpawnChance <= 1 then
+			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
+				if pMajorPlayer and pMajorPlayer:IsAlive() then
+					if pMajorPlayer:IsMinorCiv() then break end
+					if not pMajorPlayer:IsEverAlive() then break end
+					
+					local bCanMissionaryBeSpawned = pMajorPlayer:HasCreatedReligion() or pMajorPlayer:GetCapitalCity():GetReligiousMajority() > 0
+
+					if bCanMissionaryBeSpawned then
+						if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
+							pMajorPlayer:AddFreeUnit(tUnitsCivilians[3], UNITAI_DEFENSE)
+								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Missionary', tUnitsCivilians[3])
+						end
+					end
+				end
 			end
 		end
 	end
