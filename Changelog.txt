@@ -1,7 +1,25 @@
-This update contains also total rework of city-state's passives mechanic and also introduces new active-passive mechanic ability, which sound bad, but is really simple. First, I didn't like the currnt state of pssives and how they evolved. It was a nice concept, but turn out to be really complicated and difficult to understand, epecially when player had no imapct on it at all. In its place I introduced new active-passive mechanic. It means that some Major player actions on city-states, apart from gaining some stuff for themselves like gaining additional yields or gaining access to unique abilities I hope you like very much after rework, may change the city-state behaviour somehow. Seems complicated? So few examples:
-1. Each diplomatic mission performed in a City-State increase contribute to their border growth, incresing their territory.
-2. Each diplomatic mission performed in a City-State increase their defensive capabilities (CS), and the value of change depends on City-State Personality (less in Friendly, more in Hostile).
-3. Completing a quest gives you 1 Suzerain point with that City-State. These Suzerain points...
+This update contains also total rework of City-State's passives mechanic and also introduces new active-passive mechanic, which sounds bad, but is really simple.
+First, I didn't like the current state of passives and how they evolved. It was a nice concept, but turn out to be really complicated and difficult to understand, epecially when player had no impact on it at all. In its place I introduced new active-passive mechanic. It means that some Major player's actions on City-States, apart from gaining some stuff for themselves like gaining additional yields or gaining access to unique abilities I hope you like very much after rework) may change the City-State's behaviour somehow. Seems complicated? So few examples:
+	1. Each diplomatic mission performed in a City-State contributes to their border growth, incresing their territory a bit, so the more such actions, the stronger CS becomes;
+	2. Each diplomatic mission performed in a City-State increases their defensive capabilities (HP), and the value of change depends on City-State's Personality (less in Friendly, more in Hostile);
+	3. Performing some actions grants the player new Suzerain Points or takes them; Suzerain Points open up new possible outcomes when gathered in bigger quantities.
+		a) performing a diplomatic mission grants you 1 Suzerain Point with that City-State;
+		b) completing a quest grants you 1 Suzerain Point with that City-State;
+		c) pledging a protection grants you 1 Suzerain Point with that City-State (one-time boost);
+		d) liberation of a City-State grants 5 Suzerain Points with it;
+		e) taking a Tribute takes 1/3 of accumulated Suzerain Points with that City-State and Heavy Tribute takes 1/2 of them;
+		f) if player Pledges Protection, but let another civ to take the Tribute over the City-State, this player loses 1/4 of his Suzerain Points;
+		g) declaring a war to a City-State takes all accumulated Suzerain Points with that City-State;
+Suzerain Points accumulate during the game and are tied to both Major and Minor players. If player passes certain threshold of Suzerain Points then:
+	a) above 3: player gains small Production bonus in his Capital; City-State gains small Growth boost;
+	b) above 7: player gains small Science bonus; City-State gains small City HP boost;
+	c) above 12: player gains bigger Production bonus in all Cities and bigger Science bonus; City-State gains increased production of its units;
+	d) above 18: City-State gains small City Defense boost;
+	e) above 25: player gains access to City-State's ability (4th possible way of gaining the access after being an Ally, having an Embassy or achieving high Influence level);
+	f) above 30: City-State gains increased production of anything and player cannot declare war to that City-State;
+If City-State is conquered, all Suzerain Points with it are zeroed, even after liberation.
+This way player can contribute to City-States' power and increase their value. If there are multiple players taking care about the City-State, then it can become well shaped and strong ally.
+Gaining Suzerain Points is sort of automatic feature and should be AI friendly, as it requires performing regular actions AI also does during its games. Passives are granted automatically.
 
 
 Changelog:
@@ -28,11 +46,18 @@ Changelog:
 			- this gain will be zeroed after conquering, so after liberating player must start from scratch;
 		- each CS gain unique Great Person Improvement on their territory after founding a city (stays from old system);
 		- CSs gain additional bonuses depending on their traits:
+			- friendly CSs have 1% chance of giving the Major player a type of civilian related to their trait (Worker, Workboat, Caravan, Cargo Ship, Missionary or Archaeologist) excluding Militaristic CSs (stays from old system);;
+			- friendly Militaristic CSs have their gifting chance increased by 1% (stays from old system);
 			- maritime, mercantile and militaristic CSs spawn an additional resource (bonus, luxury, strategic respectively) nearby (stays from old system)
 			- cultured CSs spawns an archeological site nearby (stays from old system)
-			- religious CS spawns a ???
+			- religious CSs instead of spawning anything have increased values of Religious Pressure and changed Religious Resistance values depending also on their personality:
+				- Friendly: +10% Religious Pressure and -25% Conversion Resistance;
+				- Neutral: +25% Religious Pressure;
+				- Hostile: +40% Religious Pressure and +25% Conversion Resistance;
 		- now CSs' passive abilities are hidden by default making the tootlip much more pleasant to watch; you can enable them back in the Bonuses.sql file changing "UCS-PASSIVES-SHOW" value from 0 to 1;
 		- now CSs' passive can be enabled (enabled by default) in the Bonuses.sql file changing "UCS-PASSIVES-ON" value from 0 to 1;
+		- performing some actions grants the player new Suzerain points or take them; Suzerain Points open up new possible outcomes when gathered in bigger quantity.
+	a) comlpeting a quest gives you 1 Suzerain point with that City-State. These Suzerain points...
 	- Oc Eo: added +20% Sea Trade Route Range;
 	- Clermont promotions changes:
 		- now granted promotions are permanent instead of temporary (were 10-turn);
