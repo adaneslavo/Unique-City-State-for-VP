@@ -231,7 +231,7 @@ local tUnitsGreatPeople = {
 	GameInfoTypes.UNIT_PROPHET
 }
 
-local tUnitsCivilians = {
+local tUnitsCivilian = {
 	GameInfoTypes.UNIT_WORKER,
 	GameInfoTypes.UNIT_WORKBOAT,
 	GameInfoTypes.UNIT_MISSIONARY,
@@ -738,11 +738,11 @@ function FreeWorkerFromCityState(ePlayer)
 						end
 						
 						if iWorkerOrFishingBoatSpawnChance <= 50 and bIsMajorHasTrueSea then
-							pMajorPlayer:AddFreeUnit(tUnitsCivilians[2], UNITAI_DEFENSE)
-							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Fishing Boat', tUnitsCivilians[2])
+							pMajorPlayer:AddFreeUnit(tUnitsCivilian[2], UNITAI_DEFENSE)
+							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Fishing Boat', tUnitsCivilian[2])
 						else	
-							pMajorPlayer:AddFreeUnit(tUnitsCivilians[1], UNITAI_DEFENSE)
-							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Worker', tUnitsCivilians[1])
+							pMajorPlayer:AddFreeUnit(tUnitsCivilian[1], UNITAI_DEFENSE)
+							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Worker', tUnitsCivilian[1])
 						end
 					end
 				end
@@ -934,11 +934,11 @@ function FreeCaravanFromCityState(ePlayer)
 							end
 
 							if iCaravanOrCargoSpawnChance <= 50 and bIsMajorHasTrueSea then
-								pMajorPlayer:AddFreeUnit(tUnitsCivilians[6], UNITAI_DEFENSE)
-								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Cargo Ship', tUnitsCivilians[6])
+								pMajorPlayer:AddFreeUnit(tUnitsCivilian[6], UNITAI_DEFENSE)
+								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Cargo Ship', tUnitsCivilian[6])
 							else	
-								pMajorPlayer:AddFreeUnit(tUnitsCivilians[5], UNITAI_DEFENSE)
-								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Caravan', tUnitsCivilians[5])
+								pMajorPlayer:AddFreeUnit(tUnitsCivilian[5], UNITAI_DEFENSE)
+								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Caravan', tUnitsCivilian[5])
 							end
 						end
 					end
@@ -1244,8 +1244,8 @@ function FreeArchaeologistFromCityState(ePlayer)
 
 					if bCanArchaeologistBeSpawned then
 						if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
-							pMajorPlayer:AddFreeUnit(tUnitsCivilians[4], UNITAI_DEFENSE)
-								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Archaeologist', tUnitsCivilians[4])
+							pMajorPlayer:AddFreeUnit(tUnitsCivilian[4], UNITAI_DEFENSE)
+								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Archaeologist', tUnitsCivilian[4])
 						end
 					end
 				end
@@ -1354,8 +1354,8 @@ function FreeMissionariesFromCityState(ePlayer)
 
 					if bCanMissionaryBeSpawned then
 						if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
-							pMajorPlayer:AddFreeUnit(tUnitsCivilians[3], UNITAI_DEFENSE)
-								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Missionary', tUnitsCivilians[3])
+							pMajorPlayer:AddFreeUnit(tUnitsCivilian[3], UNITAI_DEFENSE)
+								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Missionary', tUnitsCivilian[3])
 						end
 					end
 				end
@@ -1561,7 +1561,7 @@ function DummyWorkerForAISisqeno(ePlayer, eCity, eUnit, bGold, bFaith)
 		local pUnit = pPlayer:GetUnitByID(eUnit)
 
 		if pUnit:GetUnitType() == tUnitsCivilian[9] then
-			pPlayer:AddFreeUnit(tUnitsCivilians[10], UNITAI_DEFENSE)
+			pPlayer:AddFreeUnit(tUnitsCivilian[10], UNITAI_DEFENSE)
 		end
 	end
 end
@@ -2630,7 +2630,7 @@ end
 
 -- DALI (BUYING TRADE UNITS WITH FAITH)
 function TradeWithFaith(ePlayer, eCity, eUnit)
-	if eUnit ~= tUnitsCivilians[7] --[[and eUnit ~= tUnitsCivilians[8]--]] then return true end
+	if eUnit ~= tUnitsCivilian[7] --[[and eUnit ~= tUnitsCivilian[8]--]] then return true end
 	
 	local pPlayer = Players[ePlayer]
 
@@ -2813,7 +2813,7 @@ function HealersFromIskanwaya(ePlayer)
 					local bPlotMissionary, bPlotHolySite, bPlotMountain = false, false, false
 					local bAdjacentMissionary, bAdjacentHolySite, bAdjacentMountain = false, false, false
 
-					bPlotMissionary = pPlot:GetUnit() and pPlot:GetUnit():GetUnitType() == tUnitsCivilians[3]
+					bPlotMissionary = pPlot:GetUnit() and pPlot:GetUnit():GetUnitType() == tUnitsCivilian[3]
 					bPlotHolySite = pPlot:GetImprovementType() == tImprovementsGreatPeople[2]
 					bPlotMountain = pPlot:GetPlotType() == tPlotTypes[3]
 
@@ -2824,7 +2824,7 @@ function HealersFromIskanwaya(ePlayer)
 							local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
 						
 							if pAdjacentPlot then
-								bAdjacentMissionary = pAdjacentPlot:GetUnit() and pAdjacentPlot:GetUnit():GetUnitType() == tUnitsCivilians[3]
+								bAdjacentMissionary = pAdjacentPlot:GetUnit() and pAdjacentPlot:GetUnit():GetUnitType() == tUnitsCivilian[3]
 								bAdjacentHolySite = pAdjacentPlot:GetImprovementType() == tImprovementsGreatPeople[2]
 								bAdjacentMountain = pAdjacentPlot:GetPlotType() == tPlotTypes[3]
 
@@ -3164,7 +3164,7 @@ function SpreadTheFaithInPrussia(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, e
 			bBlockedUnitFromThePreKillEvent = true
 		end
 
-		if pUnit:GetUnitType() == tUnitsCivilians[3] and not bBlockedUnitFromThePreKillEvent then
+		if pUnit:GetUnitType() == tUnitsCivilian[3] and not bBlockedUnitFromThePreKillEvent then
 			local iBaseYield = RandomNumberBetween(10, 30)
 			local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
 			local iCultureFromDeath = iBaseYield * iEraModifier
