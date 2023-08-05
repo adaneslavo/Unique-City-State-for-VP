@@ -546,6 +546,10 @@ SELECT 'TXT_KEY_UNIT_GURKHA', 							'Gurkha' UNION ALL
 SELECT 'TXT_KEY_UNIT_GURKHA_STRATEGY', 						'The Gurkha is the Kathmandu''s replacement for the Fusilier. In addition to being unlocked earlier than the Rifleman, the Gurkha gains more experience from fights and has huge handicap against blocked enemy units.' UNION ALL
 SELECT 'TXT_KEY_UNIT_GURKHA_HELP', 							'This unit can only be purchased with [ICON_GOLD] Gold (requires an access to [COLOR_CYAN]Kathmandu[ENDCOLOR]''s ability).[NEWLINE][NEWLINE]Unique Fusilier Unit that may move immediately after purchase, can be trained earlier and does not require [COLOR_POSITIVE_TEXT]Armory[ENDCOLOR] when buying.[NEWLINE][NEWLINE]Unit starts with additional promotions that crush enemy units ([COLOR_POSITIVE_TEXT]Heavy Charge[ENDCOLOR]) and allow gaining mor XP from fights ([COLOR_POSITIVE_TEXT]Quick Study[ENDCOLOR]).' UNION ALL
 SELECT 'TXT_KEY_CIV5_UNIT_GURKHA', 							'The Gurkhas are a people native to mountainous Nepal and Gorkhaland region of India. Famed for their bravery, fearlessness and disregard for death, they impressed British military commanders as early as in 1814, during the Gurkha War waged by the East India Company against Nepal. In 1815, even before the war ended, the first regiment of Gurkhas was formed within the British Indian army. Throughout 19th and well into the 20th century, the Gurkhas remained loyal to the British crown, despite wars and numerous Indian rebellions. They fought in both World Wars as a part of the British Army, where they formed fifteen rifle regiments. They were widely admired for their ability to withstand any hardship and feared of their skill with the deadly khukuri knife. Gurkha regiments remain in service to this day.' UNION ALL
+SELECT 'TXT_KEY_UNIT_SISQENO', 							'Sisqeno' UNION ALL
+SELECT 'TXT_KEY_UNIT_SISQENO_STRATEGY', 						'TODO' UNION ALL
+SELECT 'TXT_KEY_UNIT_SISQENO_HELP', 							'TODO' UNION ALL
+SELECT 'TXT_KEY_CIV5_UNIT_SISQENO', 							'TODO' UNION ALL
 -- improvements
 	-- marsh
 	SELECT 'TXT_KEY_BUILD_MARSH', 							'Create a Marsh'  UNION ALL
@@ -2715,7 +2719,8 @@ INSERT INTO Unit_Builds
 			(UnitType, 			BuildType)
 SELECT 		'UNIT_WORKER', 		'BUILD_MARSH' UNION ALL
 SELECT 		'UNIT_WORKER', 		'BUILD_MOUND' UNION ALL
-SELECT 		'UNIT_MISSIONARY', 	'BUILD_SUNK_COURT' UNION ALL
+SELECT 		'UNIT_SISQENO', 	'BUILD_SUNK_COURT' UNION ALL
+SELECT 		'UNIT_SISQENO_WORKER', 	'BUILD_SUNK_COURT' UNION ALL
 SELECT 		'UNIT_ENGINEER', 	'BUILD_BIG_HEAD' UNION ALL
 SELECT 		'UNIT_SCIENTIST', 	'BUILD_BIG_HEAD' UNION ALL
 SELECT 		'UNIT_ARTIST', 		'BUILD_BIG_HEAD' UNION ALL
@@ -2970,7 +2975,8 @@ VALUES		('RESOURCE_DOGO_CANARIO',	'FLAVOR_PRODUCTION',	30),
 INSERT INTO ArtDefine_StrategicView 
 			(StrategicViewType, 			TileType,	Asset)
 VALUES		('ART_DEF_UNIT_SWISS_GUARD', 	'Unit', 	'sv_UnitSwissGuard.dds'),
-			('ART_DEF_UNIT_GURKHA', 		'Unit', 	'sv_UnitGurkha.dds');
+			('ART_DEF_UNIT_GURKHA', 		'Unit', 	'sv_UnitGurkha.dds'),
+			('ART_DEF_UNIT_SISQENO', 		'Unit', 	'sv_UnitSisqeno.dds');
 ------------------------------
 INSERT INTO ArtDefine_UnitInfos 
 			(Type, 							DamageStates,	Formation)
@@ -2981,6 +2987,11 @@ INSERT INTO ArtDefine_UnitInfos
 			(Type, 							DamageStates,	Formation)
 SELECT		'ART_DEF_UNIT_GURKHA', 			DamageStates, 	Formation
 FROM ArtDefine_UnitInfos WHERE Type = 'ART_DEF_UNIT_RIFLEMAN';
+
+INSERT INTO ArtDefine_UnitInfos 
+			(Type, 							DamageStates,	Formation)
+SELECT		'ART_DEF_UNIT_SISQENO', 			DamageStates, 	Formation
+FROM ArtDefine_UnitInfos WHERE Type = 'ART_DEF_UNIT_MISSIONARY';
 ------------------------------
 INSERT INTO ArtDefine_UnitInfoMemberInfos 	
 			(UnitInfoType,					UnitMemberInfoType,					NumMembers)
@@ -2991,6 +3002,11 @@ INSERT INTO ArtDefine_UnitInfoMemberInfos
 			(UnitInfoType,					UnitMemberInfoType,					NumMembers)
 SELECT		'ART_DEF_UNIT_GURKHA', 			'ART_DEF_UNIT_MEMBER_GURKHA', 		NumMembers
 FROM ArtDefine_UnitInfoMemberInfos WHERE UnitInfoType = 'ART_DEF_UNIT_RIFLEMAN';
+
+INSERT INTO ArtDefine_UnitInfoMemberInfos 	
+			(UnitInfoType,					UnitMemberInfoType,					NumMembers)
+SELECT		'ART_DEF_UNIT_SISQENO', 			'ART_DEF_UNIT_MEMBER_SISQENO', 		NumMembers
+FROM ArtDefine_UnitInfoMemberInfos WHERE UnitInfoType = 'ART_DEF_UNIT_MISSIONARY';
 ------------------------------
 INSERT INTO ArtDefine_UnitMemberCombats 
 			(UnitMemberType,					EnableActions, DisableActions, MoveRadius, ShortMoveRadius, ChargeRadius, AttackRadius, RangedAttackRadius, MoveRate, ShortMoveRate, TurnRateMin, TurnRateMax, TurnFacingRateMin, TurnFacingRateMax, RollRateMin, RollRateMax, PitchRateMin, PitchRateMax, LOSRadiusScale, TargetRadius, TargetHeight, HasShortRangedAttack, HasLongRangedAttack, HasLeftRightAttack, HasStationaryMelee, HasStationaryRangedAttack, HasRefaceAfterCombat, ReformBeforeCombat, HasIndependentWeaponFacing, HasOpponentTracking, HasCollisionAttack, AttackAltitude, AltitudeDecelerationDistance, OnlyTurnInMovementActions, RushAttackFormation)
@@ -3001,6 +3017,11 @@ INSERT INTO ArtDefine_UnitMemberCombats
 			(UnitMemberType,					EnableActions, DisableActions, MoveRadius, ShortMoveRadius, ChargeRadius, AttackRadius, RangedAttackRadius, MoveRate, ShortMoveRate, TurnRateMin, TurnRateMax, TurnFacingRateMin, TurnFacingRateMax, RollRateMin, RollRateMax, PitchRateMin, PitchRateMax, LOSRadiusScale, TargetRadius, TargetHeight, HasShortRangedAttack, HasLongRangedAttack, HasLeftRightAttack, HasStationaryMelee, HasStationaryRangedAttack, HasRefaceAfterCombat, ReformBeforeCombat, HasIndependentWeaponFacing, HasOpponentTracking, HasCollisionAttack, AttackAltitude, AltitudeDecelerationDistance, OnlyTurnInMovementActions, RushAttackFormation)
 SELECT		'ART_DEF_UNIT_MEMBER_GURKHA',		EnableActions, DisableActions, MoveRadius, ShortMoveRadius, ChargeRadius, AttackRadius, RangedAttackRadius, MoveRate, ShortMoveRate, TurnRateMin, TurnRateMax, TurnFacingRateMin, TurnFacingRateMax, RollRateMin, RollRateMax, PitchRateMin, PitchRateMax, LOSRadiusScale, TargetRadius, TargetHeight, HasShortRangedAttack, HasLongRangedAttack, HasLeftRightAttack, HasStationaryMelee, HasStationaryRangedAttack, HasRefaceAfterCombat, ReformBeforeCombat, HasIndependentWeaponFacing, HasOpponentTracking, HasCollisionAttack, AttackAltitude, AltitudeDecelerationDistance, OnlyTurnInMovementActions, RushAttackFormation
 FROM ArtDefine_UnitMemberCombats WHERE UnitMemberType = 'ART_DEF_UNIT_MEMBER_RIFLEMAN';
+
+INSERT INTO ArtDefine_UnitMemberCombats 
+			(UnitMemberType,					EnableActions, DisableActions, MoveRadius, ShortMoveRadius, ChargeRadius, AttackRadius, RangedAttackRadius, MoveRate, ShortMoveRate, TurnRateMin, TurnRateMax, TurnFacingRateMin, TurnFacingRateMax, RollRateMin, RollRateMax, PitchRateMin, PitchRateMax, LOSRadiusScale, TargetRadius, TargetHeight, HasShortRangedAttack, HasLongRangedAttack, HasLeftRightAttack, HasStationaryMelee, HasStationaryRangedAttack, HasRefaceAfterCombat, ReformBeforeCombat, HasIndependentWeaponFacing, HasOpponentTracking, HasCollisionAttack, AttackAltitude, AltitudeDecelerationDistance, OnlyTurnInMovementActions, RushAttackFormation)
+SELECT		'ART_DEF_UNIT_MEMBER_SISQENO',		EnableActions, DisableActions, MoveRadius, ShortMoveRadius, ChargeRadius, AttackRadius, RangedAttackRadius, MoveRate, ShortMoveRate, TurnRateMin, TurnRateMax, TurnFacingRateMin, TurnFacingRateMax, RollRateMin, RollRateMax, PitchRateMin, PitchRateMax, LOSRadiusScale, TargetRadius, TargetHeight, HasShortRangedAttack, HasLongRangedAttack, HasLeftRightAttack, HasStationaryMelee, HasStationaryRangedAttack, HasRefaceAfterCombat, ReformBeforeCombat, HasIndependentWeaponFacing, HasOpponentTracking, HasCollisionAttack, AttackAltitude, AltitudeDecelerationDistance, OnlyTurnInMovementActions, RushAttackFormation
+FROM ArtDefine_UnitMemberCombats WHERE UnitMemberType = 'ART_DEF_UNIT_MEMBER_MISSIONARY';
 ------------------------------
 INSERT INTO ArtDefine_UnitMemberCombatWeapons	
 			(UnitMemberType,					"Index", SubIndex, ID, VisKillStrengthMin, VisKillStrengthMax, ProjectileSpeed, ProjectileTurnRateMin, ProjectileTurnRateMax, HitEffect, HitEffectScale, HitRadius, ProjectileChildEffectScale, AreaDamageDelay, ContinuousFire, WaitForEffectCompletion, TargetGround, IsDropped, WeaponTypeTag, WeaponTypeSoundOverrideTag)
@@ -3011,6 +3032,11 @@ INSERT INTO ArtDefine_UnitMemberCombatWeapons
 			(UnitMemberType,					"Index", SubIndex, ID, VisKillStrengthMin, VisKillStrengthMax, ProjectileSpeed, ProjectileTurnRateMin, ProjectileTurnRateMax, HitEffect, HitEffectScale, HitRadius, ProjectileChildEffectScale, AreaDamageDelay, ContinuousFire, WaitForEffectCompletion, TargetGround, IsDropped, WeaponTypeTag, WeaponTypeSoundOverrideTag)
 SELECT		'ART_DEF_UNIT_MEMBER_GURKHA',		"Index", SubIndex, ID, VisKillStrengthMin, VisKillStrengthMax, ProjectileSpeed, ProjectileTurnRateMin, ProjectileTurnRateMax, HitEffect, HitEffectScale, HitRadius, ProjectileChildEffectScale, AreaDamageDelay, ContinuousFire, WaitForEffectCompletion, TargetGround, IsDropped, WeaponTypeTag, WeaponTypeSoundOverrideTag
 FROM ArtDefine_UnitMemberCombatWeapons WHERE UnitMemberType = 'ART_DEF_UNIT_MEMBER_RIFLEMAN';
+
+INSERT INTO ArtDefine_UnitMemberCombatWeapons	
+			(UnitMemberType,					"Index", SubIndex, ID, VisKillStrengthMin, VisKillStrengthMax, ProjectileSpeed, ProjectileTurnRateMin, ProjectileTurnRateMax, HitEffect, HitEffectScale, HitRadius, ProjectileChildEffectScale, AreaDamageDelay, ContinuousFire, WaitForEffectCompletion, TargetGround, IsDropped, WeaponTypeTag, WeaponTypeSoundOverrideTag)
+SELECT		'ART_DEF_UNIT_MEMBER_SISQENO',		"Index", SubIndex, ID, VisKillStrengthMin, VisKillStrengthMax, ProjectileSpeed, ProjectileTurnRateMin, ProjectileTurnRateMax, HitEffect, HitEffectScale, HitRadius, ProjectileChildEffectScale, AreaDamageDelay, ContinuousFire, WaitForEffectCompletion, TargetGround, IsDropped, WeaponTypeTag, WeaponTypeSoundOverrideTag
+FROM ArtDefine_UnitMemberCombatWeapons WHERE UnitMemberType = 'ART_DEF_UNIT_MEMBER_MISSIONARY';
 ------------------------------
 INSERT INTO ArtDefine_UnitMemberInfos 	
 			(Type, 								Scale,  ZOffset, Domain, Model, 				MaterialTypeTag, MaterialTypeSoundOverrideTag)
@@ -3021,6 +3047,11 @@ INSERT INTO ArtDefine_UnitMemberInfos
 			(Type, 								Scale,  ZOffset, Domain, Model, 				MaterialTypeTag, MaterialTypeSoundOverrideTag)
 SELECT		'ART_DEF_UNIT_MEMBER_GURKHA',		Scale,	ZOffset, Domain, 'gurkha.fxsxml',		MaterialTypeTag, MaterialTypeSoundOverrideTag
 FROM ArtDefine_UnitMemberInfos WHERE Type = 'ART_DEF_UNIT_MEMBER_RIFLEMAN';
+
+INSERT INTO ArtDefine_UnitMemberInfos 	
+			(Type, 								Scale,  ZOffset, Domain, Model, 				MaterialTypeTag, MaterialTypeSoundOverrideTag)
+SELECT		'ART_DEF_UNIT_MEMBER_SISQENO',		Scale,	ZOffset, Domain, 'sisqeno.fxsxml',		MaterialTypeTag, MaterialTypeSoundOverrideTag
+FROM ArtDefine_UnitMemberInfos WHERE Type = 'ART_DEF_UNIT_MEMBER_MISSIONARY';
 ------------------------------
 INSERT INTO UnitGameplay2DScripts 	
 			(UnitType, 				SelectionSound, FirstSelectionSound)
@@ -3036,6 +3067,11 @@ INSERT INTO UnitGameplay2DScripts
 			(UnitType, 				SelectionSound, FirstSelectionSound)
 SELECT		'UNIT_GURKHA',			SelectionSound, FirstSelectionSound
 FROM UnitGameplay2DScripts WHERE UnitType = 'UNIT_RIFLEMAN';
+
+INSERT INTO UnitGameplay2DScripts 	
+			(UnitType, 				SelectionSound, FirstSelectionSound)
+SELECT		'UNIT_SISQENO',			SelectionSound, FirstSelectionSound
+FROM UnitGameplay2DScripts WHERE UnitType = 'UNIT_MISSIONARY';
 ------------------------------
 INSERT INTO UnitClasses
 					(Type,				Description, MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, DefaultUnit)
@@ -3051,6 +3087,16 @@ INSERT INTO UnitClasses
 					(Type,						Description,				MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, DefaultUnit)
 SELECT DISTINCT 	'UNITCLASS_GURKHA',			'TXT_KEY_UNIT_GURKHA',		MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, 'UNIT_GURKHA'
 FROM UnitClasses WHERE Type = 'UNITCLASS_RIFLEMAN';
+
+INSERT INTO UnitClasses
+					(Type,						Description,				MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, DefaultUnit)
+SELECT DISTINCT 	'UNITCLASS_SISQENO',			'TXT_KEY_UNIT_SISQENO',		MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, 'UNIT_SISQENO'
+FROM UnitClasses WHERE Type = 'UNITCLASS_MISSIONARY';
+
+INSERT INTO UnitClasses
+					(Type,						Description,				MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, DefaultUnit)
+SELECT DISTINCT 	'UNITCLASS_SISQENO_WORKER',			'TXT_KEY_UNIT_SISQENO_WORKER',		MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, 'UNIT_SISQENO_WORKER'
+FROM UnitClasses WHERE Type = 'UNITCLASS_MISSIONARY';
 ------------------------------
 INSERT INTO Units
 					(Type,				Class,				FaithCost,	Cost,	AdvancedStartCost,	RequiresFaithPurchaseEnabled, Description, Civilopedia, Strategy, Help, Moves, Immobile, BaseSightRange, CombatClass, Domain, CivilianAttackPriority, DefaultUnitAI, MilitarySupport, MilitaryProduction, Mechanized, PrereqTech,			ObsoleteTech, GoodyHutUpgradeUnitClass, MinAreaSize, NukeDamageLevel, CombatLimit, Trade, XPValueAttack, XPValueDefense, NoMaintenance, UnitArtInfo, UnitArtInfoEraVariation, ShowInPedia, MoveRate, UnitFlagIconOffset, PortraitIndex, IconAtlas, UnitFlagAtlas, MaxHitPoints, PurchaseCooldown, ProductionCostAddedPerEra)
@@ -3058,14 +3104,24 @@ SELECT DISTINCT 	Type||'_OF_DALI',	Class||'_OF_DALI',	200,		-1,		-1,					Require
 FROM Units WHERE Type IN ('UNIT_CARAVAN'/*, 'UNIT_CARGO_SHIP'*/);
 
 INSERT INTO Units
-					(Type,				Class,						Description,				Civilopedia,						Strategy,								Help,								NoMinorGifts,	UnitEraUpgrade,	Cost,	FaithCost,	Combat,	Moves,	BaseSightRange, PurchaseOnly,	MoveAfterPurchase,	Class,						CombatClass, Domain, DefaultUnitAI,		MilitarySupport, MilitaryProduction, Pillage, Mechanized, PrereqTech,		ObsoleteTech,	GoodyHutUpgradeUnitClass,	AdvancedStartCost,	MinAreaSize, NukeDamageLevel,	CombatLimit, XPValueAttack, XPValueDefense, Conscription,	NoMaintenance, UnitArtInfo,					UnitArtInfoEraVariation, ShowInPedia, MoveRate, UnitFlagIconOffset, PortraitIndex,	IconAtlas,			UnitFlagAtlas,			MaxHitPoints, BaseLandAirDefense,	PurchaseCooldown)
-SELECT DISTINCT 	'UNIT_SWISS_GUARD',	'UNITCLASS_SWISS_GUARD',	'TXT_KEY_UNIT_SWISS_GUARD',	'TXT_KEY_CIV5_UNIT_SWISS_GUARD',	'TXT_KEY_UNIT_SWISS_GUARD_STRATEGY',	'TXT_KEY_UNIT_SWISS_GUARD_HELP',	1,				1,				220,	500,		28,		Moves,	BaseSightRange, PurchaseOnly,	MoveAfterPurchase,	'UNITCLASS_SWISS_GUARD',	CombatClass, Domain, 'UNITAI_DEFENSE',	MilitarySupport, MilitaryProduction, Pillage, Mechanized, 'TECH_BANKING',	NULL,			NULL,						-1,					MinAreaSize, NukeDamageLevel,	CombatLimit, XPValueAttack,	XPValueDefense, 4,				NoMaintenance, 'ART_DEF_UNIT_SWISS_GUARD',	UnitArtInfoEraVariation, ShowInPedia, MoveRate, 0,					0,				'UCS_UNIT_ATLAS',	'UCS_UNIT_FLAG_ATLAS',	MaxHitPoints, 1,					PurchaseCooldown
+					(Type,				Class,						Description,				Civilopedia,						Strategy,								Help,								NoMinorGifts,	UnitEraUpgrade,	Cost,	FaithCost,	Combat,	Moves,	BaseSightRange, PurchaseOnly,	MoveAfterPurchase,							CombatClass, Domain, DefaultUnitAI,		MilitarySupport, MilitaryProduction, Pillage, Mechanized, PrereqTech,		ObsoleteTech,	GoodyHutUpgradeUnitClass,	AdvancedStartCost,	MinAreaSize, NukeDamageLevel,	CombatLimit, XPValueAttack, XPValueDefense, Conscription,	NoMaintenance, UnitArtInfo,					UnitArtInfoEraVariation, ShowInPedia, MoveRate, UnitFlagIconOffset, PortraitIndex,	IconAtlas,			UnitFlagAtlas,			MaxHitPoints, BaseLandAirDefense,	PurchaseCooldown)
+SELECT DISTINCT 	'UNIT_SWISS_GUARD',	'UNITCLASS_SWISS_GUARD',	'TXT_KEY_UNIT_SWISS_GUARD',	'TXT_KEY_CIV5_UNIT_SWISS_GUARD',	'TXT_KEY_UNIT_SWISS_GUARD_STRATEGY',	'TXT_KEY_UNIT_SWISS_GUARD_HELP',	1,				1,				220,	500,		28,		Moves,	BaseSightRange, PurchaseOnly,	MoveAfterPurchase,		CombatClass, Domain, 'UNITAI_DEFENSE',	MilitarySupport, MilitaryProduction, Pillage, Mechanized, 'TECH_BANKING',	NULL,			NULL,						-1,					MinAreaSize, NukeDamageLevel,	CombatLimit, XPValueAttack,	XPValueDefense, 4,				NoMaintenance, 'ART_DEF_UNIT_SWISS_GUARD',	UnitArtInfoEraVariation, ShowInPedia, MoveRate, 0,					0,				'UCS_UNIT_ATLAS',	'UCS_UNIT_FLAG_ATLAS',	MaxHitPoints, 1,					PurchaseCooldown
 FROM Units WHERE Type = 'UNIT_FCOMPANY';
 
 INSERT INTO Units
-					(Type,				Class,						Description,				Civilopedia,						Strategy,								Help,								NoMinorGifts,	Cost,	FaithCost,	Combat,	Moves,	BaseSightRange, PurchaseOnly,	MoveAfterPurchase,	RequiresFaithPurchaseEnabled,	Class,				CombatClass, Domain, DefaultUnitAI,		MilitarySupport, MilitaryProduction, Pillage, Mechanized, IgnoreBuildingDefense,	PrereqTech,			ObsoleteTech,	GoodyHutUpgradeUnitClass,	AdvancedStartCost,	MinAreaSize, NukeDamageLevel,	CombatLimit, XPValueAttack, XPValueDefense, Conscription,	NoMaintenance, UnitArtInfo,				UnitArtInfoEraVariation, ShowInPedia, MoveRate, UnitFlagIconOffset, PortraitIndex,	IconAtlas,			UnitFlagAtlas,			MaxHitPoints, BaseLandAirDefense,	PurchaseCooldown)
-SELECT DISTINCT 	'UNIT_GURKHA',		'UNITCLASS_GURKHA',			'TXT_KEY_UNIT_GURKHA',		'TXT_KEY_CIV5_UNIT_GURKHA',			'TXT_KEY_UNIT_GURKHA_STRATEGY',			'TXT_KEY_UNIT_GURKHA_HELP',			1,				575,	NULL,		42,		Moves,	BaseSightRange, 1,				1,					0,								'UNITCLASS_GURKHA',	CombatClass, Domain, 'UNITAI_DEFENSE',	MilitarySupport, MilitaryProduction, Pillage, Mechanized, IgnoreBuildingDefense,	'TECH_METALLURGY',	ObsoleteTech,	GoodyHutUpgradeUnitClass,	-1,					MinAreaSize, NukeDamageLevel,	CombatLimit, XPValueAttack,	XPValueDefense, Conscription,	NoMaintenance, 'ART_DEF_UNIT_GURKHA',	UnitArtInfoEraVariation, ShowInPedia, MoveRate, 1,					1,				'UCS_UNIT_ATLAS',	'UCS_UNIT_FLAG_ATLAS',	MaxHitPoints, BaseLandAirDefense,	PurchaseCooldown
+					(Type,				Class,						Description,				Civilopedia,						Strategy,								Help,								NoMinorGifts,	Cost,	FaithCost,	Combat,	Moves,	BaseSightRange, PurchaseOnly,	MoveAfterPurchase,	RequiresFaithPurchaseEnabled,					CombatClass, Domain, DefaultUnitAI,		MilitarySupport, MilitaryProduction, Pillage, Mechanized, IgnoreBuildingDefense,	PrereqTech,			ObsoleteTech,	GoodyHutUpgradeUnitClass,	AdvancedStartCost,	MinAreaSize, NukeDamageLevel,	CombatLimit, XPValueAttack, XPValueDefense, Conscription,	NoMaintenance, UnitArtInfo,				UnitArtInfoEraVariation, ShowInPedia, MoveRate, UnitFlagIconOffset, PortraitIndex,	IconAtlas,			UnitFlagAtlas,			MaxHitPoints, BaseLandAirDefense,	PurchaseCooldown)
+SELECT DISTINCT 	'UNIT_GURKHA',		'UNITCLASS_GURKHA',			'TXT_KEY_UNIT_GURKHA',		'TXT_KEY_CIV5_UNIT_GURKHA',			'TXT_KEY_UNIT_GURKHA_STRATEGY',			'TXT_KEY_UNIT_GURKHA_HELP',			1,				575,	NULL,		42,		Moves,	BaseSightRange, 1,				1,					0,									CombatClass, Domain, 'UNITAI_DEFENSE',	MilitarySupport, MilitaryProduction, Pillage, Mechanized, IgnoreBuildingDefense,	'TECH_METALLURGY',	ObsoleteTech,	GoodyHutUpgradeUnitClass,	-1,					MinAreaSize, NukeDamageLevel,	CombatLimit, XPValueAttack,	XPValueDefense, Conscription,	NoMaintenance, 'ART_DEF_UNIT_GURKHA',	UnitArtInfoEraVariation, ShowInPedia, MoveRate, 1,					1,				'UCS_UNIT_ATLAS',	'UCS_UNIT_FLAG_ATLAS',	MaxHitPoints, BaseLandAirDefense,	PurchaseCooldown
 FROM Units WHERE Type = 'UNIT_RIFLEMAN';
+
+INSERT INTO Units
+					(Type,				Class,						Description,				Civilopedia,						Strategy,								Help,								NoMinorGifts,	UnitEraUpgrade,	Cost,	FaithCost,	Combat,	Moves,	BaseSightRange, PurchaseOnly,	MoveAfterPurchase,							CombatClass, Domain, DefaultUnitAI,		MilitarySupport, MilitaryProduction, Pillage, Mechanized, PrereqTech,		ObsoleteTech,	GoodyHutUpgradeUnitClass,	AdvancedStartCost,	MinAreaSize, NukeDamageLevel,	CombatLimit, XPValueAttack, XPValueDefense, Conscription,	NoMaintenance, UnitArtInfo,					UnitArtInfoEraVariation, ShowInPedia, MoveRate, UnitFlagIconOffset, PortraitIndex,	IconAtlas,			UnitFlagAtlas,			MaxHitPoints, BaseLandAirDefense,	PurchaseCooldown)
+SELECT DISTINCT 	'UNIT_SISQENO',	'UNITCLASS_SISQENO',	'TXT_KEY_UNIT_SISQENO',	'TXT_KEY_CIV5_UNIT_SISQENO',	'TXT_KEY_UNIT_SISQENO_STRATEGY',	'TXT_KEY_UNIT_SISQENO_HELP',	1,				1,				220,	500,		28,		Moves,	BaseSightRange, PurchaseOnly,	MoveAfterPurchase,		CombatClass, Domain, DefaultUnitAI,	MilitarySupport, MilitaryProduction, Pillage, Mechanized, NULL,	NULL,			NULL,						-1,					MinAreaSize, NukeDamageLevel,	CombatLimit, XPValueAttack,	XPValueDefense, 4,				NoMaintenance, 'ART_DEF_UNIT_SISQENO',	UnitArtInfoEraVariation, ShowInPedia, MoveRate, 3,					3,				'UCS_UNIT_ATLAS',	'UCS_UNIT_FLAG_ATLAS',	MaxHitPoints, 1,					PurchaseCooldown
+FROM Units WHERE Type = 'UNIT_MISSIONARY';
+
+INSERT INTO Units
+					(Type,				Class,						Description,				Civilopedia,						Strategy,								Help,								NoMinorGifts,	UnitEraUpgrade,	Cost,	FaithCost,	Combat,	Moves,	BaseSightRange, PurchaseOnly,	MoveAfterPurchase,							CombatClass, Domain, DefaultUnitAI,		MilitarySupport, MilitaryProduction, Pillage, Mechanized, PrereqTech,		ObsoleteTech,	GoodyHutUpgradeUnitClass,	AdvancedStartCost,	MinAreaSize, NukeDamageLevel,	CombatLimit, XPValueAttack, XPValueDefense, Conscription,	NoMaintenance, UnitArtInfo,					UnitArtInfoEraVariation, ShowInPedia, MoveRate, UnitFlagIconOffset, PortraitIndex,	IconAtlas,			UnitFlagAtlas,			MaxHitPoints, BaseLandAirDefense,	PurchaseCooldown)
+SELECT DISTINCT 	'UNIT_SISQENO_WORKER',	'UNITCLASS_SISQENO_WORKER',	'TXT_KEY_UNIT_SISQENO',	'TXT_KEY_CIV5_UNIT_SISQENO',	'TXT_KEY_UNIT_SISQENO_STRATEGY',	'TXT_KEY_UNIT_SISQENO_HELP',	1,				1,				220,	500,		28,		Moves,	BaseSightRange, PurchaseOnly,	MoveAfterPurchase,		CombatClass, Domain, 'UNITAI_WORKER',	MilitarySupport, MilitaryProduction, Pillage, Mechanized, NULL,	NULL,			NULL,						-1,					MinAreaSize, NukeDamageLevel,	CombatLimit, XPValueAttack,	XPValueDefense, 4,				NoMaintenance, 'ART_DEF_UNIT_SISQENO',	UnitArtInfoEraVariation, ShowInPedia, MoveRate, 3,					3,				'UCS_UNIT_ATLAS',	'UCS_UNIT_FLAG_ATLAS',	MaxHitPoints, 1,					PurchaseCooldown
+FROM Units WHERE Type = 'UNIT_MISSIONARY';
 ------------------------------
 INSERT INTO Unit_AITypes
 					(UnitType,				UnitAIType)
@@ -3081,6 +3137,16 @@ INSERT INTO Unit_AITypes
 			(UnitType, 				UnitAIType)
 SELECT		'UNIT_GURKHA', 			UnitAIType
 FROM Unit_AITypes WHERE UnitType = 'UNIT_RIFLEMAN';
+
+INSERT INTO Unit_AITypes 	
+			(UnitType, 				UnitAIType)
+SELECT		'UNIT_SISQENO', 			UnitAIType
+FROM Unit_AITypes WHERE UnitType = 'UNIT_MISSIONARY';
+
+INSERT INTO Unit_AITypes 	
+			(UnitType, 				UnitAIType)
+SELECT		'UNIT_SISQENO_WORKER', 			UnitAIType
+FROM Unit_AITypes WHERE UnitType = 'UNIT_WORKER';
 ------------------------------
 INSERT INTO Unit_Flavors
 					(UnitType,				FlavorType,	Flavor)
@@ -3097,10 +3163,16 @@ INSERT INTO Unit_Flavors
 SELECT		'UNIT_GURKHA', 			FlavorType, Flavor
 FROM Unit_Flavors WHERE UnitType = 'UNIT_RIFLEMAN';
 
+INSERT INTO Unit_Flavors 	
+			(UnitType, 				FlavorType, Flavor)
+SELECT		'UNIT_SISQENO', 			FlavorType, Flavor
+FROM Unit_Flavors WHERE UnitType = 'UNIT_MISSIONARY';
+
 INSERT INTO Unit_Flavors 
 			(UnitType, 				FlavorType, 		Flavor)
 VALUES		('UNIT_SWISS_GUARD', 	'FLAVOR_CULTURE', 	3),
-			('UNIT_SWISS_GUARD', 	'FLAVOR_RELIGION', 	3);
+			('UNIT_SWISS_GUARD', 	'FLAVOR_RELIGION', 	3),
+			('UNIT_SISQENO', 	'FLAVOR_TILE_IMPROVEMENT', 	2);
 ------------------------------
 INSERT INTO Unit_FreePromotions
 					(UnitType,				PromotionType)
@@ -3116,6 +3188,11 @@ INSERT INTO Unit_FreePromotions
 			(UnitType, 				PromotionType)
 SELECT		'UNIT_GURKHA', 	PromotionType
 FROM Unit_FreePromotions WHERE UnitType = 'UNIT_RIFLEMAN';
+
+INSERT INTO Unit_FreePromotions 	
+			(UnitType, 				PromotionType)
+SELECT		'UNIT_SISQENO', 	PromotionType
+FROM Unit_FreePromotions WHERE UnitType = 'UNIT_MISSIONARY';
 
 INSERT INTO Unit_FreePromotions 
 			(UnitType, 				PromotionType)
