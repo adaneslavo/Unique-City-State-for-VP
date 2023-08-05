@@ -2007,58 +2007,30 @@ end
 
 
 -- ÓC EO (TRADE ROUTES INTO GROWTH)
-	--[[		
-	Domain - DomainTypes.DOMAIN_LAND or DomainTypes.DOMAIN_SEA (int)
-	TurnsLeft - turns left before the trade route can be reassigned (int)
-	FromCivilizationType - eg GameInfoTypes.CIVILIZATION_ENGLAND (int)
-	FromID - from player ID (int)
-	FromCityName - from city name (string)
-	FromCity - from city (Lua pCity object)
-	ToCivilizationType - to player civ type (int)
-	ToID - to player ID (int)
-	ToCityName - to city name (string)
-	ToCity - to city (Lua pCity object)
-	FromGPT - route yield (int)
-	ToGPT - route yield (int)
-	ToFood - route yield (int)
-	ToProduction - route yield (int)
-	FromScience - route yield (int)
-	ToScience - route yield (int)
-	ToReligion - to religion type (or -1) (int)
-	ToPressure - to pressure (int)
-	FromReligion - from religion type (or -1) (int)
-	FromPressure - from pressure (int)
-	FromTourism - from tourism (int)
-	ToTourism - to tourism (int) --]]
+	--[[	Domain - DomainTypes.DOMAIN_LAND or DomainTypes.DOMAIN_SEA (int)
+		TurnsLeft - turns left before the trade route can be reassigned (int)
+		FromCivilizationType - eg GameInfoTypes.CIVILIZATION_ENGLAND (int)
+		FromID - from player ID (int)
+		FromCityName - from city name (string)
+		FromCity - from city (Lua pCity object)
+		ToCivilizationType - to player civ type (int)
+		ToID - to player ID (int)
+		ToCityName - to city name (string)
+		ToCity - to city (Lua pCity object)
+		FromGPT - route yield (int)
+		ToGPT - route yield (int)
+		ToFood - route yield (int)
+		ToProduction - route yield (int)
+		FromScience - route yield (int)
+		ToScience - route yield (int)
+		ToReligion - to religion type (or -1) (int)
+		ToPressure - to pressure (int)
+		FromReligion - from religion type (or -1) (int)
+		FromPressure - from pressure (int)
+		FromTourism - from tourism (int)
+		ToTourism - to tourism (int) --]]
 
-function LordsOfTheGreatGlassRiverOnEventOn(ePlayer, eEventChoiceType)
-	if eEventChoiceType == tEventChoice[9] then
-		local pPlayer = Players[ePlayer]
-		local iInternationalSeaTradeRoutes = InternationalSeaTradeRoutes(ePlayer, pPlayer)
-		local pCapitalCity = pPlayer:GetCapitalCity()
-		
-		for city in pPlayer:Cities() do
-			if city:IsCoastal(10) then
-				city:SetNumRealBuilding(tBuildingsActiveAbilities[2], iInternationalSeaTradeRoutes)
-			end
-		end
-		
-		pCapitalCity:SetNumRealBuilding(tBuildingsActiveAbilities[3], iInternationalSeaTradeRoutes)
-	end
-end
-
-function LordsOfTheGreatGlassRiverOnEventOff(ePlayer, eEventChoiceType)
-	if eEventChoiceType == tEventChoice[9] then
-		local pPlayer = Players[ePlayer]
-	
-		for city in pPlayer:Cities() do
-			city:SetNumRealBuilding(tBuildingsActiveAbilities[2], 0)
-			city:SetNumRealBuilding(tBuildingsActiveAbilities[3], 0)
-		end
-	end
-end
-
---[[function LordsOfTheGreatGlassRiver(ePlayer)
+function LordsOfTheGreatGlassRiver(ePlayer)
 	local pPlayer = Players[ePlayer]
 	
 	if pPlayer:IsMinorCiv() then return end
@@ -2086,7 +2058,34 @@ end
 	end
 	
 	
-end--]]
+end
+
+function LordsOfTheGreatGlassRiverOnEventOn(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[9] then
+		local pPlayer = Players[ePlayer]
+		local iInternationalSeaTradeRoutes = InternationalSeaTradeRoutes(ePlayer, pPlayer)
+		local pCapitalCity = pPlayer:GetCapitalCity()
+		
+		for city in pPlayer:Cities() do
+			if city:IsCoastal(10) then
+				city:SetNumRealBuilding(tBuildingsActiveAbilities[2], iInternationalSeaTradeRoutes)
+			end
+		end
+		
+		pCapitalCity:SetNumRealBuilding(tBuildingsActiveAbilities[3], iInternationalSeaTradeRoutes)
+	end
+end
+
+function LordsOfTheGreatGlassRiverOnEventOff(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[9] then
+		local pPlayer = Players[ePlayer]
+	
+		for city in pPlayer:Cities() do
+			city:SetNumRealBuilding(tBuildingsActiveAbilities[2], 0)
+			city:SetNumRealBuilding(tBuildingsActiveAbilities[3], 0)
+		end
+	end
+end
 
 function LordsOfTheGreatGlassRiverCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
 	local pNewOwner = Players[eNewOwner]
@@ -2130,8 +2129,6 @@ function LordsOfTheGreatGlassRiverNewCity(ePlayer, iX, iY)
 		end
 	end
 end
-
--- function SetDummiesOnUnitActionChange(ePlayer, iUnit)
 
 function InternationalSeaTradeRoutes(ePlayer, pPlayer)
 	local iInternationalSeaTradeRoutes = 0
@@ -3773,12 +3770,11 @@ function SettingUpSpecificEvents()
 			-- setting up specific building conditions
 			elseif sMinorCivType == "MINOR_CIV_OC_EO" then	
 				tLostCities["eLostOcEo"] = eCS
-				--GameEvents.PlayerDoTurn.Add(LordsOfTheGreatGlassRiver)
+				GameEvents.PlayerDoTurn.Add(LordsOfTheGreatGlassRiver) -- could be unused if another event will be added in dll (TradeStarted)
 				GameEvents.EventChoiceActivated.Add(LordsOfTheGreatGlassRiverOnEventOn)
 				GameEvents.EventChoiceEnded.Add(LordsOfTheGreatGlassRiverOnEventOff)
 				GameEvents.CityCaptureComplete.Add(LordsOfTheGreatGlassRiverCapture)
 				GameEvents.PlayerCityFounded.Add(LordsOfTheGreatGlassRiverNewCity)
-				Events.UnitActionChanged.Add(LordsOfTheGreatGlassRiverActionChange)
 			elseif sMinorCivType == "MINOR_CIV_THIMPHU" then
 				tLostCities["eLostThimphu"] = eCS
 				GameEvents.EventChoiceActivated.Add(DrukTsendhenOnEventOn)
