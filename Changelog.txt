@@ -97,6 +97,7 @@ Changelog:
 	- new units are not allowed to be gifted by City-States;
 	- Mujahideen promotion icon now uses Mountain symbol instead of hill (@gwennog);
 	- added missing Defines for Food values gifted by CSs and modified few other values from Defines;
+	- now making list of unique CSs' UUs is automated (previously done by hand); fixed and simplified the code spawning these units that probably didn't work;
 	- numerous text fixes (the most important):
 		- Thimphu lacked its 2nd ability description;
 		- improvement GAIN bonuses from adjacent Mountains, not GRANT bonuses to them (tested);
