@@ -100,3 +100,52 @@ Changelog:
 	- numerous text fixes (the most important):
 		- Thimphu lacked its 2nd ability description;
 		- improvement GAIN bonuses from adjacent Mountains, not GRANT bonuses to them (tested);
+
+
+
+
+
+
+/*SELECT 'TXT_KEY_MARITIME_BONUS', 						'[COLOR:90:205:40:255]Builders (Maritime):[ENDCOLOR][NEWLINE][ICON_BULLET]has a Manufactory and an additional Bonus Resource nearby[NEWLINE][ICON_BULLET]+15% [ICON_FOOD] Growth[NEWLINE][ICON_BULLET]10 [ICON_CULTURE_LOCAL] Border Growth Points on [ICON_CITIZEN] Birth[NEWLINE][ICON_BULLET][COLOR_NEGATIVE_TEXT]+20% [ICON_SPY] Enemy Spy Effectiveness[ENDCOLOR]'  UNION ALL
+SELECT 'TXT_KEY_MARITIME_FRIENDLY_BONUS', 					'[COLOR:200:240:140:255]Harvesters (Maritime Friendly):[ENDCOLOR][NEWLINE][ICON_BULLET]1% Chance for spawning a [ICON_WORKER] Worker or a [ICON_WORKER] Fishing Boat inside Friends'' Territory (their Capital must be on a Coast to get a [ICON_WORKER] Fishing Boat)[NEWLINE][ICON_BULLET]+50% [ICON_PRODUCTION] towards [ICON_WORKER] Workers and [ICON_WORKER] Fishing Boats[NEWLINE][ICON_BULLET]+1 [ICON_FOOD] to Bonus Resources'  UNION ALL
+SELECT 'TXT_KEY_MARITIME_NEUTRAL_BONUS', 					'[COLOR:110:160:70:255]Secured Warehouse (Maritime Neutral):[ENDCOLOR][NEWLINE][ICON_BULLET]+10 [ICON_FOOD] per 4 [ICON_CITIZEN][NEWLINE][ICON_BULLET]+10 [ICON_STRENGTH] Defense and +50 City HP'  UNION ALL
+SELECT 'TXT_KEY_MARITIME_HOSTILE_BONUS', 					'[COLOR:60:125:40:255]Selfish Gatherers (Maritime Hostile):[ENDCOLOR][NEWLINE][ICON_BULLET]+20% [ICON_PRODUCTION] towards all Naval Units[NEWLINE][ICON_BULLET]50 [ICON_FOOD] and 20 [ICON_CULTURE_LOCAL] Border Growth Points on [ICON_PRODUCTION] Unit Production[NEWLINE][ICON_BULLET]+1 [ICON_PRODUCTION] per 2 [ICON_CITIZEN].'  UNION ALL
+SELECT 'TXT_KEY_MERCANTILE_BONUS', 						'[COLOR:240:215:65:255]Trade Center (Mercantile):[ENDCOLOR][NEWLINE][ICON_BULLET]has a Town and an additional Luxury Resource nearby[NEWLINE][ICON_BULLET]+10% [ICON_GOLD][NEWLINE][ICON_BULLET]5% of [ICON_GOLD] is converted to [ICON_FOOD] and another 5% to [ICON_PRODUCTION][NEWLINE][ICON_BULLET]-20% [ICON_GOLD] Hurry Cost Modifiers[NEWLINE][ICON_BULLET][COLOR_NEGATIVE_TEXT]-20% [ICON_PRODUCTION] towards all Military Units[ENDCOLOR]'  UNION ALL
+SELECT 'TXT_KEY_MERCANTILE_FRIENDLY_BONUS', 				'[COLOR:240:240:165:255]Golden City (Mercantile Friendly):[ENDCOLOR][NEWLINE][ICON_BULLET]1% Chance for spawning a [ICON_CARAVAN] Caravan or a [ICON_CARGO_SHIP] Cargo Ship inside Friends'' Territory (their Capital must be on a Coast to get a [ICON_CARGO_SHIP] Cargo Ship)[NEWLINE][ICON_BULLET]+2 [ICON_GOLD] to Luxury Resources'  UNION ALL
+SELECT 'TXT_KEY_MERCANTILE_NEUTRAL_BONUS', 					'[COLOR:210:210:70:255]Shadow Council (Mercantile Neutral):[ENDCOLOR][NEWLINE][ICON_BULLET]+2 [ICON_PRODUCTION] and +2 [ICON_CULTURE] to Luxury Resources[NEWLINE][ICON_BULLET]20 [ICON_GOLD] from Border Growth'  UNION ALL
+SELECT 'TXT_KEY_MERCANTILE_HOSTILE_BONUS', 					'[COLOR:130:130:20:255]Free City (Mercantile Hostile):[ENDCOLOR][NEWLINE][ICON_BULLET]30 [ICON_GOLD] and 10 [ICON_CULTURE] when unit is produced[NEWLINE][ICON_BULLET][ICON_GOLD] when unit level ups[NEWLINE][ICON_BULLET]25% of [ICON_PRODUCTION] is added on [ICON_CITIZEN] Birth'  UNION ALL
+SELECT 'TXT_KEY_CULTURED_BONUS', 						'[COLOR:210:65:200:255]Center of Learning (Cultured):[ENDCOLOR][NEWLINE][ICON_BULLET]has an Academy and an Archaeological Site nearby.[NEWLINE][ICON_BULLET]+1 [ICON_CULTURE] to Forests, Jungles, Marshes, Oasis and Flood Plains.[NEWLINE][ICON_BULLET][COLOR_NEGATIVE_TEXT]-20% [ICON_PEACE] Religious Pressure[ENDCOLOR]'  UNION ALL
+SELECT 'TXT_KEY_CULTURED_FRIENDLY_BONUS', 					'[COLOR:240:180:235:255]Open University (Cultured Friendly):[ENDCOLOR][NEWLINE][ICON_BULLET]1% Chance for spawning an [ICON_VP_ARTIFACT] Archaeologist inside Friends'' Territory (after researching Archaeology)'  UNION ALL
+SELECT 'TXT_KEY_CULTURED_NEUTRAL_BONUS', 					'[COLOR:210:90:195:255]Patronage (Cultured Neutral):[ENDCOLOR]'  UNION ALL
+SELECT 'TXT_KEY_CULTURED_HOSTILE_BONUS', 					'[COLOR:130:30:115:255]Recluse Court (Cultured Hostile):[ENDCOLOR]'  UNION ALL
+SELECT 'TXT_KEY_RELIGIOUS_BONUS', 						'[COLOR:25:110:250:255]Center of Faith (Religious):[ENDCOLOR][NEWLINE][ICON_BULLET]has a Holy Site nearby[NEWLINE][ICON_BULLET]+33% [ICON_PEACE] Religious Pressure[NEWLINE][ICON_BULLET]+3 [ICON_FOOD], +3 [ICON_GOLD] and +3 [ICON_CULTURE] from Mountains and Atolls[NEWLINE][ICON_BULLET]+10 [ICON_STRENGTH] Defense and +50 City HP[NEWLINE][ICON_BULLET][COLOR_NEGATIVE_TEXT]-5 [ICON_WAR] Military Supply Cap[NEWLINE][ICON_BULLET][COLOR_NEGATIVE_TEXT]-25% [ICON_WAR] Supply Cap from [ICON_CITIZEN][ENDCOLOR]'  UNION ALL
+SELECT 'TXT_KEY_RELIGIOUS_FRIENDLY_BONUS', 					'[COLOR:160:220:250:255]Open Mind (Religious Friendly):[ENDCOLOR][NEWLINE][ICON_BULLET]1% Chance for spawning a [ICON_MISSIONARY] Missionary inside Friends'' Territory[NEWLINE][ICON_BULLET]-25% [ICON_PEACE] Conversion Resistance[NEWLINE][ICON_BULLET]+2 [ICON_CULTURE] per incoming [ICON_INTERNATIONAL_TRADE] Trade Route'  UNION ALL
+SELECT 'TXT_KEY_RELIGIOUS_NEUTRAL_BONUS', 					'[COLOR:105:155:230:255]Medicant Orders (Religious Neutral):[ENDCOLOR][NEWLINE][ICON_BULLET]+10% [ICON_PEACE] Conversion Resistance[NEWLINE][ICON_BULLET]+5 [ICON_PRODUCTION] for every World Religion that has at least one Follower in this City-State[NEWLINE][ICON_BULLET]+1 [ICON_FOOD] to Rivers and +2 [ICON_FOOD] to Lakes'  UNION ALL
+SELECT 'TXT_KEY_RELIGIOUS_HOSTILE_BONUS', 					'[COLOR:25:110:170:255]One Truth (Religious Hostile):[ENDCOLOR][NEWLINE][ICON_BULLET]+25% [ICON_PEACE] Conversion Resistance[NEWLINE][ICON_BULLET]+25% [ICON_PEACE] Religious Pressure[NEWLINE][ICON_BULLET]10 [ICON_CULTURE] on Unit''s Death'  UNION ALL
+SELECT 'TXT_KEY_MILITARISTIC_BONUS', 					'[COLOR:245:40:40:255]Fortress (Militaristic):[ENDCOLOR][NEWLINE][ICON_BULLET]has a Fort and an additional Strategic Resource nearby[NEWLINE][ICON_BULLET]can train its Unique Unit[NEWLINE][ICON_BULLET]Player can upgrade his units inside their territory if Allied[NEWLINE][ICON_BULLET]+3 [ICON_WAR] Military Supply Cap[NEWLINE][ICON_BULLET]+10% [ICON_PRODUCTION] towards all Military Units[NEWLINE][ICON_BULLET][COLOR_NEGATIVE_TEXT]-33% [ICON_FOOD] Growth[ENDCOLOR]'  UNION ALL
+SELECT 'TXT_KEY_MILITARISTIC_FRIENDLY_BONUS', 				'[COLOR:255:180:180:255]Mercenary Hub (Militaristic Friendly):[ENDCOLOR][NEWLINE][ICON_BULLET]+1% Rate of Unit Gifts to its Friends[NEWLINE][ICON_BULLET]All Military Units gain 30 XP when trained in this City-State'  UNION ALL
+SELECT 'TXT_KEY_MILITARISTIC_NEUTRAL_BONUS', 				'[COLOR:245:90:90:255]Sellsword Army (Militaristic Neutral):[ENDCOLOR][NEWLINE][ICON_BULLET]+50% [ICON_WAR] Military Supply Cap from [ICON_CITIZEN][NEWLINE][ICON_BULLET]+20% XP gained from Combat for units trained in this City-State[NEWLINE][ICON_BULLET]All Military Units gain 10 XP when trained in this City-State'  UNION ALL
+SELECT 'TXT_KEY_MILITARISTIC_HOSTILE_BONUS', 				'[COLOR:170:10:10:255]Hermit Dragon (Militaristic Hostile):[ENDCOLOR][NEWLINE][ICON_BULLET]+100% [ICON_WAR] Military Supply Cap from [ICON_CITIZEN][NEWLINE][ICON_BULLET]+33% [ICON_PRODUCTION] towards all Military Units'  UNION ALL*/
+
+
+
+/*UPDATE Policies SET CityGrowthMod = 15 WHERE Type = 'POLICY_MARITIME';
+UPDATE Policies SET CityGrowthMod = -33 WHERE Type = 'POLICY_MILITARISTIC';
+UPDATE Policies SET CityStateUnitFrequencyModifier = 1 WHERE Type = 'POLICY_MILITARISTIC_FRIENDLY';*/
+
+/*UPDATE Buildings SET ReligiousPressureModifier = 33, Defense = 1000, ExtraCityHitPoints = 50 WHERE Type = 'BUILDING_RELIGIOUS';
+UPDATE Buildings SET ReligiousPressureModifier = -20 WHERE Type = 'BUILDING_CULTURED';
+UPDATE Buildings SET ConversionModifier = 25 WHERE Type = 'BUILDING_RELIGIOUS_FRIENDLY';
+UPDATE Buildings SET ConversionModifier = -10 WHERE Type = 'BUILDING_RELIGIOUS_NEUTRAL';
+UPDATE Buildings SET ConversionModifier = -25, ReligiousPressureModifier = 25 WHERE Type = 'BUILDING_RELIGIOUS_HOSTILE';
+UPDATE Buildings SET EspionageModifier = 20 WHERE Type = 'BUILDING_MARITIME';
+UPDATE Buildings SET Defense = 500, ExtraCityHitPoints = 100 WHERE Type = 'BUILDING_MARITIME_NEUTRAL';
+UPDATE Buildings SET CitySupplyFlat = -5 WHERE Type = 'BUILDING_RELIGIOUS';
+UPDATE Buildings SET CitySupplyModifier = -25 WHERE Type = 'BUILDING_RELIGIOUS';
+UPDATE Buildings SET CitySupplyFlat = 3 WHERE Type = 'BUILDING_MILITARISTIC';
+UPDATE Buildings SET CitySupplyModifier = 50, TrainedFreePromotion = 'PROMOTION_MILITARISTIC_NEUTRAL' WHERE Type = 'BUILDING_MILITARISTIC_NEUTRAL';
+UPDATE Buildings SET CitySupplyModifier = 100 WHERE Type = 'BUILDING_MILITARISTIC_HOSTILE';*/
+
+/*INSERT INTO Building_GrowthExtraYield
+			(BuildingType, 					YieldType, 				Yield)
+SELECT 		'BUILDING_MERCANTILE_HOSTILE', 	'YIELD_PRODUCTION', 	25;*/
