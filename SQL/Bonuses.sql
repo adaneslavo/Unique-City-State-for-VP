@@ -2965,38 +2965,6 @@ VALUES		('RESOURCE_DOGO_CANARIO',	'FLAVOR_PRODUCTION',	30),
 			('RESOURCE_DOGO_CANARIO',	'FLAVOR_CULTURE',		10),
 			('RESOURCE_DOGO_CANARIO',	'FLAVOR_RELIGION',		10);
 ---------------------------------------------------
--- Definitions - Trade Units
----------------------------------------------------	
-INSERT INTO UnitClasses
-					(Type,				Description, MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, DefaultUnit)
-SELECT DISTINCT 	Type||'_OF_DALI',	Description, MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, DefaultUnit||'_OF_DALI'
-FROM UnitClasses WHERE Type IN ('UNITCLASS_CARAVAN'/*, 'UNIT_CARGO_SHIP'*/);
-
-INSERT INTO Units
-					(Type,				Class,				FaithCost,	Cost,	AdvancedStartCost,	RequiresFaithPurchaseEnabled, Description, Civilopedia, Strategy, Help, Moves, Immobile, BaseSightRange, CombatClass, Domain, CivilianAttackPriority, DefaultUnitAI, MilitarySupport, MilitaryProduction, Mechanized, PrereqTech,			ObsoleteTech, GoodyHutUpgradeUnitClass, MinAreaSize, NukeDamageLevel, CombatLimit, Trade, XPValueAttack, XPValueDefense, NoMaintenance, UnitArtInfo, UnitArtInfoEraVariation, ShowInPedia, MoveRate, UnitFlagIconOffset, PortraitIndex, IconAtlas, UnitFlagAtlas, MaxHitPoints, PurchaseCooldown, ProductionCostAddedPerEra)
-SELECT DISTINCT 	Type||'_OF_DALI',	Class||'_OF_DALI',	200,		-1,		-1,					RequiresFaithPurchaseEnabled, Description, Civilopedia, Strategy, Help, Moves, Immobile, BaseSightRange, CombatClass, Domain, CivilianAttackPriority, DefaultUnitAI, MilitarySupport, MilitaryProduction, Mechanized, PrereqTech||'_DUMMY', ObsoleteTech, GoodyHutUpgradeUnitClass, MinAreaSize, NukeDamageLevel, CombatLimit, Trade, XPValueAttack, XPValueDefense, NoMaintenance, UnitArtInfo, UnitArtInfoEraVariation, ShowInPedia, MoveRate, UnitFlagIconOffset, PortraitIndex, IconAtlas, UnitFlagAtlas, MaxHitPoints, PurchaseCooldown, ProductionCostAddedPerEra
-FROM Units WHERE Type IN ('UNIT_CARAVAN'/*, 'UNIT_CARGO_SHIP'*/);
-
-INSERT INTO Unit_AITypes
-					(UnitType,				UnitAIType)
-SELECT DISTINCT 	UnitType||'_OF_DALI',	UnitAIType
-FROM Unit_AITypes WHERE UnitType IN ('UNIT_CARAVAN'/*, 'UNIT_CARGO_SHIP'*/);
-
-INSERT INTO Unit_Flavors
-					(UnitType,				FlavorType,	Flavor)
-SELECT DISTINCT 	UnitType||'_OF_DALI',	FlavorType,	Flavor
-FROM Unit_Flavors WHERE UnitType IN ('UNIT_CARAVAN'/*, 'UNIT_CARGO_SHIP'*/);
-
-INSERT INTO Unit_FreePromotions
-					(UnitType,				PromotionType)
-SELECT DISTINCT 	UnitType||'_OF_DALI',	PromotionType
-FROM Unit_FreePromotions WHERE UnitType IN ('UNIT_CARAVAN'/*, 'UNIT_CARGO_SHIP'*/);
-
-INSERT INTO UnitGameplay2DScripts 	
-			(UnitType, 				SelectionSound, FirstSelectionSound)
-SELECT		UnitType||'_OF_DALI', 	SelectionSound, FirstSelectionSound
-FROM UnitGameplay2DScripts WHERE UnitType IN ('UNIT_CARAVAN'/*, 'UNIT_CARGO_SHIP'*/);
----------------------------------------------------
 -- Definitions - Mercenary and Unique Units
 ---------------------------------------------------	
 INSERT INTO ArtDefine_StrategicView 
@@ -3056,6 +3024,11 @@ FROM ArtDefine_UnitMemberInfos WHERE Type = 'ART_DEF_UNIT_MEMBER_RIFLEMAN';
 ------------------------------
 INSERT INTO UnitGameplay2DScripts 	
 			(UnitType, 				SelectionSound, FirstSelectionSound)
+SELECT		UnitType||'_OF_DALI', 	SelectionSound, FirstSelectionSound
+FROM UnitGameplay2DScripts WHERE UnitType IN ('UNIT_CARAVAN'/*, 'UNIT_CARGO_SHIP'*/);
+
+INSERT INTO UnitGameplay2DScripts 	
+			(UnitType, 				SelectionSound, FirstSelectionSound)
 SELECT		'UNIT_SWISS_GUARD', 	SelectionSound, FirstSelectionSound
 FROM UnitGameplay2DScripts WHERE UnitType = 'UNIT_PIKEMAN';
 
@@ -3064,6 +3037,11 @@ INSERT INTO UnitGameplay2DScripts
 SELECT		'UNIT_GURKHA',			SelectionSound, FirstSelectionSound
 FROM UnitGameplay2DScripts WHERE UnitType = 'UNIT_RIFLEMAN';
 ------------------------------
+INSERT INTO UnitClasses
+					(Type,				Description, MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, DefaultUnit)
+SELECT DISTINCT 	Type||'_OF_DALI',	Description, MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, DefaultUnit||'_OF_DALI'
+FROM UnitClasses WHERE Type IN ('UNITCLASS_CARAVAN'/*, 'UNIT_CARGO_SHIP'*/);
+
 INSERT INTO UnitClasses
 					(Type,						Description,				MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, DefaultUnit)
 SELECT DISTINCT 	'UNITCLASS_SWISS_GUARD',	'TXT_KEY_UNIT_SWISS_GUARD', MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, 'UNIT_SWISS_GUARD'
@@ -3075,6 +3053,11 @@ SELECT DISTINCT 	'UNITCLASS_GURKHA',			'TXT_KEY_UNIT_GURKHA',		MaxGlobalInstance
 FROM UnitClasses WHERE Type = 'UNITCLASS_RIFLEMAN';
 ------------------------------
 INSERT INTO Units
+					(Type,				Class,				FaithCost,	Cost,	AdvancedStartCost,	RequiresFaithPurchaseEnabled, Description, Civilopedia, Strategy, Help, Moves, Immobile, BaseSightRange, CombatClass, Domain, CivilianAttackPriority, DefaultUnitAI, MilitarySupport, MilitaryProduction, Mechanized, PrereqTech,			ObsoleteTech, GoodyHutUpgradeUnitClass, MinAreaSize, NukeDamageLevel, CombatLimit, Trade, XPValueAttack, XPValueDefense, NoMaintenance, UnitArtInfo, UnitArtInfoEraVariation, ShowInPedia, MoveRate, UnitFlagIconOffset, PortraitIndex, IconAtlas, UnitFlagAtlas, MaxHitPoints, PurchaseCooldown, ProductionCostAddedPerEra)
+SELECT DISTINCT 	Type||'_OF_DALI',	Class||'_OF_DALI',	200,		-1,		-1,					RequiresFaithPurchaseEnabled, Description, Civilopedia, Strategy, Help, Moves, Immobile, BaseSightRange, CombatClass, Domain, CivilianAttackPriority, DefaultUnitAI, MilitarySupport, MilitaryProduction, Mechanized, PrereqTech||'_DUMMY', ObsoleteTech, GoodyHutUpgradeUnitClass, MinAreaSize, NukeDamageLevel, CombatLimit, Trade, XPValueAttack, XPValueDefense, NoMaintenance, UnitArtInfo, UnitArtInfoEraVariation, ShowInPedia, MoveRate, UnitFlagIconOffset, PortraitIndex, IconAtlas, UnitFlagAtlas, MaxHitPoints, PurchaseCooldown, ProductionCostAddedPerEra
+FROM Units WHERE Type IN ('UNIT_CARAVAN'/*, 'UNIT_CARGO_SHIP'*/);
+
+INSERT INTO Units
 					(Type,				Class,						Description,				Civilopedia,						Strategy,								Help,								NoMinorGifts,	UnitEraUpgrade,	Cost,	FaithCost,	Combat,	Moves,	BaseSightRange, PurchaseOnly,	MoveAfterPurchase,	Class,						CombatClass, Domain, DefaultUnitAI,		MilitarySupport, MilitaryProduction, Pillage, Mechanized, PrereqTech,		ObsoleteTech,	GoodyHutUpgradeUnitClass,	AdvancedStartCost,	MinAreaSize, NukeDamageLevel,	CombatLimit, XPValueAttack, XPValueDefense, Conscription,	NoMaintenance, UnitArtInfo,					UnitArtInfoEraVariation, ShowInPedia, MoveRate, UnitFlagIconOffset, PortraitIndex,	IconAtlas,			UnitFlagAtlas,			MaxHitPoints, BaseLandAirDefense,	PurchaseCooldown)
 SELECT DISTINCT 	'UNIT_SWISS_GUARD',	'UNITCLASS_SWISS_GUARD',	'TXT_KEY_UNIT_SWISS_GUARD',	'TXT_KEY_CIV5_UNIT_SWISS_GUARD',	'TXT_KEY_UNIT_SWISS_GUARD_STRATEGY',	'TXT_KEY_UNIT_SWISS_GUARD_HELP',	1,				1,				220,	500,		28,		Moves,	BaseSightRange, PurchaseOnly,	MoveAfterPurchase,	'UNITCLASS_SWISS_GUARD',	CombatClass, Domain, 'UNITAI_DEFENSE',	MilitarySupport, MilitaryProduction, Pillage, Mechanized, 'TECH_BANKING',	NULL,			NULL,						-1,					MinAreaSize, NukeDamageLevel,	CombatLimit, XPValueAttack,	XPValueDefense, 4,				NoMaintenance, 'ART_DEF_UNIT_SWISS_GUARD',	UnitArtInfoEraVariation, ShowInPedia, MoveRate, 0,					0,				'UCS_UNIT_ATLAS',	'UCS_UNIT_FLAG_ATLAS',	MaxHitPoints, 1,					PurchaseCooldown
 FROM Units WHERE Type = 'UNIT_FCOMPANY';
@@ -3084,6 +3067,11 @@ INSERT INTO Units
 SELECT DISTINCT 	'UNIT_GURKHA',		'UNITCLASS_GURKHA',			'TXT_KEY_UNIT_GURKHA',		'TXT_KEY_CIV5_UNIT_GURKHA',			'TXT_KEY_UNIT_GURKHA_STRATEGY',			'TXT_KEY_UNIT_GURKHA_HELP',			1,				575,	NULL,		42,		Moves,	BaseSightRange, 1,				1,					0,								'UNITCLASS_GURKHA',	CombatClass, Domain, 'UNITAI_DEFENSE',	MilitarySupport, MilitaryProduction, Pillage, Mechanized, IgnoreBuildingDefense,	'TECH_METALLURGY',	ObsoleteTech,	GoodyHutUpgradeUnitClass,	-1,					MinAreaSize, NukeDamageLevel,	CombatLimit, XPValueAttack,	XPValueDefense, Conscription,	NoMaintenance, 'ART_DEF_UNIT_GURKHA',	UnitArtInfoEraVariation, ShowInPedia, MoveRate, 1,					1,				'UCS_UNIT_ATLAS',	'UCS_UNIT_FLAG_ATLAS',	MaxHitPoints, BaseLandAirDefense,	PurchaseCooldown
 FROM Units WHERE Type = 'UNIT_RIFLEMAN';
 ------------------------------
+INSERT INTO Unit_AITypes
+					(UnitType,				UnitAIType)
+SELECT DISTINCT 	UnitType||'_OF_DALI',	UnitAIType
+FROM Unit_AITypes WHERE UnitType IN ('UNIT_CARAVAN'/*, 'UNIT_CARGO_SHIP'*/);
+
 INSERT INTO Unit_AITypes 	
 			(UnitType, 				UnitAIType)
 SELECT		'UNIT_SWISS_GUARD', 	UnitAIType
@@ -3094,6 +3082,11 @@ INSERT INTO Unit_AITypes
 SELECT		'UNIT_GURKHA', 			UnitAIType
 FROM Unit_AITypes WHERE UnitType = 'UNIT_RIFLEMAN';
 ------------------------------
+INSERT INTO Unit_Flavors
+					(UnitType,				FlavorType,	Flavor)
+SELECT DISTINCT 	UnitType||'_OF_DALI',	FlavorType,	Flavor
+FROM Unit_Flavors WHERE UnitType IN ('UNIT_CARAVAN'/*, 'UNIT_CARGO_SHIP'*/);
+
 INSERT INTO Unit_Flavors 	
 			(UnitType, 				FlavorType, Flavor)
 SELECT		'UNIT_SWISS_GUARD', 	FlavorType, Flavor
@@ -3109,6 +3102,11 @@ INSERT INTO Unit_Flavors
 VALUES		('UNIT_SWISS_GUARD', 	'FLAVOR_CULTURE', 	3),
 			('UNIT_SWISS_GUARD', 	'FLAVOR_RELIGION', 	3);
 ------------------------------
+INSERT INTO Unit_FreePromotions
+					(UnitType,				PromotionType)
+SELECT DISTINCT 	UnitType||'_OF_DALI',	PromotionType
+FROM Unit_FreePromotions WHERE UnitType IN ('UNIT_CARAVAN'/*, 'UNIT_CARGO_SHIP'*/);
+
 INSERT INTO Unit_FreePromotions 	
 			(UnitType, 				PromotionType)
 SELECT		'UNIT_SWISS_GUARD', 	PromotionType
