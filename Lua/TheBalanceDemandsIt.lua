@@ -479,14 +479,18 @@ function DiplomaticExpansion(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKill
 			local pMinorPlayer = Players[pPlot:GetOwner()]
 			local eMinorPersonality = pMinorPlayer:GetPersonality()
 
-			pMinorCity:ChangeJONSCultureStored(iBorderGrowthBonus)
-
-			if eMinorPersonality == tMinorPersonalities[1] then
-				pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[1], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[1]) + 1)
-			elseif eMinorPersonality == tMinorPersonalities[2] then
-				pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[2], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[2]) + 1)
-			elseif eMinorPersonality == tMinorPersonalities[3] then
-				pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[3], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[3]) + 1)
+			if bEnablePassivesBorderGrowth then
+				pMinorCity:ChangeJONSCultureStored(iBorderGrowthBonus)
+			end
+		
+			if bEnablePassivesHitPoints then
+				if eMinorPersonality == tMinorPersonalities[1] then
+					pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[1], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[1]) + 1)
+				elseif eMinorPersonality == tMinorPersonalities[2] then
+					pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[2], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[2]) + 1)
+				elseif eMinorPersonality == tMinorPersonalities[3] then
+					pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[3], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[3]) + 1)
+				end
 			end
 		end
 	end
@@ -3591,6 +3595,8 @@ end
 -- INITIALIZATION
 function SettingUpSpecificEvents()
 	local bEnablePassives = GameInfo.Community{Type="UCS-PASSIVES-ON"}().Value == 1
+	local bEnablePassivesBorderGrowth = GameInfo.Community{Type="UCS-PASSIVES-BGP"}().Value == 1
+	local bEnablePassivesHitPoints = GameInfo.Community{Type="UCS-PASSIVES-HP"}().Value == 1
 
 	if bEnablePassives then
 		GameEvents.PlayerCityFounded.Add(MaritimeCityStatesBonuses)
