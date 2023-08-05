@@ -2,8 +2,33 @@ include("FLuaVector.lua")
 
 -- 35 variables so far coded (max 60)
 local L = Locale.ConvertTextKey
+local eSphere = GameInfoTypes.RESOLUTION_SPHERE_OF_INFLUENCE
+local eArtifactRuin = GameInfoTypes.ARTIFACT_ANCIENT_RUIN
 
+-- for events to start
+local iThresholdPseudoAllies = 3 * GameDefines.FRIENDSHIP_THRESHOLD_ALLIES
+local bIsAllyAnOption = true
+local bIsEmbassyAnOption = true
+local bIsPseudoAllyAnOption = true
+local tEmbassies = {}
+local bBlockedUnitFromThePreKillEvent = false -- for preventing the double triggering the UnitPrekill event
+
+-- city-states IDs
 local tLostCities = {}
+
+local tMinorTraits = {
+	GameInfoTypes.MINOR_TRAIT_MARITIME,
+	GameInfoTypes.MINOR_TRAIT_MERCANTILE,
+	GameInfoTypes.MINOR_TRAIT_CULTURED,
+	GameInfoTypes.MINOR_TRAIT_RELIGIOUS,
+	GameInfoTypes.MINOR_TRAIT_MILITARISTIC
+}
+
+local tMinorPersonalities = {
+	MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_FRIENDLY,
+	MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_NEUTRAL,
+	MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_HOSTILE
+}
 
 local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_BOGOTA, -- 1
@@ -221,6 +246,8 @@ local tResourcesStrategic = {
 	GameInfoTypes.RESOURCE_PAPER
 }
 
+local eResourceArtifact = GameInfoTypes.RESOURCE_ARTIFACTS
+
 local tTechnologyTypes = {
 	GameInfoTypes.TECH_ARCHAEOLOGY,
 	GameInfoTypes.TECH_RADIO,
@@ -229,55 +256,23 @@ local tTechnologyTypes = {
 	GameInfoTypes.TECH_HORSEBACK_RIDING_DUMMY
 }
 
-local eArtifactRuin = GameInfoTypes.ARTIFACT_ANCIENT_RUIN
-local eResourceArtifact = GameInfoTypes.RESOURCE_ARTIFACTS
-
-local eSphere = GameInfoTypes.RESOLUTION_SPHERE_OF_INFLUENCE
+local tDirectionTypes = {
+	DirectionTypes.DIRECTION_NORTHEAST,
+	DirectionTypes.DIRECTION_EAST,
+	DirectionTypes.DIRECTION_SOUTHEAST,
+	DirectionTypes.DIRECTION_SOUTHWEST,
+	DirectionTypes.DIRECTION_WEST,
+	DirectionTypes.DIRECTION_NORTHWEST
+}
 
 
 -- specific variables needed for events
 -- ZURICH
 local tZurichLastInterests = {}
 local tZurichCounter = {}
--- PRAGUE
-local bBlockedUnitFromThePreKillEvent = false
 -- KARYES
 local tCitiesWithEnoughMonasteries = {}
 
-
--- for city-states' verification
-local tMinorTraits = {
-	GameInfoTypes.MINOR_TRAIT_MARITIME,
-	GameInfoTypes.MINOR_TRAIT_MERCANTILE,
-	GameInfoTypes.MINOR_TRAIT_CULTURED,
-	GameInfoTypes.MINOR_TRAIT_RELIGIOUS,
-	GameInfoTypes.MINOR_TRAIT_MILITARISTIC
-}
-
-local tMinorPersonalities = {
-	MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_FRIENDLY,
-	MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_NEUTRAL,
-	MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_HOSTILE
-}
-
-
--- for events to start
-local iThresholdPseudoAllies = 3 * GameDefines.FRIENDSHIP_THRESHOLD_ALLIES
-local bIsAllyAnOption = true
-local bIsEmbassyAnOption = true
-local bIsPseudoAllyAnOption = true
-local tEmbassies = {}
-
-
--- for plot iteration
-local tDirectionTypes = {
-		DirectionTypes.DIRECTION_NORTHEAST,
-		DirectionTypes.DIRECTION_EAST,
-		DirectionTypes.DIRECTION_SOUTHEAST,
-		DirectionTypes.DIRECTION_SOUTHWEST,
-		DirectionTypes.DIRECTION_WEST,
-		DirectionTypes.DIRECTION_NORTHWEST
-	}
 
 -- for CS UU gifts (MinorCivGift=1)
 local tUniqueUnitsFromMinors = {}
