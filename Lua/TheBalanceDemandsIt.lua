@@ -274,38 +274,22 @@ local tZurichCounter = {}
 local tCitiesWithEnoughMonasteries = {}
 
 
--- for CS UU gifts (MinorCivGift=1)
+-- for CS UU gifts
 local tUniqueUnitsFromMinors = {}
-	tUniqueUnitsFromMinors["UNIT_HUNNIC_BATTERING_RAM"] = {
-		eUnit = GameInfoTypes.UNIT_SPEARMAN
-	}
-	tUniqueUnitsFromMinors["UNIT_DANISH_SKI_INFANTRY"] = {
-		eUnit = GameInfoTypes.UNIT_RIFLEMAN
-	}
-	tUniqueUnitsFromMinors["UNIT_BRAZILIAN_PRACINHA"] = {
-		eUnit = GameInfoTypes.UNIT_INFANTRY
-	}
-	tUniqueUnitsFromMinors["UNIT_ENGLISH_LONGBOWMAN"] = {
-		eUnit = GameInfoTypes.UNIT_CROSSBOWMAN
-	}
-	tUniqueUnitsFromMinors["UNIT_GREEK_COMPANIONCAVALRY"] = {
-		eUnit = GameInfoTypes.UNIT_HORSEMAN
-	}
-	tUniqueUnitsFromMinors["UNIT_OTTOMAN_SIPAHI"] = {
-		eUnit = GameInfoTypes.UNIT_LANCER
-	}
-	tUniqueUnitsFromMinors["UNIT_SWEDISH_HAKKAPELIITTA"] = {
-		eUnit = GameInfoTypes.UNIT_LANCER
-	}
-	tUniqueUnitsFromMinors["UNIT_KOREAN_TURTLE_SHIP"] = {
-		eUnit = GameInfoTypes.UNIT_CARAVEL
-	}
-	tUniqueUnitsFromMinors["UNIT_VENETIAN_GALLEASS"] = {
-		eUnit = GameInfoTypes.UNIT_GALLEASS
-	}
-	tUniqueUnitsFromMinors["UNIT_ROMAN_BALLISTA"] = {
-		eUnit = GameInfoTypes.UNIT_CATAPULT
-	}
+	for specialUnit in DB.Query("SELECT Units.ID, Units.Type, Units.Description, Units.PrereqTech FROM Units WHERE MinorCivGift = 1") do
+		local eBaseUnitType = nil
+	
+		for civclassoverrides in GameInfo.Civilization_UnitClassOverrides{UnitType=specialUnit.Type} do
+			sBaseUnitClassType = civclassoverrides.UnitClassType
+		end
+
+		print("CS_UU_GIFTS", L(specialUnit.Description), specialUnit.ID, specialUnit.Type, specialUnit.PrereqTech, sBaseUnitClassType)
+
+		tUniqueUnitsFromMinors[specialUnit.ID] = {
+			sOriginalUnitClass = sBaseUnitClassType,
+			ePrereqTech = specialUnit.PrereqTech
+		}
+	end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- RNG
@@ -1050,38 +1034,34 @@ function CityStateTrainedUU(ePlayer, eCity, eUnit, bGold, bFaith)
 	if not pPlayer:IsMinorCiv() then return end
 
 	if pPlayer:IsMinorCivHasUniqueUnit() then
-		local ePrereqTech
-		
-		local eUniqueUnit = pPlayer:GetMinorCivUniqueUnit()
-		local sUniqueUnit = GameInfo.Units{ID=eUniqueUnit}().Type
-		
-		local pUnit = pPlayer:GetUnitByID(eUnit)
-		local eUnitType = pUnit:GetUnitType()
-		local eUnitClass = pUnit:GetUnitClassType()
-		local sUnitClass = GameInfo.Units{ID=eUnitType}().Class
-		
+		local ePrereqTech	
 		local bUnitMatched = false
 
-		for civclassoverrides in GameInfo.Civilization_UnitClassOverrides{UnitClassType=sUnitClass} do
-			if civclassoverrides.UnitType == sUniqueUnit then
-				ePrereqTech = GameInfoTypes[GameInfo.Units{Type=sUniqueUnit}().PrereqTech]				
-				bUnitMatched = true
-				break
-			end
-		end
+		-- produced unit
+		local pProducedUnit = pPlayer:GetUnitByID(eUnit)
+		local eProducedUnitType = pProducedUnit:GetUnitType()
+		local sProducedUnitClass = GameInfo.Units{ID=eProducedUnitType}().Class
+
+		-- unique unit for that CS
+		local eUniqueUnit = pPlayer:GetMinorCivUniqueUnit()	
+
+		print("MILITARY_CS_PRODUCED_UNIT", sProducedUnitClass, eUniqueUnit)
 		
-		if not bUnitMatched and tUniqueUnitsFromMinors[sUniqueUnit] then
-			if tUniqueUnitsFromMinors[sUniqueUnit].eUnit == eUnitType then
-				ePrereqTech = GameInfoTypes[GameInfo.Units{Type=sUniqueUnit}().PrereqTech]
+		-- checking if produced unit matched the unique unit to be substituted
+		if tUniqueUnitsFromMinors[eUniqueUnit] then
+			if sProducedUnitClass == tUniqueUnitsFromMinors[eUniqueUnit].sOriginalUnitClass then
+				ePrereqTech = tUniqueUnitsFromMinors[eUniqueUnit].ePrereqTech
 				bUnitMatched = true
 			end
 		end
 
+		print("MILITARY_CS_MATCHED_UNIT", bUnitMatched, ePrereqTech)
+		
 		if bUnitMatched then
 			local pTeam = Teams[pPlayer:GetTeam()]
 			
 			if pTeam:IsHasTech(ePrereqTech) then
-				pUnit:Kill()
+				pProducedUnit:Kill()
 				pPlayer:AddFreeUnit(eUniqueUnit, UNITAI_DEFENSE)
 			end
 		end
