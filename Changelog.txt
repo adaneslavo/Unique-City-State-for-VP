@@ -39,6 +39,9 @@ Changelog:
 		- Master of Cold Waters (exclusive for SGaang Gwaay);
 		- Climber of Mount Athos (exclusive for Karyes);
 		- Deus Vult! (6th promotion exclusive to Clermont, that can be randomly chosen);
+	- new Units:
+		- Sisqeno (exclusive for Tiwanaku);
+		- Sisqeno (Worker) (dummy; used only by the AI; exclusive for Tiwanaku);
 - balanced:
 	- reworked the CS passives system:
 		- diplo actions in CS territory make them expand their border with 1/10th of the Influence value (copied the mechanics from Civ 6);
@@ -84,6 +87,7 @@ Changelog:
 	- fake Caravan unit for Dali is now hidden in the tech tree;
 - fixed:
 	- added pillaged model for Colossal Head and Sunken Courtyard improvement;
+	- added new Sisqeno (Unique Missionary) unit for Tiwanaku to allow the AI construct Sunken Courtyards;
 	- Parihaka and Nan Madol have now Polynesian artstyle;
 	- lua functions checking building construction now relies on building class not building type of the constructed building;
 	- fixed an error in function on building construction (Oc Eo, Andorra, Thimphu, Rishikesh, Ragusa, Canossa, Wootei-niicie);
