@@ -58,7 +58,7 @@ Changelog:
 				- Neutral: +25% Religious Pressure;
 				- Hostile: +40% Religious Pressure and +25% Conversion Resistance;
 		- now CSs' passive abilities are hidden by default making the tootlip much more pleasant to watch; you can enable them back in the Bonuses.sql file changing "UCS-PASSIVES-SHOW" value from 0 to 1;
-		- now CSs' passive can be enabled (enabled by default) in the Bonuses.sql file changing "UCS-PASSIVES-ON" value from 0 to 1;
+		- now CSs' passive can be disabled (enabled by default) in the Bonuses.sql file changing "UCS-PASSIVES-ON", "UCS-PASSIVES-BGP" or "UCS-PASSIVES-HP" value from 1 to 0;
 		- performing some actions grants the player new Suzerain points or take them; Suzerain Points open up new possible outcomes when gathered in bigger quantity.
 	a) comlpeting a quest gives you 1 Suzerain point with that City-State. These Suzerain points...
 	- Oc Eo: added +20% Sea Trade Route Range;
