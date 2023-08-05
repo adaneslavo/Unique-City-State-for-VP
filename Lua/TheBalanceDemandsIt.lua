@@ -7,9 +7,11 @@ local eArtifactRuin = GameInfoTypes.ARTIFACT_ANCIENT_RUIN
 
 -- for events to start
 local iThresholdPseudoAllies = 3 * GameDefines.FRIENDSHIP_THRESHOLD_ALLIES
-local bIsAllyAnOption = true
-local bIsEmbassyAnOption = true
-local bIsPseudoAllyAnOption = true
+local tConditionsForActiveAbilities = {
+	bIsAllyAnOption = true,
+	bIsEmbassyAnOption = true,
+	bIsPseudoAllyAnOption = true
+}
 local tEmbassies = {}
 local bBlockedUnitFromThePreKillEvent = false -- for preventing the double triggering the UnitPrekill event
 
@@ -321,7 +323,7 @@ function MinorPlayerDoTurn(ePlayer)
 		local sMinorCivType = GameInfo.MinorCivilizations[pMinorPlayer:GetMinorCivType()].Type
 		
 		-- Ally part
-		if bIsAllyAnOption then
+		if tConditionsForActiveAbilities[bIsAllyAnOption] then
 			if pMinorPlayer:GetAlly() ~= -1 then 
 				local pMajorPlayer = Players[pMinorPlayer:GetAlly()]
 				
@@ -340,7 +342,7 @@ function MinorPlayerDoTurn(ePlayer)
 		end
 		
 		-- Embassy part
-		if bIsEmbassyAnOption then
+		if tConditionsForActiveAbilities[bIsEmbassyAnOption] then
 			if pMinorPlayer:GetImprovementCount(tImprovementsGreatPeople[1]) > 0 then
 				if tEmbassies[ePlayer] == nil then
 					local pMinorCapital = pMinorPlayer:GetCapitalCity()
@@ -372,7 +374,7 @@ function MinorPlayerDoTurn(ePlayer)
 		end
 		
 		-- pseudoAlly part
-		if bIsPseudoAllyAnOption then
+		if tConditionsForActiveAbilities[bIsPseudoAllyAnOption] then
 			for ePlayer, pPlayer in ipairs(Players) do
 				if pPlayer and pPlayer:IsAlive() then
 					if pPlayer:IsMinorCiv() then break end
