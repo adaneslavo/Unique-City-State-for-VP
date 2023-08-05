@@ -164,8 +164,7 @@ local tImprovementsRegular = {
 	GameInfoTypes.IMPROVEMENT_MARSH,
 	GameInfoTypes.IMPROVEMENT_PLANT_FOREST,
 	GameInfoTypes.IMPROVEMENT_PLANT_JUNGLE,
-	GameInfoTypes.IMPROVEMENT_DOGO_CANARIO,
-	GameInfoTypes.IMPROVEMENT_MONASTERY
+	GameInfoTypes.IMPROVEMENT_DOGO_CANARIO
 }
 
 local tImprovementsUCS = {
@@ -236,15 +235,14 @@ local tUnitsCivilians = {
 	GameInfoTypes.UNIT_WORKER,
 	GameInfoTypes.UNIT_WORKBOAT,
 	GameInfoTypes.UNIT_MISSIONARY,
-	GameInfoTypes.UNIT_ARCHAEOLOGIST
-}
-
-local tUnitsTrade = {
+	GameInfoTypes.UNIT_ARCHAEOLOGIST,
 	GameInfoTypes.UNIT_CARAVAN,
 	GameInfoTypes.UNIT_CARGO_SHIP,
 	GameInfoTypes.UNIT_CARAVAN_OF_DALI,
-	--GameInfoTypes.UNIT_CARGO_SHIP_OF_DALI -- unused because of VP's dll constraints (Spain)
-}
+	GameInfoTypes.UNIT_CARGO_SHIP_OF_DALI, -- unused because of VP's dll constraints (Spain)
+	GameInfoTypes.UNIT_SISQENO,
+	GameInfoTypes.UNIT_SISQENO_WORKER
+}	
 
 local tUnitsMilitary = {
 	GameInfoTypes.UNIT_SWISS_GUARD,
@@ -936,11 +934,11 @@ function FreeCaravanFromCityState(ePlayer)
 							end
 
 							if iCaravanOrCargoSpawnChance <= 50 and bIsMajorHasTrueSea then
-								pMajorPlayer:AddFreeUnit(tUnitsTrade[2], UNITAI_DEFENSE)
-								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Cargo Ship', tUnitsTrade[2])
+								pMajorPlayer:AddFreeUnit(tUnitsCivilians[6], UNITAI_DEFENSE)
+								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Cargo Ship', tUnitsCivilians[6])
 							else	
-								pMajorPlayer:AddFreeUnit(tUnitsTrade[1], UNITAI_DEFENSE)
-								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Caravan', tUnitsTrade[1])
+								pMajorPlayer:AddFreeUnit(tUnitsCivilians[5], UNITAI_DEFENSE)
+								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Caravan', tUnitsCivilians[5])
 							end
 						end
 					end
@@ -1541,16 +1539,62 @@ GameEvents.PlayerCanBuild.Add(CanWeBuildMound)
 
 
 -- TIWANAKU (IMPROVEMENT SUNKEN COURTYARD)
+function CanWeBuySisqeno(ePlayer, eCity, eUnit)
+	if eUnit ~= tUnitsCivilian[9] then return true end
+	
+	local pPlayer = Players[ePlayer]
+
+	if pPlayer:IsMinorCiv() then return true end
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[17]) ~= 0 then
+		return true
+	else
+		return false
+	end
+end
+GameEvents.CityCanTrain.Add(CanWeBuySisqeno)
+
+function DummyWorkerForAISisqeno(ePlayer, eCity, eUnit, bGold, bFaith)	
+	local pPlayer = Players[ePlayer]
+	
+	if --[[not--]] pPlayer:IsHuman() then
+		local pUnit = pPlayer:GetUnitByID(eUnit)
+
+		if pUnit:GetUnitType() == tUnitsCivilian[9] then
+			pPlayer:AddFreeUnit(tUnitsCivilians[10], UNITAI_DEFENSE)
+		end
+	end
+end
+
 function CanWeBuildSunkenCourtyard(ePlayer, eUnit, iX, iY, eBuild)
 	if eBuild ~= GameInfoTypes.BUILD_SUNK_COURT then return true end
 	
 	local pPlayer = Players[ePlayer]
 	
 	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[17]) > 0) then return false end
+
+	for unit in pPlayer:Units() do
+		if unit:GetUnitType() == tUnitsCivilian[9] then
+			return true
+		end
+	end
 	
-	return true
+	return false
 end
 GameEvents.PlayerCanBuild.Add(CanWeBuildSunkenCourtyard)
+
+function BuiltSunkenCourtyard(ePlayer, iX, iY, eImprovement)
+	if eImprovement == tImprovementsUCS[2] then
+		local pPlayer = Players[ePlayer]
+
+		for unit in pPlayer:Units() do
+			if unit:GetUnitType() == tUnitsCivilian[9] then
+				unit:SetSpreadsLeft(unit:GetSpreadsLeft() - 1)
+				break
+			end
+		end
+	end
+end	
 
 
 
@@ -1587,13 +1631,13 @@ end
 GameEvents.PlayerCanBuild.Add(CanWeBuildMonastery)
 
 function BuiltMonastery(ePlayer, iX, iY, eImprovement)
-	if eImprovement == tImprovementsRegular[5] then
+	if eImprovement == tImprovementsUCS[3] then
 		CheckAllMonasteries()
 	end
 end
 
 function MonasteryPillagedOrDestroyed(iX, iY, ePlotOwner, eOldImprovement, eNewImprovement, bPillaged)
-	if eOldImprovement ~= tImprovementsRegular[5] then return end
+	if eOldImprovement ~= tImprovementsUCS[3] then return end
 	
 	CheckAllMonasteries()
 end
@@ -1632,7 +1676,7 @@ function CheckAllMonasteries()
 					local pPlot = city:GetCityIndexPlot(iplot)
 					local eImprovementType = pPlot:GetImprovementType()
 					
-					if eImprovementType == tImprovementsRegular[5] and not pPlot:IsImprovementPillaged() then
+					if eImprovementType == tImprovementsUCS[3] and not pPlot:IsImprovementPillaged() then
 						iMonasteries = iMonasteries + 1
 					end
 					
@@ -2589,7 +2633,7 @@ end
 
 -- DALI (BUYING TRADE UNITS WITH FAITH)
 function TradeWithFaith(ePlayer, eCity, eUnit)
-	if eUnit ~= tUnitsTrade[3] --[[and eUnit ~= tUnitsTrade[4]--]] then return true end
+	if eUnit ~= tUnitsCivilians[7] --[[and eUnit ~= tUnitsCivilians[8]--]] then return true end
 	
 	local pPlayer = Players[ePlayer]
 
@@ -2618,7 +2662,7 @@ end
 
 
 -- VATICAN CITY (SWISS GUARD FUNCTIONS)
-function CanBuySwissGuard(ePlayer, eCity, eUnit)
+function CanWeBuySwissGuard(ePlayer, eCity, eUnit)
 	if eUnit ~= tUnitsMilitary[1] then return true end
 	
 	local pPlayer = Players[ePlayer]
@@ -2631,7 +2675,7 @@ function CanBuySwissGuard(ePlayer, eCity, eUnit)
 		return false
 	end
 end
-GameEvents.CityCanTrain.Add(CanBuySwissGuard)
+GameEvents.CityCanTrain.Add(CanWeBuySwissGuard)
 
 function SwissGuardHealingAttack(eAttackingPlayer, eAttackingUnit, iAttackerDamage, iAttackerFinalDamage, iAttackerMaxHP, eDefendingPlayer, eDefendingUnit, iDefenderDamage, iDefenderFinalDamage, iDefenderMaxHP, eInterceptingPlayer, eInterceptingUnit, iInterceptorDamage, iX, iY)
 	local pAttackingPlayer = Players[eAttackingPlayer]
@@ -2739,7 +2783,7 @@ end
 
 
 -- KATHMANDU (GURKHA FUNCTIONS)
-function CanBuyGurkha(ePlayer, eCity, eUnit)
+function CanWeBuyGurkha(ePlayer, eCity, eUnit)
 	if eUnit ~= tUnitsMilitary[2] then return true end
 	
 	local pPlayer = Players[ePlayer]
@@ -2752,7 +2796,7 @@ function CanBuyGurkha(ePlayer, eCity, eUnit)
 		return false
 	end
 end
-GameEvents.CityCanTrain.Add(CanBuyGurkha)
+GameEvents.CityCanTrain.Add(CanWeBuyGurkha)
 
 
 
@@ -3635,14 +3679,16 @@ function SettingUpSpecificEvents()
 			
 				if sMinorCivType == "MINOR_CIV_CAHOKIA" then	
 					tLostCities["eLostCahokia"] = eCS
-				elseif sMinorCivType == "MINOR_CIV_TIWANAKU" then	
-					tLostCities["eLostTiwanaku"] = eCS
 				elseif sMinorCivType == "MINOR_CIV_SGAANG" then	
 					tLostCities["eLostSGaang"] = eCS
 				elseif sMinorCivType == "MINOR_CIV_NYARYANA_MARQ" then	
 					tLostCities["eLostNyaryanaMarq"] = eCS
 				elseif sMinorCivType == "MINOR_CIV_LA_VENTA" then	
 					tLostCities["eLostLaVenta"] = eCS
+				elseif sMinorCivType == "MINOR_CIV_TIWANAKU" then	
+					tLostCities["eLostTiwanaku"] = eCS
+					GameEvents.CityTrained.Add(DummyWorkerForAISisqeno)
+					GameEvents.BuildFinished.Add(BuiltSunkenCourtyard)
 				elseif sMinorCivType == "MINOR_CIV_KARYES" then	
 					tLostCities["eLostKaryes"] = eCS
 					GameEvents.BuildFinished.Add(BuiltMonastery)
