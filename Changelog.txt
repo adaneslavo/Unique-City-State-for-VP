@@ -96,8 +96,10 @@ Changelog:
 	- dummy improvements now have yields (for worker assessing their automation tasks);
 	- new units are not allowed to be gifted by City-States;
 	- Mujahideen promotion icon now uses Mountain symbol instead of hill (@gwennog);
+	- Mujahideen promotion now given only to military units (useless on civilians);
 	- added missing Defines for Food values gifted by CSs and modified few other values from Defines;
 	- now making list of unique CSs' UUs is automated (previously done by hand); fixed and simplified the code spawning these units that probably didn't work;
+	- lua cleaning and optimizations; cutting the number of used variables;
 	- numerous text fixes (the most important):
 		- Thimphu lacked its 2nd ability description;
 		- improvement GAIN bonuses from adjacent Mountains, not GRANT bonuses to them (tested);
