@@ -2811,7 +2811,7 @@ function MujahideensFromKabulOnMove(ePlayer, eUnit, iX, iY)
 		end
 	else
 		if pPlayer:GetEventChoiceCooldown(tEventChoice[24]) ~= 0 then
-			if pUnit:GetDomainType() == tDomainTypes[1] then
+			if pUnit:GetDomainType() == tDomainTypes[1] and unit:IsCombatUnit()  then
 				for i, direction in ipairs(tDirectionTypes) do
 					local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
 					
@@ -2834,7 +2834,7 @@ function MujahideensFromKabulOnEventOn(ePlayer, eEventChoiceType)
 	
 	if eEventChoiceType == tEventChoice[24] then
 		for unit in pPlayer:Units() do
-			if unit:GetDomainType() == tDomainTypes[1] then
+			if unit:GetDomainType() == tDomainTypes[1] and unit:IsCombatUnit() then
 				local bIsMountainAround = false
 	
 				for i, direction in ipairs(tDirectionTypes) do
