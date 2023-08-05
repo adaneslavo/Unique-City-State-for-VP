@@ -63,8 +63,8 @@ Changelog:
 		- now granted promotions are permanent instead of temporary (were 10-turn);
 		- slightly nerfed down each of 5 promotions;
 		- added 1 new promotion to the pool (Deus Vult!);
-		- all random promotions have now unique colouring (like Bushido's or Kris' promotions);
-		- Blessing of Clermont now has "question mark" icon (like base Bushido's or Kris' promotions);
+		- all random promotions have now unique colouring (like Bushido's or Kris' promotions) (@gwennog);
+		- Blessing of Clermont now has "question mark" icon (like base Bushido's or Kris' promotions) (@gwennog);
 	- Colossal Head changes:
 		- tech yields changed;
 		- now has more base yields, less yields from being allied;
@@ -91,6 +91,8 @@ Changelog:
 	- fixed Thimphu dummies (now abilities are split; were in 1 dummy);
 	- dummy improvements now have yields (for worker assessing their automation tasks);
 	- new units are not allowed to be gifted by City-States;
+	- Mujahideen promotion icon now uses Mountain symbol instead of hill (@gwennog);
+	- added missing Defines for Food values gifted by CSs and modified few other values from Defines;
 	- numerous text fixes (the most important):
 		- Thimphu lacked its 2nd ability description;
 		- improvement GAIN bonuses from adjacent Mountains, not GRANT bonuses to them (tested);

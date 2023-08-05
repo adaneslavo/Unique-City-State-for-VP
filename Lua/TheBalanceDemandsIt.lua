@@ -362,7 +362,7 @@ function RandomNumberBetween(iLower, iHigher)
     return (Game.Rand((iHigher + 1) - iLower, "")) + iLower
 end
 
--- position calculator for custom positioning of floating text prompts (yields, additional info)
+-- Position Calculator for custom positioning of floating text prompts (yields, additional info)
 function PositionCalculator(i1, i2)
 	return HexToWorld(ToHexFromGrid(Vector2(i1, i2)))
 end
@@ -478,7 +478,7 @@ function MovingSwiftly(eResolution, eProposer, eChoice, bEnact, bPassed)
 end
 GameEvents.ResolutionResult.Add(MovingSwiftly)
 
--- Border  expansion on Diplo Actions
+-- Border expansion on Diplo Actions
 function DiplomaticExpansion(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKillerPlayer)
 	if eKillerPlayer ~= -1 then return end
 	
@@ -496,8 +496,12 @@ function DiplomaticExpansion(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKill
 	end
 	
 	if bBlockedUnitFromThePreKillEvent then
-		if pUnit:GetUnitCombatType() == GameInfoTypes.UNITCOMBAT_DIPLOMACY or pUnit:GetUnitType() == tUnitsGreatPeople[7] then
+		local bIsGreatDiplomat = pUnit:GetUnitType() == tUnitsGreatPeople[7]
+		local bIsDiploUnit = pUnit:GetUnitCombatType() == GameInfoTypes.UNITCOMBAT_DIPLOMACY
+
+		if bIsDiploUnit or bIsGreatDiplomat then
 			local iInfluence = 0
+			local iEraBoost = (bIsGreatDiplomat and 20 or 0) * pPlayer:GetCurrentEra()
 			local iModifier = 0
 
 			for promotion in DB.Query("SELECT UnitPromotions.ID, UnitPromotions.DiploMissionInfluence FROM UnitPromotions WHERE DiploMissionInfluence > 0") do
@@ -512,7 +516,7 @@ function DiplomaticExpansion(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKill
 				end
 			end
 
-			local iTotalInfluence = iInfluence * (1 + (iModifier / 100))
+			local iTotalInfluence = (iInfluence + iEraBoost) * (1 + (iModifier / 100))
 			local iBorderGrowthBonus = iTotalInfluence / 10
 			local pPlot = Map.GetPlot(iX, iY)
 			local pMinorCity = pPlot:GetWorkingCity()
