@@ -3,7 +3,9 @@
 ---------------------------------------------------
 INSERT INTO Community	
 			(Type,					Value)
-VALUES		('UCS-PASSIVES-ON',		1),	-- enables/disables CS passive abilities
+VALUES		('UCS-PASSIVES-ON',		1),	-- enables/disables CS passive abilities (improvements and resources on start; religious pressure for Religious CSs)
+			('UCS-PASSIVES-BGP',		1), -- enables Border Growth Points gain in City-States after Diplomatic Mission
+			('UCS-PASSIVES-HP',		1), -- enables City Hit Points gain in City-States after Diplomatic Mission
 			('UCS-PASSIVES-SHOW',	1); -- shows (1)/hides (0) passives in the CS tootlip
 ---------------------------------------------------
 -- Compatibility
