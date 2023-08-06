@@ -1074,15 +1074,25 @@ function CityStateTrainedUU(ePlayer, eCity, eUnit, bGold, bFaith)
 		-- produced unit
 		local pProducedUnit = pPlayer:GetUnitByID(eUnit)
 		local eProducedUnit = pProducedUnit:GetUnitType()
-		local sProducedUnitType = GameInfo.Units{ID=eProducedUnitType}().Type
+		local sProducedUnitType = GameInfo.Units{ID=eProducedUnit}().Type
+		local sProducedUnitClass = GameInfo.Units{ID=eProducedUnit}().Class
 
 		-- unique unit for that CS
-		local eUniqueUnit = pPlayer:GetMinorCivUniqueUnit()	
+		local eUniqueUnit = pPlayer:GetMinorCivUniqueUnit()
+		local sUniqueUnitType = GameInfo.Units{ID=eUniqueUnit}().Type
 
 		print("MILITARY_CS_PRODUCED_UNIT", sProducedUnitClass, eUniqueUnit)
 		
-		-- checking if produced unit matched the unique unit to be substituted
-		if tUniqueUnitsFromMinors[eUniqueUnit] then
+		-- checking if produced unit matched the a) unique unit from any civ; b) unassigned unique units; to be substituted
+		for civclassoverrides in GameInfo.Civilization_UnitClassOverrides{UnitClassType=sProducedUnitClass} do
+			if civclassoverrides.UnitType == sUniqueUnitType then
+				ePrereqTech = GameInfoTypes[GameInfo.Units{Type=sUniqueUnitType}().PrereqTech]				
+				bUnitMatched = true
+				break
+			end
+		end
+		
+		if not bUnitMatched and tUniqueUnitsFromMinors[eUniqueUnit] then
 			if sProducedUnitType == tUniqueUnitsFromMinors[eUniqueUnit].sOriginalUnit then
 				ePrereqTech = tUniqueUnitsFromMinors[eUniqueUnit].ePrereqTech
 				bUnitMatched = true
@@ -1095,6 +1105,7 @@ function CityStateTrainedUU(ePlayer, eCity, eUnit, bGold, bFaith)
 			local pTeam = Teams[pPlayer:GetTeam()]
 			
 			if pTeam:IsHasTech(ePrereqTech) then
+				print("MILITARY_CS_SUBSTITUTED_UNIT")
 				pProducedUnit:Kill()
 				pPlayer:AddFreeUnit(eUniqueUnit, UNITAI_DEFENSE)
 			end
