@@ -119,6 +119,7 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
     <Folder Include="Art\Model\Resources\DogoCanario" />
     <Folder Include="Art\Model\Units" />
     <Folder Include="Art\Model\Units\Ghurka" />
+    <Folder Include="Art\Model\Units\Sisqeno" />
     <Folder Include="Art\Model\Units\Nihang" />
     <Folder Include="Art\Model\Units\SwissGuard\" />
     <Folder Include="Art\FontIcons" />
@@ -390,6 +391,22 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="Art\Model\Units\Nihang\Akali.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Units\Sisqeno\amauta.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Units\Sisqeno\Amauta.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Units\Sisqeno\amauta2.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Units\Sisqeno\amauta_diff.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>

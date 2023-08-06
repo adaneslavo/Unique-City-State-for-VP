@@ -8,12 +8,12 @@ local eArtifactRuin = GameInfoTypes.ARTIFACT_ANCIENT_RUIN
 -- for events to start
 local iThresholdPseudoAllies = 3 * GameDefines.FRIENDSHIP_THRESHOLD_ALLIES
 local tConditionsForActiveAbilities = {
-	bIsAllyAnOption = true,
-	bIsEmbassyAnOption = true,
-	bIsPseudoAllyAnOption = true
+	["bIsAllyAnOption"] = true,
+	["bIsEmbassyAnOption"] = true,
+	["bIsPseudoAllyAnOption"] = true
 }
 local tEmbassies = {}
-local bBlockedUnitFromThePreKillEvent = false -- for preventing the double triggering the UnitPrekill event
+local bBlockedUnitFromThePreKillEvent = false -- for preventing the double triggering the UnitPrekill event and other functions
 
 -- city-states IDs
 local tLostCities = {}
@@ -278,18 +278,14 @@ local tCitiesWithEnoughMonasteries = {}
 
 -- for CS UU gifts
 local tUniqueUnitsFromMinors = {}
-	for specialUnit in DB.Query("SELECT Units.ID, Units.Type, Units.Description, Units.PrereqTech FROM Units WHERE MinorCivGift = 1") do
-		local eBaseUnitType = nil
-	
-		for civclassoverrides in GameInfo.Civilization_UnitClassOverrides{UnitType=specialUnit.Type} do
-			sBaseUnitClassType = civclassoverrides.UnitClassType
-		end
+	for specialUnit in DB.Query("SELECT Units.ID, Units.Type, Units.Class, Units.Description, Units.PrereqTech FROM Units WHERE MinorCivGift = 1") do
+		local sBaseUnitType = GameInfo.UnitClasses{Type=specialUnit.Class}().DefaultUnit
 
-		print("CS_UU_GIFTS", L(specialUnit.Description), specialUnit.ID, specialUnit.Type, specialUnit.PrereqTech, sBaseUnitClassType)
+		print("CS_UU_GIFTS", L(specialUnit.Description), specialUnit.ID, specialUnit.Type, specialUnit.Class, specialUnit.PrereqTech, sBaseUnitType)
 
 		tUniqueUnitsFromMinors[specialUnit.ID] = {
-			sOriginalUnitClass = sBaseUnitClassType,
-			ePrereqTech = specialUnit.PrereqTech
+			sOriginalUnit = sBaseUnitType,
+			ePrereqTech = GameInfo.Technologies{Type=specialUnit.PrereqTech}().ID					
 		}
 	end
 -----------------------------------------------------------------------------------------------------------
@@ -323,7 +319,7 @@ function MinorPlayerDoTurn(ePlayer)
 		local sMinorCivType = GameInfo.MinorCivilizations[pMinorPlayer:GetMinorCivType()].Type
 		
 		-- Ally part
-		if tConditionsForActiveAbilities[bIsAllyAnOption] then
+		if tConditionsForActiveAbilities["bIsAllyAnOption"] then
 			if pMinorPlayer:GetAlly() ~= -1 then 
 				local pMajorPlayer = Players[pMinorPlayer:GetAlly()]
 				
@@ -342,7 +338,7 @@ function MinorPlayerDoTurn(ePlayer)
 		end
 		
 		-- Embassy part
-		if tConditionsForActiveAbilities[bIsEmbassyAnOption] then
+		if tConditionsForActiveAbilities["bIsEmbassyAnOption"] then
 			if pMinorPlayer:GetImprovementCount(tImprovementsGreatPeople[1]) > 0 then
 				if tEmbassies[ePlayer] == nil then
 					local pMinorCapital = pMinorPlayer:GetCapitalCity()
@@ -374,7 +370,7 @@ function MinorPlayerDoTurn(ePlayer)
 		end
 		
 		-- pseudoAlly part
-		if tConditionsForActiveAbilities[bIsPseudoAllyAnOption] then
+		if tConditionsForActiveAbilities["bIsPseudoAllyAnOption"] then
 			for ePlayer, pPlayer in ipairs(Players) do
 				if pPlayer and pPlayer:IsAlive() then
 					if pPlayer:IsMinorCiv() then break end
@@ -426,11 +422,7 @@ function DiplomaticExpansion(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKill
 	local pUnit = pPlayer:GetUnitByID(eUnit)
 			
 	-- event triggers twice on each death, so this should prevent it
-	if bBlockedUnitFromThePreKillEvent == true then
-		bBlockedUnitFromThePreKillEvent = false
-	else
-		bBlockedUnitFromThePreKillEvent = true
-	end
+	bBlockedUnitFromThePreKillEvent = not bBlockedUnitFromThePreKillEvent
 	
 	if bBlockedUnitFromThePreKillEvent then
 		local bIsGreatDiplomat = pUnit:GetUnitType() == tUnitsGreatPeople[7]
@@ -1041,8 +1033,8 @@ function CityStateTrainedUU(ePlayer, eCity, eUnit, bGold, bFaith)
 
 		-- produced unit
 		local pProducedUnit = pPlayer:GetUnitByID(eUnit)
-		local eProducedUnitType = pProducedUnit:GetUnitType()
-		local sProducedUnitClass = GameInfo.Units{ID=eProducedUnitType}().Class
+		local eProducedUnit = pProducedUnit:GetUnitType()
+		local sProducedUnitType = GameInfo.Units{ID=eProducedUnitType}().Type
 
 		-- unique unit for that CS
 		local eUniqueUnit = pPlayer:GetMinorCivUniqueUnit()	
@@ -1051,7 +1043,7 @@ function CityStateTrainedUU(ePlayer, eCity, eUnit, bGold, bFaith)
 		
 		-- checking if produced unit matched the unique unit to be substituted
 		if tUniqueUnitsFromMinors[eUniqueUnit] then
-			if sProducedUnitClass == tUniqueUnitsFromMinors[eUniqueUnit].sOriginalUnitClass then
+			if sProducedUnitType == tUniqueUnitsFromMinors[eUniqueUnit].sOriginalUnit then
 				ePrereqTech = tUniqueUnitsFromMinors[eUniqueUnit].ePrereqTech
 				bUnitMatched = true
 			end
@@ -1236,11 +1228,11 @@ function ReligiousCityStatesBonuses(ePlayer, iX, iY)
 
 	-- buildings
 	if eMinorPersonality == tMinorPersonalities[1] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[4], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[4]) + 1)
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[4], pMinorCapital:GetNumRealBuilding(tBuildingsPassiveAbilities[4]) + 1)
 	elseif eMinorPersonality == tMinorPersonalities[2] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[5], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[5]) + 1)
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[5], pMinorCapital:GetNumRealBuilding(tBuildingsPassiveAbilities[5]) + 1)
 	elseif eMinorPersonality == tMinorPersonalities[3] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[6], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[6]) + 1)
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[6], pMinorCapital:GetNumRealBuilding(tBuildingsPassiveAbilities[6]) + 1)
 	end
 end
 	
@@ -1263,11 +1255,11 @@ function ReligiousCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 
 	-- buildings
 	if eMinorPersonality == tMinorPersonalities[1] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[4], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[4]) + 1)
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[4], pMinorCapital:GetNumRealBuilding(tBuildingsPassiveAbilities[4]) + 1)
 	elseif eMinorPersonality == tMinorPersonalities[2] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[5], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[5]) + 1)
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[5], pMinorCapital:GetNumRealBuilding(tBuildingsPassiveAbilities[5]) + 1)
 	elseif eMinorPersonality == tMinorPersonalities[3] then
-		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[6], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[6]) + 1)
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[6], pMinorCapital:GetNumRealBuilding(tBuildingsPassiveAbilities[6]) + 1)
 	end
 end
 	
@@ -1483,7 +1475,7 @@ function CanWeBuySisqeno(ePlayer, eCity, eUnit)
 	
 	local pPlayer = Players[ePlayer]
 
-	if pPlayer:IsMinorCiv() then return true end
+	if pPlayer:IsMinorCiv() then return false end
 	
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[17]) ~= 0 then
 		return true
@@ -1498,9 +1490,16 @@ function DummyWorkerForAISisqeno(ePlayer, eCity, eUnit, bGold, bFaith)
 	
 	if --[[not--]] pPlayer:IsHuman() then
 		local pUnit = pPlayer:GetUnitByID(eUnit)
-
+		
 		if pUnit:GetUnitType() == tUnitsCivilian[9] then
 			pPlayer:AddFreeUnit(tUnitsCivilian[10], UNITAI_DEFENSE)
+			
+			for unit in pPlayer:Units() do
+				if unit:GetUnitType() == tUnitsCivilian[10] and unit:GetMoves() > 0 and unit:GetPlot():GetWorkingCity():GetID() == eCity then
+					unit:SetMoves(0)
+					break
+				end
+			end
 		end
 	end
 end
@@ -1523,13 +1522,39 @@ end
 GameEvents.PlayerCanBuild.Add(CanWeBuildSunkenCourtyard)
 
 function BuiltSunkenCourtyard(ePlayer, iX, iY, eImprovement)
-	if eImprovement == tImprovementsUCS[2] then
-		local pPlayer = Players[ePlayer]
+	-- event triggers twice on each death, so this should prevent it
+	bBlockedUnitFromThePreKillEvent = not bBlockedUnitFromThePreKillEvent
+	
+	if bBlockedUnitFromThePreKillEvent then
+		if eImprovement == tImprovementsUCS[2] then
+			local pPlayer = Players[ePlayer]
+			
+			if --[[not--]] pPlayer:IsHuman() then
+				for unit in pPlayer:Units() do
+					if unit:GetUnitType() == tUnitsCivilian[9] then
+						if unit:GetSpreadsLeft() > 1 then
+							unit:SetSpreadsLeft(unit:GetSpreadsLeft() - 1)
+						else
+							unit:Kill()
+						end
 
-		for unit in pPlayer:Units() do
-			if unit:GetUnitType() == tUnitsCivilian[9] then
-				unit:SetSpreadsLeft(unit:GetSpreadsLeft() - 1)
-				break
+						break
+					end
+				end
+			else
+				local pPlot = Map.GetPlot(iX, iY)
+				
+				for unit in pPlayer:Units() do
+					if unit:GetUnitType() == tUnitsCivilian[9] and unit:GetPlot() == pPlot then
+						if unit:GetSpreadsLeft() > 1 then
+							unit:SetSpreadsLeft(unit:GetSpreadsLeft() - 1)
+						else
+							unit:Kill()
+						end
+
+						break
+					end
+				end
 			end
 		end
 	end
@@ -3097,11 +3122,7 @@ function SpreadTheFaithInPrussia(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, e
 		local pUnit = pPlayer:GetUnitByID(eUnit)
 			
 		-- event triggers twice on each death, so this should prevent it
-		if bBlockedUnitFromThePreKillEvent == true then
-			bBlockedUnitFromThePreKillEvent = false
-		else
-			bBlockedUnitFromThePreKillEvent = true
-		end
+		bBlockedUnitFromThePreKillEvent = not bBlockedUnitFromThePreKillEvent
 
 		if pUnit:GetUnitType() == tUnitsCivilian[3] and not bBlockedUnitFromThePreKillEvent then
 			local iBaseYield = RandomNumberBetween(10, 30)
@@ -3135,11 +3156,7 @@ function WiseDiplomatsFromSingapore(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay
 		local pUnit = pPlayer:GetUnitByID(eUnit)
 			
 		-- event triggers twice on each death, so this should prevent it
-		if bBlockedUnitFromThePreKillEvent == true then
-			bBlockedUnitFromThePreKillEvent = false
-		else
-			bBlockedUnitFromThePreKillEvent = true
-		end
+		bBlockedUnitFromThePreKillEvent = not bBlockedUnitFromThePreKillEvent
 		
 		if pUnit:GetUnitCombatType() == GameInfoTypes.UNITCOMBAT_DIPLOMACY and not bBlockedUnitFromThePreKillEvent then
 			local iBaseYield = 20
