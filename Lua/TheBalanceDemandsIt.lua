@@ -1,6 +1,6 @@
 include("FLuaVector.lua")
 
--- 35 variables so far coded (max 60)
+-- 36 variables so far coded (max 60)
 local L = Locale.ConvertTextKey
 local eSphere = GameInfoTypes.RESOLUTION_SPHERE_OF_INFLUENCE
 local eArtifactRuin = GameInfoTypes.ARTIFACT_ANCIENT_RUIN
@@ -8,12 +8,12 @@ local eArtifactRuin = GameInfoTypes.ARTIFACT_ANCIENT_RUIN
 -- for events to start
 local iThresholdPseudoAllies = 3 * GameDefines.FRIENDSHIP_THRESHOLD_ALLIES
 local tConditionsForActiveAbilities = {
-	["bIsAllyAnOption"] = true,
-	["bIsEmbassyAnOption"] = true,
-	["bIsPseudoAllyAnOption"] = true
+	["WithAlliance"] = true,
+	["FromEmbassy"] = true,
+	["FromHighInluenceLevel"] = true
 }
 local tEmbassies = {}
-local bBlockedUnitFromThePreKillEvent = false -- for preventing the double triggering the UnitPrekill event and other functions
+local bBlockDoubleTriggering = false -- for preventing the double triggering the UnitPrekill event and other functions
 
 -- city-states IDs
 local tLostCities = {}
@@ -268,26 +268,66 @@ local tDirectionTypes = {
 }
 
 
--- specific variables needed for events
--- ZURICH
+-- specific variables needed for some specific City-State abilities (reduced to a minimum to save variables)
+-- ZURICH - it should be stored, but there's additional notification about the lost data (workaround), it's not so important
 local tZurichLastInterests = {}
 local tZurichCounter = {}
 -- KARYES
 local tCitiesWithEnoughMonasteries = {}
+-- TIWANAKU - it should be stored between save/load, but Missionaries are expended quite fast, so the situation when Sisqeno builds a SC, and then game is saved and reloaded should be rare
+local tBlockedSisqenos = {} 
 
 
 -- for CS UU gifts
 local tUniqueUnitsFromMinors = {}
-	for specialUnit in DB.Query("SELECT Units.ID, Units.Type, Units.Class, Units.Description, Units.PrereqTech FROM Units WHERE MinorCivGift = 1") do
-		local sBaseUnitType = GameInfo.UnitClasses{Type=specialUnit.Class}().DefaultUnit
+	for specialUnit in DB.Query("SELECT Units.ID, Units.Type, Units.Class, Units.Description, Units.GoodyHutUpgradeUnitClass, Units.PrereqTech FROM Units WHERE MinorCivGift = 1") do
+		local iBaseUnitID, sBaseUnitType = 1000, ""
 
-		print("CS_UU_GIFTS", L(specialUnit.Description), specialUnit.ID, specialUnit.Type, specialUnit.Class, specialUnit.PrereqTech, sBaseUnitType)
+		local sUpgradesToClass = specialUnit.GoodyHutUpgradeUnitClass
+		
+		for unit in DB.Query("SELECT Units.ID, Units.Type FROM Units WHERE GoodyHutUpgradeUnitClass = sUpgradesToClass") do
+			if unit.ID < iBaseUnitID then
+				iBaseUnitID = unit.ID
+				sBaseUnitType = unit.Type
+			end
+		end
+		print("CS_UU_GIFTS", L(specialUnit.Description), specialUnit.ID, specialUnit.Type, specialUnit.Class, specialUnit.GoodyHutUpgradeUnitClass, specialUnit.PrereqTech, sBaseUnitType)
 
 		tUniqueUnitsFromMinors[specialUnit.ID] = {
 			sOriginalUnit = sBaseUnitType,
 			ePrereqTech = GameInfo.Technologies{Type=specialUnit.PrereqTech}().ID					
 		}
 	end
+	--[[	tUniqueUnitsFromMinors["UNIT_HUNNIC_BATTERING_RAM"] = {
+			eUnit = GameInfoTypes.UNIT_SPEARMAN
+		}
+		tUniqueUnitsFromMinors["UNIT_DANISH_SKI_INFANTRY"] = {
+			eUnit = GameInfoTypes.UNIT_RIFLEMAN
+		}
+		tUniqueUnitsFromMinors["UNIT_BRAZILIAN_PRACINHA"] = {
+			eUnit = GameInfoTypes.UNIT_INFANTRY
+		}
+		tUniqueUnitsFromMinors["UNIT_ENGLISH_LONGBOWMAN"] = {
+			eUnit = GameInfoTypes.UNIT_CROSSBOWMAN
+		}
+		tUniqueUnitsFromMinors["UNIT_GREEK_COMPANIONCAVALRY"] = {
+			eUnit = GameInfoTypes.UNIT_HORSEMAN
+		}
+		tUniqueUnitsFromMinors["UNIT_OTTOMAN_SIPAHI"] = {
+			eUnit = GameInfoTypes.UNIT_LANCER
+		}
+		tUniqueUnitsFromMinors["UNIT_SWEDISH_HAKKAPELIITTA"] = {
+			eUnit = GameInfoTypes.UNIT_LANCER
+		}
+		tUniqueUnitsFromMinors["UNIT_KOREAN_TURTLE_SHIP"] = {
+			eUnit = GameInfoTypes.UNIT_CARAVEL
+		}
+		tUniqueUnitsFromMinors["UNIT_VENETIAN_GALLEASS"] = {
+			eUnit = GameInfoTypes.UNIT_GALLEASS
+		}
+		tUniqueUnitsFromMinors["UNIT_ROMAN_BALLISTA"] = {
+			eUnit = GameInfoTypes.UNIT_CATAPULT
+		}--]]
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- RNG
@@ -319,7 +359,7 @@ function MinorPlayerDoTurn(ePlayer)
 		local sMinorCivType = GameInfo.MinorCivilizations[pMinorPlayer:GetMinorCivType()].Type
 		
 		-- Ally part
-		if tConditionsForActiveAbilities["bIsAllyAnOption"] then
+		if tConditionsForActiveAbilities["WithAlliance"] then
 			if pMinorPlayer:GetAlly() ~= -1 then 
 				local pMajorPlayer = Players[pMinorPlayer:GetAlly()]
 				
@@ -338,7 +378,7 @@ function MinorPlayerDoTurn(ePlayer)
 		end
 		
 		-- Embassy part
-		if tConditionsForActiveAbilities["bIsEmbassyAnOption"] then
+		if tConditionsForActiveAbilities["FromEmbassy"] then
 			if pMinorPlayer:GetImprovementCount(tImprovementsGreatPeople[1]) > 0 then
 				if tEmbassies[ePlayer] == nil then
 					local pMinorCapital = pMinorPlayer:GetCapitalCity()
@@ -370,7 +410,7 @@ function MinorPlayerDoTurn(ePlayer)
 		end
 		
 		-- pseudoAlly part
-		if tConditionsForActiveAbilities["bIsPseudoAllyAnOption"] then
+		if tConditionsForActiveAbilities["FromHighInluenceLevel"] then
 			for ePlayer, pPlayer in ipairs(Players) do
 				if pPlayer and pPlayer:IsAlive() then
 					if pPlayer:IsMinorCiv() then break end
@@ -413,8 +453,8 @@ GameEvents.ResolutionResult.Add(MovingSwiftly)
 
 -- Border expansion on Diplo Actions
 function DiplomaticExpansion(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKillerPlayer)
-	if eKillerPlayer ~= -1 then return end
-	
+	--if eKillerPlayer ~= -1 then return end
+	print("DIPLOMACY_PREKILL", eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKillerPlayer)
 	local pPlayer = Players[eUnitOwner]
 
 	if pPlayer:IsMinorCiv() then return end
@@ -422,9 +462,9 @@ function DiplomaticExpansion(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKill
 	local pUnit = pPlayer:GetUnitByID(eUnit)
 			
 	-- event triggers twice on each death, so this should prevent it
-	bBlockedUnitFromThePreKillEvent = not bBlockedUnitFromThePreKillEvent
+	--bBlockDoubleTriggering = not bBlockDoubleTriggering
 	
-	if bBlockedUnitFromThePreKillEvent then
+	--if bBlockDoubleTriggering then
 		local bIsGreatDiplomat = pUnit:GetUnitType() == tUnitsGreatPeople[7]
 		local bIsDiploUnit = pUnit:GetUnitCombatType() == GameInfoTypes.UNITCOMBAT_DIPLOMACY
 
@@ -466,7 +506,7 @@ function DiplomaticExpansion(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKill
 				end
 			end
 		end
-	end
+	--end
 end
 GameEvents.UnitPrekill.Add(DiplomaticExpansion)
 
@@ -1474,7 +1514,7 @@ function CanWeBuySisqeno(ePlayer, eCity, eUnit)
 	if eUnit ~= tUnitsCivilian[9] then return true end
 	
 	local pPlayer = Players[ePlayer]
-
+	
 	if pPlayer:IsMinorCiv() then return false end
 	
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[17]) ~= 0 then
@@ -1511,9 +1551,25 @@ function CanWeBuildSunkenCourtyard(ePlayer, eUnit, iX, iY, eBuild)
 	
 	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[17]) > 0) then return false end
 
-	for unit in pPlayer:Units() do
-		if unit:GetUnitType() == tUnitsCivilian[9] then
-			return true
+	local pUnit = pPlayer:GetUnitByID(eUnit)
+
+	--if pUnit:GetUnitType() == tUnitsCivilian[9] and pPlayer:IsHuman() then
+		-- Humans can build SC with Sisqeno
+		--[[for i, unit in ipairs(tBlockedSisqenos) do
+			if pUnit == unit then
+				return false
+			end
+		end
+		
+		return true--]]
+	--[[else--]]if pUnit:GetUnitType() == tUnitsCivilian[9] and --[[not--]] pPlayer:IsHuman() then
+		-- AI cannot build SC with Sisqeno (must use a Worker)
+		return false
+	elseif pUnit:GetUnitType() == tUnitsCivilian[10] then
+		for unit in pPlayer:Units() do
+			if unit:GetUnitType() == tUnitsCivilian[9] then
+				return true
+			end
 		end
 	end
 	
@@ -1522,18 +1578,22 @@ end
 GameEvents.PlayerCanBuild.Add(CanWeBuildSunkenCourtyard)
 
 function BuiltSunkenCourtyard(ePlayer, iX, iY, eImprovement)
-	-- event triggers twice on each death, so this should prevent it
-	bBlockedUnitFromThePreKillEvent = not bBlockedUnitFromThePreKillEvent
+	-- event triggers twice, so this should prevent it
+	bBlockDoubleTriggering = not bBlockDoubleTriggering
 	
-	if bBlockedUnitFromThePreKillEvent then
+	if bBlockDoubleTriggering then
 		if eImprovement == tImprovementsUCS[2] then
 			local pPlayer = Players[ePlayer]
-			
+
+			-- AI part (Rook and Bishop mechanic; AI cannot build the SC with Sisqeno because the Missionary algorithm is dumb and that's why it gains additional dummy Worker,
+			-- that can only build this one improvement. When it does it lowers the number of Spreads of 1 Sisqeno on the map (oldest), and blocks it from additional action
+			-- (if alive), so it couldn't do Spread Religion action same turn (same thing must be done when religion is spread).
 			if --[[not--]] pPlayer:IsHuman() then
 				for unit in pPlayer:Units() do
 					if unit:GetUnitType() == tUnitsCivilian[9] then
 						if unit:GetSpreadsLeft() > 1 then
 							unit:SetSpreadsLeft(unit:GetSpreadsLeft() - 1)
+							unit:SetMoves(0)
 						else
 							unit:Kill()
 						end
@@ -1541,6 +1601,7 @@ function BuiltSunkenCourtyard(ePlayer, iX, iY, eImprovement)
 						break
 					end
 				end
+			-- Human part (Queen; Humans does not get any Worker because they can do both things with their Sisqeno unit)
 			else
 				local pPlot = Map.GetPlot(iX, iY)
 				
@@ -3115,16 +3176,13 @@ end
 --PRAGUE (MISSIONARY EXPENDED YIELDS)
 function SpreadTheFaithInPrussia(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKillerPlayer)
 	local pPlayer = Players[eUnitOwner]
-
+	print("MISSIONARY_PREKILL", eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKillerPlayer)
 	if pPlayer:IsMinorCiv() then return end
 
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[27]) ~= 0 then
 		local pUnit = pPlayer:GetUnitByID(eUnit)
 			
-		-- event triggers twice on each death, so this should prevent it
-		bBlockedUnitFromThePreKillEvent = not bBlockedUnitFromThePreKillEvent
-
-		if pUnit:GetUnitType() == tUnitsCivilian[3] and not bBlockedUnitFromThePreKillEvent then
+		if pUnit:GetUnitType() == tUnitsCivilian[3] --[[and not bDelay--]] then
 			local iBaseYield = RandomNumberBetween(10, 30)
 			local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
 			local iCultureFromDeath = iBaseYield * iEraModifier
@@ -3141,7 +3199,7 @@ function SpreadTheFaithInPrussia(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, e
 		end
 	end
 end
-
+GameEvents.UnitPrekill.Add(SpreadTheFaithInPrussia) -- DELETE!!!
 
 
 --SINGAPORE (GOLD FROM DIPLOMACY)
@@ -3156,9 +3214,9 @@ function WiseDiplomatsFromSingapore(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay
 		local pUnit = pPlayer:GetUnitByID(eUnit)
 			
 		-- event triggers twice on each death, so this should prevent it
-		bBlockedUnitFromThePreKillEvent = not bBlockedUnitFromThePreKillEvent
+		bBlockDoubleTriggering = not bBlockDoubleTriggering
 		
-		if pUnit:GetUnitCombatType() == GameInfoTypes.UNITCOMBAT_DIPLOMACY and not bBlockedUnitFromThePreKillEvent then
+		if pUnit:GetUnitCombatType() == GameInfoTypes.UNITCOMBAT_DIPLOMACY and not bBlockDoubleTriggering then
 			local iBaseYield = 20
 			local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
 			
@@ -3837,7 +3895,7 @@ function SettingUpSpecificEvents()
 			-- prekill effects
 			elseif sMinorCivType == "MINOR_CIV_PRAGUE" then
 				tLostCities["eLostPrague"] = eCS
-				GameEvents.UnitPrekill.Add(SpreadTheFaithInPrussia)
+				--GameEvents.UnitPrekill.Add(SpreadTheFaithInPrussia)
 			elseif sMinorCivType == "MINOR_CIV_SINGAPORE" then
 				tLostCities["eLostSingapore"] = eCS
 				GameEvents.UnitPrekill.Add(WiseDiplomatsFromSingapore)
