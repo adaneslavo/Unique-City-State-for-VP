@@ -1,26 +1,10 @@
-This update contains also total rework of City-State's passives mechanic and also introduces new active-passive mechanic, which sounds bad, but is really simple.
-First, I didn't like the current state of passives and how they evolved. It was a nice concept, but turn out to be really complicated and difficult to understand, epecially when player had no impact on it at all. In its place I introduced new active-passive mechanic. It means that some Major player's actions on City-States, apart from gaining some stuff for themselves like gaining additional yields or gaining access to unique abilities I hope you like very much after rework) may change the City-State's behaviour somehow. Seems complicated? So few examples:
-	1. Each diplomatic mission performed in a City-State contributes to their border growth, incresing their territory a bit, so the more such actions, the stronger CS becomes;
-	2. Each diplomatic mission performed in a City-State increases their defensive capabilities (HP), and the value of change depends on City-State's Personality (less in Friendly, more in Hostile);
-	3. Performing some actions grants the player new Suzerain Points or takes them; Suzerain Points open up new possible outcomes when gathered in bigger quantities.
-		a) performing a diplomatic mission grants you 1 Suzerain Point with that City-State;
-		b) completing a quest grants you 1 Suzerain Point with that City-State;
-		c) pledging a protection grants you 1 Suzerain Point with that City-State (one-time boost);
-		d) liberation of a City-State grants 5 Suzerain Points with it;
-		e) taking a Tribute takes 1/3 of accumulated Suzerain Points with that City-State and Heavy Tribute takes 1/2 of them;
-		f) if player Pledges Protection, but let another civ to take the Tribute over the City-State, this player loses 1/4 of his Suzerain Points;
-		g) declaring a war to a City-State takes all accumulated Suzerain Points with that City-State;
-Suzerain Points accumulate during the game and are tied to both Major and Minor players. If player passes certain threshold of Suzerain Points then:
-	a) above 3: player gains small Production bonus in his Capital; City-State gains small Growth boost;
-	b) above 7: player gains small Science bonus; City-State gains small City HP boost;
-	c) above 12: player gains bigger Production bonus in all Cities and bigger Science bonus; City-State gains increased production of its units;
-	d) above 18: City-State gains small City Defense boost;
-	e) above 25: player gains access to City-State's ability (4th possible way of gaining the access after being an Ally, having an Embassy or achieving high Influence level);
-	f) above 30: City-State gains increased production of anything and player cannot declare war to that City-State;
-If City-State is conquered, all Suzerain Points with it are zeroed, even after liberation.
-This way player can contribute to City-States' power and increase their value. If there are multiple players taking care about the City-State, then it can become well shaped and strong ally.
-Gaining Suzerain Points is sort of automatic feature and should be AI friendly, as it requires performing regular actions AI also does during its games. Passives are granted automatically.
+Ok, listen guys. If v13 were a shock to y'all, because of the amount of content, then v14 will cause you to have a heart attack!
 
+Work on the UCS haven't stopped, yet. I decided to continue the job with help of my fellows @jarcast2 and @flamingcheesepie, without whom I wouldn't reached that far.
+
+Ok, to the meritum. This update contains some trivial things like new City-States with new improvements or promotions. It contains also a new resource! Yes you heard right. Beside that there are tons of bugfixes (ones for fresh things introduced in v13, some for old ones, very old ones). There are some of balance changes and many gameplay-wise additions, that weren't done because I have no time or idea that it should be done.
+
+I think you'll like it. Read the detailed changelog to see what was done, and keep an eye on the forum, because v15 is already planned and ready to be coded!
 
 Changelog:
 - added:
@@ -43,10 +27,10 @@ Changelog:
 		- Sisqeno (exclusive for Tiwanaku) and Sisqeno Worker (dummy unit; used only by the AI; exclusive for Tiwanaku);
 - balanced:
 	- reworked the CS passives system:
-		- diplo actions in CS territory make them expand their border with 1/10th of the Influence value (copied the mechanics from Civ 6);
-		- diplo actions in CS territory make them gain a small amount of CS depending on their personality (0.2 for Friendly, 0.5 for Neutral, 1 for Hostile);
-			- this gain will be zeroed after conquering, so after liberating player must start from scratch;
-		- each CS gain unique Great Person Improvement on their territory after founding a city (stays from old system);
+		- diplo actions in CS territory make them expand their border with 1/10th of the Influence value (mimicked the mechanics from Civ 6);
+		- diplo actions in CS territory make them gain a small amount of HP depending on their personality (1 for Friendly, 2 for Neutral, 3 for Hostile);
+			- this gain will be zeroed after conquering the City-State, so after liberating player must start from scratch;
+		- each CS spawns unique Great Person Improvement on its territory after founding a city (stays from old system);
 		- CSs gain additional bonuses depending on their traits:
 			- friendly CSs have 1% chance of giving the Major player a type of civilian related to their trait (Worker, Workboat, Caravan, Cargo Ship, Missionary or Archaeologist) excluding Militaristic CSs (stays from old system);;
 			- friendly Militaristic CSs have their gifting chance increased by 1% (stays from old system);
@@ -58,7 +42,6 @@ Changelog:
 				- Hostile: +40% Religious Pressure and +25% Conversion Resistance;
 		- now CSs' passive abilities are hidden by default making the tootlip much more pleasant to watch; you can enable them back in the Bonuses.sql file changing "UCS-PASSIVES-SHOW" value from 0 to 1;
 		- now CSs' passive can be disabled (enabled by default) in the Bonuses.sql file changing "UCS-PASSIVES-ON", "UCS-PASSIVES-BGP" or "UCS-PASSIVES-HP" value from 1 to 0;
-	- Oc Eo: added +20% Sea Trade Route Range;
 	- Clermont promotions changes:
 		- now granted promotions are permanent instead of temporary (were 10-turn);
 		- slightly nerfed down each of 5 promotions;
@@ -79,11 +62,14 @@ Changelog:
 			- after building the Sunken Courtyard Sisqeno loses 1 Spread;
 	- Mound changes:
 		- gained GGP boost on Military Science;
+	- Óc Eo: added +20% Sea Trade Route Range;
 	- Djibouti now gives +80% Production towards Settlers (was +100%) and +100% towards Granaries (was free Granary);
+	- Zanzibar now grants 1 Happiness per 1 active Trade Route;
+	- Prague's ability now activates on each religious unit that can spread a religion (Missionary, Prophet, Sisqeno and any UU);
 	- all new improvements are treated as Unique Improvements, therefore gain yields from Civil Society (Food), Five Year Plan (Production) and Mobilization (Science) doctrines;
 - changed:
 	- Andorra's dummies now reordered ("*_2" is given by lua);
-	- "building based" lua abilities now use GameEvents based on changing event states instead of turn ending (great increase on turn performance);
+	- "building based" lua abilities now use GameEvents based on changing event status instead of turn ending (great increase on turn performance);
 	- added Improvement_Flavors for all currently added improvements and a resource;
 	- fake Caravan unit for Dali is now hidden in the tech tree;
 - fixed (sorted by importance):
@@ -92,20 +78,19 @@ Changelog:
 	- fixed Thimphu lua function error;
 	- fixed Thimphu dummies (now abilities are split; were in 1 dummy by mistake);
 	- added new Sisqeno unit (unique Missionary) for Tiwanaku to allow the AI construct Sunken Courtyards (dumb AI was going straight for Spreading Religion mission);
-	- Prague's ability now activates on each religious unit that can spread a religion (Missionary, Prophet, Sisqeno and any UU);
-	- added pillaged model for Colossal Head; Sunken Courtyard and Totem Poles have there regular models added to fill the gaps (SC model is broken and Totem has no such);
+	- added pillaged model for Colossal Head; Sunken Courtyard and Totem Poles have there regular models as pillaged ones added to fill the gaps (SC model is broken and Totem has no such);
 	- added missing Defines for Food values gifted by CSs and modified few other values from Defines;
 	- new units are not allowed to be gifted by City-States;
 	- lua functions checking building construction now relies on building class not building type of the constructed building;
 	- dummy improvements now have yields (for worker assessing their automation tasks);
 	- Parihaka and Nan Madol have now Polynesian artstyle;
-	- Mujahideen promotion icon now uses Mountain symbol instead of hill (@gwennog);
+	- Mujahideen promotion icon now uses Mountain symbol instead of a hill (@gwennog);
 	- Mujahideen promotion now given only to military units (useless on civilians);
 	- now making list of unique CSs' UUs is automated (previously done by hand);
 		- fixed and simplified the code spawning these units that probably didn't work;
-		- fixed Hunnic Battry Ram base unit, which now is Longswordman (was Spearman);
+		- fixed Hunnic Battry Ram base unit, which now is Longswordman's replacement (was Spearman);
 		- code now adjust to other modmods adding (maybe UCS?) or taking (MUC) such units;
-	- Prague now uses bDelay instead of auxiliary variable for GameEvents.PreKill trigger;
+	- Prague and Singapore now use bDelay instead of auxiliary variable for GameEvents.PreKill double trigger blocking;
 	- lua cleaning and optimizations; cutting the number of used variables;
 	- numerous text fixes (the most important):
 		- Thimphu lacked its 2nd ability description;
@@ -113,6 +98,34 @@ Changelog:
 		- some information of the Hong Kong ability now hidden (to shorten the text length);
 
 
+
+
+
+
+
+[FUTURE]
+This update contains also total rework of City-State's passives mechanic and also introduces new active-passive mechanic, which sounds bad, but is really simple.
+First, I didn't like the current state of passives and how they evolved. It was a nice concept, but turn out to be really complicated and difficult to understand, epecially when player had no impact on it at all. In its place I introduced new active-passive mechanic. It means that some Major player's actions on City-States, apart from gaining some stuff for themselves like gaining additional yields or gaining access to unique abilities I hope you like very much after rework) may change the City-State's behaviour somehow. Seems complicated? So few examples:
+	1. Each diplomatic mission performed in a City-State contributes to their border growth, incresing their territory a bit, so the more such actions, the stronger CS becomes;
+	2. Each diplomatic mission performed in a City-State increases their defensive capabilities (HP), and the value of change depends on City-State's Personality (less in Friendly, more in Hostile);
+	3. Performing some actions grants the player new Suzerain Points or takes them; Suzerain Points open up new possible outcomes when gathered in bigger quantities.
+		a) performing a diplomatic mission grants you 1 Suzerain Point with that City-State;
+		b) completing a quest grants you 1 Suzerain Point with that City-State;
+		c) pledging a protection grants you 1 Suzerain Point with that City-State (one-time boost);
+		d) liberation of a City-State grants 5 Suzerain Points with it;
+		e) taking a Tribute takes 1/3 of accumulated Suzerain Points with that City-State and Heavy Tribute takes 1/2 of them;
+		f) if player Pledges Protection, but let another civ to take the Tribute over the City-State, this player loses 1/4 of his Suzerain Points;
+		g) declaring a war to a City-State takes all accumulated Suzerain Points with that City-State;
+Suzerain Points accumulate during the game and are tied to both Major and Minor players. If player passes certain threshold of Suzerain Points then:
+	a) above 3: player gains small Production bonus in his Capital; City-State gains small Growth boost;
+	b) above 7: player gains small Science bonus; City-State gains small City HP boost;
+	c) above 12: player gains bigger Production bonus in all Cities and bigger Science bonus; City-State gains increased production of its units;
+	d) above 18: City-State gains small City Defense boost;
+	e) above 25: player gains access to City-State's ability (4th possible way of gaining the access after being an Ally, having an Embassy or achieving high Influence level);
+	f) above 30: City-State gains increased production of anything and player cannot declare war to that City-State;
+If City-State is conquered, all Suzerain Points with it are zeroed, even after liberation.
+This way player can contribute to City-States' power and increase their value. If there are multiple players taking care about the City-State, then it can become well shaped and strong ally.
+Gaining Suzerain Points is sort of automatic feature and should be AI friendly, as it requires performing regular actions AI also does during its games. Passives are granted automatically.
 
 
 
