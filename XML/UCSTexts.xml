@@ -150,7 +150,7 @@
 			<Text>Crucial support from logging companies!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_PRAGUE">
-			<Text>The clergy from [COLOR_CYAN]{1_Prague}[ENDCOLOR] value your loss of a missionary, who was trying to convert pagans and infidels to your religion. To compensate this tragic event and encourage you to continue such desired missions, they support you with {2_Faith} [ICON_PEACE] Faith and {3_Culture} [ICON_CULTURE] Culture.</Text>
+			<Text>The clergy from [COLOR_CYAN]{1_Prague}[ENDCOLOR] value your loss of a {2_LostUnit}, who was trying to convert pagans and infidels to your religion. To compensate this tragic event and encourage you to continue such desired missions, they support you with {3_Faith} [ICON_PEACE] Faith and {4_Culture} [ICON_CULTURE] Culture.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_PRAGUE_TITLE">
 			<Text>Glorious death during a mission!</Text>

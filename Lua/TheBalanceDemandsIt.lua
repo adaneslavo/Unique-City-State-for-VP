@@ -255,7 +255,7 @@ local tTechnologyTypes = {
 	GameInfoTypes.TECH_RADIO,
 	GameInfoTypes.TECH_TELECOM,
 	GameInfoTypes.TECH_HORSEBACK_RIDING,
-	GameInfoTypes.TECH_HORSEBACK_RIDING_DUMMY
+	GameInfoTypes.TECH_HORSEBACK_RIDING_UCS_DUMMY
 }
 
 local tDirectionTypes = {
@@ -274,60 +274,40 @@ local tZurichLastInterests = {}
 local tZurichCounter = {}
 -- KARYES
 local tCitiesWithEnoughMonasteries = {}
--- TIWANAKU - it should be stored between save/load, but Missionaries are expended quite fast, so the situation when Sisqeno builds a SC, and then game is saved and reloaded should be rare
-local tBlockedSisqenos = {} 
+-- PRAGUE
+local tUnitsWithSpread = {}
+	for unit in DB.Query("SELECT Units.ID FROM Units WHERE SpreadReligion = 1") do
+		table.insert(tUnitsWithSpread, unit.ID)
+	end
 
-
--- for CS UU gifts
+-- automated CS UU gifts for any changes made by other modmods, f.e. MUC
+-- VP+MUC: Sipahi, Companion Cavalry, Norwegian Ski Infantry, Battering Ram, Pracinha
+-- VP only: Longbowman, Ballista, Turtle Ship, Hakkapeliitta, Great Galleass
 local tUniqueUnitsFromMinors = {}
-	for specialUnit in DB.Query("SELECT Units.ID, Units.Type, Units.Class, Units.Description, Units.GoodyHutUpgradeUnitClass, Units.PrereqTech FROM Units WHERE MinorCivGift = 1") do
+	for specialUnit in DB.Query("SELECT Units.ID, Units.Type, Units.Description, Units.PrereqTech FROM Units WHERE MinorCivGift = 1") do
 		local iBaseUnitID, sBaseUnitType = 1000, ""
-
-		local sUpgradesToClass = specialUnit.GoodyHutUpgradeUnitClass
 		
-		for unit in DB.Query("SELECT Units.ID, Units.Type FROM Units WHERE GoodyHutUpgradeUnitClass = sUpgradesToClass") do
-			if unit.ID < iBaseUnitID then
-				iBaseUnitID = unit.ID
-				sBaseUnitType = unit.Type
+		local sUpgradesToClass = GameInfo.Unit_ClassUpgrades{UnitType=specialUnit.Type}().UnitClassType
+		
+		for upgrade in DB.Query("SELECT Unit_ClassUpgrades.UnitType FROM Unit_ClassUpgrades WHERE UnitClassType = ?", sUpgradesToClass) do
+			local bMercenary = GameInfo.Units{Type=upgrade.UnitType}().PurchaseOnly == true or GameInfo.Units{Type=upgrade.UnitType}().PurchaseOnly == 1
+			
+			if not bMercenary then
+				local eUnit = GameInfo.Units{Type=upgrade.UnitType}().ID
+				
+				if eUnit < iBaseUnitID then
+					iBaseUnitID = eUnit
+					sBaseUnitType = upgrade.UnitType
+				end
 			end
 		end
-		print("CS_UU_GIFTS", L(specialUnit.Description), specialUnit.ID, specialUnit.Type, specialUnit.Class, specialUnit.GoodyHutUpgradeUnitClass, specialUnit.PrereqTech, sBaseUnitType)
+		--print("CS_UU_GIFTS", L(specialUnit.Description), sUpgradesToClass, specialUnit.PrereqTech, sBaseUnitType)
 
 		tUniqueUnitsFromMinors[specialUnit.ID] = {
 			sOriginalUnit = sBaseUnitType,
 			ePrereqTech = GameInfo.Technologies{Type=specialUnit.PrereqTech}().ID					
 		}
 	end
-	--[[	tUniqueUnitsFromMinors["UNIT_HUNNIC_BATTERING_RAM"] = {
-			eUnit = GameInfoTypes.UNIT_SPEARMAN
-		}
-		tUniqueUnitsFromMinors["UNIT_DANISH_SKI_INFANTRY"] = {
-			eUnit = GameInfoTypes.UNIT_RIFLEMAN
-		}
-		tUniqueUnitsFromMinors["UNIT_BRAZILIAN_PRACINHA"] = {
-			eUnit = GameInfoTypes.UNIT_INFANTRY
-		}
-		tUniqueUnitsFromMinors["UNIT_ENGLISH_LONGBOWMAN"] = {
-			eUnit = GameInfoTypes.UNIT_CROSSBOWMAN
-		}
-		tUniqueUnitsFromMinors["UNIT_GREEK_COMPANIONCAVALRY"] = {
-			eUnit = GameInfoTypes.UNIT_HORSEMAN
-		}
-		tUniqueUnitsFromMinors["UNIT_OTTOMAN_SIPAHI"] = {
-			eUnit = GameInfoTypes.UNIT_LANCER
-		}
-		tUniqueUnitsFromMinors["UNIT_SWEDISH_HAKKAPELIITTA"] = {
-			eUnit = GameInfoTypes.UNIT_LANCER
-		}
-		tUniqueUnitsFromMinors["UNIT_KOREAN_TURTLE_SHIP"] = {
-			eUnit = GameInfoTypes.UNIT_CARAVEL
-		}
-		tUniqueUnitsFromMinors["UNIT_VENETIAN_GALLEASS"] = {
-			eUnit = GameInfoTypes.UNIT_GALLEASS
-		}
-		tUniqueUnitsFromMinors["UNIT_ROMAN_BALLISTA"] = {
-			eUnit = GameInfoTypes.UNIT_CATAPULT
-		}--]]
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- RNG
@@ -453,60 +433,54 @@ GameEvents.ResolutionResult.Add(MovingSwiftly)
 
 -- Border expansion on Diplo Actions
 function DiplomaticExpansion(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKillerPlayer)
-	--if eKillerPlayer ~= -1 then return end
-	print("DIPLOMACY_PREKILL", eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKillerPlayer)
+	if not bDelay or eKillerPlayer ~= -1 then return end
+	
 	local pPlayer = Players[eUnitOwner]
 
 	if pPlayer:IsMinorCiv() then return end
 	
 	local pUnit = pPlayer:GetUnitByID(eUnit)
-			
-	-- event triggers twice on each death, so this should prevent it
-	--bBlockDoubleTriggering = not bBlockDoubleTriggering
-	
-	--if bBlockDoubleTriggering then
-		local bIsGreatDiplomat = pUnit:GetUnitType() == tUnitsGreatPeople[7]
-		local bIsDiploUnit = pUnit:GetUnitCombatType() == GameInfoTypes.UNITCOMBAT_DIPLOMACY
+	local bIsGreatDiplomat = pUnit:GetUnitType() == tUnitsGreatPeople[7]
+	local bIsDiploUnit = pUnit:GetUnitCombatType() == GameInfoTypes.UNITCOMBAT_DIPLOMACY
 
-		if bIsDiploUnit or bIsGreatDiplomat then
-			local iInfluence = 0
-			local iEraBoost = (bIsGreatDiplomat and 20 or 0) * pPlayer:GetCurrentEra()
-			local iModifier = 0
+	if bIsDiploUnit or bIsGreatDiplomat then
+		local iInfluence = 0
+		local iEraBoost = (bIsGreatDiplomat and 20 or 0) * pPlayer:GetCurrentEra()
+		local iModifier = 0
 
-			for promotion in DB.Query("SELECT UnitPromotions.ID, UnitPromotions.DiploMissionInfluence FROM UnitPromotions WHERE DiploMissionInfluence > 0") do
-				if pUnit:IsHasPromotion(promotion.ID) then
-					iInfluence = iInfluence + promotion.DiploMissionInfluence
-				end
-			end
-
-			for policy in DB.Query("SELECT Policies.ID, Policies.MissionInfluenceModifier FROM Policies WHERE MissionInfluenceModifier > 0") do
-				if pPlayer:HasPolicy(policy.ID) then
-					iModifier = iModifier + policy.MissionInfluenceModifier
-				end
-			end
-
-			local iTotalInfluence = (iInfluence + iEraBoost) * (1 + (iModifier / 100))
-			local iBorderGrowthBonus = iTotalInfluence / 10
-			local pPlot = Map.GetPlot(iX, iY)
-			local pMinorCity = pPlot:GetWorkingCity()
-			local pMinorPlayer = Players[pPlot:GetOwner()]
-			local eMinorPersonality = pMinorPlayer:GetPersonality()
-
-			if bEnablePassivesBorderGrowth then
-				pMinorCity:ChangeJONSCultureStored(iBorderGrowthBonus)
-			end
-		
-			if bEnablePassivesHitPoints then
-				if eMinorPersonality == tMinorPersonalities[1] then
-					pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[1], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[1]) + 1)
-				elseif eMinorPersonality == tMinorPersonalities[2] then
-					pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[2], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[2]) + 1)
-				elseif eMinorPersonality == tMinorPersonalities[3] then
-					pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[3], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[3]) + 1)
-				end
+		for promotion in DB.Query("SELECT UnitPromotions.ID, UnitPromotions.DiploMissionInfluence FROM UnitPromotions WHERE DiploMissionInfluence > 0") do
+			if pUnit:IsHasPromotion(promotion.ID) then
+				iInfluence = iInfluence + promotion.DiploMissionInfluence
 			end
 		end
-	--end
+
+		for policy in DB.Query("SELECT Policies.ID, Policies.MissionInfluenceModifier FROM Policies WHERE MissionInfluenceModifier > 0") do
+			if pPlayer:HasPolicy(policy.ID) then
+				iModifier = iModifier + policy.MissionInfluenceModifier
+			end
+		end
+
+		local iTotalInfluence = (iInfluence + iEraBoost) * (1 + (iModifier / 100))
+		local iBorderGrowthBonus = iTotalInfluence / 10
+		local pPlot = Map.GetPlot(iX, iY)
+		local pMinorCity = pPlot:GetWorkingCity()
+		local pMinorPlayer = Players[pPlot:GetOwner()]
+		local eMinorPersonality = pMinorPlayer:GetPersonality()
+
+		if bEnablePassivesBorderGrowth then
+			pMinorCity:ChangeJONSCultureStored(iBorderGrowthBonus)
+		end
+		
+		if bEnablePassivesHitPoints then
+			if eMinorPersonality == tMinorPersonalities[1] then
+				pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[1], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[1]) + 1)
+			elseif eMinorPersonality == tMinorPersonalities[2] then
+				pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[2], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[2]) + 1)
+			elseif eMinorPersonality == tMinorPersonalities[3] then
+				pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[3], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[3]) + 1)
+			end
+		end
+	end
 end
 GameEvents.UnitPrekill.Add(DiplomaticExpansion)
 
@@ -1539,10 +1513,10 @@ GameEvents.CityCanTrain.Add(CanWeBuySisqeno)
 function DummyWorkerForAISisqeno(ePlayer, eCity, eUnit, bGold, bFaith)	
 	local pPlayer = Players[ePlayer]
 	
-	if --[[not--]] pPlayer:IsHuman() then
+	if not pPlayer:IsHuman() then
 		local pUnit = pPlayer:GetUnitByID(eUnit)
 		
-		if pUnit:GetUnitType() == tUnitsCivilian[9] then
+		if pUnit and pUnit:GetUnitType() == tUnitsCivilian[9] then
 			pPlayer:AddFreeUnit(tUnitsCivilian[10], UNITAI_DEFENSE)
 			
 			for unit in pPlayer:Units() do
@@ -1556,24 +1530,17 @@ function DummyWorkerForAISisqeno(ePlayer, eCity, eUnit, bGold, bFaith)
 end
 
 function CanWeBuildSunkenCourtyard(ePlayer, eUnit, iX, iY, eBuild)
-	if eBuild ~= GameInfoTypes.BUILD_SUNK_COURT then return true end
+	if eBuild ~= GameInfoTypes.BUILD_SUNK_COURT_HUMAN and eBuild ~= GameInfoTypes.BUILD_SUNK_COURT_AI then return true end
 	
 	local pPlayer = Players[ePlayer]
 	
 	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[17]) > 0) then return false end
-
+	
 	local pUnit = pPlayer:GetUnitByID(eUnit)
-
-	--if pUnit:GetUnitType() == tUnitsCivilian[9] and pPlayer:IsHuman() then
-		-- Humans can build SC with Sisqeno
-		--[[for i, unit in ipairs(tBlockedSisqenos) do
-			if pUnit == unit then
-				return false
-			end
-		end
-		
-		return true--]]
-	--[[else--]]if pUnit:GetUnitType() == tUnitsCivilian[9] and --[[not--]] pPlayer:IsHuman() then
+	
+	if pUnit:GetUnitType() == tUnitsCivilian[9] and pPlayer:IsHuman() then
+		return true
+	elseif pUnit:GetUnitType() == tUnitsCivilian[9] and not pPlayer:IsHuman() then
 		-- AI cannot build SC with Sisqeno (must use a Worker)
 		return false
 	elseif pUnit:GetUnitType() == tUnitsCivilian[10] then
@@ -1630,7 +1597,9 @@ function BuiltSunkenCourtyard(ePlayer, iX, iY, eImprovement)
 			end
 		end
 	end
-end	
+end
+
+-- OnSpread (unavailable)
 
 
 
@@ -2683,13 +2652,14 @@ GameEvents.CityCanTrain.Add(TradeWithFaith)
 function DummyTechHorsebackRiding(eTeam, eTech, iChange)
 	if eTech ~= tTechnologyTypes[4] then return end
 	
-	local pActivePlayer = Players[Game.GetActivePlayer()]
+	local eActivePlayer = Game.GetActivePlayer()
+	local pActivePlayer = Players[eActivePlayer]
 	
 	if pActivePlayer:IsMinorCiv() then return end
 	
 	local pActiveTeam = Teams[pActivePlayer:GetTeam()]
 	
-	pActiveTeam:SetHasTech(tTechnologyTypes[5], true)
+	pActiveTeam:GetTeamTechs():SetHasTech(tTechnologyTypes[5], true)
 end
 
 
@@ -2794,7 +2764,7 @@ function SwissGuardYieldsNotification(ePlayer, eCity, eUnit, bGold, bFaith)
 	local pPlayer = Players[ePlayer]
 	local pUnit = pPlayer:GetUnitByID(eUnit)
 
-	if pUnit:GetUnitType() == tUnitsMilitary[1] then
+	if pUnit and pUnit:GetUnitType() == tUnitsMilitary[1] then
 		local pTeam = Teams[pPlayer:GetTeam()]
 		local bRadio = pTeam:IsHasTech(tTechnologyTypes[2])
 		local bTelecom = pTeam:IsHasTech(tTechnologyTypes[3])
@@ -2891,6 +2861,8 @@ function MujahideensFromKabulOnMove(ePlayer, eUnit, iX, iY)
 	local pUnit = pPlayer:GetUnitByID(eUnit)
 	local bIsMountainAround = false
 	
+	if not pUnit:IsCombatUnit() then return end
+
 	if pUnit:IsHasPromotion(tPromotionsActiveAbilities[2]) then
 		for i, direction in ipairs(tDirectionTypes) do
 			local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
@@ -2908,7 +2880,7 @@ function MujahideensFromKabulOnMove(ePlayer, eUnit, iX, iY)
 		end
 	else
 		if pPlayer:GetEventChoiceCooldown(tEventChoice[24]) ~= 0 then
-			if pUnit:GetDomainType() == tDomainTypes[1] and unit:IsCombatUnit()  then
+			if pUnit:GetDomainType() == tDomainTypes[1] then
 				for i, direction in ipairs(tDirectionTypes) do
 					local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
 					
@@ -3186,36 +3158,42 @@ end
 
 --PRAGUE (MISSIONARY EXPENDED YIELDS)
 function SpreadTheFaithInPrussia(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKillerPlayer)
+	if bDelay then return end
+	
 	local pPlayer = Players[eUnitOwner]
-	print("MISSIONARY_PREKILL", eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKillerPlayer)
+	
 	if pPlayer:IsMinorCiv() then return end
 
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[27]) ~= 0 then
 		local pUnit = pPlayer:GetUnitByID(eUnit)
-			
-		if pUnit:GetUnitType() == tUnitsCivilian[3] --[[and not bDelay--]] then
-			local iBaseYield = RandomNumberBetween(10, 30)
-			local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
-			local iCultureFromDeath = iBaseYield * iEraModifier
-			local iFaithFromDeath = iCultureFromDeath * 2			
-			local pCapital = pPlayer:GetCapitalCity()
-			local pPrague = Players[tLostCities["eLostPrague"]]
+		
+		for i, spreadunit in ipairs(tUnitsWithSpread) do
+			if pUnit:GetUnitType() == spreadunit then
+				local iBaseYield = RandomNumberBetween(10, 30)
+				local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
+				local iCultureFromDeath = iBaseYield * iEraModifier
+				local iFaithFromDeath = iCultureFromDeath * 2			
+				local pCapital = pPlayer:GetCapitalCity()
+				local pPrague = Players[tLostCities["eLostPrague"]]
 
-			pPlayer:DoInstantYield(GameInfoTypes.YIELD_CULTURE, iCultureFromDeath, true, pCapital:GetID())
-			pPlayer:DoInstantYield(GameInfoTypes.YIELD_FAITH, iFaithFromDeath, true, pCapital:GetID())
+				pPlayer:DoInstantYield(GameInfoTypes.YIELD_CULTURE, iCultureFromDeath, true, pCapital:GetID())
+				pPlayer:DoInstantYield(GameInfoTypes.YIELD_FAITH, iFaithFromDeath, true, pCapital:GetID())
 			
-			if pPlayer:IsHuman() then
-				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_PRAGUE", pPrague:GetName(), iFaithFromDeath, iCultureFromDeath), L("TXT_KEY_UCS_BONUS_PRAGUE_TITLE"), pCapital:GetX(), pCapital:GetY())
-			end	
+				if pPlayer:IsHuman() then
+					pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_PRAGUE", pPrague:GetName(), pUnit:GetName(), iFaithFromDeath, iCultureFromDeath), L("TXT_KEY_UCS_BONUS_PRAGUE_TITLE"), pCapital:GetX(), pCapital:GetY())
+				end
+				
+				break	
+			end
 		end
 	end
 end
-GameEvents.UnitPrekill.Add(SpreadTheFaithInPrussia) -- DELETE!!!
+
 
 
 --SINGAPORE (GOLD FROM DIPLOMACY)
 function WiseDiplomatsFromSingapore(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKillerPlayer)
-	if eKillerPlayer ~= -1 then return end
+	if not bDelay or eKillerPlayer ~= -1 then return end
 	
 	local pPlayer = Players[eUnitOwner]
 
@@ -3224,10 +3202,7 @@ function WiseDiplomatsFromSingapore(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[30]) ~= 0 then
 		local pUnit = pPlayer:GetUnitByID(eUnit)
 			
-		-- event triggers twice on each death, so this should prevent it
-		bBlockDoubleTriggering = not bBlockDoubleTriggering
-		
-		if pUnit:GetUnitCombatType() == GameInfoTypes.UNITCOMBAT_DIPLOMACY and not bBlockDoubleTriggering then
+		if pUnit:GetUnitCombatType() == GameInfoTypes.UNITCOMBAT_DIPLOMACY then
 			local iBaseYield = 20
 			local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
 			
@@ -3906,7 +3881,7 @@ function SettingUpSpecificEvents()
 			-- prekill effects
 			elseif sMinorCivType == "MINOR_CIV_PRAGUE" then
 				tLostCities["eLostPrague"] = eCS
-				--GameEvents.UnitPrekill.Add(SpreadTheFaithInPrussia)
+				GameEvents.UnitPrekill.Add(SpreadTheFaithInPrussia)
 			elseif sMinorCivType == "MINOR_CIV_SINGAPORE" then
 				tLostCities["eLostSingapore"] = eCS
 				GameEvents.UnitPrekill.Add(WiseDiplomatsFromSingapore)

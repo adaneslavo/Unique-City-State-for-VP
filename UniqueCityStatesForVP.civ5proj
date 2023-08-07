@@ -113,10 +113,13 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
     <Folder Include="Art\Model\Improvements\ColossalHead\" />
     <Folder Include="Art\Model\Improvements\Monastery" />
     <Folder Include="Art\Model\Improvements\Chum" />
+    <Folder Include="Art\Model\Improvements\FuneraryTower" />
+    <Folder Include="Art\Model\Improvements\Tulou" />
     <Folder Include="Art\Model\Improvements\TotemPole" />
     <Folder Include="Art\Model\Improvements\SunkenCourtyard\" />
     <Folder Include="Art\Model\Resources" />
     <Folder Include="Art\Model\Resources\DogoCanario" />
+    <Folder Include="Art\Model\Resources\LlaoLlao" />
     <Folder Include="Art\Model\Units" />
     <Folder Include="Art\Model\Units\Ghurka" />
     <Folder Include="Art\Model\Units\Sisqeno" />
@@ -218,6 +221,42 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
+    <Content Include="Art\Model\Improvements\FuneraryTower\Funerary Towers Ground H.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Improvements\FuneraryTower\Funerary Towers Ground.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Improvements\FuneraryTower\Funerary Towers.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Improvements\FuneraryTower\Palmyra Funerary Towers HB.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Improvements\FuneraryTower\Palmyra Funerary Towers PL.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Improvements\FuneraryTower\Palmyra Funerary Towers.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Improvements\FuneraryTower\Palmyra Funerary Towers_B.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Improvements\FuneraryTower\Palmyra Funerary Towers_HB.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Improvements\FuneraryTower\Palmyra Funerary Towers_PL.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
     <Content Include="Art\Model\Improvements\Monastery\Fruska_Gora.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
@@ -317,6 +356,50 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
     <Content Include="Art\Model\Improvements\TotemPole\monolith_amer_er_hb.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Improvements\Tulou\tulou.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Improvements\Tulou\TULOU.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Improvements\Tulou\Tulou_CN.fbx">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Improvements\Tulou\Tulou_CN.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Improvements\Tulou\Tulou_HB.fbx">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Improvements\Tulou\TULOU_HB.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Improvements\Tulou\Tulou_HB.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Improvements\Tulou\Tulou_PL.fbx">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Improvements\Tulou\TULOU_PL.ftsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Improvements\Tulou\TULOU_PL.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Model\Improvements\Tulou\Tulou_PL.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
     <Content Include="Art\Model\Resources\DogoCanario\black_4x4.dds">
       <SubType>Lua</SubType>
@@ -463,6 +546,10 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="Art\SV_Icons\sv_UnitNihang.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\SV_Icons\sv_UnitSisqeno.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>

@@ -88,10 +88,12 @@ Changelog:
 	- fake Caravan unit for Dali is now hidden in the tech tree;
 - fixed (sorted by importance):
 	- fixed an error in function on building construction (Oc Eo, Andorra, Thimphu, Rishikesh, Ragusa, Canossa, Wootei-niicie);
+	- fixed Zanzibar's ability, so now it gives 1 Happiness per 1 Trade Route (was 0.75 per city connection);
 	- fixed Thimphu lua function error;
 	- fixed Thimphu dummies (now abilities are split; were in 1 dummy by mistake);
 	- added new Sisqeno unit (unique Missionary) for Tiwanaku to allow the AI construct Sunken Courtyards (dumb AI was going straight for Spreading Religion mission);
-	- added pillaged model for Colossal Head and Sunken Courtyard improvement;
+	- Prague's ability now activates on each religious unit that can spread a religion (Missionary, Prophet, Sisqeno and any UU);
+	- added pillaged model for Colossal Head; Sunken Courtyard and Totem Poles have there regular models added to fill the gaps (SC model is broken and Totem has no such);
 	- added missing Defines for Food values gifted by CSs and modified few other values from Defines;
 	- new units are not allowed to be gifted by City-States;
 	- lua functions checking building construction now relies on building class not building type of the constructed building;
@@ -99,7 +101,10 @@ Changelog:
 	- Parihaka and Nan Madol have now Polynesian artstyle;
 	- Mujahideen promotion icon now uses Mountain symbol instead of hill (@gwennog);
 	- Mujahideen promotion now given only to military units (useless on civilians);
-	- now making list of unique CSs' UUs is automated (previously done by hand); fixed and simplified the code spawning these units that probably didn't work;
+	- now making list of unique CSs' UUs is automated (previously done by hand);
+		- fixed and simplified the code spawning these units that probably didn't work;
+		- fixed Hunnic Battry Ram base unit, which now is Longswordman (was Spearman);
+		- code now adjust to other modmods adding (maybe UCS?) or taking (MUC) such units;
 	- Prague now uses bDelay instead of auxiliary variable for GameEvents.PreKill trigger;
 	- lua cleaning and optimizations; cutting the number of used variables;
 	- numerous text fixes (the most important):
