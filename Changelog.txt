@@ -6,6 +6,10 @@ Ok, to the meritum. This update contains some trivial things like new City-State
 
 I think you'll like it. Read the detailed changelog to see what was done, and keep an eye on the forum, because v15 is already planned and ready to be coded!
 
+As an addition, once more the important information, that you can post (and it is very likely to hear from me) any experience from latest versions of UCS. When you meet a city-state and you think its ability was too strong, too weak or just wrong, if you weren't sure if it was working correctly - let me know and I will take this into consideration or investigation. You can do that here, on the forum, on discord (there's now special subthread inside my own channel), or on github site (I wouldn't recommend that, as I can miss that info easily). I will be gathering them on discord for later use.
+
+Now it's time to move on and code some new city-states for v15!!!
+
 Changelog:
 - added:
 	- new City-States:
