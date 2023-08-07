@@ -47,12 +47,6 @@ Changelog:
 		- now CSs' passive abilities are hidden by default making the tootlip much more pleasant to watch; you can enable them back in the Bonuses.sql file changing "UCS-PASSIVES-SHOW" value from 0 to 1;
 		- now CSs' passive can be disabled (enabled by default) in the Bonuses.sql file changing "UCS-PASSIVES-ON", "UCS-PASSIVES-BGP" or "UCS-PASSIVES-HP" value from 1 to 0;
 		- rest of the stuff regarding passives, that were hard to understand, check or control are now deleted and will be substituted step by step by something new I have in my mind;
-	- Clermont promotions changes:
-		- now granted promotions are permanent instead of temporary (were 10-turn);
-		- slightly nerfed down each of 5 promotions;
-		- added 1 new promotion to the pool (Deus Vult!);
-		- all random promotions have now unique colouring (like Bushido's or Kris' promotions) (@gwennog);
-		- Blessing of Clermont now has "question mark" icon (like base Bushido's or Kris' promotions) (@gwennog);
 	- Colossal Head changes:
 		- tech yields changed;
 		- now has more base yields, less yields from being allied;
@@ -68,6 +62,16 @@ Changelog:
 			- can only be built when Sisqeno has all of his charges (didn't perform his spread religion action);
 	- Mound changes:
 		- gained GGP boost on Military Science;
+	- Clermont promotions changes:
+		- now granted promotions are permanent instead of temporary (were 10-turn);
+		- slightly nerfed down each of 5 promotions;
+		- added 1 new promotion to the pool (Deus Vult!);
+		- all random promotions have now unique colouring (like Bushido's or Kris' promotions) (@gwennog);
+		- Blessing of Clermont now has "question mark" icon (like base Bushido's or Kris' promotions) (@gwennog);
+	- Bedulu changes:
+		- lost Faith from Sea resources;
+		- gained Faith and Golden Age Points from City-State alliances;
+		- gained Faith from International Sea Trade Routes;
 	- Óc Eo: added +20% Sea Trade Route Range;
 	- Djibouti now gives +80% Production towards Settlers (was +100%) and +100% towards Granaries (was free Granary);
 	- Zanzibar now grants 1 Happiness per 1 active Trade Route;
