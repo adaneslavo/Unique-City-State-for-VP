@@ -65,6 +65,7 @@ Changelog:
 		- they can be build now by special Sisqeno units:
 			- each Sisqeno can build only 1 Sunken Courtyard;
 			- after building the Sunken Courtyard Sisqeno loses 1 Spread;
+			- can only be built when Sisqeno has all of his charges (didn't perform his spread religion action);
 	- Mound changes:
 		- gained GGP boost on Military Science;
 	- Óc Eo: added +20% Sea Trade Route Range;
