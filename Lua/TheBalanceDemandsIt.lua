@@ -75,7 +75,10 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SGAANG,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_NYARYANA_MARQ, -- 41
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_ADEJE,
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_WOOTEI_NIICIE
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_WOOTEI_NIICIE,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_LAHORE,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_DAKKAR,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_POKROVKA -- 46
 }
 
 local tBuildingsActiveAbilities = {
@@ -125,7 +128,9 @@ local tPromotionsActiveAbilities = {
 	GameInfoTypes.PROMOTION_SIKH_SHOES, -- 16
 	GameInfoTypes.PROMOTION_SIKH_TURBAN,
 	GameInfoTypes.PROMOTION_SIKH_MARTIAL_ART,
-	GameInfoTypes.PROMOTION_SIKH_BRACELET
+	GameInfoTypes.PROMOTION_SIKH_BRACELET,
+	GameInfoTypes.PROMOTION_DAKKAR,
+	GameInfoTypes.PROMOTION_POKROVKA -- 21
 }
 
 local tBuildingsPassiveAbilities = {
@@ -3557,7 +3562,7 @@ end
 
 
 
--- LAHORE (FUTURE) (INCREASING UNIT CS)
+-- LAHORE (INCREASING UNIT CS)
 function NihangPromoted(eUnitOwner, eUnit, ePromotion)
 	--[[PROMOTION_SIKH = 5
 		PROMOTION_SIKH_SWORD = 6
@@ -3591,7 +3596,7 @@ function NihangPromoted(eUnitOwner, eUnit, ePromotion)
 		-- nothing
 	end
 end
---GameEvents.UnitPromoted.Add(NihangPromoted)
+GameEvents.UnitPromoted.Add(NihangPromoted)
 
 function RiposteFromNihang(eAttackingPlayer, eAttackingUnit, iAttackerDamage, iAttackerFinalDamage, iAttackerMaxHP, eDefendingPlayer, eDefendingUnit, iDefenderDamage, iDefenderFinalDamage, iDefenderMaxHP, eInterceptingPlayer, eInterceptingUnit, iInterceptorDamage, iX, iY)
 	if not ((iAttackerFinalDamage < iAttackerMaxHP) and (iDefenderFinalDamage < iDefenderMaxHP)) then return end
@@ -3627,7 +3632,49 @@ function RiposteFromNihang(eAttackingPlayer, eAttackingUnit, iAttackerDamage, iA
 		end
 	end
 end
---GameEvents.CombatEnded.Add(RiposteFromNihang)
+GameEvents.CombatEnded.Add(RiposteFromNihang)
+
+
+
+-- DAKKAR (UNITS GIVEN TO CS HAVE MORE CS)
+function GiftToDakkar(eMajor, eMinor, iGold, eUnitType, ePlotX, ePlotY)
+	local pMajorPlayer = Players[eMajor]
+
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[45]) ~= 0 then
+		local pMinorPlayer = Players[eMinor]
+		
+		for unit in pMinorPlayer:Units() do
+			if unit:GetUnitType == eUnitType and not unit:IsHasPromotion(tPromotionsActiveAbilities[20]) then
+				unit:SetHasPromotion(tPromotionsActiveAbilities[20], true)
+				unit:SetBaseCombatStrength(unit:GetBaseCombatStrength() + 5)
+				break
+			end
+		end
+	end
+end
+GameEvents.PlayerGifted.Add(GiftToDakkar)
+
+
+
+-- POKROVKA (ONLY MOUNTED MELEE PROMOTION)
+function PokrovkaAllowsOnlyMountedMelee(ePlayer, eUnit, ePromotionType)
+	if ePromotionType ~= tPromotionsActiveAbilities[21] then return true end
+
+	local pPlayer = Players[ePlayer]
+
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[46]) ~= 0 then
+		local pUnit = pPlayer:GetUnitByID(eUnit)
+		local bUnitIsRanged = GameInfo.Units{ID=pUnit:GetUnitType()}().IsRanged == true
+		local bUnitIsMounted = GameInfo.Units{ID=pUnit:GetUnitType()}().CombatClass == "UNITCOMBAT_MOUNTED"
+		
+		if bUnitIsMounted and not bUnitIsRanged then
+			return true
+		else
+			return false
+		end
+	end
+end
+GameEvents.CanHavePromotion.Add(PokrovkaAllowsOnlyMountedMelee)
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- INITIALIZATION
