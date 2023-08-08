@@ -1,8 +1,20 @@
 
 Changelog:
-
-
-
+- added:
+	- new City-States:
+		- 1 Maritime: Honiara (Oceania);
+		- 1 Mercantile: Ouidah (West Africa);
+		- 4 Militaristic: Dakkar (East Africa), Pelym (North Asia), Pokrovka (Central Asia), Tbilisi (Caucasus);
+		- 2 Cultured: Karasjohka (North Europe), Katende (Central Africa);
+		- 3 Religious: Lahore (Central Asia), Sarnath (Central Asia), Suceava (East Europe);
+	- new Promotions:
+		- Battle of Vaslui (exclusive for Suceava);
+		- Futuh Al-Habash (exclusive for Dakkar);
+		- Scythian Arrow Barrage (exclusive for Pokrovka);
+		- Siberian Education (exclusive for Pelym);
+		- Siida Culture (exclusive for Karasjohka);
+		- 15 new Promotions (whole unique branch) for Nihang Unit (exclusive for Lahore);
+		
 
 
 
