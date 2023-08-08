@@ -236,7 +236,8 @@ local tUnitsCivilian = {
 
 local tUnitsMilitary = {
 	GameInfoTypes.UNIT_SWISS_GUARD,
-	GameInfoTypes.UNIT_GURKHA
+	GameInfoTypes.UNIT_GURKHA,
+	GameInfoTypes.UNIT_NIHANG
 }
 
 local tResourcesLuxury = {
@@ -3563,8 +3564,23 @@ end
 
 
 -- LAHORE (INCREASING UNIT CS)
+function CanWeBuyNihang(ePlayer, eCity, eUnit)
+	if eUnit ~= tUnitsMilitary[3] then return true end
+	
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:IsMinorCiv() then return false end
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[44]) ~= 0 then
+		return true
+	else
+		return false
+	end
+end
+GameEvents.CityCanTrain.Add(CanWeBuyNihang)
+
 function NihangPromoted(eUnitOwner, eUnit, ePromotion)
-	--[[PROMOTION_SIKH = 5
+	--[[	PROMOTION_SIKH = 5
 		PROMOTION_SIKH_SWORD = 6
 		PROMOTION_SIKH_KNIFE = 7
 		PROMOTION_SIKH_DISC = 8
@@ -3596,7 +3612,7 @@ function NihangPromoted(eUnitOwner, eUnit, ePromotion)
 		-- nothing
 	end
 end
-GameEvents.UnitPromoted.Add(NihangPromoted)
+GameEvents.UnitPromoted.Add(NihangPromoted) -- MOVE!!!
 
 function RiposteFromNihang(eAttackingPlayer, eAttackingUnit, iAttackerDamage, iAttackerFinalDamage, iAttackerMaxHP, eDefendingPlayer, eDefendingUnit, iDefenderDamage, iDefenderFinalDamage, iDefenderMaxHP, eInterceptingPlayer, eInterceptingUnit, iInterceptorDamage, iX, iY)
 	if not ((iAttackerFinalDamage < iAttackerMaxHP) and (iDefenderFinalDamage < iDefenderMaxHP)) then return end
@@ -3632,19 +3648,22 @@ function RiposteFromNihang(eAttackingPlayer, eAttackingUnit, iAttackerDamage, iA
 		end
 	end
 end
-GameEvents.CombatEnded.Add(RiposteFromNihang)
+GameEvents.CombatEnded.Add(RiposteFromNihang) -- MOVE!!!
 
 
 
 -- DAKKAR (UNITS GIVEN TO CS HAVE MORE CS)
 function GiftToDakkar(eMajor, eMinor, iGold, eUnitType, ePlotX, ePlotY)
 	local pMajorPlayer = Players[eMajor]
-
+	print("DAKKAR", "GIFTED")
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[45]) ~= 0 then
 		local pMinorPlayer = Players[eMinor]
-		
+		print("DAKKAR", "ACTIVE")
 		for unit in pMinorPlayer:Units() do
+			print("DAKKAR", "UNITS", unit:GetName())
+			
 			if unit:GetUnitType == eUnitType and not unit:IsHasPromotion(tPromotionsActiveAbilities[20]) then
+				print("DAKKAR", "SET")
 				unit:SetHasPromotion(tPromotionsActiveAbilities[20], true)
 				unit:SetBaseCombatStrength(unit:GetBaseCombatStrength() + 5)
 				break
@@ -3652,20 +3671,22 @@ function GiftToDakkar(eMajor, eMinor, iGold, eUnitType, ePlotX, ePlotY)
 		end
 	end
 end
-GameEvents.PlayerGifted.Add(GiftToDakkar)
+GameEvents.PlayerGifted.Add(GiftToDakkar) -- MOVE!!!
 
 
 
 -- POKROVKA (ONLY MOUNTED MELEE PROMOTION)
 function PokrovkaAllowsOnlyMountedMelee(ePlayer, eUnit, ePromotionType)
+	print("POKROVKA", "CHECK")
 	if ePromotionType ~= tPromotionsActiveAbilities[21] then return true end
-
+	print("POKROVKA", "THIS_PROMO")
 	local pPlayer = Players[ePlayer]
 
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[46]) ~= 0 then
 		local pUnit = pPlayer:GetUnitByID(eUnit)
 		local bUnitIsRanged = GameInfo.Units{ID=pUnit:GetUnitType()}().IsRanged == true
 		local bUnitIsMounted = GameInfo.Units{ID=pUnit:GetUnitType()}().CombatClass == "UNITCOMBAT_MOUNTED"
+		print("POKROVKA", "ACTIVE", bUnitIsRanged, bUnitIsMounted)
 		
 		if bUnitIsMounted and not bUnitIsRanged then
 			return true
@@ -3674,7 +3695,7 @@ function PokrovkaAllowsOnlyMountedMelee(ePlayer, eUnit, ePromotionType)
 		end
 	end
 end
-GameEvents.CanHavePromotion.Add(PokrovkaAllowsOnlyMountedMelee)
+GameEvents.CanHavePromotion.Add(PokrovkaAllowsOnlyMountedMelee) -- MOVE!!!
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- INITIALIZATION
@@ -3969,6 +3990,25 @@ function SettingUpSpecificEvents()
 			elseif sMinorCivType == "MINOR_CIV_SIERRA_LEONE" then
 				tLostCities["eLostSierraLeone"] = eCS
 				GameEvents.PlayerDoTurn.Add(CulturePerWorker)
+			
+
+			-- unique promotion branch
+			elseif sMinorCivType == "MINOR_CIV_LAHORE" then
+				tLostCities["eLostLahore"] = eCS
+				-- ???
+				-- ???
+			
+
+			-- gifted units
+			elseif sMinorCivType == "MINOR_CIV_DAKKAR" then
+				tLostCities["eLostDakkar"] = eCS
+				-- ???
+			
+
+			-- promotion check
+			elseif sMinorCivType == "MINOR_CIV_POKROVKA" then
+				tLostCities["eLostPokrovka"] = eCS
+				-- ???
 			end
 		end
 	end
