@@ -78,7 +78,8 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_WOOTEI_NIICIE,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_LAHORE,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_DAKKAR,
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_POKROVKA -- 46
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_POKROVKA, -- 46
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_OUIDAH
 }
 
 local tBuildingsActiveAbilities = {
@@ -106,7 +107,9 @@ local tBuildingsActiveAbilities = {
 
 local tBuildingClasses = {
 	GameInfoTypes.BUILDINGCLASS_TEMPLE,
-	GameInfoTypes.BUILDINGCLASS_CARAVANSARY
+	GameInfoTypes.BUILDINGCLASS_CARAVANSARY,
+	GameInfoTypes.BUILDINGCLASS_MILITARY_ACADEMY,
+	GameInfoTypes.BUILDINGCLASS_ARSENAL
 }
 
 local tPromotionsActiveAbilities = {
@@ -3563,6 +3566,22 @@ end
 
 
 
+-- OUIDAH (GOLD PER WORKER)
+function GoldPerWorker(ePlayer)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:IsMinorCiv() then return end
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[47]) ~= 0 then
+		local pCapital = pPlayer:GetCapitalCity()
+		local iWorkers = pPlayer:GetUnitClassCount(GameInfoTypes.UNITCLASS_WORKER)
+
+		pPlayer:DoInstantYield(GameInfoTypes.YIELD_GOLD, iWorkers, true, pCapital:GetID())
+	end
+end
+
+
+
 -- LAHORE (INCREASING UNIT CS)
 function CanWeBuyNihang(ePlayer, eCity, eUnit)
 	if eUnit ~= tUnitsMilitary[3] then return true end
@@ -3578,6 +3597,24 @@ function CanWeBuyNihang(ePlayer, eCity, eUnit)
 	end
 end
 GameEvents.CityCanTrain.Add(CanWeBuyNihang)
+
+function XPBoostForNihang(ePlayer, eCity, eBuilding, bGold, bFaith)
+	if GameInfo.Buildings[eBuilding].BuildingClass == 'BUILDINGCLASS_MILITARY_ACADEMY' or GameInfo.Buildings[eBuilding].BuildingClass == 'BUILDINGCLASS_ARSENAL' then
+		local pPlayer = Players[ePlayer]
+		local pCity = pPlayer:GetCityByID(eCity)
+		
+		for unit in pPlayer:Units() do
+			if unit:GetUnitType() == tUnitsMilitary[3] then
+				unit:ChangeExperience(30)
+			end
+		end
+
+		if pPlayer:IsHuman() then
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_NIHANG_XP"), L("TXT_KEY_UCS_NIHANG_XP_TITLE"), pCity:GetX(), pCity:GetY())		
+		end
+	end
+end
+GameEvents.CityConstructed.Add(XPBoostForNihang)
 
 function NihangPromoted(eUnitOwner, eUnit, ePromotion)
 	--[[	PROMOTION_SIKH = 5
@@ -3990,6 +4027,9 @@ function SettingUpSpecificEvents()
 			elseif sMinorCivType == "MINOR_CIV_SIERRA_LEONE" then
 				tLostCities["eLostSierraLeone"] = eCS
 				GameEvents.PlayerDoTurn.Add(CulturePerWorker)
+			elseif sMinorCivType == "MINOR_CIV_OUIDAH" then
+				tLostCities["eLostOuidah"] = eCS
+				GameEvents.PlayerDoTurn.Add(GoldPerWorker)
 			
 
 			-- unique promotion branch
