@@ -3712,8 +3712,8 @@ GameEvents.PlayerGifted.Add(GiftToDakkar) -- MOVE!!!
 
 
 
--- POKROVKA (ONLY MOUNTED MELEE PROMOTION)
-function PokrovkaAllowsOnlyMountedMelee(ePlayer, eUnit, ePromotionType)
+-- POKROVKA (ONLY MOUNTED RANGED PROMOTION)
+--[[function PokrovkaAllowsOnlyMountedRanged(ePlayer, eUnit, ePromotionType)
 	print("POKROVKA", "CHECK")
 	if ePromotionType ~= tPromotionsActiveAbilities[21] then return true end
 	print("POKROVKA", "THIS_PROMO")
@@ -3721,18 +3721,18 @@ function PokrovkaAllowsOnlyMountedMelee(ePlayer, eUnit, ePromotionType)
 
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[46]) ~= 0 then
 		local pUnit = pPlayer:GetUnitByID(eUnit)
-		local bUnitIsRanged = GameInfo.Units{ID=pUnit:GetUnitType()}().IsRanged == true
-		local bUnitIsMounted = GameInfo.Units{ID=pUnit:GetUnitType()}().CombatClass == "UNITCOMBAT_MOUNTED"
+		local bUnitIsMounted = GameInfo.Units{ID=pUnit:GetUnitType()}().IsMounted == true
+		local bUnitIsRanged = GameInfo.Units{ID=pUnit:GetUnitType()}().CombatClass == "UNITCOMBAT_ARCHER"
 		print("POKROVKA", "ACTIVE", bUnitIsRanged, bUnitIsMounted)
 		
-		if bUnitIsMounted and not bUnitIsRanged then
+		if bUnitIsMounted and bUnitIsRanged then
 			return true
 		else
 			return false
 		end
 	end
 end
-GameEvents.CanHavePromotion.Add(PokrovkaAllowsOnlyMountedMelee) -- MOVE!!!
+GameEvents.CanHavePromotion.Add(PokrovkaAllowsOnlyMountedRanged)--]] -- MOVE!!!
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- INITIALIZATION
