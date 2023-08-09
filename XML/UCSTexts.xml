@@ -36,6 +36,12 @@
 		<Row Tag="TXT_KEY_UCS_NIHANG_RIPOSTED_TITLE">
 			<Text>Nihang's revenge!</Text>
 		</Row>
+		<Row Tag="TXT_KEY_UCS_NIHANG_XP">
+			<Text>With new technologies discovered and new facilities built in your Empire you can ensure, that your [COLOR:6:82:255:255]Nihang[ENDCOLOR] units will take part in additional training programs, that keep them up with the changing situation on the war front. They can safely gain additional experience and be ready for upcoming combat.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_NIHANG_XP_TITLE">
+			<Text>Special training program for Nihangs!</Text>
+		</Row>
 		
 		<!-- notifications for CSs' lua custom events -->
 		<Row Tag="TXT_KEY_UCS_BONUS_BOGOTA_LIBERATION">
