@@ -615,6 +615,10 @@ SELECT 'TXT_KEY_UNIT_SISQENO', 							'Sisqeno' UNION ALL
 SELECT 'TXT_KEY_UNIT_SISQENO_STRATEGY', 					'The Sisqeno is the Tiwanaku''s replacement for the Missionary. It gains additional active ability, that allows it to build Sunken Courtyard improvements. This action may only be used when unit has all of its spreads (before using spread action).' UNION ALL
 SELECT 'TXT_KEY_UNIT_SISQENO_HELP', 						'This unit can only be purchased with [ICON_PEACE] Faith (requires an access to [COLOR_CYAN]Tiwanaku[ENDCOLOR]''s ability).[NEWLINE][NEWLINE]Unique Missionary Unit. It is slightly cheaper than its predecessor.[NEWLINE][NEWLINE]Unit can build a [COLOR_POSITIVE_TEXT]Sunken Courtyard[ENDCOLOR] improvement, only when all of its Spread Religion charges are active.' UNION ALL
 SELECT 'TXT_KEY_CIV5_UNIT_SISQENO', 						'The Tiwanaku Empire connected spirituality, power and authority between the physical space of Lake Titikaka and the highland site of Tiwanaku. Temples were built at both sites and the shared imagery of the snake, condor and puma are significant in the religious and cosmological expressions that linked the two sites. [NEWLINE]Several scholars have pointed to the connection between the spirituality, agricultural patterns, monumental architecture and artistic depictions of the Tiwanaku to earlier and other regional cultures, such as Chiripa, Pucara and Cusco. Known as the Yaya-Mama Religious Tradition, many artifacts discovered in the Lake Titikaka region feature similar motifs and show a long integration within the geography and cultures of the region. Lake Titikaka was the spiritual birthplace and center of the cosmos in the Tiwanaku and Incan worldviews and remains a sacred site for the indigenous peoples who continue to live in the region. Lake Titikaka is named after the puma, a spiritually powerful animal. [NEWLINE]According to Incan mythology, which followed the Tiwanaku by hundreds of years, the god and great creator Viracocha emerged from Lake Titikaka to create the world after a great flood. He brought the Sun (Inti) out of the Island of the Sun near the southern shore of Lake Titikaka in present-day Bolivia, the Moon (Mama Killa) out of the Island of the Moon to the east, and created the cosmos with stars born from the lake. He then created the first humans at Tiwanaku out of stone. Viracocha was an omnipotent god who controlled the elements, the weather and agricultural fortune. Viracocha is depicted at Tiwanaku on the Gateway of the Sun and is featured in other carvings and imagery of the ancient empire. Like the god of the Incas, he is seen holding a snake in each hand whose head is that of a condor. [NEWLINE][NEWLINE]Beside the cult of Viracocha, other evidence on Tiwanaku religion points to a system of ancestor worship. The preservation, use, and reconfiguration of mummy bundles and skeletal remains, as with the later Inca, may suggest that this is the case. [NEWLINE]Later cultures within the area made use of large "above ground burial chambers for the social elite ... known as "chullpas". Similar, though smaller, structures were found within the site of Tiwanaku. It is possible that, like the later Inca, the inhabitants of Tiwanaku may have practiced similar rituals and rites in relation to the dead. [NEWLINE]The Akapana East Building has evidence of ancestor burial. The human remains at Akapana East seem to be less for show and more for proper burial. The skeletons show many cut marks that were most likely made by defleshing or excarnation after death. The remains were then bundled up and buried rather than left out in the open. [NEWLINE][NEWLINE]The Tiwanaku conducted human sacrifices on top of a building known as the Akapana. People were disemboweled and torn apart shortly after death and laid out for all to see. It is speculated that this ritual was a form of dedication to the gods. The type of human sacrifice included victims being hacked in pieces, dismembered, exposed to the elements and carnivores before being deposited in trash. Research showed that one man who was sacrificed was not a native to the Titicaca Basin, leaving room to think that sacrifices were most likely of people originally from other societies.' UNION ALL
+SELECT 'TXT_KEY_UNIT_NIHANG', 							'Sisqeno' UNION ALL
+SELECT 'TXT_KEY_UNIT_NIHANG_STRATEGY', 					'' UNION ALL
+SELECT 'TXT_KEY_UNIT_NIHANG_HELP', 						'' UNION ALL
+SELECT 'TXT_KEY_CIV5_UNIT_NIHANG', 						'' UNION ALL
 -- improvements
 	-- marsh
 	SELECT 'TXT_KEY_BUILD_MARSH', 							'Create a Marsh'  UNION ALL
@@ -3113,7 +3117,7 @@ FROM ArtDefine_UnitMemberInfos WHERE Type = 'ART_DEF_UNIT_MEMBER_MISSIONARY';
 
 INSERT INTO ArtDefine_UnitMemberInfos 	
 			(Type, 								Scale,  ZOffset, Domain, Model, 				MaterialTypeTag, MaterialTypeSoundOverrideTag)
-SELECT		'ART_DEF_UNIT_MEMBER_NIHANG',		Scale,	ZOffset, Domain, 'amauta.fxsxml',		MaterialTypeTag, MaterialTypeSoundOverrideTag
+SELECT		'ART_DEF_UNIT_MEMBER_NIHANG',		Scale,	ZOffset, Domain, 'Akali.fxsxml',		MaterialTypeTag, MaterialTypeSoundOverrideTag
 FROM ArtDefine_UnitMemberInfos WHERE Type = 'ART_DEF_UNIT_MEMBER_LONGSWORDSMAN';
 ------------------------------
 INSERT INTO UnitGameplay2DScripts 	
@@ -3135,6 +3139,11 @@ INSERT INTO UnitGameplay2DScripts
 			(UnitType, 				SelectionSound, FirstSelectionSound)
 SELECT		'UNIT_SISQENO',			SelectionSound, FirstSelectionSound
 FROM UnitGameplay2DScripts WHERE UnitType = 'UNIT_MISSIONARY';
+
+INSERT INTO UnitGameplay2DScripts 	
+			(UnitType, 				SelectionSound, FirstSelectionSound)
+SELECT		'UNIT_NIHANG',			SelectionSound, FirstSelectionSound
+FROM UnitGameplay2DScripts WHERE UnitType = 'UNIT_LONGSWORDSMAN';
 ------------------------------
 INSERT INTO UnitClasses
 					(Type,				Description, MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, DefaultUnit)
@@ -3160,6 +3169,11 @@ INSERT INTO UnitClasses
 					(Type,						Description,					MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, DefaultUnit)
 SELECT DISTINCT 	'UNITCLASS_SISQENO_WORKER',	'TXT_KEY_UNIT_SISQENO_WORKER',	MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, 'UNIT_SISQENO_WORKER'
 FROM UnitClasses WHERE Type = 'UNITCLASS_MISSIONARY';
+
+INSERT INTO UnitClasses
+					(Type,						Description,					MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, DefaultUnit)
+SELECT DISTINCT 	'UNITCLASS_NIHANG',			'TXT_KEY_UNIT_NIHANG',			MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, 'UNIT_NIHANG'
+FROM UnitClasses WHERE Type = 'UNITCLASS_LONGSWORDSMAN';
 ------------------------------
 INSERT INTO Units
 					(Type,				Class,				FaithCost,	Cost,	AdvancedStartCost,	RequiresFaithPurchaseEnabled, Description, Civilopedia, Strategy, Help, Moves, Immobile, BaseSightRange, CombatClass, Domain, CivilianAttackPriority, DefaultUnitAI, MilitarySupport, MilitaryProduction, Mechanized, PrereqTech,				ObsoleteTech, GoodyHutUpgradeUnitClass, MinAreaSize, NukeDamageLevel, CombatLimit, Trade, XPValueAttack, XPValueDefense, NoMaintenance, UnitArtInfo, UnitArtInfoEraVariation, ShowInPedia, MoveRate, UnitFlagIconOffset, PortraitIndex, IconAtlas, UnitFlagAtlas, MaxHitPoints, PurchaseCooldown, ProductionCostAddedPerEra)
@@ -3185,6 +3199,11 @@ INSERT INTO Units
 					(Type,					Class,						Description,			Civilopedia,					Strategy,							Help,							NoMinorGifts,	Cost,	FaithCost,		Combat,	Moves,	BaseSightRange, PurchaseOnly,	MoveAfterPurchase,	Capture,	CombatClass, Domain, CivilianAttackPriority,	DefaultUnitAI,		MilitarySupport, MilitaryProduction, Pillage, Mechanized, PrereqTech,	ObsoleteTech,	GoodyHutUpgradeUnitClass,	AdvancedStartCost,	WorkRate,	MinAreaSize, NukeDamageLevel,	SpreadReligion,	ReligionSpreads, ReligiousStrength,	CombatLimit, XPValueAttack, XPValueDefense, Conscription,	NoMaintenance, UnitArtInfo,				UnitArtInfoEraVariation, ShowInPedia, MoveRate, UnitFlagIconOffset, PortraitIndex,	IconAtlas,			UnitFlagAtlas,			MaxHitPoints, BaseLandAirDefense,	PurchaseCooldown)
 SELECT DISTINCT 	'UNIT_SISQENO_WORKER',	'UNITCLASS_SISQENO_WORKER',	'TXT_KEY_UNIT_SISQENO',	'TXT_KEY_CIV5_UNIT_SISQENO',	'TXT_KEY_UNIT_SISQENO_STRATEGY',	'TXT_KEY_UNIT_SISQENO_HELP',	1,				-1,		-1,				Combat,	Moves,	BaseSightRange, PurchaseOnly,	MoveAfterPurchase,	Capture,	CombatClass, Domain, CivilianAttackPriority,	'UNITAI_WORKER',	MilitarySupport, MilitaryProduction, Pillage, Mechanized, NULL,			NULL,			NULL,						-1,					WorkRate,	MinAreaSize, NukeDamageLevel,	0,				0,				 0,					CombatLimit, XPValueAttack,	XPValueDefense, Conscription,	NoMaintenance, 'ART_DEF_UNIT_SISQENO',	UnitArtInfoEraVariation, ShowInPedia, MoveRate, 3,					3,				'UCS_UNIT_ATLAS',	'UCS_UNIT_FLAG_ATLAS',	MaxHitPoints, BaseLandAirDefense,	PurchaseCooldown
 FROM Units WHERE Type = 'UNIT_MISSIONARY';
+
+INSERT INTO Units
+					(Type,				Class,						Description,				Civilopedia,						Strategy,								Help,								NoMinorGifts,	Cost,	FaithCost,	Combat,	Moves,	BaseSightRange, PurchaseOnly,	MoveAfterPurchase,	RequiresFaithPurchaseEnabled,					CombatClass, Domain, DefaultUnitAI,		MilitarySupport, MilitaryProduction, Pillage, Mechanized, IgnoreBuildingDefense,	PrereqTech,			ObsoleteTech,	GoodyHutUpgradeUnitClass,	AdvancedStartCost,	MinAreaSize, NukeDamageLevel,	CombatLimit, XPValueAttack, XPValueDefense, Conscription,	NoMaintenance, UnitArtInfo,				UnitArtInfoEraVariation, ShowInPedia, MoveRate, UnitFlagIconOffset, PortraitIndex,	IconAtlas,			UnitFlagAtlas,			MaxHitPoints, BaseLandAirDefense,	PurchaseCooldown)
+SELECT DISTINCT 	'UNIT_NIHANG',		'UNITCLASS_NIHANG',			'TXT_KEY_UNIT_NIHANG',		'TXT_KEY_CIV5_UNIT_NIHANG',			'TXT_KEY_UNIT_NIHANG_STRATEGY',			'TXT_KEY_UNIT_NIHANG_HELP',			1,				-1,	400,		Combat+2,		Moves,	BaseSightRange, PurchaseOnly,				1,					0,									CombatClass, Domain, DefaultUnitAI,	MilitarySupport, MilitaryProduction, Pillage, Mechanized, IgnoreBuildingDefense,	PrereqTech,	'TECH_MOBILE_TACTICS',	NULL,	-1,					MinAreaSize, NukeDamageLevel,	CombatLimit, XPValueAttack,	XPValueDefense, Conscription,	NoMaintenance, 'ART_DEF_UNIT_NIHANG',	UnitArtInfoEraVariation, ShowInPedia, MoveRate, 2,					2,				'UCS_UNIT_ATLAS',	'UCS_UNIT_FLAG_ATLAS',	MaxHitPoints, BaseLandAirDefense,	PurchaseCooldown
+FROM Units WHERE Type = 'UNIT_LONGSWORDSMAN';
 ------------------------------
 INSERT INTO Unit_AITypes
 					(UnitType,				UnitAIType)
@@ -3210,6 +3229,11 @@ INSERT INTO Unit_AITypes
 			(UnitType, 				UnitAIType)
 SELECT		'UNIT_SISQENO_WORKER', 			UnitAIType
 FROM Unit_AITypes WHERE UnitType = 'UNIT_WORKER';
+
+INSERT INTO Unit_AITypes 	
+			(UnitType, 				UnitAIType)
+SELECT		'UNIT_NIHANG', 			UnitAIType
+FROM Unit_AITypes WHERE UnitType = 'UNIT_LONGSWORDSMAN';
 ------------------------------
 INSERT INTO Unit_Flavors
 					(UnitType,				FlavorType,	Flavor)
@@ -3230,6 +3254,11 @@ INSERT INTO Unit_Flavors
 			(UnitType, 				FlavorType, Flavor)
 SELECT		'UNIT_SISQENO', 			FlavorType, Flavor
 FROM Unit_Flavors WHERE UnitType = 'UNIT_MISSIONARY';
+
+INSERT INTO Unit_Flavors 	
+			(UnitType, 				FlavorType, Flavor)
+SELECT		'UNIT_NIHANG', 			FlavorType, Flavor
+FROM Unit_Flavors WHERE UnitType = 'UNIT_LONGSWORDSMAN';
 
 INSERT INTO Unit_Flavors 
 			(UnitType, 				FlavorType, 		Flavor)
@@ -3257,17 +3286,32 @@ INSERT INTO Unit_FreePromotions
 SELECT		'UNIT_SISQENO', 	PromotionType
 FROM Unit_FreePromotions WHERE UnitType = 'UNIT_MISSIONARY';
 
+INSERT INTO Unit_FreePromotions 	
+			(UnitType, 				PromotionType)
+SELECT		'UNIT_SISQENO_WORKER', 	PromotionType
+FROM Unit_FreePromotions WHERE UnitType = 'UNIT_MISSIONARY';
+
+INSERT INTO Unit_FreePromotions 	
+			(UnitType, 				PromotionType)
+SELECT		'UNIT_NIHANG', 	PromotionType
+FROM Unit_FreePromotions WHERE UnitType = 'UNIT_LONGSWORDSMAN';
+
 INSERT INTO Unit_FreePromotions 
 			(UnitType, 				PromotionType)
 VALUES		('UNIT_SWISS_GUARD', 	'PROMOTION_GUARDIA_SVIZZERA'),
 			('UNIT_SWISS_GUARD', 	'PROMOTION_KATZBALGER'),
 			('UNIT_GURKHA', 		'PROMOTION_HEAVY_CHARGE'),
-			('UNIT_GURKHA', 		'PROMOTION_GAIN_EXPERIENCE');
+			('UNIT_GURKHA', 		'PROMOTION_GAIN_EXPERIENCE'),
+			('UNIT_NIHANG', 		'PROMOTION_SIKH');
 ------------------------------
 INSERT INTO Unit_ClassUpgrades 	
 			(UnitType, 			UnitClassType)
 SELECT		'UNIT_GURKHA', 		UnitClassType
 FROM Unit_ClassUpgrades WHERE UnitType = 'UNIT_RIFLEMAN';
+
+INSERT INTO Unit_ClassUpgrades 	
+			(UnitType, 			UnitClassType)
+VALUES		('UNIT_NIHANG', 		'UNIT_MECHANIZED_INFANTRY');
 ------------------------------
 INSERT INTO Unit_EraCombatStrength
 			(UnitType, 				EraType,			CombatStrength)
