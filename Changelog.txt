@@ -14,6 +14,10 @@ Changelog:
 		- Siberian Education (exclusive for Pelym);
 		- Siida Culture (exclusive for Karasjohka);
 		- 15 new Promotions (whole unique branch) for Nihang Unit (exclusive for Lahore);
+	- new Units:
+		- Nihang - multi Era unit with its own Promotion Branch (exclusive for Lahore);
+- fixed:
+	- Sisqeno Worker now gains same free promotions like Sisqeno (Missionary);
 		
 
 
