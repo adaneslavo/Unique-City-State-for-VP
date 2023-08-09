@@ -555,7 +555,7 @@ SELECT 'TXT_KEY_PROMOTION_ODENSO_HELP', 					'+1 [ICON_VIEW_CITY] Sight and heal
 SELECT 'TXT_KEY_PROMOTION_PELYM', 						'Siberian Education' UNION ALL
 SELECT 'TXT_KEY_PROMOTION_PELYM_HELP', 					'+10% [ICON_STRENGTH] CS and double movement on Tundra and Snow tiles.' UNION ALL
 SELECT 'TXT_KEY_PROMOTION_POKROVKA', 						'Scythian Arrow Barrage' UNION ALL
-SELECT 'TXT_KEY_PROMOTION_POKROVKA_HELP', 					'Before melee Attack unit performs a Range attack at 50% of its CS.' UNION ALL
+SELECT 'TXT_KEY_PROMOTION_POKROVKA_HELP', 					'???' UNION ALL
 SELECT 'TXT_KEY_PROMOTION_SGAANG', 						'Master of Cold Waters' UNION ALL
 SELECT 'TXT_KEY_PROMOTION_SGAANG_HELP', 					'Unit can cross Ice.' UNION ALL
 SELECT 'TXT_KEY_PROMOTION_SIDON', 						'Neighborhood Bully' UNION ALL
@@ -1461,7 +1461,7 @@ UPDATE UnitPromotions SET AttackMod = 5, RangedAttackModifier = 5 WHERE Type = '
 UPDATE UnitPromotions SET CanCrossMountains = 1 WHERE Type = 'PROMOTION_KARYES';
 UPDATE UnitPromotions SET AdjacentMod = 15 WHERE Type = 'PROMOTION_LACONIA';
 UPDATE UnitPromotions SET NeutralHealChange = 5, VisibilityChange = 1 WHERE Type = 'PROMOTION_ODENSO';
-UPDATE UnitPromotions SET RangedSupportFire = 1 WHERE Type = 'PROMOTION_POKROVKA';
+UPDATE UnitPromotions SET NearbyEnemyDamage = 5 WHERE Type = 'PROMOTION_POKROVKA';
 UPDATE UnitPromotions SET EnemyHealChange = 5 WHERE Type = 'PROMOTION_SIDON';
 UPDATE UnitPromotions SET CanMoveImpassable = 1 WHERE Type = 'PROMOTION_SGAANG';
 UPDATE UnitPromotions SET DefenseMod = 10 WHERE Type = 'PROMOTION_SUCEAVA';
