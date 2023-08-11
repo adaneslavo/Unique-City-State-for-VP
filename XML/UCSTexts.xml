@@ -37,7 +37,7 @@
 			<Text>Nihang's revenge!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_NIHANG_XP">
-			<Text>With new technologies discovered and new facilities built in your Empire you can ensure, that your [COLOR:6:82:255:255]Nihang[ENDCOLOR] units will take part in additional training programs, that keep them up with the changing situation on the war front. They can safely gain additional experience and be ready for upcoming combat.</Text>
+			<Text>With new technologies discovered and new [COLOR_POSITIVE_TEXT]{1_Building}[ENDCOLOR] built you can ensure, that your [COLOR:6:82:255:255]Nihang[ENDCOLOR] units will take part in additional training programs, that will keep them up with the changing situation on the war front. They can safely gain additional experience and be ready for upcoming combat.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_NIHANG_XP_TITLE">
 			<Text>Special training program for Nihangs!</Text>
@@ -208,6 +208,15 @@
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_GENOA_TITLE">
 			<Text>Golden people!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_HONIARA_LAND">
+			<Text>Good time has come to you and [COLOR_CYAN]{1_Honiara}[ENDCOLOR] can see that. They are experienced fishermen, but also know what land can deliver to them, and they do not complain. They appreciate that Gods made this season rich, giving you additional {2_Food} [ICON_FOOD] Food in the [COLOR_CYAN]{3_City}[ENDCOLOR]. You should dance with these people and thank your Gods, too!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_HONIARA_SEA">
+			<Text>Good time has come to you and [COLOR_CYAN]{1_Honiara}[ENDCOLOR] can see that. They are experienced fishermen who appreciate that Gods made this season so abundant, giving you additional {2_Food} [ICON_FOOD] Food in the [COLOR_CYAN]{3_City}[ENDCOLOR]. You should dance with these people and thank your Gods, too!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_HONIARA_TITLE">
+			<Text>Let's dance!</Text>
 		</Row>
 	</Language_en_US>
 </GameData>

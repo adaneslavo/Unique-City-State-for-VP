@@ -79,7 +79,8 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_LAHORE,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_DAKKAR,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_POKROVKA, -- 46
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_OUIDAH
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_OUIDAH,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_HONIARA
 }
 
 local tBuildingsActiveAbilities = {
@@ -102,7 +103,8 @@ local tBuildingsActiveAbilities = {
 	GameInfoTypes.BUILDING_WELLINGTON_URANIUM,
 	GameInfoTypes.BUILDING_WELLINGTON_PAPER,
 	GameInfoTypes.BUILDING_RAGUSA_2,
-	GameInfoTypes.BUILDING_KARYES
+	GameInfoTypes.BUILDING_KARYES,
+	GameInfoTypes.BUILDING_OUIDAH -- 21
 }
 
 local tBuildingClasses = {
@@ -132,8 +134,7 @@ local tPromotionsActiveAbilities = {
 	GameInfoTypes.PROMOTION_SIKH_TURBAN,
 	GameInfoTypes.PROMOTION_SIKH_MARTIAL_ART,
 	GameInfoTypes.PROMOTION_SIKH_BRACELET,
-	GameInfoTypes.PROMOTION_DAKKAR,
-	GameInfoTypes.PROMOTION_POKROVKA -- 21
+	GameInfoTypes.PROMOTION_DAKKAR
 }
 
 local tBuildingsPassiveAbilities = {
@@ -240,7 +241,8 @@ local tUnitsCivilian = {
 local tUnitsMilitary = {
 	GameInfoTypes.UNIT_SWISS_GUARD,
 	GameInfoTypes.UNIT_GURKHA,
-	GameInfoTypes.UNIT_NIHANG
+	GameInfoTypes.UNIT_NIHANG,
+	GameInfoTypes.UNIT_SAKA
 }
 
 local tResourcesLuxury = {
@@ -559,7 +561,7 @@ function MaritimeCityStatesBonuses(ePlayer, iX, iY)
 	local tBonusResourcesTypes = {}
 	local bBonusPlaced = false
 	
-	for resource in GameInfo.Resources{ResourceClassType='RESOURCECLASS_BONUS'} do
+	for resource in GameInfo.Resources{ResourceClassType="RESOURCECLASS_BONUS"} do
 		table.insert(tBonusResourcesIDs, resource.ID)
 		table.insert(tBonusResourcesTypes, resource.Type)
 	end
@@ -659,7 +661,7 @@ function FreeWorkerFromCityState(ePlayer)
 	
 	if pMinorCapital == nil then return end
 	
-	if pMinorCapital:IsHasBuilding(tBuildingsPassiveAbilities[2]) then
+	if pPlayer:HasPolicy(tPoliciesPassiveAbilities[1]) then
 		local iWorkerSpawnChance = RandomNumberBetween(1, 100)
 		
 		if iWorkerSpawnChance <= 1 then
@@ -697,10 +699,10 @@ function FreeWorkerFromCityState(ePlayer)
 						
 						if iWorkerOrFishingBoatSpawnChance <= 50 and bIsMajorHasTrueSea then
 							pMajorPlayer:AddFreeUnit(tUnitsCivilian[2], UNITAI_DEFENSE)
-							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Fishing Boat', tUnitsCivilian[2])
+							UnitNotificationLoad(pPlayer, pMajorPlayer, "Fishing Boat", tUnitsCivilian[2])
 						else	
 							pMajorPlayer:AddFreeUnit(tUnitsCivilian[1], UNITAI_DEFENSE)
-							UnitNotificationLoad(pPlayer, pMajorPlayer, 'Worker', tUnitsCivilian[1])
+							UnitNotificationLoad(pPlayer, pMajorPlayer, "Worker", tUnitsCivilian[1])
 						end
 					end
 				end
@@ -752,7 +754,7 @@ function MercantileCityStatesBonuses(ePlayer, iX, iY)
 	local tLuxuryResourcesTypes = {}
 	local bLuxuryPlaced = false
 	
-	for resource in GameInfo.Resources{ResourceClassType='RESOURCECLASS_LUXURY', OnlyMinorCivs=0} do
+	for resource in GameInfo.Resources{ResourceClassType="RESOURCECLASS_LUXURY", OnlyMinorCivs=0} do
 		table.insert(tLuxuryResourcesIDs, resource.ID)
 		table.insert(tLuxuryResourcesTypes, resource.Type)
 	end
@@ -852,7 +854,7 @@ function FreeCaravanFromCityState(ePlayer)
 	
 	if pMinorCapital == nil then return end
 	
-	if pMinorCapital:IsHasBuilding(tBuildingsPassiveAbilities[6]) then
+	if pPlayer:HasPolicy(tPoliciesPassiveAbilities[2]) then
 		local iCaravanSpawnChance = RandomNumberBetween(1, 100)
 							
 		if iCaravanSpawnChance <= 1 then
@@ -893,10 +895,10 @@ function FreeCaravanFromCityState(ePlayer)
 
 							if iCaravanOrCargoSpawnChance <= 50 and bIsMajorHasTrueSea then
 								pMajorPlayer:AddFreeUnit(tUnitsCivilian[6], UNITAI_DEFENSE)
-								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Cargo Ship', tUnitsCivilian[6])
+								UnitNotificationLoad(pPlayer, pMajorPlayer, "Cargo Ship", tUnitsCivilian[6])
 							else	
 								pMajorPlayer:AddFreeUnit(tUnitsCivilian[5], UNITAI_DEFENSE)
-								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Caravan', tUnitsCivilian[5])
+								UnitNotificationLoad(pPlayer, pMajorPlayer, "Caravan", tUnitsCivilian[5])
 							end
 						end
 					end
@@ -1195,7 +1197,7 @@ function FreeArchaeologistFromCityState(ePlayer)
 	
 	if pMinorCapital == nil then return end
 	
-	if pMinorCapital:IsHasBuilding(tBuildingsPassiveAbilities[10]) then
+	if pPlayer:HasPolicy(tPoliciesPassiveAbilities[4]) then
 		local iArchaeologistSpawnChance = RandomNumberBetween(1, 100)
 		
 		if iArchaeologistSpawnChance <= 1 then
@@ -1210,7 +1212,7 @@ function FreeArchaeologistFromCityState(ePlayer)
 					if bCanArchaeologistBeSpawned then
 						if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
 							pMajorPlayer:AddFreeUnit(tUnitsCivilian[4], UNITAI_DEFENSE)
-								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Archaeologist', tUnitsCivilian[4])
+								UnitNotificationLoad(pPlayer, pMajorPlayer, "Archaeologist", tUnitsCivilian[4])
 						end
 					end
 				end
@@ -1306,7 +1308,7 @@ function FreeMissionariesFromCityState(ePlayer)
 	
 	if pMinorCapital == nil then return end
 	
-	if pMinorCapital:IsHasBuilding(tBuildingsPassiveAbilities[14]) then
+	if pPlayer:HasPolicy(tPoliciesPassiveAbilities[5]) then
 		local iMissionarySpawnChance = RandomNumberBetween(1, 100)
 		
 		if iMissionarySpawnChance <= 1 then
@@ -1320,7 +1322,7 @@ function FreeMissionariesFromCityState(ePlayer)
 					if bCanMissionaryBeSpawned then
 						if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
 							pMajorPlayer:AddFreeUnit(tUnitsCivilian[3], UNITAI_DEFENSE)
-								UnitNotificationLoad(pPlayer, pMajorPlayer, 'Missionary', tUnitsCivilian[3])
+								UnitNotificationLoad(pPlayer, pMajorPlayer, "Missionary", tUnitsCivilian[3])
 						end
 					end
 				end
@@ -2533,7 +2535,7 @@ function ArdentFlameInPiousHeartNewCity(ePlayer, iX, iY)
 end
 
 function ArdentFlameInPiousHeartBuildingConstruction(ePlayer, eCity, eBuilding, bGold, bFaith) 
-	if GameInfo.Buildings[eBuilding].BuildingClass == 'BUILDINGCLASS_TEMPLE' then
+	if GameInfo.Buildings[eBuilding].BuildingClass == "BUILDINGCLASS_TEMPLE" then
 		local pPlayer = Players[ePlayer]
 	
 		if pPlayer:GetEventChoiceCooldown(tEventChoice[12]) ~= 0 then
@@ -2606,7 +2608,7 @@ function PeopleOfTheBlueSkyNewCity(ePlayer, iX, iY)
 end
 
 function PeopleOfTheBlueSkyBuildingConstruction(ePlayer, eCity, eBuilding, bGold, bFaith) 
-	if GameInfo.Buildings[eBuilding].BuildingClass == 'BUILDINGCLASS_CARAVANSARY' then
+	if GameInfo.Buildings[eBuilding].BuildingClass == "BUILDINGCLASS_CARAVANSARY" then
 		local pPlayer = Players[ePlayer]
 	
 		if pPlayer:GetEventChoiceCooldown(tEventChoice[43]) ~= 0 then
@@ -2809,6 +2811,24 @@ function CanWeBuyGurkha(ePlayer, eCity, eUnit)
 	end
 end
 GameEvents.CityCanTrain.Add(CanWeBuyGurkha)
+
+
+
+-- POKROVKA (SAKA FUNCTIONS)
+function CanWeTrainSaka(ePlayer, eCity, eUnit)
+	if eUnit ~= tUnitsMilitary[4] then return true end
+	
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:IsMinorCiv() then return false end
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[46]) ~= 0 then
+		return true
+	else
+		return false
+	end
+end
+GameEvents.CityCanTrain.Add(CanWeTrainSaka)
 
 
 
@@ -3580,6 +3600,28 @@ function GoldPerWorker(ePlayer)
 	end
 end
 
+function BuiltImprovementForOuidah(ePlayer, iX, iY, eImprovement)
+	if eImprovement == -1 then return end
+		
+	-- event triggers twice, so this should prevent it
+	bBlockDoubleTriggering = not bBlockDoubleTriggering
+	
+	if bBlockDoubleTriggering then
+		sImprovement = GameInfo.Improvements[eImprovement].Type
+		sBuild = GameInfo.Builds{ImprovementType=sImprovement}().Type
+		sUnit = GameInfo.Unit_Builds{BuildType=sBuild}().UnitType
+		
+		if sUnit ~= "UNIT_WORKER" then return end
+
+		local pPlot = Map.GetPlot(iX, iY)
+		local pCity = pPlot:GetWorkingCity()
+
+		if pCity then
+			pCity:SetNumRealBuilding(tBuildingsActiveAbilities[21], pCity:GetNumRealBuilding(tBuildingsActiveAbilities[21]) + 1)
+		end
+	end
+end
+
 
 
 -- LAHORE (INCREASING UNIT CS)
@@ -3599,25 +3641,35 @@ end
 GameEvents.CityCanTrain.Add(CanWeBuyNihang)
 
 function XPBoostForNihang(ePlayer, eCity, eBuilding, bGold, bFaith)
-	if GameInfo.Buildings[eBuilding].BuildingClass == 'BUILDINGCLASS_MILITARY_ACADEMY' or GameInfo.Buildings[eBuilding].BuildingClass == 'BUILDINGCLASS_ARSENAL' then
+	local sBuildingClass = GameInfo.Buildings[eBuilding].BuildingClass
+	local bArmory = sBuildingClass == "BUILDINGCLASS_ARMORY"
+	local bMilitaryAcademy = sBuildingClass == "BUILDINGCLASS_MILITARY_ACADEMY"
+	local bArsenal = sBuildingClass == "BUILDINGCLASS_ARSENAL"
+
+	if bArmory or bMilitaryAcademy or bArsenal then
 		local pPlayer = Players[ePlayer]
 		local pCity = pPlayer:GetCityByID(eCity)
 		
 		for unit in pPlayer:Units() do
 			if unit:GetUnitType() == tUnitsMilitary[3] then
-				unit:ChangeExperience(30)
+				if bArmory then
+					unit:ChangeExperience(2)
+				elseif bMilitaryAcademy then
+					unit:ChangeExperience(3)
+				elseif bArsenal then
+					unit:ChangeExperience(4)
+				end
 			end
 		end
 
 		if pPlayer:IsHuman() then
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_NIHANG_XP"), L("TXT_KEY_UCS_NIHANG_XP_TITLE"), pCity:GetX(), pCity:GetY())		
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_NIHANG_XP", L(GameInfo.Buildings[eBuilding].Description)), L("TXT_KEY_UCS_NIHANG_XP_TITLE"), pCity:GetX(), pCity:GetY())		
 		end
 	end
 end
-GameEvents.CityConstructed.Add(XPBoostForNihang)
 
 function NihangPromoted(eUnitOwner, eUnit, ePromotion)
-	--[[	PROMOTION_SIKH = 5
+	--[[PROMOTION_SIKH = 5
 		PROMOTION_SIKH_SWORD = 6
 		PROMOTION_SIKH_KNIFE = 7
 		PROMOTION_SIKH_DISC = 8
@@ -3632,24 +3684,24 @@ function NihangPromoted(eUnitOwner, eUnit, ePromotion)
 		PROMOTION_SIKH_TURBAN = 17
 		PROMOTION_SIKH_MARTIAL_ART = 18
 		PROMOTION_SIKH_BRACELET = 19 --]]
-	
-	if ePromotion == tPromotionsActiveAbilities[6] or ePromotion == tPromotionsActiveAbilities[13] 
-		or ePromotion == tPromotionsActiveAbilities[15] or ePromotion == tPromotionsActiveAbilities[17] then
-		unit:SetBaseCombatStrength(unit:GetBaseCombatStrength() + 1)
-	elseif ePromotion == tPromotionsActiveAbilities[14] then
-		unit:SetBaseCombatStrength(unit:GetBaseCombatStrength() + 2)
-	elseif ePromotion == tPromotionsActiveAbilities[7] or ePromotion == tPromotionsActiveAbilities[9]
-		or ePromotion == tPromotionsActiveAbilities[10] or ePromotion == tPromotionsActiveAbilities[16] then
-		unit:SetBaseCombatStrength(unit:GetBaseCombatStrength() + 3)
-	elseif ePromotion == tPromotionsActiveAbilities[11] or ePromotion == tPromotionsActiveAbilities[12] or ePromotion == tPromotionsActiveAbilities[18] then
-		unit:SetBaseCombatStrength(unit:GetBaseCombatStrength() + 4)
-	elseif ePromotion == tPromotionsActiveAbilities[19] then
-		unit:SetBaseCombatStrength(unit:GetBaseCombatStrength() + 6)
-	elseif ePromotion == tPromotionsActiveAbilities[5] or ePromotion == tPromotionsActiveAbilities[8] then
-		-- nothing
-	end
+		local pUnit = Players[eUnitOwner]:GetUnitByID(eUnit)
+
+		if ePromotion == tPromotionsActiveAbilities[6] or ePromotion == tPromotionsActiveAbilities[13] 
+			or ePromotion == tPromotionsActiveAbilities[15] or ePromotion == tPromotionsActiveAbilities[17] then
+			pUnit:SetBaseCombatStrength(pUnit:GetBaseCombatStrength() + 1)
+		elseif ePromotion == tPromotionsActiveAbilities[14] then
+			pUnit:SetBaseCombatStrength(pUnit:GetBaseCombatStrength() + 2)
+		elseif ePromotion == tPromotionsActiveAbilities[7] or ePromotion == tPromotionsActiveAbilities[9]
+			or ePromotion == tPromotionsActiveAbilities[10] or ePromotion == tPromotionsActiveAbilities[16] then
+			pUnit:SetBaseCombatStrength(pUnit:GetBaseCombatStrength() + 3)
+		elseif ePromotion == tPromotionsActiveAbilities[11] or ePromotion == tPromotionsActiveAbilities[12] or ePromotion == tPromotionsActiveAbilities[18] then
+			pUnit:SetBaseCombatStrength(pUnit:GetBaseCombatStrength() + 4)
+		elseif ePromotion == tPromotionsActiveAbilities[19] then
+			pUnit:SetBaseCombatStrength(pUnit:GetBaseCombatStrength() + 6)
+		elseif ePromotion == tPromotionsActiveAbilities[5] or ePromotion == tPromotionsActiveAbilities[8] then
+			-- nothing
+		end
 end
-GameEvents.UnitPromoted.Add(NihangPromoted) -- MOVE!!!
 
 function RiposteFromNihang(eAttackingPlayer, eAttackingUnit, iAttackerDamage, iAttackerFinalDamage, iAttackerMaxHP, eDefendingPlayer, eDefendingUnit, iDefenderDamage, iDefenderFinalDamage, iDefenderMaxHP, eInterceptingPlayer, eInterceptingUnit, iInterceptorDamage, iX, iY)
 	if not ((iAttackerFinalDamage < iAttackerMaxHP) and (iDefenderFinalDamage < iDefenderMaxHP)) then return end
@@ -3685,54 +3737,101 @@ function RiposteFromNihang(eAttackingPlayer, eAttackingUnit, iAttackerDamage, iA
 		end
 	end
 end
-GameEvents.CombatEnded.Add(RiposteFromNihang) -- MOVE!!!
 
 
 
 -- DAKKAR (UNITS GIVEN TO CS HAVE MORE CS)
-function GiftToDakkar(eMajor, eMinor, iGold, eUnitType, ePlotX, ePlotY)
+function GiftToDakkar(eMajor, eMinor, iGold, eUnitType, iX, iY)
 	local pMajorPlayer = Players[eMajor]
-	print("DAKKAR", "GIFTED")
-	if pPlayer:GetEventChoiceCooldown(tEventChoice[45]) ~= 0 then
+	
+	if pMajorPlayer:GetEventChoiceCooldown(tEventChoice[45]) ~= 0 then
 		local pMinorPlayer = Players[eMinor]
-		print("DAKKAR", "ACTIVE")
+		
 		for unit in pMinorPlayer:Units() do
-			print("DAKKAR", "UNITS", unit:GetName())
-			
-			if unit:GetUnitType == eUnitType and not unit:IsHasPromotion(tPromotionsActiveAbilities[20]) then
-				print("DAKKAR", "SET")
-				unit:SetHasPromotion(tPromotionsActiveAbilities[20], true)
-				unit:SetBaseCombatStrength(unit:GetBaseCombatStrength() + 5)
+			if unit:GetUnitType() == eUnitType and not unit:IsHasPromotion(tPromotionsActiveAbilities[20]) then
+				local bCombat = GameInfo.Units[eUnitType].Combat > 0
+				local bRangedCombat = GameInfo.Units[eUnitType].RangedCombat > 0
+								
+				if bCombat and bRangedCombat then
+					unit:SetHasPromotion(tPromotionsActiveAbilities[20], true)
+					unit:SetBaseCombatStrength(unit:GetBaseCombatStrength() + 5)
+					unit:SetBaseRangedCombatStrength(unit:GetBaseRangedCombatStrength() + 5)
+				elseif not bCombat and bRangedCombat then
+					unit:SetHasPromotion(tPromotionsActiveAbilities[20], true)
+					unit:SetBaseRangedCombatStrength(unit:GetBaseRangedCombatStrength() + 5)
+				elseif bCombat and not bRangedCombat then
+					unit:SetHasPromotion(tPromotionsActiveAbilities[20], true)
+					unit:SetBaseCombatStrength(unit:GetBaseCombatStrength() + 5)
+				end
+
 				break
 			end
 		end
 	end
 end
-GameEvents.PlayerGifted.Add(GiftToDakkar) -- MOVE!!!
 
+function DakkarUpgraded(eUnitOwner, eOldUnit, eNewUnit, bGoodyHut)
+	local pPlayer = Players[eUnitOwner]
 
+	if not pPlayer:IsMinorCiv() then return end
 
--- POKROVKA (ONLY MOUNTED RANGED PROMOTION)
---[[function PokrovkaAllowsOnlyMountedRanged(ePlayer, eUnit, ePromotionType)
-	print("POKROVKA", "CHECK")
-	if ePromotionType ~= tPromotionsActiveAbilities[21] then return true end
-	print("POKROVKA", "THIS_PROMO")
-	local pPlayer = Players[ePlayer]
+	local pOldUnit = pPlayer:GetUnitByID(eOldUnit)
+	local pNewUnit = pPlayer:GetUnitByID(eNewUnit)
 
-	if pPlayer:GetEventChoiceCooldown(tEventChoice[46]) ~= 0 then
-		local pUnit = pPlayer:GetUnitByID(eUnit)
-		local bUnitIsMounted = GameInfo.Units{ID=pUnit:GetUnitType()}().IsMounted == true
-		local bUnitIsRanged = GameInfo.Units{ID=pUnit:GetUnitType()}().CombatClass == "UNITCOMBAT_ARCHER"
-		print("POKROVKA", "ACTIVE", bUnitIsRanged, bUnitIsMounted)
+	if pOldUnit:IsHasPromotion(tPromotionsActiveAbilities[20]) then
+		local eUnitType = pNewUnit:GetUnitType()
 		
-		if bUnitIsMounted and bUnitIsRanged then
-			return true
-		else
-			return false
+		local bCombat = GameInfo.Units[eUnitType].Combat > 0
+		local bRangedCombat = GameInfo.Units[eUnitType].RangedCombat > 0
+				
+		if bCombat and bRangedCombat then
+			pNewUnit:SetBaseCombatStrength(pNewUnit:GetBaseCombatStrength() + 5)
+			pNewUnit:SetBaseRangedCombatStrength(pNewUnit:GetBaseRangedCombatStrength() + 5)
+		elseif not bCombat and bRangedCombat then
+			pNewUnit:SetBaseRangedCombatStrength(pNewUnit:GetBaseRangedCombatStrength() + 5)
+		elseif bCombat and not bRangedCombat then
+			pNewUnit:SetBaseCombatStrength(pNewUnit:GetBaseCombatStrength() + 5)
 		end
 	end
 end
-GameEvents.CanHavePromotion.Add(PokrovkaAllowsOnlyMountedRanged)--]] -- MOVE!!!
+
+
+
+-- HONIARA
+function HoniaraSignsForTheNature(eCityOwner, eCity, iX, iY, bGold, bCulture)
+	if not bCulture then return end
+
+	local pPlot = Map.GetPlot(iX, iY)
+	local eResource = pPlot:GetResourceType()
+	
+	if eResource == -1 then return end
+	
+	local bBonusResource = GameInfo.Resources[eResource].ResourceClassType == "RESOURCECLASS_BONUS"
+	
+	if not bBonusResource then return end
+	
+	local pPlayer = Players[eCityOwner]
+	local bCoast = pPlot:GetPlotType() == tPlotTypes[4]
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[48]) ~= 0 then
+		local iBaseYield = 25
+		local iSeaModifier = bCoast and 2 or 1
+		local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
+		local iSuahongiDance = iBaseYield * iSeaModifier * iEraModifier
+		local pCity = pPlot:GetWorkingCity()
+		local pHoniara = Players[tLostCities["eLostHoniara"]]
+
+		pPlayer:DoInstantYield(GameInfoTypes.YIELD_FOOD, iSuahongiDance, true, pCity:GetID())
+			
+		if pPlayer:IsHuman() then
+			if not bCoast then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_HONIARA_LAND", pHoniara:GetName(), iSuahongiDance, pCity:GetName()), L("TXT_KEY_UCS_BONUS_HONIARA_TITLE"), pCity:GetX(), pCity:GetY())
+			else
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_HONIARA_SEA", pHoniara:GetName(), iSuahongiDance, pCity:GetName()), L("TXT_KEY_UCS_BONUS_HONIARA_TITLE"), pCity:GetX(), pCity:GetY())
+			end
+		end	
+	end
+end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- INITIALIZATION
@@ -3934,6 +4033,8 @@ function SettingUpSpecificEvents()
 				GameEvents.CityTrained.Add(SwissGuardYieldsNotification)
 			elseif sMinorCivType == "MINOR_CIV_KATHMANDU" then
 				tLostCities["eLostKathmandu"] = eCS
+			elseif sMinorCivType == "MINOR_CIV_POKROVKA" then
+				tLostCities["eLostPokrovka"] = eCS
 			
 			
 			-- promotions effects
@@ -4030,25 +4131,28 @@ function SettingUpSpecificEvents()
 			elseif sMinorCivType == "MINOR_CIV_OUIDAH" then
 				tLostCities["eLostOuidah"] = eCS
 				GameEvents.PlayerDoTurn.Add(GoldPerWorker)
+				GameEvents.BuildFinished.Add(BuiltImprovementForOuidah)
 			
 
 			-- unique promotion branch
 			elseif sMinorCivType == "MINOR_CIV_LAHORE" then
 				tLostCities["eLostLahore"] = eCS
-				-- ???
-				-- ???
+				GameEvents.CityConstructed.Add(XPBoostForNihang)
+				GameEvents.UnitPromoted.Add(NihangPromoted)
+				GameEvents.CombatEnded.Add(RiposteFromNihang)
 			
 
 			-- gifted units
 			elseif sMinorCivType == "MINOR_CIV_DAKKAR" then
 				tLostCities["eLostDakkar"] = eCS
-				-- ???
+				GameEvents.PlayerGifted.Add(GiftToDakkar)
+				GameEvents.UnitUpgraded.Add(DakkarUpgraded)
 			
-
-			-- promotion check
-			elseif sMinorCivType == "MINOR_CIV_POKROVKA" then
-				tLostCities["eLostPokrovka"] = eCS
-				-- ???
+			
+			-- border growth bonuses
+			elseif sMinorCivType == "MINOR_CIV_HONIARA" then
+				tLostCities["eLostHoniara"] = eCS
+				GameEvents.CityBoughtPlot.Add(HoniaraSignsForTheNature)
 			end
 		end
 	end
