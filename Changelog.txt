@@ -23,6 +23,9 @@ Changelog:
 		- added FaithCost, so it may be bought with Faith after acquiring certain belief;
 		- obsoletes correctly like other UUs;
 		- have default AI;
+- changed:
+	- Managua is now Cultured City-State to split the bunch of Mercantile CSs in that area;
+	- Managua now has American style (was European);
 - fixed:
 	- fixed an error in functions giving units from Friendlt CSs;
 	- Sisqeno Worker now gains same free promotions like Sisqeno (Missionary);
