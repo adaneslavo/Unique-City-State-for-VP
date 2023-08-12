@@ -80,7 +80,8 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_DAKKAR,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_POKROVKA, -- 46
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_OUIDAH,
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_HONIARA
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_HONIARA,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_JUYUBIT
 }
 
 local tBuildingsActiveAbilities = {
@@ -235,7 +236,8 @@ local tUnitsCivilian = {
 	GameInfoTypes.UNIT_CARAVAN_OF_DALI,
 	GameInfoTypes.UNIT_CARGO_SHIP_OF_DALI, -- unused because of VP's dll constraints (Spain)
 	GameInfoTypes.UNIT_SISQENO,
-	GameInfoTypes.UNIT_SISQENO_WORKER
+	GameInfoTypes.UNIT_SISQENO_WORKER,
+	GameInfoTypes.UNIT_TEAAT
 }	
 
 local tUnitsMilitary = {
@@ -2832,6 +2834,52 @@ GameEvents.CityCanTrain.Add(CanWeTrainSaka)
 
 
 
+-- JUYUBIT (TEAAT FUNCTIONS)
+function CanWeTrainTeaat(ePlayer, eCity, eUnit)
+	if eUnit ~= tUnitsCivilian[11] then return true end
+	
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:IsMinorCiv() then return false end
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[49]) ~= 0 then
+		return true
+	else
+		return false
+	end
+end
+GameEvents.CityCanTrain.Add(CanWeTrainTeaat)
+
+function TeeatBuiltSomething(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKillerPlayer)
+	if not bDelay or eKillerPlayer ~= -1 then return end
+	
+	local pPlayer = Players[eUnitOwner]
+
+	if pPlayer:IsMinorCiv() then return end
+	
+	local pUnit = pPlayer:GetUnitByID(eUnit)
+		
+	if pUnit:GetUnitType() == tUnitsCivilian[11] then
+		local iBaseFood = 5
+		local iBaseCulture = 2 * iBaseFood
+		local iEraModifier = math.max(1, pPlayer:GetCurrentEra())	
+		local iTomol1 = iBaseFood * iEraModifier
+		local iTomol2 = iBaseCulture * iEraModifier
+		local pPlot = Map.GetPlot(iX, iY)
+		local pCity = pPlot:GetworkingCity()
+		local pJuyubit = Players[tLostCities["eLostJuyubit"]]
+		
+		pPlayer:DoInstantYield(GameInfoTypes.YIELD_FOOD, iTomol1, true, pCity:GetID())
+		pPlayer:DoInstantYield(GameInfoTypes.YIELD_CULTURE, iTomol2, true, pCity:GetID())
+		
+		if pPlayer:IsHuman() then
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_TEAAT", pJuyubit:GetName(), iTomol1, iTomol2), L("TXT_KEY_UCS_TEAAT_TITLE"), pCity:GetX(), pCity:GetY())
+		end	
+	end
+end
+
+
+
 -- ISKANWAYA (PROMOTION HEALING EACH TURN)
 function HealersFromIskanwaya(ePlayer)
 	local pPlayer = Players[ePlayer]
@@ -4035,6 +4083,8 @@ function SettingUpSpecificEvents()
 				tLostCities["eLostKathmandu"] = eCS
 			elseif sMinorCivType == "MINOR_CIV_POKROVKA" then
 				tLostCities["eLostPokrovka"] = eCS
+			elseif sMinorCivType == "MINOR_CIV_JUYUBIT" then
+				tLostCities["eLostJuyubit"] = eCS
 			
 			
 			-- promotions effects
