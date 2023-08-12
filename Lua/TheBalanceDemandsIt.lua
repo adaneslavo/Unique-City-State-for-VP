@@ -81,7 +81,10 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_POKROVKA, -- 46
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_OUIDAH,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_HONIARA,
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_JUYUBIT
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_JUYUBIT,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SANAA,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_PELYM, -- 51
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_KATENDE
 }
 
 local tBuildingsActiveAbilities = {
@@ -105,14 +108,19 @@ local tBuildingsActiveAbilities = {
 	GameInfoTypes.BUILDING_WELLINGTON_PAPER,
 	GameInfoTypes.BUILDING_RAGUSA_2,
 	GameInfoTypes.BUILDING_KARYES,
-	GameInfoTypes.BUILDING_OUIDAH -- 21
+	GameInfoTypes.BUILDING_OUIDAH, -- 21
+	GameInfoTypes.BUILDING_SANAA,
+	GameInfoTypes.BUILDING_PELYM,
+	GameInfoTypes.BUILDING_KATENDE
+	GameInfoTypes.BUILDING_KATENDE_2
 }
 
 local tBuildingClasses = {
 	GameInfoTypes.BUILDINGCLASS_TEMPLE,
-	GameInfoTypes.BUILDINGCLASS_CARAVANSARY,
-	GameInfoTypes.BUILDINGCLASS_MILITARY_ACADEMY,
-	GameInfoTypes.BUILDINGCLASS_ARSENAL
+	GameInfoTypes.BUILDINGCLASS_CARAVANSARY
+	GameInfoTypes.BUILDINGCLASS_SCRIVENERS_OFFICE, -- CHECK!!!
+	GameInfoTypes.BUILDINGCLASS_PRINTING_PRESS,
+	GameInfoTypes.BUILDINGCLASS_FOREIGN_BUREAU
 }
 
 local tPromotionsActiveAbilities = {
@@ -187,6 +195,16 @@ local tFeatureTypes = {
 	GameInfoTypes.FEATURE_FLOOD_PLAINS,
 	GameInfoTypes.FEATURE_ICE,
 	GameInfoTypes.FEATURE_FALLOUT
+}
+
+local tTerrainTypes = {
+	GameInfoTypes.TERRAIN_SNOW,
+	GameInfoTypes.TERRAIN_TUNDRA,
+	GameInfoTypes.TERRAIN_COAST,
+	GameInfoTypes.TERRAIN_OCEAN,
+	GameInfoTypes.TERRAIN_GRASS,
+	GameInfoTypes.TERRAIN_PLAINS,
+	GameInfoTypes.TERRAIN_DESERT
 }
 
 local tPlotTypes = {
@@ -2206,9 +2224,10 @@ function DrukTsendhenCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bCo
 			
 		if pPlot then
 			local ePlot = pPlot:GetPlotType()
-			local pConqCity = pPlot:GetWorkingCity()
 			
 			if ePlot == tPlotTypes[2] then
+				local pConqCity = pPlot:GetWorkingCity()
+			
 				pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[4], 1)
 			end
 			
@@ -2240,9 +2259,10 @@ function DrukTsendhenNewCity(ePlayer, iX, iY)
 		if pPlot then
 			-- culture on hill
 			local ePlot = pPlot:GetPlotType()
-			local pCity = pPlot:GetWorkingCity()
 			
 			if ePlot == tPlotTypes[2] then		
+				local pCity = pPlot:GetWorkingCity()
+			
 				pCity:SetNumRealBuilding(tBuildingsActiveAbilities[4], 1)
 			end
 			
@@ -2250,6 +2270,83 @@ function DrukTsendhenNewCity(ePlayer, iX, iY)
 			local iDefenseToAdd = pCity:GetJONSCulturePerTurn()
 			
 			pCity:SetNumRealBuilding(tBuildingsActiveAbilities[5], iDefenseToAdd)
+		end
+	end
+end
+
+
+
+-- PELYM (CITY ON TUNDRA OR SNOW?)
+function SiberianWarlordsOnEventOn(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[51] then
+		local pPlayer = Players[ePlayer]
+	
+		for city in pPlayer:Cities() do
+			local pPlot = city:Plot()
+			
+			if pPlot then
+				local eTerrain = pPlot:GetTerrainType()
+			
+				if eTerrain == tTerrainTypes[0] or eTerrain == tTerrainTypes[1] then
+					city:SetNumRealBuilding(tBuildingsActiveAbilities[23], 1)
+				end
+			end
+		end
+	end
+end
+
+function SiberianWarlordsOnEventOff(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[51] then
+		local pPlayer = Players[ePlayer]
+	
+		for city in pPlayer:Cities() do
+			city:SetNumRealBuilding(tBuildingsActiveAbilities[23], 0)
+		end
+	end
+end
+
+function SiberianWarlordsCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
+	local pNewOwner = Players[eNewOwner]
+	
+	if pNewOwner:GetEventChoiceCooldown(tEventChoice[51]) ~= 0 then
+		local pPlot = Map.GetPlot(iX, iY)
+			
+		if pPlot then
+			local eTerrain = pPlot:GetTerrainType()
+		
+			if eTerrain == tTerrainTypes[0] or eTerrain == tTerrainTypes[1] then
+				local pConqCity = pPlot:GetWorkingCity()
+			
+				pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[23], 1)
+			end
+		end
+	else
+		if not pNewOwner:IsEventChoiceActive(tEventChoice[51]) then
+			local pPlot = Map.GetPlot(iX, iY)
+			
+			if pPlot then
+				local pConqCity = pPlot:GetWorkingCity()
+			
+				pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[23], 0)
+			end
+		end
+	end
+end
+
+function SiberianWarlordsNewCity(ePlayer, iX, iY)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[51]) ~= 0 then
+		local pPlot = Map.GetPlot(iX, iY)
+				
+		if pPlot then
+			local eTerrain = pPlot:GetTerrainType()
+		
+			if eTerrain == tTerrainTypes[0] or eTerrain == tTerrainTypes[1] then
+				local pCity = pPlot:GetWorkingCity()
+			
+				pCity:SetNumRealBuilding(tBuildingsActiveAbilities[23], 1)
+			end
 		end
 	end
 end
@@ -2436,10 +2533,10 @@ function PyreneanPareageCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, 
 			
 	if pNewOwner:GetEventChoiceCooldown(tEventChoice[11]) ~= 0 then
 		for i, direction in ipairs(tDirectionTypes) do
-			local pPlot = Map.PlotDirection(iX, iY, direction)
+			local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
 						
-			if pPlot then
-				local ePlot = pPlot:GetPlotType()
+			if pAdjacentPlot then
+				local ePlot = pAdjacentPlot:GetPlotType()
 						
 				if ePlot == tPlotTypes[3] then
 					pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[6], 1)
@@ -2459,13 +2556,13 @@ function PyreneanPareageNewCity(ePlayer, iX, iY)
 	
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[11]) ~= 0 then
 		for i, direction in ipairs(tDirectionTypes) do
-			local pPlot = Map.PlotDirection(iX, iY, direction)
+			local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
 						
-			if pPlot then
-				local ePlot = pPlot:GetPlotType()
+			if pAdjacentPlot then
+				local ePlot = pAdjacentPlot:GetPlotType()
 						
 				if ePlot == tPlotTypes[3] then
-					local pCity = pPlot:GetWorkingCity()	
+					local pCity = pAdjacentPlot:GetWorkingCity()	
 			
 					pCity:SetNumRealBuilding(tBuildingsActiveAbilities[6], 1)
 					break
@@ -2617,6 +2714,107 @@ function PeopleOfTheBlueSkyBuildingConstruction(ePlayer, eCity, eBuilding, bGold
 			local pCity = pPlayer:GetCityByID(eCity)
 
 			pCity:SetNumRealBuilding(tBuildingsActiveAbilities[8], 1)
+		end
+	end
+end
+
+
+
+-- KATENDE (DIPLOMATIC WONDERS BUILT?)
+function LongClawOfMemoryOnEventOn(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[52] then
+		local pPlayer = Players[ePlayer]
+		
+		for city in pPlayer:Cities() do
+			local iScrivenersOffice = city:HasBuildingClass(tBuildingClasses[3]) and 1 or 0
+			local iPrintingPress = city:HasBuildingClass(tBuildingClasses[4]) and 1 or 0
+			local iForeignBureau = city:HasBuildingClass(tBuildingClasses[5]) and 1 or 0
+		
+			if bScrivenersOffice > 0 or bPrintingPress > 0 or bForeignBureau > 0 then
+				local iSum = iScrivenersOffice + iPrintingPress + iForeignBureau
+				
+				city:SetNumRealBuilding(tBuildingsActiveAbilities[24], iSum)
+				city:SetNumRealBuilding(tBuildingsActiveAbilities[25], iSum)
+			else
+				city:SetNumRealBuilding(tBuildingsActiveAbilities[24], 0)
+				city:SetNumRealBuilding(tBuildingsActiveAbilities[25], 0)
+			end
+		end
+	end
+end
+
+function LongClawOfMemoryOnEventOff(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[52] then
+		local pPlayer = Players[ePlayer]
+	
+		for city in pPlayer:Cities() do
+			city:SetNumRealBuilding(tBuildingsActiveAbilities[24], 0)
+			city:SetNumRealBuilding(tBuildingsActiveAbilities[25], 0)
+		end
+	end
+end
+
+function LongClawOfMemoryCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
+	local pNewOwner = Players[eNewOwner]
+	local pPlot = Map.GetPlot(iX, iY)
+	local pConqCity = pPlot:GetWorkingCity()
+			
+	if pNewOwner:GetEventChoiceCooldown(tEventChoice[52]) ~= 0 then
+		local iScrivenersOffice = pConqCity:HasBuildingClass(tBuildingClasses[3]) and 1 or 0
+		local iPrintingPress = pConqCity:HasBuildingClass(tBuildingClasses[4]) and 1 or 0
+		local iForeignBureau = pConqCity:HasBuildingClass(tBuildingClasses[5]) and 1 or 0
+	
+		if bScrivenersOffice > 0 or bPrintingPress > 0 or bForeignBureau > 0 then
+			local iSum = iScrivenersOffice + iPrintingPress + iForeignBureau
+			
+			pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[24], iSum)
+			pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[25], iSum)
+		else
+			pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[24], 0)
+			pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[25], 0)
+		end
+	else
+		if not pNewOwner:IsEventChoiceActive(tEventChoice[52]) then
+			pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[24], 0)
+			pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[25], 0)
+		end
+	end
+end
+
+function LongClawOfMemoryNewCity(ePlayer, iX, iY)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[52]) ~= 0 then
+		local pPlot = Map.GetPlot(iX, iY)
+		
+		if pPlot then
+			local pCity = pPlot:GetWorkingCity()	
+
+			local iScrivenersOffice = pCity:HasBuildingClass(tBuildingClasses[3]) and 1 or 0
+			local iPrintingPress = pCity:HasBuildingClass(tBuildingClasses[4]) and 1 or 0
+			local iForeignBureau = pCity:HasBuildingClass(tBuildingClasses[5]) and 1 or 0
+		
+			if bScrivenersOffice > 0 or bPrintingPress > 0 or bForeignBureau > 0 then
+				local iSum = iScrivenersOffice + iPrintingPress + iForeignBureau
+				
+				pCity:SetNumRealBuilding(tBuildingsActiveAbilities[24], iSum)
+				pCity:SetNumRealBuilding(tBuildingsActiveAbilities[25], iSum)
+			end
+		end
+	end
+end
+
+function LongClawOfMemoryBuildingConstruction(ePlayer, eCity, eBuilding, bGold, bFaith) 
+	local sBuildingClass = GameInfo.Buildings[eBuilding].BuildingClass
+	
+	if sBuildingClass == "BUILDINGCLASS_SCRIVENERS_OFFICE" or sBuildingClass == "BUILDINGCLASS_PRINTING_PRESS" or sBuildingClass == "BUILDINGCLASS_FOREIGN_BUREAU" then
+		local pPlayer = Players[ePlayer]
+	
+		if pPlayer:GetEventChoiceCooldown(tEventChoice[52]) ~= 0 then
+			local pCity = pPlayer:GetCityByID(eCity)
+
+			pCity:SetNumRealBuilding(tBuildingsActiveAbilities[24], pCity:GetNumRealBuilding(tBuildingsActiveAbilities[24] + 1)
+			pCity:SetNumRealBuilding(tBuildingsActiveAbilities[25], pCity:GetNumRealBuilding(tBuildingsActiveAbilities[24] + 1)
 		end
 	end
 end
@@ -2860,8 +3058,8 @@ function TeeatBuiltSomething(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKill
 	local pUnit = pPlayer:GetUnitByID(eUnit)
 		
 	if pUnit:GetUnitType() == tUnitsCivilian[11] then
-		local iBaseFood = 5
-		local iBaseCulture = 2 * iBaseFood
+		local iBaseCulture = 5
+		local iBaseFood = 2 * iBaseCulture
 		local iEraModifier = math.max(1, pPlayer:GetCurrentEra())	
 		local iTomol1 = iBaseFood * iEraModifier
 		local iTomol2 = iBaseCulture * iEraModifier
@@ -3880,6 +4078,100 @@ function HoniaraSignsForTheNature(eCityOwner, eCity, iX, iY, bGold, bCulture)
 		end	
 	end
 end
+
+
+
+-- SANAA (GOLD FROM DIFFERENT LUXURIES)
+function DoWeHaveNewLuxury(ePlayer, iX, iY, eImprovement)
+	local pPlayer = Players[ePlayer]
+
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[50]) ~= 0 then
+		local pPlot = Map.GetPlot(iX, iY)
+		local eResource = pPlot:GetResourceType()
+		print("SANAA", "BUILT_IMPROVEMENT", eResource)
+		if eResource == -1 then return end
+
+		local bLuxury = GameInfo.Resources[eResource].ResourceClassType == "RESOURCECLASS_LUXURY"
+		print("SANAA", "BUILT_IMPROVEMENT_ON_RESOURCE", bLuxury)
+		if bLuxury then
+			FindLuxuriesForSanaa(ePlayer)
+		end
+	end
+end
+
+function DoWeLostALuxury(iX, iY, ePlotOwner, eOldImprovement, eNewImprovement, bPillaged)
+	local pPlayer = Players[ePlotOwner]
+
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[50]) ~= 0 then
+		local pPlot = Map.GetPlot(iX, iY)
+		local eResource = pPlot:GetResourceType()
+		print("SANAA", "CHANGED_IMPROVEMENT", eResource)
+		if eResource == -1 then return end
+		print("SANAA", "BUILT_IMPROVEMENT_ON_RESOURCE", bLuxury)
+		local bLuxury = GameInfo.Resources[eResource].ResourceClassType == "RESOURCECLASS_LUXURY"
+
+		if bLuxury then
+			FindLuxuriesForSanaa(ePlayer)
+		end
+	end
+end
+
+function LuxuriesOnEventOn(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[50] then
+		FindLuxuriesForSanaa(ePlayer)
+	end
+end
+
+function LuxuriesOnEventOff(ePlayer, eEventChoiceType)
+	local pCapital = pPlayer:GetCapitalCity()
+
+	pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[22], 0)
+end
+
+function LuxuriesFromCaptured(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
+	local pOldPlayer = Players[eOldOwner]
+	local pNewPlayer = Players[eNewOwner]
+
+	if pOldPlayer:GetEventChoiceCooldown(tEventChoice[50]) ~= 0 then
+		FindLuxuriesForSanaa(eOldOwner)
+	end
+	
+	if pNewPlayer:GetEventChoiceCooldown(tEventChoice[50]) ~= 0 then
+		FindLuxuriesForSanaa(eNewOwner)
+	end
+end
+
+function FindLuxuriesForSanaa(ePlayer)
+	local pPlayer = Players[ePlayer]
+	print("SANAA", "FINDING_LUXURIES...")
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[50]) ~= 0 then
+		local tUniqueLuxuries = {}
+		local iUniqueLuxuries = 0
+		
+		for city in pPlayer:Cities() do
+			for i = 0, city:GetNumCityPlots() - 1, 1 do
+				local pPlot = city:GetCityIndexPlot(i)
+			   	print("SANAA", "FINDING_LUXURIES...", city:GetName(), "AT", i)
+				if pPlot and pPlot:GetOwner() == ePlayer then
+					local eResource = pPlot:GetResourceType()
+					
+					if eResource ~= -1 then
+						local bLuxury = GameInfo.Resources[eResource].ResourceClassType == "RESOURCECLASS_LUXURY"
+						print("SANAA", "FINDING_LUXURIES...", eResource, bLuxury)
+						if bLuxury and not tUniqueLuxuries[eResource] then
+							tUniqueLuxuries[eResource] = true
+							iUniqueLuxuries = iUniqueLuxuries + 1
+						end
+					end
+				end
+			end
+		end
+		print("SANAA", "FOUND_LUXURIES...", iUniqueLuxuries)
+		local pCapital = pPlayer:GetCapitalCity()
+
+		pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[22], iUniqueLuxuries)
+	end
+end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- INITIALIZATION
@@ -4035,6 +4327,12 @@ function SettingUpSpecificEvents()
 				GameEvents.EventChoiceEnded.Add(DrukTsendhenOnEventOff)
 				GameEvents.CityCaptureComplete.Add(DrukTsendhenCapture)
 				GameEvents.PlayerCityFounded.Add(DrukTsendhenNewCity)
+			elseif sMinorCivType == "MINOR_CIV_PELYM" then
+				tLostCities["eLostPelym"] = eCS
+				GameEvents.EventChoiceActivated.Add(SiberianWarlordsOnEventOn)
+				GameEvents.EventChoiceEnded.Add(SiberianWarlordsOnEventOff)
+				GameEvents.CityCaptureComplete.Add(SiberianWarlordsCapture)
+				GameEvents.PlayerCityFounded.Add(SiberianWarlordsNewCity)
 			elseif sMinorCivType == "MINOR_CIV_RAGUSA" then
 				tLostCities["eLostRagusa"] = eCS
 				GameEvents.EventChoiceActivated.Add(MaritimeSuzeraintyOnEventOn)
@@ -4067,6 +4365,13 @@ function SettingUpSpecificEvents()
 				GameEvents.CityCaptureComplete.Add(PeopleOfTheBlueSkyCapture)
 				GameEvents.PlayerCityFounded.Add(PeopleOfTheBlueSkyNewCity)
 				GameEvents.CityConstructed.Add(PeopleOfTheBlueSkyBuildingConstruction)
+			elseif sMinorCivType == "MINOR_CIV_KATENDE" then
+				tLostCities["eLostKatende"] = eCS
+				GameEvents.EventChoiceActivated.Add(LongClawOfMemoryOnEventOn)
+				GameEvents.EventChoiceEnded.Add(LongClawOfMemoryOnEventOff)
+				GameEvents.CityCaptureComplete.Add(LongClawOfMemoryCapture)
+				GameEvents.PlayerCityFounded.Add(LongClawOfMemoryNewCity)
+				GameEvents.CityConstructed.Add(LongClawOfMemoryBuildingConstruction)
 			
 			
 			-- new/exclusive units
@@ -4085,6 +4390,7 @@ function SettingUpSpecificEvents()
 				tLostCities["eLostPokrovka"] = eCS
 			elseif sMinorCivType == "MINOR_CIV_JUYUBIT" then
 				tLostCities["eLostJuyubit"] = eCS
+				GameEvents.BuildFinished.Add(TeeatBuiltSomething)
 			
 			
 			-- promotions effects
@@ -4203,6 +4509,16 @@ function SettingUpSpecificEvents()
 			elseif sMinorCivType == "MINOR_CIV_HONIARA" then
 				tLostCities["eLostHoniara"] = eCS
 				GameEvents.CityBoughtPlot.Add(HoniaraSignsForTheNature)
+			
+
+			-- finding luxuries
+			elseif sMinorCivType == "MINOR_CIV_SANAA" then
+				tLostCities["eLostSanaa"] = eCS
+				GameEvents.BuildFinished.Add(DoWeHaveNewLuxury)
+				GameEvents.TileImprovementChanged.Add(DoWeLostALuxury)
+				GameEvents.EventChoiceActivated.Add(LuxuriesOnEventOn)
+				GameEvents.EventChoiceEnded.Add(LuxuriesOnEventOff)
+				GameEvents.CityCaptureComplete.Add(LuxuriesFromCaptured)
 			end
 		end
 	end
