@@ -42,6 +42,12 @@
 		<Row Tag="TXT_KEY_UCS_NIHANG_XP_TITLE">
 			<Text>Special training program for Nihangs!</Text>
 		</Row>
+		<Row Tag="TXT_KEY_UCS_TEAAT">
+			<Text>Season started and Te'aats from [COLOR_CYAN]{1_Juyubit}[ENDCOLOR] sailed to spread culture around the world and bring back some stuff you. Their recent actions gave you additional {2_Food} [ICON_FOOD] Food and {3_Culture} [ICON_CULTURE] Culture in [COLOR_CYAN]{4_City}[ENDCOLOR].</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_TEAAT_TITLE">
+			<Text>Great event on the sea!</Text>
+		</Row>
 		
 		<!-- notifications for CSs' lua custom events -->
 		<Row Tag="TXT_KEY_UCS_BONUS_BOGOTA_LIBERATION">
