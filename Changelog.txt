@@ -39,6 +39,7 @@ Changelog:
 	- fake Caravans cannot be gifted;
 	- filled some gaps in Units table for new Untis;
 	- Sgaang now Sgang in few places;
+	- fixed Clermont promotion tags (promotions and icons didn't match);
 		
 
 

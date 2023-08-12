@@ -112,16 +112,16 @@ local tBuildingsActiveAbilities = {
 	GameInfoTypes.BUILDING_OUIDAH, -- 21
 	GameInfoTypes.BUILDING_SANAA,
 	GameInfoTypes.BUILDING_PELYM,
-	GameInfoTypes.BUILDING_KATENDE
+	GameInfoTypes.BUILDING_KATENDE,
 	GameInfoTypes.BUILDING_KATENDE_2
 }
 
 local tBuildingClasses = {
 	GameInfoTypes.BUILDINGCLASS_TEMPLE,
-	GameInfoTypes.BUILDINGCLASS_CARAVANSARY
+	GameInfoTypes.BUILDINGCLASS_CARAVANSARY,
 	GameInfoTypes.BUILDINGCLASS_SCRIVENERS_OFFICE, -- CHECK!!!
 	GameInfoTypes.BUILDINGCLASS_PRINTING_PRESS,
-	GameInfoTypes.BUILDINGCLASS_FOREIGN_BUREAU
+	GameInfoTypes.BUILDINGCLASS_FOREIGN_OFFICE
 }
 
 local tPromotionsActiveAbilities = {
@@ -1790,7 +1790,15 @@ function CanWeBuildTulou(ePlayer, eUnit, iX, iY, eBuild)
 	
 	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[53]) > 0) then return false end
 	
-	return true
+	local bCity = false
+
+	for i, direction in ipairs(tDirectionTypes) do
+		local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
+						
+		if pAdjacentPlot and pAdjacentPlot:IsCity() then bCity = true end
+	end
+
+	return bCity
 end
 GameEvents.PlayerCanBuild.Add(CanWeBuildTulou)
 
@@ -2828,8 +2836,8 @@ function LongClawOfMemoryBuildingConstruction(ePlayer, eCity, eBuilding, bGold, 
 		if pPlayer:GetEventChoiceCooldown(tEventChoice[52]) ~= 0 then
 			local pCity = pPlayer:GetCityByID(eCity)
 
-			pCity:SetNumRealBuilding(tBuildingsActiveAbilities[24], pCity:GetNumRealBuilding(tBuildingsActiveAbilities[24] + 1)
-			pCity:SetNumRealBuilding(tBuildingsActiveAbilities[25], pCity:GetNumRealBuilding(tBuildingsActiveAbilities[24] + 1)
+			pCity:SetNumRealBuilding(tBuildingsActiveAbilities[24], pCity:GetNumRealBuilding(tBuildingsActiveAbilities[24]) + 1)
+			pCity:SetNumRealBuilding(tBuildingsActiveAbilities[25], pCity:GetNumRealBuilding(tBuildingsActiveAbilities[24]) + 1)
 		end
 	end
 end
@@ -3868,17 +3876,21 @@ function BuiltImprovementForOuidah(ePlayer, iX, iY, eImprovement)
 	bBlockDoubleTriggering = not bBlockDoubleTriggering
 	
 	if bBlockDoubleTriggering then
-		sImprovement = GameInfo.Improvements[eImprovement].Type
-		sBuild = GameInfo.Builds{ImprovementType=sImprovement}().Type
-		sUnit = GameInfo.Unit_Builds{BuildType=sBuild}().UnitType
+		local pPlayer = Players[ePlayer]
+
+		if pPlayer:GetEventChoiceCooldown(tEventChoice[47]) ~= 0 then
+			sImprovement = GameInfo.Improvements[eImprovement].Type
+			sBuild = GameInfo.Builds{ImprovementType=sImprovement}().Type
+			sUnit = GameInfo.Unit_Builds{BuildType=sBuild}().UnitType
 		
-		if sUnit ~= "UNIT_WORKER" then return end
+			if sUnit ~= "UNIT_WORKER" then return end
 
-		local pPlot = Map.GetPlot(iX, iY)
-		local pCity = pPlot:GetWorkingCity()
+			local pPlot = Map.GetPlot(iX, iY)
+			local pCity = pPlot:GetWorkingCity()
 
-		if pCity then
-			pCity:SetNumRealBuilding(tBuildingsActiveAbilities[21], pCity:GetNumRealBuilding(tBuildingsActiveAbilities[21]) + 1)
+			if pCity then
+				pCity:SetNumRealBuilding(tBuildingsActiveAbilities[21], pCity:GetNumRealBuilding(tBuildingsActiveAbilities[21]) + 1)
+			end
 		end
 	end
 end
@@ -4117,6 +4129,8 @@ end
 function DoWeLostALuxury(iX, iY, ePlotOwner, eOldImprovement, eNewImprovement, bPillaged)
 	local pPlayer = Players[ePlotOwner]
 
+	if ePlotOwner == -1 then return end
+
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[50]) ~= 0 then
 		local pPlot = Map.GetPlot(iX, iY)
 		local eResource = pPlot:GetResourceType()
@@ -4166,16 +4180,24 @@ function FindLuxuriesForSanaa(ePlayer)
 		for city in pPlayer:Cities() do
 			for i = 0, city:GetNumCityPlots() - 1, 1 do
 				local pPlot = city:GetCityIndexPlot(i)
-			   	print("SANAA", "FINDING_LUXURIES...", city:GetName(), "AT", i)
+			   	
 				if pPlot and pPlot:GetOwner() == ePlayer then
 					local eResource = pPlot:GetResourceType()
 					
 					if eResource ~= -1 then
 						local bLuxury = GameInfo.Resources[eResource].ResourceClassType == "RESOURCECLASS_LUXURY"
-						print("SANAA", "FINDING_LUXURIES...", eResource, bLuxury)
+						print("SANAA", "FINDING_LUXURIES... RESOURCE...", eResource, bLuxury)
 						if bLuxury and not tUniqueLuxuries[eResource] then
-							tUniqueLuxuries[eResource] = true
-							iUniqueLuxuries = iUniqueLuxuries + 1
+							local eImprovement = pPlot:GetImprovementType()
+							print("SANAA", "FINDING_LUXURIES... IMPROVEMENT...", eImprovement)
+							if eImprovement ~= -1 then
+								local bConnected = pPlot:IsResourceConnectedByImprovement(eImprovement)
+								print("SANAA", "FINDING_LUXURIES... CONNECTION...", bConnected)
+								if bConnected then
+									tUniqueLuxuries[eResource] = true
+									iUniqueLuxuries = iUniqueLuxuries + 1
+								end
+							end
 						end
 					end
 				end
