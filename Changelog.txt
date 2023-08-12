@@ -2,11 +2,11 @@
 Changelog:
 - added:
 	- new City-States:
-		- 1 Maritime: Honiara (Oceania);
-		- 1 Mercantile: Ouidah (West Africa);
-		- 4 Militaristic: Dakkar (East Africa), Pelym (North Asia), Pokrovka (Central Asia), Tbilisi (Caucasus);
-		- 2 Cultured: Karasjohka (North Europe), Katende (Central Africa);
-		- 3 Religious: Lahore (Central Asia), Sarnath (Central Asia), Suceava (East Europe);
+		- 2 Maritime: Honiara (Oceania), Juyubit (North America);
+		- 2 Mercantile: Ouidah (West Africa), Sana'a (West Asia);
+		- 4 Militaristic: Dakkar (East Africa), Pelym (North Asia), Pokrovka (West Asia), Tbilisi (Caucasus);
+		- 2 Cultured: Anangula (North America), Karasjohka (North Europe), Katende (Central Africa);
+		- 3 Religious: Lahore (South Asia), Sarnath (South Asia), Suceava (East Europe);
 	- new Promotions:
 		- Battle of Vaslui (exclusive for Suceava);
 		- Futuh Al-Habash (exclusive for Dakkar);
@@ -17,20 +17,28 @@ Changelog:
 	- new Units:
 		- Nihang - multi Era unit with its own Promotion Branch (exclusive for Lahore);
 		- Saka (exclusive for Pokrovka);
+		- Te'aat (exclusive for Juyubit);
 - balanced:
 	- Gurkha changes:
 		- now can also be trained with Production;
 		- added FaithCost, so it may be bought with Faith after acquiring certain belief;
 		- obsoletes correctly like other UUs;
 		- have default AI;
+	- Nan Madol changes:
+		- lost Culture on Death
+		- gained 
 - changed:
-	- Managua is now Cultured City-State to split the bunch of Mercantile CSs in that area;
-	- Managua now has American style (was European);
+	Managua rework:
+		- Managua is now Cultured City-State to split the bunch of Mercantile CSs in that area;
+		- Managua now has American style (was European);
+		- managua gets new ability (old one moved to Sana'a);
 - fixed:
 	- fixed an error in functions giving units from Friendlt CSs;
+	- Bedulu now gets Faith from Trade Routes (Dodoma doesn not);
 	- Sisqeno Worker now gains same free promotions like Sisqeno (Missionary);
 	- fake Caravans cannot be gifted;
 	- filled some gaps in Units table for new Untis;
+	- Sgaang now Sgang in few places;
 		
 
 
