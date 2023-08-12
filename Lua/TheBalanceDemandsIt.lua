@@ -84,7 +84,8 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_JUYUBIT,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SANAA,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_PELYM, -- 51
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_KATENDE
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_KATENDE,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_LONGYAN
 }
 
 local tBuildingsActiveAbilities = {
@@ -1507,8 +1508,31 @@ function BuiltMarsh(ePlayer, iX, iY, eImprovement)
 		pPlot:SetImprovementType(-1)
 		pPlot:SetFeatureType(tFeatureTypes[3], -1)
 	end
-end	
+end
 
+
+
+-- ADEJE (IMPROVEMENT/RESOURCE DOGO CANARIO)
+function CanWeBuildDogoCanario(ePlayer, eUnit, iX, iY, eBuild)
+	if eBuild ~= GameInfoTypes.BUILD_DOGO_CANARIO then return true end
+	
+	local pPlayer = Players[ePlayer]
+	
+	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[42]) > 0) then return false end
+	
+	return true
+end
+GameEvents.PlayerCanBuild.Add(CanWeBuildDogoCanario)
+
+function BuiltDogoCanario(ePlayer, iX, iY, eImprovement)
+	if eImprovement == tImprovementsRegular[4] then
+		local pPlot = Map.GetPlot(iX, iY)
+		
+		pPlot:SetImprovementType(-1)
+		pPlot:SetResourceType(tResourcesLuxury[1], 1)
+	end
+end
+	
 
 
 -- CAHOKIA (IMPROVEMENT MOUND)
@@ -1758,26 +1782,17 @@ GameEvents.PlayerCanBuild.Add(CanWeBuildChum)
 
 
 
--- ADEJE (IMPROVEMENT/RESOURCE DOGO CANARIO)
-function CanWeBuildDogoCanario(ePlayer, eUnit, iX, iY, eBuild)
-	if eBuild ~= GameInfoTypes.BUILD_DOGO_CANARIO then return true end
+-- LONGYAN (IMPROVEMENT TULOU)
+function CanWeBuildTulou(ePlayer, eUnit, iX, iY, eBuild)
+	if eBuild ~= GameInfoTypes.BUILD_TULOU then return true end
 	
 	local pPlayer = Players[ePlayer]
 	
-	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[42]) > 0) then return false end
+	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[53]) > 0) then return false end
 	
 	return true
 end
-GameEvents.PlayerCanBuild.Add(CanWeBuildDogoCanario)
-
-function BuiltDogoCanario(ePlayer, iX, iY, eImprovement)
-	if eImprovement == tImprovementsRegular[4] then
-		local pPlot = Map.GetPlot(iX, iY)
-		
-		pPlot:SetImprovementType(-1)
-		pPlot:SetResourceType(tResourcesLuxury[1], 1)
-	end
-end
+GameEvents.PlayerCanBuild.Add(CanWeBuildTulou)
 
 
 
@@ -4226,6 +4241,8 @@ function SettingUpSpecificEvents()
 					tLostCities["eLostSGaang"] = eCS
 				elseif sMinorCivType == "MINOR_CIV_NYARYANA_MARQ" then	
 					tLostCities["eLostNyaryanaMarq"] = eCS
+				elseif sMinorCivType == "MINOR_CIV_LONGYAN" then	
+					tLostCities["eLostLongyan"] = eCS
 				elseif sMinorCivType == "MINOR_CIV_LA_VENTA" then	
 					tLostCities["eLostLaVenta"] = eCS
 				elseif sMinorCivType == "MINOR_CIV_TIWANAKU" then	
