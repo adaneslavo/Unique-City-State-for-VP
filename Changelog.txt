@@ -4,7 +4,7 @@ Changelog:
 	- new City-States:
 		- 2 Maritime: Honiara (Oceania), Juyubit (North America);
 		- 2 Mercantile: Ouidah (West Africa), Sana'a (West Asia);
-		- 4 Militaristic: Dakkar (East Africa), Pelym (North Asia), Pokrovka (West Asia), Tbilisi (Caucasus);
+		- 5 Militaristic: Dakkar (East Africa), Longyan (East Asia), Pelym (North Asia), Pokrovka (West Asia), Tbilisi (Caucasus);
 		- 2 Cultured: Anangula (North America), Karasjohka (North Europe), Katende (Central Africa);
 		- 3 Religious: Lahore (South Asia), Sarnath (South Asia), Suceava (East Europe);
 	- new Promotions:
