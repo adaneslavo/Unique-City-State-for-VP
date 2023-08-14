@@ -2856,12 +2856,18 @@ VALUES 		('ART_DEF_IMPROVEMENT_MARSH', 			'Improvement', 	'Brussels'' Marsh'),
 			('ART_DEF_IMPROVEMENT_CHUM', 			'Improvement', 	'Chum'),
 			('ART_DEF_IMPROVEMENT_TULOU', 			'Improvement', 	'Tulou'),
 			('ART_DEF_IMPROVEMENT_DOGO_CANARIO',	'Improvement', 	'Dogo Canario'),
-			('ART_DEF_RESOURCE_DOGO_CANARIO',		'Resource', 	'Dogo Canario');
+			('ART_DEF_RESOURCE_DOGO_CANARIO',		'Resource', 	'Dogo Canario'),
+			('ART_DEF_RESOURCE_REINDEER',		'Resource', 	'Reindeer');
 
 INSERT INTO ArtDefine_Landmarks
 			(Era, State, 	Scale, 	ImprovementType, 				LayoutHandler, 	ResourceType, Model, TerrainContour)
 SELECT 		Era, State, 	Scale, 	'ART_DEF_IMPROVEMENT_MARSH', 	LayoutHandler, 	ResourceType, Model, TerrainContour
 FROM ArtDefine_Landmarks WHERE ImprovementType = 'ART_DEF_IMPROVEMENT_POLDER';
+
+INSERT INTO ArtDefine_Landmarks
+			(Era, State, 	Scale, 	ImprovementType, 				LayoutHandler, 	ResourceType, Model, TerrainContour)
+SELECT 		Era, State, 	Scale, 	ImprovementType, 	LayoutHandler, 	'ART_DEF_RESOURCE_REINDEER', Model, TerrainContour
+FROM ArtDefine_Landmarks WHERE ResourceType = 'ART_DEF_RESOURCE_DEER';
 			
 INSERT INTO ArtDefine_Landmarks
 			(Era,	State, 					Scale, 	ImprovementType, 					LayoutHandler, 	ResourceType,						Model,								TerrainContour)
@@ -2897,7 +2903,8 @@ VALUES 		('ART_DEF_IMPROVEMENT_MARSH', 			'Improvement', 	'sv_BuildMarsh.dds'),
 			('ART_DEF_IMPROVEMENT_CHUM', 			'Improvement', 	'sv_BuildChum.dds'),
 			('ART_DEF_IMPROVEMENT_TULOU', 			'Improvement', 	'sv_BuildTulou.dds'),
 			('ART_DEF_IMPROVEMENT_DOGO_CANARIO',	'Improvement', 	'sv_ResourceDogoCanario.dds'),
-			('ART_DEF_RESOURCE_DOGO_CANARIO', 		'Resource', 	'sv_ResourceDogoCanario.dds');
+			('ART_DEF_RESOURCE_DOGO_CANARIO', 		'Resource', 	'sv_ResourceDogoCanario.dds'),
+			('ART_DEF_RESOURCE_REINDEER', 		'Resource', 	'sv_ResourceReindeer.dds');
 
 INSERT INTO IconFontMapping 
 			(IconName, 					IconFontTexture,			IconMapping)
@@ -3174,11 +3181,15 @@ VALUES		('IMPROVEMENT_MARSH',			'FLAVOR_GROWTH',		30),
 ---------------------------------------------------	
 INSERT INTO Resources 
 			(Type,						TechReveal,			TechCityTrade, 		Description,						Civilopedia, 							Help,										ResourceClassType, 			IsMonopoly, 	ArtDefineTag, 						CivilizationType,		OnlyMinorCivs,  Happiness,  ResourceUsage,	IconString, 				PortraitIndex, 	IconAtlas)
-VALUES		('RESOURCE_DOGO_CANARIO',	null,				'TECH_TRAPPING',	'TXT_KEY_RESOURCE_DOGO_CANARIO',	'TXT_KEY_RESOURCE_DOGO_CANARIO_TEXT',	'TXT_KEY_RESOURCE_DOGO_CANARIO_MONOPOLY',	'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_DOGO_CANARIO',	null,					0,				2,			2,				'[ICON_RES_DOGO_CANARIO]',	0, 				'UCS_RESOURCE_ATLAS');
+VALUES		('RESOURCE_DOGO_CANARIO',	null,				'TECH_TRAPPING',	'TXT_KEY_RESOURCE_DOGO_CANARIO',	'TXT_KEY_RESOURCE_DOGO_CANARIO_TEXT',	'TXT_KEY_RESOURCE_DOGO_CANARIO_MONOPOLY',	'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_DOGO_CANARIO',	null,					0,				2,			2,				'[ICON_RES_DOGO_CANARIO]',	0, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_REINDEER',	null,				'TECH_TRAPPING',	'TXT_KEY_RESOURCE_REINDEER',	'TXT_KEY_RESOURCE_REINDEER_TEXT',	NULL,	'RESOURCECLASS_BONUS',		0,				'ART_DEF_RESOURCE_REINDEER',	null,					0,				0,			1,				'[ICON_RES_REINDEER]',	2, 				'UCS_RESOURCE_ATLAS');
 ---------------------------------------------------------
 INSERT INTO Resource_YieldChanges
 			(ResourceType, 				YieldType, 			Yield)
-VALUES		('RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',		2);
+VALUES		('RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',		2),
+					('RESOURCE_REINDEER',	'YIELD_FOOD',		1),
+					('RESOURCE_REINDEER',	'YIELD_PRODUCTION',		2),
+					('RESOURCE_REINDEER',	'YIELD_CULTURE',		1);
 
 INSERT INTO Resource_CityYieldModFromMonopoly
 			(ResourceType, 				YieldType, 				Yield)
@@ -3187,12 +3198,18 @@ VALUES		('RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			5),
 
 INSERT INTO Improvement_ResourceTypes
 			(ImprovementType,		ResourceType, 				ResourceMakesValid, ResourceTrade)
-VALUES		('IMPROVEMENT_CAMP',	'RESOURCE_DOGO_CANARIO',	1,					1);
+VALUES		('IMPROVEMENT_CAMP',	'RESOURCE_DOGO_CANARIO',	1,					1),
+		('IMPROVEMENT_CAMP',	'RESOURCE_REINDEER',	1,					1);
 
 INSERT INTO Improvement_ResourceType_Yields
 			(ImprovementType,		ResourceType, 				YieldType, 				Yield)
 VALUES		('IMPROVEMENT_CAMP',	'RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			1),
 			('IMPROVEMENT_CAMP',	'RESOURCE_DOGO_CANARIO',	'YIELD_PRODUCTION',		1);
+
+INSERT INTO Improvement_ResourceType_Yields
+			(ImprovementType,		ResourceType, 				YieldType, 				Yield)
+SELECT		ImprovementType,	'RESOURCE_REINDEER',	ResourceType,			YieldType)
+FROM Improvement_ResourceType_Yields WHERE ResourceType = 'RESOURCE_DEER';
 ---------------------------------------------------------
 INSERT INTO Resource_Flavors 	
 			(ResourceType, 				FlavorType, 			Flavor)
