@@ -1,6 +1,6 @@
 include("FLuaVector.lua")
 
--- 36 variables so far coded (max 60)
+-- 39 variables so far coded (max 60)
 local L = Locale.ConvertTextKey
 local eSphere = GameInfoTypes.RESOLUTION_SPHERE_OF_INFLUENCE
 local eArtifactRuin = GameInfoTypes.ARTIFACT_ANCIENT_RUIN
@@ -17,6 +17,40 @@ local bBlockDoubleTriggering = false -- for preventing the double triggering the
 
 -- city-states IDs
 local tLostCities = {}
+
+-- look for major city --> city-states conflicts
+local tCityConflicts = {}
+function Conflicts()
+	print("CONFLICTS")
+	for emajorplayer = 0, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
+		local pMajorPlayer = Players[emajorplayer]
+		
+		if pMajorPlayer:IsMinorCiv() then return end
+		print("CONFLICTS", "MAJOR", pMajorPlayer:GetName())
+		for eminorplayer = 0, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
+			local pMinorPlayer = Players[eminorplayer]
+				
+			if pMinorPlayer:IsMinorCiv() then
+				print("CONFLICTS", "_MINOR", pMinorPlayer:GetName())
+				local sMinorCapitalName = L(GameInfo.MinorCivilizations[pMinorPlayer:GetMinorCivType()].Description)
+				
+				for citylist in DB.Query("SELECT Civilization_CityList.CityName FROM Civilization_CityList WHERE CivilizationType = ?", GameInfo.Civilizations[pMajorPlayer:GetCivilizationType()].Type) do
+					print("CONFLICTS", "_MINOR", "LIST...", sMinorCapitalName, L(citylist.CityName))
+					if L(citylist.CityName) == sMinorCapitalName then
+						print("CONFLICTS", "_MINOR", "LIST...", "CONFLICT_SET!!!")
+						table.insert(tCityConflicts[eminorplayer] = true)
+						break
+					end
+				end
+			end
+		end
+	end
+end
+Conflicts()
+
+for i, conflict in ipairs(tCityConflicts) do
+	print(i, conflict)
+end
 
 local tMinorTraits = {
 	GameInfoTypes.MINOR_TRAIT_MARITIME,
@@ -85,7 +119,8 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SANAA,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_PELYM, -- 51
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_KATENDE,
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_LONGYAN
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_LONGYAN,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_KARASJOHKA
 }
 
 local tBuildingsActiveAbilities = {
@@ -168,7 +203,8 @@ local tImprovementsRegular = {
 	GameInfoTypes.IMPROVEMENT_MARSH,
 	GameInfoTypes.IMPROVEMENT_PLANT_FOREST,
 	GameInfoTypes.IMPROVEMENT_PLANT_JUNGLE,
-	GameInfoTypes.IMPROVEMENT_DOGO_CANARIO
+	GameInfoTypes.IMPROVEMENT_DOGO_CANARIO,
+	GameInfoTypes.IMPROVEMENT_CAMP
 }
 
 local tImprovementsUCS = {
@@ -264,6 +300,11 @@ local tUnitsMilitary = {
 	GameInfoTypes.UNIT_GURKHA,
 	GameInfoTypes.UNIT_NIHANG,
 	GameInfoTypes.UNIT_SAKA
+}
+
+local tResourcesBonus = {
+	GameInfoTypes.RESOURCE_DEER
+	GameInfoTypes.RESOURCE_REINDEER
 }
 
 local tResourcesLuxury = {
@@ -4208,6 +4249,52 @@ function FindLuxuriesForSanaa(ePlayer)
 		local pCapital = pPlayer:GetCapitalCity()
 
 		pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[22], iUniqueLuxuries)
+	end
+end
+
+
+
+-- KARASJOHKA (SPAWN REINDEER)
+function BuiltCampOnDeerWithTundraAround(ePlayer, iX, iY, eImprovement)
+	-- event triggers twice, so this should prevent it
+	bBlockDoubleTriggering = not bBlockDoubleTriggering
+	
+	if not bBlockDoubleTriggering then return end
+	if eImprovement ~= tImprovementsRegular[5] then return end
+	print("KARASJOHKA", "CAMP")
+	local pPlayer = Players[ePlayer]
+
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[54]) ~= 0 then
+		local pPlot = Map.GetPlot(iX, iY)
+		local eResource = pPlot:GetResourceType()
+
+		if eResource ~= tResourcesBonus[1] then return end
+		print("KARASJOHKA", "DEER")
+		local tPossibleReindeerSpots = {}
+		
+		for i, direction in ipairs(tDirectionTypes) do
+			local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
+			print("KARASJOHKA", "PLOT_CHECK", i)			
+			if pAdjacentPlot then
+				local eTerrain = pAdjacentPlot:GetTerrainType()
+				local eFeature = pAdjacentPlot:GetFeatureType()
+				
+				if eTerrain == tTerrainTypes[2] and eFeature == tFeatureTypes[1] then
+					print("KARASJOHKA", "PLOT_CHECK_OK")
+					table.insert(tPossibleReindeerSpots, pAdjacentPlot)
+				end
+			end
+		end
+
+		if #tPossibleReindeerSpots = 0 then return end
+		print("KARASJOHKA", "SPOTS_OK")
+		local iChance = Game.Rand(100, "Chance for spawning a Reindeer")
+		print("KARASJOHKA", "CHANCE", iChance)
+		if iChance >= 80 then return end
+		print("KARASJOHKA", "CHANCE_OK", "SPAWN!")
+		local pChosenPlot = table.remove(tPossibleReindeerSpots, Game.Rand(#tPossibleReindeerSpots) + 1)
+
+		pChosenPlot:SetResourceType(tResourcesBonus[2], 1)
 	end
 end
 -----------------------------------------------------------------------------------------------------------
