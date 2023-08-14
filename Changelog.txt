@@ -3,11 +3,11 @@ Changelog:
 *(F) - Female leader
 
 - added:
-	- 15 new City-States (5 female leaders):
+	- 16 new City-States (5 female leaders):
 		- 2 Maritime: Honiara (Oceania), Juyubit (F; North America);
 		- 2 Mercantile: Ouidah (West Africa), Sana'a (F; West Asia);
 		- 5 Militaristic: Dakkar (East Africa), Longyan (East Asia), Pelym (North Asia), Pokrovka (F; West Asia), Tbilisi (F; Caucasus);
-		- 2 Cultured: Anangula (North America), Karasjohka (F; North Europe), Katende (Central Africa);
+		- 4 Cultured: Anangula (North America), Ayutthaya (South-East Asia), Karasjohka (F; North Europe), Katende (Central Africa);
 		- 3 Religious: Lahore (South Asia), Sarnath (South Asia), Suceava (East Europe);
 	- 20 new Promotions:
 		- Battle of Vaslui (exclusive for Suceava);
@@ -20,22 +20,24 @@ Changelog:
 		- Nihang - multi Era unit with its own Promotion Branch (exclusive for Lahore);
 		- Saka (exclusive for Pokrovka);
 		- Te'aat (exclusive for Juyubit);
+	- 1 new Resource:
+		- Reindeer (exclusive for Karasjohka);
+- changed:
+	- reworked civilopedia entries for: Armagh, Muscat, Nan Madol, 
 - balanced:
 	- Gurkha changes:
 		- now can also be trained with Production;
 		- added FaithCost, so it may be bought with Faith after acquiring certain belief;
 		- obsoletes correctly like other UUs;
 		- have default AI;
-	- Nan Madol changes:
-		- lost Culture on Death
-		- gained 
 	- Managua rework:
 		- Managua is now Cultured City-State to split the bunch of Mercantile CSs in that area;
 		- Managua now has American style (was European);
 		- managua gets new ability based on espionage (3rd CS using such; old ability moved to Sana'a);
+	- Nan Madol: culture on death is not applied once instead of for each city;
 - fixed:
-	- fixed an error in functions giving units from Friendlt CSs;
-	- Bedulu now gets Faith from Trade Routes (Dodoma doesn not);
+	- fixed an error in functions giving units from Friendly CSs;
+	- Bedulu now gets Faith from Trade Routes (and Dodoma does not);
 	- Sisqeno Worker now gains same free promotions like Sisqeno (Missionary);
 	- Clermont:
 		- fixed Clermont promotion tags (promotions and icons didn't match);
@@ -46,7 +48,7 @@ Changelog:
 	- deleted unnecessary 32px icons for units and 128px and 32px icons for resources;
 	- filled some gaps in Units table for new Untis;
 	- text fixes (most important):
-		- Sgaang now Sgang in few places;
+		- "SGaang" is now "SGang" in few places;
 	- resized unit icons to fit the circle better;
 	
 		
