@@ -1,20 +1,22 @@
 
 Changelog:
+*(F) - Female leader
+
 - added:
-	- new City-States:
-		- 2 Maritime: Honiara (Oceania), Juyubit (North America);
-		- 2 Mercantile: Ouidah (West Africa), Sana'a (West Asia);
-		- 5 Militaristic: Dakkar (East Africa), Longyan (East Asia), Pelym (North Asia), Pokrovka (West Asia), Tbilisi (Caucasus);
-		- 2 Cultured: Anangula (North America), Karasjohka (North Europe), Katende (Central Africa);
+	- 15 new City-States (5 female leaders):
+		- 2 Maritime: Honiara (Oceania), Juyubit (F; North America);
+		- 2 Mercantile: Ouidah (West Africa), Sana'a (F; West Asia);
+		- 5 Militaristic: Dakkar (East Africa), Longyan (East Asia), Pelym (North Asia), Pokrovka (F; West Asia), Tbilisi (F; Caucasus);
+		- 2 Cultured: Anangula (North America), Karasjohka (F; North Europe), Katende (Central Africa);
 		- 3 Religious: Lahore (South Asia), Sarnath (South Asia), Suceava (East Europe);
-	- new Promotions:
+	- 20 new Promotions:
 		- Battle of Vaslui (exclusive for Suceava);
 		- Futuh Al-Habash (exclusive for Dakkar);
 		- Scythian Arrow Barrage (exclusive for Pokrovka);
 		- Siberian Education (exclusive for Pelym);
 		- Siida Culture (exclusive for Karasjohka);
 		- 15 new Promotions (whole unique branch) for Nihang Unit (exclusive for Lahore);
-	- new Units:
+	- 3 new Units:
 		- Nihang - multi Era unit with its own Promotion Branch (exclusive for Lahore);
 		- Saka (exclusive for Pokrovka);
 		- Te'aat (exclusive for Juyubit);
@@ -27,19 +29,26 @@ Changelog:
 	- Nan Madol changes:
 		- lost Culture on Death
 		- gained 
-- changed:
-	Managua rework:
+	- Managua rework:
 		- Managua is now Cultured City-State to split the bunch of Mercantile CSs in that area;
 		- Managua now has American style (was European);
-		- managua gets new ability (old one moved to Sana'a);
+		- managua gets new ability based on espionage (3rd CS using such; old ability moved to Sana'a);
 - fixed:
 	- fixed an error in functions giving units from Friendlt CSs;
 	- Bedulu now gets Faith from Trade Routes (Dodoma doesn not);
 	- Sisqeno Worker now gains same free promotions like Sisqeno (Missionary);
-	- fake Caravans cannot be gifted;
+	- Clermont:
+		- fixed Clermont promotion tags (promotions and icons didn't match);
+		- promotion icons now have dark grey background instead of light grey;
+	- gifts:
+		- fake Caravans cannot be gifted;
+		- maybe this time CSs won't be giving UCS units to players...
+	- deleted unnecessary 32px icons for units and 128px and 32px icons for resources;
 	- filled some gaps in Units table for new Untis;
-	- Sgaang now Sgang in few places;
-	- fixed Clermont promotion tags (promotions and icons didn't match);
+	- text fixes (most important):
+		- Sgaang now Sgang in few places;
+	- resized unit icons to fit the circle better;
+	
 		
 
 
