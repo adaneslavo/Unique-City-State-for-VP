@@ -165,7 +165,8 @@ local tBuildingsActiveAbilities = {
 	GameInfoTypes.BUILDING_SANAA,
 	GameInfoTypes.BUILDING_PELYM,
 	GameInfoTypes.BUILDING_KATENDE,
-	GameInfoTypes.BUILDING_KATENDE_2
+	GameInfoTypes.BUILDING_KATENDE_2,
+	GameInfoTypes.BUILDING_SARNATH_2 -- 26
 }
 
 local tBuildingClasses = {
@@ -4358,6 +4359,60 @@ function AyutthayaDevlops(ePlayer, eCity, eBuilding, bGold, bFaith)
 		pPlayer:DoInstantYield(GameInfoTypes.YIELD_CULTURE, iBaseCulture, pCapital:GetID())
 	end
 end
+
+
+
+-- SARNATH (POLICY COST FROM RELIGION)
+function SarnathLowersPolicyCostOnEventOn(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[56] then
+		local pPlayer = Players[ePlayer]
+		local eFoundedReligion = pPlayer:GetReligionCreatedByPlayer()
+		local iNumReligiousCities = 0
+		
+		for city in pPlayer:Cities() do
+			if city:GetReligiousMajority() == eFoundedReligion then
+				iNumReligiousCities = iNumReligiousCities + 1
+			end
+		end
+
+		if iNumReligiousCities > 10 then
+			iNumReligiousCities = 10
+		end
+
+		local pCapital = pPlayer:GetCapitalCity()
+
+		pCapital:SetNumRealBuildings(tBuildingsActiveAbilities[26], iNumReligiousCities)
+	end
+end
+
+function SarnathLowersPolicyCostOnEventOff(ePlayer, eEventChoiceType)
+	local pCapital = pPlayer:GetCapitalCity()
+
+	pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[26], 0)
+end
+
+function SarnathLowersPolicyCost(ePlayer)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[56]) ~= 0 then
+		local eFoundedReligion = pPlayer:GetReligionCreatedByPlayer()
+		local iNumReligiousCities = 0
+		print("SARNATH", "ON_TURN", "RELIGION?", eFoundedReligion)
+		for city in pPlayer:Cities() do
+			if city:GetReligiousMajority() == eFoundedReligion then
+				iNumReligiousCities = iNumReligiousCities + 1
+			end
+		end
+		print("SARNATH", "ON_TURN", "CITIES?", iNumReligiousCities)
+		if iNumReligiousCities > 10 then
+			iNumReligiousCities = 10
+		end
+
+		local pCapital = pPlayer:GetCapitalCity()
+
+		pCapital:SetNumRealBuildings(tBuildingsActiveAbilities[26], iNumReligiousCities)
+	end
+end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- INITIALIZATION
@@ -4719,7 +4774,15 @@ function SettingUpSpecificEvents()
 			elseif sMinorCivType == "MINOR_CIV_AYUTTHAYA" then
 				tLostCities["eLostAyutthaya"] = eCS	
 				GameEvents.DeclareWar.Add(WarDeclaredToAyutthaya)
-				GameEvents.CityConstructed.Add(AyutthayaDevlops)				
+				GameEvents.CityConstructed.Add(AyutthayaDevlops)
+
+				
+			-- policy cost from religious cities
+			elseif sMinorCivType == "MINOR_CIV_SARNATH" then
+				tLostCities["eLostSarnath"] = eCS	
+				GameEvents.EventChoiceActivated.Add(SarnathLowersPolicyCostOnEventOn)
+				GameEvents.EventChoiceEnded.Add(SarnathLowersPolicyCostOnEventOff)
+				GameEvents.PlayerDoTurn.Add(SarnathLowersPolicyCost)
 			end
 		end
 	end
