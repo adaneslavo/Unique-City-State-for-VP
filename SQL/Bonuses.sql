@@ -223,7 +223,7 @@ SELECT 'TXT_KEY_CITYSTATE_HONDURAS_ADJ', 					'Honduran' UNION ALL
 SELECT 'TXT_KEY_CIV5_HONDURAS_TEXT', 						'Honduras was home to several Mesoamerican cultures before the Spanish took over in the 16th century. Honduras became independent in 1821 and has since been a republic. However the republic remains a figure of a banana republic where their government encouraged developments from foreign investors which these developments came out with bananas.' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_AUCKLAND', 					'Parihaka' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_AUCKLAND_ADJ', 					'the Maori' UNION ALL
-SELECT 'TXT_KEY_CIV5_AUCKLAND_TEXT', 						'When the Maori settled upon an isthmus in what is now northern New Zealand, they found the surrounding landscape full of fertile land, lush jungle, and dormant volcanos. Protected natural harbors on either side of the isthmus offered plentiful fishing and a base for war canoes (''waka taua''). The settlers named it ''Tamaki Makaurau''—roughly translating to "the maiden sought by a hundred lovers."' UNION ALL
+SELECT 'TXT_KEY_CIV5_AUCKLAND_TEXT', 						'When the Maori settled upon an isthmus in what is now northern New Zealand, they found the surrounding landscape full of fertile land, lush jungle, and dormant volcanos. Protected natural harbors on either side of the isthmus offered plentiful fishing and a base for war canoes ("waka taua"). The settlers named it "Tamaki Makaurau" - roughly translating to "the maiden sought by a hundred lovers".' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_ARMAGH', 						'Armagh' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_ARMAGH_ADJ', 						'The Armagh' UNION ALL
 SELECT 'TXT_KEY_CIV5_ARMAGH_TEXT', 							'The Irish town of Armagh has long known religion. Thought to have been a worship site for ancient pagans, it gained prominence in the 5th Century when Saint Patrick, a Christian missionary, constructed and consecrated a stone church on the summit of a hill. Around that sprang a monastery, and then a town devoted to spreading Christianity throughout Ireland - a beachhead of theology.[NEWLINE][NEWLINE]This is not to imply that Armagh is a coastal city. Its location in Northern Ireland is a short 25 miles to the ocean. Nevertheless, its reputation as the seat of the Church of Ireland made it a tempting target for those looking to score riches. Vikings raided Armagh''s monastery twice in the 9th Century, each time making the overland trek to abscond with armloads of religious relics. John de Courcy, an invading Norman knight, thought to repeat the tradition when he plundered the town in the late 12th Century.' UNION ALL
@@ -232,10 +232,10 @@ SELECT 'TXT_KEY_CITYSTATE_MUSCAT_ADJ', 						'The Muscat' UNION ALL
 SELECT 'TXT_KEY_CIV5_MUSCAT_TEXT', 							'The trade flowing through Muscat has been its lifeblood for at least two millennia. Nestled against the foothillls of the Al Hajar mountains, Ptolemy called it the Hidden Port ("Cryptus Portus") as early as the 1st Century. Unfortunately the city was not hidden well enough - its prime location at the mouth of the Persian Gulf has long since made it a tempting target for conquest.[NEWLINE][NEWLINE]Over the centuries Muscat''s port has flown many banners: Sassanid, Arabian (under which it converted to Islam in the 7th Century), Abbasid, Seljuk, and Persian, to name a few. In the early 16th Century, a Portuguese admiral sought to open trade relations - with cannons, burning most of Muscat to the ground. It was rebuilt and remained under Portuguese rule until 1650, when the Omani forced them out and reclaimed the port city.[NEWLINE][NEWLINE]Muscat has long come to conflict with the interior tribes of Oman, most commonly over self-governance. Amidst one such period of turmoil in the 18th Century rose the Al Bu Sa''id dynasty, which has remained unbroken through modern times. Today, an extensively modernized Muscat serves as Oman''s capital and remains an important trading port.' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_GRANADA', 					'Granada' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_GRANADA_ADJ', 					'The Granada' UNION ALL
-SELECT 'TXT_KEY_CIV5_GRANADA_TEXT', 						'In the 8th Century the Umayyad Caliphate spread through the Iberian Peninsula, rapidly conquering Visigothic Hispania. Granada, a fortified settlement in what is now southern Spain, was swept up in the invasion. In time to come (the late 15th Century, to be exact) its surrender to the Catholic Monarchs (''Los Reyes Católicos'') would end the Reconquista of Andalusia—but for three quarters of a millennium, Granada belonged to the Moors.[NEWLINE][NEWLINE]Located at the base of the Sierra Nevada range, Granada had the misfortune of being nearly indefensible due to its location on a low-lying plain. Its Moorish rulers quickly realized this and transferred their seat of power to the more defensible foothills overlooking the town. Part of their plans involved the building of alcazars, one of which would in later years be renovated into the beautiful Alhambra.[NEWLINE][NEWLINE]Granada''s Moorish masters shifted through the centuries. The Almohad replaced the Almoravids, who had themselves succeeded the remnants of the Umayyad. The city''s fortunes changed again in the 13th Century with the Nasrid dynasty, whose alliance with the Catholic kingdom of Castile led to the Emirate of Granada. Direct access to trade centers in sub-Saharan Africa bought Granada freedom from the Reconquista—for a time.' UNION ALL
+SELECT 'TXT_KEY_CIV5_GRANADA_TEXT', 						'In the 8th Century the Umayyad Caliphate spread through the Iberian Peninsula, rapidly conquering Visigothic Hispania. Granada, a fortified settlement in what is now southern Spain, was swept up in the invasion. In time to come (the late 15th Century, to be exact) its surrender to the Catholic Monarchs ("Los Reyes Católicos") would end the Reconquista of Andalusia—but for three quarters of a millennium, Granada belonged to the Moors.[NEWLINE][NEWLINE]Located at the base of the Sierra Nevada range, Granada had the misfortune of being nearly indefensible due to its location on a low-lying plain. Its Moorish rulers quickly realized this and transferred their seat of power to the more defensible foothills overlooking the town. Part of their plans involved the building of alcazars, one of which would in later years be renovated into the beautiful Alhambra.[NEWLINE][NEWLINE]Granada''s Moorish masters shifted through the centuries. The Almohad replaced the Almoravids, who had themselves succeeded the remnants of the Umayyad. The city''s fortunes changed again in the 13th Century with the Nasrid dynasty, whose alliance with the Catholic kingdom of Castile led to the Emirate of Granada. Direct access to trade centers in sub-Saharan Africa bought Granada freedom from the Reconquista - for a time.' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_NAN_MADOL', 					'Leluh' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_NAN_MADOL_ADJ', 					'The Leluh' UNION ALL
-SELECT 'TXT_KEY_CIV5_NAN_MADOL_TEXT', 						'Leluh is a major prehistoric and historic archaeological site. The remains are those of a civilization that peaked around the 14th and 15th centuries, with elements still visible at the time of European contact in the early 19th century. The rulers of Leluh gradually conquered and thus unified the island of Kosrae. From the capital at Leluh, they ruled the island with a monarchy that archaeologists believe was similar to the kingdoms of Tonga or Hawaii.[NEWLINE][NEWLINE]Most archaeologists and historians do not believe that the ruins of the abandoned city of Nan Madol, lying adjacent to the eastern shore of the island of Pohnpei in Micronesia, are a remnant of the lost continent of Mu. The city was instead constructed in a lagoon and consisted of about 100 small artificial islets built on stone and coral fill platforms separated by tidal canals. Instead of being left over from the prehistoric sinking of a continent, best guess is that construction of these islets started c. 8th Century AD, and that the construction of the megalithic structures upon these took place in the 12th and 13th centuries. All so the elite castes of the Sandeleur dynasty didn''t have to mix with the commoners.[NEWLINE][NEWLINE]The original name for the lagoon-city was Soun Nan-leng ("Reef of Heaven"), and European explorers dubbed it the "Venice of the Pacific”. Most of the named islets were residential, homes for chieftains and priests … although some served special needs: food preparation, coconut oil production on Peinering, canoe construction on Dapahu. The mortuary "neighborhood" includes some 58 islets, covered with graves. Nan Madol was the political, religious and cultural seat of power for the Sandeleur, who had succeeded in uniting the clans (which totaled around 25 thousand people) on Pohnpei and Temwen islands. Shortly thereafter the ruler forced the tribal chieftains to move to the new city where he could keep an eye on them.[NEWLINE][NEWLINE]At its peak, the population of Nan Madol was perhaps about 1000. Since there are no sources of food or fresh water on the islets, everything had to be rowed over from Pohnpei. According to legend, the stones used for all the buildings and tombs were flown to the island by twin sorcerers Olisihpa and Olosohpa, who founded the Sandeleur. Whatever the facts of its creation, by the time the Europeans arrived in the early 1800s, Nan Madol had been abandoned, likely around 1450 when the Sandeleur collapsed.' UNION ALL
+SELECT 'TXT_KEY_CIV5_NAN_MADOL_TEXT', 						'Leluh is a major prehistoric and historic archaeological site. The remains are those of a civilization that peaked around the 14th and 15th centuries, with elements still visible at the time of European contact in the early 19th century. The rulers of Leluh gradually conquered and thus unified the island of Kosrae. From the capital at Leluh, they ruled the island with a monarchy that archaeologists believe was similar to the kingdoms of Tonga or Hawaii.[NEWLINE][NEWLINE]Most archaeologists and historians do not believe that the ruins of the abandoned city of Nan Madol, lying adjacent to the eastern shore of the island of Pohnpei in Micronesia, are a remnant of the lost continent of Mu. The city was instead constructed in a lagoon and consisted of about 100 small artificial islets built on stone and coral fill platforms separated by tidal canals. Instead of being left over from the prehistoric sinking of a continent, best guess is that construction of these islets started c. 8th Century AD, and that the construction of the megalithic structures upon these took place in the 12th and 13th centuries. All so the elite castes of the Sandeleur dynasty didn''t have to mix with the commoners.[NEWLINE][NEWLINE]The original name for the lagoon-city was Soun Nan-leng ("Reef of Heaven"), and European explorers dubbed it the "Venice of the Pacific". Most of the named islets were residential, homes for chieftains and priests... although some served special needs: food preparation, coconut oil production on Peinering, canoe construction on Dapahu. The mortuary "neighborhood" includes some 58 islets, covered with graves. Nan Madol was the political, religious and cultural seat of power for the Sandeleur, who had succeeded in uniting the clans (which totaled around 25 thousand people) on Pohnpei and Temwen islands. Shortly thereafter the ruler forced the tribal chieftains to move to the new city where he could keep an eye on them.[NEWLINE][NEWLINE]At its peak, the population of Nan Madol was perhaps about 1000. Since there are no sources of food or fresh water on the islets, everything had to be rowed over from Pohnpei. According to legend, the stones used for all the buildings and tombs were flown to the island by twin sorcerers Olisihpa and Olosohpa, who founded the Sandeleur. Whatever the facts of its creation, by the time the Europeans arrived in the early 1800s, Nan Madol had been abandoned, likely around 1450 when the Sandeleur collapsed.' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_GWYNEDD', 					'Aberffraw' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_GWYNEDD_ADJ', 					'Welsh' UNION ALL
 SELECT 'TXT_KEY_CIV5_GWYNEDD_TEXT', 						'Gwynedd was an independent Welsh kingdom from the end of the Roman period until the 13th century, when it was conquered by England.' UNION ALL
@@ -410,7 +410,7 @@ SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ANTANANARIVO', 		'[COLOR_MAGENTA]Libertalia:[E
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ANTWERP', 			'[COLOR_MAGENTA]Economic Prominence:[ENDCOLOR] Merchants gain +1 [ICON_GOLD] Gold. -10% [ICON_GOLD] Gold Purchase Cost.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ARMAGH', 				'[COLOR_MAGENTA]Patron of Saints:[ENDCOLOR] Player can purchase [COLOR_YIELD_FOOD]Irish Saints[ENDCOLOR] (as buildings) with [ICON_PEACE] Faith (requires a Majority Religion). Saints help with [ICON_HAPPINESS_1] Happiness management and provide some yields. You can choose only one Saint out of four possible in each City.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_AUCKLAND', 			'[COLOR_MAGENTA]City of Sails:[ENDCOLOR] Coastal Cities gain +3 [ICON_FOOD] Food. [COLOR_YIELD_GOLD]Land Military Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Peaceful Resistance[ENDCOLOR] promotion (Unit generates [ICON_FOOD] and [ICON_GOLDEN_AGE], if it [COLOR:255:230:85:255]is Garrisoned on Land[ENDCOLOR]).[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_AYTTHAYA', 			'[COLOR_MAGENTA]Mueang:[ENDCOLOR] Each War declaration to a Player grants 50 [ICON_GREAT_GENERAL] Great General Points. Each War declaration by a Player grants 10 [ICON_PRODUCTION] Production, scaling with Era, in all Cities. Building construction grants [ICON_CULTURE] Culture equal to 5% of its value.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_AYUTTHAYA', 			'[COLOR_MAGENTA]Mueang:[ENDCOLOR] Each War declaration to a Player grants 50 [ICON_GREAT_GENERAL] Great General Points. Each War declaration by a Player grants 10 [ICON_PRODUCTION] Production, scaling with Era, in all Cities. Building construction grants [ICON_CULTURE] Culture equal to 5% of its value.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BAGAN', 				'[COLOR_MAGENTA]Land of Thousand Pagodas:[ENDCOLOR] [COLOR_YIELD_FOOD]Temples[ENDCOLOR] gain +1 [ICON_HAPPINESS_1] Happiness. Building construction grants 10 [ICON_PEACE] Faith.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BEDULU', 				'[COLOR_MAGENTA]Isle of Gods:[ENDCOLOR] [COLOR_GREY]Cities gain +1 [ICON_PEACE] Faith for every 2 worked [COLOR_CITY_GREEN]Jungle[ENDCOLOR] tiles. Each [ICON_CITY_STATE] City-State Alliance grants +1 [ICON_PEACE] Faith and +1 [ICON_GOLDEN_AGE] Golden Age Points to all Cities. International [ICON_CARGO_SHIP] Sea Trade Routes generate +2 [ICON_PEACE] Faith.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BELGRADE', 			'[COLOR_MAGENTA]Balkan Powder Keg:[ENDCOLOR] Cities gain +10% [ICON_PRODUCTION] Production towards [COLOR_YIELD_GOLD]Siege Units[ENDCOLOR]. [COLOR_YIELD_GOLD]Siege Units[ENDCOLOR] gain [COLOR_WATER_TEXT]The White Fortress[ENDCOLOR] promotion (+25[ICON_PLUS]Total HP).[NEWLINE]' UNION ALL
@@ -639,17 +639,17 @@ SELECT 'TXT_KEY_UNIT_SISQENO_STRATEGY', 					'The Sisqeno is the Tiwanaku''s rep
 SELECT 'TXT_KEY_UNIT_SISQENO_HELP', 						'This unit can only be purchased with [ICON_PEACE] Faith (requires an access to [COLOR_CYAN]Tiwanaku[ENDCOLOR]''s ability).[NEWLINE][NEWLINE]Unique Missionary Unit. It is slightly cheaper than its predecessor.[NEWLINE][NEWLINE]Unit can build a [COLOR_POSITIVE_TEXT]Sunken Courtyard[ENDCOLOR] improvement, only when all of its Spread Religion charges are active.' UNION ALL
 SELECT 'TXT_KEY_CIV5_UNIT_SISQENO', 						'The Tiwanaku Empire connected spirituality, power and authority between the physical space of Lake Titikaka and the highland site of Tiwanaku. Temples were built at both sites and the shared imagery of the snake, condor and puma are significant in the religious and cosmological expressions that linked the two sites. [NEWLINE]Several scholars have pointed to the connection between the spirituality, agricultural patterns, monumental architecture and artistic depictions of the Tiwanaku to earlier and other regional cultures, such as Chiripa, Pucara and Cusco. Known as the Yaya-Mama Religious Tradition, many artifacts discovered in the Lake Titikaka region feature similar motifs and show a long integration within the geography and cultures of the region. Lake Titikaka was the spiritual birthplace and center of the cosmos in the Tiwanaku and Incan worldviews and remains a sacred site for the indigenous peoples who continue to live in the region. Lake Titikaka is named after the puma, a spiritually powerful animal. [NEWLINE]According to Incan mythology, which followed the Tiwanaku by hundreds of years, the god and great creator Viracocha emerged from Lake Titikaka to create the world after a great flood. He brought the Sun (Inti) out of the Island of the Sun near the southern shore of Lake Titikaka in present-day Bolivia, the Moon (Mama Killa) out of the Island of the Moon to the east, and created the cosmos with stars born from the lake. He then created the first humans at Tiwanaku out of stone. Viracocha was an omnipotent god who controlled the elements, the weather and agricultural fortune. Viracocha is depicted at Tiwanaku on the Gateway of the Sun and is featured in other carvings and imagery of the ancient empire. Like the god of the Incas, he is seen holding a snake in each hand whose head is that of a condor. [NEWLINE][NEWLINE]Beside the cult of Viracocha, other evidence on Tiwanaku religion points to a system of ancestor worship. The preservation, use, and reconfiguration of mummy bundles and skeletal remains, as with the later Inca, may suggest that this is the case. [NEWLINE]Later cultures within the area made use of large "above ground burial chambers for the social elite ... known as "chullpas". Similar, though smaller, structures were found within the site of Tiwanaku. It is possible that, like the later Inca, the inhabitants of Tiwanaku may have practiced similar rituals and rites in relation to the dead. [NEWLINE]The Akapana East Building has evidence of ancestor burial. The human remains at Akapana East seem to be less for show and more for proper burial. The skeletons show many cut marks that were most likely made by defleshing or excarnation after death. The remains were then bundled up and buried rather than left out in the open. [NEWLINE][NEWLINE]The Tiwanaku conducted human sacrifices on top of a building known as the Akapana. People were disemboweled and torn apart shortly after death and laid out for all to see. It is speculated that this ritual was a form of dedication to the gods. The type of human sacrifice included victims being hacked in pieces, dismembered, exposed to the elements and carnivores before being deposited in trash. Research showed that one man who was sacrificed was not a native to the Titicaca Basin, leaving room to think that sacrifices were most likely of people originally from other societies.' UNION ALL
 SELECT 'TXT_KEY_UNIT_NIHANG', 							'Nihang' UNION ALL
-SELECT 'TXT_KEY_UNIT_NIHANG_STRATEGY', 						'' UNION ALL
-SELECT 'TXT_KEY_UNIT_NIHANG_HELP', 							'' UNION ALL
-SELECT 'TXT_KEY_CIV5_UNIT_NIHANG', 							'' UNION ALL
+SELECT 'TXT_KEY_UNIT_NIHANG_STRATEGY', 						'TODO' UNION ALL
+SELECT 'TXT_KEY_UNIT_NIHANG_HELP', 							'TODO' UNION ALL
+SELECT 'TXT_KEY_CIV5_UNIT_NIHANG', 							'TODO' UNION ALL
 SELECT 'TXT_KEY_UNIT_SAKA', 							'Saka' UNION ALL
-SELECT 'TXT_KEY_UNIT_SAKA_STRATEGY', 						'' UNION ALL
-SELECT 'TXT_KEY_UNIT_SAKA_HELP', 							'' UNION ALL
-SELECT 'TXT_KEY_CIV5_UNIT_SAKA', 							'' UNION ALL
+SELECT 'TXT_KEY_UNIT_SAKA_STRATEGY', 						'TODO' UNION ALL
+SELECT 'TXT_KEY_UNIT_SAKA_HELP', 							'TODO' UNION ALL
+SELECT 'TXT_KEY_CIV5_UNIT_SAKA', 							'TODO' UNION ALL
 SELECT 'TXT_KEY_UNIT_TEAAT', 							'Te''aat' UNION ALL
-SELECT 'TXT_KEY_UNIT_TEAAT_STRATEGY', 						'' UNION ALL
-SELECT 'TXT_KEY_UNIT_TEAAT_HELP', 							'' UNION ALL
-SELECT 'TXT_KEY_CIV5_UNIT_TEAAT', 							'';
+SELECT 'TXT_KEY_UNIT_TEAAT_STRATEGY', 						'TODO' UNION ALL
+SELECT 'TXT_KEY_UNIT_TEAAT_HELP', 							'TODO' UNION ALL
+SELECT 'TXT_KEY_CIV5_UNIT_TEAAT', 							'TODO';
 
 INSERT INTO Language_en_US (Tag, Text)
 -- improvements
@@ -697,9 +697,9 @@ INSERT INTO Language_en_US (Tag, Text)
 	SELECT 'TXT_KEY_IMPROVEMENT_CHUM_HELP', 				'Only with the Alliance of the Nyar''ana Marq people allow a civilization enjoy such a beauty of a structure.' UNION ALL
 	-- tulou
 	SELECT 'TXT_KEY_BUILD_TULOU', 							'Construct a Tulou'  UNION ALL
-	SELECT 'TXT_KEY_BUILD_TULOU_HELP', 						'' UNION ALL
+	SELECT 'TXT_KEY_BUILD_TULOU_HELP', 						'TODO' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_TULOU', 					'Tulou' UNION ALL
-	SELECT 'TXT_KEY_CIV5_IMPROVEMENTS_TULOU', 				'' UNION ALL
+	SELECT 'TXT_KEY_CIV5_IMPROVEMENTS_TULOU', 				'TODO' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_TULOU_HELP', 				'Only with the Alliance of the Longyan people allow a civilization enjoy such a beauty of a structure.' UNION ALL
 	-- dogo canario
 	SELECT 'TXT_KEY_BUILD_DOGO_CANARIO', 					'Place a [ICON_RES_DOGO_CANARIO] Dogo Canario'  UNION ALL
@@ -710,7 +710,10 @@ INSERT INTO Language_en_US (Tag, Text)
 -- resources
 SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO',					'Dogo Canario' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO_TEXT',			'Dogo Canario are a breed of dog native to the canary islands, a rare dog with a broad head and muscular body. They played a role in the myth, funeral customs and even diet of the guanches. Some were even mummified along with their owners.' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO_MONOPOLY',		'Requires an access to [COLOR_CYAN]Adeje[ENDCOLOR]''s ability to be finished.[NEWLINE][NEWLINE][COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_PRODUCTION] Production and +5% [ICON_GOLD] Gold in all owned Cities.';
+SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO_MONOPOLY',		'Requires an access to [COLOR_CYAN]Adeje[ENDCOLOR]''s ability to be finished.[NEWLINE][NEWLINE][COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_PRODUCTION] Production and +5% [ICON_GOLD] Gold in all owned Cities.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_REINDEER',						'Reindeer' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_REINDEER_TEXT',				'' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_REINDEER_MONOPOLY',			'Requires an access to [COLOR_CYAN]Karasjohka[ENDCOLOR]''s ability to be placed.';
 
 INSERT INTO Language_en_US (Tag, Text)
 -- cs traits/buildings/policies
@@ -794,7 +797,7 @@ SELECT 		'MINOR_CIV_ANANGULA', 		'TXT_KEY_CITYSTATE_ANANGULA', 		'TXT_KEY_CIV5_A
 SELECT 		'MINOR_CIV_ANDORRA', 		'TXT_KEY_CITYSTATE_ANDORRA', 		'TXT_KEY_CIV5_ANDORRA_TEXT', 		'TXT_KEY_CITYSTATE_ANDORRA', 		'TXT_KEY_CITYSTATE_ANDORRA_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_BLUE', 			'ARTSTYLE_GRECO_ROMAN', 	'_MED', 			'MEDITERRANEAN', 	'MINOR_TRAIT_CULTURED',			'UNITCLASS_WORKER' UNION ALL
 SELECT 		'MINOR_CIV_ARMAGH', 		'TXT_KEY_CITYSTATE_ARMAGH', 		'TXT_KEY_CIV5_ARMAGH_TEXT', 		'TXT_KEY_CITYSTATE_ARMAGH', 		'TXT_KEY_CITYSTATE_ARMAGH_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_RELIGIOUS',		'UNITCLASS_WORKER' UNION ALL
 SELECT 		'MINOR_CIV_AUCKLAND', 		'TXT_KEY_CITYSTATE_AUCKLAND', 		'TXT_KEY_CIV5_AUCKLAND_TEXT', 		'TXT_KEY_CITYSTATE_AUCKLAND', 		'TXT_KEY_CITYSTATE_AUCKLAND_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_BLUE', 			'ARTSTYLE_POLYNESIAN', 		'_POLYNESIA', 		'ASIAN', 			'MINOR_TRAIT_MARITIME',			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_AYUTTHAYA', 		'TXT_KEY_CITYSTATE_AYUTTHAYA', 		'TXT_KEY_CIV5_AYUTTHAYA_TEXT', 		'TXT_KEY_CITYSTATE_AYUTTHAYA', 		'TXT_KEY_CITYSTATE_AYUTTHAYA_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 			'ARTSTYLE_MIDDLE_EAST', 		'_ASIA', 		'ASIAN', 			'MINOR_TRAIT_CULTURED',			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_AYUTTHAYA', 		'TXT_KEY_CITYSTATE_AYUTTHAYA', 		'TXT_KEY_CIV5_AYUTTHAYA_TEXT', 		'TXT_KEY_CITYSTATE_AYUTTHAYA', 		'TXT_KEY_CITYSTATE_AYUTTHAYA_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_CULTURED',			'UNITCLASS_WORKER' UNION ALL
 SELECT 		'MINOR_CIV_BAGAN', 			'TXT_KEY_CITYSTATE_BAGAN', 			'TXT_KEY_CIV5_BAGAN_TEXT', 			'TXT_KEY_CITYSTATE_BAGAN', 			'TXT_KEY_CITYSTATE_BAGAN_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		'UNITCLASS_WORKER' UNION ALL
 SELECT 		'MINOR_CIV_BEDULU', 		'TXT_KEY_CITYSTATE_BEDULU', 		'TXT_KEY_CIV5_BEDULU_TEXT', 		'TXT_KEY_CITYSTATE_BEDULU', 		'TXT_KEY_CITYSTATE_BEDULU_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		'UNITCLASS_WORKER' UNION ALL
 SELECT 		'MINOR_CIV_CANOSSA', 		'TXT_KEY_CITYSTATE_CANOSSA', 		'TXT_KEY_CIV5_CANOSSA_TEXT', 		'TXT_KEY_CITYSTATE_CANOSSA', 		'TXT_KEY_CITYSTATE_CANOSSA_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_GRECO_ROMAN', 	'_MED', 			'MEDITERRANEAN', 	'MINOR_TRAIT_RELIGIOUS',		'UNITCLASS_WORKER' UNION ALL
@@ -1271,7 +1274,7 @@ SELECT 		'MINOR_CIV_LONGYAN', 		'FLAVOR_EXPANSION',			9 UNION ALL
 SELECT 		'MINOR_CIV_LONGYAN', 		'FLAVOR_CITY_DEFENSE',		5 UNION ALL
 SELECT 		'MINOR_CIV_LONGYAN', 		'FLAVOR_GROWTH',			1 UNION ALL
 SELECT 		'MINOR_CIV_AYUTTHAYA', 		'FLAVOR_EXPANSION',			5 UNION ALL
-SELECT 		'MINOR_CIV_AYUTTHAYA', 		'FLAVOR_CULTURE',		5 UNION ALL
+SELECT 		'MINOR_CIV_AYUTTHAYA', 		'FLAVOR_CULTURE',			5 UNION ALL
 SELECT 		'MINOR_CIV_AYUTTHAYA', 		'FLAVOR_WONDER',			5;
 ---------------------------------------------------
 -- Definitions - Technologies
@@ -2323,7 +2326,7 @@ SELECT  	'PLAYER_EVENT_MINOR_CIV_ANTANANARIVO', 	'TXT_KEY_CSTRAIT_MINOR_CIV', 	'
 SELECT  	'PLAYER_EVENT_MINOR_CIV_ANTWERP', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_ANTWERP', 		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_ARMAGH', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_ARMAGH', 		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_AUCKLAND', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_AUCKLAND', 		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
-SELECT  	'PLAYER_EVENT_MINOR_CIV_AYUTTHAYA', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_AYUTTHAYA', 		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
+SELECT  	'PLAYER_EVENT_MINOR_CIV_AYUTTHAYA', 	'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_AYUTTHAYA', 		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_BAGAN', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_BAGAN', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_BEDULU', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_BEDULU', 		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_BELGRADE', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_BELGRADE', 		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
@@ -2445,7 +2448,7 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ANTANANARIVO', 	'TXT_KEY_CSTRAIT_MINOR_C
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ANTWERP', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_ANTWERP', 		3, 				1,			0,					NULL, 					NULL, 						'BUILDINGCLASS_ANTWERP' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ARMAGH', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_ARMAGH', 		3, 				1, 			0,					NULL, 					NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_AUCKLAND', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_AUCKLAND', 		3, 				1, 			0,					'POLICY_AUCKLAND', 		'PROMOTION_AUCKLAND', 		NULL UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_AYUTTHAYA', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_AYUTTHAYA', 		3, 				1, 			0,					NULL, 		NULL, 		NULL UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_AYUTTHAYA', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_AYUTTHAYA', 		3, 				1, 			0,					NULL, 					NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BAGAN', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_BAGAN', 			3, 				1, 			0,					'POLICY_BAGAN', 		NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BEDULU', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_BEDULU', 		3, 				1, 			0,					'POLICY_BEDULU', 		NULL, 						'BUILDINGCLASS_BEDULU' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BELGRADE', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_BELGRADE', 		3, 				1, 			0,					NULL, 					'PROMOTION_BELGRADE', 		'BUILDINGCLASS_BELGRADE' UNION ALL
@@ -3182,14 +3185,14 @@ VALUES		('IMPROVEMENT_MARSH',			'FLAVOR_GROWTH',		30),
 INSERT INTO Resources 
 			(Type,						TechReveal,			TechCityTrade, 		Description,						Civilopedia, 							Help,										ResourceClassType, 			IsMonopoly, 	ArtDefineTag, 						CivilizationType,		OnlyMinorCivs,  Happiness,  ResourceUsage,	IconString, 				PortraitIndex, 	IconAtlas)
 VALUES		('RESOURCE_DOGO_CANARIO',	null,				'TECH_TRAPPING',	'TXT_KEY_RESOURCE_DOGO_CANARIO',	'TXT_KEY_RESOURCE_DOGO_CANARIO_TEXT',	'TXT_KEY_RESOURCE_DOGO_CANARIO_MONOPOLY',	'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_DOGO_CANARIO',	null,					0,				2,			2,				'[ICON_RES_DOGO_CANARIO]',	0, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_REINDEER',	null,				'TECH_TRAPPING',	'TXT_KEY_RESOURCE_REINDEER',	'TXT_KEY_RESOURCE_REINDEER_TEXT',	NULL,	'RESOURCECLASS_BONUS',		0,				'ART_DEF_RESOURCE_REINDEER',	null,					0,				0,			1,				'[ICON_RES_REINDEER]',	2, 				'UCS_RESOURCE_ATLAS');
+			('RESOURCE_REINDEER',		null,				'TECH_TRAPPING',	'TXT_KEY_RESOURCE_REINDEER',		'TXT_KEY_RESOURCE_REINDEER_TEXT',		'TXT_KEY_RESOURCE_REINDEER_MONOPOLY',		'RESOURCECLASS_BONUS',		0,				'ART_DEF_RESOURCE_REINDEER',		null,					0,				0,			0,				'[ICON_RES_REINDEER]',		2, 				'UCS_RESOURCE_ATLAS');
 ---------------------------------------------------------
 INSERT INTO Resource_YieldChanges
-			(ResourceType, 				YieldType, 			Yield)
-VALUES		('RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',		2),
-					('RESOURCE_REINDEER',	'YIELD_FOOD',		1),
-					('RESOURCE_REINDEER',	'YIELD_PRODUCTION',		2),
-					('RESOURCE_REINDEER',	'YIELD_CULTURE',		1);
+			(ResourceType, 				YieldType, 				Yield)
+VALUES		('RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			2),
+			('RESOURCE_REINDEER',		'YIELD_FOOD',			1),
+			('RESOURCE_REINDEER',		'YIELD_PRODUCTION',		2),
+			('RESOURCE_REINDEER',		'YIELD_CULTURE',		1);
 
 INSERT INTO Resource_CityYieldModFromMonopoly
 			(ResourceType, 				YieldType, 				Yield)
@@ -3199,7 +3202,7 @@ VALUES		('RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			5),
 INSERT INTO Improvement_ResourceTypes
 			(ImprovementType,		ResourceType, 				ResourceMakesValid, ResourceTrade)
 VALUES		('IMPROVEMENT_CAMP',	'RESOURCE_DOGO_CANARIO',	1,					1),
-		('IMPROVEMENT_CAMP',	'RESOURCE_REINDEER',	1,					1);
+			('IMPROVEMENT_CAMP',	'RESOURCE_REINDEER',		1,					1);
 
 INSERT INTO Improvement_ResourceType_Yields
 			(ImprovementType,		ResourceType, 				YieldType, 				Yield)
@@ -3208,7 +3211,7 @@ VALUES		('IMPROVEMENT_CAMP',	'RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			1),
 
 INSERT INTO Improvement_ResourceType_Yields
 			(ImprovementType,		ResourceType, 				YieldType, 				Yield)
-SELECT		ImprovementType,	'RESOURCE_REINDEER',	ResourceType,			YieldType)
+SELECT		ImprovementType,		'RESOURCE_REINDEER',		YieldType,				Yield
 FROM Improvement_ResourceType_Yields WHERE ResourceType = 'RESOURCE_DEER';
 ---------------------------------------------------------
 INSERT INTO Resource_Flavors 	
@@ -3693,4 +3696,31 @@ UPDATE Units SET CombatClass = 'UNITCOMBAT_SPECIAL_PEOPLE'	WHERE Special ='SPECI
 UPDATE Units SET CombatClass = 'UNITCOMBAT_MISSILE'			WHERE Special ='SPECIALUNIT_MISSILE';
 UPDATE Units SET CombatClass = 'UNITCOMBAT_MISSILE'			WHERE Type ='UNIT_ATOMIC_BOMB';
 UPDATE Units SET CombatClass = 'UNITCOMBAT_SPACESHIP_PART' WHERE DefaultUnitAI ='UNITAI_SPACESHIP_PART';
+---------------------------------------------------
+-- The Trick!
+---------------------------------------------------
+CREATE TABLE IF NOT EXISTS MinorCivilizations_Copy (
+	'ID' integer primary key autoincrement, 
+	'Type' text  not null unique , 
+	'Description' text , 
+	'Civilopedia' text , 
+	'ShortDescription' text , 
+	'Adjective' text , 
+	'ArtDefineTag' text , 
+	'DefaultPlayerColor' text default NULL , 
+	'ArtStyleType' text default NULL , 
+	'ArtStyleSuffix' text default NULL , 
+	'ArtStylePrefix' text default NULL , 
+	'MinorCivTrait' text  not null , 
+	'BullyUnitClass' TEXT DEFAULT NULL, 
+	foreign key (Description) references Language_en_US(Tag), 
+	foreign key (Civilopedia) references Language_en_US(Tag), 
+	foreign key (ShortDescription) references Language_en_US(Tag), 
+	foreign key (Adjective) references Language_en_US(Tag), 
+	foreign key (MinorCivTrait) references MinorCivTraits(Type));
+
+INSERT INTO MinorCivilizations_Copy
+			(Type,	Description, ShortDescription, Adjective, Civilopedia, DefaultPlayerColor, ArtDefineTag, ArtStyleType, ArtStyleSuffix, ArtStylePrefix, MinorCivTrait,	BullyUnitClass)
+SELECT		Type,	Description, ShortDescription, Adjective, Civilopedia, DefaultPlayerColor, ArtDefineTag, ArtStyleType, ArtStyleSuffix, ArtStylePrefix, MinorCivTrait,	BullyUnitClass
+FROM MinorCivilizations 
 ---------------------------------------------------

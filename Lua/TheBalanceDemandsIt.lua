@@ -21,24 +21,21 @@ local tLostCities = {}
 -- look for major city --> city-states conflicts
 local tCityConflicts = {}
 function Conflicts()
-	print("CONFLICTS")
-	for emajorplayer = 0, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
+	for emajorplayer = 0, GameDefines.MAX_MAJOR_CIVS - 1, 1 do
 		local pMajorPlayer = Players[emajorplayer]
 		
-		if pMajorPlayer:IsMinorCiv() then return end
-		print("CONFLICTS", "MAJOR", pMajorPlayer:GetName())
-		for eminorplayer = 0, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
+		if not pMajorPlayer:IsEverAlive() then return end
+
+		for eminorplayer = GameDefines.MAX_MAJOR_CIVS, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
 			local pMinorPlayer = Players[eminorplayer]
 				
 			if pMinorPlayer:IsMinorCiv() then
-				print("CONFLICTS", "_MINOR", pMinorPlayer:GetName())
 				local sMinorCapitalName = L(GameInfo.MinorCivilizations[pMinorPlayer:GetMinorCivType()].Description)
 				
-				for citylist in DB.Query("SELECT Civilization_CityList.CityName FROM Civilization_CityList WHERE CivilizationType = ?", GameInfo.Civilizations[pMajorPlayer:GetCivilizationType()].Type) do
-					print("CONFLICTS", "_MINOR", "LIST...", sMinorCapitalName, L(citylist.CityName))
+				for citylist in DB.Query("SELECT Civilization_CityNames.CityName FROM Civilization_CityNames WHERE CivilizationType = ?", GameInfo.Civilizations[pMajorPlayer:GetCivilizationType()].Type) do
 					if L(citylist.CityName) == sMinorCapitalName then
-						print("CONFLICTS", "_MINOR", "LIST...", "CONFLICT_SET!!!")
-						table.insert(tCityConflicts[eminorplayer] = true)
+						print("CONFLICT_SET!!!", sMinorCapitalName)
+						tCityConflicts[eminorplayer] = true
 						break
 					end
 				end
@@ -48,9 +45,27 @@ function Conflicts()
 end
 Conflicts()
 
-for i, conflict in ipairs(tCityConflicts) do
-	print(i, conflict)
+function SubstituteConflictingCityStates(ePlayer, iX, iY)
+	local pPlayer = Players[ePlayer]
+	
+	if not pPlayer:IsMinorCiv() then return end
+	
+	local pPlot = Map.GetPlot(iX, iY)
+	local pCity = pPlot:GetWorkingCity()
+	
+	if tCityConflicts[ePlayer] then
+		print("CS_FOUNDED", "CONFLICT_CODE_APPLIED!!!", pCity:GetName())
+		Game.DoSpawnFreeCity(pCity)
+	
+		local pNewCity = pPlot:GetWorkingCity()
+		local pNewOwner = Players[pPlot:GetOwner()]
+		print("CS_FOUNDED", "OLD_NAME...", pNewCity:GetName())
+		print("CS_FOUNDED", "OWNERSHIP_FROM...", ePlayer, "TO...", pPlot:GetOwner())
+		pNewCity:SetName(L(GameInfo.MinorCivilizations[pNewOwner:GetMinorCivType()].Description))
+		print("CS_FOUNDED", "CHANGED_NAME_TO...", pNewCity:GetName())
+	end
 end
+GameEvents.PlayerCityFounded.Add(SubstituteConflictingCityStates)
 
 local tMinorTraits = {
 	GameInfoTypes.MINOR_TRAIT_MARITIME,
@@ -303,7 +318,7 @@ local tUnitsMilitary = {
 }
 
 local tResourcesBonus = {
-	GameInfoTypes.RESOURCE_DEER
+	GameInfoTypes.RESOURCE_DEER,
 	GameInfoTypes.RESOURCE_REINDEER
 }
 
@@ -2399,14 +2414,13 @@ end
 
 function SiberianWarlordsNewCity(ePlayer, iX, iY)
 	local pPlayer = Players[ePlayer]
-	print("PELYM", "NEW_CITY", ePlayer, iX, iY)
+	
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[51]) ~= 0 then
 		local pPlot = Map.GetPlot(iX, iY)
 				
 		if pPlot then
 			local eTerrain = pPlot:GetTerrainType()
-			print("PELYM", "NEW_CITY", "TERRAIN", tTerrainTypes[1], tTerrainTypes[2], eTerrain)
-	
+			
 			if eTerrain == tTerrainTypes[1] or eTerrain == tTerrainTypes[2] then
 				local pCity = pPlot:GetWorkingCity()
 			
@@ -3474,6 +3488,8 @@ function FeatureCutByQuebec(iX, iY, eOwner, eOldFeature, eNewFeature)
 			pPlayer = Players[Map.GetPlot(iX, iY):GetOwner()]
 		end
 
+		if not pPlayer then return end
+		
 		if pPlayer:IsMinorCiv() then return end
 
 		if pPlayer:GetEventChoiceCooldown(tEventChoice[26]) ~= 0 then
@@ -4257,9 +4273,9 @@ end
 -- KARASJOHKA (SPAWN REINDEER)
 function BuiltCampOnDeerWithTundraAround(ePlayer, iX, iY, eImprovement)
 	-- event triggers twice, so this should prevent it
-	bBlockDoubleTriggering = not bBlockDoubleTriggering
-	
-	if not bBlockDoubleTriggering then return end
+	--bBlockDoubleTriggering = not bBlockDoubleTriggering
+	print("KARASJOHKA", /ePlayer, iX, iY, eImprovement)
+	--if not bBlockDoubleTriggering then return end
 	if eImprovement ~= tImprovementsRegular[5] then return end
 	print("KARASJOHKA", "CAMP")
 	local pPlayer = Players[ePlayer]
@@ -4277,16 +4293,16 @@ function BuiltCampOnDeerWithTundraAround(ePlayer, iX, iY, eImprovement)
 			print("KARASJOHKA", "PLOT_CHECK", i)			
 			if pAdjacentPlot then
 				local eTerrain = pAdjacentPlot:GetTerrainType()
-				local eFeature = pAdjacentPlot:GetFeatureType()
+				--local eFeature = pAdjacentPlot:GetFeatureType()
 				
-				if eTerrain == tTerrainTypes[2] and eFeature == tFeatureTypes[1] then
+				if eTerrain == tTerrainTypes[2] --[[and eFeature == tFeatureTypes[1]--]] then
 					print("KARASJOHKA", "PLOT_CHECK_OK")
 					table.insert(tPossibleReindeerSpots, pAdjacentPlot)
 				end
 			end
 		end
 
-		if #tPossibleReindeerSpots = 0 then return end
+		if #tPossibleReindeerSpots == 0 then return end
 		print("KARASJOHKA", "SPOTS_OK")
 		local iChance = Game.Rand(100, "Chance for spawning a Reindeer")
 		print("KARASJOHKA", "CHANCE", iChance)
@@ -4646,6 +4662,12 @@ function SettingUpSpecificEvents()
 				GameEvents.EventChoiceActivated.Add(LuxuriesOnEventOn)
 				GameEvents.EventChoiceEnded.Add(LuxuriesOnEventOff)
 				GameEvents.CityCaptureComplete.Add(LuxuriesFromCaptured)
+				
+				
+			-- spawning reindeers
+			elseif sMinorCivType == "MINOR_CIV_KARASJOHKA" then
+				tLostCities["eLostKarasjohka"] = eCS	
+				GameEvents.BuildFinished.Add(BuiltCampOnDeerWithTundraAround)
 			end
 		end
 	end
