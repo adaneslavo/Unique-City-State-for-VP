@@ -224,6 +224,18 @@
 		<Row Tag="TXT_KEY_UCS_BONUS_HONIARA_TITLE">
 			<Text>Let's dance!</Text>
 		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_KARASJOHKA_MAIN">
+			<Text>Experienced Siida people from [COLOR_CYAN]{1_Karasjohka}[ENDCOLOR] know how to find and lure [COLOR_POSITIVE_TEXT]Reindeers[ENDCOLOR] to your territory. They only need an inhabitted tundra, some forest nearby and animals come to them without special effort!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_KARASJOHKA_MAIN_TITLE">
+			<Text>Reindeers seen close to your territories!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_KARASJOHKA_AUX">
+			<Text>You are so lucky! [COLOR_CYAN]{1_Karasjohka}[ENDCOLOR] managed to lure more than one herd of [COLOR_POSITIVE_TEXT]Reindeers[ENDCOLOR]!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_KARASJOHKA_AUX_TITLE">
+			<Text>Another herd of Reindeers nearby!</Text>
+		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_AYUTTHAYA_DECLARED">
 			<Text>Councellors from [COLOR_CYAN]{1_Ayutthaya}[ENDCOLOR] advised you to declare war. To achive your goal you must adjust all production sectors to fullfil the demands of this war giving you additional {2_Production} [ICON_PRODUCTION] Production in each City.</Text>
 		</Row>
