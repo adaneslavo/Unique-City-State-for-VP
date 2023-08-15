@@ -224,5 +224,17 @@
 		<Row Tag="TXT_KEY_UCS_BONUS_HONIARA_TITLE">
 			<Text>Let's dance!</Text>
 		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_AYUTTHAYA_DECLARED">
+			<Text>Councellors from [COLOR_CYAN]{1_Ayutthaya}[ENDCOLOR] advised you to declare war. To achive your goal you must adjust all production sectors to fullfil the demands of this war giving you additional {2_Production} [ICON_PRODUCTION] Production in each City.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_AYUTTHAYA_DECLARED_TITLE">
+			<Text>Set the production to war tempo!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_AYUTTHAYA_SUFFERED">
+			<Text>[COLOR_CYAN]{1_Ayutthaya}[ENDCOLOR] knows how you feel when you are only a victim of someone else's plans of expansion. They gave you enough instruction to prepare a counterplan. Thanks to that you gain enough experience to train a new leader that will accompany your troop to the battlefield. Your court gains {2_GreatGeneralPoints} [ICON_GREAT_GENERAL] Great General Points.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_AYUTTHAYA_SUFFERED_TITLE">
+			<Text>Full mobilization!</Text>
+		</Row>
 	</Language_en_US>
 </GameData>
