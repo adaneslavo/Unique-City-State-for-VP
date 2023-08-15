@@ -135,7 +135,9 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_PELYM, -- 51
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_KATENDE,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_LONGYAN,
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_KARASJOHKA
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_KARASJOHKA,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_AYUTTHAYA,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SARNATH -- 56
 }
 
 local tBuildingsActiveAbilities = {
@@ -4274,7 +4276,7 @@ end
 function BuiltCampOnDeerWithTundraAround(ePlayer, iX, iY, eImprovement)
 	-- event triggers twice, so this should prevent it
 	--bBlockDoubleTriggering = not bBlockDoubleTriggering
-	print("KARASJOHKA", /ePlayer, iX, iY, eImprovement)
+	print("KARASJOHKA", ePlayer, iX, iY, eImprovement)
 	--if not bBlockDoubleTriggering then return end
 	if eImprovement ~= tImprovementsRegular[5] then return end
 	print("KARASJOHKA", "CAMP")
@@ -4311,6 +4313,49 @@ function BuiltCampOnDeerWithTundraAround(ePlayer, iX, iY, eImprovement)
 		local pChosenPlot = table.remove(tPossibleReindeerSpots, Game.Rand(#tPossibleReindeerSpots) + 1)
 
 		pChosenPlot:SetResourceType(tResourcesBonus[2], 1)
+	end
+end
+
+
+
+-- AYUTTHAYA (WAR EFFECTS; ON CONSTRUCTION BONUS)
+function WarDeclaredToAyutthaya(eOriginatingPlayer, eTeam, bAggressor)
+	print("AYUTTHAYA_WAR", eOriginatingPlayer, eTeam, bAggressor)
+	local pPlayer = Players[eOriginatingPlayer]
+
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[55]) ~= 0 then
+		local iBaseProduction = 10
+		local iBaseGeneralPoints = 50
+		local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
+		local iTotalProduction = iBaseProduction * iEraModifier
+		local pCapital = pPlayer:GetCapitalCity()
+		local pAyutthaya = Players[tLostCities["eLostAyutthaya"]]
+		
+		if bAggressor then
+			pPlayer:DoInstantYield(GameInfoTypes.YIELD_PRODUCTION, iTotalProduction, true)
+			
+			if pPlayer:IsHuman() then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_AYUTTHAYA_DECLARED", pAyutthaya:GetName(), iTotalProduction), L("TXT_KEY_UCS_BONUS_AYUTTHAYA_DECLARED"), pCapital:GetX(), pCapital:GetY())
+			end	
+		else
+			pPlayer:DoInstantYield(GameInfoTypes.YIELD_GREAT_GENERAL_POINTS, iBaseGeneralPoints, true, pCapital:GetID())
+			
+			if pPlayer:IsHuman() then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_AYUTTHAYA_SUFFERED", pAyutthaya:GetName(), iBaseGeneralPoints), L("TXT_KEY_UCS_BONUS_AYUTTHAYA_SUFFERED"), pCapital:GetX(), pCapital:GetY())
+			end	
+		end
+	end
+end
+
+function AyutthayaDevlops(ePlayer, eCity, eBuilding, bGold, bFaith)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[55]) ~= 0 then
+		local iBuildingCost = GameInfo.Buildings[eBuilding].Cost
+		local iBaseCulture = (iBuildingCost * 5) / 100
+		local pCapital = pPlayer:GetCapitalCity()
+		
+		pPlayer:DoInstantYield(GameInfoTypes.YIELD_CULTURE, iBaseCulture, pCapital:GetID())
 	end
 end
 -----------------------------------------------------------------------------------------------------------
@@ -4668,6 +4713,13 @@ function SettingUpSpecificEvents()
 			elseif sMinorCivType == "MINOR_CIV_KARASJOHKA" then
 				tLostCities["eLostKarasjohka"] = eCS	
 				GameEvents.BuildFinished.Add(BuiltCampOnDeerWithTundraAround)
+				
+				
+			-- war declared
+			elseif sMinorCivType == "MINOR_CIV_AYUTTHAYA" then
+				tLostCities["eLostAyutthaya"] = eCS	
+				GameEvents.DeclareWar.Add(WarDeclaredToAyutthaya)
+				GameEvents.CityConstructed.Add(AyutthayaDevlops)				
 			end
 		end
 	end
