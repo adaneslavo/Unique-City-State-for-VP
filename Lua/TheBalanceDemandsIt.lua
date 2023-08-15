@@ -4312,8 +4312,26 @@ function BuiltCampOnDeerWithTundraAround(ePlayer, iX, iY, eImprovement)
 		if iChance >= 80 then return end
 		print("KARASJOHKA", "CHANCE_OK", "SPAWN!")
 		local pChosenPlot = table.remove(tPossibleReindeerSpots, Game.Rand(#tPossibleReindeerSpots) + 1)
+		
+		pChosenPlot:SetResourceType(tResourcesBonus[2], 1)
+
+		if pPlayer:IsHuman() then
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_KARASJOHKA_MAIN", pKarasjohka:GetName()), L("TXT_KEY_UCS_BONUS_KARASJOHKA_MAIN_TITLE"), pChosenPlot:GetX(), pChosenPlot:GetY())
+		end
+
+		if #tPossibleReindeerSpots == 0 then return end
+
+		iChance = Game.Rand(100, "Chance for spawning additional Reindeer")
+		print("KARASJOHKA", "CHANCE_2", iChance)
+		if iChance >= 10 then return end
+		print("KARASJOHKA", "CHANCE_2_OK", "SPAWN!")
+		local pChosenPlot = table.remove(tPossibleReindeerSpots, Game.Rand(#tPossibleReindeerSpots) + 1)
 
 		pChosenPlot:SetResourceType(tResourcesBonus[2], 1)
+
+		if pPlayer:IsHuman() then
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_KARASJOHKA_AUX", pKarasjohka:GetName()), L("TXT_KEY_UCS_BONUS_KARASJOHKA_AUX_TITLE"), pChosenPlot:GetX(), pChosenPlot:GetY())
+		end
 	end
 end
 
@@ -4336,13 +4354,13 @@ function WarDeclaredToAyutthaya(eOriginatingPlayer, eTeam, bAggressor)
 			pPlayer:DoInstantYield(GameInfoTypes.YIELD_PRODUCTION, iTotalProduction, true)
 			
 			if pPlayer:IsHuman() then
-				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_AYUTTHAYA_DECLARED", pAyutthaya:GetName(), iTotalProduction), L("TXT_KEY_UCS_BONUS_AYUTTHAYA_DECLARED"), pCapital:GetX(), pCapital:GetY())
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_AYUTTHAYA_DECLARED", pAyutthaya:GetName(), iTotalProduction), L("TXT_KEY_UCS_BONUS_AYUTTHAYA_DECLARED_TITLE"), pCapital:GetX(), pCapital:GetY())
 			end	
 		else
 			pPlayer:DoInstantYield(GameInfoTypes.YIELD_GREAT_GENERAL_POINTS, iBaseGeneralPoints, true, pCapital:GetID())
 			
 			if pPlayer:IsHuman() then
-				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_AYUTTHAYA_SUFFERED", pAyutthaya:GetName(), iBaseGeneralPoints), L("TXT_KEY_UCS_BONUS_AYUTTHAYA_SUFFERED"), pCapital:GetX(), pCapital:GetY())
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_AYUTTHAYA_SUFFERED", pAyutthaya:GetName(), iBaseGeneralPoints), L("TXT_KEY_UCS_BONUS_AYUTTHAYA_SUFFERED_TITLE"), pCapital:GetX(), pCapital:GetY())
 			end	
 		end
 	end
