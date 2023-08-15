@@ -3722,5 +3722,10 @@ CREATE TABLE IF NOT EXISTS MinorCivilizations_Copy (
 INSERT INTO MinorCivilizations_Copy
 			(Type,	Description, ShortDescription, Adjective, Civilopedia, DefaultPlayerColor, ArtDefineTag, ArtStyleType, ArtStyleSuffix, ArtStylePrefix, MinorCivTrait,	BullyUnitClass)
 SELECT		Type,	Description, ShortDescription, Adjective, Civilopedia, DefaultPlayerColor, ArtDefineTag, ArtStyleType, ArtStyleSuffix, ArtStylePrefix, MinorCivTrait,	BullyUnitClass
-FROM MinorCivilizations 
+FROM MinorCivilizations
+ORDER BY (abs(random()) % (SELECT max(_ROWID_) FROM MinorCivilizations));
+
+DELETE FROM MinorCivilizations;
+INSERT INTO MinorCivilizations SELECT * FROM MinorCivilizations_Copy;
+DROP TABLE IF EXISTS MinorCivilizations_Copy;
 ---------------------------------------------------
