@@ -1,8 +1,14 @@
+New version contains tons of new content, but the most important imo is automated City-state conflict checker. This module looks for a problematic City-state (f.e. Jerusalem City-state and Israel civ; Canada civ and Vancouver and Quebec City City-states) and substitutes them with another city-state. This means that any compatibility changes are no longer needed in civilization releases (attention @pineappledan, @gwennog).
+
 
 Changelog:
 *(F) - Female leader
 
 - added:
+	- city-state blocking mechanism (lua based, because dll is hardcoded now):
+		- when the game loads it checks all Major player city lists and all city-states, compares them and looks for any conflicts;
+		- conflicts are stored in special table;
+		- when a city state found a city then the whole city-state (Minor player) is changed to another one at random;
 	- 16 new City-States (5 female leaders):
 		- 2 Maritime: Honiara (Oceania), Juyubit (F; North America);
 		- 2 Mercantile: Ouidah (West Africa), Sana'a (F; West Asia);
@@ -14,7 +20,7 @@ Changelog:
 		- Futuh Al-Habash (exclusive for Dakkar);
 		- Scythian Arrow Barrage (exclusive for Pokrovka);
 		- Siberian Education (exclusive for Pelym);
-		- Siida Culture (exclusive for Karasjohka);
+		- Siida Training (exclusive for Karasjohka);
 		- 15 new Promotions (whole unique branch) for Nihang Unit (exclusive for Lahore);
 	- 3 new Units:
 		- Nihang - multi Era unit with its own Promotion Branch (exclusive for Lahore);
@@ -23,7 +29,7 @@ Changelog:
 	- 1 new Resource:
 		- Reindeer (exclusive for Karasjohka);
 - changed:
-	- reworked civilopedia entries for: Armagh, Muscat, Nan Madol, 
+	- reworked civilopedia entries for: Armagh, Muscat, Nan Madol.
 - balanced:
 	- Gurkha changes:
 		- now can also be trained with Production;
