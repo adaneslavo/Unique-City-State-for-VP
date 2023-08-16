@@ -1919,21 +1919,18 @@ end
 
 function TulouPillagedOrDestroyed(iX, iY, ePlotOwner, eOldImprovement, eNewImprovement, bPillaged)
 	if eOldImprovement ~= tImprovementsUCS[6] then return end
-		local pPlayer = Players[ePlotOwner]
-		local pCapital = pPlayer:GetCapitalCity()
-		local iNumTulous = pPlayer:GetImprovementCount()
-		
-		pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[27], 0)
+	
+	CountTulous(ePlotOwner)
 end
 
 function TulousOnEventOn(ePlayer, eEventChoiceType)
-	if eEventChoiceType == tEventChoice[39] then
+	if eEventChoiceType == tEventChoice[53] then
 		CountTulous(ePlayer)
 	end
 end
 
 function TulousOnEventOff(ePlayer, eEventChoiceType)
-	if eEventChoiceType == tEventChoice[39] then
+	if eEventChoiceType == tEventChoice[53] then
 		local pPlayer = Players[ePlayer]
 		local pCapital = pPlayer:GetCapitalCity()
 		
@@ -1949,7 +1946,7 @@ end
 function CountTulous(ePlayer)
 	local pPlayer = Players[ePlayer]
 
-	if pPlayer:GetEventChoiceCooldown(tEventChoice[39]) ~= 0 then	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[53]) ~= 0 then	
 		local pCapital = pPlayer:GetCapitalCity()
 		local iNumTulous = pPlayer:GetImprovementCount()
 		print("LONGYAN", "TULOU_NUM", iNumTulous)
