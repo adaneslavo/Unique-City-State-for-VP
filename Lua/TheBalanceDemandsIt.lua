@@ -1913,7 +1913,13 @@ GameEvents.PlayerCanBuild.Add(CanWeBuildTulou)
 
 function BuiltTulou(ePlayer, iX, iY, eImprovement)
 	if eImprovement == tImprovementsUCS[6] then
+		-- Supply Cap
 		CountTulous(ePlayer)
+
+		-- Population
+		local pCity = Map.GetPlot(iX, iY):GetWorkingCity()
+
+		pCity:ChangePopulation(1)
 	end
 end
 
