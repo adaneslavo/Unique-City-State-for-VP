@@ -605,7 +605,7 @@ GameEvents.UnitPrekill.Add(DiplomaticExpansion)
 
 -- Setting the specicifc removing conditions for UCSTI
 function CanWeSubstituteImprovement(ePlayer, eUnit, iX, iY, eBuild)
-	if eBuild == GameInfoTypes.BUILD_ROAD or eBuild == GameInfoTypes.BUILD_RAILROAD then return true end
+	if eBuild == GameInfoTypes.BUILD_ROAD or eBuild == GameInfoTypes.BUILD_RAILROAD or eBuild == GameInfoTypes.BUILD_REPAIR then return true end
 	
 	local pPlot = Map.GetPlot(iX, iY)
 	local eCurrentImprovementType = pPlot:GetImprovementType()
@@ -658,6 +658,13 @@ function MaritimeCityStatesBonuses(ePlayer, iX, iY)
 			
 			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
 				pPlot:SetImprovementType(tImprovementsGreatPeople[4])
+
+				local ePlotOwner = pPlot:GetOwner()
+
+				if ePlotOwner ~= ePlayer then
+					pPlot:SetOwner(ePlayer, pMinorCapital:GetID())
+				end
+				
 				break
 			end
 		end
@@ -852,6 +859,13 @@ function MercantileCityStatesBonuses(ePlayer, iX, iY)
 			
 			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
 				pPlot:SetImprovementType(tImprovementsGreatPeople[5])
+
+				local ePlotOwner = pPlot:GetOwner()
+
+				if ePlotOwner ~= ePlayer then
+					pPlot:SetOwner(ePlayer, pMinorCapital:GetID())
+				end
+				
 				break
 			end
 		end
@@ -1050,6 +1064,13 @@ function MilitaristicCityStatesBonuses(ePlayer, iX, iY)
 			
 			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
 				pPlot:SetImprovementType(tImprovementsGreatPeople[3])
+
+				local ePlotOwner = pPlot:GetOwner()
+
+				if ePlotOwner ~= ePlayer then
+					pPlot:SetOwner(ePlayer, pMinorCapital:GetID())
+				end
+				
 				break
 			end
 		end
@@ -1236,6 +1257,13 @@ function CulturedCityStatesBonuses(ePlayer, iX, iY)
 			
 			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
 				pPlot:SetImprovementType(tImprovementsGreatPeople[6])
+
+				local ePlotOwner = pPlot:GetOwner()
+
+				if ePlotOwner ~= ePlayer then
+					pPlot:SetOwner(ePlayer, pMinorCapital:GetID())
+				end
+				
 				break
 			end
 		end
@@ -1360,6 +1388,13 @@ function ReligiousCityStatesBonuses(ePlayer, iX, iY)
 			
 			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
 				pPlot:SetImprovementType(tImprovementsGreatPeople[2])
+
+				local ePlotOwner = pPlot:GetOwner()
+
+				if ePlotOwner ~= ePlayer then
+					pPlot:SetOwner(ePlayer, pMinorCapital:GetID())
+				end
+				
 				break
 			end
 		end
