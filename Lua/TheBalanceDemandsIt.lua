@@ -117,7 +117,8 @@ local tBuildingsActiveAbilities = {
 	GameInfoTypes.BUILDING_PELYM,
 	GameInfoTypes.BUILDING_KATENDE,
 	GameInfoTypes.BUILDING_KATENDE_2,
-	GameInfoTypes.BUILDING_SARNATH_2 -- 26
+	GameInfoTypes.BUILDING_SARNATH_2, -- 26
+	GameInfoTypes.BUILDING_LONGYAN
 }
 
 local tBuildingClasses = {
@@ -181,7 +182,8 @@ local tImprovementsUCS = {
 	GameInfoTypes.IMPROVEMENT_SUNK_COURT,
 	GameInfoTypes.IMPROVEMENT_MONASTERY,
 	GameInfoTypes.IMPROVEMENT_TOTEM_POLE,
-	GameInfoTypes.IMPROVEMENT_CHUM
+	GameInfoTypes.IMPROVEMENT_CHUM,
+	GameInfoTypes.IMPROVEMENT_TULOU
 }
 
 local tImprovementsGreatPeople = {
@@ -1636,6 +1638,48 @@ GameEvents.PlayerCanBuild.Add(CanWeBuildMound)
 
 
 
+-- SGAANG GWAAY (IMPROVEMENT TOTEM POLE)
+function CanWeBuildTotemPole(ePlayer, eUnit, iX, iY, eBuild)
+	if eBuild ~= GameInfoTypes.BUILD_TOTEM_POLE then return true end
+	
+	local pPlayer = Players[ePlayer]
+	
+	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[40]) > 0) then return false end
+	
+	return true
+end
+GameEvents.PlayerCanBuild.Add(CanWeBuildTotemPole)
+
+
+
+-- NYARYANA MARQ (IMPROVEMENT CHUM)
+function CanWeBuildChum(ePlayer, eUnit, iX, iY, eBuild)
+	if eBuild ~= GameInfoTypes.BUILD_CHUM then return true end
+	
+	local pPlayer = Players[ePlayer]
+	
+	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[41]) > 0) then return false end
+	
+	return true
+end
+GameEvents.PlayerCanBuild.Add(CanWeBuildChum)
+
+
+
+-- LA VENTA (IMPROVEMENT COLOSSAL HEAD)
+function CanWeBuildColossalHead(ePlayer, eUnit, iX, iY, eBuild)
+	if eBuild ~= GameInfoTypes.BUILD_BIG_HEAD then return true end
+	
+	local pPlayer = Players[ePlayer]
+	
+	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[23]) > 0) then return false end
+	
+	return true
+end
+GameEvents.PlayerCanBuild.Add(CanWeBuildColossalHead)
+
+
+
 -- TIWANAKU (IMPROVEMENT SUNKEN COURTYARD)
 function CanWeBuySisqeno(ePlayer, eCity, eUnit)
 	if eUnit ~= tUnitsCivilian[9] then return true end
@@ -1745,20 +1789,6 @@ end
 
 
 
--- LA VENTA (IMPROVEMENT COLOSSAL HEAD)
-function CanWeBuildColossalHead(ePlayer, eUnit, iX, iY, eBuild)
-	if eBuild ~= GameInfoTypes.BUILD_BIG_HEAD then return true end
-	
-	local pPlayer = Players[ePlayer]
-	
-	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[23]) > 0) then return false end
-	
-	return true
-end
-GameEvents.PlayerCanBuild.Add(CanWeBuildColossalHead)
-
-
-
 -- KARYES (IMPROVEMENT MONASTERY, BONUSES FROM MONASTERIES)
 function CanWeBuildMonastery(ePlayer, eUnit, iX, iY, eBuild)
 	if eBuild ~= GameInfoTypes.BUILD_MONASTERY then return true end
@@ -1786,6 +1816,26 @@ end
 function MonasteryPillagedOrDestroyed(iX, iY, ePlotOwner, eOldImprovement, eNewImprovement, bPillaged)
 	if eOldImprovement ~= tImprovementsUCS[3] then return end
 	
+	CheckAllMonasteries()
+end
+
+function MonasteriesOnEventOn(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[39] then
+		PlaceDummiesForMonasteries()
+	end
+end
+
+function MonasteriesOnEventOff(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[39] then
+		PlaceDummiesForMonasteries()
+	end
+end
+
+function MonasteriesOnCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
+	CheckAllMonasteries()
+end
+
+function MonasteriesOnNewCity(ePlayer, iX, iY)
 	CheckAllMonasteries()
 end
 
@@ -1841,34 +1891,6 @@ end
 
 
 
--- SGAANG GWAAY (IMPROVEMENT TOTEM POLE)
-function CanWeBuildTotemPole(ePlayer, eUnit, iX, iY, eBuild)
-	if eBuild ~= GameInfoTypes.BUILD_TOTEM_POLE then return true end
-	
-	local pPlayer = Players[ePlayer]
-	
-	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[40]) > 0) then return false end
-	
-	return true
-end
-GameEvents.PlayerCanBuild.Add(CanWeBuildTotemPole)
-
-
-
--- NYARYANA MARQ (IMPROVEMENT CHUM)
-function CanWeBuildChum(ePlayer, eUnit, iX, iY, eBuild)
-	if eBuild ~= GameInfoTypes.BUILD_CHUM then return true end
-	
-	local pPlayer = Players[ePlayer]
-	
-	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[41]) > 0) then return false end
-	
-	return true
-end
-GameEvents.PlayerCanBuild.Add(CanWeBuildChum)
-
-
-
 -- LONGYAN (IMPROVEMENT TULOU)
 function CanWeBuildTulou(ePlayer, eUnit, iX, iY, eBuild)
 	if eBuild ~= GameInfoTypes.BUILD_TULOU then return true end
@@ -1888,6 +1910,52 @@ function CanWeBuildTulou(ePlayer, eUnit, iX, iY, eBuild)
 	return bCity
 end
 GameEvents.PlayerCanBuild.Add(CanWeBuildTulou)
+
+function BuiltTulou(ePlayer, iX, iY, eImprovement)
+	if eImprovement == tImprovementsUCS[6] then
+		CountTulous(ePlayer)
+	end
+end
+
+function TulouPillagedOrDestroyed(iX, iY, ePlotOwner, eOldImprovement, eNewImprovement, bPillaged)
+	if eOldImprovement ~= tImprovementsUCS[6] then return end
+		local pPlayer = Players[ePlotOwner]
+		local pCapital = pPlayer:GetCapitalCity()
+		local iNumTulous = pPlayer:GetImprovementCount()
+		
+		pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[27], 0)
+end
+
+function TulousOnEventOn(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[39] then
+		CountTulous(ePlayer)
+	end
+end
+
+function TulousOnEventOff(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[39] then
+		local pPlayer = Players[ePlayer]
+		local pCapital = pPlayer:GetCapitalCity()
+		
+		pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[27], 0)
+	end
+end
+
+function TulousOnCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
+	CountTulous(eOldOwner)
+	CountTulous(eNewOwner)
+end
+
+function CountTulous(ePlayer)
+	local pPlayer = Players[ePlayer]
+
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[39]) ~= 0 then	
+		local pCapital = pPlayer:GetCapitalCity()
+		local iNumTulous = pPlayer:GetImprovementCount()
+		print("LONGYAN", "TULOU_NUM", iNumTulous)
+		pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[27], iNumTulous)
+	end
+end
 
 
 
@@ -2927,29 +2995,6 @@ function LongClawOfMemoryBuildingConstruction(ePlayer, eCity, eBuilding, bGold, 
 			pCity:SetNumRealBuilding(tBuildingsActiveAbilities[25], pCity:GetNumRealBuilding(tBuildingsActiveAbilities[25]) + 1)
 		end
 	end
-end
-
-
-
--- KARYES PART 2
-function MonasteriesOnEventOn(ePlayer, eEventChoiceType)
-	if eEventChoiceType == tEventChoice[39] then
-		PlaceDummiesForMonasteries()
-	end
-end
-
-function MonasteriesOnEventOff(ePlayer, eEventChoiceType)
-	if eEventChoiceType == tEventChoice[39] then
-		PlaceDummiesForMonasteries()
-	end
-end
-
-function MonasteriesCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
-	CheckAllMonasteries()
-end
-
-function MonasteriesNewCity(ePlayer, iX, iY)
-	CheckAllMonasteries()
 end
 
 
@@ -4509,9 +4554,10 @@ function SettingUpSpecificEvents()
 				
 			
 			-- improvements
-			elseif sMinorCivType == "MINOR_CIV_CAHOKIA" or sMinorCivType == "MINOR_CIV_TIWANAKU" or sMinorCivType == "MINOR_CIV_KARYES" 
-				or sMinorCivType == "MINOR_CIV_SGAANG" or sMinorCivType == "MINOR_CIV_NYARYANA_MARQ" or sMinorCivType == "MINOR_CIV_LA_VENTA" then
-				GameEvents.PlayerCanBuild.Add(CanWeSubstituteImprovement)
+			elseif sMinorCivType == "MINOR_CIV_CAHOKIA" or sMinorCivType == "MINOR_CIV_SGAANG" or sMinorCivType == "MINOR_CIV_NYARYANA_MARQ"
+				or sMinorCivType == "MINOR_CIV_LA_VENTA" then
+				or sMinorCivType == "MINOR_CIV_TIWANAKU" or sMinorCivType == "MINOR_CIV_KARYES" or sMinorCivType == "MINOR_CIV_LONGYAN"
+					GameEvents.PlayerCanBuild.Add(CanWeSubstituteImprovement)
 			
 				if sMinorCivType == "MINOR_CIV_CAHOKIA" then	
 					tLostCities["eLostCahokia"] = eCS
@@ -4519,8 +4565,6 @@ function SettingUpSpecificEvents()
 					tLostCities["eLostSGaang"] = eCS
 				elseif sMinorCivType == "MINOR_CIV_NYARYANA_MARQ" then	
 					tLostCities["eLostNyaryanaMarq"] = eCS
-				elseif sMinorCivType == "MINOR_CIV_LONGYAN" then	
-					tLostCities["eLostLongyan"] = eCS
 				elseif sMinorCivType == "MINOR_CIV_LA_VENTA" then	
 					tLostCities["eLostLaVenta"] = eCS
 				elseif sMinorCivType == "MINOR_CIV_TIWANAKU" then	
@@ -4533,10 +4577,17 @@ function SettingUpSpecificEvents()
 					GameEvents.TileImprovementChanged.Add(MonasteryPillagedOrDestroyed)
 					GameEvents.EventChoiceActivated.Add(MonasteriesOnEventOn)
 					GameEvents.EventChoiceEnded.Add(MonasteriesOnEventOff)
-					GameEvents.CityCaptureComplete.Add(MonasteriesCapture)
-					GameEvents.PlayerCityFounded.Add(MonasteriesNewCity)
+					GameEvents.CityCaptureComplete.Add(MonasteriesOnCapture)
+					GameEvents.PlayerCityFounded.Add(MonasteriesOnNewCity)
 
 					CheckAllMonasteries()
+				elseif sMinorCivType == "MINOR_CIV_LONGYAN" then	
+					tLostCities["eLostLongyan"] = eCS
+					GameEvents.BuildFinished.Add(BuiltTulou)
+					GameEvents.TileImprovementChanged.Add(TulouPillagedOrDestroyed)
+					GameEvents.EventChoiceActivated.Add(TulousOnEventOn)
+					GameEvents.EventChoiceEnded.Add(TulousOnEventOff)
+					GameEvents.CityCaptureComplete.Add(TulousOnCapture)
 				end
 
 
