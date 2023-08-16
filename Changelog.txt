@@ -50,7 +50,11 @@ Changelog:
 		- Managua now has American style (was European);
 		- managua gets new ability based on espionage (3rd CS using such; old ability moved to Sana'a);
 	- Nan Madol: culture on death is not applied once instead of for each city;
+	- City-States now claim their GPTI if they are spawned outside their borders;
 - fixed:
+	- Roads and Railroads can now be built on tiles with UCS improvements;
+	- UCS improvements can now be repaired (ups, my bad);
+	- Potala Palace now unlocked at Architecture (should help a bit with CS quests asking to build it);
 	- fixed an error in functions giving units from Friendly CSs;
 	- Bedulu now gets Faith from Trade Routes (and Dodoma does not);
 	- Sisqeno Worker now gains same free promotions like Sisqeno (Missionary);
