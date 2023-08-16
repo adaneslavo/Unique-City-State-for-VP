@@ -18,70 +18,6 @@ local bBlockDoubleTriggering = false -- for preventing the double triggering the
 -- city-states IDs
 local tLostCities = {}
 
--- look for major city --> city-states conflicts
-local tCityConflicts = {}
-function Conflicts()
-	print("")
-	print("")
-	print("CONFLICTS")
-	for emajorplayer = 0, GameDefines.MAX_MAJOR_CIVS - 1, 1 do
-		local pMajorPlayer = Players[emajorplayer]
-		
-		if not pMajorPlayer:IsEverAlive() then return end
-
-		for eminorplayer = GameDefines.MAX_MAJOR_CIVS, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
-			local pMinorPlayer = Players[eminorplayer]
-				
-			if pMinorPlayer:IsMinorCiv() then
-				local sMinorCapitalName = L(GameInfo.MinorCivilizations[pMinorPlayer:GetMinorCivType()].Description)
-				
-				for citylist in DB.Query("SELECT Civilization_CityNames.CityName FROM Civilization_CityNames WHERE CivilizationType = ?", GameInfo.Civilizations[pMajorPlayer:GetCivilizationType()].Type) do
-					if L(citylist.CityName) == sMinorCapitalName then
-						print("CONFLICT_SET!!!", sMinorCapitalName)
-						tCityConflicts[eminorplayer] = true
-						break
-					end
-				end
-			end
-		end
-	end
-	print("")
-	print("")
-end
-Conflicts()
-
-function SubstituteConflictingCityStates(ePlayer, iX, iY)
-	local pPlayer = Players[ePlayer]
-	
-	if not pPlayer:IsMinorCiv() then return end
-	
-	local pPlot = Map.GetPlot(iX, iY)
-	local pCity = pPlot:GetWorkingCity()
-	
-	if tCityConflicts[ePlayer] then
-		print("")
-		print("")
-		print("CS_FOUNDED", "CONFLICT_CODE_APPLIED!!!", pCity:GetName())
-		Game.DoSpawnFreeCity(pCity)
-	
-		local pNewCity = pPlot:GetWorkingCity()
-		local eNewOwner = pPlot:GetOwner()
-		local pNewOwner = Players[eNewOwner]
-		print("CS_FOUNDED", "OLD_NAME...", pNewCity:GetName())
-		print("CS_FOUNDED", "OWNERSHIP_FROM...", ePlayer, "TO...", pPlot:GetOwner())
-		pNewCity:SetName(L(GameInfo.MinorCivilizations[pNewOwner:GetMinorCivType()].Description))
-		print("CS_FOUNDED", "CHANGED_NAME_TO...", pNewCity:GetName())
-		MaritimeCityStatesBonuses(eNewOwner, iX, iY)
-		MercantileCityStatesBonuses(eNewOwner, iX, iY)
-		MilitaristicCityStatesBonuses(eNewOwner, iX, iY)
-		CulturedCityStatesBonuses(eNewOwner, iX, iY)
-		ReligiousCityStatesBonuses(eNewOwner, iX, iY)
-		print("")
-		print("")
-	end
-end
-GameEvents.PlayerCityFounded.Add(SubstituteConflictingCityStates)
-
 local tMinorTraits = {
 	GameInfoTypes.MINOR_TRAIT_MARITIME,
 	GameInfoTypes.MINOR_TRAIT_MERCANTILE,
@@ -385,35 +321,109 @@ local tUnitsWithSpread = {}
 	for unit in DB.Query("SELECT Units.ID FROM Units WHERE SpreadReligion = 1") do
 		table.insert(tUnitsWithSpread, unit.ID)
 	end
+-----------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
+-- look for major city --> city-states conflicts
+local tCityConflicts = {}
 
+function Conflicts()
+	print("")
+	print("")
+	print("CONFLICTS")
+	for emajorplayer = 0, GameDefines.MAX_MAJOR_CIVS - 1, 1 do
+		local pMajorPlayer = Players[emajorplayer]
+		
+		if not pMajorPlayer:IsEverAlive() then return end
+
+		for eminorplayer = GameDefines.MAX_MAJOR_CIVS, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
+			local pMinorPlayer = Players[eminorplayer]
+				
+			if pMinorPlayer:IsMinorCiv() then
+				local sMinorCapitalName = L(GameInfo.MinorCivilizations[pMinorPlayer:GetMinorCivType()].Description)
+				
+				for citylist in DB.Query("SELECT Civilization_CityNames.CityName FROM Civilization_CityNames WHERE CivilizationType = ?", GameInfo.Civilizations[pMajorPlayer:GetCivilizationType()].Type) do
+					if L(citylist.CityName) == sMinorCapitalName then
+						print("CONFLICT_SET!!!", sMinorCapitalName)
+						tCityConflicts[eminorplayer] = true
+						break
+					end
+				end
+			end
+		end
+	end
+	print("")
+	print("")
+end
+Conflicts()
+
+function SubstituteConflictingCityStates(ePlayer, iX, iY)
+	local pPlayer = Players[ePlayer]
+	
+	if not pPlayer:IsMinorCiv() then return end
+	
+	local pPlot = Map.GetPlot(iX, iY)
+	local pCity = pPlot:GetWorkingCity()
+	
+	if tCityConflicts[ePlayer] then
+		print("")
+		print("")
+		print("CS_FOUNDED", "CONFLICT_CODE_APPLIED!!!", pCity:GetName())
+		Game.DoSpawnFreeCity(pCity)
+	
+		local pNewCity = pPlot:GetWorkingCity()
+		local eNewOwner = pPlot:GetOwner()
+		local pNewOwner = Players[eNewOwner]
+		local sNewName = L(GameInfo.MinorCivilizations[pNewOwner:GetMinorCivType()].Description)
+		
+		pNewCity:SetName(sNewName)
+		
+		print("CS_FOUNDED", "OLD_NAME...", pNewCity:GetName())
+		print("CS_FOUNDED", "OWNERSHIP_FROM...", ePlayer, "TO...", eNewOwner)
+		print("CS_FOUNDED", "CHANGED_NAME_TO...", pNewCity:GetName())
+		
+		MaritimeCityStatesBonuses(eNewOwner, iX, iY)
+		MercantileCityStatesBonuses(eNewOwner, iX, iY)
+		MilitaristicCityStatesBonuses(eNewOwner, iX, iY)
+		CulturedCityStatesBonuses(eNewOwner, iX, iY)
+		ReligiousCityStatesBonuses(eNewOwner, iX, iY)
+
+		SettledCityStateWithBuilding(eNewOwner, iX, iY)
+		print("")
+		print("")
+	end
+end
+GameEvents.PlayerCityFounded.Add(SubstituteConflictingCityStates)
+-----------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
 -- automated CS UU gifts for any changes made by other modmods, f.e. MUC
 -- VP+MUC: Sipahi, Companion Cavalry, Norwegian Ski Infantry, Battering Ram, Pracinha
 -- VP only: Longbowman, Ballista, Turtle Ship, Hakkapeliitta, Great Galleass
 local tUniqueUnitsFromMinors = {}
-	for specialUnit in DB.Query("SELECT Units.ID, Units.Type, Units.Description, Units.PrereqTech FROM Units WHERE MinorCivGift = 1") do
-		local iBaseUnitID, sBaseUnitType = 1000, ""
+
+for specialUnit in DB.Query("SELECT Units.ID, Units.Type, Units.Description, Units.PrereqTech FROM Units WHERE MinorCivGift = 1") do
+	local iBaseUnitID, sBaseUnitType = 1000, ""
+	
+	local sUpgradesToClass = GameInfo.Unit_ClassUpgrades{UnitType=specialUnit.Type}().UnitClassType
+	
+	for upgrade in DB.Query("SELECT Unit_ClassUpgrades.UnitType FROM Unit_ClassUpgrades WHERE UnitClassType = ?", sUpgradesToClass) do
+		local bMercenary = GameInfo.Units{Type=upgrade.UnitType}().PurchaseOnly == true or GameInfo.Units{Type=upgrade.UnitType}().PurchaseOnly == 1
 		
-		local sUpgradesToClass = GameInfo.Unit_ClassUpgrades{UnitType=specialUnit.Type}().UnitClassType
-		
-		for upgrade in DB.Query("SELECT Unit_ClassUpgrades.UnitType FROM Unit_ClassUpgrades WHERE UnitClassType = ?", sUpgradesToClass) do
-			local bMercenary = GameInfo.Units{Type=upgrade.UnitType}().PurchaseOnly == true or GameInfo.Units{Type=upgrade.UnitType}().PurchaseOnly == 1
+		if not bMercenary then
+			local eUnit = GameInfo.Units{Type=upgrade.UnitType}().ID
 			
-			if not bMercenary then
-				local eUnit = GameInfo.Units{Type=upgrade.UnitType}().ID
-				
-				if eUnit < iBaseUnitID then
-					iBaseUnitID = eUnit
-					sBaseUnitType = upgrade.UnitType
-				end
+			if eUnit < iBaseUnitID then
+				iBaseUnitID = eUnit
+				sBaseUnitType = upgrade.UnitType
 			end
 		end
-		--print("CS_UU_GIFTS", L(specialUnit.Description), sUpgradesToClass, specialUnit.PrereqTech, sBaseUnitType)
-
-		tUniqueUnitsFromMinors[specialUnit.ID] = {
-			sOriginalUnit = sBaseUnitType,
-			ePrereqTech = GameInfo.Technologies{Type=specialUnit.PrereqTech}().ID					
-		}
 	end
+	--print("CS_UU_GIFTS", L(specialUnit.Description), sUpgradesToClass, specialUnit.PrereqTech, sBaseUnitType)
+
+	tUniqueUnitsFromMinors[specialUnit.ID] = {
+		sOriginalUnit = sBaseUnitType,
+		ePrereqTech = GameInfo.Technologies{Type=specialUnit.PrereqTech}().ID					
+	}
+end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- RNG
@@ -593,12 +603,14 @@ GameEvents.UnitPrekill.Add(DiplomaticExpansion)
 
 -- Setting the specicifc removing conditions for UCSTI
 function CanWeSubstituteImprovement(ePlayer, eUnit, iX, iY, eBuild)
+	if eBuild == GameInfoTypes.BUILD_ROAD or eBuild == GameInfoTypes.BUILD_RAILROAD then return true end
+	
 	local pPlot = Map.GetPlot(iX, iY)
 	local eCurrentImprovementType = pPlot:GetImprovementType()
 	
 	if eCurrentImprovementType ~= -1 then
 		for i, eimprovement in ipairs(tImprovementsUCS) do
-			if  eimprovement == eCurrentImprovementType then
+			if  eimprovement == eCurrentImprovementType then				
 				local eResourceTypeUnderneath = pPlot:GetResourceType()
 			
 				if eResourceTypeUnderneath ~= -1 then
@@ -1947,7 +1959,7 @@ end
 
 
 -- KIEV/MILAN/VILNIUS/VALETTA (STARTING BUILDINGS FOR CERTAIN CITY-STATES)
-function SettledCityStateWithBuilding(ePlayer, eUnit, eUnitType, iPlotX, iPlotY)
+function SettledCityStateWithBuilding(ePlayer, iPlotX, iPlotY)
 	local pPlayer = Players[ePlayer]
 	
 	if pPlayer:IsMinorCiv() and pPlayer:IsAlive() then
@@ -4552,7 +4564,7 @@ function SettingUpSpecificEvents()
 			-- starting building setup for city-states
 			elseif 		sMinorCivType == "MINOR_CIV_KIEV" or sMinorCivType == "MINOR_CIV_MILAN" 
 				     or	sMinorCivType == "MINOR_CIV_VILNIUS" or sMinorCivType == "MINOR_CIV_VALLETTA" then
-				GameEvents.UnitCityFounded.Add(SettledCityStateWithBuilding)
+				GameEvents.PlayerCityFounded.Add(SettledCityStateWithBuilding)
 				GameEvents.PlayerLiberated.Add(LiberatedCityStateWithBuilding)
 				
 				if sMinorCivType == "MINOR_CIV_KIEV" then	
