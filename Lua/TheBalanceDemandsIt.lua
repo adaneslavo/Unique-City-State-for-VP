@@ -21,6 +21,9 @@ local tLostCities = {}
 -- look for major city --> city-states conflicts
 local tCityConflicts = {}
 function Conflicts()
+	print("")
+	print("")
+	print("CONFLICTS")
 	for emajorplayer = 0, GameDefines.MAX_MAJOR_CIVS - 1, 1 do
 		local pMajorPlayer = Players[emajorplayer]
 		
@@ -42,6 +45,8 @@ function Conflicts()
 			end
 		end
 	end
+	print("")
+	print("")
 end
 Conflicts()
 
@@ -54,15 +59,25 @@ function SubstituteConflictingCityStates(ePlayer, iX, iY)
 	local pCity = pPlot:GetWorkingCity()
 	
 	if tCityConflicts[ePlayer] then
+		print("")
+		print("")
 		print("CS_FOUNDED", "CONFLICT_CODE_APPLIED!!!", pCity:GetName())
 		Game.DoSpawnFreeCity(pCity)
 	
 		local pNewCity = pPlot:GetWorkingCity()
-		local pNewOwner = Players[pPlot:GetOwner()]
+		local eNewOwner = pPlot:GetOwner()
+		local pNewOwner = Players[eNewOwner]
 		print("CS_FOUNDED", "OLD_NAME...", pNewCity:GetName())
 		print("CS_FOUNDED", "OWNERSHIP_FROM...", ePlayer, "TO...", pPlot:GetOwner())
 		pNewCity:SetName(L(GameInfo.MinorCivilizations[pNewOwner:GetMinorCivType()].Description))
 		print("CS_FOUNDED", "CHANGED_NAME_TO...", pNewCity:GetName())
+		MaritimeCityStatesBonuses(eNewOwner, iX, iY)
+		MercantileCityStatesBonuses(eNewOwner, iX, iY)
+		MilitaristicCityStatesBonuses(eNewOwner, iX, iY)
+		CulturedCityStatesBonuses(eNewOwner, iX, iY)
+		ReligiousCityStatesBonuses(eNewOwner, iX, iY)
+		print("")
+		print("")
 	end
 end
 GameEvents.PlayerCityFounded.Add(SubstituteConflictingCityStates)
@@ -121,7 +136,7 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_GENOA,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SIERRA_LEONE,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_KARYES,
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SGAANG,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SGANG_GWAAY,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_NYARYANA_MARQ, -- 41
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_ADEJE,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_WOOTEI_NIICIE,
@@ -425,8 +440,9 @@ end
 -----------------------------------------------------------------------------------------------------------
 -- Resetting cooldown for active events for civs passing the threshold and setting new events
 function MinorPlayerDoTurn(ePlayer)
-	if Players[ePlayer]:IsMinorCiv() then
-		local pMinorPlayer = Players[ePlayer]
+	local pMinorPlayer = Players[ePlayer]
+		
+	if pMinorPlayer:IsMinorCiv() and pMinorPlayer:IsAlive() then
 		local sMinorCivType = GameInfo.MinorCivilizations[pMinorPlayer:GetMinorCivType()].Type
 		
 		-- Ally part
@@ -604,6 +620,7 @@ function MaritimeCityStatesBonuses(ePlayer, iX, iY)
 	local pPlayer = Players[ePlayer]
 	
 	if not pPlayer:IsMinorCiv() then return end
+	if not pPlayer:IsAlive() then return end
 	
 	local eMinorType = pPlayer:GetMinorCivType()
 	local eMinorTrait = pPlayer:GetMinorCivTrait()
@@ -797,6 +814,7 @@ function MercantileCityStatesBonuses(ePlayer, iX, iY)
 	local pPlayer = Players[ePlayer]
 	
 	if not pPlayer:IsMinorCiv() then return end
+	if not pPlayer:IsAlive() then return end
 	
 	local eMinorType = pPlayer:GetMinorCivType()
 	local eMinorTrait = pPlayer:GetMinorCivTrait()
@@ -994,6 +1012,7 @@ function MilitaristicCityStatesBonuses(ePlayer, iX, iY)
 	local pPlayer = Players[ePlayer]
 	
 	if not pPlayer:IsMinorCiv() then return end
+	if not pPlayer:IsAlive() then return end
 	
 	local eMinorType = pPlayer:GetMinorCivType()
 	local eMinorTrait = pPlayer:GetMinorCivTrait()
@@ -1146,8 +1165,6 @@ function CityStateTrainedUU(ePlayer, eCity, eUnit, bGold, bFaith)
 		local eUniqueUnit = pPlayer:GetMinorCivUniqueUnit()
 		local sUniqueUnitType = GameInfo.Units{ID=eUniqueUnit}().Type
 
-		print("MILITARY_CS_PRODUCED_UNIT", sProducedUnitClass, eUniqueUnit)
-		
 		-- checking if produced unit matched the a) unique unit from any civ; b) unassigned unique units; to be substituted
 		for civclassoverrides in GameInfo.Civilization_UnitClassOverrides{UnitClassType=sProducedUnitClass} do
 			if civclassoverrides.UnitType == sUniqueUnitType then
@@ -1164,13 +1181,10 @@ function CityStateTrainedUU(ePlayer, eCity, eUnit, bGold, bFaith)
 			end
 		end
 
-		print("MILITARY_CS_MATCHED_UNIT", bUnitMatched, ePrereqTech)
-		
 		if bUnitMatched then
 			local pTeam = Teams[pPlayer:GetTeam()]
 			
 			if pTeam:IsHasTech(ePrereqTech) then
-				print("MILITARY_CS_SUBSTITUTED_UNIT")
 				pProducedUnit:Kill()
 				pPlayer:AddFreeUnit(eUniqueUnit, UNITAI_DEFENSE)
 			end
@@ -1184,6 +1198,7 @@ function CulturedCityStatesBonuses(ePlayer, iX, iY)
 	local pPlayer = Players[ePlayer]
 	
 	if not pPlayer:IsMinorCiv() then return end
+	if not pPlayer:IsAlive() then return end
 	
 	local eMinorType = pPlayer:GetMinorCivType()
 	local eMinorTrait = pPlayer:GetMinorCivTrait()
@@ -1307,6 +1322,7 @@ function ReligiousCityStatesBonuses(ePlayer, iX, iY)
 	local pPlayer = Players[ePlayer]
 	
 	if not pPlayer:IsMinorCiv() then return end
+	if not pPlayer:IsAlive() then return end
 	
 	local eMinorType = pPlayer:GetMinorCivType()
 	local eMinorTrait = pPlayer:GetMinorCivTrait()
@@ -1934,7 +1950,7 @@ end
 function SettledCityStateWithBuilding(ePlayer, eUnit, eUnitType, iPlotX, iPlotY)
 	local pPlayer = Players[ePlayer]
 	
-	if pPlayer:IsMinorCiv() then
+	if pPlayer:IsMinorCiv() and pPlayer:IsAlive() then
 		local pSettledCity = Map.GetPlot(iPlotX, iPlotY):GetPlotCity()
 		
 		if GameInfo.MinorCivilizations[pPlayer:GetMinorCivType()].Type == "MINOR_CIV_KIEV" then
@@ -2811,7 +2827,7 @@ function LongClawOfMemoryOnEventOn(ePlayer, eEventChoiceType)
 			local iScrivenersOffice = city:HasBuildingClass(tBuildingClasses[3]) and 1 or 0
 			local iPrintingPress = city:HasBuildingClass(tBuildingClasses[4]) and 1 or 0
 			local iForeignBureau = city:HasBuildingClass(tBuildingClasses[5]) and 1 or 0
-			print("KATENDE", "EVENT_ON", city:GetName(), iScrivenersOffice, iPrintingPress, iForeignBureau)
+			
 			if iScrivenersOffice > 0 or iPrintingPress > 0 or iForeignBureau > 0 then
 				local iSum = iScrivenersOffice + iPrintingPress + iForeignBureau
 				
@@ -2888,7 +2904,7 @@ end
 
 function LongClawOfMemoryBuildingConstruction(ePlayer, eCity, eBuilding, bGold, bFaith) 
 	local sBuildingClass = GameInfo.Buildings[eBuilding].BuildingClass
-	print("KATENDE", "CONSTRUCTION", sBuildingClass, ePlayer, eCity, eBuilding, bGold, bFaith)
+	
 	if sBuildingClass == "BUILDINGCLASS_COURT_SCRIBE" or sBuildingClass == "BUILDINGCLASS_PRINTING_PRESS" or sBuildingClass == "BUILDINGCLASS_FOREIGN_OFFICE" then
 		local pPlayer = Players[ePlayer]
 	
@@ -4311,7 +4327,7 @@ function BuiltCampOnDeerWithTundraAround(ePlayer, iX, iY, eImprovement)
 		print("KARASJOHKA", "CHANCE", iChance)
 		if iChance >= 80 then return end
 		print("KARASJOHKA", "CHANCE_OK", "SPAWN!")
-		local pChosenPlot = table.remove(tPossibleReindeerSpots, Game.Rand(#tPossibleReindeerSpots) + 1)
+		local pChosenPlot = table.remove(tPossibleReindeerSpots, Game.Rand(#tPossibleReindeerSpots, "Choosing plot for a Reindeer") + 1)
 		
 		pChosenPlot:SetResourceType(tResourcesBonus[2], 1)
 
@@ -4323,9 +4339,9 @@ function BuiltCampOnDeerWithTundraAround(ePlayer, iX, iY, eImprovement)
 
 		iChance = Game.Rand(100, "Chance for spawning additional Reindeer")
 		print("KARASJOHKA", "CHANCE_2", iChance)
-		if iChance >= 10 then return end
+		if iChance >= 70 then return end
 		print("KARASJOHKA", "CHANCE_2_OK", "SPAWN!")
-		local pChosenPlot = table.remove(tPossibleReindeerSpots, Game.Rand(#tPossibleReindeerSpots) + 1)
+		local pChosenPlot = table.remove(tPossibleReindeerSpots, Game.Rand(#tPossibleReindeerSpots, "Choosing plot for an additional Reindeer") + 1)
 
 		pChosenPlot:SetResourceType(tResourcesBonus[2], 1)
 
@@ -4339,34 +4355,40 @@ end
 
 -- AYUTTHAYA (WAR EFFECTS; ON CONSTRUCTION BONUS)
 function WarDeclaredToAyutthaya(eOriginatingPlayer, eTeam, bAggressor)
-	print("AYUTTHAYA_WAR", eOriginatingPlayer, eTeam, bAggressor)
-	local pPlayer = Players[eOriginatingPlayer]
+	local pOriginatingPlayer = Players[eOriginatingPlayer]
+	local iBaseProduction = 10
+	local iBaseGeneralPoints = 50
+	local iEraModifier = math.max(1, pOriginatingPlayer:GetCurrentEra())
+	local iTotalProduction = iBaseProduction * iEraModifier
+	local pAyutthaya = Players[tLostCities["eLostAyutthaya"]]
 
-	if pPlayer:GetEventChoiceCooldown(tEventChoice[55]) ~= 0 then
-		local iBaseProduction = 10
-		local iBaseGeneralPoints = 50
-		local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
-		local iTotalProduction = iBaseProduction * iEraModifier
-		local pCapital = pPlayer:GetCapitalCity()
-		local pAyutthaya = Players[tLostCities["eLostAyutthaya"]]
+	if pOriginatingPlayer:GetEventChoiceCooldown(tEventChoice[55]) ~= 0 then
+		pOriginatingPlayer:DoInstantYield(GameInfoTypes.YIELD_PRODUCTION, iTotalProduction, true)
 		
-		if bAggressor then
-			pPlayer:DoInstantYield(GameInfoTypes.YIELD_PRODUCTION, iTotalProduction, true)
+		local pCapital = pOriginatingPlayer:GetCapitalCity()
+		
+		if pOriginatingPlayer:IsHuman() then
+			pOriginatingPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_AYUTTHAYA_DECLARED", pAyutthaya:GetName(), iTotalProduction), L("TXT_KEY_UCS_BONUS_AYUTTHAYA_DECLARED_TITLE"), pCapital:GetX(), pCapital:GetY())
+		end	
+	end
+	
+	for eplayerplayer = 0, GameDefines.MAX_MAJOR_CIVS - 1, 1 do
+		local pPlayer = Players[eplayerplayer]
+		local eDefenderTeam = pPlayer:GetTeam()
+		
+		if eDefenderTeam == eTeam and pPlayer:GetEventChoiceCooldown(tEventChoice[55]) ~= 0 then	
+			local pCapital = pPlayer:GetCapitalCity()
 			
-			if pPlayer:IsHuman() then
-				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_AYUTTHAYA_DECLARED", pAyutthaya:GetName(), iTotalProduction), L("TXT_KEY_UCS_BONUS_AYUTTHAYA_DECLARED_TITLE"), pCapital:GetX(), pCapital:GetY())
-			end	
-		else
 			pPlayer:DoInstantYield(GameInfoTypes.YIELD_GREAT_GENERAL_POINTS, iBaseGeneralPoints, true, pCapital:GetID())
 			
 			if pPlayer:IsHuman() then
 				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_AYUTTHAYA_SUFFERED", pAyutthaya:GetName(), iBaseGeneralPoints), L("TXT_KEY_UCS_BONUS_AYUTTHAYA_SUFFERED_TITLE"), pCapital:GetX(), pCapital:GetY())
-			end	
+			end
 		end
 	end
 end
 
-function AyutthayaDevlops(ePlayer, eCity, eBuilding, bGold, bFaith)
+function AyutthayaDevelops(ePlayer, eCity, eBuilding, bGold, bFaith)
 	local pPlayer = Players[ePlayer]
 	
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[55]) ~= 0 then
@@ -4374,7 +4396,7 @@ function AyutthayaDevlops(ePlayer, eCity, eBuilding, bGold, bFaith)
 		local iBaseCulture = (iBuildingCost * 5) / 100
 		local pCapital = pPlayer:GetCapitalCity()
 		
-		pPlayer:DoInstantYield(GameInfoTypes.YIELD_CULTURE, iBaseCulture, pCapital:GetID())
+		pPlayer:DoInstantYield(GameInfoTypes.YIELD_CULTURE, iBaseCulture, true, pCapital:GetID())
 	end
 end
 
@@ -4383,23 +4405,7 @@ end
 -- SARNATH (POLICY COST FROM RELIGION)
 function SarnathLowersPolicyCostOnEventOn(ePlayer, eEventChoiceType)
 	if eEventChoiceType == tEventChoice[56] then
-		local pPlayer = Players[ePlayer]
-		local eFoundedReligion = pPlayer:GetReligionCreatedByPlayer()
-		local iNumReligiousCities = 0
-		
-		for city in pPlayer:Cities() do
-			if city:GetReligiousMajority() == eFoundedReligion then
-				iNumReligiousCities = iNumReligiousCities + 1
-			end
-		end
-
-		if iNumReligiousCities > 10 then
-			iNumReligiousCities = 10
-		end
-
-		local pCapital = pPlayer:GetCapitalCity()
-
-		pCapital:SetNumRealBuildings(tBuildingsActiveAbilities[26], iNumReligiousCities)
+		CheckReligionInCities(ePlayer)
 	end
 end
 
@@ -4409,27 +4415,43 @@ function SarnathLowersPolicyCostOnEventOff(ePlayer, eEventChoiceType)
 	pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[26], 0)
 end
 
+function SarnathLowersPolicyCostOnFounding(ePlayer, eHolyCity, eReligion, eBelief1, eBelief2, eBelief3, eBelief4, eBelief5)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[56]) ~= 0 then
+		CheckReligionInCities(ePlayer)
+	end
+end
+
 function SarnathLowersPolicyCost(ePlayer)
 	local pPlayer = Players[ePlayer]
 	
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[56]) ~= 0 then
-		local eFoundedReligion = pPlayer:GetReligionCreatedByPlayer()
-		local iNumReligiousCities = 0
-		print("SARNATH", "ON_TURN", "RELIGION?", eFoundedReligion)
-		for city in pPlayer:Cities() do
-			if city:GetReligiousMajority() == eFoundedReligion then
-				iNumReligiousCities = iNumReligiousCities + 1
-			end
-		end
-		print("SARNATH", "ON_TURN", "CITIES?", iNumReligiousCities)
-		if iNumReligiousCities > 10 then
-			iNumReligiousCities = 10
-		end
-
-		local pCapital = pPlayer:GetCapitalCity()
-
-		pCapital:SetNumRealBuildings(tBuildingsActiveAbilities[26], iNumReligiousCities)
+		CheckReligionInCities(ePlayer)
 	end
+end
+
+function CheckReligionInCities(ePlayer)
+	local pPlayer = Players[ePlayer]
+	
+	if not pPlayer:HasCreatedReligion() then return end
+	
+	local eFoundedReligion = pPlayer:GetReligionCreatedByPlayer()
+	local iNumReligiousCities = 0
+	
+	for city in pPlayer:Cities() do
+		if city:GetReligiousMajority() == eFoundedReligion then
+			iNumReligiousCities = iNumReligiousCities + 1
+		end
+	end
+	
+	if iNumReligiousCities > 10 then
+		iNumReligiousCities = 10
+	end
+
+	local pCapital = pPlayer:GetCapitalCity()
+
+	pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[26], iNumReligiousCities)
 end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
@@ -4792,7 +4814,7 @@ function SettingUpSpecificEvents()
 			elseif sMinorCivType == "MINOR_CIV_AYUTTHAYA" then
 				tLostCities["eLostAyutthaya"] = eCS	
 				GameEvents.DeclareWar.Add(WarDeclaredToAyutthaya)
-				GameEvents.CityConstructed.Add(AyutthayaDevlops)
+				GameEvents.CityConstructed.Add(AyutthayaDevelops)
 
 				
 			-- policy cost from religious cities
@@ -4800,6 +4822,7 @@ function SettingUpSpecificEvents()
 				tLostCities["eLostSarnath"] = eCS	
 				GameEvents.EventChoiceActivated.Add(SarnathLowersPolicyCostOnEventOn)
 				GameEvents.EventChoiceEnded.Add(SarnathLowersPolicyCostOnEventOff)
+				GameEvents.ReligionFounded.Add(SarnathLowersPolicyCostOnFounding)
 				GameEvents.PlayerDoTurn.Add(SarnathLowersPolicyCost)
 			end
 		end

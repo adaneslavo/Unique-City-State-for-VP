@@ -446,9 +446,9 @@ SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_HONIARA', 			'[COLOR_MAGENTA]Suahongi Dance:[E
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_IFE', 				'[COLOR_MAGENTA]Ogbuni:[ENDCOLOR] Training or spawning a [COLOR_YIELD_GOLD]Diplomatic Unit[ENDCOLOR] grants 30 Faith, scaling with Era (doubled for [COLOR_YIELD_GOLD]Great Diplomat[ENDCOLOR]). [COLOR_YIELD_GOLD]Diplomatic Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Iwarefa[ENDCOLOR] promotion (+20 [ICON_INFLUENCE] Influence [COLOR:255:230:85:255]after Diplomatic Mission[ENDCOLOR]).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ISKANWAYA', 			'[COLOR_MAGENTA]Kallawaya Healers:[ENDCOLOR] [COLOR_YIELD_FOOD]Aqueducts[ENDCOLOR] gain +1 [ICON_PEACE] Faith. Units gain [COLOR_WATER_TEXT]Qolla Kapachayuh[ENDCOLOR] promotion (Unit [COLOR:255:230:85:255]Heals every turn[ENDCOLOR], if it [COLOR:255:230:85:255]is next to owned Missionary, Holy Site or Mountain[ENDCOLOR]).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_JERUSALEM', 			'[COLOR_MAGENTA]Holy Lands:[ENDCOLOR] [COLOR_CITY_BROWN]Holy Sites[ENDCOLOR] gain +1 [ICON_PEACE] Faith. [COLOR_CYAN]Jerusalem[ENDCOLOR] will adopt the Majority Religion of its Ally and gains at the same time permanent +100% Religious Pressure (stays on Capture). [COLOR_CYAN]Jerusalem[ENDCOLOR] has a religious pressure equal to a Holy City. When there''s a change of alliance, new Ally will gain a [COLOR_POSITIVE_TEXT]Sphere of Influence[ENDCOLOR] with [COLOR_CYAN]Jerusalem[ENDCOLOR], if the World Congress has been founded.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_JUYUBIT', 			'[COLOR_MAGENTA]Brotherhood of the Canoe:[ENDCOLOR] [COLOR_GREY]Fish[ENDCOLOR] gain +1 [ICON_FOOD] Food. [COLOR_GREY]Bonus Resources[ENDCOLOR] gain +1 [ICON_RESEARCH] Science. Player can train [COLOR_YIELD_GOLD]Te''aat[ENDCOLOR] unit (unique [COLOR_YIELD_GOLD]Workboat[ENDCOLOR]).[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_JUYUBIT', 			'[COLOR_MAGENTA]Brotherhood of the Canoe:[ENDCOLOR] [ICON_RES_FISH] [COLOR_GREY]Fish[ENDCOLOR] gain +1 [ICON_FOOD] Food. [COLOR_GREY]Bonus Resources[ENDCOLOR] gain +1 [ICON_RESEARCH] Science. Player can train [COLOR_YIELD_GOLD]Te''aat[ENDCOLOR] unit (unique [COLOR_YIELD_GOLD]Workboat[ENDCOLOR]).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KABUL', 				'[COLOR_MAGENTA]Paradise on Earth:[ENDCOLOR] Cities gain +0.66 [ICON_CULTURE] Culture for every [COLOR_CITY_BLUE]Mountain[ENDCOLOR] tile within their workable radius. [COLOR_YIELD_GOLD]Land Military Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Mujahideen[ENDCOLOR] promotion (+25%[ICON_STRENGTH]Defensive CS, if standing next to a Mountain).[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KARASJOHKA', 			'[COLOR_MAGENTA]Sameby:[ENDCOLOR] [COLOR_GREY]Deers[ENDCOLOR] gain +1 Production. [COLOR_YIELD_GOLD]Recon and Ranged Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Siida Training[ENDCOLOR] promotion (+5% [ICON_STRENGTH] Attack CS/[ICON_RANGED_STRENGTH] Attack RCS and additional 10% in Forest). When a [COLOR_CITY_BROWN]Camp[ENDCOLOR] on [ICON_RES_DEER] [COLOR_GREY]Deer[ENDCOLOR] is built, there''s 80% chance of spawning a [ICON_RES_REINDEER] [COLOR_GREY]Reindeer[ENDCOLOR] on adjacent [COLOR_CITY_BLUE]Tundra[ENDCOLOR] tile, and another 10% for additional one.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KARASJOHKA', 			'[COLOR_MAGENTA]Sameby:[ENDCOLOR] [ICON_RES_DEER] [COLOR_GREY]Deers[ENDCOLOR] gain +1 [ICON_FOOD] Food and +1 [ICON_PRODUCTION] Production. [COLOR_YIELD_GOLD]Recon and Ranged Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Siida Training[ENDCOLOR] promotion (+5% [ICON_STRENGTH] Attack CS/[ICON_RANGED_STRENGTH] Attack RCS and additional 10% in Forest). When a [COLOR_CITY_BROWN]Camp[ENDCOLOR] on [ICON_RES_DEER] [COLOR_GREY]Deer[ENDCOLOR] is built, there''s 80% chance of spawning a [ICON_RES_REINDEER] [COLOR_GREY]Reindeer[ENDCOLOR] on adjacent [COLOR_CITY_BLUE]Tundra[ENDCOLOR] tile, and another 10% for additional one.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KARYES', 				'[COLOR_MAGENTA]Monastic Republic:[ENDCOLOR] [COLOR_YIELD_GOLD]Land Civilian Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Climber of Mount Athos[ENDCOLOR] promotion (Unit [COLOR:255:230:85:255]can cross Mountains[ENDCOLOR]). Player can build a [COLOR_CITY_BROWN]Monastery[ENDCOLOR] improvement on hill (not adjacent) increasing the [ICON_PRODUCTION] Production, [ICON_GOLD] Gold, [ICON_CULTURE] Culture and [ICON_PEACE] Faith output. +1 [ICON_DIPLOMAT] Great Diplomat Point and -10% [ICON_HAPPINESS_3] Religious Unrest in City, if there are at least 3 [COLOR_CITY_BROWN]Monasteries[ENDCOLOR] within their workable radius.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KATENDE', 			'[COLOR_MAGENTA]Long Claw of Memory:[ENDCOLOR] Construction of the [COLOR_YIELD_FOOD]Scrivener''s Office[ENDCOLOR], [COLOR_YIELD_FOOD]Printing Press[ENDCOLOR] and [COLOR_YIELD_FOOD]Foreign Bureau[ENDCOLOR] grants +1 [ICON_GREAT_ARTIST] Great Artist Point and +1 [ICON_GREAT_WRITER] Great Writer Point in the City. [COLOR_YIELD_GOLD]Diplomatic Units[ENDCOLOR] gain +15% [ICON_INFLUENCE] Influence.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KATHMANDU', 			'[COLOR_MAGENTA]Gorkha Kingdom:[ENDCOLOR] Each [ICON_CITY_STATE] City-State Friend grants +1 [ICON_PEACE] Faith and each [ICON_CITY_STATE] City-State Ally grants +1 [ICON_GREAT_GENERAL] Great General Point to all Cities. Player can purchase [COLOR_YIELD_GOLD]Gurkha[ENDCOLOR] unit (unique [COLOR_YIELD_GOLD]Fusilier[ENDCOLOR]) with [ICON_GOLD] Gold.[NEWLINE]' UNION ALL
@@ -2782,8 +2782,8 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ADEJE', 			'RESOURCE_DOGO_CANARIO', 	'YI
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ADEJE', 			'RESOURCE_DOGO_CANARIO', 	'YIELD_FAITH', 					1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BUDAPEST', 		'RESOURCE_HORSE', 			'YIELD_GOLDEN_AGE_POINTS', 		1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_JUYUBIT', 		'RESOURCE_FISH', 			'YIELD_FOOD', 					1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARASJOHKA', 	'RESOURCE_DEER', 			'YIELD_FOOD', 					1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARASJOHKA', 	'RESOURCE_DEER', 			'YIELD_PRODUCTION', 			1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_POKROVKA', 		'RESOURCE_HORSE', 			'YIELD_GREAT_GENERAL_POINTS', 	1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_YANGCHENG', 		'RESOURCE_COW', 			'YIELD_FAITH', 					1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_YANGCHENG', 		'RESOURCE_SHEEP', 			'YIELD_FAITH', 					1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_YANGCHENG', 		'RESOURCE_DEER', 			'YIELD_FAITH', 					1 UNION ALL
@@ -2881,17 +2881,17 @@ VALUES 		('Any', 'Constructed', 			0.65, 	'ART_DEF_IMPROVEMENT_SUNK_COURT', 	'RA
 			('Any', 'UnderConstruction', 	0.9, 	'ART_DEF_IMPROVEMENT_MONASTERY', 	'RANDOM', 		'ART_DEF_RESOURCE_NONE',			'sistineTI_HB.fxsxml',				1),
 			('Any', 'Constructed', 			0.9, 	'ART_DEF_IMPROVEMENT_MONASTERY', 	'RANDOM', 		'ART_DEF_RESOURCE_NONE',			'sistineTI_B.fxsxml',				1),
 			('Any', 'Pillaged', 			0.9, 	'ART_DEF_IMPROVEMENT_MONASTERY', 	'RANDOM', 		'ART_DEF_RESOURCE_NONE',			'WTI_PL.fxsxml',					1),
-			('Any', 'UnderConstruction', 	0.8, 	'ART_DEF_IMPROVEMENT_TOTEM_POLE', 	'RANDOM', 		'ART_DEF_RESOURCE_NONE',			'monolith_amer_er_hb.fxsxml',		1), -- change when model is ready
-			('Any', 'Constructed', 			0.8, 	'ART_DEF_IMPROVEMENT_TOTEM_POLE', 	'RANDOM', 		'ART_DEF_RESOURCE_NONE',			'monolith_amer_er_hb.fxsxml',		1),
-			('Any', 'Pillaged', 			0.8, 	'ART_DEF_IMPROVEMENT_TOTEM_POLE', 	'RANDOM', 		'ART_DEF_RESOURCE_NONE',			'monolith_amer_er_hb.fxsxml',		1), -- change when model is ready
+			('Any', 'UnderConstruction', 	1, 		'ART_DEF_IMPROVEMENT_TOTEM_POLE', 	'RANDOM', 		'ART_DEF_RESOURCE_NONE',			'totem_pole_HB.fxsxml',				1),
+			('Any', 'Constructed', 			1, 		'ART_DEF_IMPROVEMENT_TOTEM_POLE', 	'RANDOM', 		'ART_DEF_RESOURCE_NONE',			'totem_pole_CN.fxsxml',				1),
+			('Any', 'Pillaged', 			1, 		'ART_DEF_IMPROVEMENT_TOTEM_POLE', 	'RANDOM', 		'ART_DEF_RESOURCE_NONE',			'totem_pole_PL.fxsxml',				1),
 			('Any', 'UnderConstruction', 	1, 		'ART_DEF_IMPROVEMENT_CHUM', 		'RANDOM', 		'ART_DEF_RESOURCE_NONE',			'WoodenTent_HB.fxsxml',				1),
 			('Any', 'Constructed', 			1, 		'ART_DEF_IMPROVEMENT_CHUM', 		'RANDOM', 		'ART_DEF_RESOURCE_NONE',			'WoodenTent_B.fxsxml',				1),
 			('Any', 'Pillaged', 			1, 		'ART_DEF_IMPROVEMENT_CHUM', 		'RANDOM', 		'ART_DEF_RESOURCE_NONE',			'WoodenTent_PL.fxsxml',				1),
-			('Any', 'UnderConstruction', 	0.7, 	'ART_DEF_IMPROVEMENT_DOGO_CANARIO', 'RANDOM', 		'ART_DEF_RESOURCE_NONE',			'dogocanario_camp_hb.fxsxml',		1),
-			('Any', 'Any', 					0.7, 	'ART_DEF_IMPROVEMENT_NONE', 		'RANDOM', 		'ART_DEF_RESOURCE_DOGO_CANARIO',	'dogocanario.fxsxml',				1),
-			('Any', 'UnderConstruction', 	0.7, 	'ART_DEF_IMPROVEMENT_CAMP', 		'RANDOM', 		'ART_DEF_RESOURCE_DOGO_CANARIO',	'dogocanario_camp_hb.fxsxml',		1),
-			('Any', 'Constructed', 			0.7, 	'ART_DEF_IMPROVEMENT_CAMP', 		'RANDOM', 		'ART_DEF_RESOURCE_DOGO_CANARIO',	'dogocanario_camp_cn.fxsxml',		1),
-			('Any', 'Pillaged', 			0.7, 	'ART_DEF_IMPROVEMENT_CAMP', 		'RANDOM', 		'ART_DEF_RESOURCE_DOGO_CANARIO',	'DogoCanario_Camp_pl.fxsxml',		1),
+			('Any', 'UnderConstruction', 	0.7, 	'ART_DEF_IMPROVEMENT_DOGO_CANARIO', 'RANDOM', 		'ART_DEF_RESOURCE_NONE',			'dogs_dummy.fxsxml',				1),
+			('Any', 'Any', 					0.7, 	'ART_DEF_IMPROVEMENT_NONE', 		'RANDOM', 		'ART_DEF_RESOURCE_DOGO_CANARIO',	'dogs_resource.fxsxml',				1),
+			('Any', 'UnderConstruction', 	0.7, 	'ART_DEF_IMPROVEMENT_CAMP', 		'RANDOM', 		'ART_DEF_RESOURCE_DOGO_CANARIO',	'dogs_canario_HB.fxsxml',			1),
+			('Any', 'Constructed', 			0.7, 	'ART_DEF_IMPROVEMENT_CAMP', 		'RANDOM', 		'ART_DEF_RESOURCE_DOGO_CANARIO',	'dogs_canario_CN.fxsxml',			1),
+			('Any', 'Pillaged', 			0.7, 	'ART_DEF_IMPROVEMENT_CAMP', 		'RANDOM', 		'ART_DEF_RESOURCE_DOGO_CANARIO',	'dogs_canario_PL.fxsxml',			1),
 			('Any', 'UnderConstruction', 	0.75, 	'ART_DEF_IMPROVEMENT_TULOU', 		'RANDOM', 		'ART_DEF_RESOURCE_NONE',			'TULOU_HB.fxsxml',					1),
 			('Any', 'Constructed', 			0.75, 	'ART_DEF_IMPROVEMENT_TULOU', 		'RANDOM', 		'ART_DEF_RESOURCE_NONE',			'TULOU.fxsxml',						1),
 			('Any', 'Pillaged', 			0.75, 	'ART_DEF_IMPROVEMENT_TULOU', 		'RANDOM', 		'ART_DEF_RESOURCE_NONE',			'TULOU_PL.fxsxml',					1);
@@ -2907,7 +2907,7 @@ VALUES 		('ART_DEF_IMPROVEMENT_MARSH', 			'Improvement', 	'sv_BuildMarsh.dds'),
 			('ART_DEF_IMPROVEMENT_TULOU', 			'Improvement', 	'sv_BuildTulou.dds'),
 			('ART_DEF_IMPROVEMENT_DOGO_CANARIO',	'Improvement', 	'sv_ResourceDogoCanario.dds'),
 			('ART_DEF_RESOURCE_DOGO_CANARIO', 		'Resource', 	'sv_ResourceDogoCanario.dds'),
-			('ART_DEF_RESOURCE_REINDEER', 		'Resource', 	'sv_ResourceReindeer.dds');
+			('ART_DEF_RESOURCE_REINDEER', 			'Resource', 	'sv_ResourceReindeer.dds');
 
 INSERT INTO IconFontMapping 
 			(IconName, 					IconFontTexture,			IconMapping)
@@ -3017,7 +3017,9 @@ SELECT 		'IMPROVEMENT_SUNK_COURT', 	'TERRAIN_TUNDRA' UNION ALL
 SELECT 		'IMPROVEMENT_BIG_HEAD', 	'TERRAIN_GRASS' UNION ALL
 SELECT 		'IMPROVEMENT_TOTEM_POLE', 	'TERRAIN_TUNDRA' UNION ALL
 SELECT 		'IMPROVEMENT_CHUM', 		'TERRAIN_TUNDRA' UNION ALL
-SELECT 		'IMPROVEMENT_CHUM', 		'TERRAIN_SNOW';
+SELECT 		'IMPROVEMENT_CHUM', 		'TERRAIN_SNOW' UNION ALL
+SELECT 		'IMPROVEMENT_DOGO_CANARIO', 'TERRAIN_PLAINS' UNION ALL
+SELECT 		'IMPROVEMENT_DOGO_CANARIO', 'TERRAIN_GRASS';
 
 INSERT INTO Improvement_ValidFeatures
 			(ImprovementType, 			FeatureType)
@@ -3189,7 +3191,7 @@ VALUES		('RESOURCE_DOGO_CANARIO',	null,				'TECH_TRAPPING',	'TXT_KEY_RESOURCE_DO
 ---------------------------------------------------------
 INSERT INTO Resource_YieldChanges
 			(ResourceType, 				YieldType, 				Yield)
-VALUES		('RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			2),
+VALUES		('RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			1),
 			('RESOURCE_REINDEER',		'YIELD_FOOD',			1),
 			('RESOURCE_REINDEER',		'YIELD_PRODUCTION',		2),
 			('RESOURCE_REINDEER',		'YIELD_CULTURE',		1);
@@ -3369,7 +3371,7 @@ FROM ArtDefine_UnitMemberInfos WHERE Type = 'ART_DEF_UNIT_MEMBER_PIKEMAN';
 
 INSERT INTO ArtDefine_UnitMemberInfos 	
 			(Type, 								Scale,  ZOffset, Domain, Model, 					MaterialTypeTag, MaterialTypeSoundOverrideTag)
-SELECT		'ART_DEF_UNIT_MEMBER_NIHANG',		Scale,	ZOffset, Domain, 'Akali.fxsxml',			MaterialTypeTag, MaterialTypeSoundOverrideTag
+SELECT		'ART_DEF_UNIT_MEMBER_NIHANG',		Scale,	ZOffset, Domain, 'Akali_blue.fxsxml',		MaterialTypeTag, MaterialTypeSoundOverrideTag
 FROM ArtDefine_UnitMemberInfos WHERE Type = 'ART_DEF_UNIT_MEMBER_LONGSWORDSMAN';
 
 INSERT INTO ArtDefine_UnitMemberInfos 	

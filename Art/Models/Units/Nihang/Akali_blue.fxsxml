@@ -1,5 +1,5 @@
 <Asset>
-	<Mesh file="Akali.gr2"/>
+	<Mesh file="Akali_blue.gr2"/>
 	<Animation file="Spearman_IdleA.gr2" ec="1000"/>
 	<Animation file="Spearman_FidgetA.gr2" ec="1040"/>
 	<Animation file="Spearman_IdleA_Trans_IdleB.gr2" ec="1020"/>

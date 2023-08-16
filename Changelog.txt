@@ -31,6 +31,15 @@ Changelog:
 - changed:
 	- reworked civilopedia entries for: Armagh, Muscat, Nan Madol.
 - balanced:
+	- Dogo Canario rework:
+		- now has improved Camp model;
+		- now has additional Under Construction model for a resource placement;
+		- Dogos are now correctly placed on a hill (were fading inside);
+		- Dogos can now only be placed on Plains and Grassland (were anywhere);
+		- Dogos have now 1 base Food (was 2);
+	- Totem Pole rework:
+		- now has pillaged and under construction model (by @ghost toast);
+		- has new model for constructed state;
 	- Gurkha changes:
 		- now can also be trained with Production;
 		- added FaithCost, so it may be bought with Faith after acquiring certain belief;

@@ -108,27 +108,28 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Art" />
-    <Folder Include="Art\Model" />
-    <Folder Include="Art\Model\Improvements" />
-    <Folder Include="Art\Model\Improvements\ColossalHead\" />
-    <Folder Include="Art\Model\Improvements\Monastery" />
-    <Folder Include="Art\Model\Improvements\Chum" />
-    <Folder Include="Art\Model\Improvements\FuneraryTower" />
-    <Folder Include="Art\Model\Improvements\Tulou" />
-    <Folder Include="Art\Model\Improvements\TotemPole" />
-    <Folder Include="Art\Model\Improvements\SunkenCourtyard\" />
-    <Folder Include="Art\Model\Resources" />
-    <Folder Include="Art\Model\Resources\DogoCanario" />
-    <Folder Include="Art\Model\Resources\LlaoLlao" />
-    <Folder Include="Art\Model\Units" />
-    <Folder Include="Art\Model\Units\Ghurka" />
-    <Folder Include="Art\Model\Units\Teaat2" />
-    <Folder Include="Art\Model\Units\Teaat" />
-    <Folder Include="Art\Model\Units\Saka" />
-    <Folder Include="Art\Model\Units\Sisqeno" />
-    <Folder Include="Art\Model\Units\Nihang" />
-    <Folder Include="Art\Model\Units\SwissGuard\" />
+    <Folder Include="Art\Models" />
+    <Folder Include="Art\Models\Improvements" />
+    <Folder Include="Art\Models\Improvements\ColossalHead" />
+    <Folder Include="Art\Models\Improvements\Monastery" />
+    <Folder Include="Art\Models\Improvements\Chum" />
+    <Folder Include="Art\Models\Improvements\FuneraryTower" />
+    <Folder Include="Art\Models\Improvements\Tulou" />
+    <Folder Include="Art\Models\Improvements\TotemPole" />
+    <Folder Include="Art\Models\Improvements\SunkenCourtyard" />
+    <Folder Include="Art\Models\Resources" />
+    <Folder Include="Art\Models\Resources\DogoCanario" />
+    <Folder Include="Art\Models\Resources\LlaoLlao" />
+    <Folder Include="Art\Models\Units" />
+    <Folder Include="Art\Models\Units\Ghurka" />
+    <Folder Include="Art\Models\Units\Teaat2" />
+    <Folder Include="Art\Models\Units\Teaat" />
+    <Folder Include="Art\Models\Units\Saka" />
+    <Folder Include="Art\Models\Units\Sisqeno" />
+    <Folder Include="Art\Models\Units\Nihang" />
+    <Folder Include="Art\Models\Units\SwissGuard" />
     <Folder Include="Art\FontIcons" />
+    <Folder Include="Art\Icons" />
     <Folder Include="Art\SV_Icons" />
     <Folder Include="Lua" />
     <Folder Include="XML" />
@@ -136,10 +137,6 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
     <Folder Include="SQL" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Art\AllianceShift.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
     <Content Include="Art\FontIcons\UCS_ResourcesFontIcons_022.ggxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
@@ -148,435 +145,563 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Chum\fx_triggers_woodententSD.ftsxml">
+    <Content Include="Art\Icons\AllianceShift.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Chum\iroqueseWorkshop_cm.dds">
+    <Content Include="Art\Icons\UCS_Buildings_045.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Chum\WoodenTent Ground H.dds">
+    <Content Include="Art\Icons\UCS_Buildings_064.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Chum\WoodenTent Ground.dds">
+    <Content Include="Art\Icons\UCS_Buildings_080.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Chum\WoodenTent_B.fxsxml">
+    <Content Include="Art\Icons\UCS_Buildings_128.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Chum\WoodenTent_diff.dds">
+    <Content Include="Art\Icons\UCS_Buildings_256.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Chum\WoodenTent_HB.fxsxml">
+    <Content Include="Art\Icons\UCS_Improvements_045.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Chum\WoodenTent_PL.fxsxml">
+    <Content Include="Art\Icons\UCS_Improvements_064.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Chum\WoodenTent_SD HBPL.gr2">
+    <Content Include="Art\Icons\UCS_Improvements_256.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Chum\WoodenTent_SD.gr2">
+    <Content Include="Art\Icons\UCS_Potala_Palace_splash.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Chum\WoodenTotem_diff.dds">
+    <Content Include="Art\Icons\UCS_Promotions_016.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\ColossalHead\olmec_colossalheads.fxsxml">
+    <Content Include="Art\Icons\UCS_Promotions_032.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\ColossalHead\olmec_colossalheads.gr2">
+    <Content Include="Art\Icons\UCS_Promotions_045.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\ColossalHead\olmec_colossalheads_pl.fxsxml">
+    <Content Include="Art\Icons\UCS_Promotions_064.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\ColossalHead\olmec_heads.gr2">
+    <Content Include="Art\Icons\UCS_Promotions_256.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\ColossalHead\olmec_heads_diff.dds">
+    <Content Include="Art\Icons\UCS_Resources_045.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\ColossalHead\olmec_heads_pl.gr2">
+    <Content Include="Art\Icons\UCS_Resources_064.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\ColossalHead\olmec_heads_pl_diff.dds">
+    <Content Include="Art\Icons\UCS_Resources_080.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\ColossalHead\olmec_head_decal_01.dds">
+    <Content Include="Art\Icons\UCS_Resources_256.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\FuneraryTower\Funerary Towers Ground H.dds">
+    <Content Include="Art\Icons\UCS_UnitsFlags_032.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\UCS_Units_045.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\UCS_Units_064.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\UCS_Units_080.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\UCS_Units_128.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\UCS_Units_256.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Chum\fx_triggers_woodententSD.ftsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Chum\iroqueseWorkshop_cm.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Chum\WoodenTent Ground H.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Chum\WoodenTent Ground.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Chum\WoodenTent_B.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Chum\WoodenTent_diff.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Chum\WoodenTent_HB.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Chum\WoodenTent_PL.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Chum\WoodenTent_SD HBPL.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Chum\WoodenTent_SD.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Chum\WoodenTotem_diff.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\ColossalHead\olmec_colossalheads.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\ColossalHead\olmec_colossalheads.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\ColossalHead\olmec_colossalheads_pl.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\ColossalHead\olmec_heads.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\ColossalHead\olmec_heads_diff.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\ColossalHead\olmec_heads_pl.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\ColossalHead\olmec_heads_pl_diff.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\ColossalHead\olmec_head_decal_01.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\FuneraryTower\Funerary Towers Ground H.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\FuneraryTower\Funerary Towers Ground.dds">
+    <Content Include="Art\Models\Improvements\FuneraryTower\Funerary Towers Ground.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\FuneraryTower\Funerary Towers.dds">
+    <Content Include="Art\Models\Improvements\FuneraryTower\Funerary Towers.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\FuneraryTower\Palmyra Funerary Towers HB.gr2">
+    <Content Include="Art\Models\Improvements\FuneraryTower\Palmyra Funerary Towers HB.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\FuneraryTower\Palmyra Funerary Towers PL.gr2">
+    <Content Include="Art\Models\Improvements\FuneraryTower\Palmyra Funerary Towers PL.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\FuneraryTower\Palmyra Funerary Towers.gr2">
+    <Content Include="Art\Models\Improvements\FuneraryTower\Palmyra Funerary Towers.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\FuneraryTower\Palmyra Funerary Towers_B.fxsxml">
+    <Content Include="Art\Models\Improvements\FuneraryTower\Palmyra Funerary Towers_B.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\FuneraryTower\Palmyra Funerary Towers_HB.fxsxml">
+    <Content Include="Art\Models\Improvements\FuneraryTower\Palmyra Funerary Towers_HB.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\FuneraryTower\Palmyra Funerary Towers_PL.fxsxml">
+    <Content Include="Art\Models\Improvements\FuneraryTower\Palmyra Funerary Towers_PL.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Monastery\Fruska_Gora.dds">
+    <Content Include="Art\Models\Improvements\Monastery\Fruska_Gora.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Monastery\sistineTI_B.fxsxml">
+    <Content Include="Art\Models\Improvements\Monastery\sistineTI_B.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Monastery\sistineTI_B.gr2">
+    <Content Include="Art\Models\Improvements\Monastery\sistineTI_B.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Monastery\sistineTI_HB.fxsxml">
+    <Content Include="Art\Models\Improvements\Monastery\sistineTI_HB.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Monastery\sistineTI_HB.gr2">
+    <Content Include="Art\Models\Improvements\Monastery\sistineTI_HB.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Monastery\Wonder_grnd_diff.dds">
+    <Content Include="Art\Models\Improvements\Monastery\Wonder_grnd_diff.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Monastery\wonder_grnd_h.dds">
+    <Content Include="Art\Models\Improvements\Monastery\wonder_grnd_h.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Monastery\WTI_PL.fxsxml">
+    <Content Include="Art\Models\Improvements\Monastery\WTI_PL.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Monastery\WTI_PL.gr2">
+    <Content Include="Art\Models\Improvements\Monastery\WTI_PL.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\SunkenCourtyard\akapana_diff.dds">
+    <Content Include="Art\Models\Improvements\SunkenCourtyard\akapana_diff.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\SunkenCourtyard\akapana_sref.dds">
+    <Content Include="Art\Models\Improvements\SunkenCourtyard\akapana_sref.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\SunkenCourtyard\chatallatadecal.dds">
+    <Content Include="Art\Models\Improvements\SunkenCourtyard\chatallatadecal.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\SunkenCourtyard\chatallata_6.fxsxml">
+    <Content Include="Art\Models\Improvements\SunkenCourtyard\chatallata_6.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\SunkenCourtyard\chatallata_6.gr2">
+    <Content Include="Art\Models\Improvements\SunkenCourtyard\chatallata_6.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\SunkenCourtyard\chatallata_hb.fxsxml">
+    <Content Include="Art\Models\Improvements\SunkenCourtyard\chatallata_hb.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\SunkenCourtyard\chatallata_hb.gr2">
+    <Content Include="Art\Models\Improvements\SunkenCourtyard\chatallata_hb.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\SunkenCourtyard\chatallata_pl.fxsxml">
+    <Content Include="Art\Models\Improvements\SunkenCourtyard\chatallata_pl.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\SunkenCourtyard\chatallata_pl.gr2">
+    <Content Include="Art\Models\Improvements\SunkenCourtyard\chatallata_pl.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\SunkenCourtyard\kalasasaya_diff.dds">
+    <Content Include="Art\Models\Improvements\SunkenCourtyard\kalasasaya_diff.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\SunkenCourtyard\kalasasaya_sref.dds">
+    <Content Include="Art\Models\Improvements\SunkenCourtyard\kalasasaya_sref.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\SunkenCourtyard\templete_diff.dds">
+    <Content Include="Art\Models\Improvements\SunkenCourtyard\templete_diff.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\SunkenCourtyard\templete_sref.dds">
+    <Content Include="Art\Models\Improvements\SunkenCourtyard\templete_sref.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\TotemPole\landmark_amr_er_hb.dds">
+    <Content Include="Art\Models\Improvements\TotemPole\totem_pole.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\TotemPole\monolith_amer_er_hb.fxsxml">
+    <Content Include="Art\Models\Improvements\TotemPole\totem_pole_CN.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\TotemPole\monolith_amer_er_hb.gr2">
+    <Content Include="Art\Models\Improvements\TotemPole\totem_pole_CN.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Tulou\tulou.dds">
+    <Content Include="Art\Models\Improvements\TotemPole\totem_pole_HB.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Tulou\TULOU.fxsxml">
+    <Content Include="Art\Models\Improvements\TotemPole\totem_pole_HB.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Tulou\Tulou_CN.fbx">
+    <Content Include="Art\Models\Improvements\TotemPole\totem_pole_PL.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Tulou\Tulou_CN.gr2">
+    <Content Include="Art\Models\Improvements\TotemPole\totem_pole_PL.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Tulou\Tulou_HB.fbx">
+    <Content Include="Art\Models\Improvements\TotemPole\totem_pole_PL.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Tulou\TULOU_HB.fxsxml">
+    <Content Include="Art\Models\Improvements\Tulou\tulou.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Tulou\Tulou_HB.gr2">
+    <Content Include="Art\Models\Improvements\Tulou\TULOU.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Tulou\Tulou_PL.fbx">
+    <Content Include="Art\Models\Improvements\Tulou\Tulou_CN.fbx">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Tulou\TULOU_PL.ftsxml">
+    <Content Include="Art\Models\Improvements\Tulou\Tulou_CN.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Tulou\TULOU_PL.fxsxml">
+    <Content Include="Art\Models\Improvements\Tulou\Tulou_HB.fbx">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Improvements\Tulou\Tulou_PL.gr2">
+    <Content Include="Art\Models\Improvements\Tulou\TULOU_HB.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Resources\DogoCanario\black_4x4.dds">
+    <Content Include="Art\Models\Improvements\Tulou\Tulou_HB.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Resources\DogoCanario\DogoCanario.dds">
+    <Content Include="Art\Models\Improvements\Tulou\Tulou_PL.fbx">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Resources\DogoCanario\dogocanario.fxsxml">
+    <Content Include="Art\Models\Improvements\Tulou\TULOU_PL.ftsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Resources\DogoCanario\DogoCanario.gr2">
+    <Content Include="Art\Models\Improvements\Tulou\TULOU_PL.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Resources\DogoCanario\dogocanario_camp_cn.fxsxml">
+    <Content Include="Art\Models\Improvements\Tulou\Tulou_PL.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Resources\DogoCanario\DogoCanario_Camp_cn.gr2">
+    <Content Include="Art\Models\Resources\DogoCanario\DogoCanario.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Resources\DogoCanario\dogocanario_camp_hb.fxsxml">
+    <Content Include="Art\Models\Resources\DogoCanario\dogs_canario_CN.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Resources\DogoCanario\DogoCanario_Camp_hb.gr2">
+    <Content Include="Art\Models\Resources\DogoCanario\dogs_canario_CN.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Resources\DogoCanario\DogoCanario_Camp_pl.fxsxml">
+    <Content Include="Art\Models\Resources\DogoCanario\dogs_canario_HB.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Resources\DogoCanario\encampment.dds">
+    <Content Include="Art\Models\Resources\DogoCanario\dogs_canario_HB.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Resources\DogoCanario\no_gloss.dds">
+    <Content Include="Art\Models\Resources\DogoCanario\dogs_canario_PL.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Resources\DogoCanario\planks.dds">
+    <Content Include="Art\Models\Resources\DogoCanario\dogs_canario_PL.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Ghurka\gurkha.fxsxml">
+    <Content Include="Art\Models\Resources\DogoCanario\dogs_dummy.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Ghurka\gurkha.gr2">
+    <Content Include="Art\Models\Resources\DogoCanario\dogs_dummy.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Ghurka\gurkha_diff.dds">
+    <Content Include="Art\Models\Resources\DogoCanario\dogs_resource.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Ghurka\gurkha_sref.dds">
+    <Content Include="Art\Models\Resources\DogoCanario\dogs_resource.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Nihang\Akali.dds">
+    <Content Include="Art\Models\Resources\DogoCanario\encampment.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Nihang\Akali.fxsxml">
+    <Content Include="Art\Models\Resources\DogoCanario\fx_triggers_Dogs_canario_PL.ftsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Nihang\Akali.gr2">
+    <Content Include="Art\Models\Resources\DogoCanario\planks and stone.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Saka\Horseman_Mongol.dds">
+    <Content Include="Art\Models\Units\Ghurka\gurkha.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Saka\Horseman_Mongol.fxsxml">
+    <Content Include="Art\Models\Units\Ghurka\gurkha.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Saka\Horseman_Mongol.gr2">
+    <Content Include="Art\Models\Units\Ghurka\gurkha_diff.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Saka\Horseman_Mongol_gloss.dds">
+    <Content Include="Art\Models\Units\Ghurka\gurkha_sref.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Saka\Horseman_Mongol_Horse.dds">
+    <Content Include="Art\Models\Units\Nihang\Akali_blue.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Saka\no_gloss.dds">
+    <Content Include="Art\Models\Units\Nihang\Akali_blue.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Sisqeno\amauta.fxsxml">
+    <Content Include="Art\Models\Units\Nihang\Akali_blue.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Sisqeno\Amauta.gr2">
+    <Content Include="Art\Models\Units\Saka\Horseman_Mongol.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Sisqeno\amauta2.gr2">
+    <Content Include="Art\Models\Units\Saka\Horseman_Mongol.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Sisqeno\amauta_diff.dds">
+    <Content Include="Art\Models\Units\Saka\Horseman_Mongol.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\SwissGuard\reislaufer.fxsxml">
+    <Content Include="Art\Models\Units\Saka\Horseman_Mongol_gloss.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\SwissGuard\reislaufer.gr2">
+    <Content Include="Art\Models\Units\Saka\Horseman_Mongol_Horse.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\SwissGuard\reislaufer_diff.dds">
+    <Content Include="Art\Models\Units\Saka\no_gloss.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\SwissGuard\reislaufer_sref.dds">
+    <Content Include="Art\Models\Units\Sisqeno\amauta.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Teaat2\anan.gr2">
+    <Content Include="Art\Models\Units\Sisqeno\Amauta.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Teaat2\anan_diff.dds">
+    <Content Include="Art\Models\Units\Sisqeno\amauta2.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Teaat2\anan_flag.dds">
+    <Content Include="Art\Models\Units\Sisqeno\amauta_diff.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Teaat2\anan_model.fxsxml">
+    <Content Include="Art\Models\Units\SwissGuard\reislaufer.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Teaat2\anan_rower.dds">
+    <Content Include="Art\Models\Units\SwissGuard\reislaufer.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Teaat2\anan_sv.dds">
+    <Content Include="Art\Models\Units\SwissGuard\reislaufer_diff.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Teaat2\black_4x4.dds">
+    <Content Include="Art\Models\Units\SwissGuard\reislaufer_sref.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Teaat\MC_Noka_Canoe.fxsxml">
+    <Content Include="Art\Models\Units\Teaat2\anan.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Teaat\MC_Noka_Canoe.gr2">
+    <Content Include="Art\Models\Units\Teaat2\anan_diff.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Teaat\MC_Noka_Canoe_diff.dds">
+    <Content Include="Art\Models\Units\Teaat2\anan_flag.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Model\Units\Teaat\MC_Noka_Canoe_sref.dds">
+    <Content Include="Art\Models\Units\Teaat2\anan_model.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Units\Teaat2\anan_rower.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Units\Teaat2\anan_sv.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Units\Teaat2\black_4x4.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Units\Teaat\MC_Noka_Canoe.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Units\Teaat\MC_Noka_Canoe.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Units\Teaat\MC_Noka_Canoe_diff.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Units\Teaat\MC_Noka_Canoe_sref.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
@@ -641,102 +766,6 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="Art\SV_Icons\sv_UnitSwissGuard.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Buildings_045.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Buildings_064.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Buildings_080.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Buildings_128.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Buildings_256.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Improvements_045.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Improvements_064.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Improvements_256.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Potala_Palace_splash.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Promotions_016.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Promotions_032.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Promotions_045.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Promotions_064.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Promotions_256.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Resources_045.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Resources_064.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Resources_080.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Resources_256.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Units_045.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Units_064.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Units_080.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Units_128.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_Units_256.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\UCS_UnitsFlags_032.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
