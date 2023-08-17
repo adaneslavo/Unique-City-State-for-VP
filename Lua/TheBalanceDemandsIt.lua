@@ -367,22 +367,29 @@ function SubstituteConflictingCityStates(ePlayer, iX, iY)
 	local pCity = pPlot:GetWorkingCity()
 	
 	if tCityConflicts[ePlayer] then
-		print("")
-		print("")
-		print("CS_FOUNDED", "CONFLICT_CODE_APPLIED!!!", pCity:GetName())
-		Game.DoSpawnFreeCity(pCity)
-	
-		local pNewCity = pPlot:GetWorkingCity()
-		local eNewOwner = pPlot:GetOwner()
-		local pNewOwner = Players[eNewOwner]
-		local sNewName = L(GameInfo.MinorCivilizations[pNewOwner:GetMinorCivType()].Description)
-		print("CS_FOUNDED", "OLD_NAME...", pNewCity:GetName())
+		repeat	
+			print("")
+			print("")
+			print("CS_FOUNDED", "CONFLICT_CODE_APPLIED!!!", pCity:GetName())
+			Game.DoSpawnFreeCity(pCity)
 		
-		pNewCity:SetName(sNewName)
+			local pNewCity = pPlot:GetWorkingCity()
+			local eNewOwner = pPlot:GetOwner()
+			local pNewOwner = Players[eNewOwner]
+			local sNewName = L(GameInfo.MinorCivilizations[pNewOwner:GetMinorCivType()].Description)
+			print("CS_FOUNDED", "OLD_NAME...", pNewCity:GetName())
+			
+			pNewCity:SetName(sNewName)
+			
+			print("CS_FOUNDED", "OWNERSHIP_FROM...", ePlayer, "TO...", eNewOwner)
+			print("CS_FOUNDED", "CHANGED_NAME_TO...", pNewCity:GetName())
+			print("")
+			print("")
+
+			RepeatableCheckConflicts(eNewOwner)
+		until(not tCityConflicts[eNewOwner])
 		
-		print("CS_FOUNDED", "OWNERSHIP_FROM...", ePlayer, "TO...", eNewOwner)
-		print("CS_FOUNDED", "CHANGED_NAME_TO...", pNewCity:GetName())
-		
+		print("CS_FOUNDED", "CHANGE_COMPLETED_SUCCESSFULLY")
 		MaritimeCityStatesBonuses(eNewOwner, iX, iY)
 		MercantileCityStatesBonuses(eNewOwner, iX, iY)
 		MilitaristicCityStatesBonuses(eNewOwner, iX, iY)
@@ -390,11 +397,31 @@ function SubstituteConflictingCityStates(ePlayer, iX, iY)
 		ReligiousCityStatesBonuses(eNewOwner, iX, iY)
 
 		SettledCityStateWithBuilding(eNewOwner, iX, iY)
-		print("")
-		print("")
 	end
 end
 GameEvents.PlayerCityFounded.Add(SubstituteConflictingCityStates)
+
+function RepeatableCheckConflicts(ePlayer)
+	print("+++")
+	print("NEW_CONFLICTS")
+	for emajorplayer = 0, GameDefines.MAX_MAJOR_CIVS - 1, 1 do
+		local pMajorPlayer = Players[emajorplayer]
+		
+		if not pMajorPlayer:IsEverAlive() then return end
+
+		local pMinorPlayer = Players[ePlayer]
+		local sMinorCapitalName = L(GameInfo.MinorCivilizations[pMinorPlayer:GetMinorCivType()].Description)
+		
+		for citylist in DB.Query("SELECT Civilization_CityNames.CityName FROM Civilization_CityNames WHERE CivilizationType = ?", GameInfo.Civilizations[pMajorPlayer:GetCivilizationType()].Type) do
+			if L(citylist.CityName) == sMinorCapitalName then
+				print("NEW_CONFLICT_SET!!!", sMinorCapitalName)
+				tCityConflicts[ePlayer] = true
+				break
+			end
+		end
+	end
+	print("+++")
+end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- automated CS UU gifts for any changes made by other modmods, f.e. MUC
