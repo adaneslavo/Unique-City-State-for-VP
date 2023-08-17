@@ -1809,18 +1809,27 @@ function BuiltSunkenCourtyard(ePlayer, iX, iY, eImprovement)
 			-- Human part (Queen; Humans does not get any Worker because they can do both things with their Sisqeno unit)
 			else
 				local pPlot = Map.GetPlot(iX, iY)
-				
-				for unit in pPlayer:Units() do
-					if unit:GetUnitType() == tUnitsCivilian[9] and unit:GetPlot() == pPlot then
-						if unit:GetSpreadsLeft() > 1 then
-							unit:SetSpreadsLeft(unit:GetSpreadsLeft() - 1)
-						else
-							unit:Kill()
-						end
+				local iNumUnits = pPlot:GetNumUnits();
+				local tMatchedUnits = {}
 
-						break
+				print("SISQENO", "UNIT_COUNT", iNumUnits)
+				
+			   	if iNumUnits > 0 then
+					for i = 0, iNumUnits - 1 do
+						local pUnit = plot:GetUnit(i);
+
+						if pUnit:GetUnitType() == tUnitsCivilian[9] and pUnit:IsBusy() and pUnit:GetSpreadsLeft() > 1 and pUnit:GetOwner() == ePlayer then
+							print("SISQENO", "UNIT_FOUND", pUnit:GetID())
+							table.insert(tMatchedUnits, pUnit)
+						end
 					end
 				end
+				print("SISQENO", "UNITS_MATCHED", #tMatchedUnits)
+				if #tMatchedUnits == 0 then return false end
+				
+				local pRandomUnit = table.remove(tMatchedUnits, Game.Rand(#tMatchedUnits, "Choose random Sisqeno on the tile") + 1)
+
+				pRandomUnit:SetSpreadsLeft(pRandomUnit:GetSpreadsLeft() - 1)
 			end
 		end
 	end
