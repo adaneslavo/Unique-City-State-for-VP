@@ -43,7 +43,7 @@
 			<Text>Special training program for Nihangs!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_TEAAT">
-			<Text>Season started and Te'aats from [COLOR_CYAN]{1_Juyubit}[ENDCOLOR] sailed to spread culture around the world and bring back some stuff you. Their recent actions gave you additional {2_Food} [ICON_FOOD] Food and {3_Culture} [ICON_CULTURE] Culture in [COLOR_CYAN]{4_City}[ENDCOLOR].</Text>
+			<Text>Season started and [COLOR_POSITIVE_TEXT]Te'aats[ENDCOLOR] from [COLOR_CYAN]{1_Juyubit}[ENDCOLOR] sailed to spread culture around the world and to bring back some stuff to you. Their recent journey gave you additional {2_Food} [ICON_FOOD] Food and {3_Culture} [ICON_CULTURE] Culture in [COLOR_CYAN]{4_City}[ENDCOLOR].</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_TEAAT_TITLE">
 			<Text>Great event on the sea!</Text>
@@ -225,7 +225,7 @@
 			<Text>Let's dance!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_KARASJOHKA_MAIN">
-			<Text>Experienced Siida people from [COLOR_CYAN]{1_Karasjohka}[ENDCOLOR] know how to find and lure [COLOR_POSITIVE_TEXT]Reindeers[ENDCOLOR] to your territory. They only need an inhabitted tundra, some forest nearby and animals come to them without special effort!</Text>
+			<Text>Experienced Siida people from [COLOR_CYAN]{1_Karasjohka}[ENDCOLOR] know how to find and lure [COLOR_POSITIVE_TEXT]Reindeers[ENDCOLOR] to your territory. They only need a piece of inhabitted tundra and some forest nearby to make these animals come to them without any special effort! Now you can join Siida and admire these beautiful creatures together.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_KARASJOHKA_MAIN_TITLE">
 			<Text>Reindeers seen close to your territories!</Text>
@@ -237,16 +237,22 @@
 			<Text>Another herd of Reindeers nearby!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_AYUTTHAYA_DECLARED">
-			<Text>Councellors from [COLOR_CYAN]{1_Ayutthaya}[ENDCOLOR] advised you to declare war. To achive your goal you must adjust all production sectors to fullfil the demands of this war giving you additional {2_Production} [ICON_PRODUCTION] Production in each City.</Text>
+			<Text>Councellors from [COLOR_CYAN]{1_Ayutthaya}[ENDCOLOR] advised you to declare war. To achive all of your goals you must carefully adjust all production sectors, so they could fullfil huge demands of a war machine. Your recent planning gave you {2_Production} [ICON_PRODUCTION] Production in each City.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_AYUTTHAYA_DECLARED_TITLE">
 			<Text>Set the production to war tempo!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_AYUTTHAYA_SUFFERED">
-			<Text>[COLOR_CYAN]{1_Ayutthaya}[ENDCOLOR] knows how you feel when you are only a victim of someone else's plans of expansion. They gave you enough instruction to prepare a counterplan. Thanks to that you gain enough experience to train a new leader that will accompany your troop to the battlefield. Your court gains {2_GreatGeneralPoints} [ICON_GREAT_GENERAL] Great General Points.</Text>
+			<Text>[COLOR_CYAN]{1_Ayutthaya}[ENDCOLOR] knows that feeling. Being attacked by nations hungry for new territories or precious resources. Their experience gave you enough more than enough knowledge to prepare a counterplan. Thanks to that you could start a training effort to gain a new leader, that will accompany your troops to the battlefield. Your court gains {2_GreatGeneralPoints} [ICON_GREAT_GENERAL] Great General Points.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_AYUTTHAYA_SUFFERED_TITLE">
 			<Text>Full mobilization!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_LONGYAN_POP">
+			<Text>[COLOR_CYAN]{1_Longyan}[ENDCOLOR] shared their design of a [COLOR_POSITIVE_TEXT]Tulou[ENDCOLOR] improvement. Its construction allowed you to increase the population capacity of [COLOR_CYAN]{2_City}[ENDCOLOR], and the effect can be seen immediately!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_LONGYAN_POP_TITLE">
+			<Text>Better place to live!</Text>
 		</Row>
 	</Language_en_US>
 </GameData>

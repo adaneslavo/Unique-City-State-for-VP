@@ -376,10 +376,10 @@ function SubstituteConflictingCityStates(ePlayer, iX, iY)
 		local eNewOwner = pPlot:GetOwner()
 		local pNewOwner = Players[eNewOwner]
 		local sNewName = L(GameInfo.MinorCivilizations[pNewOwner:GetMinorCivType()].Description)
+		print("CS_FOUNDED", "OLD_NAME...", pNewCity:GetName())
 		
 		pNewCity:SetName(sNewName)
 		
-		print("CS_FOUNDED", "OLD_NAME...", pNewCity:GetName())
 		print("CS_FOUNDED", "OWNERSHIP_FROM...", ePlayer, "TO...", eNewOwner)
 		print("CS_FOUNDED", "CHANGED_NAME_TO...", pNewCity:GetName())
 		
@@ -605,7 +605,9 @@ GameEvents.UnitPrekill.Add(DiplomaticExpansion)
 
 -- Setting the specicifc removing conditions for UCSTI
 function CanWeSubstituteImprovement(ePlayer, eUnit, iX, iY, eBuild)
-	if eBuild == GameInfoTypes.BUILD_ROAD or eBuild == GameInfoTypes.BUILD_RAILROAD or eBuild == GameInfoTypes.BUILD_REPAIR then return true end
+	if eBuild == GameInfoTypes.BUILD_ROAD or eBuild == GameInfoTypes.BUILD_RAILROAD or eBuild == GameInfoTypes.BUILD_REMOVE_ROUTE
+	or eBuild == GameInfoTypes.BUILD_REPAIR or eBuild == GameInfoTypes.BUILD_SCRUB_FALLOUT 
+	or eBuild == GameInfoTypes.BUILD_LANDMARK or eBuild == GameInfoTypes.BUILD_ARCHAEOLOGY_DIG then return true end
 	
 	local pPlot = Map.GetPlot(iX, iY)
 	local eCurrentImprovementType = pPlot:GetImprovementType()
@@ -1644,6 +1646,10 @@ function CanWeBuildDogoCanario(ePlayer, eUnit, iX, iY, eBuild)
 	
 	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[42]) > 0) then return false end
 	
+	local pPlot = Map.GetPlot(iX, iY)
+	
+	if not pPlot:IsHills() then return false end		
+
 	return true
 end
 GameEvents.PlayerCanBuild.Add(CanWeBuildDogoCanario)
@@ -1952,9 +1958,15 @@ function BuiltTulou(ePlayer, iX, iY, eImprovement)
 		CountTulous(ePlayer)
 
 		-- Population
+		local pPlayer = Players[ePlayer]
 		local pCity = Map.GetPlot(iX, iY):GetWorkingCity()
-
+		local pLongyan = Players[tLostCities["eLostLongyan"]]
+		
 		pCity:ChangePopulation(1)
+		
+		if pPlayer:IsHuman() then
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_LONGYAN_POP", pLongyan:GetName(), pCity:GetName()), L("TXT_KEY_UCS_BONUS_LONGYAN_POP_TITLE"), pCity:GetX(), pCity:GetY())
+		end
 	end
 end
 
@@ -1989,7 +2001,7 @@ function CountTulous(ePlayer)
 
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[53]) ~= 0 then	
 		local pCapital = pPlayer:GetCapitalCity()
-		local iNumTulous = pPlayer:GetImprovementCount()
+		local iNumTulous = pPlayer:GetImprovementCount(tImprovementsUCS[6])
 		print("LONGYAN", "TULOU_NUM", iNumTulous)
 		pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[27], iNumTulous)
 	end
@@ -4386,12 +4398,8 @@ end
 
 -- KARASJOHKA (SPAWN REINDEER)
 function BuiltCampOnDeerWithTundraAround(ePlayer, iX, iY, eImprovement)
-	-- event triggers twice, so this should prevent it
-	--bBlockDoubleTriggering = not bBlockDoubleTriggering
-	print("KARASJOHKA", ePlayer, iX, iY, eImprovement)
-	--if not bBlockDoubleTriggering then return end
 	if eImprovement ~= tImprovementsRegular[5] then return end
-	print("KARASJOHKA", "CAMP")
+	
 	local pPlayer = Players[ePlayer]
 
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[54]) ~= 0 then
@@ -4399,30 +4407,41 @@ function BuiltCampOnDeerWithTundraAround(ePlayer, iX, iY, eImprovement)
 		local eResource = pPlot:GetResourceType()
 
 		if eResource ~= tResourcesBonus[1] then return end
-		print("KARASJOHKA", "DEER")
+		
 		local tPossibleReindeerSpots = {}
+		local iSnowNumTilesAround = 0;
 		
 		for i, direction in ipairs(tDirectionTypes) do
 			local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
-			print("KARASJOHKA", "PLOT_CHECK", i)			
+			
 			if pAdjacentPlot then
-				local eTerrain = pAdjacentPlot:GetTerrainType()
-				--local eFeature = pAdjacentPlot:GetFeatureType()
+				local bAdjacentCity = pAdjacentPlot:IsCity()
+				local eAdjacentResource = pAdjacentPlot:GetResourceType()
+				local eAdjacentTerrain = pAdjacentPlot:GetTerrainType()
+				local bAdjacentSnow = eAdjacentTerrain == tTerrainTypes[1]
+				local bAdjacentTundra = eAdjacentTerrain == tTerrainTypes[2]
 				
-				if eTerrain == tTerrainTypes[2] --[[and eFeature == tFeatureTypes[1]--]] then
-					print("KARASJOHKA", "PLOT_CHECK_OK")
+				if (bAdjacentSnow or bAdjacentTundra) and eAdjacentResource == -1 and not bAdjacentCity then
 					table.insert(tPossibleReindeerSpots, pAdjacentPlot)
+					
+					if bAdjacentSnow then
+						iSnowNumTilesAround = iSnowNumTilesAround + 1
+					end
 				end
 			end
 		end
 
+		-- 1st round of placing a Reindeer resource (80% + X% per adjacent Snow)
 		if #tPossibleReindeerSpots == 0 then return end
-		print("KARASJOHKA", "SPOTS_OK")
+		
 		local iChance = Game.Rand(100, "Chance for spawning a Reindeer")
-		print("KARASJOHKA", "CHANCE", iChance)
-		if iChance >= 80 then return end
-		print("KARASJOHKA", "CHANCE_OK", "SPAWN!")
-		local pChosenPlot = table.remove(tPossibleReindeerSpots, Game.Rand(#tPossibleReindeerSpots, "Choosing plot for a Reindeer") + 1)
+		local iThreshold = 80 + iSnowNumTilesAround
+		
+		if iChance >= iThreshold then return end
+		
+		local pKarasjohka = Players[tLostCities["eLostKarasjohka"]]
+		local iRandomSpot = Game.Rand(#tPossibleReindeerSpots, "Choosing plot for a Reindeer") + 1
+		local pChosenPlot = table.remove(tPossibleReindeerSpots, iRandomSpot)
 		
 		pChosenPlot:SetResourceType(tResourcesBonus[2], 1)
 
@@ -4430,13 +4449,15 @@ function BuiltCampOnDeerWithTundraAround(ePlayer, iX, iY, eImprovement)
 			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_KARASJOHKA_MAIN", pKarasjohka:GetName()), L("TXT_KEY_UCS_BONUS_KARASJOHKA_MAIN_TITLE"), pChosenPlot:GetX(), pChosenPlot:GetY())
 		end
 
+		-- 2nd round of placing a Reindeer resource (10% + X% per adjacent Snow)
 		if #tPossibleReindeerSpots == 0 then return end
-
+		
 		iChance = Game.Rand(100, "Chance for spawning additional Reindeer")
-		print("KARASJOHKA", "CHANCE_2", iChance)
-		if iChance >= 70 then return end
-		print("KARASJOHKA", "CHANCE_2_OK", "SPAWN!")
-		local pChosenPlot = table.remove(tPossibleReindeerSpots, Game.Rand(#tPossibleReindeerSpots, "Choosing plot for an additional Reindeer") + 1)
+		
+		if iChance >= iThreshold - 70 then return end
+		
+		iRandomSpot = Game.Rand(#tPossibleReindeerSpots, "Choosing plot for a Reindeer") + 1
+		pChosenPlot = table.remove(tPossibleReindeerSpots, iRandomSpot)
 
 		pChosenPlot:SetResourceType(tResourcesBonus[2], 1)
 
@@ -4593,8 +4614,8 @@ function SettingUpSpecificEvents()
 			
 			-- improvements
 			elseif sMinorCivType == "MINOR_CIV_CAHOKIA" or sMinorCivType == "MINOR_CIV_SGAANG" or sMinorCivType == "MINOR_CIV_NYARYANA_MARQ"
-				or sMinorCivType == "MINOR_CIV_LA_VENTA" then
-				or sMinorCivType == "MINOR_CIV_TIWANAKU" or sMinorCivType == "MINOR_CIV_KARYES" or sMinorCivType == "MINOR_CIV_LONGYAN"
+			or sMinorCivType == "MINOR_CIV_LA_VENTA"
+			or sMinorCivType == "MINOR_CIV_TIWANAKU" or sMinorCivType == "MINOR_CIV_KARYES" or sMinorCivType == "MINOR_CIV_LONGYAN" then
 					GameEvents.PlayerCanBuild.Add(CanWeSubstituteImprovement)
 			
 				if sMinorCivType == "MINOR_CIV_CAHOKIA" then	
@@ -4651,8 +4672,8 @@ function SettingUpSpecificEvents()
 			
 			
 			-- starting building setup for city-states
-			elseif 		sMinorCivType == "MINOR_CIV_KIEV" or sMinorCivType == "MINOR_CIV_MILAN" 
-				     or	sMinorCivType == "MINOR_CIV_VILNIUS" or sMinorCivType == "MINOR_CIV_VALLETTA" then
+			elseif sMinorCivType == "MINOR_CIV_KIEV" or sMinorCivType == "MINOR_CIV_MILAN" 
+			or sMinorCivType == "MINOR_CIV_VILNIUS" or sMinorCivType == "MINOR_CIV_VALLETTA" then
 				GameEvents.PlayerCityFounded.Add(SettledCityStateWithBuilding)
 				GameEvents.PlayerLiberated.Add(LiberatedCityStateWithBuilding)
 				

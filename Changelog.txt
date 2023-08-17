@@ -9,23 +9,26 @@ Changelog:
 		- when the game loads it checks all Major player city lists and all city-states, compares them and looks for any conflicts;
 		- conflicts are stored in special table;
 		- when a city state found a city then the whole city-state (Minor player) is changed to another one at random;
+		- !!! if you want this tool to work correctly, do not use all possible slots for city-states (about 35 should be fine; leave few of them free for substitutions);
 	- 16 new City-States (5 female leaders):
 		- 2 Maritime: Honiara (Oceania), Juyubit (F; North America);
 		- 2 Mercantile: Ouidah (West Africa), Sana'a (F; West Asia);
-		- 5 Militaristic: Dakkar (East Africa), Longyan (East Asia), Pelym (North Asia), Pokrovka (F; West Asia), Tbilisi (F; Caucasus);
+		- 5 Militaristic: Dakkar (East Africa), Longyan (East Asia), Pelym (North Asia), Daergraevs (F; Caucassus/Central Asia), Tbilisi (F; Caucassus);
 		- 4 Cultured: Anangula (North America), Ayutthaya (South-East Asia), Karasjohka (F; North Europe), Katende (Central Africa);
 		- 3 Religious: Lahore (South Asia), Sarnath (South Asia), Suceava (East Europe);
 	- 20 new Promotions:
 		- Battle of Vaslui (exclusive for Suceava);
 		- Futuh Al-Habash (exclusive for Dakkar);
-		- Scythian Arrow Barrage (exclusive for Pokrovka);
+		- Scythian Arrow Barrage (exclusive for Daergraevs);
 		- Siberian Education (exclusive for Pelym);
 		- Siida Training (exclusive for Karasjohka);
 		- 15 new Promotions (whole unique branch) for Nihang Unit (exclusive for Lahore);
 	- 3 new Units:
 		- Nihang - multi Era unit with its own Promotion Branch (exclusive for Lahore);
-		- Saka (exclusive for Pokrovka);
+		- Saka (exclusive for Daergraevs);
 		- Te'aat (exclusive for Juyubit);
+	- 1 new Improvement:
+		- Tulou (exclusive for Longyan);
 	- 1 new Resource:
 		- Reindeer (exclusive for Karasjohka);
 - changed:
@@ -44,16 +47,19 @@ Changelog:
 		- now can also be trained with Production;
 		- added FaithCost, so it may be bought with Faith after acquiring certain belief;
 		- obsoletes correctly like other UUs;
-		- have default AI;
+		- has default AI;
 	- Managua rework:
 		- Managua is now Cultured City-State to split the bunch of Mercantile CSs in that area;
 		- Managua now has American style (was European);
 		- managua gets new ability based on espionage (3rd CS using such; old ability moved to Sana'a);
-	- Nan Madol: culture on death is not applied once instead of for each city;
-	- City-States now claim their GPTI if they are spawned outside their borders;
+	- Nan Madol: culture on death is now applied once instead of for each city;
+	- City-States now claim their GPTIs if they are spawned outside their borders;
 - fixed:
-	- Roads and Railroads can now be built on tiles with UCS improvements;
-	- UCS improvements can now be repaired (ups, my bad);
+	- lua workaround for UCS improvements fix:
+		- Roads and Railroads can now be built or removed on tiles with UCS improvements;
+		- can now be repaired (ups, my bad);
+		- now allow building Landmarks and doing Archaeologica digs;
+		- now allow Scrubing Fallout action;
 	- Potala Palace now unlocked at Architecture (should help a bit with CS quests asking to build it);
 	- fixed an error in functions giving units from Friendly CSs;
 	- Bedulu now gets Faith from Trade Routes (and Dodoma does not);
@@ -63,12 +69,12 @@ Changelog:
 		- promotion icons now have dark grey background instead of light grey;
 	- gifts:
 		- fake Caravans cannot be gifted;
-		- maybe this time CSs won't be giving UCS units to players...
+		- changed the used column from from NoMinorGifts to NoMinorCivGift, so maybe this time CSs won't be giving UCS units to players...
 	- deleted unnecessary 32px icons for units and 128px and 32px icons for resources;
 	- filled some gaps in Units table for new Untis;
 	- text fixes (most important):
 		- "SGaang" is now "SGang" in few places;
-	- resized unit icons to fit the circle better;
+	- resized unit icons to fit the icon frame better;
 	
 		
 
