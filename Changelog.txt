@@ -1,15 +1,20 @@
-New version contains tons of new content, but the most important imo is automated City-state conflict checker. This module looks for a problematic City-state (f.e. Jerusalem City-state and Israel civ; Canada civ and Vancouver and Quebec City City-states) and substitutes them with another city-state. This means that any compatibility changes are no longer needed in civilization releases (attention @pineappledan, @gwennog).
+New version has tons of new content, but the most important imo is automated City-State conflict checker. This module looks for a problematic City-state (f.e. Jerusalem City-State and Israel Civilization; Canada Civilization and Vancouver or Quebec City City-States) and substitutes them with another City-State at random. This means that any compatibility changes are no longer needed in civilization releases (attention @pineappledan, @gwennog).
 
+Special thanks go to @gwennog, who created all 20 new icons for promotions (whole promotion branch for a Nihang unit), and much more stuff.
+As always thanks to @jarcast2 for his help and great brainstorm, so we could finish the initial planning phase (you cans see that in one of the links now present in the op with the courtesy of @enginseer);
+Thanks to @flamingcheesepie for his role of advisor, his balance suggestions and beta testing.
+Thanks to all people who posted any bug reports on the forum. I hope I didn't miss anything.
 
 Changelog:
 *(F) - Female leader
 
 - added:
-	- city-state blocking mechanism (lua based, because dll is hardcoded now):
-		- when the game loads it checks all Major player city lists and all city-states, compares them and looks for any conflicts;
-		- conflicts are stored in special table;
-		- when a city state found a city then the whole city-state (Minor player) is changed to another one at random;
-		- !!! if you want this tool to work correctly, do not use all possible slots for city-states (about 35 should be fine; leave few of them free for substitutions);
+	- City-State blocking mechanism (lua based, because DLL is hardcoded now) (by @jarcast2 (idea and lua help) and me (coding)):
+		- when the game loads it checks all Major Player city lists and all City-States, compares them and looks for any conflicts;
+		- all conflicts are stored in special table;
+		- when a City-State with conflict founds a city then the whole City-State (Minor Player) is changed to another one at random;
+		- whole process is repeated if new City-State is also conflicting with Major Civilizations;
+		- !!! if you want this tool to work correctly, do not use all possible slots for City-States (about 35 should be fine; leave few of them free for substitutions);
 	- 16 new City-States (5 female leaders):
 		- 2 Maritime: Honiara (Oceania), Juyubit (F; North America);
 		- 2 Mercantile: Ouidah (West Africa), Sana'a (F; West Asia);
@@ -29,19 +34,20 @@ Changelog:
 		- Te'aat (exclusive for Juyubit);
 	- 1 new Improvement:
 		- Tulou (exclusive for Longyan);
-	- 1 new Resource:
+	- 2 new Resources:
 		- Reindeer (exclusive for Karasjohka);
+		- Llao Llao (unused);
 - changed:
-	- reworked civilopedia entries for: Armagh, Muscat, Nan Madol.
+	- reworked civilopedia entries for: Armagh, Muscat and Nan Madol.
 - balanced:
 	- Dogo Canario rework:
 		- now has improved Camp model;
-		- now has additional Under Construction model for a resource placement;
+		- now has additional Under Construction model specially for a resource placement;
 		- Dogos are now correctly placed on a hill (were fading inside);
-		- Dogos can now only be placed on Plains and Grassland (were anywhere);
-		- Dogos have now 1 base Food (was 2);
+		- Dogos can now only be placed on Plains or Grasslands (could anywhere);
+		- Dogos have now +1 base Food (was +2);
 	- Totem Pole rework:
-		- now has pillaged and under construction model (by @ghost toast);
+		- now has Pillaged and Under Construction model (by @ghost toast);
 		- has new model for constructed state;
 	- Gurkha changes:
 		- now can also be trained with Production;
@@ -49,10 +55,10 @@ Changelog:
 		- obsoletes correctly like other UUs;
 		- has default AI;
 	- Managua rework:
-		- Managua is now Cultured City-State to split the bunch of Mercantile CSs in that area;
+		- Managua is now Cultured City-State to split the bunch of Mercantile CSs in the Central America;
 		- Managua now has American style (was European);
 		- managua gets new ability based on espionage (3rd CS using such; old ability moved to Sana'a);
-	- Nan Madol: culture on death is now applied once instead of for each city;
+	- Nan Madol: culture on death is now applied once in Capital instead of for each city;
 	- City-States now claim their GPTIs if they are spawned outside their borders;
 - fixed:
 	- lua workaround for UCS improvements fix:
@@ -61,9 +67,12 @@ Changelog:
 		- now allow building Landmarks and doing Archaeologica digs;
 		- now allow Scrubing Fallout action;
 	- Potala Palace now unlocked at Architecture (should help a bit with CS quests asking to build it);
+	- Jerusalem now checks if Major player created a Religion (so does not take the Pantheons into account);
 	- fixed an error in functions giving units from Friendly CSs;
 	- Bedulu now gets Faith from Trade Routes (and Dodoma does not);
-	- Sisqeno Worker now gains same free promotions like Sisqeno (Missionary);
+	- Sisqeno fixes:
+		- Worker now gains same free promotions like Sisqeno (Missionary);
+		- Sisqeno, after SC construction, looks for all busy Sisqenos with full count and choose one at random (previously looked for the oldest unit on tile);
 	- Clermont:
 		- fixed Clermont promotion tags (promotions and icons didn't match);
 		- promotion icons now have dark grey background instead of light grey;
@@ -72,10 +81,12 @@ Changelog:
 		- changed the used column from from NoMinorGifts to NoMinorCivGift, so maybe this time CSs won't be giving UCS units to players...
 	- deleted unnecessary 32px icons for units and 128px and 32px icons for resources;
 	- filled some gaps in Units table for new Untis;
+	- resized unit icons to fit the icon frame better;
 	- text fixes (most important):
 		- "SGaang" is now "SGang" in few places;
-	- resized unit icons to fit the icon frame better;
-	
+		- reworked a bit style of improvement texts;
+		- fixed yields descritpion for Sunken Courtyard;
+		- expanded info for Mound (CS bonus);
 		
 
 
