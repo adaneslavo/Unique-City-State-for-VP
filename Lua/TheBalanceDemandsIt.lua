@@ -2222,7 +2222,9 @@ function JerusalemsDevotion(ePlayer)
 		    if GameInfo.MinorCivilizations[pMinorPlayer:GetMinorCivType()].Type == "MINOR_CIV_JERUSALEM" then
 				if pMinorPlayer:IsAllies(ePlayer) then
 					local pMajorPlayer = Players[ePlayer]
-        	    
+
+			if not pMajorPlayer:HasCreatedReligion() then return end
+					
             		if pMajorPlayer:GetMajorityReligion() ~= nil and pMajorPlayer:GetMajorityReligion() ~= pMinorPlayer:GetMajorityReligion() then
             			local pJerusalemCity = pMinorPlayer:GetCapitalCity()
 				
