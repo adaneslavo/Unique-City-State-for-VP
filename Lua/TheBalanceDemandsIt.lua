@@ -170,11 +170,8 @@ local tPoliciesPassiveAbilities = {
 }
 
 local tImprovementsRegular = {
-	GameInfoTypes.IMPROVEMENT_MARSH,
-	GameInfoTypes.IMPROVEMENT_PLANT_FOREST,
-	GameInfoTypes.IMPROVEMENT_PLANT_JUNGLE,
-	GameInfoTypes.IMPROVEMENT_DOGO_CANARIO,
-	GameInfoTypes.IMPROVEMENT_CAMP
+	GameInfoTypes.IMPROVEMENT_CAMP,
+	GameInfoTypes.IMPROVEMENT_PLANTATION
 }
 
 local tImprovementsUCS = {
@@ -183,7 +180,10 @@ local tImprovementsUCS = {
 	GameInfoTypes.IMPROVEMENT_MONASTERY,
 	GameInfoTypes.IMPROVEMENT_TOTEM_POLE,
 	GameInfoTypes.IMPROVEMENT_CHUM,
-	GameInfoTypes.IMPROVEMENT_TULOU
+	GameInfoTypes.IMPROVEMENT_TULOU,
+	GameInfoTypes.IMPROVEMENT_DOGO_CANARIO,
+	GameInfoTypes.IMPROVEMENT_LLAO_LLAO,
+	GameInfoTypes.IMPROVEMENT_MARSH
 }
 
 local tImprovementsGreatPeople = {
@@ -279,7 +279,8 @@ local tResourcesBonus = {
 }
 
 local tResourcesLuxury = {
-	GameInfoTypes.RESOURCE_DOGO_CANARIO
+	GameInfoTypes.RESOURCE_DOGO_CANARIO,
+	GameInfoTypes.RESOURCE_LLAO_LLAO
 }
 
 local tResourcesStrategic = {
@@ -1639,7 +1640,7 @@ end
 
 
 -- BRUSSELS (FEATURE MARSH)
-function CanWeBuildMarsh(ePlayer, eUnit, iX, iY, eBuild)
+function CanWePlaceMarsh(ePlayer, eUnit, iX, iY, eBuild)
 	if eBuild ~= GameInfoTypes.BUILD_MARSH then return true end
 	
 	local pPlayer = Players[ePlayer]
@@ -1652,10 +1653,10 @@ function CanWeBuildMarsh(ePlayer, eUnit, iX, iY, eBuild)
 	
 	return true
 end
-GameEvents.PlayerCanBuild.Add(CanWeBuildMarsh)
+GameEvents.PlayerCanBuild.Add(CanWePlaceMarsh)
 
-function BuiltMarsh(ePlayer, iX, iY, eImprovement)
-	if eImprovement == tImprovementsRegular[1] then
+function PlacedMarsh(ePlayer, iX, iY, eImprovement)
+	if eImprovement == tImprovementsUCS[9] then
 		local pPlot = Map.GetPlot(iX, iY)
 		
 		pPlot:SetImprovementType(-1)
@@ -1666,7 +1667,7 @@ end
 
 
 -- ADEJE (IMPROVEMENT/RESOURCE DOGO CANARIO)
-function CanWeBuildDogoCanario(ePlayer, eUnit, iX, iY, eBuild)
+function CanWePlaceDogoCanario(ePlayer, eUnit, iX, iY, eBuild)
 	if eBuild ~= GameInfoTypes.BUILD_DOGO_CANARIO then return true end
 	
 	local pPlayer = Players[ePlayer]
@@ -1679,14 +1680,37 @@ function CanWeBuildDogoCanario(ePlayer, eUnit, iX, iY, eBuild)
 
 	return true
 end
-GameEvents.PlayerCanBuild.Add(CanWeBuildDogoCanario)
+GameEvents.PlayerCanBuild.Add(CanWePlaceDogoCanario)
 
-function BuiltDogoCanario(ePlayer, iX, iY, eImprovement)
-	if eImprovement == tImprovementsRegular[4] then
+function PlacedDogoCanario(ePlayer, iX, iY, eImprovement)
+	if eImprovement == tImprovementsUCS[7] then
 		local pPlot = Map.GetPlot(iX, iY)
 		
 		pPlot:SetImprovementType(-1)
+		pPlot:SetResourceType(tResourcesLuxury[2], 1)
+	end
+end
+
+
+
+-- YAIUWA (IMPROVEMENT/RESOURCE LLAO LLAO)
+function CanWePlaceLlaoLlao(ePlayer, eUnit, iX, iY, eBuild)
+	if eBuild ~= GameInfoTypes.BUILD_LLAO_LLAO then return true end
+	
+	local pPlayer = Players[ePlayer]
+	
+	--if not (pPlayer:GetEventChoiceCooldown(tEventChoice[??]) > 0) then return false end
+
+	return true
+end
+GameEvents.PlayerCanBuild.Add(CanWePlaceLlaoLlao)
+
+function PlacedLlaoLlao(ePlayer, iX, iY, eImprovement)
+	if eImprovement == tImprovementsUCS[8] then
+		local pPlot = Map.GetPlot(iX, iY)
+
 		pPlot:SetResourceType(tResourcesLuxury[1], 1)
+		pPlot:SetImprovementType(tImprovementsRegular[2])
 	end
 end
 	
@@ -4436,7 +4460,7 @@ end
 
 -- KARASJOHKA (SPAWN REINDEER)
 function BuiltCampOnDeerWithTundraAround(ePlayer, iX, iY, eImprovement)
-	if eImprovement ~= tImprovementsRegular[5] then return end
+	if eImprovement ~= tImprovementsRegular[1] then return end
 	
 	local pPlayer = Players[ePlayer]
 
@@ -4691,10 +4715,13 @@ function SettingUpSpecificEvents()
 			-- resources/features
 			elseif sMinorCivType == "MINOR_CIV_BRUSSELS" then	
 				tLostCities["eLostBrussels"] = eCS
-				GameEvents.BuildFinished.Add(BuiltMarsh)
+				GameEvents.BuildFinished.Add(PlacedMarsh)
 			elseif sMinorCivType == "MINOR_CIV_ADEJE" then	
 				tLostCities["eLostAdeje"] = eCS
-				GameEvents.BuildFinished.Add(BuiltDogoCanario)
+				GameEvents.BuildFinished.Add(PlacedDogoCanario)
+			--[[elseif sMinorCivType == "MINOR_CIV_YAIUWA" then	
+				tLostCities["eLostYaiuwa"] = eCS
+				GameEvents.BuildFinished.Add(PlacedLlaoLlao)--]]
 			
 
 			-- trade routes bonuses
