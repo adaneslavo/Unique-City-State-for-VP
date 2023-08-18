@@ -716,10 +716,10 @@ INSERT INTO Language_en_US (Tag, Text)
 -- resources
 SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO',					'Dogo Canario' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO_TEXT',			'Dogo Canario are a breed of dog native to the canary islands, a rare dog with a broad head and muscular body. They played a role in the myth, funeral customs and even diet of the guanches. Some were even mummified along with their owners.' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO_MONOPOLY',		'Requires an access to [COLOR_CYAN]Adeje[ENDCOLOR]''s ability to be finished.[NEWLINE][NEWLINE][COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_PRODUCTION] Production and +5% [ICON_GOLD] Gold in all owned Cities.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO_MONOPOLY',		'Requires an access to [COLOR_CYAN]Adeje[ENDCOLOR]''s ability to be finished.[NEWLINE][NEWLINE][COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_FOOD] Food and +5% [ICON_PRODUCTION] Production in all owned Cities.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_LLAO_LLAO',						'Llao Llao' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_LLAO_LLAO_TEXT',				'' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_LLAO_LLAO_MONOPOLY',			'Requires an access to [COLOR_CYAN]Yaiuwa[ENDCOLOR]''s ability to be placed.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_LLAO_LLAO_MONOPOLY',			'Requires an access to [COLOR_CYAN]Yaiuwa[ENDCOLOR]''s ability to be placed.[NEWLINE][NEWLINE][COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_FOOD] Food in all owned Cities. +3 [ICON_HAPPINESS_1] Happiness in Empire.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_REINDEER',						'Reindeer' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_REINDEER_TEXT',				'' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_REINDEER_MONOPOLY',			'Requires an access to [COLOR_CYAN]Karasjohka[ENDCOLOR]''s ability to be placed.';
