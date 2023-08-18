@@ -181,9 +181,9 @@ local tImprovementsUCS = {
 	GameInfoTypes.IMPROVEMENT_TOTEM_POLE,
 	GameInfoTypes.IMPROVEMENT_CHUM,
 	GameInfoTypes.IMPROVEMENT_TULOU,
-	GameInfoTypes.IMPROVEMENT_DOGO_CANARIO,
-	GameInfoTypes.IMPROVEMENT_LLAO_LLAO,
-	GameInfoTypes.IMPROVEMENT_MARSH
+	GameInfoTypes.IMPROVEMENT_DOGO_CANARIO,	-- dummy
+	GameInfoTypes.IMPROVEMENT_LLAO_LLAO,	-- dummy
+	GameInfoTypes.IMPROVEMENT_MARSH			-- dummy
 }
 
 local tImprovementsGreatPeople = {
@@ -330,8 +330,7 @@ local tUnitsWithSpread = {}
 local tCityConflicts = {}
 
 function Conflicts()
-	print("")
-	print("")
+	print("XXXXXXXXXXXXXXXXXXXXXX")
 	print("CONFLICTS")
 	for emajorplayer = 0, GameDefines.MAX_MAJOR_CIVS - 1, 1 do
 		local pMajorPlayer = Players[emajorplayer]
@@ -346,7 +345,8 @@ function Conflicts()
 				
 				for citylist in DB.Query("SELECT Civilization_CityNames.CityName FROM Civilization_CityNames WHERE CivilizationType = ?", GameInfo.Civilizations[pMajorPlayer:GetCivilizationType()].Type) do
 					if L(citylist.CityName) == sMinorCapitalName then
-						print("CONFLICT_SET!!!", sMinorCapitalName)
+						print("CONFLICT_SET!!!", sMinorCapitalName)	
+						print("XXXXXXXXXXXXXXXXXXXXXX")
 						tCityConflicts[eminorplayer] = true
 						break
 					end
@@ -354,57 +354,67 @@ function Conflicts()
 			end
 		end
 	end
-	print("")
-	print("")
 end
 Conflicts()
 
 function SubstituteConflictingCityStates(ePlayer, iX, iY)
+	if not tCityConflicts[ePlayer] then return end
+	
 	local pPlayer = Players[ePlayer]
 	
 	if not pPlayer:IsMinorCiv() then return end
 	
 	local pPlot = Map.GetPlot(iX, iY)
-	local pCity = pPlot:GetWorkingCity()
+	local pCity = pPlot:GetPlotCity()
+	local eNewOwner = nil
+	print("XXXXXXXXXXXXXXXXXXXXXX")
+	print("CS_FOUNDED", "CONFLICT_CODE_APPLIED!!!", pCity:GetName())
+	repeat	
+		print("----------------------")
+		print("CS_FOUNDED", "NEW_LOOP_STARTED...")
+		local ePreviousOwner = pPlot:GetOwner()
+		Game.DoSpawnFreeCity(pCity)
+
+		pCity = pPlot:GetPlotCity()
+		eNewOwner = pPlot:GetOwner()
+		local pNewOwner = Players[eNewOwner]
+		local sNewName = L(GameInfo.MinorCivilizations[pNewOwner:GetMinorCivType()].Description)
+		
+		pCity:SetName(sNewName)
+		
+		if ePlayer == eNewOwner then 
+			-- in case when there are no free CS spots;
+			print("CS_FOUNDED", "OWNERSHIP_CANNOT_BE_CHANGED!!!")
+			for emajorplayer = 0, GameDefines.MAX_MAJOR_CIVS - 1, 1 do
+				local pMajorPlayer = Players[emajorplayer]
+			
+				if pMajorPlayer:IsHuman() then
+					pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_CONFLICT", pCity:GetName()), L("TXT_KEY_UCS_CONFLICT_TITLE"), pCity:GetX(), pCity:GetY())
+				end
+			end
+			
+			break
+		end 
+		
+		print("CS_FOUNDED", "OWNERSHIP_CHANGED_FROM...", ePreviousOwner, "TO...", eNewOwner)
+		print("CS_FOUNDED", "CHANGED_NAME_TO...", pCity:GetName())
+		
+		RepeatableCheckConflicts(eNewOwner)
+		print("CS_FOUNDED", "NEW_OWNER_CONFLICT?", tCityConflicts[eNewOwner])
+	until(not tCityConflicts[eNewOwner])
 	
-	if tCityConflicts[ePlayer] then
-		repeat	
-			print("")
-			print("")
-			print("CS_FOUNDED", "CONFLICT_CODE_APPLIED!!!", pCity:GetName())
-			Game.DoSpawnFreeCity(pCity)
-		
-			local pNewCity = pPlot:GetWorkingCity()
-			local eNewOwner = pPlot:GetOwner()
-			local pNewOwner = Players[eNewOwner]
-			local sNewName = L(GameInfo.MinorCivilizations[pNewOwner:GetMinorCivType()].Description)
-			print("CS_FOUNDED", "OLD_NAME...", pNewCity:GetName())
-			
-			pNewCity:SetName(sNewName)
-			
-			print("CS_FOUNDED", "OWNERSHIP_FROM...", ePlayer, "TO...", eNewOwner)
-			print("CS_FOUNDED", "CHANGED_NAME_TO...", pNewCity:GetName())
-			print("")
-			print("")
+	MaritimeCityStatesBonuses(eNewOwner, iX, iY)
+	MercantileCityStatesBonuses(eNewOwner, iX, iY)
+	MilitaristicCityStatesBonuses(eNewOwner, iX, iY)
+	CulturedCityStatesBonuses(eNewOwner, iX, iY)
+	ReligiousCityStatesBonuses(eNewOwner, iX, iY)
 
-			RepeatableCheckConflicts(eNewOwner)
-		until(not tCityConflicts[eNewOwner])
-		
-		print("CS_FOUNDED", "CHANGE_COMPLETED_SUCCESSFULLY")
-		MaritimeCityStatesBonuses(eNewOwner, iX, iY)
-		MercantileCityStatesBonuses(eNewOwner, iX, iY)
-		MilitaristicCityStatesBonuses(eNewOwner, iX, iY)
-		CulturedCityStatesBonuses(eNewOwner, iX, iY)
-		ReligiousCityStatesBonuses(eNewOwner, iX, iY)
-
-		SettledCityStateWithBuilding(eNewOwner, iX, iY)
-	end
+	SettledCityStateWithBuilding(eNewOwner, iX, iY)
 end
 GameEvents.PlayerCityFounded.Add(SubstituteConflictingCityStates)
 
 function RepeatableCheckConflicts(ePlayer)
-	print("+++")
-	print("NEW_CONFLICTS")
+	print("++++++++++++++++++++++")
 	for emajorplayer = 0, GameDefines.MAX_MAJOR_CIVS - 1, 1 do
 		local pMajorPlayer = Players[emajorplayer]
 		
@@ -416,12 +426,12 @@ function RepeatableCheckConflicts(ePlayer)
 		for citylist in DB.Query("SELECT Civilization_CityNames.CityName FROM Civilization_CityNames WHERE CivilizationType = ?", GameInfo.Civilizations[pMajorPlayer:GetCivilizationType()].Type) do
 			if L(citylist.CityName) == sMinorCapitalName then
 				print("NEW_CONFLICT_SET!!!", sMinorCapitalName)
+				print("++++++++++++++++++++++")
 				tCityConflicts[ePlayer] = true
 				break
 			end
 		end
 	end
-	print("+++")
 end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
@@ -638,23 +648,33 @@ function CanWeSubstituteImprovement(ePlayer, eUnit, iX, iY, eBuild)
 	or eBuild == GameInfoTypes.BUILD_LANDMARK or eBuild == GameInfoTypes.BUILD_ARCHAEOLOGY_DIG then return true end
 	
 	local pPlot = Map.GetPlot(iX, iY)
+	local eResourceTypeUnderneath = pPlot:GetResourceType()
 	local eCurrentImprovementType = pPlot:GetImprovementType()
-	
+		
 	if eCurrentImprovementType ~= -1 then
 		for i, eimprovement in ipairs(tImprovementsUCS) do
-			if  eimprovement == eCurrentImprovementType then				
-				local eResourceTypeUnderneath = pPlot:GetResourceType()
-			
+			if eimprovement == eCurrentImprovementType then				
 				if eResourceTypeUnderneath ~= -1 then
-					return true
+					local sTech = GameInfo.Resources[eResourceTypeUnderneath].TechReveal
+					
+					if sTech then
+						local eTech = GameInfo.Technologies{Type=sTech}().ID
+						local pTeam = Teams[Players[ePlayer]:GetTeam()]
+						
+						return pTeam:IsHasTech(eTech)
+					else
+						return true
+					end
 				else
-					return false
+					return false -- when there's no resource on the tile, so you cannot replace
 				end
 			end
 		end
+		
+		return true -- when improvement is not the UCS improvement
+	else
+		return true -- when there's no improvement on the tile
 	end
-
-	return true
 end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
@@ -663,6 +683,7 @@ end
 function MaritimeCityStatesBonuses(ePlayer, iX, iY)
 	local pPlayer = Players[ePlayer]
 	
+	if not pPlayer then return end
 	if not pPlayer:IsMinorCiv() then return end
 	if not pPlayer:IsAlive() then return end
 	
@@ -864,6 +885,7 @@ end
 function MercantileCityStatesBonuses(ePlayer, iX, iY)
 	local pPlayer = Players[ePlayer]
 	
+	if not pPlayer then return end
 	if not pPlayer:IsMinorCiv() then return end
 	if not pPlayer:IsAlive() then return end
 	
@@ -1069,6 +1091,7 @@ end
 function MilitaristicCityStatesBonuses(ePlayer, iX, iY)
 	local pPlayer = Players[ePlayer]
 	
+	if not pPlayer then return end
 	if not pPlayer:IsMinorCiv() then return end
 	if not pPlayer:IsAlive() then return end
 	
@@ -1262,6 +1285,7 @@ end
 function CulturedCityStatesBonuses(ePlayer, iX, iY)
 	local pPlayer = Players[ePlayer]
 	
+	if not pPlayer then return end
 	if not pPlayer:IsMinorCiv() then return end
 	if not pPlayer:IsAlive() then return end
 	
@@ -1393,6 +1417,7 @@ end
 function ReligiousCityStatesBonuses(ePlayer, iX, iY)
 	local pPlayer = Players[ePlayer]
 	
+	if not pPlayer then return end
 	if not pPlayer:IsMinorCiv() then return end
 	if not pPlayer:IsAlive() then return end
 	
@@ -1687,7 +1712,7 @@ function PlacedDogoCanario(ePlayer, iX, iY, eImprovement)
 		local pPlot = Map.GetPlot(iX, iY)
 		
 		pPlot:SetImprovementType(-1)
-		pPlot:SetResourceType(tResourcesLuxury[2], 1)
+		pPlot:SetResourceType(tResourcesLuxury[1], 1)
 	end
 end
 
@@ -1708,12 +1733,12 @@ GameEvents.PlayerCanBuild.Add(CanWePlaceLlaoLlao)
 function PlacedLlaoLlao(ePlayer, iX, iY, eImprovement)
 	if eImprovement == tImprovementsUCS[8] then
 		local pPlot = Map.GetPlot(iX, iY)
-
-		pPlot:SetResourceType(tResourcesLuxury[1], 1)
+		
+		pPlot:SetResourceType(tResourcesLuxury[2], 1)
 		pPlot:SetImprovementType(tImprovementsRegular[2])
 	end
 end
-	
+	GameEvents.BuildFinished.Add(PlacedLlaoLlao) -- !!!DELETE
 
 
 -- CAHOKIA (IMPROVEMENT MOUND)
@@ -1844,7 +1869,7 @@ function BuiltSunkenCourtyard(ePlayer, iX, iY, eImprovement)
 			-- AI part (Rook and Bishop mechanic; AI cannot build the SC with Sisqeno because the Missionary algorithm is dumb and that's why it gains additional dummy Worker,
 			-- that can only build this one improvement. When it does it lowers the number of Spreads of 1 Sisqeno on the map (oldest), and blocks it from additional action
 			-- (if alive), so it couldn't do Spread Religion action same turn (same thing must be done when religion is spread).
-			if --[[not--]] pPlayer:IsHuman() then
+			if not pPlayer:IsHuman() then
 				for unit in pPlayer:Units() do
 					if unit:GetUnitType() == tUnitsCivilian[9] then
 						if unit:GetSpreadsLeft() > 1 then
@@ -1863,19 +1888,16 @@ function BuiltSunkenCourtyard(ePlayer, iX, iY, eImprovement)
 				local iNumUnits = pPlot:GetNumUnits();
 				local tMatchedUnits = {}
 
-				print("SISQENO", "UNIT_COUNT", iNumUnits)
-				
-			   	if iNumUnits > 0 then
+				if iNumUnits > 0 then
 					for i = 0, iNumUnits - 1 do
-						local pUnit = plot:GetUnit(i);
-
-						if pUnit:GetUnitType() == tUnitsCivilian[9] and pUnit:IsBusy() and pUnit:GetSpreadsLeft() > 1 and pUnit:GetOwner() == ePlayer then
-							print("SISQENO", "UNIT_FOUND", pUnit:GetID())
+						local pUnit = pPlot:GetUnit(i);
+						
+						if pUnit:GetUnitType() == tUnitsCivilian[9] --[[and pUnit:IsBusy()--]] and pUnit:GetSpreadsLeft() > 1 and pUnit:GetOwner() == ePlayer then
 							table.insert(tMatchedUnits, pUnit)
 						end
 					end
 				end
-				print("SISQENO", "UNITS_MATCHED", #tMatchedUnits)
+				
 				if #tMatchedUnits == 0 then return false end
 				
 				local pRandomUnit = table.remove(tMatchedUnits, Game.Rand(#tMatchedUnits, "Choose random Sisqeno on the tile") + 1)
@@ -2062,7 +2084,7 @@ function CountTulous(ePlayer)
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[53]) ~= 0 then	
 		local pCapital = pPlayer:GetCapitalCity()
 		local iNumTulous = pPlayer:GetImprovementCount(tImprovementsUCS[6])
-		print("LONGYAN", "TULOU_NUM", iNumTulous)
+
 		pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[27], iNumTulous)
 	end
 end
@@ -2140,6 +2162,7 @@ end
 function SettledCityStateWithBuilding(ePlayer, iPlotX, iPlotY)
 	local pPlayer = Players[ePlayer]
 	
+	if not pPlayer then return end
 	if pPlayer:IsMinorCiv() and pPlayer:IsAlive() then
 		local pSettledCity = Map.GetPlot(iPlotX, iPlotY):GetPlotCity()
 		
@@ -2148,7 +2171,9 @@ function SettledCityStateWithBuilding(ePlayer, iPlotX, iPlotY)
 		elseif GameInfo.MinorCivilizations[pPlayer:GetMinorCivType()].Type == "MINOR_CIV_MILAN" then
 			pSettledCity:SetNumRealBuilding(GameInfoTypes.BUILDING_MILAN, 1)
 		elseif GameInfo.MinorCivilizations[pPlayer:GetMinorCivType()].Type == "MINOR_CIV_VALLETTA" then
-			pSettledCity:SetNumRealBuilding(GameInfoTypes.BUILDING_VALLETTA, 1)
+			if pSettledCity:IsCoastal(10) then
+				pSettledCity:SetNumRealBuilding(GameInfoTypes.BUILDING_VALLETTA, 1)
+			end
 		elseif GameInfo.MinorCivilizations[pPlayer:GetMinorCivType()].Type == "MINOR_CIV_VILNIUS" then
 			pSettledCity:SetNumRealBuilding(GameInfoTypes.BUILDING_VILNIUS, 1)
 		end
@@ -2166,7 +2191,9 @@ function LiberatedCityStateWithBuilding(ePlayer, eOtherPlayer, eCity)
 		elseif GameInfo.MinorCivilizations[pPlayer:GetMinorCivType()].Type == "MINOR_CIV_MILAN" then
 			pLiberatedCity:SetNumRealBuilding(GameInfoTypes.BUILDING_MILAN, 1)
 		elseif GameInfo.MinorCivilizations[pPlayer:GetMinorCivType()].Type == "MINOR_CIV_VALLETTA" then
-			pLiberatedCity:SetNumRealBuilding(GameInfoTypes.BUILDING_VALLETTA, 1)
+			if pLiberatedCity:IsCoastal(10) then
+				pLiberatedCity:SetNumRealBuilding(GameInfoTypes.BUILDING_VALLETTA, 1)
+			end
 		elseif GameInfo.MinorCivilizations[pPlayer:GetMinorCivType()].Type == "MINOR_CIV_VILNIUS" then
 			pLiberatedCity:SetNumRealBuilding(GameInfoTypes.BUILDING_VILNIUS, 1)
 		end
@@ -3281,7 +3308,7 @@ GameEvents.CityCanTrain.Add(CanWeBuyGurkha)
 
 
 
--- POKROVKA (SAKA FUNCTIONS)
+-- DAERGRAEVS (SAKA FUNCTIONS)
 function CanWeTrainSaka(ePlayer, eCity, eUnit)
 	if eUnit ~= tUnitsMilitary[4] then return true end
 	
@@ -4160,29 +4187,33 @@ end
 GameEvents.CityCanTrain.Add(CanWeBuyNihang)
 
 function XPBoostForNihang(ePlayer, eCity, eBuilding, bGold, bFaith)
-	local sBuildingClass = GameInfo.Buildings[eBuilding].BuildingClass
-	local bArmory = sBuildingClass == "BUILDINGCLASS_ARMORY"
-	local bMilitaryAcademy = sBuildingClass == "BUILDINGCLASS_MILITARY_ACADEMY"
-	local bArsenal = sBuildingClass == "BUILDINGCLASS_ARSENAL"
+	local pPlayer = Players[ePlayer]
+	local iNumNihangs = pPlayer:GetUnitClassCount(GameInfoTypes.UNITCLASS_NIHANG)
+	
+	if iNumNihangs > 0 then
+		local sBuildingClass = GameInfo.Buildings[eBuilding].BuildingClass
+		local bArmory = sBuildingClass == "BUILDINGCLASS_ARMORY"
+		local bMilitaryAcademy = sBuildingClass == "BUILDINGCLASS_MILITARY_ACADEMY"
+		local bArsenal = sBuildingClass == "BUILDINGCLASS_ARSENAL"
 
-	if bArmory or bMilitaryAcademy or bArsenal then
-		local pPlayer = Players[ePlayer]
-		local pCity = pPlayer:GetCityByID(eCity)
-		
-		for unit in pPlayer:Units() do
-			if unit:GetUnitType() == tUnitsMilitary[3] then
-				if bArmory then
-					unit:ChangeExperience(2)
-				elseif bMilitaryAcademy then
-					unit:ChangeExperience(3)
-				elseif bArsenal then
-					unit:ChangeExperience(4)
+		if bArmory or bMilitaryAcademy or bArsenal then
+			local pCity = pPlayer:GetCityByID(eCity)
+			
+			for unit in pPlayer:Units() do
+				if unit:GetUnitType() == tUnitsMilitary[3] then
+					if bArmory then
+						unit:ChangeExperience(2)
+					elseif bMilitaryAcademy then
+						unit:ChangeExperience(3)
+					elseif bArsenal then
+						unit:ChangeExperience(4)
+					end
 				end
 			end
-		end
 
-		if pPlayer:IsHuman() then
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_NIHANG_XP", L(GameInfo.Buildings[eBuilding].Description)), L("TXT_KEY_UCS_NIHANG_XP_TITLE"), pCity:GetX(), pCity:GetY())		
+			if pPlayer:IsHuman() then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_NIHANG_XP", L(GameInfo.Buildings[eBuilding].Description)), L("TXT_KEY_UCS_NIHANG_XP_TITLE"), pCity:GetX(), pCity:GetY())		
+			end
 		end
 	end
 end
@@ -4361,11 +4392,11 @@ function DoWeHaveNewLuxury(ePlayer, iX, iY, eImprovement)
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[50]) ~= 0 then
 		local pPlot = Map.GetPlot(iX, iY)
 		local eResource = pPlot:GetResourceType()
-		print("SANAA", "BUILT_IMPROVEMENT", eResource)
+		
 		if eResource == -1 then return end
 
 		local bLuxury = GameInfo.Resources[eResource].ResourceClassType == "RESOURCECLASS_LUXURY"
-		print("SANAA", "BUILT_IMPROVEMENT_ON_RESOURCE", bLuxury)
+		
 		if bLuxury then
 			FindLuxuriesForSanaa(ePlayer)
 		end
@@ -4380,11 +4411,11 @@ function DoWeLostALuxury(iX, iY, ePlotOwner, eOldImprovement, eNewImprovement, b
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[50]) ~= 0 then
 		local pPlot = Map.GetPlot(iX, iY)
 		local eResource = pPlot:GetResourceType()
-		print("SANAA", "CHANGED_IMPROVEMENT", eResource)
+		
 		if eResource == -1 then return end
 		
 		local bLuxury = GameInfo.Resources[eResource].ResourceClassType == "RESOURCECLASS_LUXURY"
-		print("SANAA", "CHANGED_IMPROVEMENT_ON_RESOURCE", bLuxury)
+		
 		if bLuxury then
 			FindLuxuriesForSanaa(ePlotOwner)
 		end
@@ -4418,7 +4449,7 @@ end
 
 function FindLuxuriesForSanaa(ePlayer)
 	local pPlayer = Players[ePlayer]
-	print("SANAA", "FINDING_LUXURIES...")
+
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[50]) ~= 0 then
 		local tUniqueLuxuries = {}
 		local iUniqueLuxuries = 0
@@ -4432,13 +4463,13 @@ function FindLuxuriesForSanaa(ePlayer)
 					
 					if eResource ~= -1 then
 						local bLuxury = GameInfo.Resources[eResource].ResourceClassType == "RESOURCECLASS_LUXURY"
-						print("SANAA", "FINDING_LUXURIES... RESOURCE...", L(GameInfo.Resources[eResource].Description), bLuxury)
+						
 						if bLuxury and not pPlot:IsImprovementPillaged() and not tUniqueLuxuries[eResource] then
 							local eImprovement = pPlot:GetImprovementType()
-							print("SANAA", "FINDING_LUXURIES... IMPROVEMENT...", eImprovement, pPlot:IsImprovementPillaged())
+							
 							if eImprovement ~= -1 then
 								local bConnected = pPlot:IsResourceConnectedByImprovement(eImprovement)
-								print("SANAA", "FINDING_LUXURIES... CONNECTION...", bConnected)
+								
 								if bConnected then
 									tUniqueLuxuries[eResource] = true
 									iUniqueLuxuries = iUniqueLuxuries + 1
@@ -4449,7 +4480,7 @@ function FindLuxuriesForSanaa(ePlayer)
 				end
 			end
 		end
-		print("SANAA", "FOUND_LUXURIES...", iUniqueLuxuries)
+		
 		local pCapital = pPlayer:GetCapitalCity()
 
 		pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[22], iUniqueLuxuries)

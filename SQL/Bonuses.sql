@@ -628,27 +628,27 @@ INSERT INTO Language_en_US (Tag, Text)
 -- units
 SELECT 'TXT_KEY_UNIT_SWISS_GUARD', 						'Swiss Guard' UNION ALL
 SELECT 'TXT_KEY_UNIT_SWISS_GUARD_STRATEGY', 				'The Swiss Guard is a unique mercenary unit of the Vatican City, located in the tech tree between [COLOR_POSITIVE_TEXT]Free Company[ENDCOLOR] and [COLOR_POSITIVE_TEXT]Foreign Legion[ENDCOLOR]. It can only be purchased (with either [ICON_GOLD] Gold or [ICON_PEACE] Faith) and does move after purchase; though it does not require any policies to do so. The Swiss Guard gains extra [ICON_STRENGTH] Strength each consecutive Era and heals after killing an enemy unit, if it is close to owned City (a little), Capital (more) or Holy City (the most). It also generates yields depending on techs discovered ([COLOR_CYAN]Radio[ENDCOLOR] and [COLOR_CYAN]Telecommunications[ENDCOLOR]). This unit does not obsolete.' UNION ALL
-SELECT 'TXT_KEY_UNIT_SWISS_GUARD_HELP', 					'This unit can only be purchased with [ICON_GOLD] Gold or [ICON_PEACE] Faith (requires an access to [COLOR_CYAN]Vatican City[ENDCOLOR]''s ability).[NEWLINE][NEWLINE]Does not obsolete. Gains additional [ICON_STRENGTH] Strength each consecutive Era. May move immediately after purchase.[NEWLINE][NEWLINE]Unit heals itself after killing an Enemy Unit by value depending on the owned City it is in range of (regular, Capital, Holy City). Generates +2 [ICON_PEACE] Faith, +2 [ICON_CULTURE] Culture after [COLOR_CYAN]Radio[ENDCOLOR] and +2 [ICON_TOURISM] Tourism after [COLOR_CYAN]Telecommunications[ENDCOLOR].' UNION ALL
+SELECT 'TXT_KEY_UNIT_SWISS_GUARD_HELP', 					'This unit can only be purchased with [ICON_GOLD] Gold or [ICON_PEACE] Faith (requires an access to [COLOR_CYAN]Vatican City[ENDCOLOR]''s ability).[NEWLINE][NEWLINE]Does not obsolete and may move immediately after purchase. Gains additional [ICON_STRENGTH] Strength each consecutive Era. Unit heals itself after killing an Enemy Unit by a value depending on the owned City it is in range of (regular, Capital, Holy City). Generates +2 [ICON_PEACE] Faith, +2 [ICON_CULTURE] Culture after [COLOR_CYAN]Radio[ENDCOLOR] and +2 [ICON_TOURISM] Tourism after [COLOR_CYAN]Telecommunications[ENDCOLOR].' UNION ALL
 SELECT 'TXT_KEY_CIV5_UNIT_SWISS_GUARD', 					'Swiss Guards describe, historically, the mercenaries who from Switzerland sought to serve as bodyguards throughout courts of Europe during the Middle Ages and the Renaissance. Lauded for their enduring loyalty and bravery, Swiss Guards served a wide variety of functions: from ceremonial guards to front-line troops, and were in use by the armies of some of Europe''s greatest powers: including France, Spain and Naples. Although in 1874 the recruitment of Swiss Guards by foreign powers was forbidden by the Swiss Constitution, the Pontifical Swiss Guard that served the Holy See was an exception, and today remains the primary force of the Vatican; responsible for the safety of the Pope and the security of the Apostolic Palace.' UNION ALL
 SELECT 'TXT_KEY_UNIT_GURKHA', 							'Gurkha' UNION ALL
-SELECT 'TXT_KEY_UNIT_GURKHA_STRATEGY', 						'The Gurkha is the Kathmandu''s replacement for the Fusilier. In addition to being unlocked earlier than the Rifleman, the Gurkha gains more experience from fights and has huge handicap against blocked enemy units.' UNION ALL
-SELECT 'TXT_KEY_UNIT_GURKHA_HELP', 							'This unit can be trained or purchased (requires an access to [COLOR_CYAN]Kathmandu[ENDCOLOR]''s ability).[NEWLINE][NEWLINE]Unique Fusilier Unit that may move immediately after purchase, can be trained earlier and does not require [COLOR_POSITIVE_TEXT]Armory[ENDCOLOR] when buying.[NEWLINE][NEWLINE]Unit starts with additional promotions that crush enemy units ([COLOR_POSITIVE_TEXT]Heavy Charge[ENDCOLOR]) and allow gaining mor XP from fights ([COLOR_POSITIVE_TEXT]Quick Study[ENDCOLOR]).' UNION ALL
+SELECT 'TXT_KEY_UNIT_GURKHA_STRATEGY', 						'The Gurkha is the Kathmandu''s replacement for the Fusilier. In addition to being unlocked earlier than the Fusilier, the Gurkha gains more experience from fights and has huge handicap against blocked enemy units.' UNION ALL
+SELECT 'TXT_KEY_UNIT_GURKHA_HELP', 							'This unit can be trained or purchased (requires an access to [COLOR_CYAN]Kathmandu[ENDCOLOR]''s ability).[NEWLINE][NEWLINE]Unique Fusilier Unit that may move immediately after purchase, can be trained earlier and does not require [COLOR_POSITIVE_TEXT]Armory[ENDCOLOR] when buying. Unit starts with additional promotions that crush enemy units ([COLOR_POSITIVE_TEXT]Heavy Charge[ENDCOLOR]) and allow gaining 50% more experience from fights ([COLOR_POSITIVE_TEXT]Quick Study[ENDCOLOR]).' UNION ALL
 SELECT 'TXT_KEY_CIV5_UNIT_GURKHA', 							'The Gurkhas are a people native to mountainous Nepal and Gorkhaland region of India. Famed for their bravery, fearlessness and disregard for death, they impressed British military commanders as early as in 1814, during the Gurkha War waged by the East India Company against Nepal. In 1815, even before the war ended, the first regiment of Gurkhas was formed within the British Indian army. Throughout 19th and well into the 20th century, the Gurkhas remained loyal to the British crown, despite wars and numerous Indian rebellions. They fought in both World Wars as a part of the British Army, where they formed fifteen rifle regiments. They were widely admired for their ability to withstand any hardship and feared of their skill with the deadly khukuri knife. Gurkha regiments remain in service to this day.' UNION ALL
 SELECT 'TXT_KEY_UNIT_SISQENO', 							'Sisqeno' UNION ALL
-SELECT 'TXT_KEY_UNIT_SISQENO_STRATEGY', 					'The Sisqeno is the Tiwanaku''s replacement for the Missionary. It gains additional active ability, that allows it to build Sunken Courtyard improvements. This action may only be used when unit has all of its spreads (before using spread action).' UNION ALL
-SELECT 'TXT_KEY_UNIT_SISQENO_HELP', 						'This unit can only be purchased with [ICON_PEACE] Faith (requires an access to [COLOR_CYAN]Tiwanaku[ENDCOLOR]''s ability).[NEWLINE][NEWLINE]Unique Missionary Unit. It is slightly cheaper than its predecessor.[NEWLINE][NEWLINE]Unit can build a [COLOR_POSITIVE_TEXT]Sunken Courtyard[ENDCOLOR] improvement, only when all of its Spread Religion charges are active.' UNION ALL
+SELECT 'TXT_KEY_UNIT_SISQENO_STRATEGY', 					'The Sisqeno is the Tiwanaku''s replacement for the Missionary. It is slightly cheaper and gains additional active ability, that allows it to build Sunken Courtyard improvements. This action may only be used when unit has all of its spreads (before using spread action).' UNION ALL
+SELECT 'TXT_KEY_UNIT_SISQENO_HELP', 						'This unit can only be purchased with [ICON_PEACE] Faith (requires an access to [COLOR_CYAN]Tiwanaku[ENDCOLOR]''s ability).[NEWLINE][NEWLINE]Unique Missionary Unit. It is slightly cheaper and can build a [COLOR_POSITIVE_TEXT]Sunken Courtyard[ENDCOLOR] improvement (only when all of its Spread Religion charges are active).' UNION ALL
 SELECT 'TXT_KEY_CIV5_UNIT_SISQENO', 						'The Tiwanaku Empire connected spirituality, power and authority between the physical space of Lake Titikaka and the highland site of Tiwanaku. Temples were built at both sites and the shared imagery of the snake, condor and puma are significant in the religious and cosmological expressions that linked the two sites. [NEWLINE]Several scholars have pointed to the connection between the spirituality, agricultural patterns, monumental architecture and artistic depictions of the Tiwanaku to earlier and other regional cultures, such as Chiripa, Pucara and Cusco. Known as the Yaya-Mama Religious Tradition, many artifacts discovered in the Lake Titikaka region feature similar motifs and show a long integration within the geography and cultures of the region. Lake Titikaka was the spiritual birthplace and center of the cosmos in the Tiwanaku and Incan worldviews and remains a sacred site for the indigenous peoples who continue to live in the region. Lake Titikaka is named after the puma, a spiritually powerful animal. [NEWLINE]According to Incan mythology, which followed the Tiwanaku by hundreds of years, the god and great creator Viracocha emerged from Lake Titikaka to create the world after a great flood. He brought the Sun (Inti) out of the Island of the Sun near the southern shore of Lake Titikaka in present-day Bolivia, the Moon (Mama Killa) out of the Island of the Moon to the east, and created the cosmos with stars born from the lake. He then created the first humans at Tiwanaku out of stone. Viracocha was an omnipotent god who controlled the elements, the weather and agricultural fortune. Viracocha is depicted at Tiwanaku on the Gateway of the Sun and is featured in other carvings and imagery of the ancient empire. Like the god of the Incas, he is seen holding a snake in each hand whose head is that of a condor. [NEWLINE][NEWLINE]Beside the cult of Viracocha, other evidence on Tiwanaku religion points to a system of ancestor worship. The preservation, use, and reconfiguration of mummy bundles and skeletal remains, as with the later Inca, may suggest that this is the case. [NEWLINE]Later cultures within the area made use of large "above ground burial chambers for the social elite ... known as "chullpas". Similar, though smaller, structures were found within the site of Tiwanaku. It is possible that, like the later Inca, the inhabitants of Tiwanaku may have practiced similar rituals and rites in relation to the dead. [NEWLINE]The Akapana East Building has evidence of ancestor burial. The human remains at Akapana East seem to be less for show and more for proper burial. The skeletons show many cut marks that were most likely made by defleshing or excarnation after death. The remains were then bundled up and buried rather than left out in the open. [NEWLINE][NEWLINE]The Tiwanaku conducted human sacrifices on top of a building known as the Akapana. People were disemboweled and torn apart shortly after death and laid out for all to see. It is speculated that this ritual was a form of dedication to the gods. The type of human sacrifice included victims being hacked in pieces, dismembered, exposed to the elements and carnivores before being deposited in trash. Research showed that one man who was sacrificed was not a native to the Titicaca Basin, leaving room to think that sacrifices were most likely of people originally from other societies.' UNION ALL
 SELECT 'TXT_KEY_UNIT_NIHANG', 							'Nihang' UNION ALL
-SELECT 'TXT_KEY_UNIT_NIHANG_STRATEGY', 						'The Nihang is the Lahore''s replacement for the Longswordsman. It obsoletes very late, and has access to unique promotion branch. It starts with [COLOR_POSITIVE_TEXT]Sikh Warrior[ENDCOLOR] promotion and is slightly stronger at start from the base unit. It can be only bought with [ICON_PEACE] Faith and gains additional XP when player constructs [COLOR_POSITIVE_TEXT]Armory[ENDCOLOR], [COLOR_POSITIVE_TEXT]Military Academy[ENDCOLOR] or [COLOR_POSITIVE_TEXT]Arsenal[ENDCOLOR].' UNION ALL
-SELECT 'TXT_KEY_UNIT_NIHANG_HELP', 							'This unit can only be purchased with [ICON_PEACE] Faith (requires an access to [COLOR_CYAN]Lahore[ENDCOLOR]''s ability).[NEWLINE][NEWLINE]Unique Longswordsman Unit that may move immediately after purchase.[NEWLINE][NEWLINE]Unit starts with special promotion giving additional experience and [ICON_PEACE] Faith on kills ([COLOR_POSITIVE_TEXT]Sikh Warrior[ENDCOLOR]) and granting an access to unique promotion branch exclusive only for this unit.' UNION ALL
+SELECT 'TXT_KEY_UNIT_NIHANG_STRATEGY', 						'The Nihang is the Lahore''s replacement for the Longswordsman. It obsoletes very late, and has access to unique promotion branch. It starts with special promotion giving additional experience and [ICON_PEACE] Faith, and is slightly stronger at start from the base unit. It can be only bought with [ICON_PEACE] Faith and gains additional experience when player constructs military buildings.' UNION ALL
+SELECT 'TXT_KEY_UNIT_NIHANG_HELP', 							'This unit can only be purchased with [ICON_PEACE] Faith (requires an access to [COLOR_CYAN]Lahore[ENDCOLOR]''s ability).[NEWLINE][NEWLINE]Unique Longswordsman Unit that may move immediately after purchase and gains experience when player constructs [COLOR_POSITIVE_TEXT]Armory[ENDCOLOR], [COLOR_POSITIVE_TEXT]Military Academy[ENDCOLOR] or [COLOR_POSITIVE_TEXT]Arsenal[ENDCOLOR]. Unit starts with special promotion giving 30% more experience, and some [ICON_PEACE] Faith on kills ([COLOR_POSITIVE_TEXT]Sikh Warrior[ENDCOLOR]), and granting an access to unique promotion branch exclusive only for this unit.' UNION ALL
 SELECT 'TXT_KEY_CIV5_UNIT_NIHANG', 							'TODO' UNION ALL
 SELECT 'TXT_KEY_UNIT_SAKA', 							'Saka' UNION ALL
-SELECT 'TXT_KEY_UNIT_SAKA_STRATEGY', 						'The Saka is the Daergraevs'' replacement for the Skirmisher. It is slightly stronger than the base unit, starts with [COLOR_POSITIVE_TEXT]Scythian Arrow Barrage[ENDCOLOR] promotion and does not requires [ICON_RES_HORSE] Horses.' UNION ALL
-SELECT 'TXT_KEY_UNIT_SAKA_HELP', 							'This unit can be trained or purchased (requires an access to [COLOR_CYAN]Daergraevs[ENDCOLOR]'' ability).[NEWLINE][NEWLINE]Unique Skirmisher Unit. Does not require [ICON_RES_HORSE] [COLOR_POSITIVE_TEXT]Horses[ENDCOLOR].[NEWLINE][NEWLINE]Unit starts with additional promotions that deals AOE damage each turn ([COLOR_POSITIVE_TEXT]Scythian Arrow Barrage[ENDCOLOR]).' UNION ALL
+SELECT 'TXT_KEY_UNIT_SAKA_STRATEGY', 						'The Saka is the Daergraevs'' replacement for the Skirmisher. It is slightly stronger than the base unit, starts with promotion dealing small damage to all enemies around each turn and does not require [ICON_RES_HORSE] Horses.' UNION ALL
+SELECT 'TXT_KEY_UNIT_SAKA_HELP', 							'This unit can be trained or purchased (requires an access to [COLOR_CYAN]Daergraevs[ENDCOLOR]'' ability).[NEWLINE][NEWLINE]Unique Skirmisher Unit. Does not require [ICON_RES_HORSE] Horses. Unit starts with additional promotion that deals 5 AOE damage each turn ([COLOR_POSITIVE_TEXT]Scythian Arrow Barrage[ENDCOLOR]).' UNION ALL
 SELECT 'TXT_KEY_CIV5_UNIT_SAKA', 							'TODO' UNION ALL
 SELECT 'TXT_KEY_UNIT_TEAAT', 							'Te''aat' UNION ALL
 SELECT 'TXT_KEY_UNIT_TEAAT_STRATEGY', 						'The Te''aat is the Juyubit''s replacement for the Workboat. It is cheaper and slightly faster than a regular Workboat and grants additional yields when expended.' UNION ALL
-SELECT 'TXT_KEY_UNIT_TEAAT_HELP', 							'This unit can be trained or purchased (requires an access to [COLOR_CYAN]Juyubit[ENDCOLOR]''s ability).[NEWLINE][NEWLINE]Unique Workboat Unit that is cheaper and faster than base unit.[NEWLINE][NEWLINE]Unit grants additional yields after creating an improvement.' UNION ALL
+SELECT 'TXT_KEY_UNIT_TEAAT_HELP', 							'This unit can be trained or purchased (requires an access to [COLOR_CYAN]Juyubit[ENDCOLOR]''s ability).[NEWLINE][NEWLINE]Unique Workboat Unit that is cheaper and faster than base unit, and grants some [ICON_FOOD] Food and [ICON_CULTURE] Culture after creating an improvement.' UNION ALL
 SELECT 'TXT_KEY_CIV5_UNIT_TEAAT', 							'TODO';
 
 INSERT INTO Language_en_US (Tag, Text)
@@ -661,63 +661,63 @@ INSERT INTO Language_en_US (Tag, Text)
 	SELECT 'TXT_KEY_IMPROVEMENT_MARSH_HELP', 				'Only with the Alliance of the Brussel people can a civilization continue a restoration project of marshlands.' UNION ALL
 	-- mound
 	SELECT 'TXT_KEY_BUILD_MOUND', 							'Construct a Mound'  UNION ALL
-	SELECT 'TXT_KEY_BUILD_MOUND_HELP', 						'Cannot be built next to another [COLOR_CITY_BROWN]Mound[ENDCOLOR] or on a [COLOR_GREY]Resource[ENDCOLOR].[NEWLINE]+1 [ICON_GOLDEN_AGE] Golden Age Point, if next to a City. +1 [ICON_RESEARCH] Science with [COLOR_CYAN]Architecture[ENDCOLOR] and +1 [ICON_GREAT_GENERAL] Great General Point with [COLOR_CYAN]Military Science[ENDCOLOR]. Adjacent [COLOR_CITY_BROWN]Villages[ENDCOLOR] and [COLOR_CITY_BROWN]Towns[ENDCOLOR] gain +1 [ICON_GOLD] Gold. +15% [ICON_STRENGTH] for units standing on a [COLOR_CITY_BROWN]Tulou[ENDCOLOR]. Requires an access to [COLOR_CYAN]Cahokia[ENDCOLOR]''s ability to be finished.' UNION ALL
+	SELECT 'TXT_KEY_BUILD_MOUND_HELP', 						'Cannot be built next to another [COLOR_CITY_BROWN]Mound[ENDCOLOR] or on a [COLOR_GREY]Resource[ENDCOLOR].[NEWLINE]Requires an access to [COLOR_CYAN]Cahokia[ENDCOLOR]''s ability to be finished.[NEWLINE]+1 [ICON_GOLDEN_AGE] Golden Age Point, if next to a City. +1 [ICON_RESEARCH] Science with [COLOR_CYAN]Architecture[ENDCOLOR] and +1 [ICON_GREAT_GENERAL] Great General Point with [COLOR_CYAN]Military Science[ENDCOLOR]. Adjacent [COLOR_CITY_BROWN]Villages[ENDCOLOR] and [COLOR_CITY_BROWN]Towns[ENDCOLOR] gain +1 [ICON_GOLD] Gold. +15% [ICON_STRENGTH] for units standing on a [COLOR_CITY_BROWN]Mound[ENDCOLOR].' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_MOUND', 					'Mound' UNION ALL
 	SELECT 'TXT_KEY_CIV5_IMPROVEMENTS_MOUND', 				'It is a pyramid built of transported soil and clay.' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_MOUND_HELP', 				'Only with the Alliance of the Cahokia people allow a civilization enjoy such a beauty of a structure.' UNION ALL
 	-- sunken courtyard
 	SELECT 'TXT_KEY_BUILD_SUNK_COURT', 						'Construct a Sunken Courtyard'  UNION ALL
-	SELECT 'TXT_KEY_BUILD_SUNK_COURT_HELP', 				'Cannot be built next to another [COLOR_CITY_BROWN]Sunken Courtyard[ENDCOLOR] or on a [COLOR_GREY]Resource[ENDCOLOR][NEWLINE]Can only be built on a Flatland with [COLOR_CITY_BLUE]Plains[ENDCOLOR], [COLOR_CITY_BLUE]Tundra[ENDCOLOR] or [COLOR_CITY_BLUE]Desert[ENDCOLOR].[NEWLINE]+1 [ICON_RESEARCH] Science, if next to a City, and +1 [ICON_RESEARCH] Science and +1 [ICON_CULTURE] Culture, if next to a [COLOR_CITY_BLUE]Mountain[ENDCOLOR]. +1 [ICON_TOURISM] Tourism with [COLOR_CYAN]Archaeology[ENDCOLOR] and +1 [ICON_RESEARCH] Science with [COLOR_CYAN]Radar[ENDCOLOR]. Requires an access to [COLOR_CYAN]Tiwanaku[ENDCOLOR]''s ability to be finished.' UNION ALL
+	SELECT 'TXT_KEY_BUILD_SUNK_COURT_HELP', 				'Cannot be built next to another [COLOR_CITY_BROWN]Sunken Courtyard[ENDCOLOR] or on a [COLOR_GREY]Resource[ENDCOLOR].[NEWLINE]Requires an access to [COLOR_CYAN]Tiwanaku[ENDCOLOR]''s ability to be finished.[NEWLINE]Can only be built on a Flatland with [COLOR_CITY_BLUE]Plains[ENDCOLOR], [COLOR_CITY_BLUE]Tundra[ENDCOLOR] or [COLOR_CITY_BLUE]Desert[ENDCOLOR].[NEWLINE]+1 [ICON_RESEARCH] Science, if next to a City, and +1 [ICON_RESEARCH] Science and +1 [ICON_CULTURE] Culture, if next to a [COLOR_CITY_BLUE]Mountain[ENDCOLOR]. +1 [ICON_TOURISM] Tourism with [COLOR_CYAN]Archaeology[ENDCOLOR] and +1 [ICON_RESEARCH] Science with [COLOR_CYAN]Radar[ENDCOLOR].' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_SUNK_COURT', 				'Sunken Courtyard' UNION ALL
 	SELECT 'TXT_KEY_CIV5_IMPROVEMENTS_SUNK_COURT', 			'At its height, Tiwanaku was home to up to 40,000 people and was centered around a ceremonial core featuring numerous buildings, platforms, and courtyards, the largest and most important being the Semi-subterranean Court, the Kalasasaya and Putuni Complex (a combination of raised platforms and courtyards), the Akapana (a complicated mound structure believed to be a recreation of the Quimsachata mountains), and a later temple complex, the Pumapunku.[NEWLINE][NEWLINE]The sunken court style of building is found in many of the archaeological sites which pre-date the founding of Tiwanaku in the regions surrounding Lake Titicaca such as Pucara and Chiripa, but the Semi-subterranean Court is the largest found to date. Its increased size was likely a statement of growing political power by the emerging Tiwanaku polity. Completed between 300–400 C.E., it is estimated to be the earliest monumental stone building constructed in the central ceremonial area.[NEWLINE][NEWLINE]The central stones on three of the walls (north, east, and west) of the Semi-subterranean Court mark viewing points for various astronomical events, such as solstice and equinox sunrises and sunsets, the rising and setting of important stars, and even point the way to the celestial South Pole, the pivot of the southern hemisphere. Those stones were auxiliary for participants of religious rituals to orient themselves for the appropriate celestial event.' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_SUNK_COURT_HELP', 			'Only with the Alliance of the Tiwanaku people allow a civilization enjoy such a beauty of a structure.' UNION ALL
 	-- colossal head
 	SELECT 'TXT_KEY_BUILD_BIG_HEAD', 						'Construct a Colossal Head'  UNION ALL
-	SELECT 'TXT_KEY_BUILD_BIG_HEAD_HELP', 					'Can only be built on [COLOR_CITY_BLUE]Plains[ENDCOLOR] or [COLOR_CITY_BLUE]Grassland[ENDCOLOR] with [COLOR_CITY_GREEN]Forest[ENDCOLOR] or [COLOR_CITY_GREEN]Jungle[ENDCOLOR].[NEWLINE]+1 [ICON_GOLDEN_AGE] Golden Age Point, if next to a City and +1 [ICON_PRODUCTION] Production if next to a [ICON_RES_STONE] [COLOR_GREY]Stone[ENDCOLOR] or [ICON_RES_MARBLE] [COLOR_GREY]Marble[ENDCOLOR]. +2 [ICON_GOLDEN_AGE] Golden Age Points with [COLOR_CYAN]Machinery[ENDCOLOR], +3 [ICON_RESEARCH] Science with [COLOR_CYAN]Architecture[ENDCOLOR] and +2 [ICON_PRODUCTION] Production with [COLOR_CYAN]Scientific Theory[ENDCOLOR]. +3 [ICON_CULTURE] Culture with [COLOR_MAGENTA]New Deal[ENDCOLOR]. +1 [ICON_GOLDEN_AGE] Golden Age Point, +1 [ICON_GREAT_GENERAL] Great General Point and +1 [ICON_GREAT_ADMIRAL] Great Admiral Point, if there are 2 adjacent [COLOR_CITY_BROWN]Colossal Heads[ENDCOLOR]. Adjacent [COLOR_CITY_BROWN]Farms[ENDCOLOR], [COLOR_CITY_BROWN]Mines[ENDCOLOR] and [COLOR_CITY_BROWN]Quarries[ENDCOLOR] gain +1 [ICON_PRODUCTION] Production. Requires an access to [COLOR_CYAN]La Venta[ENDCOLOR]''s ability to be finished.' UNION ALL
+	SELECT 'TXT_KEY_BUILD_BIG_HEAD_HELP', 					'Can only be built on [COLOR_CITY_BLUE]Plains[ENDCOLOR] or [COLOR_CITY_BLUE]Grassland[ENDCOLOR] with [COLOR_CITY_GREEN]Forest[ENDCOLOR] or [COLOR_CITY_GREEN]Jungle[ENDCOLOR].[NEWLINE]Requires an access to [COLOR_CYAN]La Venta[ENDCOLOR]''s ability to be finished.[NEWLINE]+1 [ICON_GOLDEN_AGE] Golden Age Point, if next to a City and +1 [ICON_PRODUCTION] Production if next to a [ICON_RES_STONE] [COLOR_GREY]Stone[ENDCOLOR] or [ICON_RES_MARBLE] [COLOR_GREY]Marble[ENDCOLOR]. +2 [ICON_GOLDEN_AGE] Golden Age Points with [COLOR_CYAN]Machinery[ENDCOLOR], +3 [ICON_RESEARCH] Science with [COLOR_CYAN]Architecture[ENDCOLOR] and +2 [ICON_PRODUCTION] Production with [COLOR_CYAN]Scientific Theory[ENDCOLOR]. +3 [ICON_CULTURE] Culture with [COLOR_MAGENTA]New Deal[ENDCOLOR]. +1 [ICON_GOLDEN_AGE] Golden Age Point, +1 [ICON_GREAT_GENERAL] Great General Point and +1 [ICON_GREAT_ADMIRAL] Great Admiral Point, if there are 2 adjacent [COLOR_CITY_BROWN]Colossal Heads[ENDCOLOR]. Adjacent [COLOR_CITY_BROWN]Farms[ENDCOLOR], [COLOR_CITY_BROWN]Mines[ENDCOLOR] and [COLOR_CITY_BROWN]Quarries[ENDCOLOR] gain +1 [ICON_PRODUCTION] Production.' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_BIG_HEAD', 					'Colossal Head' UNION ALL
 	SELECT 'TXT_KEY_CIV5_IMPROVEMENTS_BIG_HEAD', 			'The stone head sculptures of the Olmec civilization (1200 BCE - 400 BCE) are amongst the most mysterious and debated artefacts from the ancient world. Seventeen monumental stone representations of human heads sculpted from large basalt boulders have been unearthed in the region to date. The heads date from at least before 900 BCE and are a distinctive feature of the Olmec civilization. They can be nearly 3 metres high, 4.5 metres in circumference (9.8 feet, 14.7 feet) and average around 8 tons in weight. All portray mature men with fleshy cheeks, flat noses, and slightly crossed eyes. However, none of the heads are alike, and each boasts a unique headdress, which suggests they represent specific individuals.[NEWLINE][NEWLINE]The Olmec brought these boulders from the Sierra de los Tuxtlas mountains of Veracruz. Given that the extremely large slabs of stone used in their production were transported over large distances, requiring a great deal of human effort and resources, it is thought that the monuments represent portraits of powerful individual Olmec rulers, perhaps carved to commemorate their deaths. The heads were arranged in either lines or groups at major Olmec centers, but the method and logistics used to transport the stone to the sites remain uncertain, presumably using huge balsa river rafts wherever possible and log rollers on land.' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_BIG_HEAD_HELP', 			'Only with the Alliance of the La Venta people allow a civilization enjoy such a beauty of a structure.' UNION ALL
 	-- monastery
 	SELECT 'TXT_KEY_BUILD_MONASTERY', 						'Construct a Monastery'  UNION ALL
-	SELECT 'TXT_KEY_BUILD_MONASTERY_HELP', 					'Cannot be built next to another [COLOR_CITY_BROWN]Monastery[ENDCOLOR], next to a City or on a [COLOR_GREY]Resource[ENDCOLOR].[NEWLINE]Can only be built on a Hill.[NEWLINE]+1 [ICON_PEACE] Faith, if next to a [COLOR_CITY_BLUE]Mountain[ENDCOLOR]. +1 [ICON_PEACE] Faith with [COLOR_CYAN]Scientific Theory[ENDCOLOR] and +1 [ICON_PEACE] Faith with [COLOR_CYAN]Electricity[ENDCOLOR]. Adjacent [COLOR_CITY_BROWN]Villages[ENDCOLOR] and [COLOR_CITY_BROWN]Towns[ENDCOLOR] gain +1 [ICON_PRODUCTION] Production. Requires an access to [COLOR_CYAN]Karyes[ENDCOLOR]'' ability to be finished.' UNION ALL
+	SELECT 'TXT_KEY_BUILD_MONASTERY_HELP', 					'Cannot be built next to another [COLOR_CITY_BROWN]Monastery[ENDCOLOR], next to a City or on a [COLOR_GREY]Resource[ENDCOLOR].[NEWLINE]Can only be built on a Hill.[NEWLINE]Requires an access to [COLOR_CYAN]Karyes[ENDCOLOR]'' ability to be finished.[NEWLINE]+1 [ICON_PEACE] Faith, if next to a [COLOR_CITY_BLUE]Mountain[ENDCOLOR]. +1 [ICON_PEACE] Faith with [COLOR_CYAN]Scientific Theory[ENDCOLOR] and +1 [ICON_PEACE] Faith with [COLOR_CYAN]Electricity[ENDCOLOR]. Adjacent [COLOR_CITY_BROWN]Villages[ENDCOLOR] and [COLOR_CITY_BROWN]Towns[ENDCOLOR] gain +1 [ICON_PRODUCTION] Production.' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_MONASTERY', 				'Monastery' UNION ALL
 	SELECT 'TXT_KEY_CIV5_IMPROVEMENTS_MONASTERY', 			'A monastery was an enclosed and sometimes remote community of monks led by an abbot who shunned worldly goods to live a simple life of prayer and devotion. Christian monasteries first developed in the 4th century in Egypt and Syria and by the 5th century the idea had spread to Western Europe.[NEWLINE][NEWLINE]Such figures as Saint Benedict of Nursia (c. 480-c. 543), the founder of the Benedictine order and of the European monastery model, established rules by which the monks should live and these were, to various degrees, imitated and followed in subsequent centuries, including in those monasteries which survive today.[NEWLINE][NEWLINE]Although their members were poor, the monasteries themselves were rich and powerful institutions, gathering wealth from land and property donated to them. Monasteries were also important centres of learning which educated the young, and, perhaps most significantly for today''s historians, laboriously produced books and preserved ancient texts which have greatly enhanced our knowledge of not only the medieval world but also classical antiquity.' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_MONASTERY_HELP', 			'Only with the Alliance of the Karyes people allow a civilization enjoy such a beauty of a structure.' UNION ALL
 	-- totem pole
 	SELECT 'TXT_KEY_BUILD_TOTEM_POLE', 						'Construct a Totem Pole'  UNION ALL
-	SELECT 'TXT_KEY_BUILD_TOTEM_POLE_HELP', 				'Cannot be built on a [COLOR_GREY]Resource[ENDCOLOR].[NEWLINE]Can only be built on a Coast with [COLOR_CITY_BLUE]Tundra[ENDCOLOR]. +1 [ICON_PRODUCTION] Production with [COLOR_CYAN]Compass[ENDCOLOR] and +1 [ICON_GOLD] Gold with [COLOR_CYAN]Navigation[ENDCOLOR]. +2 [ICON_PRODUCTION] Production, if there are 2 adjacent [COLOR_CITY_BROWN]Totem Poles[ENDCOLOR]. Adjacent [COLOR_CITY_BLUE]Coast[ENDCOLOR] tiles gain +1 [ICON_CULTURE] Culture. Requires an access to [COLOR_CYAN]SGang Gwaay[ENDCOLOR]''s ability to be finished.' UNION ALL
+	SELECT 'TXT_KEY_BUILD_TOTEM_POLE_HELP', 				'Cannot be built on a [COLOR_GREY]Resource[ENDCOLOR].[NEWLINE]Can only be built on a Coast with [COLOR_CITY_BLUE]Tundra[ENDCOLOR].[NEWLINE]Requires an access to [COLOR_CYAN]SGang Gwaay[ENDCOLOR]''s ability to be finished.[NEWLINE]+1 [ICON_PRODUCTION] Production with [COLOR_CYAN]Compass[ENDCOLOR] and +1 [ICON_GOLD] Gold with [COLOR_CYAN]Navigation[ENDCOLOR]. +2 [ICON_PRODUCTION] Production, if there are 2 adjacent [COLOR_CITY_BROWN]Totem Poles[ENDCOLOR]. Adjacent [COLOR_CITY_BLUE]Coast[ENDCOLOR] tiles gain +1 [ICON_CULTURE] Culture.' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_TOTEM_POLE', 				'Totem Pole' UNION ALL
 	SELECT 'TXT_KEY_CIV5_IMPROVEMENTS_TOTEM_POLE', 			'Totem poles, or in Haida, gyáa''aang, are a type of art and stylistic representation found in the Pacific North-west. Totem poles can symbolize the characters and events in mythology, or convey the experiences of recent ancestors and living people. Some of these characters may appear as stylistic representations of objects in nature, while others are more realistically carved. Pole carvings may include animals, fish, plants, insects, and humans, or they may represent supernatural beings such as the Thunderbird.[NEWLINE][NEWLINE]There are six basic types of upright, pole carvings that are commonly referred to as totem poles; House frontal poles, House posts, Mortuary poles, Memorial poles, Welcome poles, and Shame/ridicule poles. Each culture typically has complex rules and customs regarding the traditional designs represented on poles.[NEWLINE][NEWLINE]The designs are generally considered the property of a particular clan or family group of traditional carvers, and this ownership of the designs may not be transferred to the person who has commissioned the carvings.' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_TOTEM_POLE_HELP', 			'Only with the Alliance of the SGang Gwaay people allow a civilization enjoy such a beauty of a structure.' UNION ALL
 	-- chum
 	SELECT 'TXT_KEY_BUILD_CHUM', 							'Construct a Chum'  UNION ALL
-	SELECT 'TXT_KEY_BUILD_CHUM_HELP', 						'Cannot be built next to another [COLOR_CITY_BROWN]Chum[ENDCOLOR] or on a [COLOR_GREY]Resource[ENDCOLOR].[NEWLINE]Can only be built on [COLOR_CITY_BLUE]Tundra[ENDCOLOR] or [COLOR_CITY_BLUE]Snow[ENDCOLOR].[NEWLINE]+1 [ICON_FOOD] Food, if next to a [COLOR_GREY]Bonus Resource[ENDCOLOR] and +1 [ICON_PRODUCTION] Production, if next to a [COLOR_CITY_BROWN]Camp[ENDCOLOR] or [COLOR_CITY_BROWN]Pasture[ENDCOLOR]. +1 [ICON_FOOD] Food with [COLOR_CYAN]Education[ENDCOLOR], +1 [ICON_FOOD] Food with [COLOR_CYAN]Fertilizer[ENDCOLOR] and +1 [ICON_PRODUCTION] Faith with [COLOR_CYAN]Refrigeration[ENDCOLOR]. Adjacent [COLOR_CITY_BROWN]Camps[ENDCOLOR] and [COLOR_CITY_BROWN]Pastures[ENDCOLOR] gain +1 [ICON_GOLD] Gold. Requires an access to [COLOR_CYAN]Nyar''yana Marq[ENDCOLOR]''s ability to be finished.' UNION ALL
+	SELECT 'TXT_KEY_BUILD_CHUM_HELP', 						'Cannot be built next to another [COLOR_CITY_BROWN]Chum[ENDCOLOR] or on a [COLOR_GREY]Resource[ENDCOLOR].[NEWLINE]Can only be built on [COLOR_CITY_BLUE]Tundra[ENDCOLOR] or [COLOR_CITY_BLUE]Snow[ENDCOLOR].[NEWLINE]Requires an access to [COLOR_CYAN]Nyar''yana Marq[ENDCOLOR]''s ability to be finished.[NEWLINE]+1 [ICON_FOOD] Food, if next to a [COLOR_GREY]Bonus Resource[ENDCOLOR] and +1 [ICON_PRODUCTION] Production, if next to a [COLOR_CITY_BROWN]Camp[ENDCOLOR] or [COLOR_CITY_BROWN]Pasture[ENDCOLOR]. +1 [ICON_FOOD] Food with [COLOR_CYAN]Education[ENDCOLOR], +1 [ICON_FOOD] Food with [COLOR_CYAN]Fertilizer[ENDCOLOR] and +1 [ICON_PRODUCTION] Faith with [COLOR_CYAN]Refrigeration[ENDCOLOR]. Adjacent [COLOR_CITY_BROWN]Camps[ENDCOLOR] and [COLOR_CITY_BROWN]Pastures[ENDCOLOR] gain +1 [ICON_GOLD] Gold.' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_CHUM', 						'Chum' UNION ALL
 	SELECT 'TXT_KEY_CIV5_IMPROVEMENTS_CHUM', 				'A chum is a temporary dwelling used by the nomadic Uralic (Nenets, Nganasans, Enets, Khanty, Mansi, Komi) reindeer herders of northwestern Siberia of Russia. The Evenks, Tungusic peoples, tribes, in Russia, Mongolia and China also use chums. They are also used by the southernmost reindeer herders, of the Todzha region of the Republic of Tuva and their cross-border relatives in northern Mongolia. It has a design similar to a Native American tipi but some versions are less vertical. It is very closely related to the Sami lavvu in construction, but is somewhat larger in size. Some chums can be up to ten meters in diameter. [NEWLINE][NEWLINE]The traditional chum consists of reindeer hides sewn together and wrapped around wooden poles that are organized in a circle. In the middle there is a fireplace used for heating and to keep mosquitoes away. The smoke escapes through a hole at the top of the chum. The canvas and wooden poles are usually quite heavy, but could be carried by their reindeer. The chum is still in use today as a year-round shelter for the Yamal-Nenets, Khanty and Todzha Tyvan people of Russia.' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_CHUM_HELP', 				'Only with the Alliance of the Nyar''ana Marq people allow a civilization enjoy such a beauty of a structure.' UNION ALL
 	-- tulou
 	SELECT 'TXT_KEY_BUILD_TULOU', 							'Construct a Tulou'  UNION ALL
-	SELECT 'TXT_KEY_BUILD_TULOU_HELP', 						'Cannot be built on a [COLOR_GREY]Resource[ENDCOLOR][NEWLINE]Can only be built on a Hill next to a City.[NEWLINE]+1 [ICON_PRODUCTION] Production with [COLOR_CYAN]Civil Service[ENDCOLOR], +1 [ICON_CULTURE] Culture with [COLOR_CYAN]Architecture[ENDCOLOR] and +1 [ICON_GREAT_GENERAL] Great General Points with [COLOR_CYAN]Military Service[ENDCOLOR]. Adjacent City gains 1 [ICON_CITIZEN] Citizen when a [COLOR_CITY_BROWN]Tulou[ENDCOLOR] is built. Atacking unit will not leave [COLOR_CITY_BROWN]Tulou[ENDCOLOR] if the enemy is killed. +30% [ICON_STRENGTH] for units standing on a [COLOR_CITY_BROWN]Tulou[ENDCOLOR]. Requires an access to [COLOR_CYAN]Longyan[ENDCOLOR]''s ability to be finished.' UNION ALL
+	SELECT 'TXT_KEY_BUILD_TULOU_HELP', 						'Cannot be built on a [COLOR_GREY]Resource[ENDCOLOR].[NEWLINE]Can only be built on a Hill next to a City.[NEWLINE]Requires an access to [COLOR_CYAN]Longyan[ENDCOLOR]''s ability to be finished.[NEWLINE]+1 [ICON_PRODUCTION] Production with [COLOR_CYAN]Civil Service[ENDCOLOR], +1 [ICON_CULTURE] Culture with [COLOR_CYAN]Architecture[ENDCOLOR] and +1 [ICON_GREAT_GENERAL] Great General Points with [COLOR_CYAN]Military Service[ENDCOLOR]. Adjacent City gains 1 [ICON_CITIZEN] Citizen, when a [COLOR_CITY_BROWN]Tulou[ENDCOLOR] is built. Atacking unit will not leave [COLOR_CITY_BROWN]Tulou[ENDCOLOR], if the enemy is killed. +30% [ICON_STRENGTH] for units standing on a [COLOR_CITY_BROWN]Tulou[ENDCOLOR].' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_TULOU', 					'Tulou' UNION ALL
 	SELECT 'TXT_KEY_CIV5_IMPROVEMENTS_TULOU', 				'TODO' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_TULOU_HELP', 				'Only with the Alliance of the Longyan people allow a civilization enjoy such a beauty of a structure.' UNION ALL
 	-- dogo canario
 	SELECT 'TXT_KEY_BUILD_DOGO_CANARIO', 					'Place a [ICON_RES_DOGO_CANARIO] Dogo Canario'  UNION ALL
-	SELECT 'TXT_KEY_BUILD_DOGO_CANARIO_HELP', 				'Helps in breeding the [ICON_RES_DOGO_CANARIO] [COLOR_GREY]Dogo Canarios[ENDCOLOR], that can be improved with a [COLOR_CITY_BROWN]Camp[ENDCOLOR].[NEWLINE]Cannot be placed next to another [COLOR_GREY]Dogo Canario[ENDCOLOR].[NEWLINE]Can only be placed on a Hill with [COLOR_CITY_BLUE]Plains[ENDCOLOR] or [COLOR_CITY_BLUE]Grassland[ENDCOLOR].[NEWLINE]Adjacent [COLOR_CITY_BROWN]Pastures[ENDCOLOR] gain +1 [ICON_FOOD] Food and +1 [ICON_GOLD] Gold.' UNION ALL
+	SELECT 'TXT_KEY_BUILD_DOGO_CANARIO_HELP', 				'Helps in breeding the [ICON_RES_DOGO_CANARIO] [COLOR_GREY]Dogo Canarios[ENDCOLOR], that can be improved with a [COLOR_CITY_BROWN]Camp[ENDCOLOR].[NEWLINE]Cannot be placed next to another [COLOR_GREY]Dogo Canario[ENDCOLOR].[NEWLINE]Can only be placed on a Hill with [COLOR_CITY_BLUE]Plains[ENDCOLOR] or [COLOR_CITY_BLUE]Grassland[ENDCOLOR].[NEWLINE]Requires an access to [COLOR_CYAN]Adeje[ENDCOLOR]''s ability to be finished.[NEWLINE]Adjacent [COLOR_CITY_BROWN]Pastures[ENDCOLOR] gain +1 [ICON_FOOD] Food and +1 [ICON_GOLD] Gold.' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_DOGO_CANARIO', 				'Dogo Canario' UNION ALL
 	SELECT 'TXT_KEY_CIV5_IMPROVEMENTS_DOGO_CANARIO', 		'Dogo Canario are a breed of dog native to the canary islands, a rare dog with a broad head and muscular body. They played a role in the myth, funeral customs and even diet of the guanches. Some were even mummified along with their owners.' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_DOGO_CANARIO_HELP', 		'Only with the Alliance of the Adeje people allow a civilization enjoy such a beauty of a structure.' UNION ALL
 	-- llao llao
-	SELECT 'TXT_KEY_BUILD_LLAO_LLAO', 					'Place a [ICON_RES_LLAO_LLAO] Llao Llao'  UNION ALL
-	SELECT 'TXT_KEY_BUILD_LLAO_LLAO_HELP', 				'Prepares trees to take a [ICON_RES_LLAO_LLAO] [COLOR_GREY]Llao Llao[ENDCOLOR] mycelium, that is automatically improved with a [COLOR_CITY_BROWN]Plantation[ENDCOLOR].[NEWLINE]Can only be placed on a Coast with [COLOR_CITY_GREEN]Forest[ENDCOLOR] or [COLOR_CITY_GREEN]Jungle[ENDCOLOR]. All cities within a working radius gain +1 [ICON_RESEARCH] Science.' UNION ALL
+	SELECT 'TXT_KEY_BUILD_LLAO_LLAO', 						'Place a [ICON_RES_LLAO_LLAO] Llao Llao'  UNION ALL
+	SELECT 'TXT_KEY_BUILD_LLAO_LLAO_HELP', 					'Prepares trees to take a [ICON_RES_LLAO_LLAO] [COLOR_GREY]Llao Llao[ENDCOLOR] mycelium, that is automatically improved with a [COLOR_CITY_BROWN]Plantation[ENDCOLOR].[NEWLINE]Can only be placed on a Coast with [COLOR_CITY_GREEN]Forest[ENDCOLOR] or [COLOR_CITY_GREEN]Jungle[ENDCOLOR].[NEWLINE]Requires an access to [COLOR_CYAN]Yaiuwa[ENDCOLOR]''s ability to be finished.[NEWLINE]All cities within a working radius gain +1 [ICON_RESEARCH] Science.' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_LLAO_LLAO', 				'Llao Llao' UNION ALL
-	SELECT 'TXT_KEY_CIV5_IMPROVEMENTS_LLAO_LLAO', 		'TODO' UNION ALL
-	SELECT 'TXT_KEY_IMPROVEMENT_LLAO_LLAO_HELP', 		'Only with the Alliance of the Adeje people allow a civilization enjoy such a beauty of a structure.' UNION ALL
+	SELECT 'TXT_KEY_CIV5_IMPROVEMENTS_LLAO_LLAO', 			'TODO' UNION ALL
+	SELECT 'TXT_KEY_IMPROVEMENT_LLAO_LLAO_HELP', 			'Only with the Alliance of the Yaiuwa people allow a civilization enjoy such a beauty of a structure.' UNION ALL
 -- resources
 SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO',					'Dogo Canario' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO_TEXT',			'Dogo Canario are a breed of dog native to the canary islands, a rare dog with a broad head and muscular body. They played a role in the myth, funeral customs and even diet of the guanches. Some were even mummified along with their owners.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO_MONOPOLY',		'Requires an access to [COLOR_CYAN]Adeje[ENDCOLOR]''s ability to be finished.[NEWLINE][NEWLINE][COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_FOOD] Food and +5% [ICON_PRODUCTION] Production in all owned Cities.' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_LLAO_LLAO',						'Llao Llao' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_LLAO_LLAO',					'Llao Llao' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_LLAO_LLAO_TEXT',				'' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_LLAO_LLAO_MONOPOLY',			'Requires an access to [COLOR_CYAN]Yaiuwa[ENDCOLOR]''s ability to be placed.[NEWLINE][NEWLINE][COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_FOOD] Food in all owned Cities. +3 [ICON_HAPPINESS_1] Happiness in Empire.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_REINDEER',						'Reindeer' UNION ALL
@@ -1322,6 +1322,7 @@ SELECT 'POLICY_HONDURAS', 				'TXT_KEY_CITYSTATE_HONDURAS' UNION ALL
 SELECT 'POLICY_HONG_KONG', 				'TXT_KEY_CITYSTATE_HONG_KONG' UNION ALL
 SELECT 'POLICY_HONIARA', 				'TXT_KEY_CITYSTATE_HONIARA' UNION ALL
 SELECT 'POLICY_KATENDE', 				'TXT_KEY_CITYSTATE_KATENDE' UNION ALL
+SELECT 'POLICY_KATHMANDU', 				'TXT_KEY_CITYSTATE_KATHMANDU' UNION ALL
 SELECT 'POLICY_KIGALI', 				'TXT_KEY_CITYSTATE_KIGALI' UNION ALL
 SELECT 'POLICY_KUALA_LUMPUR', 			'TXT_KEY_CITYSTATE_KUALA_LUMPUR' UNION ALL
 SELECT 'POLICY_MALACCA', 				'TXT_KEY_CITYSTATE_MALACCA' UNION ALL
@@ -1336,6 +1337,7 @@ SELECT 'POLICY_MUTITJULU', 				'TXT_KEY_CITYSTATE_MUTITJULU' UNION ALL
 SELECT 'POLICY_ORMUS', 					'TXT_KEY_CITYSTATE_ORMUS' UNION ALL
 SELECT 'POLICY_OUIDAH', 				'TXT_KEY_CITYSTATE_OUIDAH' UNION ALL
 SELECT 'POLICY_PHANOTEUS', 				'TXT_KEY_CITYSTATE_PHANOTEUS' UNION ALL
+SELECT 'POLICY_POKROVKA', 				'TXT_KEY_CITYSTATE_POKROVKA' UNION ALL
 SELECT 'POLICY_QUELIMANE', 				'TXT_KEY_CITYSTATE_QUELIMANE' UNION ALL
 SELECT 'POLICY_SAMARKAND', 				'TXT_KEY_CITYSTATE_SAMARKAND' UNION ALL
 SELECT 'POLICY_SANAA', 					'TXT_KEY_CITYSTATE_SANAA' UNION ALL
@@ -1496,44 +1498,44 @@ SELECT 		'PROMOTION_CLERMONT4', 						'TXT_KEY_PROMOTION_CLERMONT4', 				'TXT_KE
 SELECT 		'PROMOTION_CLERMONT5', 						'TXT_KEY_PROMOTION_CLERMONT5', 				'TXT_KEY_PROMOTION_CLERMONT5_HELP', 			1, 				'AS2D_IF_LEVELUP', 	5, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_CLERMONT5' UNION ALL
 SELECT 		'PROMOTION_CLERMONT6', 						'TXT_KEY_PROMOTION_CLERMONT6', 				'TXT_KEY_PROMOTION_CLERMONT6_HELP', 			1, 				'AS2D_IF_LEVELUP', 	6, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_CLERMONT6' UNION ALL
 SELECT 		'PROMOTION_CLERMONT7', 						'TXT_KEY_PROMOTION_CLERMONT7', 				'TXT_KEY_PROMOTION_CLERMONT7_HELP', 			1, 				'AS2D_IF_LEVELUP', 	7, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_CLERMONT7' UNION ALL
-SELECT 		'PROMOTION_DAKKAR', 						'TXT_KEY_PROMOTION_DAKKAR', 				'TXT_KEY_PROMOTION_DAKKAR_HELP', 				1, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_DAKKAR' UNION ALL
+SELECT 		'PROMOTION_DAKKAR', 						'TXT_KEY_PROMOTION_DAKKAR', 				'TXT_KEY_PROMOTION_DAKKAR_HELP', 				1, 				'AS2D_IF_LEVELUP', 	48, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_DAKKAR' UNION ALL
 SELECT 		'PROMOTION_DODOMA', 						'TXT_KEY_PROMOTION_DODOMA', 				'TXT_KEY_PROMOTION_DODOMA_HELP', 				1, 				'AS2D_IF_LEVELUP', 	16, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_NAVAL', 		'TXT_KEY_PROMOTION_DODOMA' UNION ALL
 SELECT 		'PROMOTION_FAYA', 							'TXT_KEY_PROMOTION_FAYA', 					'TXT_KEY_PROMOTION_FAYA_HELP', 					1, 				'AS2D_IF_LEVELUP', 	18, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_FAYA' UNION ALL
 SELECT 		'PROMOTION_HANOI', 							'TXT_KEY_PROMOTION_HANOI', 					'TXT_KEY_PROMOTION_HANOI_HELP', 				1, 				'AS2D_IF_LEVELUP', 	10, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_HANOI' UNION ALL
 SELECT 		'PROMOTION_IFE', 							'TXT_KEY_PROMOTION_IFE', 					'TXT_KEY_PROMOTION_IFE_HELP', 					1, 				'AS2D_IF_LEVELUP', 	27, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_DIPLO', 		'TXT_KEY_PROMOTION_IFE' UNION ALL
 SELECT 		'PROMOTION_ISKANWAYA', 						'TXT_KEY_PROMOTION_ISKANWAYA', 				'TXT_KEY_PROMOTION_ISKANWAYA_HELP', 			1, 				'AS2D_IF_LEVELUP', 	20, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_HEAL', 		'TXT_KEY_PROMOTION_ISKANWAYA' UNION ALL
 SELECT 		'PROMOTION_KABUL', 							'TXT_KEY_PROMOTION_KABUL', 					'TXT_KEY_PROMOTION_KABUL_HELP', 				1, 				'AS2D_IF_LEVELUP', 	23, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_KABUL' UNION ALL
-SELECT 		'PROMOTION_KARASJOHKA', 					'TXT_KEY_PROMOTION_KARASJOHKA', 			'TXT_KEY_PROMOTION_KARASJOHKA_HELP', 			1, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_KARASJOHKA' UNION ALL
-SELECT 		'PROMOTION_KARYES', 						'TXT_KEY_PROMOTION_KARYES', 				'TXT_KEY_PROMOTION_KARYES_HELP', 				1, 				'AS2D_IF_LEVELUP', 	27, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_CIVILIAN', 	'TXT_KEY_PROMOTION_KARYES' UNION ALL
+SELECT 		'PROMOTION_KARASJOHKA', 					'TXT_KEY_PROMOTION_KARASJOHKA', 			'TXT_KEY_PROMOTION_KARASJOHKA_HELP', 			1, 				'AS2D_IF_LEVELUP', 	31, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_KARASJOHKA' UNION ALL
+SELECT 		'PROMOTION_KARYES', 						'TXT_KEY_PROMOTION_KARYES', 				'TXT_KEY_PROMOTION_KARYES_HELP', 				1, 				'AS2D_IF_LEVELUP', 	29, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_CIVILIAN', 	'TXT_KEY_PROMOTION_KARYES' UNION ALL
 SELECT 		'PROMOTION_LACONIA', 						'TXT_KEY_PROMOTION_LACONIA', 				'TXT_KEY_PROMOTION_LACONIA_HELP', 				1, 				'AS2D_IF_LEVELUP', 	11, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_LACONIA' UNION ALL
 SELECT 		'PROMOTION_LEVUKA', 						'TXT_KEY_PROMOTION_LEVUKA', 				'TXT_KEY_PROMOTION_LEVUKA_HELP', 				1, 				'AS2D_IF_LEVELUP', 	21, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_LEVUKA' UNION ALL
 SELECT 		'PROMOTION_MBANZA_KONGO', 					'TXT_KEY_PROMOTION_MBANZA_KONGO', 			'TXT_KEY_PROMOTION_MBANZA_KONGO_HELP', 			1, 				'AS2D_IF_LEVELUP', 	12, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_MBANZA_KONGO' UNION ALL
 SELECT 		'PROMOTION_ODENSO', 						'TXT_KEY_PROMOTION_ODENSO', 				'TXT_KEY_PROMOTION_ODENSO_HELP', 				1, 				'AS2D_IF_LEVELUP', 	13, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_ODENSO' UNION ALL
-SELECT 		'PROMOTION_PELYM', 							'TXT_KEY_PROMOTION_PELYM', 					'TXT_KEY_PROMOTION_PELYM_HELP', 				1, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_PELYM' UNION ALL
-SELECT 		'PROMOTION_POKROVKA', 						'TXT_KEY_PROMOTION_POKROVKA', 				'TXT_KEY_PROMOTION_POKROVKA_HELP', 				1, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_MOUNTED', 	'TXT_KEY_PROMOTION_POKROVKA' UNION ALL
+SELECT 		'PROMOTION_PELYM', 							'TXT_KEY_PROMOTION_PELYM', 					'TXT_KEY_PROMOTION_PELYM_HELP', 				1, 				'AS2D_IF_LEVELUP', 	30, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_PELYM' UNION ALL
+SELECT 		'PROMOTION_POKROVKA', 						'TXT_KEY_PROMOTION_POKROVKA', 				'TXT_KEY_PROMOTION_POKROVKA_HELP', 				1, 				'AS2D_IF_LEVELUP', 	49, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_MOUNTED', 	'TXT_KEY_PROMOTION_POKROVKA' UNION ALL
 SELECT 		'PROMOTION_SIDON', 							'TXT_KEY_PROMOTION_SIDON', 					'TXT_KEY_PROMOTION_SIDON_HELP', 				1, 				'AS2D_IF_LEVELUP', 	14, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_SIDON' UNION ALL
-SELECT 		'PROMOTION_SGANG_GWAAY', 					'TXT_KEY_PROMOTION_SGANG_GWAAY', 			'TXT_KEY_PROMOTION_SGANG_GWAAY_HELP', 			1, 				'AS2D_IF_LEVELUP', 	26, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_NAVAL', 		'TXT_KEY_PROMOTION_SGANG_GWAAY' UNION ALL
-SELECT 		'PROMOTION_SUCEAVA', 						'TXT_KEY_PROMOTION_SUCEAVA', 				'TXT_KEY_PROMOTION_SUCEAVA_HELP', 				1, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_SUCEAVA' UNION ALL
+SELECT 		'PROMOTION_SGANG_GWAAY', 					'TXT_KEY_PROMOTION_SGANG_GWAAY', 			'TXT_KEY_PROMOTION_SGANG_GWAAY_HELP', 			1, 				'AS2D_IF_LEVELUP', 	28, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_NAVAL', 		'TXT_KEY_PROMOTION_SGANG_GWAAY' UNION ALL
+SELECT 		'PROMOTION_SUCEAVA', 						'TXT_KEY_PROMOTION_SUCEAVA', 				'TXT_KEY_PROMOTION_SUCEAVA_HELP', 				1, 				'AS2D_IF_LEVELUP', 	47, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_SUCEAVA' UNION ALL
 SELECT 		'PROMOTION_SURREY', 						'TXT_KEY_PROMOTION_SURREY', 				'TXT_KEY_PROMOTION_SURREY_HELP', 				1, 				'AS2D_IF_LEVELUP', 	19, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_AIR', 		'TXT_KEY_PROMOTION_SURREY' UNION ALL
 SELECT 		'PROMOTION_YEREVAN', 						'TXT_KEY_PROMOTION_YEREVAN', 				'TXT_KEY_PROMOTION_YEREVAN_HELP', 				1, 				'AS2D_IF_LEVELUP', 	15, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_YEREVAN' UNION ALL
 SELECT 		'PROMOTION_GUARDIA_SVIZZERA', 				'TXT_KEY_PROMOTION_GUARDIA_SVIZZERA', 		'TXT_KEY_PROMOTION_GUARDIA_SVIZZERA_HELP', 		1, 				'AS2D_IF_LEVELUP', 	25, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_GUARDIA_SVIZZERA' UNION ALL
 SELECT 		'PROMOTION_KATZBALGER', 					'TXT_KEY_PROMOTION_KATZBALGER', 			'TXT_KEY_PROMOTION_KATZBALGER_HELP', 			1, 				'AS2D_IF_LEVELUP', 	24, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_KATZBALGER' UNION ALL
-SELECT 		'PROMOTION_SIKH', 							'TXT_KEY_PROMOTION_SIKH', 					'TXT_KEY_PROMOTION_SIKH_HELP', 					1, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE',		'TXT_KEY_PROMOTION_SIKH' UNION ALL
-SELECT 		'PROMOTION_SIKH_SWORD', 					'TXT_KEY_PROMOTION_SIKH_SWORD', 			'TXT_KEY_PROMOTION_SIKH_SWORD_HELP', 			0, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_SWORD' UNION ALL
-SELECT 		'PROMOTION_SIKH_KNIFE', 					'TXT_KEY_PROMOTION_SIKH_KNIFE', 			'TXT_KEY_PROMOTION_SIKH_KNIFE_HELP', 			0, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_KNIFE' UNION ALL
-SELECT 		'PROMOTION_SIKH_DISC', 						'TXT_KEY_PROMOTION_SIKH_DISC', 				'TXT_KEY_PROMOTION_SIKH_DISC_HELP', 			0, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_DISC' UNION ALL
-SELECT 		'PROMOTION_SIKH_TRIDENT', 					'TXT_KEY_PROMOTION_SIKH_TRIDENT', 			'TXT_KEY_PROMOTION_SIKH_TRIDENT_HELP', 			0, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_TRIDENT' UNION ALL
-SELECT 		'PROMOTION_SIKH_DAGGER', 					'TXT_KEY_PROMOTION_SIKH_DAGGER', 			'TXT_KEY_PROMOTION_SIKH_DAGGER_HELP', 			0, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_DAGGER' UNION ALL
-SELECT 		'PROMOTION_SIKH_BOW', 						'TXT_KEY_PROMOTION_SIKH_BOW', 				'TXT_KEY_PROMOTION_SIKH_BOW_HELP', 				0, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_BOW' UNION ALL
-SELECT 		'PROMOTION_SIKH_MUSKET', 					'TXT_KEY_PROMOTION_SIKH_MUSKET', 			'TXT_KEY_PROMOTION_SIKH_MUSKET_HELP', 			0, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_MUSKET' UNION ALL
-SELECT 		'PROMOTION_SIKH_SHIELD', 					'TXT_KEY_PROMOTION_SIKH_SHIELD', 			'TXT_KEY_PROMOTION_SIKH_SHIELD_HELP', 			0, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_SHIELD' UNION ALL
-SELECT 		'PROMOTION_SIKH_CHAINMAIL', 				'TXT_KEY_PROMOTION_SIKH_CHAINMAIL', 		'TXT_KEY_PROMOTION_SIKH_CHAINMAIL_HELP', 		0, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_CHAINMAIL' UNION ALL
-SELECT 		'PROMOTION_SIKH_ROBE', 						'TXT_KEY_PROMOTION_SIKH_ROBE', 				'TXT_KEY_PROMOTION_SIKH_ROBE_HELP', 			0, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_ROBE' UNION ALL
-SELECT 		'PROMOTION_SIKH_SHOES', 					'TXT_KEY_PROMOTION_SIKH_SHOES', 			'TXT_KEY_PROMOTION_SIKH_SHOES_HELP', 			0, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_SHOES' UNION ALL
-SELECT 		'PROMOTION_SIKH_TURBAN', 					'TXT_KEY_PROMOTION_SIKH_TURBAN', 			'TXT_KEY_PROMOTION_SIKH_TURBAN_HELP', 			0, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_TURBAN' UNION ALL
-SELECT 		'PROMOTION_SIKH_MARTIAL_ART', 				'TXT_KEY_PROMOTION_SIKH_MARTIAL_ART', 		'TXT_KEY_PROMOTION_SIKH_MARTIAL_ART_HELP', 		0, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_MARTIAL_ART' UNION ALL
-SELECT 		'PROMOTION_SIKH_BRACELET', 					'TXT_KEY_PROMOTION_SIKH_BRACELET', 			'TXT_KEY_PROMOTION_SIKH_BRACELET_HELP', 		0, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_BRACELET' UNION ALL
-SELECT 		'PROMOTION_SCYTHIAN_BARRAGE', 				'TXT_KEY_PROMOTION_POKROVKA', 				'TXT_KEY_PROMOTION_POKROVKA_HELP', 				1, 				'AS2D_IF_LEVELUP', 	0, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_RANGED', 	'TXT_KEY_PROMOTION_POKROVKA' /*UNION ALL
+SELECT 		'PROMOTION_SIKH', 							'TXT_KEY_PROMOTION_SIKH', 					'TXT_KEY_PROMOTION_SIKH_HELP', 					1, 				'AS2D_IF_LEVELUP', 	32, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE',		'TXT_KEY_PROMOTION_SIKH' UNION ALL
+SELECT 		'PROMOTION_SIKH_SWORD', 					'TXT_KEY_PROMOTION_SIKH_SWORD', 			'TXT_KEY_PROMOTION_SIKH_SWORD_HELP', 			0, 				'AS2D_IF_LEVELUP', 	33, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_SWORD' UNION ALL
+SELECT 		'PROMOTION_SIKH_KNIFE', 					'TXT_KEY_PROMOTION_SIKH_KNIFE', 			'TXT_KEY_PROMOTION_SIKH_KNIFE_HELP', 			0, 				'AS2D_IF_LEVELUP', 	34, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_KNIFE' UNION ALL
+SELECT 		'PROMOTION_SIKH_DISC', 						'TXT_KEY_PROMOTION_SIKH_DISC', 				'TXT_KEY_PROMOTION_SIKH_DISC_HELP', 			0, 				'AS2D_IF_LEVELUP', 	35, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_DISC' UNION ALL
+SELECT 		'PROMOTION_SIKH_TRIDENT', 					'TXT_KEY_PROMOTION_SIKH_TRIDENT', 			'TXT_KEY_PROMOTION_SIKH_TRIDENT_HELP', 			0, 				'AS2D_IF_LEVELUP', 	36, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_TRIDENT' UNION ALL
+SELECT 		'PROMOTION_SIKH_DAGGER', 					'TXT_KEY_PROMOTION_SIKH_DAGGER', 			'TXT_KEY_PROMOTION_SIKH_DAGGER_HELP', 			0, 				'AS2D_IF_LEVELUP', 	37, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_DAGGER' UNION ALL
+SELECT 		'PROMOTION_SIKH_BOW', 						'TXT_KEY_PROMOTION_SIKH_BOW', 				'TXT_KEY_PROMOTION_SIKH_BOW_HELP', 				0, 				'AS2D_IF_LEVELUP', 	38, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_BOW' UNION ALL
+SELECT 		'PROMOTION_SIKH_MUSKET', 					'TXT_KEY_PROMOTION_SIKH_MUSKET', 			'TXT_KEY_PROMOTION_SIKH_MUSKET_HELP', 			0, 				'AS2D_IF_LEVELUP', 	39, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_MUSKET' UNION ALL
+SELECT 		'PROMOTION_SIKH_SHIELD', 					'TXT_KEY_PROMOTION_SIKH_SHIELD', 			'TXT_KEY_PROMOTION_SIKH_SHIELD_HELP', 			0, 				'AS2D_IF_LEVELUP', 	40, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_SHIELD' UNION ALL
+SELECT 		'PROMOTION_SIKH_CHAINMAIL', 				'TXT_KEY_PROMOTION_SIKH_CHAINMAIL', 		'TXT_KEY_PROMOTION_SIKH_CHAINMAIL_HELP', 		0, 				'AS2D_IF_LEVELUP', 	41, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_CHAINMAIL' UNION ALL
+SELECT 		'PROMOTION_SIKH_ROBE', 						'TXT_KEY_PROMOTION_SIKH_ROBE', 				'TXT_KEY_PROMOTION_SIKH_ROBE_HELP', 			0, 				'AS2D_IF_LEVELUP', 	42, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_ROBE' UNION ALL
+SELECT 		'PROMOTION_SIKH_SHOES', 					'TXT_KEY_PROMOTION_SIKH_SHOES', 			'TXT_KEY_PROMOTION_SIKH_SHOES_HELP', 			0, 				'AS2D_IF_LEVELUP', 	43, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_SHOES' UNION ALL
+SELECT 		'PROMOTION_SIKH_TURBAN', 					'TXT_KEY_PROMOTION_SIKH_TURBAN', 			'TXT_KEY_PROMOTION_SIKH_TURBAN_HELP', 			0, 				'AS2D_IF_LEVELUP', 	44, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_TURBAN' UNION ALL
+SELECT 		'PROMOTION_SIKH_MARTIAL_ART', 				'TXT_KEY_PROMOTION_SIKH_MARTIAL_ART', 		'TXT_KEY_PROMOTION_SIKH_MARTIAL_ART_HELP', 		0, 				'AS2D_IF_LEVELUP', 	45, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_MARTIAL_ART' UNION ALL
+SELECT 		'PROMOTION_SIKH_BRACELET', 					'TXT_KEY_PROMOTION_SIKH_BRACELET', 			'TXT_KEY_PROMOTION_SIKH_BRACELET_HELP', 		0, 				'AS2D_IF_LEVELUP', 	46, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_MELEE', 		'TXT_KEY_PROMOTION_SIKH_BRACELET' UNION ALL
+SELECT 		'PROMOTION_SCYTHIAN_BARRAGE', 				'TXT_KEY_PROMOTION_POKROVKA', 				'TXT_KEY_PROMOTION_POKROVKA_HELP', 				1, 				'AS2D_IF_LEVELUP', 	49, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_RANGED', 	'TXT_KEY_PROMOTION_POKROVKA' /*UNION ALL
 SELECT 		'PROMOTION_???', 							'TXT_KEY_PROMOTION_???', 					'TXT_KEY_PROMOTION_???_HELP', 					1, 				'AS2D_IF_LEVELUP', 	22, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_???', 		'TXT_KEY_PROMOTION_???'*/;
 
 UPDATE UnitPromotions SET MaxHitPointsChange = 25 WHERE Type = 'PROMOTION_BELGRADE';
@@ -1609,7 +1611,44 @@ UPDATE UnitPromotions SET RankList = 'UCS_CLERMONT', RankNumber = 6 WHERE Type =
 UPDATE UnitPromotions SET RankList = 'UCS_CLERMONT', RankNumber = 7 WHERE Type = 'PROMOTION_CLERMONT6';
 UPDATE UnitPromotions SET RankList = 'UCS_CLERMONT', RankNumber = 8 WHERE Type = 'PROMOTION_CLERMONT7';
 
-UPDATE UnitPromotions SET FlagPromoOrder = 16 WHERE Type IN (
+UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 1 WHERE Type = 'PROMOTION_SIKH';
+UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 2 WHERE Type = 'PROMOTION_SIKH_SWORD';
+UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 3 WHERE Type = 'PROMOTION_SIKH_KNIFE';
+UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 4 WHERE Type = 'PROMOTION_SIKH_DISC';
+UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 5 WHERE Type = 'PROMOTION_SIKH_TRIDENT';
+UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 6 WHERE Type = 'PROMOTION_SIKH_DAGGER';
+UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 7 WHERE Type = 'PROMOTION_SIKH_BOW';
+UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 8 WHERE Type = 'PROMOTION_SIKH_MUSKET';
+UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 9 WHERE Type = 'PROMOTION_SIKH_SHIELD';
+UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 10 WHERE Type = 'PROMOTION_SIKH_CHAINMAIL';
+UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 11 WHERE Type = 'PROMOTION_SIKH_ROBE';
+UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 12 WHERE Type = 'PROMOTION_SIKH_SHOES';
+UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 13 WHERE Type = 'PROMOTION_SIKH_TURBAN';
+UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 14 WHERE Type = 'PROMOTION_SIKH_MARTIAL_ART';
+UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 15 WHERE Type = 'PROMOTION_SIKH_BRACELET';*/
+
+UPDATE UnitPromotions SET FlagPromoOrder = 0 WHERE Type IN (
+	'PROMOTION_SIKH',
+	'PROMOTION_SIKH_SWORD',
+	'PROMOTION_SIKH_KNIFE',
+	'PROMOTION_SIKH_DISC',
+	'PROMOTION_SIKH_TRIDENT',
+	'PROMOTION_SIKH_DAGGER',
+	'PROMOTION_SIKH_BOW',
+	'PROMOTION_SIKH_MUSKET',
+	'PROMOTION_SIKH_SHIELD',
+	'PROMOTION_SIKH_CHAINMAIL',
+	'PROMOTION_SIKH_ROBE',
+	'PROMOTION_SIKH_SHOES',
+	'PROMOTION_SIKH_TURBAN',
+	'PROMOTION_SIKH_MARTIAL_ART',
+	'PROMOTION_SIKH_BRACELET',
+	'PROMOTION_GUARDIA_SVIZZERA',
+	'PROMOTION_KATZBALGER',
+	'PROMOTION_SCYTHIAN_BARRAGE'
+);
+
+UPDATE UnitPromotions SET FlagPromoOrder = 5 WHERE Type IN (
 	'PROMOTION_CLERMONT',
 	'PROMOTION_CLERMONT1',
 	'PROMOTION_CLERMONT2',
@@ -1621,19 +1660,31 @@ UPDATE UnitPromotions SET FlagPromoOrder = 16 WHERE Type IN (
 );
 
 UPDATE UnitPromotions SET FlagPromoOrder = 72 WHERE Type IN (
-	'PROMOTION_ANTANANARIVO',
-	'PROMOTION_BELGRADE',
-	'PROMOTION_HANOI',
-	'PROMOTION_MBANZA_KONGO',
-	'PROMOTION_SIDON',
-	'PROMOTION_YEREVAN',
-	'PROMOTION_LACONIA',
-	'PROMOTION_ODENSO',
 	'PROMOTION_AMBRACIA',
+	'PROMOTION_ANTANANARIVO',
+	'PROMOTION_AUCKLAND',
+	'PROMOTION_BELGRADE',
+	'PROMOTION_DAKKAR',
 	'PROMOTION_DODOMA',
 	'PROMOTION_FAYA',
-	'PROMOTION_SURREY'
-);*/
+	'PROMOTION_HANOI',
+	'PROMOTION_IFE',
+	'PROMOTION_ISKANWAYA',
+	'PROMOTION_KABUL',
+	'PROMOTION_KARASJOHKA',
+	'PROMOTION_KARYES',
+	'PROMOTION_LACONIA',
+	'PROMOTION_LEVUKA',
+	'PROMOTION_MBANZA_KONGO',
+	'PROMOTION_ODENSO',
+	'PROMOTION_PELYM',
+	'PROMOTION_POKROVKA',
+	'PROMOTION_SIDON',
+	'PROMOTION_SGANG_GWAAY',
+	'PROMOTION_SUCEAVA',
+	'PROMOTION_SURREY',
+	'PROMOTION_YEREVAN'
+);
 
 INSERT INTO UnitPromotions_UnitCombats 
 			(PromotionType, 					UnitCombatType)
@@ -2501,7 +2552,7 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KABUL', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARASJOHKA', 	'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_KARASJOHKA', 	3, 				1, 			0,					NULL, 					'PROMOTION_KARASJOHKA', 	NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARYES', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_KARYES', 		3, 				1, 			0,					NULL, 					'PROMOTION_KARYES', 		NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KATENDE', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_KATENDE', 		3, 				1, 			0,					'POLICY_KATENDE', 		NULL, 						NULL UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KATHMANDU', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_KATHMANDU', 		3, 				1, 			0,					NULL, 					NULL, 						'BUILDINGCLASS_KATHMANDU' UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KATHMANDU', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_KATHMANDU', 		3, 				1, 			0,					'POLICY_KATHMANDU', 	NULL, 						'BUILDINGCLASS_KATHMANDU' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KIEV', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_KIEV', 			3, 				1, 			0,					NULL, 					NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KIGALI', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_KIGALI', 		3, 				1, 			0,					'POLICY_KIGALI', 		NULL, 						'BUILDINGCLASS_KIGALI' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KUALA_LUMPUR', 	'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_KUALA_LUMPUR', 	3, 				1, 			0,					'POLICY_KUALA_LUMPUR', 	NULL, 						'BUILDINGCLASS_KUALA_LUMPUR' UNION ALL
@@ -2534,7 +2585,7 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_OUIDAH', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_PANAMA_CITY', 	'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_PANAMA_CITY', 	3, 				1, 			0,					NULL, 					NULL, 						'BUILDINGCLASS_PANAMA_CITY' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_PELYM', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_PELYM', 			3, 				1, 			0,					NULL, 					'PROMOTION_PELYM', 			NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_PHANOTEUS', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_PHANOTEUS', 		3, 				1, 			0,					'POLICY_PHANOTEUS', 	NULL, 						NULL UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_POKROVKA', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_POKROVKA', 		3, 				1, 			0,					NULL, 					'PROMOTION_POKROVKA', 		NULL UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_POKROVKA', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_POKROVKA', 		3, 				1, 			0,					'POLICY_POKROVKA', 		'PROMOTION_POKROVKA', 		NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_PRAGUE', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_PRAGUE', 		3, 				1, 			0,					NULL, 					NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_QUEBEC_CITY', 	'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_QUEBEC_CITY', 	3, 				1, 			0,					NULL, 					NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_QUELIMANE', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_QUELIMANE', 		3, 				1, 			0,					'POLICY_QUELIMANE', 	NULL, 						'BUILDINGCLASS_QUELIMANE' UNION ALL
@@ -2798,7 +2849,7 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BUDAPEST', 		'RESOURCE_HORSE', 			'YIELD
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_JUYUBIT', 		'RESOURCE_FISH', 			'YIELD_FOOD', 					1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARASJOHKA', 	'RESOURCE_DEER', 			'YIELD_FOOD', 					1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARASJOHKA', 	'RESOURCE_DEER', 			'YIELD_PRODUCTION', 			1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARASJOHKA', 	'RESOURCE_REINDEER', 			'YIELD_PRODUCTION', 			2 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARASJOHKA', 	'RESOURCE_REINDEER', 		'YIELD_PRODUCTION', 			2 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_YANGCHENG', 		'RESOURCE_COW', 			'YIELD_FAITH', 					1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_YANGCHENG', 		'RESOURCE_SHEEP', 			'YIELD_FAITH', 					1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_YANGCHENG', 		'RESOURCE_DEER', 			'YIELD_FAITH', 					1 UNION ALL
@@ -2877,23 +2928,23 @@ VALUES 		('ART_DEF_IMPROVEMENT_MARSH', 			'Improvement', 	'Brussels'' Marsh'),
 			('ART_DEF_IMPROVEMENT_TULOU', 			'Improvement', 	'Tulou'),
 			('ART_DEF_IMPROVEMENT_DOGO_CANARIO',	'Improvement', 	'Dogo Canario'),
 			('ART_DEF_RESOURCE_DOGO_CANARIO',		'Resource', 	'Dogo Canario'),
-			('ART_DEF_IMPROVEMENT_LLAO_LLAO',	'Improvement', 	'Llao Llao'),
-			('ART_DEF_RESOURCE_LLAO_LLAO',		'Resource', 	'Llao Llao'),
-			('ART_DEF_RESOURCE_REINDEER',		'Resource', 	'Reindeer');
+			('ART_DEF_IMPROVEMENT_LLAO_LLAO',		'Improvement', 	'Llao Llao'),
+			('ART_DEF_RESOURCE_LLAO_LLAO',			'Resource', 	'Llao Llao'),
+			('ART_DEF_RESOURCE_REINDEER',			'Resource', 	'Reindeer');
 
 INSERT INTO ArtDefine_Landmarks
-			(Era, State, 	Scale, 	ImprovementType, 				LayoutHandler, 	ResourceType, Model, TerrainContour)
-SELECT 		Era, State, 	Scale, 	'ART_DEF_IMPROVEMENT_MARSH', 	LayoutHandler, 	ResourceType, Model, TerrainContour
+			(Era, State, 	Scale, 	ImprovementType, 				LayoutHandler, 	ResourceType,	Model, TerrainContour)
+SELECT 		Era, State, 	Scale, 	'ART_DEF_IMPROVEMENT_MARSH', 	LayoutHandler, 	ResourceType,	Model, TerrainContour
 FROM ArtDefine_Landmarks WHERE ImprovementType = 'ART_DEF_IMPROVEMENT_POLDER';
 
 INSERT INTO ArtDefine_Landmarks
-			(Era, State, 	Scale, 	ImprovementType, 				LayoutHandler, 	ResourceType, Model, TerrainContour)
-SELECT 		Era, State, 	Scale, 	ImprovementType, 	LayoutHandler, 	'ART_DEF_RESOURCE_REINDEER', Model, TerrainContour
+			(Era, State, 	Scale, 	ImprovementType, LayoutHandler, ResourceType,					Model, TerrainContour)
+SELECT 		Era, State, 	Scale, 	ImprovementType, LayoutHandler, 'ART_DEF_RESOURCE_REINDEER',	Model, TerrainContour
 FROM ArtDefine_Landmarks WHERE ResourceType = 'ART_DEF_RESOURCE_DEER';
 
 INSERT INTO ArtDefine_Landmarks
-			(Era, State, 	Scale, 	ImprovementType, 				LayoutHandler, 	ResourceType, Model, TerrainContour)
-SELECT 		Era, State, 	Scale, 	ImprovementType, 	LayoutHandler, 	'ART_DEF_RESOURCE_LLAO_LLAO', Model, TerrainContour
+			(Era, State, 	Scale, 	ImprovementType, LayoutHandler, ResourceType,					Model, TerrainContour)
+SELECT 		Era, State, 	Scale, 	ImprovementType, LayoutHandler, 'ART_DEF_RESOURCE_LLAO_LLAO',	Model, TerrainContour
 FROM ArtDefine_Landmarks WHERE ResourceType = 'ART_DEF_RESOURCE_CITRUS';
 			
 INSERT INTO ArtDefine_Landmarks
@@ -2931,15 +2982,15 @@ VALUES 		('ART_DEF_IMPROVEMENT_MARSH', 			'Improvement', 	'sv_BuildMarsh.dds'),
 			('ART_DEF_IMPROVEMENT_TULOU', 			'Improvement', 	'sv_BuildTulou.dds'),
 			('ART_DEF_IMPROVEMENT_DOGO_CANARIO',	'Improvement', 	'sv_ResourceDogoCanario.dds'),
 			('ART_DEF_RESOURCE_DOGO_CANARIO', 		'Resource', 	'sv_ResourceDogoCanario.dds'),
-			('ART_DEF_IMPROVEMENT_LLAO_LLAO',	'Improvement', 	'sv_ResourceLlaoLlao.dds'),
-			('ART_DEF_RESOURCE_LLAO_LLAO', 		'Resource', 	'sv_ResourceLlaoLlao.dds'),
+			('ART_DEF_IMPROVEMENT_LLAO_LLAO',		'Improvement', 	'sv_ResourceLlaoLlao.dds'),
+			('ART_DEF_RESOURCE_LLAO_LLAO', 			'Resource', 	'sv_ResourceLlaoLlao.dds'),
 			('ART_DEF_RESOURCE_REINDEER', 			'Resource', 	'sv_ResourceReindeer.dds');
 
 INSERT INTO IconFontMapping 
 			(IconName, 					IconFontTexture,			IconMapping)
 VALUES		('ICON_RES_DOGO_CANARIO', 	'UCS_RESOURCE_FONT_ATLAS',	1),
-			('ICON_RES_LLAO_LLAO', 	'UCS_RESOURCE_FONT_ATLAS',	2),
-			('ICON_RES_REINDEER', 	'UCS_RESOURCE_FONT_ATLAS',	3);
+			('ICON_RES_LLAO_LLAO', 		'UCS_RESOURCE_FONT_ATLAS',	2),
+			('ICON_RES_REINDEER', 		'UCS_RESOURCE_FONT_ATLAS',	3);
 ---------------------------------------------------
 -- Definitions - Improvements
 ---------------------------------------------------	
@@ -2955,7 +3006,7 @@ SELECT 		'BUILD_TOTEM_POLE',			500, 	'IMPROVEMENT_TOTEM_POLE', 	'TXT_KEY_BUILD_T
 SELECT 		'BUILD_CHUM',				300, 	'IMPROVEMENT_CHUM', 		'TXT_KEY_BUILD_CHUM',			'TXT_KEY_BUILD_CHUM_HELP',			'ENTITY_EVENT_BUILD', 		0,		'KB_C', 	1, 				13, 		'UCS_IMPROVEMENT_ATLAS' UNION ALL
 SELECT 		'BUILD_TULOU',				1300, 	'IMPROVEMENT_TULOU', 		'TXT_KEY_BUILD_TULOU',			'TXT_KEY_BUILD_TULOU_HELP',			'ENTITY_EVENT_BUILD', 		0,		'KB_U', 	1, 				1, 			'UCS_IMPROVEMENT_ATLAS' UNION ALL
 SELECT 		'BUILD_DOGO_CANARIO',		700, 	'IMPROVEMENT_DOGO_CANARIO', 'TXT_KEY_BUILD_DOGO_CANARIO',	'TXT_KEY_BUILD_DOGO_CANARIO_HELP',	'ENTITY_EVENT_BUILD', 		0,		'KB_D', 	1, 				15, 		'UCS_IMPROVEMENT_ATLAS' UNION ALL
-SELECT 		'BUILD_LLAO_LLAO',		1000, 	'IMPROVEMENT_LLAO_LLAO', 'TXT_KEY_BUILD_LLAO_LLAO',	'TXT_KEY_BUILD_LLAO_LLAO_HELP',	'ENTITY_EVENT_BUILD', 		0,		'KB_L', 	1, 				1, 		'UCS_IMPROVEMENT_ATLAS';
+SELECT 		'BUILD_LLAO_LLAO',			1000, 	'IMPROVEMENT_LLAO_LLAO',	'TXT_KEY_BUILD_LLAO_LLAO',		'TXT_KEY_BUILD_LLAO_LLAO_HELP',		'ENTITY_EVENT_BUILD', 		0,		'KB_L', 	1, 				1, 			'UCS_IMPROVEMENT_ATLAS';
 
 INSERT INTO Unit_Builds 
 			(UnitType, 				BuildType)
@@ -3014,9 +3065,9 @@ SELECT 		'IMPROVEMENT_BIG_HEAD', 	'TXT_KEY_IMPROVEMENT_BIG_HEAD', 	'TXT_KEY_CIV5
 SELECT 		'IMPROVEMENT_MONASTERY', 	'TXT_KEY_IMPROVEMENT_MONASTERY', 	'TXT_KEY_CIV5_IMPROVEMENTS_MONASTERY', 		'TXT_KEY_IMPROVEMENT_MONASTERY_HELP', 		'ART_DEF_IMPROVEMENT_MONASTERY', 		10, 			'UCS_IMPROVEMENT_ATLAS' UNION ALL
 SELECT 		'IMPROVEMENT_TOTEM_POLE', 	'TXT_KEY_IMPROVEMENT_TOTEM_POLE', 	'TXT_KEY_CIV5_IMPROVEMENTS_TOTEM_POLE', 	'TXT_KEY_IMPROVEMENT_TOTEM_POLE_HELP', 		'ART_DEF_IMPROVEMENT_TOTEM_POLE', 		8, 				'UCS_IMPROVEMENT_ATLAS' UNION ALL
 SELECT 		'IMPROVEMENT_CHUM', 		'TXT_KEY_IMPROVEMENT_CHUM', 		'TXT_KEY_CIV5_IMPROVEMENTS_CHUM', 			'TXT_KEY_IMPROVEMENT_CHUM_HELP', 			'ART_DEF_IMPROVEMENT_CHUM', 			12, 			'UCS_IMPROVEMENT_ATLAS' UNION ALL
-SELECT 		'IMPROVEMENT_TULOU', 		'TXT_KEY_IMPROVEMENT_TULOU', 		'TXT_KEY_CIV5_IMPROVEMENTS_TULOU', 			'TXT_KEY_IMPROVEMENT_TULOU_HELP', 			'ART_DEF_IMPROVEMENT_TULOU', 			0, 			'UCS_IMPROVEMENT_ATLAS' UNION ALL
+SELECT 		'IMPROVEMENT_TULOU', 		'TXT_KEY_IMPROVEMENT_TULOU', 		'TXT_KEY_CIV5_IMPROVEMENTS_TULOU', 			'TXT_KEY_IMPROVEMENT_TULOU_HELP', 			'ART_DEF_IMPROVEMENT_TULOU', 			0, 				'UCS_IMPROVEMENT_ATLAS' UNION ALL
 SELECT 		'IMPROVEMENT_DOGO_CANARIO', 'TXT_KEY_IMPROVEMENT_DOGO_CANARIO', 'TXT_KEY_CIV5_IMPROVEMENTS_DOGO_CANARIO', 	'TXT_KEY_IMPROVEMENT_DOGO_CANARIO_HELP',	'ART_DEF_IMPROVEMENT_DOGO_CANARIO', 	14, 			'UCS_IMPROVEMENT_ATLAS' UNION ALL
-SELECT 		'IMPROVEMENT_LLAO_LLAO', 'TXT_KEY_IMPROVEMENT_LLAO_LLAO', 'TXT_KEY_CIV5_IMPROVEMENTS_LLAO_LLAO', 	'TXT_KEY_IMPROVEMENT_LLAO_LLAO_HELP',	'ART_DEF_IMPROVEMENT_LLAO_LLAO', 	0, 			'UCS_IMPROVEMENT_ATLAS';
+SELECT 		'IMPROVEMENT_LLAO_LLAO',	'TXT_KEY_IMPROVEMENT_LLAO_LLAO',	'TXT_KEY_CIV5_IMPROVEMENTS_LLAO_LLAO', 		'TXT_KEY_IMPROVEMENT_LLAO_LLAO_HELP',		'ART_DEF_IMPROVEMENT_LLAO_LLAO', 		0, 				'UCS_IMPROVEMENT_ATLAS';
 
 UPDATE Improvements SET Coastal = 1, RemoveWhenComplete = 1, CreatesFeature = 'FEATURE_MARSH' WHERE Type = 'IMPROVEMENT_MARSH';
 UPDATE Improvements SET NoTwoAdjacent = 1, DefenseModifier = 15, PillageGold = 17 WHERE Type = 'IMPROVEMENT_MOUND';
@@ -3074,7 +3125,7 @@ SELECT 		'IMPROVEMENT_TULOU', 		'YIELD_FOOD',		1 UNION ALL
 SELECT 		'IMPROVEMENT_TULOU', 		'YIELD_PRODUCTION', 1 UNION ALL
 SELECT 		'IMPROVEMENT_TULOU', 		'YIELD_CULTURE',	1 UNION ALL
 SELECT 		'IMPROVEMENT_DOGO_CANARIO', 'YIELD_FOOD',		1 UNION ALL
-SELECT 		'IMPROVEMENT_LLAO_LLAO', 'YIELD_FOOD',		1;
+SELECT 		'IMPROVEMENT_LLAO_LLAO',	'YIELD_FOOD',		1;
 
 INSERT INTO Improvement_AdjacentImprovementYieldChanges
 			(ImprovementType, 			OtherImprovementType, 			YieldType, 				Yield)
@@ -3218,23 +3269,23 @@ VALUES		('IMPROVEMENT_MARSH',			'FLAVOR_GROWTH',		30),
 			('IMPROVEMENT_DOGO_CANARIO',	'FLAVOR_RELIGION',		10),
 			('IMPROVEMENT_LLAO_LLAO',		'FLAVOR_GROWTH',		100),
 			('IMPROVEMENT_LLAO_LLAO',		'FLAVOR_HAPPINESS',		80),
-			('IMPROVEMENT_LLAO_LLAO',		'FLAVOR_CULTURE',	10),
-			('IMPROVEMENT_LLAO_LLAO',		'FLAVOR_SCIENCE',			10);
+			('IMPROVEMENT_LLAO_LLAO',		'FLAVOR_CULTURE',		10),
+			('IMPROVEMENT_LLAO_LLAO',		'FLAVOR_SCIENCE',		10);
 ---------------------------------------------------
 -- Definitions - Resources
 ---------------------------------------------------	
 INSERT INTO Resources 
 			(Type,						TechReveal,			TechCityTrade, 		Description,						Civilopedia, 							Help,										ResourceClassType, 			IsMonopoly, 	ArtDefineTag, 						CivilizationType,		OnlyMinorCivs,  Happiness,  ResourceUsage,	IconString, 				PortraitIndex, 	IconAtlas)
 VALUES		('RESOURCE_DOGO_CANARIO',	null,				'TECH_TRAPPING',	'TXT_KEY_RESOURCE_DOGO_CANARIO',	'TXT_KEY_RESOURCE_DOGO_CANARIO_TEXT',	'TXT_KEY_RESOURCE_DOGO_CANARIO_MONOPOLY',	'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_DOGO_CANARIO',	null,					0,				2,			2,				'[ICON_RES_DOGO_CANARIO]',	0, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_LLAO_LLAO',	null,				'TECH_TRAPPING',	'TXT_KEY_RESOURCE_LLAO_LLAO',	'TXT_KEY_RESOURCE_LLAO_LLAO_TEXT',	'TXT_KEY_RESOURCE_LLAO_LLAO_MONOPOLY',	'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_LLAO_LLAO',	null,					0,				2,			2,				'[ICON_RES_LLAO_LLAO]',	1, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_REINDEER',		null,				'TECH_TRAPPING',	'TXT_KEY_RESOURCE_REINDEER',		'TXT_KEY_RESOURCE_REINDEER_TEXT',		'TXT_KEY_RESOURCE_REINDEER_MONOPOLY',		'RESOURCECLASS_BONUS',		0,				'ART_DEF_RESOURCE_REINDEER',		null,					0,				0,			1,				'[ICON_RES_REINDEER]',		2, 				'UCS_RESOURCE_ATLAS');
+			('RESOURCE_LLAO_LLAO',		null,				'TECH_TRAPPING',	'TXT_KEY_RESOURCE_LLAO_LLAO',		'TXT_KEY_RESOURCE_LLAO_LLAO_TEXT',		'TXT_KEY_RESOURCE_LLAO_LLAO_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_LLAO_LLAO',		null,					0,				2,			2,				'[ICON_RES_LLAO_LLAO]',		1, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_REINDEER',		null,				'TECH_TRAPPING',	'TXT_KEY_RESOURCE_REINDEER',		'TXT_KEY_RESOURCE_REINDEER_TEXT',		'TXT_KEY_RESOURCE_REINDEER_MONOPOLY',		'RESOURCECLASS_BONUS',		0,				'ART_DEF_RESOURCE_REINDEER',		null,					0,				0,			0,				'[ICON_RES_REINDEER]',		2, 				'UCS_RESOURCE_ATLAS');
 ---------------------------------------------------------
-UPDATE Resources SET HappinessFromMonopoly = 3 WHERE Type = 'RESOURCE_LLAO_LLAO';
+UPDATE Resources SET MonopolyHappiness = 3 WHERE Type = 'RESOURCE_LLAO_LLAO';
 
 INSERT INTO Resource_YieldChanges
 			(ResourceType, 				YieldType, 				Yield)
 VALUES		('RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			1),
-			('RESOURCE_LLAO_LLAO',	'YIELD_FOOD',			1),
+			('RESOURCE_LLAO_LLAO',		'YIELD_FOOD',			1),
 			('RESOURCE_REINDEER',		'YIELD_FOOD',			1),
 			('RESOURCE_REINDEER',		'YIELD_CULTURE',		1);
 
@@ -3242,20 +3293,20 @@ INSERT INTO Resource_CityYieldModFromMonopoly
 			(ResourceType, 				YieldType, 				Yield)
 VALUES		('RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			5),
 			('RESOURCE_DOGO_CANARIO',	'YIELD_PRODUCTION',		5),
-			('RESOURCE_LLAO_LLAO',	'YIELD_FOOD',			5);
+			('RESOURCE_LLAO_LLAO',		'YIELD_FOOD',			5);
 
 INSERT INTO Improvement_ResourceTypes
-			(ImprovementType,		ResourceType, 				ResourceMakesValid, ResourceTrade)
-VALUES		('IMPROVEMENT_CAMP',	'RESOURCE_DOGO_CANARIO',	1,					1),
-			('IMPROVEMENT_PLANTATION',	'RESOURCE_LLAO_LLAO',	1,					1),
-			('IMPROVEMENT_CAMP',	'RESOURCE_REINDEER',		1,					1);
+			(ImprovementType,			ResourceType, 				ResourceMakesValid, ResourceTrade)
+VALUES		('IMPROVEMENT_CAMP',		'RESOURCE_DOGO_CANARIO',	1,					1),
+			('IMPROVEMENT_PLANTATION',	'RESOURCE_LLAO_LLAO',		1,					1),
+			('IMPROVEMENT_CAMP',		'RESOURCE_REINDEER',		1,					1);
 
 INSERT INTO Improvement_ResourceType_Yields
-			(ImprovementType,		ResourceType, 				YieldType, 				Yield)
-VALUES		('IMPROVEMENT_CAMP',	'RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			1),
-			('IMPROVEMENT_CAMP',	'RESOURCE_DOGO_CANARIO',	'YIELD_PRODUCTION',		1),
-			('IMPROVEMENT_PLANTATION',	'RESOURCE_LLAO_LLAO',	'YIELD_FOOD',			1),
-			('IMPROVEMENT_PLANTATION',	'RESOURCE_LLAO_LLAO',	'YIELD_CULTURE',		1);
+			(ImprovementType,			ResourceType, 				YieldType, 				Yield)
+VALUES		('IMPROVEMENT_CAMP',		'RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			1),
+			('IMPROVEMENT_CAMP',		'RESOURCE_DOGO_CANARIO',	'YIELD_PRODUCTION',		1),
+			('IMPROVEMENT_PLANTATION',	'RESOURCE_LLAO_LLAO',		'YIELD_FOOD',			1),
+			('IMPROVEMENT_PLANTATION',	'RESOURCE_LLAO_LLAO',		'YIELD_CULTURE',		1);
 
 INSERT INTO Improvement_ResourceType_Yields
 			(ImprovementType,		ResourceType, 				YieldType, 				Yield)
@@ -3267,15 +3318,15 @@ INSERT INTO Resource_Flavors
 VALUES		('RESOURCE_DOGO_CANARIO',	'FLAVOR_GROWTH',		40),
 			('RESOURCE_DOGO_CANARIO',	'FLAVOR_PRODUCTION',	20),
 			('RESOURCE_DOGO_CANARIO',	'FLAVOR_CULTURE',		10),
-			('RESOURCE_DOGO_CANARIO',	'FLAVOR_GOLD',		10),
+			('RESOURCE_DOGO_CANARIO',	'FLAVOR_GOLD',			10),
 			('RESOURCE_DOGO_CANARIO',	'FLAVOR_RELIGION',		10),
-			('RESOURCE_LLAO_LLAO',	'FLAVOR_GROWTH',	30),
-			('RESOURCE_LLAO_LLAO',	'FLAVOR_HAPPINESS',		30),
-			('RESOURCE_LLAO_LLAO',	'FLAVOR_CULTURE',		10),
-			('RESOURCE_LLAO_LLAO',	'FLAVOR_SCIENCE',		10),
-			('RESOURCE_REINDEER',	'FLAVOR_PRODUCTION',	30),
-			('RESOURCE_REINDEER',	'FLAVOR_GROWTH',		20),
-			('RESOURCE_REINDEER',	'FLAVOR_CULTURE',		10);
+			('RESOURCE_LLAO_LLAO',		'FLAVOR_GROWTH',		30),
+			('RESOURCE_LLAO_LLAO',		'FLAVOR_HAPPINESS',		30),
+			('RESOURCE_LLAO_LLAO',		'FLAVOR_CULTURE',		10),
+			('RESOURCE_LLAO_LLAO',		'FLAVOR_SCIENCE',		10),
+			('RESOURCE_REINDEER',		'FLAVOR_PRODUCTION',	30),
+			('RESOURCE_REINDEER',		'FLAVOR_GROWTH',		20),
+			('RESOURCE_REINDEER',		'FLAVOR_CULTURE',		10);
 ---------------------------------------------------
 -- Definitions - Mercenary and Unique Units
 ---------------------------------------------------	
@@ -3699,6 +3750,13 @@ INSERT INTO Unit_ClassUpgrades
 			(UnitType, 			UnitClassType)
 SELECT		'UNIT_GURKHA', 		UnitClassType
 FROM Unit_ClassUpgrades WHERE UnitType = 'UNIT_RIFLEMAN';
+------------------------------
+INSERT INTO Policy_UnitClassReplacements
+			(PolicyType,				ReplacedUnitClassType,			ReplacementUnitClassType)
+VALUES	    --('POLICY_VATICAN_CITY',		'UNITCLASS_SPANISH_TERCIO',		'UNITCLASS_SWISS_GUARD'),
+			--('POLICY_LAHORE',			'UNITCLASS_LONGSWORDSMAN',		'UNITCLASS_NIHANG'),
+			('POLICY_KATHMANDU',		'UNITCLASS_RIFLEMAN',			'UNITCLASS_GURKHA'),
+			('POLICY_POKROVKA',			'UNITCLASS_HORSE_ARCHER',		'UNITCLASS_SAKA');
 ------------------------------
 INSERT INTO Unit_ResourceQuantityRequirements
 			(UnitType, 			ResourceType,	Cost)

@@ -21,6 +21,14 @@
 			<Text>Overwhelming influence with a City-State!</Text>
 		</Row>
 		
+		<!-- important notifications for player on start -->
+		<Row Tag="TXT_KEY_UCS_CONFLICT">
+			<Text>Unfortunately we couldn't replace [COLOR_CYAN]{1_CS}[ENDCOLOR] with another City-State. If you don't want to see two cities of the same name in your game (or conflicting leaders), then the restart is required.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_CONFLICT_TITLE">
+			<Text>CONFLICT BETWEEN A MAJOR CIV AND A CS! RESTART REQUIRED!!!</Text>
+		</Row>
+		
 		<!-- notifications for friendly unit gifts -->
 		<Row Tag="TXT_KEY_UCS_PASSIVES_GIFTS">
 			<Text>You received new [COLOR_POSITIVE_TEXT]{1_UnitName}[ENDCOLOR] unit from [COLOR_CYAN]{2_CS}[ENDCOLOR] as a gratitude for great cooperation and friendly attitutde.</Text>

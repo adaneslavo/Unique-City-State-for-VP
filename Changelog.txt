@@ -1,7 +1,7 @@
 New version has tons of new content, but the most important imo is automated City-State conflict checker. This module looks for a problematic City-state (f.e. Jerusalem City-State and Israel Civilization; Canada Civilization and Vancouver or Quebec City City-States) and substitutes them with another City-State at random. This means that any compatibility changes are no longer needed in civilization releases (attention @pineappledan, @gwennog).
 
-Special thanks go to @gwennog, who created all 20 new icons for promotions (whole promotion branch for a Nihang unit), and much more stuff.
-As always thanks to @jarcast2 for his help and great brainstorm, so we could finish the initial planning phase (you cans see that in one of the links now present in the op with the courtesy of @enginseer);
+Special thanks go to @gwennog, who created all 20 new icons for promotions (whole promotion branch for a Nihang unit and some additional stuff).
+As always thanks to @jarcast2 for his help and great brainstorming, so we could finish the initial planning phase (you can see that in one of the links now present in the op with the courtesy of @enginseer);
 Thanks to @flamingcheesepie for his role of advisor, his balance suggestions and beta testing.
 Thanks to all people who posted any bug reports on the forum. I hope I didn't miss anything.
 
@@ -66,12 +66,14 @@ Changelog:
 		- can now be repaired (ups, my bad);
 		- now allow building Landmarks and doing Archaeologica digs;
 		- now allow Scrubing Fallout action;
+		- optimizing and fixing;
 	- Potala Palace now unlocked at Architecture (should help a bit with CS quests asking to build it);
 	- Jerusalem now checks if Major player created a Religion (so does not take the Pantheons into account);
 	- fixed an error in functions giving units from Friendly CSs;
 	- Bedulu now gets Faith from Trade Routes (and Dodoma does not);
 	- Sisqeno fixes:
 		- Worker now gains same free promotions like Sisqeno (Missionary);
+		- fixed Sisqeno lua bug;
 		- Sisqeno, after SC construction, looks for all busy Sisqenos with full count and choose one at random (previously looked for the oldest unit on tile);
 	- Clermont:
 		- fixed Clermont promotion tags (promotions and icons didn't match);
@@ -80,7 +82,8 @@ Changelog:
 		- fake Caravans cannot be gifted;
 		- changed the used column from from NoMinorGifts to NoMinorCivGift, so maybe this time CSs won't be giving UCS units to players...
 	- deleted unnecessary 32px icons for units and 128px and 32px icons for resources;
-	- filled some gaps in Units table for new Untis;
+	- filled some gaps in Units table for new Units;
+	- reranked all UCS promotion for VP Flags' component;
 	- resized unit icons to fit the icon frame better;
 	- text fixes (most important):
 		- "SGaang" is now "SGang" in few places;
