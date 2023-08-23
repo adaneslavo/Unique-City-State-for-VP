@@ -116,6 +116,7 @@ Changelog:
 	- resized unit icons to fit the icon frame better;
 	- added Defines-like array for UCS lua functions;
 	- now all UCS resources have no tech allowing for trade;
+	- Dodoma's promotion now moved to Civilian section (was Naval);
 	- text fixes (most important):
 		- "SGaang" is now "SGang" in few places;
 		- reworked a bit style of improvement texts;
