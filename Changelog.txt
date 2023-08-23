@@ -41,6 +41,7 @@ Changelog:
 	- 6 new CS related Resources (below);
 - changed:
 	- reworked civilopedia entries for: Armagh, Muscat and Nan Madol;
+	- now all events have CS names (helps with Wonder Planner compatibility);
 - balanced:
 	- overall City-State behaviour rework:
 		- Settings:
