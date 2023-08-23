@@ -12,8 +12,9 @@ Changelog:
 	- City-State blocking mechanism (lua based, because DLL is hardcoded now) (by @jarcast2 (idea and lua help) and me (coding)):
 		- when the game loads it checks all Major Player city lists and all City-States, compares them and looks for any conflicts;
 		- all conflicts are stored in special table;
-		- when a City-State with conflict founds a city then the whole City-State (Minor Player) is changed to another one at random;
+		- when a City-State with a conflict founds a city then the whole City-State (Minor Player) is changed to another one at random;
 		- whole process is repeated if new City-State is also conflicting with Major Civilizations;
+		- human player will gain a notification if substitution was impossible, so he could restart immediately;
 		- !!! if you want this tool to work correctly, do not use all possible slots for City-States (about 35 should be fine; leave few of them free for substitutions);
 	- 16 new City-States (5 female leaders):
 		- 2 Maritime: Honiara (Oceania), Juyubit (F; North America);
@@ -34,12 +35,34 @@ Changelog:
 		- Te'aat (exclusive for Juyubit);
 	- 1 new Improvement:
 		- Tulou (exclusive for Longyan);
-	- 2 new Resources:
-		- Reindeer (exclusive for Karasjohka);
-		- Llao Llao (unused);
+	- 2 new map Resources:
+		- Reindeer, bonus (exclusive for Karasjohka);
+		- Llao Llao, luxury (unused);
+	- 6 new CS related Resources (below);
 - changed:
-	- reworked civilopedia entries for: Armagh, Muscat and Nan Madol.
+	- reworked civilopedia entries for: Armagh, Muscat and Nan Madol;
 - balanced:
+	- overall City-State behaviour rework:
+		- Settings:
+			- now more settings to choose (UGPTIs, Luxuries);
+			- fixed not working settings (not all, but some didn't work);
+		- UGPTIs:
+			- City-States now claim their GPTIs if they are spawned outside their borders;
+			- City-States now gain a UGPTI on entering the Classical Era, instead of on founding their city, to delay the problems with culture bombing;
+			- now placed only on Strategic resources or tiles without any resource;
+		- Maritime, Cultured and Religious City-States now get their own pools of unique luxuries, that work the same way Mercantile's ones did:
+			(each of them has now unique monopoly bonus totally different from the "standard" luxuries)
+			(from this version UCS becomes not compatible with EMR, which as the mod itself is very problematic and need some rework btw)
+			- Maritime: Beer, Cheese, Honey;
+			- Mercantile: Glass (old), Jewelry (old), ???
+			- Cultured: Porcelain (moved from Mercantile), Tapestry, ???;
+			- Religious: Champagne, Manuscripts, ???;
+		- Cultured City-States now have 0.5% chance for giving the player (if he has free slots) Great Work of Art, Writing or Music (in reversed order, so first are checked music etc.);
+		- City-States related luxury resources now have weaker monopoly abilities than regular resources;
+			(base VP CS related resources (Glass, Jewelry, Porcelain) got their Monopoly bonuses halved)
+			- Glass: +6 Happiness --> +3 Happiness;
+			- Jewelry: +6 Happiness --> +3 Happiness;
+			- Porcelain: +30% GA Length --> +15% GA Length;
 	- Dogo Canario rework:
 		- now has improved Camp model;
 		- now has additional Under Construction model specially for a resource placement;
@@ -59,8 +82,10 @@ Changelog:
 		- Managua now has American style (was European);
 		- managua gets new ability based on espionage (3rd CS using such; old ability moved to Sana'a);
 	- Nan Madol: culture on death is now applied once in Capital instead of for each city;
-	- City-States now claim their GPTIs if they are spawned outside their borders;
 - fixed:
+	- gifts:
+		- fixed an error in functions giving units from Friendly CSs;
+		- now free units are gifted only from Friendly CSs (were all by an error);
 	- lua workaround for UCS improvements fix:
 		- Roads and Railroads can now be built or removed on tiles with UCS improvements;
 		- can now be repaired (ups, my bad);
@@ -69,27 +94,34 @@ Changelog:
 		- optimizing and fixing;
 	- Potala Palace now unlocked at Architecture (should help a bit with CS quests asking to build it);
 	- Jerusalem now checks if Major player created a Religion (so does not take the Pantheons into account);
-	- fixed an error in functions giving units from Friendly CSs;
 	- Bedulu now gets Faith from Trade Routes (and Dodoma does not);
 	- Sisqeno fixes:
 		- Worker now gains same free promotions like Sisqeno (Missionary);
 		- fixed Sisqeno lua bug;
-		- Sisqeno, after SC construction, looks for all busy Sisqenos with full count and choose one at random (previously looked for the oldest unit on tile);
+		- Sisqeno, after SC construction, looks for all Sisqenos with full count and choose one at random (previously looked for the oldest unit on tile);
 	- Clermont:
 		- fixed Clermont promotion tags (promotions and icons didn't match);
 		- promotion icons now have dark grey background instead of light grey;
-	- gifts:
+	- unit gifts:
 		- fake Caravans cannot be gifted;
 		- changed the used column from from NoMinorGifts to NoMinorCivGift, so maybe this time CSs won't be giving UCS units to players...
+		- added special table that might block taht annoying behaviour...
 	- deleted unnecessary 32px icons for units and 128px and 32px icons for resources;
 	- filled some gaps in Units table for new Units;
-	- reranked all UCS promotion for VP Flags' component;
+	- Promotion Flags:
+		- reranked all UCS promotion for VP Flags' component;
+		- added some new groups
+		- added missing promotions from recent updates
 	- resized unit icons to fit the icon frame better;
+	- added Defines-like array for UCS lua functions;
+	- now all UCS resources have no tech allowing for trade;
 	- text fixes (most important):
 		- "SGaang" is now "SGang" in few places;
 		- reworked a bit style of improvement texts;
 		- fixed yields descritpion for Sunken Courtyard;
 		- expanded info for Mound (CS bonus);
+		- Dogo Canario now shows correct monopoly text;
+		- monopoly texts are now shorter to save the space for Trade Opportunities window (tooltip for custom resources);
 		
 
 

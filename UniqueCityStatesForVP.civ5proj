@@ -57,7 +57,7 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
     <ReloadAudioSystem>true</ReloadAudioSystem>
     <Homepage>http://https://forums.civfanatics.com/threads/unique-city-states.607883/</Homepage>
     <ModDependencies>
-      <Association xmlns="">
+      <Association>
         <Type>Mod</Type>
         <Name>Community Balance Overhaul</Name>
         <Id>8411a7a8-dad3-4622-a18e-fcc18324c799</Id>

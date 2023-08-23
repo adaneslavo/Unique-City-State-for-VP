@@ -3,10 +3,13 @@
 ---------------------------------------------------
 INSERT INTO Community	
 			(Type,					Value)
-VALUES		('UCS-PASSIVES-ON',		1),	-- enables/disables CS passive abilities (improvements and resources on start; religious pressure for Religious CSs)
+VALUES		('UCS-PASSIVES-ON',		1),	-- enables CS passive abilities (GW gifts for Cultured CSs; religious pressure for Religious CSs)
+			('UCS-PASSIVES-TILE',	1),	-- enables CS free UGPTI on classical Era for each CS
+			('UCS-PASSIVES-LUX',	1),	-- enables new Unique Luxuries for CSs
+			('UCS-PASSIVES-UNIT',	1),	-- enables civilian unit gifts from friendly CSs
 			('UCS-PASSIVES-BGP',	1), -- enables Border Growth Points gain in City-States after Diplomatic Mission
 			('UCS-PASSIVES-HP',		1), -- enables City Hit Points gain in City-States after Diplomatic Mission
-			('UCS-PASSIVES-SHOW',	0); -- shows (1)/hides (0) passives in the CS tootlip
+			('UCS-PASSIVES-SHOW',	1); -- hides passives in the CS tootlip
 ---------------------------------------------------
 -- Compatibility
 ---------------------------------------------------
@@ -197,10 +200,10 @@ SELECT 		'UCS_UNIT_ATLAS', 						'80', 		'UCS_Units_080.dds',				6, 				1 UNION 
 SELECT 		'UCS_UNIT_ATLAS', 						'64', 		'UCS_Units_064.dds',				6, 				1 UNION ALL
 SELECT 		'UCS_UNIT_ATLAS', 						'45', 		'UCS_Units_045.dds',				6, 				1 UNION ALL
 SELECT 		'UCS_UNIT_FLAG_ATLAS', 					'32', 		'UCS_UnitsFlags_032.dds',			6, 				1 UNION ALL
-SELECT 		'UCS_RESOURCE_ATLAS', 					'256', 		'UCS_Resources_256.dds',			3, 				1 UNION ALL
-SELECT 		'UCS_RESOURCE_ATLAS', 					'80', 		'UCS_Resources_080.dds',			3, 				1 UNION ALL
-SELECT 		'UCS_RESOURCE_ATLAS', 					'64', 		'UCS_Resources_064.dds',			3, 				1 UNION ALL
-SELECT 		'UCS_RESOURCE_ATLAS', 					'45', 		'UCS_Resources_045.dds',			3, 				1;
+SELECT 		'UCS_RESOURCE_ATLAS', 					'256', 		'UCS_Resources_256.dds',			3, 				4 UNION ALL
+SELECT 		'UCS_RESOURCE_ATLAS', 					'80', 		'UCS_Resources_080.dds',			3, 				4 UNION ALL
+SELECT 		'UCS_RESOURCE_ATLAS', 					'64', 		'UCS_Resources_064.dds',			3, 				4 UNION ALL
+SELECT 		'UCS_RESOURCE_ATLAS', 					'45', 		'UCS_Resources_045.dds',			3, 				4;
 ---------------------------------------------------
 INSERT INTO IconFontTextures 
 			(IconFontTexture, 				IconFontTextureFile)
@@ -653,6 +656,8 @@ SELECT 'TXT_KEY_CIV5_UNIT_TEAAT', 							'TODO';
 
 INSERT INTO Language_en_US (Tag, Text)
 -- improvements
+	-- dummy (city-state)
+	SELECT 'TXT_KEY_IMPROVEMENT_CITY', 						'City-State' UNION ALL
 	-- marsh
 	SELECT 'TXT_KEY_BUILD_MARSH', 							'Create a Marsh'  UNION ALL
 	SELECT 'TXT_KEY_BUILD_MARSH_HELP', 						'Terraforms the landscape here into the [COLOR_CITY_GREEN]Marsh[ENDCOLOR], while installing an improvement that''ll stabilize it.[NEWLINE]Requires an access to [COLOR_CYAN]Brussels[ENDCOLOR]'' ability..'  UNION ALL
@@ -716,13 +721,39 @@ INSERT INTO Language_en_US (Tag, Text)
 -- resources
 SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO',					'Dogo Canario' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO_TEXT',			'Dogo Canario are a breed of dog native to the canary islands, a rare dog with a broad head and muscular body. They played a role in the myth, funeral customs and even diet of the guanches. Some were even mummified along with their owners.' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO_MONOPOLY',		'Requires an access to [COLOR_CYAN]Adeje[ENDCOLOR]''s ability to be finished.[NEWLINE][NEWLINE][COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_FOOD] Food and +5% [ICON_PRODUCTION] Production in all owned Cities.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO_MONOPOLY',		'Requires an access to [COLOR_CYAN]Adeje[ENDCOLOR]''s ability to be finished.[NEWLINE][NEWLINE][COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +3% [ICON_FOOD] and +3% [ICON_PRODUCTION] on Empire.' UNION ALL
+--SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO_MONOPOLY_FULL',	'Requires an access to [COLOR_CYAN]Adeje[ENDCOLOR]''s ability to be finished.[NEWLINE][NEWLINE][COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +3% [ICON_FOOD] Food and +3% [ICON_PRODUCTION] Production in all owned Cities.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_LLAO_LLAO',					'Llao Llao' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_LLAO_LLAO_TEXT',				'' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_LLAO_LLAO_MONOPOLY',			'Requires an access to [COLOR_CYAN]Yaiuwa[ENDCOLOR]''s ability to be placed.[NEWLINE][NEWLINE][COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_FOOD] Food in all owned Cities. +3 [ICON_HAPPINESS_1] Happiness in Empire.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_LLAO_LLAO_TEXT',				'TODO' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_LLAO_LLAO_MONOPOLY',			'Requires an access to [COLOR_CYAN]Yaiuwa[ENDCOLOR]''s ability to be placed.[NEWLINE][NEWLINE][COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +3% [ICON_FOOD] and +2 [ICON_HAPPINESS_1] on Empire.' UNION ALL
+--SELECT 'TXT_KEY_RESOURCE_LLAO_LLAO_MONOPOLY_FULL',	'Requires an access to [COLOR_CYAN]Yaiuwa[ENDCOLOR]''s ability to be placed.[NEWLINE][NEWLINE][COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +3% [ICON_FOOD] Food in all owned Cities. +2 [ICON_HAPPINESS_1] Empire-Wide Happiness.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_REINDEER',						'Reindeer' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_REINDEER_TEXT',				'' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_REINDEER_MONOPOLY',			'Requires an access to [COLOR_CYAN]Karasjohka[ENDCOLOR]''s ability to be placed.';
+SELECT 'TXT_KEY_RESOURCE_REINDEER_TEXT',				'TODO' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_REINDEER_MONOPOLY',			'Requires an access to [COLOR_CYAN]Karasjohka[ENDCOLOR]''s ability to be placed.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_BEER',							'Beer' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_BEER_TEXT',					'Beer is one of the oldest and most widely consumed alcoholic drinks in the world. It is also the third most popular drink overall after water and tea. Beer is brewed from cereal grains—most commonly from malted barley, though wheat, maize (corn), and rice are also used. During the brewing process, fermentation of the starch sugars in the wort produces ethanol and carbonation in the resulting beer.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_BEER_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_GREAT_ENGINEER] Great Engineer Points on Empire.' UNION ALL
+--SELECT 'TXT_KEY_RESOURCE_BEER_MONOPOLY_FULL',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_GREAT_ENGINEER] Great Engineer Points in all owned Cities.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_CHEESE',						'Cheese' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_CHEESE_TEXT',					'Cheese is a dairy product derived from milk that is produced in a wide range of flavors, textures, and forms by coagulation of the milk protein casein. Over a thousand types of cheese from various countries are produced. Their styles, textures and flavors depend on the origin of the milk (including the animal''s diet), whether they have been pasteurized, the butterfat content, the bacteria and mold, the processing, and aging. Cheese is valued for its portability, long life, and high content of fat, protein, calcium, and phosphorus.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_CHEESE_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +2 [ICON_PRODUCTION] from all [ICON_RES_COW] Cows and [ICON_RES_SHEEP] Sheep.' UNION ALL
+--SELECT 'TXT_KEY_RESOURCE_CHEESE_MONOPOLY_FULL',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +2 [ICON_PRODUCTION] Production from all [ICON_RES_COW] Cow and [ICON_RES_SHEEP] Sheep resources.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_HONEY',						'Honey' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_HONEY_TEXT',					'Honey is a sweet, viscous food substance made by bees and some related insects. Bees produce honey from the sugary secretions of plants (floral nectar) or from secretions of other insects (such as honeydew), by regurgitation, enzymatic activity, and water evaporation. Bees store honey in wax structures called honeycombs. Honey use and production have a long and varied history as an ancient activity. Several cave paintings in Cuevas de la Araña in Spain depict humans foraging for honey at least 8,000 years ago.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_HONEY_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_FOOD] from all [ICON_RES_MAIZE] Maizes, [ICON_RES_RICE] Rices and [ICON_RES_WHEAT] Wheats.' UNION ALL
+--SELECT 'TXT_KEY_RESOURCE_HONEY_MONOPOLY_FULL',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_FOOD] Food from all [ICON_RES_MAIZE] Maize, [ICON_RES_RICE] Rice and [ICON_RES_WHEAT] Wheat resources.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_TAPESTRY',						'Tapestry' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_TAPESTRY_TEXT',				'TODO' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_TAPESTRY_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_CULTURE] on Empire.' UNION ALL
+--SELECT 'TXT_KEY_RESOURCE_TAPESTRY_MONOPOLY_FULL',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_CULTURE] Culture in all owned Cities.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_CHAMPAGNE',					'Champagne' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_CHAMPAGNE_TEXT',				'Champagne is a French sparkling wine. Many people use the term Champagne as a generic term for sparkling wine, but in the EU and some other countries, it is illegal to label any product Champagne unless it comes from the Champagne region of France and is produced under the rules of the appellation.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_CHAMPAGNE_MONOPOLY',			'TODO' UNION ALL
+--SELECT 'TXT_KEY_RESOURCE_CHAMPAGNE_MONOPOLY_FULL',	'TODO' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS',					'Manuscripts' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS_TEXT',				'A Manuscript or Handwrit is written information that has been manually created by one or more people, such as a hand-written letter, as opposed to being printed or reproduced some other way. The term may also be used for information that is hand-recorded in other ways than writing, for example inscriptions that are chiselled upon a hard material or scratched (the original meaning of graffiti) as with a knife point in plaster or with a stylus on a waxed tablet (the way Romans made notes), or are in cuneiform writing, impressed with a pointed stylus in a flat tablet of unbaked clay.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_RES_PAPER] Paper. +10% [ICON_PRODUCTION] towards Diplomatic Units.';
+--SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS_MONOPOLY_FULL',	'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_RES_PAPER] Paper. +10% [ICON_PRODUCTION] Production towards Diplomatic Units in all Cities.';
 
 INSERT INTO Language_en_US (Tag, Text)
 -- cs traits/buildings/policies
@@ -735,7 +766,7 @@ SELECT 'TXT_KEY_MERCANTILE_FRIENDLY_BONUS', 				'[COLOR:240:240:165:255]Golden C
 SELECT 'TXT_KEY_MERCANTILE_NEUTRAL_BONUS', 					'[COLOR:210:210:70:255]Shadow Council (Mercantile Neutral):[ENDCOLOR][NEWLINE][ICON_BULLET]nothing'  UNION ALL
 SELECT 'TXT_KEY_MERCANTILE_HOSTILE_BONUS', 					'[COLOR:130:130:20:255]Free City (Mercantile Hostile):[ENDCOLOR][NEWLINE][ICON_BULLET]nothing'  UNION ALL
 SELECT 'TXT_KEY_MILITARISTIC_BONUS', 					'[COLOR:245:40:40:255]Fortress (Militaristic):[ENDCOLOR][NEWLINE][ICON_BULLET]has a [ICON_WAR] Fort and an additional Strategic Resource nearby[NEWLINE][ICON_BULLET]can train its Unique Unit[NEWLINE][ICON_BULLET]Major Player can upgrade his units inside their territory if Allied'  UNION ALL
-SELECT 'TXT_KEY_MILITARISTIC_FRIENDLY_BONUS', 				'[COLOR:255:180:180:255]Mercenary Hub (Militaristic Friendly):[ENDCOLOR][NEWLINE][ICON_BULLET]+1% Rate of Unit Gifts to its Friends'  UNION ALL
+SELECT 'TXT_KEY_MILITARISTIC_FRIENDLY_BONUS', 				'[COLOR:255:180:180:255]Mercenary Hub (Militaristic Friendly):[ENDCOLOR][NEWLINE][ICON_BULLET]nothing'  UNION ALL
 SELECT 'TXT_KEY_MILITARISTIC_NEUTRAL_BONUS', 				'[COLOR:245:90:90:255]Sellsword Army (Militaristic Neutral):[ENDCOLOR][NEWLINE][ICON_BULLET]nothing'  UNION ALL
 SELECT 'TXT_KEY_MILITARISTIC_HOSTILE_BONUS', 				'[COLOR:170:10:10:255]Hermit Dragon (Militaristic Hostile):[ENDCOLOR][NEWLINE][ICON_BULLET]nothing'  UNION ALL
 SELECT 'TXT_KEY_CULTURED_BONUS', 						'[COLOR:210:65:200:255]Center of Learning (Cultured):[ENDCOLOR][NEWLINE][ICON_BULLET]has an [ICON_RESEARCH] Academy and an [ICON_RES_ARTIFACTS] Archaeological Site nearby'  UNION ALL
@@ -1355,7 +1386,10 @@ SELECT 'POLICY_CS_MARITIME', 			'TXT_KEY_POLICY_CS_MARITIME' UNION ALL
 SELECT 'POLICY_CS_MERCANTILE', 			'TXT_KEY_POLICY_CS_MERCANTILE' UNION ALL
 SELECT 'POLICY_CS_MILITARISTIC', 		'TXT_KEY_POLICY_CS_MILITARISTIC' UNION ALL
 SELECT 'POLICY_CS_CULTURED', 			'TXT_KEY_POLICY_CS_CULTURED' UNION ALL
-SELECT 'POLICY_CS_RELIGIOUS', 			'TXT_KEY_POLICY_CS_RELIGIOUS';
+SELECT 'POLICY_CS_RELIGIOUS', 			'TXT_KEY_POLICY_CS_RELIGIOUS' UNION ALL
+SELECT 'POLICY_MONOPOLY_CHEESE', 		'TXT_KEY_RESOURCE_CHEESE' UNION ALL
+SELECT 'POLICY_MONOPOLY_HONEY', 		'TXT_KEY_RESOURCE_HONEY' UNION ALL
+SELECT 'POLICY_MONOPOLY_MANUSCRIPTS', 	'TXT_KEY_RESOURCE_MANUSCRIPTS';
 
 UPDATE Policies SET AfraidMinorPerTurnInfluence = 100 WHERE Type = 'POLICY_ALMATY';
 UPDATE Policies SET CityStateUnitFrequencyModifier = 10 WHERE Type = 'POLICY_AMBRACIA';
@@ -1477,9 +1511,18 @@ INSERT INTO Policy_FounderYield
 SELECT 		'POLICY_MOMBASA',	'YIELD_FAITH', 	40;
 
 INSERT INTO Policy_UnitCombatProductionModifiers
-			(PolicyType,				UnitCombatType,			ProductionModifier)
-SELECT 		'POLICY_WOOTEI_NIICIE', 	'UNITCOMBAT_MOUNTED',	10 UNION ALL
-SELECT 		'POLICY_WOOTEI_NIICIE', 	'UNITCOMBAT_GUN',		10;
+			(PolicyType,					UnitCombatType,			ProductionModifier)
+SELECT 		'POLICY_WOOTEI_NIICIE', 		'UNITCOMBAT_MOUNTED',	10 UNION ALL
+SELECT 		'POLICY_WOOTEI_NIICIE', 		'UNITCOMBAT_GUN',		10 UNION ALL
+SELECT 		'POLICY_MONOPOLY_MANUSCRIPTS', 	'UNITCOMBAT_DIPLOMACY',	10;
+
+INSERT INTO Policy_ResourceYieldChanges
+			(PolicyType,					ResourceType,			YieldType,				Yield)
+SELECT 		'POLICY_MONOPOLY_CHEESE', 		'RESOURCE_COW',			'YIELD_PRODUCTION',		2 UNION ALL
+SELECT 		'POLICY_MONOPOLY_CHEESE', 		'RESOURCE_SHEEP',		'YIELD_PRODUCTION',		2 UNION ALL
+SELECT 		'POLICY_MONOPOLY_HONEY', 		'RESOURCE_MAIZE',		'YIELD_FOOD',			1 UNION ALL
+SELECT 		'POLICY_MONOPOLY_HONEY', 		'RESOURCE_RICE',		'YIELD_FOOD',			1 UNION ALL
+SELECT 		'POLICY_MONOPOLY_HONEY', 		'RESOURCE_WHEAT',		'YIELD_FOOD',			1;
 ---------------------------------------------------
 -- Definitions - Unit Promotions
 -- #22 icon is unused starting from v14
@@ -1602,32 +1645,7 @@ UPDATE UnitPromotions SET TechPrereq = 'TECH_MILITARY_SCIENCE' WHERE Type = 'PRO
 UPDATE UnitPromotions SET TechPrereq = 'TECH_REPLACEABLE_PARTS' WHERE Type = 'PROMOTION_SIKH_DAGGER';
 UPDATE UnitPromotions SET TechPrereq = 'TECH_BALLISTICS' WHERE Type = 'PROMOTION_SIKH_BRACELET';
 
-/*UPDATE UnitPromotions SET RankList = 'UCS_CLERMONT', RankNumber = 1 WHERE Type = 'PROMOTION_CLERMONT';
-UPDATE UnitPromotions SET RankList = 'UCS_CLERMONT', RankNumber = 2 WHERE Type = 'PROMOTION_CLERMONT1';
-UPDATE UnitPromotions SET RankList = 'UCS_CLERMONT', RankNumber = 3 WHERE Type = 'PROMOTION_CLERMONT2';
-UPDATE UnitPromotions SET RankList = 'UCS_CLERMONT', RankNumber = 4 WHERE Type = 'PROMOTION_CLERMONT3';
-UPDATE UnitPromotions SET RankList = 'UCS_CLERMONT', RankNumber = 5 WHERE Type = 'PROMOTION_CLERMONT4';
-UPDATE UnitPromotions SET RankList = 'UCS_CLERMONT', RankNumber = 6 WHERE Type = 'PROMOTION_CLERMONT5';
-UPDATE UnitPromotions SET RankList = 'UCS_CLERMONT', RankNumber = 7 WHERE Type = 'PROMOTION_CLERMONT6';
-UPDATE UnitPromotions SET RankList = 'UCS_CLERMONT', RankNumber = 8 WHERE Type = 'PROMOTION_CLERMONT7';
-
-UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 1 WHERE Type = 'PROMOTION_SIKH';
-UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 2 WHERE Type = 'PROMOTION_SIKH_SWORD';
-UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 3 WHERE Type = 'PROMOTION_SIKH_KNIFE';
-UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 4 WHERE Type = 'PROMOTION_SIKH_DISC';
-UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 5 WHERE Type = 'PROMOTION_SIKH_TRIDENT';
-UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 6 WHERE Type = 'PROMOTION_SIKH_DAGGER';
-UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 7 WHERE Type = 'PROMOTION_SIKH_BOW';
-UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 8 WHERE Type = 'PROMOTION_SIKH_MUSKET';
-UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 9 WHERE Type = 'PROMOTION_SIKH_SHIELD';
-UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 10 WHERE Type = 'PROMOTION_SIKH_CHAINMAIL';
-UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 11 WHERE Type = 'PROMOTION_SIKH_ROBE';
-UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 12 WHERE Type = 'PROMOTION_SIKH_SHOES';
-UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 13 WHERE Type = 'PROMOTION_SIKH_TURBAN';
-UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 14 WHERE Type = 'PROMOTION_SIKH_MARTIAL_ART';
-UPDATE UnitPromotions SET RankList = 'UCS_SIKH', RankNumber = 15 WHERE Type = 'PROMOTION_SIKH_BRACELET';*/
-
-UPDATE UnitPromotions SET FlagPromoOrder = 0 WHERE Type IN (
+/*UPDATE UnitPromotions SET FlagPromoOrder = 0 WHERE Type IN (
 	'PROMOTION_SIKH',
 	'PROMOTION_SIKH_SWORD',
 	'PROMOTION_SIKH_KNIFE',
@@ -1684,7 +1702,7 @@ UPDATE UnitPromotions SET FlagPromoOrder = 72 WHERE Type IN (
 	'PROMOTION_SUCEAVA',
 	'PROMOTION_SURREY',
 	'PROMOTION_YEREVAN'
-);
+);*/
 
 INSERT INTO UnitPromotions_UnitCombats 
 			(PromotionType, 					UnitCombatType)
@@ -2068,7 +2086,8 @@ SELECT 		'BUILDINGCLASS_CS_STRENGTH_NEUTRAL', 	'BUILDING_CS_STRENGTH_NEUTRAL', 	
 SELECT 		'BUILDINGCLASS_CS_STRENGTH_HOSTILE', 	'BUILDING_CS_STRENGTH_HOSTILE', 	'TXT_KEY_BUILDING_CS_STRENGTH_HOSTILE' UNION ALL
 SELECT 		'BUILDINGCLASS_CS_RELIGION_FRIENDLY', 	'BUILDING_CS_RELIGION_FRIENDLY', 	'TXT_KEY_BUILDING_CS_RELIGION_FRIENDLY' UNION ALL
 SELECT 		'BUILDINGCLASS_CS_RELIGION_NEUTRAL', 	'BUILDING_CS_RELIGION_NEUTRAL', 	'TXT_KEY_BUILDING_CS_RELIGION_NEUTRAL' UNION ALL
-SELECT 		'BUILDINGCLASS_CS_RELIGION_HOSTILE', 	'BUILDING_CS_RELIGION_HOSTILE', 	'TXT_KEY_BUILDING_CS_RELIGION_HOSTILE';
+SELECT 		'BUILDINGCLASS_CS_RELIGION_HOSTILE', 	'BUILDING_CS_RELIGION_HOSTILE', 	'TXT_KEY_BUILDING_CS_RELIGION_HOSTILE' UNION ALL
+SELECT 		'BUILDINGCLASS_MONOPOLY_MANUSCRIPTS', 	'BUILDING_MONOPOLY_MANUSCRIPTS', 	'TXT_KEY_BUILDING_MONOPOLY_MANUSCRIPTS';
 
 UPDATE BuildingClasses SET MaxGlobalInstances = 1 WHERE Type = 'BUILDINGCLASS_LHASA';
 UPDATE BuildingClasses SET MaxPlayerInstances = 3 WHERE Type = 'BUILDINGCLASS_KIEV';
@@ -2122,7 +2141,7 @@ SELECT 		'BUILDING_KIGALI', 					'BUILDINGCLASS_KIGALI', 				-1, 	0, 					NULL, 
 SELECT 		'BUILDING_KUALA_LUMPUR', 			'BUILDINGCLASS_KUALA_LUMPUR', 			-1, 	0, 					NULL, 		'TXT_KEY_CITYSTATE_KUALA_LUMPUR', 			'TXT_KEY_CSTRAIT_MINOR_CIV_KUALA_LUMPUR', 		-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1 UNION ALL
 SELECT 		'BUILDING_LEVUKA', 					'BUILDINGCLASS_LEVUKA', 				-1, 	0, 					NULL, 		'TXT_KEY_CITYSTATE_LEVUKA', 				'TXT_KEY_CSTRAIT_MINOR_CIV_LEVUKA', 			-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1 UNION ALL
 SELECT 		'BUILDING_LHASA_2', 				'BUILDINGCLASS_LHASA_2', 				-1, 	0, 					NULL, 		'TXT_KEY_CITYSTATE_LHASA', 					'TXT_KEY_CSTRAIT_MINOR_CIV_LHASA', 				-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1 UNION ALL
-SELECT 		'BUILDING_LONGYAN', 					'BUILDINGCLASS_LONGYAN', 				-1, 	0, 					NULL, 		'TXT_KEY_CITYSTATE_LONGYAN', 				'TXT_KEY_CSTRAIT_MINOR_CIV_LONGYAN', 			-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1 UNION ALL
+SELECT 		'BUILDING_LONGYAN', 				'BUILDINGCLASS_LONGYAN', 				-1, 	0, 					NULL, 		'TXT_KEY_CITYSTATE_LONGYAN', 				'TXT_KEY_CSTRAIT_MINOR_CIV_LONGYAN', 			-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1 UNION ALL
 SELECT 		'BUILDING_MANAGUA', 				'BUILDINGCLASS_MANAGUA', 				-1, 	0, 					NULL, 		'TXT_KEY_CITYSTATE_MANAGUA', 				'TXT_KEY_CSTRAIT_MINOR_CIV_MANAGUA', 			-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1 UNION ALL
 SELECT 		'BUILDING_MELBOURNE', 				'BUILDINGCLASS_MELBOURNE', 				-1, 	0, 					NULL, 		'TXT_KEY_CITYSTATE_MELBOURNE', 				'TXT_KEY_CSTRAIT_MINOR_CIV_MELBOURNE', 			-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1 UNION ALL
 SELECT 		'BUILDING_MILAN_2', 				'BUILDINGCLASS_MILAN_2', 				-1, 	0, 					NULL, 		'TXT_KEY_CITYSTATE_MILAN', 					'TXT_KEY_CSTRAIT_MINOR_CIV_MILAN', 				-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1 UNION ALL
@@ -2166,7 +2185,8 @@ SELECT 		'BUILDING_CS_STRENGTH_NEUTRAL', 	'BUILDINGCLASS_CS_STRENGTH_NEUTRAL', 	
 SELECT 		'BUILDING_CS_STRENGTH_HOSTILE', 	'BUILDINGCLASS_CS_STRENGTH_HOSTILE', 	-1, 	0, 					NULL, 		'TXT_KEY_BUILDING_CS_STRENGTH_HOSTILE', 	'TXT_KEY_BUILDING_CS_STRENGTH_HOSTILE_HELP', 	-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1 UNION ALL
 SELECT 		'BUILDING_CS_RELIGION_FRIENDLY', 	'BUILDINGCLASS_CS_RELIGION_FRIENDLY', 	-1, 	0, 					NULL, 		'TXT_KEY_BUILDING_CS_RELIGION_FRIENDLY', 	'TXT_KEY_BUILDING_CS_RELIGION_FRIENDLY_HELP', 	-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1 UNION ALL
 SELECT 		'BUILDING_CS_RELIGION_NEUTRAL', 	'BUILDINGCLASS_CS_RELIGION_NEUTRAL', 	-1, 	0, 					NULL, 		'TXT_KEY_BUILDING_CS_RELIGION_NEUTRAL', 	'TXT_KEY_BUILDING_CS_RELIGION_NEUTRAL_HELP', 	-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1 UNION ALL
-SELECT 		'BUILDING_CS_RELIGION_HOSTILE', 	'BUILDINGCLASS_CS_RELIGION_HOSTILE', 	-1, 	0, 					NULL, 		'TXT_KEY_BUILDING_CS_RELIGION_HOSTILE', 	'TXT_KEY_BUILDING_CS_RELIGION_HOSTILE_HELP', 	-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1;
+SELECT 		'BUILDING_CS_RELIGION_HOSTILE', 	'BUILDINGCLASS_CS_RELIGION_HOSTILE', 	-1, 	0, 					NULL, 		'TXT_KEY_BUILDING_CS_RELIGION_HOSTILE', 	'TXT_KEY_BUILDING_CS_RELIGION_HOSTILE_HELP', 	-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1 UNION ALL
+SELECT 		'BUILDING_MONOPOLY_MANUSCRIPTS', 	'BUILDINGCLASS_MONOPOLY_MANUSCRIPTS', 	-1, 	0, 					NULL, 		'TXT_KEY_RESOURCE_MANUSCRIPTS', 			'TXT_KEY_RESOURCE_MANUSCRIPTS_MONOPOLY', 		-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1;
 
 UPDATE Buildings SET FaithCost = 250, WLTKDTurns = 10, EventChoiceRequiredActive = 'PLAYER_EVENT_CHOICE_MINOR_CIV_ARMAGH', CultureMedianModifier = -10, MutuallyExclusiveGroup = 113 WHERE Type = 'BUILDING_ARMAGH1';
 UPDATE Buildings SET FaithCost = 250, WLTKDTurns = 10, EventChoiceRequiredActive = 'PLAYER_EVENT_CHOICE_MINOR_CIV_ARMAGH', ScienceMedianModifier = -10, MutuallyExclusiveGroup = 113 WHERE Type = 'BUILDING_ARMAGH2';
@@ -2333,14 +2353,15 @@ SELECT 		'BUILDING_VALLETTA', 				'DOMAIN_SEA', 	15 UNION ALL
 SELECT 		'BUILDING_WOOTEI_NIICIE_2', 		'DOMAIN_LAND', 	15;
 
 INSERT INTO Building_ResourceQuantity
-			(BuildingType, 					ResourceType, 			Quantity)
-SELECT 		'BUILDING_WELLINGTON_HORSE', 	'RESOURCE_HORSE', 		1 UNION ALL
-SELECT 		'BUILDING_WELLINGTON_IRON', 	'RESOURCE_IRON', 		1 UNION ALL
-SELECT 		'BUILDING_WELLINGTON_COAL', 	'RESOURCE_COAL', 		1 UNION ALL
-SELECT 		'BUILDING_WELLINGTON_OIL', 		'RESOURCE_OIL', 		1 UNION ALL
-SELECT 		'BUILDING_WELLINGTON_ALUMINUM', 'RESOURCE_ALUMINUM', 	1 UNION ALL
-SELECT 		'BUILDING_WELLINGTON_URANIUM', 	'RESOURCE_URANIUM', 	1 UNION ALL
-SELECT 		'BUILDING_WELLINGTON_PAPER', 	'RESOURCE_PAPER', 		1;
+			(BuildingType, 						ResourceType, 			Quantity)
+SELECT 		'BUILDING_WELLINGTON_HORSE', 		'RESOURCE_HORSE', 		1 UNION ALL
+SELECT 		'BUILDING_WELLINGTON_IRON', 		'RESOURCE_IRON', 		1 UNION ALL
+SELECT 		'BUILDING_WELLINGTON_COAL', 		'RESOURCE_COAL', 		1 UNION ALL
+SELECT 		'BUILDING_WELLINGTON_OIL', 			'RESOURCE_OIL', 		1 UNION ALL
+SELECT 		'BUILDING_WELLINGTON_ALUMINUM',		'RESOURCE_ALUMINUM', 	1 UNION ALL
+SELECT 		'BUILDING_WELLINGTON_URANIUM', 		'RESOURCE_URANIUM', 	1 UNION ALL
+SELECT 		'BUILDING_WELLINGTON_PAPER', 		'RESOURCE_PAPER', 		1 UNION ALL
+SELECT 		'BUILDING_MONOPOLY_MANUSCRIPTS', 	'RESOURCE_PAPER', 		1;
 
 INSERT INTO Building_HurryModifiersLocal
 			(BuildingType,			HurryType,		HurryCostModifier)
@@ -2990,7 +3011,16 @@ INSERT INTO IconFontMapping
 			(IconName, 					IconFontTexture,			IconMapping)
 VALUES		('ICON_RES_DOGO_CANARIO', 	'UCS_RESOURCE_FONT_ATLAS',	1),
 			('ICON_RES_LLAO_LLAO', 		'UCS_RESOURCE_FONT_ATLAS',	2),
-			('ICON_RES_REINDEER', 		'UCS_RESOURCE_FONT_ATLAS',	3);
+			('ICON_RES_REINDEER', 		'UCS_RESOURCE_FONT_ATLAS',	3),
+			('ICON_RES_BEER', 			'UCS_RESOURCE_FONT_ATLAS',	4),
+			('ICON_RES_CHEESE', 		'UCS_RESOURCE_FONT_ATLAS',	5),
+			('ICON_RES_HONEY', 			'UCS_RESOURCE_FONT_ATLAS',	6),
+			('ICON_RES_TAPESTRY', 		'UCS_RESOURCE_FONT_ATLAS',	7),
+			('ICON_RES_C_2', 			'UCS_RESOURCE_FONT_ATLAS',	8),
+			('ICON_RES_C_3', 			'UCS_RESOURCE_FONT_ATLAS',	9),
+			('ICON_RES_MANUSCRIPTS', 	'UCS_RESOURCE_FONT_ATLAS',	10),
+			('ICON_RES_CHAMPAGNE', 		'UCS_RESOURCE_FONT_ATLAS',	11),
+			('ICON_RES_R_3', 			'UCS_RESOURCE_FONT_ATLAS',	12);
 ---------------------------------------------------
 -- Definitions - Improvements
 ---------------------------------------------------	
@@ -3058,6 +3088,7 @@ SELECT 		'BUILD_DOGO_CANARIO', 		'FEATURE_MARSH',	'TECH_MASONRY', 		600, 	0, 			
 ------------------------------
 INSERT INTO Improvements 
 			(Type, 						Description, 						Civilopedia, 								Help, 										ArtDefineTag, 							PortraitIndex, 	IconAtlas)
+SELECT 		'IMPROVEMENT_CITY', 		'TXT_KEY_IMPROVEMENT_CITY', 		NULL, 										NULL, 										'ART_DEF_IMPROVEMENT_NONE', 			39, 			'TERRAIN_ATLAS' UNION ALL
 SELECT 		'IMPROVEMENT_MARSH', 		'TXT_KEY_IMPROVEMENT_MARSH', 		'TXT_KEY_CIV5_IMPROVEMENTS_MARSH', 			'TXT_KEY_IMPROVEMENT_MARSH_HELP', 			'ART_DEF_IMPROVEMENT_MARSH', 			0, 				'UCS_IMPROVEMENT_ATLAS' UNION ALL
 SELECT 		'IMPROVEMENT_MOUND', 		'TXT_KEY_IMPROVEMENT_MOUND', 		'TXT_KEY_CIV5_IMPROVEMENTS_MOUND', 			'TXT_KEY_IMPROVEMENT_MOUND_HELP', 			'ART_DEF_IMPROVEMENT_MOTTE_BAILEY', 	0, 				'TERRAIN_IMPROVEMENT_KUNA' UNION ALL
 SELECT 		'IMPROVEMENT_SUNK_COURT', 	'TXT_KEY_IMPROVEMENT_SUNK_COURT', 	'TXT_KEY_CIV5_IMPROVEMENTS_SUNK_COURT', 	'TXT_KEY_IMPROVEMENT_SUNK_COURT_HELP', 		'ART_DEF_IMPROVEMENT_SUNK_COURT', 		2, 				'UCS_IMPROVEMENT_ATLAS' UNION ALL
@@ -3275,13 +3306,42 @@ VALUES		('IMPROVEMENT_MARSH',			'FLAVOR_GROWTH',		30),
 -- Definitions - Resources
 ---------------------------------------------------	
 INSERT INTO Resources 
-			(Type,						TechReveal,			TechCityTrade, 		Description,						Civilopedia, 							Help,										ResourceClassType, 			IsMonopoly, 	ArtDefineTag, 						CivilizationType,		OnlyMinorCivs,  Happiness,  ResourceUsage,	IconString, 				PortraitIndex, 	IconAtlas)
-VALUES		('RESOURCE_DOGO_CANARIO',	null,				'TECH_TRAPPING',	'TXT_KEY_RESOURCE_DOGO_CANARIO',	'TXT_KEY_RESOURCE_DOGO_CANARIO_TEXT',	'TXT_KEY_RESOURCE_DOGO_CANARIO_MONOPOLY',	'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_DOGO_CANARIO',	null,					0,				2,			2,				'[ICON_RES_DOGO_CANARIO]',	0, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_LLAO_LLAO',		null,				'TECH_TRAPPING',	'TXT_KEY_RESOURCE_LLAO_LLAO',		'TXT_KEY_RESOURCE_LLAO_LLAO_TEXT',		'TXT_KEY_RESOURCE_LLAO_LLAO_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_LLAO_LLAO',		null,					0,				2,			2,				'[ICON_RES_LLAO_LLAO]',		1, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_REINDEER',		null,				'TECH_TRAPPING',	'TXT_KEY_RESOURCE_REINDEER',		'TXT_KEY_RESOURCE_REINDEER_TEXT',		'TXT_KEY_RESOURCE_REINDEER_MONOPOLY',		'RESOURCECLASS_BONUS',		0,				'ART_DEF_RESOURCE_REINDEER',		null,					0,				0,			0,				'[ICON_RES_REINDEER]',		2, 				'UCS_RESOURCE_ATLAS');
+			(Type,						TechReveal,		TechCityTrade, 			Description,						Civilopedia, 							Help,										ResourceClassType, 			IsMonopoly, 	ArtDefineTag, 						CivilizationType,		OnlyMinorCivs,  Happiness,  ResourceUsage,	IconString, 				PortraitIndex, 	IconAtlas)
+VALUES		('RESOURCE_DOGO_CANARIO',	null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_DOGO_CANARIO',	'TXT_KEY_RESOURCE_DOGO_CANARIO_TEXT',	'TXT_KEY_RESOURCE_DOGO_CANARIO_MONOPOLY',	'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_DOGO_CANARIO',	null,					0,				2,			2,				'[ICON_RES_DOGO_CANARIO]',	0, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_LLAO_LLAO',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_LLAO_LLAO',		'TXT_KEY_RESOURCE_LLAO_LLAO_TEXT',		'TXT_KEY_RESOURCE_LLAO_LLAO_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_LLAO_LLAO',		null,					0,				2,			2,				'[ICON_RES_LLAO_LLAO]',		1, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_REINDEER',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_REINDEER',		'TXT_KEY_RESOURCE_REINDEER_TEXT',		'TXT_KEY_RESOURCE_REINDEER_MONOPOLY',		'RESOURCECLASS_BONUS',		0,				'ART_DEF_RESOURCE_REINDEER',		null,					0,				0,			0,				'[ICON_RES_REINDEER]',		2, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_BEER',			null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_BEER',			'TXT_KEY_RESOURCE_BEER_TEXT',			'TXT_KEY_RESOURCE_BEER_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_BEER',			null,					0,				2,			2,				'[ICON_RES_BEER]',			3, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_CHEESE',			null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_CHEESE',			'TXT_KEY_RESOURCE_CHEESE_TEXT',			'TXT_KEY_RESOURCE_CHEESE_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_CHEESE',			null,					0,				2,			2,				'[ICON_RES_CHEESE]',		4, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_HONEY',			null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_HONEY',			'TXT_KEY_RESOURCE_HONEY_TEXT',			'TXT_KEY_RESOURCE_HONEY_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_HONEY',			null,					0,				2,			2,				'[ICON_RES_HONEY]',			5, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_TAPESTRY',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_TAPESTRY',		'TXT_KEY_RESOURCE_TAPESTRY_TEXT',		'TXT_KEY_RESOURCE_TAPESTRY_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_TAPESTRY',		null,					0,				2,			2,				'[ICON_RES_TAPESTRY]',		6, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_CHAMPAGNE',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_CHAMPAGNE',		'TXT_KEY_RESOURCE_CHAMPAGNE_TEXT',		'TXT_KEY_RESOURCE_CHAMPAGNE_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_CHAMPAGNE',		null,					0,				2,			2,				'[ICON_RES_CHAMPAGNE]',		10, 			'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_MANUSCRIPTS',	null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_MANUSCRIPTS',		'TXT_KEY_RESOURCE_MANUSCRIPTS_TEXT',	'TXT_KEY_RESOURCE_MANUSCRIPTS_MONOPOLY',	'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_MANUSCRIPTS',		null,					0,				2,			2,				'[ICON_RES_MANUSCRIPTS]',	2, 				'EXPANSION_SCEN_TECH_ATLAS');
+---------------------------------------------------------
+DELETE FROM Resource_YieldChanges WHERE ResourceType IN ('RESOURCE_GLASS', 'RESOURCE_JEWELRY', 'RESOURCE_PORCELAIN');
+UPDATE Resources SET MonopolyHappiness = 3 WHERE Type IN ('RESOURCE_GLASS', 'RESOURCE_JEWELRY');
+UPDATE Resources SET MonopolyGALength = 15, OnlyMinorCivs = 0 WHERE Type IN ('RESOURCE_PORCELAIN');
+
+INSERT INTO Language_en_US
+			(Tag, 										Text)
+SELECT		'TXT_KEY_RESOURCE_MONOPOLY_CS_HAPPINESS',	'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +3 Empire-Wide [ICON_HAPPINESS_1] Happiness.' UNION ALL
+SELECT		'TXT_KEY_RESOURCE_MONOPOLY_CS_GOLDEN_AGE',	'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +15% [ICON_GOLDEN_AGE] Golden Age Length.';
+
+UPDATE Resources SET Help = 'TXT_KEY_RESOURCE_MONOPOLY_CS_HAPPINESS' WHERE Type IN ('RESOURCE_GLASS', 'RESOURCE_JEWELRY');
+UPDATE Resources SET Help = 'TXT_KEY_RESOURCE_MONOPOLY_CS_GOLDEN_AGE' WHERE Type IN ('RESOURCE_PORCELAIN');
 ---------------------------------------------------------
 UPDATE Resources SET MonopolyHappiness = 3 WHERE Type = 'RESOURCE_LLAO_LLAO';
 
+INSERT INTO Resource_CityYieldModFromMonopoly
+			(ResourceType, 				YieldType, 				Yield)
+VALUES		('RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			5),
+			('RESOURCE_DOGO_CANARIO',	'YIELD_PRODUCTION',		5),
+			('RESOURCE_LLAO_LLAO',		'YIELD_FOOD',			5),
+			('RESOURCE_TAPESTRY',		'YIELD_CULTURE',		5);
+
+INSERT INTO Resource_MonopolyGreatPersonRateModifiers
+			(ResourceType, 			SpecialistType, 		IsGlobalMonopoly,	IsStrategicMonopoly,	Modifier)
+VALUES		('RESOURCE_BEER',		'SPECIALIST_ENGINEER',	1,					0,						10);
+---------------------------------------------------------
 INSERT INTO Resource_YieldChanges
 			(ResourceType, 				YieldType, 				Yield)
 VALUES		('RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			1),
@@ -3289,17 +3349,18 @@ VALUES		('RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			1),
 			('RESOURCE_REINDEER',		'YIELD_FOOD',			1),
 			('RESOURCE_REINDEER',		'YIELD_CULTURE',		1);
 
-INSERT INTO Resource_CityYieldModFromMonopoly
-			(ResourceType, 				YieldType, 				Yield)
-VALUES		('RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			5),
-			('RESOURCE_DOGO_CANARIO',	'YIELD_PRODUCTION',		5),
-			('RESOURCE_LLAO_LLAO',		'YIELD_FOOD',			5);
-
 INSERT INTO Improvement_ResourceTypes
 			(ImprovementType,			ResourceType, 				ResourceMakesValid, ResourceTrade)
 VALUES		('IMPROVEMENT_CAMP',		'RESOURCE_DOGO_CANARIO',	1,					1),
 			('IMPROVEMENT_PLANTATION',	'RESOURCE_LLAO_LLAO',		1,					1),
-			('IMPROVEMENT_CAMP',		'RESOURCE_REINDEER',		1,					1);
+			('IMPROVEMENT_CAMP',		'RESOURCE_REINDEER',		1,					1),
+			('IMPROVEMENT_CITY',		'RESOURCE_BEER',			1,					1),
+			('IMPROVEMENT_CITY',		'RESOURCE_CHEESE',			1,					1),
+			('IMPROVEMENT_CITY',		'RESOURCE_HONEY',			1,					1),
+			('IMPROVEMENT_CITY',		'RESOURCE_PORCELAIN',		1,					1),
+			('IMPROVEMENT_CITY',		'RESOURCE_TAPESTRY',		1,					1),
+			('IMPROVEMENT_CITY',		'RESOURCE_CHAMPAGNE',		1,					1),
+			('IMPROVEMENT_CITY',		'RESOURCE_MANUSCRIPTS',		1,					1);
 
 INSERT INTO Improvement_ResourceType_Yields
 			(ImprovementType,			ResourceType, 				YieldType, 				Yield)

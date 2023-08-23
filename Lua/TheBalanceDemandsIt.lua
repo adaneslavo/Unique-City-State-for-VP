@@ -1,29 +1,46 @@
 include("FLuaVector.lua")
 
--- 39 variables so far coded (max 60)
+-- 42 variables so far coded (max 60)
 local L = Locale.ConvertTextKey
+local bBlockDoubleTriggering = false -- for preventing the double triggering the UnitPrekill event and other functions
+
 local eSphere = GameInfoTypes.RESOLUTION_SPHERE_OF_INFLUENCE
 local eArtifactRuin = GameInfoTypes.ARTIFACT_ANCIENT_RUIN
 
+local tUCSDefines = {
+	-- for abilities
+	["ThresholdPseudoAllies"] = 3 * GameDefines.FRIENDSHIP_THRESHOLD_ALLIES,
+	-- for unique luxury resources related to traits
+	["NumCityStatesForFirstThreshold"] = 0,
+	["NumCityStatesForSecondThreshold"] = 4,
+	["NumCityStatesForThirdThreshold"] = 8,
+	["CityStateLuxuryChanceThreshold"] = 85,
+	-- for unit gifts
+	["CityStateUnitChanceThreshold"] = 1,
+	-- for GW gifts
+	["CityStateGreatWorkChanceThreshold"] = 995
+}
+
+-- city-states IDs
+local tLostCities = {} 
+
+-- for optional features (passives)
+local tSettings = {}
+
 -- for events to start
-local iThresholdPseudoAllies = 3 * GameDefines.FRIENDSHIP_THRESHOLD_ALLIES
 local tConditionsForActiveAbilities = {
 	["WithAlliance"] = true,
 	["FromEmbassy"] = true,
 	["FromHighInluenceLevel"] = true
 }
 local tEmbassies = {}
-local bBlockDoubleTriggering = false -- for preventing the double triggering the UnitPrekill event and other functions
-
--- city-states IDs
-local tLostCities = {}
 
 local tMinorTraits = {
 	GameInfoTypes.MINOR_TRAIT_MARITIME,
 	GameInfoTypes.MINOR_TRAIT_MERCANTILE,
+	GameInfoTypes.MINOR_TRAIT_MILITARISTIC,
 	GameInfoTypes.MINOR_TRAIT_CULTURED,
-	GameInfoTypes.MINOR_TRAIT_RELIGIOUS,
-	GameInfoTypes.MINOR_TRAIT_MILITARISTIC
+	GameInfoTypes.MINOR_TRAIT_RELIGIOUS
 }
 
 local tMinorPersonalities = {
@@ -175,15 +192,16 @@ local tImprovementsRegular = {
 }
 
 local tImprovementsUCS = {
-	GameInfoTypes.IMPROVEMENT_MOUND,
+	GameInfoTypes.IMPROVEMENT_MOUND,		-- 1
 	GameInfoTypes.IMPROVEMENT_SUNK_COURT,
 	GameInfoTypes.IMPROVEMENT_MONASTERY,
 	GameInfoTypes.IMPROVEMENT_TOTEM_POLE,
 	GameInfoTypes.IMPROVEMENT_CHUM,
-	GameInfoTypes.IMPROVEMENT_TULOU,
+	GameInfoTypes.IMPROVEMENT_TULOU,		-- 6
 	GameInfoTypes.IMPROVEMENT_DOGO_CANARIO,	-- dummy
 	GameInfoTypes.IMPROVEMENT_LLAO_LLAO,	-- dummy
-	GameInfoTypes.IMPROVEMENT_MARSH			-- dummy
+	GameInfoTypes.IMPROVEMENT_MARSH,		-- dummy
+	GameInfoTypes.IMPROVEMENT_CITY			-- dummy
 }
 
 local tImprovementsGreatPeople = {
@@ -553,7 +571,7 @@ function MinorPlayerDoTurn(ePlayer)
 					if pPlayer:IsMinorCiv() then break end
 					if not pPlayer:IsEverAlive() then break end
 					
-					if pMinorPlayer:GetMinorCivFriendshipWithMajor(ePlayer) >= iThresholdPseudoAllies then
+					if pMinorPlayer:GetMinorCivFriendshipWithMajor(ePlayer) >= tUCSDefines["ThresholdPseudoAllies"] then
 						if pPlayer:GetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType]) ~= 0 then
 							pPlayer:SetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType], 3)
 						end
@@ -624,11 +642,11 @@ function DiplomaticExpansion(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKill
 		local pMinorPlayer = Players[pPlot:GetOwner()]
 		local eMinorPersonality = pMinorPlayer:GetPersonality()
 
-		if bEnablePassivesBorderGrowth then
+		if tSettings["EnablePassivesBorderGrowth"] then
 			pMinorCity:ChangeJONSCultureStored(iBorderGrowthBonus)
 		end
 		
-		if bEnablePassivesHitPoints then
+		if tSettings["EnablePassivesHitPoints"] then
 			if eMinorPersonality == tMinorPersonalities[1] then
 				pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[1], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[1]) + 1)
 			elseif eMinorPersonality == tMinorPersonalities[2] then
@@ -679,7 +697,50 @@ end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- Unique stuff for CSs types and personalities
+-- Common Variables
+local tChosenMaritimeLuxuries = {}
+local tChosenCulturedLuxuries = {}
+local tChosenReligiousLuxuries = {}
 -- MARITIME
+function InitializeMaritimeResources()
+	local tMaritimeLuxuries = {
+		GameInfoTypes.RESOURCE_BEER,
+		GameInfoTypes.RESOURCE_CHEESE,
+		GameInfoTypes.RESOURCE_HONEY
+	}
+	
+	local iNumMaritimeCityStates = 0
+	
+	for eplayer = GameDefines.MAX_MAJOR_CIVS, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
+		local pMaritimeMinor = Players[eplayer]
+		
+		if pMaritimeMinor:IsAlive() then
+			local eMaritimeTrait = pMaritimeMinor:GetMinorCivTrait()
+			
+			if eMaritimeTrait == tMinorTraits[1] then
+				iNumMaritimeCityStates = iNumMaritimeCityStates + 1
+			end
+		end
+	end
+	
+	if iNumMaritimeCityStates > tUCSDefines["NumCityStatesForFirstThreshold"] then
+		table.insert(tChosenMaritimeLuxuries, table.remove(tMaritimeLuxuries, Game.Rand(#tMaritimeLuxuries, "Choose 1st of all available luxuries") + 1))
+	end
+	
+	if #tMaritimeLuxuries > 0 then
+		if iNumMaritimeCityStates > tUCSDefines["NumCityStatesForSecondThreshold"] then
+			table.insert(tChosenMaritimeLuxuries, table.remove(tMaritimeLuxuries, Game.Rand(#tMaritimeLuxuries, "Choose 2nd of all available luxuries") + 1))
+		end
+	end
+	
+	if #tMaritimeLuxuries > 0 then
+		if iNumMaritimeCityStates > tUCSDefines["NumCityStatesForThirdThreshold"] then
+			table.insert(tChosenMaritimeLuxuries, table.remove(tMaritimeLuxuries, Game.Rand(#tMaritimeLuxuries, "Choose 3rd of all available luxuries") + 1))
+		end
+	end
+	print("MARITIME_LUX", tChosenMaritimeLuxuries[1], tChosenMaritimeLuxuries[2], tChosenMaritimeLuxuries[3])
+end
+
 function MaritimeCityStatesBonuses(ePlayer, iX, iY)
 	local pPlayer = Players[ePlayer]
 	
@@ -692,39 +753,34 @@ function MaritimeCityStatesBonuses(ePlayer, iX, iY)
 	local eMinorPersonality = pPlayer:GetPersonality()
 	
 	-- Maritime
-	-- Manufactory
 	if eMinorTrait ~= tMinorTraits[1] then return end
 	
 	local pMinorCapital = pPlayer:GetCapitalCity()
-
-	for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
-		local pPlot = pMinorCapital:GetCityIndexPlot(i)
+	
+	-- Unique Luxuries
+	if tSettings["EnablePassivesLuxuries"] then
+		local iChance = Game.Rand(100, "Chance for placing the luxury") + 1
+		local iThreshold = tUCSDefines["CityStateLuxuryChanceThreshold"]
 		
-		if pPlot then
-			local bIsCity = pPlot:IsCity()
-			local ePlot = pPlot:GetPlotType()
-			local eResource = pPlot:GetResourceType()
-			local eImprovement = pPlot:GetImprovementType()
-			local eFeature = pPlot:GetFeatureType()
+		if iChance <= iThreshold then
+			local pCapitalPlot = pMinorCapital:Plot()
+			local eChosenResource = -1
 			
-			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
-				pPlot:SetImprovementType(tImprovementsGreatPeople[4])
-
-				local ePlotOwner = pPlot:GetOwner()
-
-				if ePlotOwner ~= ePlayer then
-					pPlot:SetOwner(ePlayer, pMinorCapital:GetID())
-				end
+			repeat
+				local iRandomResource = Game.Rand(#tChosenMaritimeLuxuries, "Choose one of all chosen luxuries") + 1
 				
-				break
-			end
-		end
-		
-		if i >= 18 then
-			break
+				if tChosenMaritimeLuxuries[iRandomResource] ~= nil then
+					eChosenResource = tChosenMaritimeLuxuries[iRandomResource]
+				end		
+			until(eChosenResource ~= -1)
+			print("___MARITIME_LUX_PLACE", pPlayer:GetName(), eChosenResource)
+			pCapitalPlot:SetResourceType(eChosenResource, 1)
+			pCapitalPlot:SetImprovementType(tImprovementsUCS[10])
+		else
+			print("___MARITIME_LUX_PLACE", pPlayer:GetName(), "NO_RESOURCE")
 		end
 	end
-	
+
 	-- Bonus Resource
 	local tBonusResourcesIDs = {}
 	local tBonusResourcesTypes = {}
@@ -820,6 +876,59 @@ function MaritimeCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 	-- policy
 	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[1], true)
 end
+
+function MaritimeFreeGreatPersonImprovement(eTeam, eEra, bFirst)
+	if eEra ~= GameInfoTypes.ERA_CLASSICAL then return end
+	
+	for eplayer = GameDefines.MAX_MAJOR_CIVS, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
+		local pPlayer = Players[eplayer]
+		
+		if pPlayer and pPlayer:IsAlive() then
+			if not pPlayer:IsMinorCiv() then return end
+
+			local ePlayerTeam = pPlayer:GetTeam()
+
+			if ePlayerTeam == eTeam then
+				local eMinorTrait = pPlayer:GetMinorCivTrait()
+				
+				-- Maritime
+				-- Manufactory
+				if eMinorTrait ~= tMinorTraits[1] then return end
+				
+				local pMinorCapital = pPlayer:GetCapitalCity()
+
+				for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
+					local pPlot = pMinorCapital:GetCityIndexPlot(i)
+					
+					if pPlot then
+						local bIsCity = pPlot:IsCity()
+						local ePlot = pPlot:GetPlotType()
+						local eResource = pPlot:GetResourceType()
+						local bIsStrategic = (eResource ~= -1) and (GameInfo.Resources[eResource].ResourceUsage == 1) or false
+						local eImprovement = pPlot:GetImprovementType()
+						local eFeature = pPlot:GetFeatureType()
+						
+						if not bIsCity and eImprovement == -1 and eFeature == -1 and (bIsStrategic or eResource == -1) and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
+							pPlot:SetImprovementType(tImprovementsGreatPeople[4])
+
+							local ePlotOwner = pPlot:GetOwner()
+
+							if ePlotOwner ~= eplayer then
+								pPlot:SetOwner(eplayer, pMinorCapital:GetID())
+							end
+							
+							break
+						end
+					end
+					
+					if i >= 18 then
+						break
+					end
+				end
+			end
+		end
+	end
+end
 	
 function FreeWorkerFromCityState(ePlayer)
 	local pPlayer = Players[ePlayer]
@@ -831,9 +940,13 @@ function FreeWorkerFromCityState(ePlayer)
 	if pMinorCapital == nil then return end
 	
 	if pPlayer:HasPolicy(tPoliciesPassiveAbilities[1]) then
+		local eMinorPersonality = pPlayer:GetPersonality()
+		
+		if eMinorPersonality ~= tMinorPersonalities[1] then return end
+		
 		local iWorkerSpawnChance = RandomNumberBetween(1, 100)
 		
-		if iWorkerSpawnChance <= 1 then
+		if iWorkerSpawnChance <= tUCSDefines["CityStateUnitChanceThreshold"] then
 			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
 				if pMajorPlayer and pMajorPlayer:IsAlive() then
 					if pMajorPlayer:IsMinorCiv() then break end
@@ -893,39 +1006,10 @@ function MercantileCityStatesBonuses(ePlayer, iX, iY)
 	local eMinorTrait = pPlayer:GetMinorCivTrait()
 	local eMinorPersonality = pPlayer:GetPersonality()
 	
-	-- Mercantile
-	-- Town
+	-- Mercantile	
 	if eMinorTrait ~= tMinorTraits[2] then return end
 	
 	local pMinorCapital = pPlayer:GetCapitalCity()
-
-	for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
-		local pPlot = pMinorCapital:GetCityIndexPlot(i)
-		
-		if pPlot then
-			local bIsCity = pPlot:IsCity()
-			local ePlot = pPlot:GetPlotType()
-			local eResource = pPlot:GetResourceType()
-			local eImprovement = pPlot:GetImprovementType()
-			local eFeature = pPlot:GetFeatureType()
-			
-			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
-				pPlot:SetImprovementType(tImprovementsGreatPeople[5])
-
-				local ePlotOwner = pPlot:GetOwner()
-
-				if ePlotOwner ~= ePlayer then
-					pPlot:SetOwner(ePlayer, pMinorCapital:GetID())
-				end
-				
-				break
-			end
-		end
-		
-		if i >= 18 then
-			break
-		end
-	end
 	
 	-- Luxury Resource
 	local tLuxuryResourcesIDs = {}
@@ -1014,13 +1098,66 @@ function MercantileCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 	local eMinorTrait = pPlayer:GetMinorCivTrait()
 	local eMinorPersonality = pPlayer:GetPersonality()
 	
-	-- Maritime
+	-- Mercantile
 	if eMinorTrait ~= tMinorTraits[2] then return end
 	
 	local pMinorCapital = pPlayer:GetCapitalCity()
 	
 	-- policy
 	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[2], true)
+end
+
+function MercantileFreeGreatPersonImprovement(eTeam, eEra, bFirst)
+	if eEra ~= GameInfoTypes.ERA_CLASSICAL then return end
+	
+	for eplayer = GameDefines.MAX_MAJOR_CIVS, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
+		local pPlayer = Players[eplayer]
+		
+		if pPlayer and pPlayer:IsAlive() then
+			if not pPlayer:IsMinorCiv() then return end
+
+			local ePlayerTeam = pPlayer:GetTeam()
+
+			if ePlayerTeam == eTeam then
+				local eMinorTrait = pPlayer:GetMinorCivTrait()
+				
+				-- Maritime
+				-- Town
+				if eMinorTrait ~= tMinorTraits[2] then return end
+				
+				local pMinorCapital = pPlayer:GetCapitalCity()
+
+				for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
+					local pPlot = pMinorCapital:GetCityIndexPlot(i)
+					
+					if pPlot then
+						local bIsCity = pPlot:IsCity()
+						local ePlot = pPlot:GetPlotType()
+						local eResource = pPlot:GetResourceType()
+						local bIsStrategic = (eResource ~= -1) and (GameInfo.Resources[eResource].ResourceUsage == 1) or false
+						local eImprovement = pPlot:GetImprovementType()
+						local eFeature = pPlot:GetFeatureType()
+						
+						if not bIsCity and eImprovement == -1 and eFeature == -1 and (bIsStrategic or eResource == -1) and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
+							pPlot:SetImprovementType(tImprovementsGreatPeople[5])
+
+							local ePlotOwner = pPlot:GetOwner()
+
+							if ePlotOwner ~= eplayer then
+								pPlot:SetOwner(eplayer, pMinorCapital:GetID())
+							end
+							
+							break
+						end
+					end
+					
+					if i >= 18 then
+						break
+					end
+				end
+			end
+		end
+	end
 end
 	
 function FreeCaravanFromCityState(ePlayer)
@@ -1033,9 +1170,13 @@ function FreeCaravanFromCityState(ePlayer)
 	if pMinorCapital == nil then return end
 	
 	if pPlayer:HasPolicy(tPoliciesPassiveAbilities[2]) then
+		local eMinorPersonality = pPlayer:GetPersonality()
+		
+		if eMinorPersonality ~= tMinorPersonalities[1] then return end
+		
 		local iCaravanSpawnChance = RandomNumberBetween(1, 100)
-							
-		if iCaravanSpawnChance <= 1 then
+		
+		if iCaravanSpawnChance <= tUCSDefines["CityStateUnitChanceThreshold"] then
 			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
 				if pMajorPlayer and pMajorPlayer:IsAlive() then
 					if pMajorPlayer:IsMinorCiv() then break end
@@ -1099,39 +1240,10 @@ function MilitaristicCityStatesBonuses(ePlayer, iX, iY)
 	local eMinorTrait = pPlayer:GetMinorCivTrait()
 	local eMinorPersonality = pPlayer:GetPersonality()
 	
-	-- Militaristic
-	-- Fort
-	if eMinorTrait ~= tMinorTraits[5] then return end
+	-- Militaristic	
+	if eMinorTrait ~= tMinorTraits[3] then return end
 	
 	local pMinorCapital = pPlayer:GetCapitalCity()
-
-	for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
-		local pPlot = pMinorCapital:GetCityIndexPlot(i)
-		
-		if pPlot then
-			local bIsCity = pPlot:IsCity()
-			local ePlot = pPlot:GetPlotType()
-			local eResource = pPlot:GetResourceType()
-			local eImprovement = pPlot:GetImprovementType()
-			local eFeature = pPlot:GetFeatureType()
-			
-			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
-				pPlot:SetImprovementType(tImprovementsGreatPeople[3])
-
-				local ePlotOwner = pPlot:GetOwner()
-
-				if ePlotOwner ~= ePlayer then
-					pPlot:SetOwner(ePlayer, pMinorCapital:GetID())
-				end
-				
-				break
-			end
-		end
-		
-		if i >= 18 then
-			break
-		end
-	end
 	
 	-- Strategic Resource
 	local tStrategicResourcesIDs = {}
@@ -1225,13 +1337,66 @@ function MilitaristicCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 	local eMinorTrait = pPlayer:GetMinorCivTrait()
 	local eMinorPersonality = pPlayer:GetPersonality()
 	
-	-- Maritime
-	if eMinorTrait ~= tMinorTraits[5] then return end
+	-- Militaristic
+	if eMinorTrait ~= tMinorTraits[3] then return end
 	
 	local pMinorCapital = pPlayer:GetCapitalCity()
 	
 	-- policy
 	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[3], true)
+end
+
+function MilitaristicFreeGreatPersonImprovement(eTeam, eEra, bFirst)
+	if eEra ~= GameInfoTypes.ERA_CLASSICAL then return end
+	
+	for eplayer = GameDefines.MAX_MAJOR_CIVS, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
+		local pPlayer = Players[eplayer]
+		
+		if pPlayer and pPlayer:IsAlive() then
+			if not pPlayer:IsMinorCiv() then return end
+
+			local ePlayerTeam = pPlayer:GetTeam()
+
+			if ePlayerTeam == eTeam then
+				local eMinorTrait = pPlayer:GetMinorCivTrait()
+				
+				-- Maritime
+				-- Fort
+				if eMinorTrait ~= tMinorTraits[3] then return end
+				
+				local pMinorCapital = pPlayer:GetCapitalCity()
+
+				for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
+					local pPlot = pMinorCapital:GetCityIndexPlot(i)
+					
+					if pPlot then
+						local bIsCity = pPlot:IsCity()
+						local ePlot = pPlot:GetPlotType()
+						local eResource = pPlot:GetResourceType()
+						local bIsStrategic = (eResource ~= -1) and (GameInfo.Resources[eResource].ResourceUsage == 1) or false
+						local eImprovement = pPlot:GetImprovementType()
+						local eFeature = pPlot:GetFeatureType()
+						
+						if not bIsCity and eImprovement == -1 and eFeature == -1 and (bIsStrategic or eResource == -1) and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
+							pPlot:SetImprovementType(tImprovementsGreatPeople[3])
+
+							local ePlotOwner = pPlot:GetOwner()
+
+							if ePlotOwner ~= eplayer then
+								pPlot:SetOwner(eplayer, pMinorCapital:GetID())
+							end
+							
+							break
+						end
+					end
+					
+					if i >= 18 then
+						break
+					end
+				end
+			end
+		end
+	end
 end
 	
 function CityStateTrainedUU(ePlayer, eCity, eUnit, bGold, bFaith)
@@ -1282,6 +1447,44 @@ end
 	
 
 -- CULTURED
+function InitializeCulturedResources()
+	local tCulturedLuxuries = {
+		GameInfoTypes.RESOURCE_TAPESTRY,
+		GameInfoTypes.RESOURCE_PORCELAIN
+	}
+	
+	local iNumCulturedCityStates = 0
+	
+	for eplayer = GameDefines.MAX_MAJOR_CIVS, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
+		local pCulturedMinor = Players[eplayer]
+		
+		if pCulturedMinor:IsAlive() then
+			local eCulturedTrait = pCulturedMinor:GetMinorCivTrait()
+			
+			if eCulturedTrait == tMinorTraits[1] then
+				iNumCulturedCityStates = iNumCulturedCityStates + 1
+			end
+		end
+	end
+	
+	if iNumCulturedCityStates > tUCSDefines["NumCityStatesForFirstThreshold"] then
+		table.insert(tChosenCulturedLuxuries, table.remove(tCulturedLuxuries, Game.Rand(#tCulturedLuxuries, "Choose 1st of all available luxuries") + 1))
+	end
+	
+	if #tCulturedLuxuries > 0 then
+		if iNumCulturedCityStates > tUCSDefines["NumCityStatesForSecondThreshold"] then
+			table.insert(tChosenCulturedLuxuries, table.remove(tCulturedLuxuries, Game.Rand(#tCulturedLuxuries, "Choose 2nd of all available luxuries") + 1))
+		end
+	end
+	
+	if #tCulturedLuxuries > 0 then
+		if iNumCulturedCityStates > tUCSDefines["NumCityStatesForThirdThreshold"] then
+			table.insert(tChosenCulturedLuxuries, table.remove(tCulturedLuxuries, Game.Rand(#tCulturedLuxuries, "Choose 3rd of all available luxuries") + 1))
+		end
+	end
+	print("CULTURED_LUX", tChosenCulturedLuxuries[1], tChosenCulturedLuxuries[2], tChosenCulturedLuxuries[3])
+end
+
 function CulturedCityStatesBonuses(ePlayer, iX, iY)
 	local pPlayer = Players[ePlayer]
 	
@@ -1293,37 +1496,32 @@ function CulturedCityStatesBonuses(ePlayer, iX, iY)
 	local eMinorTrait = pPlayer:GetMinorCivTrait()
 	local eMinorPersonality = pPlayer:GetPersonality()
 	
-	-- Cultured
-	-- Academy
-	if eMinorTrait ~= tMinorTraits[3] then return end
+	-- Cultured	
+	if eMinorTrait ~= tMinorTraits[4] then return end
 	
 	local pMinorCapital = pPlayer:GetCapitalCity()
-
-	for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
-		local pPlot = pMinorCapital:GetCityIndexPlot(i)
+	
+	-- Unique Luxuries
+	if tSettings["EnablePassivesLuxuries"] then
+		local iChance = Game.Rand(100, "Chance for placing the luxury") + 1
+		local iThreshold = tUCSDefines["CityStateLuxuryChanceThreshold"]
 		
-		if pPlot then
-			local bIsCity = pPlot:IsCity()
-			local ePlot = pPlot:GetPlotType()
-			local eResource = pPlot:GetResourceType()
-			local eImprovement = pPlot:GetImprovementType()
-			local eFeature = pPlot:GetFeatureType()
+		if iChance <= iThreshold then
+			local pCapitalPlot = pMinorCapital:Plot()
+			local eChosenResource = -1
 			
-			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
-				pPlot:SetImprovementType(tImprovementsGreatPeople[6])
-
-				local ePlotOwner = pPlot:GetOwner()
-
-				if ePlotOwner ~= ePlayer then
-					pPlot:SetOwner(ePlayer, pMinorCapital:GetID())
-				end
+			repeat
+				local iRandomResource = Game.Rand(#tChosenCulturedLuxuries, "Choose one of all chosen luxuries") + 1
 				
-				break
-			end
-		end
-		
-		if i >= 18 then
-			break
+				if tChosenCulturedLuxuries[iRandomResource] ~= nil then
+					eChosenResource = tChosenCulturedLuxuries[iRandomResource]
+				end		
+			until(eChosenResource ~= -1)
+			print("___CULTURED_LUX_PLACE", pPlayer:GetName(), eChosenResource)
+			pCapitalPlot:SetResourceType(eChosenResource, 1)
+			pCapitalPlot:SetImprovementType(tImprovementsUCS[10])
+		else
+			print("___CULTURED_LUX_PLACE", pPlayer:GetName(), "NO_RESOURCE")
 		end
 	end
 	
@@ -1370,13 +1568,66 @@ function CulturedCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 	local eMinorTrait = pPlayer:GetMinorCivTrait()
 	local eMinorPersonality = pPlayer:GetPersonality()
 	
-	-- Maritime
-	if eMinorTrait ~= tMinorTraits[3] then return end
+	-- Cultured
+	if eMinorTrait ~= tMinorTraits[4] then return end
 	
 	local pMinorCapital = pPlayer:GetCapitalCity()
 	
 	-- policy
 	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[4], true)
+end
+
+function CulturedFreeGreatPersonImprovement(eTeam, eEra, bFirst)
+	if eEra ~= GameInfoTypes.ERA_CLASSICAL then return end
+	
+	for eplayer = GameDefines.MAX_MAJOR_CIVS, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
+		local pPlayer = Players[eplayer]
+		
+		if pPlayer and pPlayer:IsAlive() then
+			if not pPlayer:IsMinorCiv() then return end
+
+			local ePlayerTeam = pPlayer:GetTeam()
+
+			if ePlayerTeam == eTeam then
+				local eMinorTrait = pPlayer:GetMinorCivTrait()
+				
+				-- Maritime
+				-- Academy
+				if eMinorTrait ~= tMinorTraits[4] then return end
+				
+				local pMinorCapital = pPlayer:GetCapitalCity()
+
+				for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
+					local pPlot = pMinorCapital:GetCityIndexPlot(i)
+					
+					if pPlot then
+						local bIsCity = pPlot:IsCity()
+						local ePlot = pPlot:GetPlotType()
+						local eResource = pPlot:GetResourceType()
+						local bIsStrategic = (eResource ~= -1) and (GameInfo.Resources[eResource].ResourceUsage == 1) or false
+						local eImprovement = pPlot:GetImprovementType()
+						local eFeature = pPlot:GetFeatureType()
+						
+						if not bIsCity and eImprovement == -1 and eFeature == -1 and (bIsStrategic or eResource == -1) and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
+							pPlot:SetImprovementType(tImprovementsGreatPeople[6])
+
+							local ePlotOwner = pPlot:GetOwner()
+
+							if ePlotOwner ~= eplayer then
+								pPlot:SetOwner(eplayer, pMinorCapital:GetID())
+							end
+							
+							break
+						end
+					end
+					
+					if i >= 18 then
+						break
+					end
+				end
+			end
+		end
+	end
 end
 	
 function FreeArchaeologistFromCityState(ePlayer)
@@ -1389,9 +1640,13 @@ function FreeArchaeologistFromCityState(ePlayer)
 	if pMinorCapital == nil then return end
 	
 	if pPlayer:HasPolicy(tPoliciesPassiveAbilities[4]) then
+		local eMinorPersonality = pPlayer:GetPersonality()
+		
+		if eMinorPersonality ~= tMinorPersonalities[1] then return end
+		
 		local iArchaeologistSpawnChance = RandomNumberBetween(1, 100)
 		
-		if iArchaeologistSpawnChance <= 1 then
+		if iArchaeologistSpawnChance <= tUCSDefines["CityStateUnitChanceThreshold"] then
 			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
 				if pMajorPlayer and pMajorPlayer:IsAlive() then
 					if pMajorPlayer:IsMinorCiv() then break end
@@ -1412,8 +1667,135 @@ function FreeArchaeologistFromCityState(ePlayer)
 	end
 end
 	
+function FreeGreatWorkFromCityState(ePlayer)
+	local pPlayer = Players[ePlayer]
+	
+	if not pPlayer:IsMinorCiv() then return end
+	
+	local pMinorCapital = pPlayer:GetCapitalCity()
+	
+	if pMinorCapital == nil then return end
+	
+	if pPlayer:HasPolicy(tPoliciesPassiveAbilities[4]) then
+		local iGreatWorkSpawnChance = RandomNumberBetween(1, 1000)
+		
+		if iGreatWorkSpawnChance <= tUCSDefines["CityStateGreatWorkChanceThreshold"] then
+			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
+				if pMajorPlayer and pMajorPlayer:IsAlive() then
+					if pMajorPlayer:IsMinorCiv() then break end
+					if not pMajorPlayer:IsEverAlive() then break end
+					
+					if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
+						local iFreeArtSpots, iFreeWritingSpots, iFreeMusicSpots = 0, 0, 0
+						print("GW_GIFTS", "CHANCE_OK", pPlayer:GetName(), pMajorPlayer:GetName())
+						-- check free spots
+						for city in pMajorPlayer:Cities() do
+							iFreeArtSpots = iFreeArtSpots + city:GetNumAvailableGreatWorkSlots(GameInfoTypes.GREAT_WORK_SLOT_ART_ARTIFACT)
+							iFreeWritingSpots = iFreeWritingSpots + city:GetNumAvailableGreatWorkSlots(GameInfoTypes.GREAT_WORK_SLOT_LITERATURE)
+							iFreeMusicSpots = iFreeMusicSpots + city:GetNumAvailableGreatWorkSlots(GameInfoTypes.GREAT_WORK_SLOT_MUSIC)
+							print("GW_GIFTS", "CITY_SPOTS", pMajorPlayer:GetName(), city:GetName(), iFreeArtSpots, iFreeWritingSpots, iFreeMusicSpots)
+						end
+
+						-- choose great work type for gift
+						local sGreatWorkClassType, eGreatWorkSlotType, sGreatWorkSlotType = nil, nil, nil
+						
+						if iFreeMusicSpots > 0 then
+							sGreatWorkClassType = 'GREAT_WORK_MUSIC'
+							eGreatWorkSlotType = GameInfoTypes.GREAT_WORK_SLOT_MUSIC
+							sGreatWorkSlotType = 'GREAT_WORK_SLOT_MUSIC'
+						elseif iFreeWritingSpots > 0 then
+							sGreatWorkClassType = 'GREAT_WORK_LITERATURE'
+							eGreatWorkSlotType = GameInfoTypes.GREAT_WORK_SLOT_LITERATURE
+							sGreatWorkSlotType = 'GREAT_WORK_SLOT_LITERATURE'
+						elseif iFreeArtSpots > 0 then
+							sGreatWorkClassType = 'GREAT_WORK_ART'
+							eGreatWorkSlotType = GameInfoTypes.GREAT_WORK_SLOT_ART_ARTIFACT
+							sGreatWorkSlotType = 'GREAT_WORK_SLOT_ART_ARTIFACT'
+						end
+						
+						print("GW_GIFTS", "CLASS", sGreatWorkClassType)
+						
+						if sGreatWorkClassType then
+							-- choose random great work of chosen type
+							local tAvailableGreatWorks = {}
+							
+							for greatwork in DB.Query("SELECT GreatWorks.ID FROM GreatWorks WHERE GreatWorkClassType = ?", sGreatWorkClassType) do
+								table.insert(tAvailableGreatWorks, greatwork.ID)
+							end
+							
+							print("GW_GIFTS", "AVAILABLE_GW", #tAvailableGreatWorks)
+							
+							if #tAvailableGreatWorks > 0 then
+								local eGreatWorkType = table.remove(tAvailableGreatWorks, Game.Rand(#tAvailableGreatWorks, "Choose a random ID of a GW") + 1)
+								print("GW_GIFTS", "CHOSEN_GW", eGreatWorkType)
+								local eGreatWork = Game.CreateGreatWork(eGreatWorkType, eMajorPlayer, pMajorPlayer:GetCurrentEra(), pPlayer:GetName())
+								print("GW_GIFTS", "CHOSEN_GW", eGreatWork)
+								-- looking for a building with at least 1 free slot
+								for city in pMajorPlayer:Cities() do
+									print("GW_GIFTS", "PLACING...", city:GetName(), city:GetNumAvailableGreatWorkSlots(eGreatWorkSlotType))
+									if city:GetNumAvailableGreatWorkSlots(eGreatWorkSlotType) > 0 then
+										print("GW_GIFTS", "PLACING...", "CITY_HAS_FREE_SLOTS...")
+										for building in DB.Query("SELECT Buildings.ID, Buildings.BuildingClass, Buildings.GreatWorkCount FROM Buildings WHERE GreatWorkSlotType = ?", sGreatWorkSlotType) do
+											if city:IsHasBuilding(building.ID) then
+												print("GW_GIFTS", "PLACING...", building.BuildingClass, city:GetNumGreatWorksInBuilding(building.BuildingClass), building.GreatWorkCount)
+												if city:GetNumGreatWorksInBuilding(building.BuildingClass) < building.GreatWorkCount then
+													print("GW_GIFTS", "PLACING...", "FOUND!!!")
+													city:SetBuildingGreatWork(GameInfo.BuildingClasses{Type=building.BuildingClass}{}.ID, 0, eGreatWork)
+													break
+												end
+											end
+										end
+									end
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+end
+	
 
 -- RELIGIOUS
+function InitializeReligiousResources()
+	local tReligiousLuxuries = {
+		GameInfoTypes.RESOURCE_CHAMPAGNE,
+		GameInfoTypes.RESOURCE_MANUSCRIPTS
+	}
+	
+	local iNumReligiousCityStates = 0
+	
+	for eplayer = GameDefines.MAX_MAJOR_CIVS, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
+		local pReligiousMinor = Players[eplayer]
+		
+		if pReligiousMinor:IsAlive() then
+			local eReligiousTrait = pReligiousMinor:GetMinorCivTrait()
+			
+			if eReligiousTrait == tMinorTraits[5] then
+				iNumReligiousCityStates = iNumReligiousCityStates + 1
+			end
+		end
+	end
+	
+	if iNumReligiousCityStates > tUCSDefines["NumCityStatesForFirstThreshold"] then
+		table.insert(tChosenReligiousLuxuries, table.remove(tReligiousLuxuries, Game.Rand(#tReligiousLuxuries, "Choose 1st of all available luxuries") + 1))
+	end
+	
+	if #tReligiousLuxuries > 0 then
+		if iNumReligiousCityStates > tUCSDefines["NumCityStatesForSecondThreshold"] then
+			table.insert(tChosenReligiousLuxuries, table.remove(tReligiousLuxuries, Game.Rand(#tReligiousLuxuries, "Choose 2nd of all available luxuries") + 1))
+		end
+	end
+	
+	if #tReligiousLuxuries > 0 then
+		if iNumReligiousCityStates > tUCSDefines["NumCityStatesForThirdThreshold"] then
+			table.insert(tChosenReligiousLuxuries, table.remove(tReligiousLuxuries, Game.Rand(#tReligiousLuxuries, "Choose 3rd of all available luxuries") + 1))
+		end
+	end
+	print("RELIGIOUS_LUX", tChosenReligiousLuxuries[1], tChosenReligiousLuxuries[2], tChosenReligiousLuxuries[3])
+end
+
 function ReligiousCityStatesBonuses(ePlayer, iX, iY)
 	local pPlayer = Players[ePlayer]
 	
@@ -1425,37 +1807,32 @@ function ReligiousCityStatesBonuses(ePlayer, iX, iY)
 	local eMinorTrait = pPlayer:GetMinorCivTrait()
 	local eMinorPersonality = pPlayer:GetPersonality()
 	
-	-- Religious
-	-- Holy Site
-	if eMinorTrait ~= tMinorTraits[4] then return end
+	-- Religious	
+	if eMinorTrait ~= tMinorTraits[5] then return end
 	
 	local pMinorCapital = pPlayer:GetCapitalCity()
-
-	for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
-		local pPlot = pMinorCapital:GetCityIndexPlot(i)
+	
+	-- Unique Luxuries
+	if tSettings["EnablePassivesLuxuries"] then
+		local iChance = Game.Rand(100, "Chance for placing the luxury") + 1
+		local iThreshold = tUCSDefines["CityStateLuxuryChanceThreshold"]
 		
-		if pPlot then
-			local bIsCity = pPlot:IsCity()
-			local ePlot = pPlot:GetPlotType()
-			local eResource = pPlot:GetResourceType()
-			local eImprovement = pPlot:GetImprovementType()
-			local eFeature = pPlot:GetFeatureType()
+		if iChance <= iThreshold then
+			local pCapitalPlot = pMinorCapital:Plot()
+			local eChosenResource = -1
 			
-			if not bIsCity and eImprovement == -1 and eFeature == -1 and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
-				pPlot:SetImprovementType(tImprovementsGreatPeople[2])
-
-				local ePlotOwner = pPlot:GetOwner()
-
-				if ePlotOwner ~= ePlayer then
-					pPlot:SetOwner(ePlayer, pMinorCapital:GetID())
-				end
+			repeat
+				local iRandomResource = Game.Rand(#tChosenReligiousLuxuries, "Choose one of all chosen luxuries") + 1
 				
-				break
-			end
-		end
-		
-		if i >= 18 then
-			break
+				if tChosenReligiousLuxuries[iRandomResource] ~= nil then
+					eChosenResource = tChosenReligiousLuxuries[iRandomResource]
+				end		
+			until(eChosenResource ~= -1)
+			print("___RELIGIOUS_LUX_PLACE", pPlayer:GetName(), eChosenResource)
+			pCapitalPlot:SetResourceType(eChosenResource, 1)
+			pCapitalPlot:SetImprovementType(tImprovementsUCS[10])
+		else
+			print("___RELIGIOUS_LUX_PLACE", pPlayer:GetName(), "NO_RESOURCE")
 		end
 	end
 	
@@ -1481,8 +1858,8 @@ function ReligiousCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 	local eMinorTrait = pPlayer:GetMinorCivTrait()
 	local eMinorPersonality = pPlayer:GetPersonality()
 	
-	-- Maritime
-	if eMinorTrait ~= tMinorTraits[4] then return end
+	-- Religious
+	if eMinorTrait ~= tMinorTraits[5] then return end
 	
 	local pMinorCapital = pPlayer:GetCapitalCity()
 	
@@ -1498,8 +1875,61 @@ function ReligiousCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[6], pMinorCapital:GetNumRealBuilding(tBuildingsPassiveAbilities[6]) + 1)
 	end
 end
+
+function ReligiousFreeGreatPersonImprovement(eTeam, eEra, bFirst)
+	if eEra ~= GameInfoTypes.ERA_CLASSICAL then return end
 	
-function FreeMissionariesFromCityState(ePlayer)
+	for eplayer = GameDefines.MAX_MAJOR_CIVS, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
+		local pPlayer = Players[eplayer]
+		
+		if pPlayer and pPlayer:IsAlive() then
+			if not pPlayer:IsMinorCiv() then return end
+
+			local ePlayerTeam = pPlayer:GetTeam()
+
+			if ePlayerTeam == eTeam then
+				local eMinorTrait = pPlayer:GetMinorCivTrait()
+				
+				-- Maritime
+				-- Holy Site
+				if eMinorTrait ~= tMinorTraits[5] then return end
+				
+				local pMinorCapital = pPlayer:GetCapitalCity()
+
+				for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
+					local pPlot = pMinorCapital:GetCityIndexPlot(i)
+					
+					if pPlot then
+						local bIsCity = pPlot:IsCity()
+						local ePlot = pPlot:GetPlotType()
+						local eResource = pPlot:GetResourceType()
+						local bIsStrategic = (eResource ~= -1) and (GameInfo.Resources[eResource].ResourceUsage == 1) or false
+						local eImprovement = pPlot:GetImprovementType()
+						local eFeature = pPlot:GetFeatureType()
+						
+						if not bIsCity and eImprovement == -1 and eFeature == -1 and (bIsStrategic or eResource == -1) and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
+							pPlot:SetImprovementType(tImprovementsGreatPeople[2])
+
+							local ePlotOwner = pPlot:GetOwner()
+
+							if ePlotOwner ~= eplayer then
+								pPlot:SetOwner(eplayer, pMinorCapital:GetID())
+							end
+							
+							break
+						end
+					end
+					
+					if i >= 18 then
+						break
+					end
+				end
+			end
+		end
+	end
+end
+	
+function FreeMissionaryFromCityState(ePlayer)
 	local pPlayer = Players[ePlayer]
 	
 	if not pPlayer:IsMinorCiv() then return end
@@ -1509,9 +1939,13 @@ function FreeMissionariesFromCityState(ePlayer)
 	if pMinorCapital == nil then return end
 	
 	if pPlayer:HasPolicy(tPoliciesPassiveAbilities[5]) then
+		local eMinorPersonality = pPlayer:GetPersonality()
+		
+		if eMinorPersonality ~= tMinorPersonalities[1] then return end
+		
 		local iMissionarySpawnChance = RandomNumberBetween(1, 100)
 		
-		if iMissionarySpawnChance <= 1 then
+		if iMissionarySpawnChance <= tUCSDefines["CityStateUnitChanceThreshold"] then
 			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
 				if pMajorPlayer and pMajorPlayer:IsAlive() then
 					if pMajorPlayer:IsMinorCiv() then break end
@@ -1528,6 +1962,78 @@ function FreeMissionariesFromCityState(ePlayer)
 				end
 			end
 		end
+	end
+end
+-----------------------------------------------------------------------------------------------------------
+-- functions common for all city-state's traits
+-- after conquest unique luxuries must be again artificially improved
+function ConquerCityStatesLuxuries(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
+	local pNewOwner = Players[eNewOwner]
+	local pCityPlot = Map.GetPlot(iX, iY)
+	local eResource = pCityPlot:GetResourceType()
+	
+	if eResource ~= -1 then
+		local bIsNonMercantileResource = GameInfo.Resources[eResource].OnlyMinorCivs
+		
+		if not bIsNonMercantileResource then
+			pNewOwner:ChangeNumResourceTotal(pCityPlot:GetResourceType(), -1) -- stops multiplication of luxury underneath
+			pCityPlot:SetImprovementType(tImprovementsUCS[10])
+		end
+	end
+end
+
+function LiberatedCityStatesLuxuries(ePlayer, eOtherPlayer, eCity)
+	local pCityState = Players[eOtherPlayer]
+	local pCity = pCityState:GetCityByID(eCity)
+	local pCityPlot = pCity:Plot()
+	local eResource = pCityPlot:GetResourceType()
+	
+	if eResource ~= -1 then
+		local bIsNonMercantileResource = GameInfo.Resources[eResource].OnlyMinorCivs
+	
+		if not bIsNonMercantileResource then
+			pCityState:ChangeNumResourceTotal(pCityPlot:GetResourceType(), 1)
+		end
+	end
+end
+
+-- some unique luxuries have unique monopoly effects requiring policies or buildings
+function UniqueMonopolyBonuses(ePlayer)
+	local pPlayer = Players[ePlayer]
+	local pCapital = pPlayer:GetCapitalCity()
+	
+	if pPlayer:IsMinorCiv() then return end
+	if not pCapital then return end
+	
+	local tResourcesWithUniqueMonopoly = {
+		GameInfoTypes.RESOURCE_CHEESE,
+		GameInfoTypes.RESOURCE_HONEY,
+		GameInfoTypes.RESOURCE_MANUSCRIPTS
+	}
+	
+	local tPoliciesForUniqueMonopolies = {
+		GameInfoTypes.POLICY_MONOPOLY_CHEESE,
+		GameInfoTypes.POLICY_MONOPOLY_HONEY,
+		GameInfoTypes.POLICY_MONOPOLY_MANUSCRIPTS
+	}
+	
+	local tBuildingsForUniqueMonopolies = {
+		nil,
+		nil,
+		GameInfoTypes.BUILDING_MONOPOLY_MANUSCRIPTS
+	}
+	
+	for i, resource in ipairs(tResourcesWithUniqueMonopoly) do
+		local bMonopoly = pPlayer:HasGlobalMonopoly(resource)
+		local iMonopoly = bMonopoly and 1 or 0
+		
+		pPlayer:SetHasPolicy(tPoliciesForUniqueMonopolies[i], bMonopoly)
+		
+		if tBuildingsForUniqueMonopolies[i] then
+			pCapital:SetNumRealBuilding(tBuildingsForUniqueMonopolies[i], iMonopoly)
+		end
+		
+		print("MONOPOLIES", pPlayer:GetName(), L(GameInfo.Resources[tResourcesWithUniqueMonopoly[i]].Description), tPoliciesForUniqueMonopolies[i], tBuildingsForUniqueMonopolies[i])
 	end
 end
 -----------------------------------------------------------------------------------------------------------
@@ -4666,26 +5172,57 @@ end
 -----------------------------------------------------------------------------------------------------------
 -- INITIALIZATION
 function SettingUpSpecificEvents()
-	local bEnablePassives = GameInfo.Community{Type="UCS-PASSIVES-ON"}().Value == 1
-	local bEnablePassivesBorderGrowth = GameInfo.Community{Type="UCS-PASSIVES-BGP"}().Value == 1
-	local bEnablePassivesHitPoints = GameInfo.Community{Type="UCS-PASSIVES-HP"}().Value == 1
+	tSettings["EnablePassives"] = GameInfo.Community{Type="UCS-PASSIVES-ON"}().Value == 1
+	tSettings["EnablePassivesImprovements"] = GameInfo.Community{Type="UCS-PASSIVES-TILE"}().Value == 1
+	tSettings["EnablePassivesLuxuries"] = GameInfo.Community{Type="UCS-PASSIVES-LUX"}().Value == 1
+	tSettings["EnablePassivesFreeUnits"] = GameInfo.Community{Type="UCS-PASSIVES-UNIT"}().Value == 1
+	tSettings["EnablePassivesBorderGrowth"] = GameInfo.Community{Type="UCS-PASSIVES-BGP"}().Value == 1
+	tSettings["EnablePassivesHitPoints"] = GameInfo.Community{Type="UCS-PASSIVES-HP"}().Value == 1
 
-	if bEnablePassives then
+	if tSettings["EnablePassives"] then
 		GameEvents.PlayerCityFounded.Add(MaritimeCityStatesBonuses)
 		GameEvents.PlayerLiberated.Add(MaritimeCityStatesBonusesLiberated)
-		GameEvents.PlayerDoTurn.Add(FreeWorkerFromCityState)
+		
 		GameEvents.PlayerCityFounded.Add(MercantileCityStatesBonuses)
 		GameEvents.PlayerLiberated.Add(MercantileCityStatesBonusesLiberated)
-		GameEvents.PlayerDoTurn.Add(FreeCaravanFromCityState)
-		GameEvents.PlayerCityFounded.Add(CulturedCityStatesBonuses)
-		GameEvents.PlayerLiberated.Add(CulturedCityStatesBonusesLiberated)
-		GameEvents.PlayerDoTurn.Add(FreeArchaeologistFromCityState)
-		GameEvents.PlayerCityFounded.Add(ReligiousCityStatesBonuses)
-		GameEvents.PlayerLiberated.Add(ReligiousCityStatesBonusesLiberated)
-		GameEvents.PlayerDoTurn.Add(FreeMissionariesFromCityState)
+		
 		GameEvents.PlayerCityFounded.Add(MilitaristicCityStatesBonuses)
 		GameEvents.PlayerLiberated.Add(MilitaristicCityStatesBonusesLiberated)
 		GameEvents.CityTrained.Add(CityStateTrainedUU)
+		
+		GameEvents.PlayerCityFounded.Add(CulturedCityStatesBonuses)
+		GameEvents.PlayerLiberated.Add(CulturedCityStatesBonusesLiberated)
+		GameEvents.PlayerDoTurn.Add(FreeGreatWorkFromCityState)
+		
+		GameEvents.PlayerCityFounded.Add(ReligiousCityStatesBonuses)
+		GameEvents.PlayerLiberated.Add(ReligiousCityStatesBonusesLiberated)
+	end
+	
+	if tSettings["EnablePassivesImprovements"] then
+		GameEvents.TeamSetEra.Add(MaritimeFreeGreatPersonImprovement)
+		GameEvents.TeamSetEra.Add(MercantileFreeGreatPersonImprovement)
+		GameEvents.TeamSetEra.Add(MilitaristicFreeGreatPersonImprovement)
+		GameEvents.TeamSetEra.Add(CulturedFreeGreatPersonImprovement)
+		GameEvents.TeamSetEra.Add(ReligiousFreeGreatPersonImprovement)
+	end
+	
+	if tSettings["EnablePassivesLuxuries"] then
+		-- part of this mechanics is blocked inside regular pasive functions
+		
+		InitializeMaritimeResources()
+		InitializeCulturedResources()
+		InitializeReligiousResources()
+		
+		GameEvents.CityCaptureComplete.Add(ConquerCityStatesLuxuries)
+		GameEvents.PlayerLiberated.Add(LiberatedCityStatesLuxuries)
+		GameEvents.PlayerDoTurn.Add(UniqueMonopolyBonuses)
+	end
+	
+	if tSettings["EnablePassivesFreeUnits"] then
+		GameEvents.PlayerDoTurn.Add(FreeWorkerFromCityState)
+		GameEvents.PlayerDoTurn.Add(FreeCaravanFromCityState)
+		GameEvents.PlayerDoTurn.Add(FreeArchaeologistFromCityState)
+		GameEvents.PlayerDoTurn.Add(FreeMissionaryFromCityState)
 	end
 	
 	-- active abilities
