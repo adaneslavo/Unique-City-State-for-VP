@@ -3811,6 +3811,11 @@ INSERT INTO Unit_ClassUpgrades
 			(UnitType, 			UnitClassType)
 SELECT		'UNIT_GURKHA', 		UnitClassType
 FROM Unit_ClassUpgrades WHERE UnitType = 'UNIT_RIFLEMAN';
+
+INSERT INTO Unit_ClassUpgrades 	
+			(UnitType, 			UnitClassType)
+SELECT		'UNIT_SAKA', 		UnitClassType
+FROM Unit_ClassUpgrades WHERE UnitType = 'UNIT_MONGOLIAN_KESHIK';
 ------------------------------
 INSERT INTO Policy_UnitClassReplacements
 			(PolicyType,				ReplacedUnitClassType,			ReplacementUnitClassType)

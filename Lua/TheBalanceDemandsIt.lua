@@ -1737,10 +1737,11 @@ function FreeGreatWorkFromCityState(ePlayer)
 										print("GW_GIFTS", "PLACING...", "CITY_HAS_FREE_SLOTS...")
 										for building in DB.Query("SELECT Buildings.ID, Buildings.BuildingClass, Buildings.GreatWorkCount FROM Buildings WHERE GreatWorkSlotType = ?", sGreatWorkSlotType) do
 											if city:IsHasBuilding(building.ID) then
-												print("GW_GIFTS", "PLACING...", building.BuildingClass, city:GetNumGreatWorksInBuilding(building.BuildingClass), building.GreatWorkCount)
-												if city:GetNumGreatWorksInBuilding(building.BuildingClass) < building.GreatWorkCount then
+												local iNumActualGreatWorks = city:GetNumGreatWorksInBuilding(building.BuildingClass)
+												print("GW_GIFTS", "PLACING...", building.BuildingClass, iNumActualGreatWorks, building.GreatWorkCount)
+												if iNumActualGreatWorks < building.GreatWorkCount then
 													print("GW_GIFTS", "PLACING...", "FOUND!!!")
-													city:SetBuildingGreatWork(GameInfo.BuildingClasses{Type=building.BuildingClass}{}.ID, 0, eGreatWork)
+													city:SetBuildingGreatWork(GameInfo.BuildingClasses{Type=building.BuildingClass}{}.ID, iNumActualGreatWorks, eGreatWork)
 													break
 												end
 											end
