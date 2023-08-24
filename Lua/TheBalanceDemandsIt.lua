@@ -1727,23 +1727,31 @@ function FreeGreatWorkFromCityState(ePlayer)
 							
 							if #tAvailableGreatWorks > 0 then
 								local eGreatWorkType = table.remove(tAvailableGreatWorks, Game.Rand(#tAvailableGreatWorks, "Choose a random ID of a GW") + 1)
-								print("GW_GIFTS", "CHOSEN_GW", eGreatWorkType)
 								local eGreatWork = Game.CreateGreatWork(eGreatWorkType, eMajorPlayer, pMajorPlayer:GetCurrentEra(), pPlayer:GetName())
-								print("GW_GIFTS", "CHOSEN_GW", eGreatWork)
+								print("GW_GIFTS", "CHOSEN_GW", eGreatWorkType, eGreatWork)
 								-- looking for a building with at least 1 free slot
 								for city in pMajorPlayer:Cities() do
-									print("GW_GIFTS", "PLACING...", city:GetName(), city:GetNumAvailableGreatWorkSlots(eGreatWorkSlotType))
+									print("GW_GIFTS", "CHECKING...", city:GetName(), city:GetNumAvailableGreatWorkSlots(eGreatWorkSlotType))
 									if city:GetNumAvailableGreatWorkSlots(eGreatWorkSlotType) > 0 then
-										print("GW_GIFTS", "PLACING...", "CITY_HAS_FREE_SLOTS...")
+										print("GW_GIFTS", "CHECKING...", "CITY_HAS_FREE_SLOTS...")
 										for building in DB.Query("SELECT Buildings.ID, Buildings.BuildingClass, Buildings.GreatWorkCount FROM Buildings WHERE GreatWorkSlotType = ?", sGreatWorkSlotType) do
 											if city:IsHasBuilding(building.ID) then
-												local iNumActualGreatWorks = city:GetNumGreatWorksInBuilding(building.BuildingClass)
-												print("GW_GIFTS", "PLACING...", building.BuildingClass, iNumActualGreatWorks, building.GreatWorkCount)
-												if iNumActualGreatWorks < building.GreatWorkCount then
-													print("GW_GIFTS", "PLACING...", "FOUND!!!")
-													city:SetBuildingGreatWork(GameInfo.BuildingClasses{Type=building.BuildingClass}{}.ID, iNumActualGreatWorks, eGreatWork)
-													break
+												local eBuildingClass = GameInfo.BuildingClasses{Type=building.BuildingClass}{}.ID
+												local iNumBuildingGreatWorkSlots = building.GreatWorkCount
+												local bFoundFreeSlot = false
+												print("GW_GIFTS", "CHECKING...", building.BuildingClass, iNumBuildingGreatWorkSlots)
+												for i = 0, iNumBuildingGreatWorkSlots then
+													print("GW_GIFTS", "CHECKING...", building.BuildingClass, "SLOT", i, city:GetBuildingGreatWork(eBuildingClass, i))
+													if city:GetBuildingGreatWork(eBuildingClass, i) == -1 then
+														print("GW_GIFTS", "FOUND!!!")
+														city:SetBuildingGreatWork(eBuildingClass, i, eGreatWork)
+														bFoundFreeSlot = true
+														break
+													end	
 												end
+												print("GW_GIFTS", "PLACING...", bFoundFreeSlot)
+												
+												if bFoundFreeSlot then break end
 											end
 										end
 									end
