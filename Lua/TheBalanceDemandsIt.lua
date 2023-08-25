@@ -16,9 +16,9 @@ local tUCSDefines = {
 	["NumCityStatesForThirdThreshold"] = 8,
 	["CityStateLuxuryChanceThreshold"] = 85,
 	-- for unit gifts
-	["CityStateUnitChanceThreshold"] = 1,
+	["CityStateUnitChanceThreshold"] = 1,		-- per 100
 	-- for GW gifts
-	["CityStateGreatWorkChanceThreshold"] = 995
+	["CityStateGreatWorkChanceThreshold"] = 5	-- per 1000
 }
 
 -- city-states IDs
@@ -738,7 +738,6 @@ function InitializeMaritimeResources()
 			table.insert(tChosenMaritimeLuxuries, table.remove(tMaritimeLuxuries, Game.Rand(#tMaritimeLuxuries, "Choose 3rd of all available luxuries") + 1))
 		end
 	end
-	print("MARITIME_LUX", tChosenMaritimeLuxuries[1], tChosenMaritimeLuxuries[2], tChosenMaritimeLuxuries[3])
 end
 
 function MaritimeCityStatesBonuses(ePlayer, iX, iY)
@@ -773,11 +772,9 @@ function MaritimeCityStatesBonuses(ePlayer, iX, iY)
 					eChosenResource = tChosenMaritimeLuxuries[iRandomResource]
 				end		
 			until(eChosenResource ~= -1)
-			print("___MARITIME_LUX_PLACE", pPlayer:GetName(), eChosenResource)
+			
 			pCapitalPlot:SetResourceType(eChosenResource, 1)
 			pCapitalPlot:SetImprovementType(tImprovementsUCS[10])
-		else
-			print("___MARITIME_LUX_PLACE", pPlayer:GetName(), "NO_RESOURCE")
 		end
 	end
 
@@ -1482,7 +1479,6 @@ function InitializeCulturedResources()
 			table.insert(tChosenCulturedLuxuries, table.remove(tCulturedLuxuries, Game.Rand(#tCulturedLuxuries, "Choose 3rd of all available luxuries") + 1))
 		end
 	end
-	print("CULTURED_LUX", tChosenCulturedLuxuries[1], tChosenCulturedLuxuries[2], tChosenCulturedLuxuries[3])
 end
 
 function CulturedCityStatesBonuses(ePlayer, iX, iY)
@@ -1517,11 +1513,9 @@ function CulturedCityStatesBonuses(ePlayer, iX, iY)
 					eChosenResource = tChosenCulturedLuxuries[iRandomResource]
 				end		
 			until(eChosenResource ~= -1)
-			print("___CULTURED_LUX_PLACE", pPlayer:GetName(), eChosenResource)
+			
 			pCapitalPlot:SetResourceType(eChosenResource, 1)
 			pCapitalPlot:SetImprovementType(tImprovementsUCS[10])
-		else
-			print("___CULTURED_LUX_PLACE", pPlayer:GetName(), "NO_RESOURCE")
 		end
 	end
 	
@@ -1687,13 +1681,12 @@ function FreeGreatWorkFromCityState(ePlayer)
 					
 					if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
 						local iFreeArtSpots, iFreeWritingSpots, iFreeMusicSpots = 0, 0, 0
-						print("GW_GIFTS", "CHANCE_OK", pPlayer:GetName(), pMajorPlayer:GetName())
+						
 						-- check free spots
 						for city in pMajorPlayer:Cities() do
 							iFreeArtSpots = iFreeArtSpots + city:GetNumAvailableGreatWorkSlots(GameInfoTypes.GREAT_WORK_SLOT_ART_ARTIFACT)
 							iFreeWritingSpots = iFreeWritingSpots + city:GetNumAvailableGreatWorkSlots(GameInfoTypes.GREAT_WORK_SLOT_LITERATURE)
 							iFreeMusicSpots = iFreeMusicSpots + city:GetNumAvailableGreatWorkSlots(GameInfoTypes.GREAT_WORK_SLOT_MUSIC)
-							print("GW_GIFTS", "CITY_SPOTS", pMajorPlayer:GetName(), city:GetName(), iFreeArtSpots, iFreeWritingSpots, iFreeMusicSpots)
 						end
 
 						-- choose great work type for gift
@@ -1713,8 +1706,6 @@ function FreeGreatWorkFromCityState(ePlayer)
 							sGreatWorkSlotType = 'GREAT_WORK_SLOT_ART_ARTIFACT'
 						end
 						
-						print("GW_GIFTS", "CLASS", sGreatWorkClassType)
-						
 						if sGreatWorkClassType then
 							-- choose random great work of chosen type
 							local tAvailableGreatWorks = {}
@@ -1723,33 +1714,31 @@ function FreeGreatWorkFromCityState(ePlayer)
 								table.insert(tAvailableGreatWorks, greatwork.ID)
 							end
 							
-							print("GW_GIFTS", "AVAILABLE_GW", #tAvailableGreatWorks)
-							
 							if #tAvailableGreatWorks > 0 then
 								local eGreatWorkType = table.remove(tAvailableGreatWorks, Game.Rand(#tAvailableGreatWorks, "Choose a random ID of a GW") + 1)
 								local eGreatWork = Game.CreateGreatWork(eGreatWorkType, eMajorPlayer, pMajorPlayer:GetCurrentEra(), pPlayer:GetName())
-								print("GW_GIFTS", "CHOSEN_GW", eGreatWorkType, eGreatWork)
+								
 								-- looking for a building with at least 1 free slot
 								for city in pMajorPlayer:Cities() do
-									print("GW_GIFTS", "CHECKING...", city:GetName(), city:GetNumAvailableGreatWorkSlots(eGreatWorkSlotType))
 									if city:GetNumAvailableGreatWorkSlots(eGreatWorkSlotType) > 0 then
-										print("GW_GIFTS", "CHECKING...", "CITY_HAS_FREE_SLOTS...")
-										for building in DB.Query("SELECT Buildings.ID, Buildings.BuildingClass, Buildings.GreatWorkCount FROM Buildings WHERE GreatWorkSlotType = ?", sGreatWorkSlotType) do
+										for building in DB.Query("SELECT Buildings.ID, Buildings.Description, Buildings.BuildingClass, Buildings.GreatWorkCount FROM Buildings WHERE GreatWorkSlotType = ?", sGreatWorkSlotType) do
 											if city:IsHasBuilding(building.ID) then
 												local eBuildingClass = GameInfo.BuildingClasses{Type=building.BuildingClass}{}.ID
 												local iNumBuildingGreatWorkSlots = building.GreatWorkCount
 												local bFoundFreeSlot = false
-												print("GW_GIFTS", "CHECKING...", building.BuildingClass, iNumBuildingGreatWorkSlots)
-												for i = 0, iNumBuildingGreatWorkSlots then
-													print("GW_GIFTS", "CHECKING...", building.BuildingClass, "SLOT", i, city:GetBuildingGreatWork(eBuildingClass, i))
+												
+												for i = 0, iNumBuildingGreatWorkSlots - 1 do
 													if city:GetBuildingGreatWork(eBuildingClass, i) == -1 then
-														print("GW_GIFTS", "FOUND!!!")
 														city:SetBuildingGreatWork(eBuildingClass, i, eGreatWork)
 														bFoundFreeSlot = true
+														
+														if pMajorPlayer:IsHuman() then
+															pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_GREAT_WORK_COMPLETED_ACTIVE_PLAYER, L("TXT_KEY_UCS_PASSIVES_GREAT_WORK_GIFTS", pPlayer:GetName(), L(GameInfo.GreatWorks[eGreatWorkType].Description), L(building.Description)), L("TXT_KEY_UCS_PASSIVES_GREAT_WORK_GIFTS_TITLE"), city:GetX(), city:GetY(), eGreatWork)
+														end	
+			
 														break
 													end	
 												end
-												print("GW_GIFTS", "PLACING...", bFoundFreeSlot)
 												
 												if bFoundFreeSlot then break end
 											end
@@ -1802,7 +1791,6 @@ function InitializeReligiousResources()
 			table.insert(tChosenReligiousLuxuries, table.remove(tReligiousLuxuries, Game.Rand(#tReligiousLuxuries, "Choose 3rd of all available luxuries") + 1))
 		end
 	end
-	print("RELIGIOUS_LUX", tChosenReligiousLuxuries[1], tChosenReligiousLuxuries[2], tChosenReligiousLuxuries[3])
 end
 
 function ReligiousCityStatesBonuses(ePlayer, iX, iY)
@@ -1837,11 +1825,9 @@ function ReligiousCityStatesBonuses(ePlayer, iX, iY)
 					eChosenResource = tChosenReligiousLuxuries[iRandomResource]
 				end		
 			until(eChosenResource ~= -1)
-			print("___RELIGIOUS_LUX_PLACE", pPlayer:GetName(), eChosenResource)
+			
 			pCapitalPlot:SetResourceType(eChosenResource, 1)
 			pCapitalPlot:SetImprovementType(tImprovementsUCS[10])
-		else
-			print("___RELIGIOUS_LUX_PLACE", pPlayer:GetName(), "NO_RESOURCE")
 		end
 	end
 	
@@ -2041,8 +2027,6 @@ function UniqueMonopolyBonuses(ePlayer)
 		if tBuildingsForUniqueMonopolies[i] then
 			pCapital:SetNumRealBuilding(tBuildingsForUniqueMonopolies[i], iMonopoly)
 		end
-		
-		print("MONOPOLIES", pPlayer:GetName(), L(GameInfo.Resources[tResourcesWithUniqueMonopoly[i]].Description), tPoliciesForUniqueMonopolies[i], tBuildingsForUniqueMonopolies[i])
 	end
 end
 -----------------------------------------------------------------------------------------------------------

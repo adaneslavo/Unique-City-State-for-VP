@@ -20,7 +20,7 @@
 		<Row Tag="TXT_KEY_UCS_BONUS_INFLUENCE_TITLE">
 			<Text>Overwhelming influence with a City-State!</Text>
 		</Row>
-		
+
 		<!-- important notifications for player on start -->
 		<Row Tag="TXT_KEY_UCS_CONFLICT">
 			<Text>Unfortunately we couldn't replace [COLOR_CYAN]{1_CS}[ENDCOLOR] with another City-State. If you don't want to see two cities of the same name in your game (or conflicting leaders), then the restart is required.</Text>
@@ -28,13 +28,19 @@
 		<Row Tag="TXT_KEY_UCS_CONFLICT_TITLE">
 			<Text>CONFLICT BETWEEN A MAJOR CIV AND A CS! RESTART REQUIRED!!!</Text>
 		</Row>
-		
+
 		<!-- notifications for friendly unit gifts -->
 		<Row Tag="TXT_KEY_UCS_PASSIVES_GIFTS">
 			<Text>You received new [COLOR_POSITIVE_TEXT]{1_UnitName}[ENDCOLOR] unit from [COLOR_CYAN]{2_CS}[ENDCOLOR] as a gratitude for great cooperation and friendly attitutde.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_PASSIVES_GIFTS_TITLE">
 			<Text>Civilians arrived from friendly City-State!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_PASSIVES_GREAT_WORK_GIFTS">
+			<Text>[COLOR_POSITIVE_TEXT]{1_CS}[ENDCOLOR] has created a great work for you. [COLOR_MAGENTA]{2_GWType}[ENDCOLOR] should fill your collection in [COLOR_POSITIVE_TEXT]{3_Building}[ENDCOLOR] and grant you an unusual cultural experience.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_PASSIVES_GREAT_WORK_GIFTS_TITLE">
+			<Text>New masterpiece arrived!</Text>
 		</Row>
 
 		<!-- notifications for unit actions -->
@@ -56,7 +62,7 @@
 		<Row Tag="TXT_KEY_UCS_TEAAT_TITLE">
 			<Text>Great event on the sea!</Text>
 		</Row>
-		
+
 		<!-- notifications for CSs' lua custom events -->
 		<Row Tag="TXT_KEY_UCS_BONUS_BOGOTA_LIBERATION">
 			<Text>Your liberation efforts do not go unrewarded and [COLOR_CYAN]{1_Bogota}[ENDCOLOR] awes you! It will not spare money on you and rewards you with {2_Culture} [ICON_CULTURE] Culture. What will you do with it?</Text>
