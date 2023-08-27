@@ -14,22 +14,13 @@ VALUES		('UCS-PASSIVES-ON',		1),	-- enables CS passive abilities (GW gifts for C
 -- Compatibility
 ---------------------------------------------------
 -- Even More Resources by @HungryForFood	
-INSERT INTO Community	
+/*INSERT INTO Community	
 		(Type,			Value)
 VALUES	('UCS-EMR', 2);
 
 UPDATE Community
 SET Value = '1'
-WHERE Type = 'UCS-EMR' AND EXISTS (SELECT * FROM Resources WHERE Type='RESOURCE_LAVENDER') AND NOT EXISTS (SELECT * FROM Community WHERE Type='UCS-EMR' AND Value= 0);
-
--- Enlightenment Era by @Infixo	
-INSERT INTO Community	
-		(Type,			Value)
-VALUES	('UCS-EE', 2);
-
-UPDATE Community
-SET Value = '1'
-WHERE Type = 'UCS-EE' AND EXISTS (SELECT * FROM Buildings WHERE Type='BUILDING_EE_DRYDOCK') AND NOT EXISTS (SELECT * FROM Community WHERE Type='UCS-EE' AND Value= 0);
+WHERE Type = 'UCS-EMR' AND EXISTS (SELECT * FROM Resources WHERE Type='RESOURCE_LAVENDER') AND NOT EXISTS (SELECT * FROM Community WHERE Type='UCS-EMR' AND Value= 0);*/
 
 -- More Wonders by @adan_eslavo and @Infixo
 INSERT INTO Community	
@@ -2920,10 +2911,10 @@ SELECT DISTINCT								'PLAYER_EVENT_CHOICE_MINOR_CIV_WELLINGTON', 	'YIELD_FOOD'
 FROM Resources WHERE ResourceUsage = 1;
 
 --animals
-INSERT INTO EventChoice_ResourceYieldChange 
+/*INSERT INTO EventChoice_ResourceYieldChange 
 			(EventChoiceType, 							ResourceType, 				YieldType, 		YieldChange)
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_YANGCHENG', 	'RESOURCE_BIRDS_NEST', 		'YIELD_FAITH', 	1
-WHERE EXISTS (SELECT * FROM Community WHERE Type='UCS-EMR' AND Value = 1);
+WHERE EXISTS (SELECT * FROM Community WHERE Type='UCS-EMR' AND Value = 1);*/
 
 INSERT INTO EventChoice_ResourceYieldChange 
 			(EventChoiceType, 							ResourceType, 				YieldType, 		YieldChange)

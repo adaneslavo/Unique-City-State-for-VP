@@ -31,20 +31,6 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       </Association>
       <Association>
         <Type>Mod</Type>
-        <Name>Even More Resources for Vox Populi</Name>
-        <Id>8e54eb87-31e8-4fcd-aafe-ede055b463d0</Id>
-        <MinVersion>0</MinVersion>
-        <MaxVersion>999</MaxVersion>
-      </Association>
-      <Association>
-        <Type>Mod</Type>
-        <Name>Enlightment Era for VP</Name>
-        <Id>87b2deae-83cb-9b88-9017-79e741d3739c</Id>
-        <MinVersion>0</MinVersion>
-        <MaxVersion>999</MaxVersion>
-      </Association>
-      <Association>
-        <Type>Mod</Type>
         <Name>(overhaul) More Wonders for VP</Name>
         <Id>3e151552-1683-4881-b736-8ee89226f599</Id>
         <MinVersion>0</MinVersion>
@@ -66,10 +52,17 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       </Association>
     </ModDependencies>
     <ModBlockers>
-      <Association xmlns="">
+      <Association>
         <Type>Mod</Type>
         <Name>Sukritact's Suzerainity</Name>
         <Id>c1871abe-b596-4028-a121-6568c154cb8d</Id>
+        <MinVersion>0</MinVersion>
+        <MaxVersion>999</MaxVersion>
+      </Association>
+      <Association>
+        <Type>Mod</Type>
+        <Name>Even More Resources</Name>
+        <Id>8e54eb87-31e8-4fcd-aafe-ede055b463d0</Id>
         <MinVersion>0</MinVersion>
         <MaxVersion>999</MaxVersion>
       </Association>

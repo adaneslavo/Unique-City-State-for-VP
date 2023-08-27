@@ -42,6 +42,9 @@ Changelog:
 - changed:
 	- reworked civilopedia entries for: Armagh, Muscat and Nan Madol;
 	- now all events have CS names (helps with Wonder Planner compatibility);
+	- dependencies, references and blocks:
+		- EMR is blocked by UCS because of borrowing the resources for CSs;
+		- deleted unused EE reference and EMR reference;
 - balanced:
 	- overall City-State behaviour rework:
 		- Settings:
