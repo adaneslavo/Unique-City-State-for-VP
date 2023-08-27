@@ -16,6 +16,7 @@ Changelog:
 		- whole process is repeated if new City-State is also conflicting with Major Civilizations;
 		- human player will gain a notification if substitution was impossible, so he could restart immediately;
 		- !!! if you want this tool to work correctly, do not use all possible slots for City-States (about 35 should be fine; leave few of them free for substitutions);
+		- !!! after each substitution a notification appears to remind the player to save and reload that save to avoid bugs;
 	- 16 new City-States (5 female leaders):
 		- 2 Maritime: Honiara (Oceania), Juyubit (F; North America);
 		- 2 Mercantile: Ouidah (West Africa), Sana'a (F; West Asia);
@@ -87,6 +88,11 @@ Changelog:
 		- managua gets new ability based on espionage (3rd CS using such; old ability moved to Sana'a);
 	- Nan Madol: culture on death is now applied once in Capital instead of for each city;
 - fixed:
+	- helper:
+		- adapted CityStateStatusHelper.lua file to latest VP changes;
+		- added info about personality in the CS title;
+		- used predefined tags for personalities and traits;
+		- added couple of text tags for localizations;
 	- gifts:
 		- fixed an error in functions giving units from Friendly CSs;
 		- now free units are gifted only from Friendly CSs (were all by an error);

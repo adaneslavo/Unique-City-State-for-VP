@@ -405,13 +405,14 @@ function SubstituteConflictingCityStates(ePlayer, iX, iY)
 			print("CS_FOUNDED", "OWNERSHIP_CANNOT_BE_CHANGED!!!")
 			for emajorplayer = 0, GameDefines.MAX_MAJOR_CIVS - 1, 1 do
 				local pMajorPlayer = Players[emajorplayer]
+				local pMajorCapital = pMajorPlayer:GetCapitalCity()
 			
 				if pMajorPlayer:IsHuman() then
-					pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_CONFLICT", pCity:GetName()), L("TXT_KEY_UCS_CONFLICT_TITLE"), pCity:GetX(), pCity:GetY())
+					pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_CONFLICT", pCity:GetName()), L("TXT_KEY_UCS_CONFLICT_TITLE"), pMajorCapital:GetX(), pMajorCapital:GetY())
 				end
 			end
 			
-			break
+			return
 		end 
 		
 		print("CS_FOUNDED", "OWNERSHIP_CHANGED_FROM...", ePreviousOwner, "TO...", eNewOwner)
@@ -420,6 +421,15 @@ function SubstituteConflictingCityStates(ePlayer, iX, iY)
 		RepeatableCheckConflicts(eNewOwner)
 		print("CS_FOUNDED", "NEW_OWNER_CONFLICT?", tCityConflicts[eNewOwner])
 	until(not tCityConflicts[eNewOwner])
+	
+	for emajorplayer = 0, GameDefines.MAX_MAJOR_CIVS - 1, 1 do
+		local pMajorPlayer = Players[emajorplayer]
+		local pMajorCapital = pMajorPlayer:GetCapitalCity()
+		
+		if pMajorPlayer:IsHuman() then
+			pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_CONFLICT_RESOLVED"), L("TXT_KEY_UCS_CONFLICT_RESOLVED_TITLE"), pMajorCapital:GetX(), pMajorCapital:GetY())
+		end
+	end
 	
 	MaritimeCityStatesBonuses(eNewOwner, iX, iY)
 	MercantileCityStatesBonuses(eNewOwner, iX, iY)

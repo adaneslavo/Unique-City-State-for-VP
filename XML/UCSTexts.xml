@@ -20,13 +20,34 @@
 		<Row Tag="TXT_KEY_UCS_BONUS_INFLUENCE_TITLE">
 			<Text>Overwhelming influence with a City-State!</Text>
 		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_HEADER_PROTECTED">
+			<Text>[ICON_STRENGTH] [COLOR_POSITIVE_TEXT]Protected by: {1_Protectors}[ENDCOLOR]</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_HEADER_AT_WAR">
+			<Text>[ICON_WAR] [COLOR_NEGATIVE_TEXT]At war with: {2_AtWarWith}[ENDCOLOR]</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_HEADER_PERSONALITY_FRIENDLY">
+			<Text>([COLOR_POSITIVE_TEXT]Friendly[ENDCOLOR])</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_HEADER_PERSONALITY_NEUTRAL">
+			<Text>([COLOR_WHITE]Neutral[ENDCOLOR])</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_HEADER_PERSONALITY_HOSTILE">
+			<Text>([COLOR_NEGATIVE_TEXT]Hostile[ENDCOLOR])</Text>
+		</Row>
 
 		<!-- important notifications for player on start -->
 		<Row Tag="TXT_KEY_UCS_CONFLICT">
 			<Text>Unfortunately we couldn't replace [COLOR_CYAN]{1_CS}[ENDCOLOR] with another City-State. If you don't want to see two cities of the same name in your game (or conflicting leaders), then the restart is required.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_CONFLICT_TITLE">
-			<Text>CONFLICT BETWEEN A MAJOR CIV AND A CS! RESTART REQUIRED!!!</Text>
+			<Text>UNAVOIDABLE CONFLICT! RESTART REQUIRED!!!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_CONFLICT_RESOLVED">
+			<Text>We managed to replace one of the conflicting City-States with another one. For the full functionality, please save your current game and reload it to avoid unnecessary bugs.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_CONFLICT_RESOLVED_TITLE">
+			<Text>CONFLICT RESOLVED! RELOAD REQUIRED!!!</Text>
 		</Row>
 
 		<!-- notifications for friendly unit gifts -->
