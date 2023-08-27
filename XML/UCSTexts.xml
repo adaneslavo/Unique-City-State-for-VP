@@ -38,16 +38,16 @@
 
 		<!-- important notifications for player on start -->
 		<Row Tag="TXT_KEY_UCS_CONFLICT">
-			<Text>Unfortunately we couldn't replace [COLOR_CYAN]{1_CS}[ENDCOLOR] with another City-State. If you don't want to see two cities of the same name in your game (or conflicting leaders), then the restart is required.</Text>
+			<Text>Unfortunately, we couldn't replace [COLOR_CYAN]{1_CS}[ENDCOLOR] with any other City-State due to coding limitations we couldn't pass. If you don't want to see two cities of the same name in your game (or conflicting leaders), then we can only recommend to start the game over. Good luck!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_CONFLICT_TITLE">
-			<Text>UNAVOIDABLE CONFLICT! RESTART REQUIRED!!!</Text>
+			<Text>UNAVOIDABLE CONFLICT!!! RESTART REQUIRED...</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_CONFLICT_RESOLVED">
-			<Text>We managed to replace one of the conflicting City-States with another one. For the full functionality, please save your current game and reload it to avoid unnecessary bugs.</Text>
+			<Text>We've managed to replace a conflicting City-State with another one. To achieve full functionality and to avoid unnecessary problems, please save your current game and reload it. Enjoy the game!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_CONFLICT_RESOLVED_TITLE">
-			<Text>CONFLICT RESOLVED! RELOAD REQUIRED!!!</Text>
+			<Text>CONFLICT RESOLVED! RELOAD REQUIRED...</Text>
 		</Row>
 
 		<!-- notifications for friendly unit gifts -->
