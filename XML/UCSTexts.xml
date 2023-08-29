@@ -20,21 +20,27 @@
 		<Row Tag="TXT_KEY_UCS_BONUS_INFLUENCE_TITLE">
 			<Text>Overwhelming influence with a City-State!</Text>
 		</Row>
-		<Row Tag="TXT_KEY_UCS_BONUS_HEADER_PROTECTED">
-			<Text>[ICON_STRENGTH] [COLOR_POSITIVE_TEXT]Protected by: {1_Protectors}[ENDCOLOR]</Text>
+
+		<!-- text for CityStateStatusHelper.lua -->
+		<Row Tag="TXT_KEY_UCS_HELPER_HEADER_PERSONALITY_FRIENDLY">
+			<Text>([COLOR_FADING_POSITIVE_TEXT]Friendly[ENDCOLOR])</Text>
 		</Row>
-		<Row Tag="TXT_KEY_UCS_BONUS_HEADER_AT_WAR">
-			<Text>[ICON_WAR] [COLOR_NEGATIVE_TEXT]At war with: {2_AtWarWith}[ENDCOLOR]</Text>
-		</Row>
-		<Row Tag="TXT_KEY_UCS_BONUS_HEADER_PERSONALITY_FRIENDLY">
-			<Text>([COLOR_POSITIVE_TEXT]Friendly[ENDCOLOR])</Text>
-		</Row>
-		<Row Tag="TXT_KEY_UCS_BONUS_HEADER_PERSONALITY_NEUTRAL">
+		<Row Tag="TXT_KEY_UCS_HELPER_HEADER_PERSONALITY_NEUTRAL">
 			<Text>([COLOR_WHITE]Neutral[ENDCOLOR])</Text>
 		</Row>
-		<Row Tag="TXT_KEY_UCS_BONUS_HEADER_PERSONALITY_HOSTILE">
-			<Text>([COLOR_NEGATIVE_TEXT]Hostile[ENDCOLOR])</Text>
+		<Row Tag="TXT_KEY_UCS_HELPER_HEADER_PERSONALITY_HOSTILE">
+			<Text>([COLOR_RED]Hostile[ENDCOLOR])</Text>
 		</Row>
+		<Row Tag="TXT_KEY_UCS_HELPER_ACTION_MARRIAGE">
+			<Text>[COLOR_POSITIVE_TEXT]Diplomatic Marriage[ENDCOLOR] available!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_HELPER_PROTECTED">
+			<Text>[ICON_STRENGTH] Protected by: [COLOR_POSITIVE_TEXT]{1_Protectors}[ENDCOLOR]</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_HELPER_AT_WAR">
+			<Text>[ICON_WAR] At war with: [COLOR_NEGATIVE_TEXT]{1_AtWarWith}[ENDCOLOR]</Text>
+		</Row>
+		
 
 		<!-- important notifications for player on start -->
 		<Row Tag="TXT_KEY_UCS_CONFLICT">

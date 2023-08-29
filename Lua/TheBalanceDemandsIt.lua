@@ -18,7 +18,7 @@ local tUCSDefines = {
 	-- for unit gifts
 	["CityStateUnitChanceThreshold"] = 1,		-- per 100
 	-- for GW gifts
-	["CityStateGreatWorkChanceThreshold"] = 5	-- per 1000
+	["CityStateGreatWorkChanceThreshold"] = 1005	-- per 1000
 }
 
 -- city-states IDs
@@ -1456,8 +1456,9 @@ end
 -- CULTURED
 function InitializeCulturedResources()
 	local tCulturedLuxuries = {
-		GameInfoTypes.RESOURCE_TAPESTRY,
-		GameInfoTypes.RESOURCE_PORCELAIN
+		GameInfoTypes.RESOURCE_TAPESTRIES,
+		GameInfoTypes.RESOURCE_PORCELAIN,
+		GameInfoTypes.RESOURCE_SCULPTURES
 	}
 	
 	local iNumCulturedCityStates = 0
@@ -1676,83 +1677,108 @@ function FreeGreatWorkFromCityState(ePlayer)
 	
 	if not pPlayer:IsMinorCiv() then return end
 	
-	local pMinorCapital = pPlayer:GetCapitalCity()
+	local pMinorCapital = pPlayer:GetCapitalCity()	
 	
 	if pMinorCapital == nil then return end
+	if not pPlayer:HasPolicy(tPoliciesPassiveAbilities[4]) then return end
 	
-	if pPlayer:HasPolicy(tPoliciesPassiveAbilities[4]) then
-		local iGreatWorkSpawnChance = RandomNumberBetween(1, 1000)
+	local iGreatWorkSpawnChance = RandomNumberBetween(1, 1000)
+	
+	if iGreatWorkSpawnChance > tUCSDefines["CityStateGreatWorkChanceThreshold"] then return end
 		
-		if iGreatWorkSpawnChance <= tUCSDefines["CityStateGreatWorkChanceThreshold"] then
-			for eMajorPlayer, pMajorPlayer in ipairs(Players) do
-				if pMajorPlayer and pMajorPlayer:IsAlive() then
-					if pMajorPlayer:IsMinorCiv() then break end
-					if not pMajorPlayer:IsEverAlive() then break end
-					
-					if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
-						local iFreeArtSpots, iFreeWritingSpots, iFreeMusicSpots = 0, 0, 0
-						
-						-- check free spots
-						for city in pMajorPlayer:Cities() do
-							iFreeArtSpots = iFreeArtSpots + city:GetNumAvailableGreatWorkSlots(GameInfoTypes.GREAT_WORK_SLOT_ART_ARTIFACT)
-							iFreeWritingSpots = iFreeWritingSpots + city:GetNumAvailableGreatWorkSlots(GameInfoTypes.GREAT_WORK_SLOT_LITERATURE)
-							iFreeMusicSpots = iFreeMusicSpots + city:GetNumAvailableGreatWorkSlots(GameInfoTypes.GREAT_WORK_SLOT_MUSIC)
-						end
-
-						-- choose great work type for gift
-						local sGreatWorkClassType, eGreatWorkSlotType, sGreatWorkSlotType = nil, nil, nil
-						
-						if iFreeMusicSpots > 0 then
-							sGreatWorkClassType = 'GREAT_WORK_MUSIC'
-							eGreatWorkSlotType = GameInfoTypes.GREAT_WORK_SLOT_MUSIC
-							sGreatWorkSlotType = 'GREAT_WORK_SLOT_MUSIC'
-						elseif iFreeWritingSpots > 0 then
-							sGreatWorkClassType = 'GREAT_WORK_LITERATURE'
-							eGreatWorkSlotType = GameInfoTypes.GREAT_WORK_SLOT_LITERATURE
-							sGreatWorkSlotType = 'GREAT_WORK_SLOT_LITERATURE'
-						elseif iFreeArtSpots > 0 then
-							sGreatWorkClassType = 'GREAT_WORK_ART'
-							eGreatWorkSlotType = GameInfoTypes.GREAT_WORK_SLOT_ART_ARTIFACT
-							sGreatWorkSlotType = 'GREAT_WORK_SLOT_ART_ARTIFACT'
-						end
-						
-						if sGreatWorkClassType then
-							-- choose random great work of chosen type
-							local tAvailableGreatWorks = {}
-							
-							for greatwork in DB.Query("SELECT GreatWorks.ID FROM GreatWorks WHERE GreatWorkClassType = ?", sGreatWorkClassType) do
-								table.insert(tAvailableGreatWorks, greatwork.ID)
-							end
-							
-							if #tAvailableGreatWorks > 0 then
-								local eGreatWorkType = table.remove(tAvailableGreatWorks, Game.Rand(#tAvailableGreatWorks, "Choose a random ID of a GW") + 1)
-								local eGreatWork = Game.CreateGreatWork(eGreatWorkType, eMajorPlayer, pMajorPlayer:GetCurrentEra(), pPlayer:GetName())
-								
-								-- looking for a building with at least 1 free slot
-								for city in pMajorPlayer:Cities() do
-									if city:GetNumAvailableGreatWorkSlots(eGreatWorkSlotType) > 0 then
-										for building in DB.Query("SELECT Buildings.ID, Buildings.Description, Buildings.BuildingClass, Buildings.GreatWorkCount FROM Buildings WHERE GreatWorkSlotType = ?", sGreatWorkSlotType) do
-											if city:IsHasBuilding(building.ID) then
-												local eBuildingClass = GameInfo.BuildingClasses{Type=building.BuildingClass}{}.ID
-												local iNumBuildingGreatWorkSlots = building.GreatWorkCount
-												local bFoundFreeSlot = false
-												
-												for i = 0, iNumBuildingGreatWorkSlots - 1 do
-													if city:GetBuildingGreatWork(eBuildingClass, i) == -1 then
-														city:SetBuildingGreatWork(eBuildingClass, i, eGreatWork)
-														bFoundFreeSlot = true
-														
-														if pMajorPlayer:IsHuman() then
-															pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_GREAT_WORK_COMPLETED_ACTIVE_PLAYER, L("TXT_KEY_UCS_PASSIVES_GREAT_WORK_GIFTS", pPlayer:GetName(), L(GameInfo.GreatWorks[eGreatWorkType].Description), L(building.Description)), L("TXT_KEY_UCS_PASSIVES_GREAT_WORK_GIFTS_TITLE"), city:GetX(), city:GetY(), eGreatWork)
-														end	
+	for eMajorPlayer, pMajorPlayer in ipairs(Players) do
+		if pMajorPlayer and pMajorPlayer:IsAlive() then
+			if pMajorPlayer:IsMinorCiv() then break end
+			if not pMajorPlayer:IsEverAlive() then break end
 			
-														break
-													end	
-												end
+			if pPlayer:IsFriends(eMajorPlayer) or pPlayer:IsAllies(eMajorPlayer) then
+				local iFreeArtSpots, iFreeWritingSpots, iFreeMusicSpots = 0, 0, 0
+				
+				-- check free spots
+				for city in pMajorPlayer:Cities() do
+					iFreeArtSpots = iFreeArtSpots + city:GetNumAvailableGreatWorkSlots(GameInfoTypes.GREAT_WORK_SLOT_ART_ARTIFACT)
+					iFreeWritingSpots = iFreeWritingSpots + city:GetNumAvailableGreatWorkSlots(GameInfoTypes.GREAT_WORK_SLOT_LITERATURE)
+					iFreeMusicSpots = iFreeMusicSpots + city:GetNumAvailableGreatWorkSlots(GameInfoTypes.GREAT_WORK_SLOT_MUSIC)
+				end
+
+				-- choose great work type for gift
+				local sGreatWorkClassType, eGreatWorkSlotType, sGreatWorkSlotType = nil, nil, nil
+				
+				if iFreeMusicSpots > 0 then
+					eGreatWorkClassType = GameInfoTypes.GREAT_WORK_MUSIC
+					sGreatWorkClassType = 'GREAT_WORK_MUSIC'
+					eGreatWorkSlotType = GameInfoTypes.GREAT_WORK_SLOT_MUSIC
+					sGreatWorkSlotType = 'GREAT_WORK_SLOT_MUSIC'
+				elseif iFreeWritingSpots > 0 then
+					eGreatWorkClassType = GameInfoTypes.GREAT_WORK_LITERATURE
+					sGreatWorkClassType = 'GREAT_WORK_LITERATURE'
+					eGreatWorkSlotType = GameInfoTypes.GREAT_WORK_SLOT_LITERATURE
+					sGreatWorkSlotType = 'GREAT_WORK_SLOT_LITERATURE'
+				elseif iFreeArtSpots > 0 then
+					eGreatWorkClassType = GameInfoTypes.GREAT_WORK_ART
+					sGreatWorkClassType = 'GREAT_WORK_ART'
+					eGreatWorkSlotType = GameInfoTypes.GREAT_WORK_SLOT_ART_ARTIFACT
+					sGreatWorkSlotType = 'GREAT_WORK_SLOT_ART_ARTIFACT'
+				end
+				
+				if sGreatWorkClassType then
+					local tUsedGreatWorks, tReservedGreatWorks, tAvailableGreatWorks = {}, {}, {}
+					
+					-- already created great works
+					for eplayer, pplayer in ipairs(Players) do
+						local tTempTable = pplayer:GetGreatWorks(eGreatWorkClassType)
+						
+						for i, v in ipairs(tTempTable) do
+							local eUsedID = Game.GetGreatWorkType(v.Index)
+							
+							tUsedGreatWorks[eUsedID] = true
+						end
+					end
+					
+					-- reserved great works (for buildings)
+					for building in DB.Query("SELECT Buildings.FreeGreatWork FROM Buildings") do
+						if building.FreeGreatWork ~= nil then
+							local eReservedID = GameInfo.GreatWorks{Type=building.FreeGreatWork}().ID
+						
+							tReservedGreatWorks[eReservedID] = true
+						end
+					end
+					
+					-- creating GW list to choose from
+					for greatwork in DB.Query("SELECT GreatWorks.ID FROM GreatWorks WHERE GreatWorkClassType = ?", sGreatWorkClassType) do
+						if not tUsedGreatWorks[greatwork.ID] and not tReservedGreatWorks[greatwork.ID] then
+							table.insert(tAvailableGreatWorks, greatwork.ID)
+						end
+					end
+					
+					-- continue if the pool is not depleted
+					if #tAvailableGreatWorks > 0 then
+						local eGreatWorkType = table.remove(tAvailableGreatWorks, Game.Rand(#tAvailableGreatWorks, "Choose a random ID of a GW") + 1)
+						local eGreatWork = Game.CreateGreatWork(eGreatWorkType, eMajorPlayer, pMajorPlayer:GetCurrentEra(), pPlayer:GetName())
+						
+						-- looking for a building with at least 1 free slot
+						for city in pMajorPlayer:Cities() do
+							if city:GetNumAvailableGreatWorkSlots(eGreatWorkSlotType) > 0 then
+								for building in DB.Query("SELECT Buildings.ID, Buildings.Description, Buildings.BuildingClass, Buildings.GreatWorkCount FROM Buildings WHERE GreatWorkSlotType = ?", sGreatWorkSlotType) do
+									if city:IsHasBuilding(building.ID) then
+										local eBuildingClass = GameInfo.BuildingClasses{Type=building.BuildingClass}{}.ID
+										local iNumBuildingGreatWorkSlots = building.GreatWorkCount
+										local bFoundFreeSlot = false
+										
+										for i = 0, iNumBuildingGreatWorkSlots - 1 do
+											if city:GetBuildingGreatWork(eBuildingClass, i) == -1 then
+												city:SetBuildingGreatWork(eBuildingClass, i, eGreatWork)
+												bFoundFreeSlot = true
 												
-												if bFoundFreeSlot then break end
-											end
+												if pMajorPlayer:IsHuman() then
+													pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_GREAT_WORK_COMPLETED_ACTIVE_PLAYER, L("TXT_KEY_UCS_PASSIVES_GREAT_WORK_GIFTS", pPlayer:GetName(), L(GameInfo.GreatWorks[eGreatWorkType].Description), L(building.Description)), L("TXT_KEY_UCS_PASSIVES_GREAT_WORK_GIFTS_TITLE"), city:GetX(), city:GetY(), eGreatWork)
+												end	
+	
+												break
+											end	
 										end
+										
+										if bFoundFreeSlot then break end
 									end
 								end
 							end
@@ -1769,7 +1795,8 @@ end
 function InitializeReligiousResources()
 	local tReligiousLuxuries = {
 		GameInfoTypes.RESOURCE_CHAMPAGNE,
-		GameInfoTypes.RESOURCE_MANUSCRIPTS
+		GameInfoTypes.RESOURCE_MANUSCRIPTS,
+		GameInfoTypes.RESOURCE_MOSAICS
 	}
 	
 	local iNumReligiousCityStates = 0
@@ -2013,26 +2040,34 @@ function UniqueMonopolyBonuses(ePlayer)
 	local tResourcesWithUniqueMonopoly = {
 		GameInfoTypes.RESOURCE_CHEESE,
 		GameInfoTypes.RESOURCE_HONEY,
-		GameInfoTypes.RESOURCE_MANUSCRIPTS
+		GameInfoTypes.RESOURCE_MANUSCRIPTS,
+		GameInfoTypes.RESOURCE_MOSAICS,
+		GameInfoTypes.RESOURCE_COINS
 	}
 	
 	local tPoliciesForUniqueMonopolies = {
 		GameInfoTypes.POLICY_MONOPOLY_CHEESE,
 		GameInfoTypes.POLICY_MONOPOLY_HONEY,
-		GameInfoTypes.POLICY_MONOPOLY_MANUSCRIPTS
+		GameInfoTypes.POLICY_MONOPOLY_MANUSCRIPTS,
+		GameInfoTypes.POLICY_MONOPOLY_MOSAICS,
+		nil
 	}
 	
 	local tBuildingsForUniqueMonopolies = {
 		nil,
 		nil,
-		GameInfoTypes.BUILDING_MONOPOLY_MANUSCRIPTS
+		GameInfoTypes.BUILDING_MONOPOLY_MANUSCRIPTS,
+		nil,
+		GameInfoTypes.BUILDING_MONOPOLY_COINS
 	}
 	
 	for i, resource in ipairs(tResourcesWithUniqueMonopoly) do
 		local bMonopoly = pPlayer:HasGlobalMonopoly(resource)
 		local iMonopoly = bMonopoly and 1 or 0
 		
-		pPlayer:SetHasPolicy(tPoliciesForUniqueMonopolies[i], bMonopoly)
+		if tPoliciesForUniqueMonopolies[i] then
+			pPlayer:SetHasPolicy(tPoliciesForUniqueMonopolies[i], bMonopoly)
+		end
 		
 		if tBuildingsForUniqueMonopolies[i] then
 			pCapital:SetNumRealBuilding(tBuildingsForUniqueMonopolies[i], iMonopoly)
@@ -2824,7 +2859,7 @@ end
 
 
 
--- SIDON (SPHERE OF INFLUENCE FROM BULLYING)
+-- SIDON (SPHERE OF INFLUENCE FROM DEMANDING TRIBUTE)
 function DestroyLifeForSidon(ePlayer, eCS, iGold, eUnitType, iPlotX, iPlotY)
 	local pPlayer = Players[ePlayer]
 

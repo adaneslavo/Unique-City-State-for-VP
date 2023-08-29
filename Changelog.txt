@@ -88,11 +88,16 @@ Changelog:
 		- managua gets new ability based on espionage (3rd CS using such; old ability moved to Sana'a);
 	- Nan Madol: culture on death is now applied once in Capital instead of for each city;
 - fixed:
-	- helper:
+	- helper (aka CS tooltip) rework/fix:
 		- adapted CityStateStatusHelper.lua file to latest VP changes;
 		- added info about personality in the CS title;
+		- added info about possible Diplomatic Marriage (Austrian UA);
 		- used predefined tags for personalities and traits;
 		- added couple of text tags for localizations;
+		- fixed spacing in the title (no space before an icon);
+		- fixed pledge of protections text replacement added long time ago;
+		- fixed influence text;
+		- more text replacements;
 	- gifts:
 		- fixed an error in functions giving units from Friendly CSs;
 		- now free units are gifted only from Friendly CSs (were all by an error);
@@ -104,6 +109,7 @@ Changelog:
 		- optimizing and fixing;
 	- Potala Palace now unlocked at Architecture (should help a bit with CS quests asking to build it);
 	- Jerusalem now checks if Major player created a Religion (so does not take the Pantheons into account);
+	- Bylina, Gate of Dawn and Visconti Emissary now have free GW slot (was specialist slot);
 	- Bedulu now gets Faith from Trade Routes (and Dodoma does not);
 	- Sisqeno fixes:
 		- Worker now gains same free promotions like Sisqeno (Missionary);
@@ -133,6 +139,8 @@ Changelog:
 		- expanded info for Mound (CS bonus);
 		- Dogo Canario now shows correct monopoly text;
 		- monopoly texts are now shorter to save the space for Trade Opportunities window (tooltip for custom resources);
+		- deleted 3 outdated text changes (from the base UCS, one was changing Siam's trait...);
+		- "Bullying" is now "Demanding a Tribute";
 		
 
 
