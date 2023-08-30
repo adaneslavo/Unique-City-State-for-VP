@@ -1,6 +1,6 @@
 include("FLuaVector.lua")
 
--- 42 variables so far coded (max 60)
+-- 43 variables so far coded (max 60)
 local L = Locale.ConvertTextKey
 local bBlockDoubleTriggering = false -- for preventing the double triggering the UnitPrekill event and other functions
 
@@ -12,13 +12,14 @@ local tUCSDefines = {
 	["ThresholdPseudoAllies"] = 3 * GameDefines.FRIENDSHIP_THRESHOLD_ALLIES,
 	-- for unique luxury resources related to traits
 	["NumCityStatesForFirstThreshold"] = 0,
-	["NumCityStatesForSecondThreshold"] = 4,
-	["NumCityStatesForThirdThreshold"] = 8,
+	["NumCityStatesForSecondThreshold"] = 5,
+	["NumCityStatesForThirdThreshold"] = 10,
 	["CityStateLuxuryChanceThreshold"] = 85,
+	["CityStateLuxuryChanceThresholdRare"] = 10,
 	-- for unit gifts
 	["CityStateUnitChanceThreshold"] = 1,		-- per 100
 	-- for GW gifts
-	["CityStateGreatWorkChanceThreshold"] = 1005	-- per 1000
+	["CityStateGreatWorkChanceThreshold"] = 5	-- per 1000
 }
 
 -- city-states IDs
@@ -709,6 +710,7 @@ end
 -- Unique stuff for CSs types and personalities
 -- Common Variables
 local tChosenMaritimeLuxuries = {}
+local tChosenMilitarisitcLuxuries = {}
 local tChosenCulturedLuxuries = {}
 local tChosenReligiousLuxuries = {}
 -- MARITIME
@@ -716,7 +718,8 @@ function InitializeMaritimeResources()
 	local tMaritimeLuxuries = {
 		GameInfoTypes.RESOURCE_BEER,
 		GameInfoTypes.RESOURCE_CHEESE,
-		GameInfoTypes.RESOURCE_HONEY
+		GameInfoTypes.RESOURCE_HONEY,
+		GameInfoTypes.RESOURCE_ROPES
 	}
 	
 	local iNumMaritimeCityStates = 0
@@ -1236,6 +1239,42 @@ end
 	
 
 -- MILITARISTIC
+function InitializeMilitaristicResources()
+	local tMilitarisiticLuxuries = {
+		GameInfoTypes.RESOURCE_GUNPOWDER
+	}
+	
+	local iNumMilitarisiticCityStates = 0
+	
+	for eplayer = GameDefines.MAX_MAJOR_CIVS, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
+		local pMilitarisiticMinor = Players[eplayer]
+		
+		if pMilitarisiticMinor:IsAlive() then
+			local eMilitarisiticTrait = pMilitarisiticMinor:GetMinorCivTrait()
+			
+			if eMilitarisiticTrait == tMinorTraits[5] then
+				iNumMilitarisiticCityStates = iNumMilitarisiticCityStates + 1
+			end
+		end
+	end
+	
+	if iNumMilitarisiticCityStates > tUCSDefines["NumCityStatesForFirstThreshold"] then
+		table.insert(tChosenMilitarisiticLuxuries, table.remove(tMilitarisiticLuxuries, Game.Rand(#tMilitarisiticLuxuries, "Choose 1st of all available luxuries") + 1))
+	end
+	
+	if #tMilitarisiticLuxuries > 0 then
+		if iNumMilitarisiticCityStates > tUCSDefines["NumCityStatesForSecondThreshold"] then
+			table.insert(tChosenMilitarisiticLuxuries, table.remove(tMilitarisiticLuxuries, Game.Rand(#tMilitarisiticLuxuries, "Choose 2nd of all available luxuries") + 1))
+		end
+	end
+	
+	if #tMilitarisiticLuxuries > 0 then
+		if iNumMilitarisiticCityStates > tUCSDefines["NumCityStatesForThirdThreshold"] then
+			table.insert(tChosenMilitarisiticLuxuries, table.remove(tMilitarisiticLuxuries, Game.Rand(#tMilitarisiticLuxuries, "Choose 3rd of all available luxuries") + 1))
+		end
+	end
+end
+
 function MilitaristicCityStatesBonuses(ePlayer, iX, iY)
 	local pPlayer = Players[ePlayer]
 	
@@ -1330,6 +1369,28 @@ function MilitaristicCityStatesBonuses(ePlayer, iX, iY)
 			end
 		end
 	until (bStrategicPlaced or #tStrategicResourcesIDs == 0)
+	
+	-- Unique Luxuries
+	if tSettings["EnablePassivesLuxuries"] then
+		local iChance = Game.Rand(100, "Chance for placing the luxury") + 1
+		local iThreshold = tUCSDefines["CityStateLuxuryChanceThresholdRare"]
+		
+		if iChance <= iThreshold then
+			local pCapitalPlot = pMinorCapital:Plot()
+			local eChosenResource = -1
+			
+			repeat
+				local iRandomResource = Game.Rand(#tChosenMilitaristicLuxuries, "Choose one of all chosen luxuries") + 1
+				
+				if tChosenMilitaristicLuxuries[iRandomResource] ~= nil then
+					eChosenResource = tChosenMilitaristicLuxuries[iRandomResource]
+				end		
+			until(eChosenResource ~= -1)
+			
+			pCapitalPlot:SetResourceType(eChosenResource, 1)
+			pCapitalPlot:SetImprovementType(tImprovementsUCS[10])
+		end
+	end
 	
 	-- policy
 	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[3], true)
@@ -2042,7 +2103,9 @@ function UniqueMonopolyBonuses(ePlayer)
 		GameInfoTypes.RESOURCE_HONEY,
 		GameInfoTypes.RESOURCE_MANUSCRIPTS,
 		GameInfoTypes.RESOURCE_MOSAICS,
-		GameInfoTypes.RESOURCE_COINS
+		GameInfoTypes.RESOURCE_COINS,
+		GameInfoTypes.RESOURCE_ROPES,
+		GameInfoTypes.RESOURCE_GUNPOWDER
 	}
 	
 	local tPoliciesForUniqueMonopolies = {
@@ -2051,6 +2114,8 @@ function UniqueMonopolyBonuses(ePlayer)
 		GameInfoTypes.POLICY_MONOPOLY_MANUSCRIPTS,
 		GameInfoTypes.POLICY_MONOPOLY_MOSAICS,
 		nil
+		GameInfoTypes.POLICY_MONOPOLY_ROPES,
+		GameInfoTypes.POLICY_MONOPOLY_GUNPOWDER
 	}
 	
 	local tBuildingsForUniqueMonopolies = {
@@ -2058,7 +2123,9 @@ function UniqueMonopolyBonuses(ePlayer)
 		nil,
 		GameInfoTypes.BUILDING_MONOPOLY_MANUSCRIPTS,
 		nil,
-		GameInfoTypes.BUILDING_MONOPOLY_COINS
+		GameInfoTypes.BUILDING_MONOPOLY_COINS,
+		nil,
+		nil
 	}
 	
 	for i, resource in ipairs(tResourcesWithUniqueMonopoly) do
@@ -5248,6 +5315,7 @@ function SettingUpSpecificEvents()
 		-- part of this mechanics is blocked inside regular pasive functions
 		
 		InitializeMaritimeResources()
+		InitializeMilitaristicResources()
 		InitializeCulturedResources()
 		InitializeReligiousResources()
 		
