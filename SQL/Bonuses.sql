@@ -190,10 +190,10 @@ SELECT 		'UCS_UNIT_ATLAS', 						'80', 		'UCS_Units_080.dds',				6, 				1 UNION 
 SELECT 		'UCS_UNIT_ATLAS', 						'64', 		'UCS_Units_064.dds',				6, 				1 UNION ALL
 SELECT 		'UCS_UNIT_ATLAS', 						'45', 		'UCS_Units_045.dds',				6, 				1 UNION ALL
 SELECT 		'UCS_UNIT_FLAG_ATLAS', 					'32', 		'UCS_UnitsFlags_032.dds',			6, 				1 UNION ALL
-SELECT 		'UCS_RESOURCE_ATLAS', 					'256', 		'UCS_Resources_256.dds',			3, 				4 UNION ALL
-SELECT 		'UCS_RESOURCE_ATLAS', 					'80', 		'UCS_Resources_080.dds',			3, 				4 UNION ALL
-SELECT 		'UCS_RESOURCE_ATLAS', 					'64', 		'UCS_Resources_064.dds',			3, 				4 UNION ALL
-SELECT 		'UCS_RESOURCE_ATLAS', 					'45', 		'UCS_Resources_045.dds',			3, 				4;
+SELECT 		'UCS_RESOURCE_ATLAS', 					'256', 		'UCS_Resources_256.dds',			4, 				5 UNION ALL
+SELECT 		'UCS_RESOURCE_ATLAS', 					'80', 		'UCS_Resources_080.dds',			4, 				5 UNION ALL
+SELECT 		'UCS_RESOURCE_ATLAS', 					'64', 		'UCS_Resources_064.dds',			4, 				5 UNION ALL
+SELECT 		'UCS_RESOURCE_ATLAS', 					'45', 		'UCS_Resources_045.dds',			4, 				5;
 ---------------------------------------------------
 INSERT INTO IconFontTextures 
 			(IconFontTexture, 				IconFontTextureFile)
@@ -724,10 +724,10 @@ SELECT 'TXT_KEY_RESOURCE_COINS',						'Coins' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_COINS_TEXT',					'TODO' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_COINS_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] -10% [ICON_GOLD] Purchase Cost.' UNION ALL
 --SELECT 'TXT_KEY_RESOURCE_COINS_MONOPOLY_FULL',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] -10% [ICON_GOLD] Gold Purchase Cost.' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_GUNPOWDER',						'Gunpowder' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_GUNPOWDER_TEXT',					'The invention of gunpowder is usually attributed to Chinese alchemists during the Tang dynasty, one of the "Four Great Inventions of China." The earliest written record of it – a formula composed of sulfur, charcoal and potassium nitrate dating to the later Song dynasty – was supposed to be an elixir for immortality... it was anything but. But the Chinese did discover that it burned explosively and the resultant gases expanded rapidly when exposed to heat; so it was useful for making fireworks. The Chinese found a more practical use for gunpowder in crude bombs and rockets which they used against the Mongols... until the Mongols overran China and then used the new weapon against everyone else on their path westward.[NEWLINE][NEWLINE]While the Mongols were using gunpowder to intimidate the Europeans they encountered, the Arabs sometime between 1240 and 1280 AD developed better recipes, purer niter, and more deadly weapons – notably cannon and a primitive arquebus. Some historical texts state that the Mamluks used the first cannon in history against the Mongols during the battle at Ain Jalut in 1260, but this is open to debate. The earliest description of a "portable hand cannon", however, does appear in an Arabic manuscript from the 14th Century. Once they''d turned back the Mongols, the Arabs put these to use elsewhere.[NEWLINE][NEWLINE]But it was the Europeans who really took to gunpowder as a means of wholesale slaughter. Not only did they improve the formula and add touches such as "corning" – using liquid to increase granularity and hence stability – and "smokeless" powder, but they created all sorts of toys that used it to hurl small and large bits of lead and iron at people. From the days of the Renaissance, military history in Europe was shaped by gunpowder, as it came to dominate the battlefield like no technology before.' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_GUNPOWDER_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_PRODUCTION] towards Gunpowder Units on Empire.' UNION ALL
---SELECT 'TXT_KEY_RESOURCE_GUNPOWDER_MONOPOLY_FULL',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_PRODUCTION] Production towards Gunpowder Units in all Cities.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_GUNPOWDER',					'Gunpowder' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_GUNPOWDER_TEXT',				'The invention of gunpowder is usually attributed to Chinese alchemists during the Tang dynasty, one of the "Four Great Inventions of China." The earliest written record of it – a formula composed of sulfur, charcoal and potassium nitrate dating to the later Song dynasty – was supposed to be an elixir for immortality... it was anything but. But the Chinese did discover that it burned explosively and the resultant gases expanded rapidly when exposed to heat; so it was useful for making fireworks. The Chinese found a more practical use for gunpowder in crude bombs and rockets which they used against the Mongols... until the Mongols overran China and then used the new weapon against everyone else on their path westward.[NEWLINE][NEWLINE]While the Mongols were using gunpowder to intimidate the Europeans they encountered, the Arabs sometime between 1240 and 1280 AD developed better recipes, purer niter, and more deadly weapons – notably cannon and a primitive arquebus. Some historical texts state that the Mamluks used the first cannon in history against the Mongols during the battle at Ain Jalut in 1260, but this is open to debate. The earliest description of a "portable hand cannon", however, does appear in an Arabic manuscript from the 14th Century. Once they''d turned back the Mongols, the Arabs put these to use elsewhere.[NEWLINE][NEWLINE]But it was the Europeans who really took to gunpowder as a means of wholesale slaughter. Not only did they improve the formula and add touches such as "corning" – using liquid to increase granularity and hence stability – and "smokeless" powder, but they created all sorts of toys that used it to hurl small and large bits of lead and iron at people. From the days of the Renaissance, military history in Europe was shaped by gunpowder, as it came to dominate the battlefield like no technology before.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_GUNPOWDER_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_PRODUCTION] towards Gunpowder Units on Empire.' UNION ALL
+--SELECT 'TXT_KEY_RESOURCE_GUNPOWDER_MONOPOLY_FULL',	'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_PRODUCTION] Production towards Gunpowder Units in all Cities.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_BEER',							'Beer' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_BEER_TEXT',					'Beer is one of the oldest and most widely consumed alcoholic drinks in the world. It is also the third most popular drink overall after water and tea. Beer is brewed from cereal grains—most commonly from malted barley, though wheat, maize (corn), and rice are also used. During the brewing process, fermentation of the starch sugars in the wort produces ethanol and carbonation in the resulting beer.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_BEER_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_GREAT_ENGINEER] Great Engineer Points on Empire.' UNION ALL
@@ -758,11 +758,11 @@ SELECT 'TXT_KEY_RESOURCE_CHAMPAGNE_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly B
 --SELECT 'TXT_KEY_RESOURCE_CHAMPAGNE_MONOPOLY_FULL',	'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] ???.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS',					'Manuscripts' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS_TEXT',				'A Manuscript or Handwrit is written information that has been manually created by one or more people, such as a hand-written letter, as opposed to being printed or reproduced some other way. The term may also be used for information that is hand-recorded in other ways than writing, for example inscriptions that are chiselled upon a hard material or scratched (the original meaning of graffiti) as with a knife point in plaster or with a stylus on a waxed tablet (the way Romans made notes), or are in cuneiform writing, impressed with a pointed stylus in a flat tablet of unbaked clay.' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_RES_PAPER] Paper. +10% [ICON_PRODUCTION] towards Diplomatic Units on Empire.';
+SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_RES_PAPER] Paper. +10% [ICON_PRODUCTION] towards Diplomatic Units on Empire.' UNION ALL
 --SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS_MONOPOLY_FULL',	'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_RES_PAPER] Paper. +10% [ICON_PRODUCTION] Production towards Diplomatic Units in all Cities.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_MOSAICS',						'Mosaics' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_MOSAICS_TEXT',					'TODO' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_MOSAICS_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_CULTURE] and +1 [ICON_PEACE] from all Holy Sites.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_MOSAICS_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_CULTURE] and +1 [ICON_PEACE] from all Holy Sites.';
 --SELECT 'TXT_KEY_RESOURCE_MOSAICS_MONOPOLY_FULL',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_CULTURE] Culture and +1 [ICON_PEACE] Faith from all Holy Sites.';
 
 INSERT INTO Language_en_US (Tag, Text)
@@ -3048,11 +3048,11 @@ VALUES 		('ART_DEF_IMPROVEMENT_MARSH', 			'Improvement', 	'sv_BuildMarsh.dds'),
 
 INSERT INTO IconFontMapping 
 			(IconName, 					IconFontTexture,			IconMapping)
-			-- luxuries
+			-- standard
 VALUES		('ICON_RES_DOGO_CANARIO', 	'UCS_RESOURCE_FONT_ATLAS',	1),
 			('ICON_RES_LLAO_LLAO', 		'UCS_RESOURCE_FONT_ATLAS',	2),
 			('ICON_RES_REINDEER', 		'UCS_RESOURCE_FONT_ATLAS',	3),
-			('ICON_RES_4', 		'UCS_RESOURCE_FONT_ATLAS',	4),
+			('ICON_RES_4', 				'UCS_RESOURCE_FONT_ATLAS',	4),
 			-- city-state
 			('ICON_RES_BEER', 			'UCS_RESOURCE_FONT_ATLAS',	5),
 			('ICON_RES_CHEESE', 		'UCS_RESOURCE_FONT_ATLAS',	6),
@@ -3065,11 +3065,11 @@ VALUES		('ICON_RES_DOGO_CANARIO', 	'UCS_RESOURCE_FONT_ATLAS',	1),
 			('ICON_RES_MANUSCRIPTS', 	'UCS_RESOURCE_FONT_ATLAS',	13),
 			('ICON_RES_CHAMPAGNE', 		'UCS_RESOURCE_FONT_ATLAS',	14),
 			('ICON_RES_MOSAICS', 		'UCS_RESOURCE_FONT_ATLAS',	15),
-			('ICON_RES_R4', 		'UCS_RESOURCE_FONT_ATLAS',	16),
+			('ICON_RES_R4', 			'UCS_RESOURCE_FONT_ATLAS',	16),
 			('ICON_RES_GUNPOWDER', 		'UCS_RESOURCE_FONT_ATLAS',	17),
-			('ICON_RES_O2', 		'UCS_RESOURCE_FONT_ATLAS',	18),
-			('ICON_RES_O3', 		'UCS_RESOURCE_FONT_ATLAS',	19),
-			('ICON_RES_M4', 		'UCS_RESOURCE_FONT_ATLAS',	20);
+			('ICON_RES_O2', 			'UCS_RESOURCE_FONT_ATLAS',	18),
+			('ICON_RES_O3', 			'UCS_RESOURCE_FONT_ATLAS',	19),
+			('ICON_RES_M4', 			'UCS_RESOURCE_FONT_ATLAS',	20);
 ---------------------------------------------------
 -- Definitions - Improvements
 ---------------------------------------------------	
@@ -3365,11 +3365,11 @@ VALUES		('RESOURCE_DOGO_CANARIO',	null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE
 			('RESOURCE_ROPES',			null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_ROPES',			'TXT_KEY_RESOURCE_ROPES_TEXT',			'TXT_KEY_RESOURCE_ROPES_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_ROPES',			null,					0,				2,			2,				'[ICON_RES_ROPES]',			7, 				'UCS_RESOURCE_ATLAS'),
 			('RESOURCE_TAPESTRIES',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_TAPESTRIES',		'TXT_KEY_RESOURCE_TAPESTRIES_TEXT',		'TXT_KEY_RESOURCE_TAPESTRIES_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_TAPESTRIES',		null,					0,				2,			2,				'[ICON_RES_TAPESTRIES]',	8, 				'UCS_RESOURCE_ATLAS'),
 			('RESOURCE_SCULPTURES',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_SCULPTURES',		'TXT_KEY_RESOURCE_SCULPTURES_TEXT',		'TXT_KEY_RESOURCE_SCULPTURES_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_SCULPTURES',		null,					0,				2,			2,				'[ICON_RES_SCULPTURES]',	9, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_COINS',			null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_COINS',			'TXT_KEY_RESOURCE_COINS_TEXT',			'TXT_KEY_RESOURCE_COINS_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_COINS',			null,					1,				2,			2,				'[ICON_RES_COINS]',			10, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_COINS',			null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_COINS',			'TXT_KEY_RESOURCE_COINS_TEXT',			'TXT_KEY_RESOURCE_COINS_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_COINS',			null,					1,				2,			2,				'[ICON_RES_COINS]',			10, 			'UCS_RESOURCE_ATLAS'),
 			('RESOURCE_CHAMPAGNE',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_CHAMPAGNE',		'TXT_KEY_RESOURCE_CHAMPAGNE_TEXT',		'TXT_KEY_RESOURCE_CHAMPAGNE_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_CHAMPAGNE',		null,					0,				2,			2,				'[ICON_RES_CHAMPAGNE]',		13, 			'UCS_RESOURCE_ATLAS'),
 			('RESOURCE_MANUSCRIPTS',	null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_MANUSCRIPTS',		'TXT_KEY_RESOURCE_MANUSCRIPTS_TEXT',	'TXT_KEY_RESOURCE_MANUSCRIPTS_MONOPOLY',	'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_MANUSCRIPTS',		null,					0,				2,			2,				'[ICON_RES_MANUSCRIPTS]',	2, 				'EXPANSION_SCEN_TECH_ATLAS'),
 			('RESOURCE_MOSAICS',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_MOSAICS',			'TXT_KEY_RESOURCE_MOSAICS_TEXT',		'TXT_KEY_RESOURCE_MOSAICS_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_MOSAICS',			null,					0,				2,			2,				'[ICON_RES_MOSAICS]',		14, 			'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_GUNPOWDER',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_GUNPOWDER',			'TXT_KEY_RESOURCE_GUNPOWDER_TEXT',		'TXT_KEY_RESOURCE_GUNPOWDER_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_GUNPOWDER',			null,					0,				2,			2,				'[ICON_RES_GUNPOWDER]',		16, 			'UCS_RESOURCE_ATLAS');
+			('RESOURCE_GUNPOWDER',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_GUNPOWDER',		'TXT_KEY_RESOURCE_GUNPOWDER_TEXT',		'TXT_KEY_RESOURCE_GUNPOWDER_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_GUNPOWDER',		null,					0,				2,			2,				'[ICON_RES_GUNPOWDER]',		16, 			'UCS_RESOURCE_ATLAS');
 ---------------------------------------------------------
 DELETE FROM Resource_YieldChanges WHERE ResourceType IN ('RESOURCE_GLASS', 'RESOURCE_JEWELRY', 'RESOURCE_PORCELAIN');
 UPDATE Resources SET MonopolyHappiness = 0 WHERE Type IN ('RESOURCE_GLASS', 'RESOURCE_JEWELRY');
@@ -3378,7 +3378,7 @@ UPDATE Resources SET MonopolyGALength = 0, OnlyMinorCivs = 0 WHERE Type IN ('RES
 INSERT INTO Language_en_US
 			(Tag, 										Text)
 SELECT		'TXT_KEY_RESOURCE_GLASS_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] ???.' UNION ALL
-SELECT		'TXT_KEY_RESOURCE_JEWELRY_MONOPOLY',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_GREAT_MERCHANT] Great Merchant Points in all owned Cities.';
+SELECT		'TXT_KEY_RESOURCE_JEWELRY_MONOPOLY',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_GREAT_MERCHANT] Great Merchant Points in all owned Cities.' UNION ALL
 SELECT		'TXT_KEY_RESOURCE_PORCELAIN_MONOPOLY',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] ???.';
 
 UPDATE Resources SET Help = 'TXT_KEY_RESOURCE_GLASS_MONOPOLY' WHERE Type IN ('RESOURCE_GLASS');
@@ -3396,7 +3396,7 @@ VALUES		('RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			3),
 INSERT INTO Resource_MonopolyGreatPersonRateModifiers
 			(ResourceType, 			SpecialistType, 		IsGlobalMonopoly,	IsStrategicMonopoly,	Modifier)
 VALUES		('RESOURCE_BEER',		'SPECIALIST_ENGINEER',	1,					0,						10),
-			('RESOURCE_JEWELRY',		'SPECIALIST_MERCHANT',	1,					0,						10);
+			('RESOURCE_JEWELRY',	'SPECIALIST_MERCHANT',	1,					0,						10);
 ---------------------------------------------------------
 INSERT INTO Resource_YieldChanges
 			(ResourceType, 				YieldType, 				Yield)
@@ -3420,7 +3420,7 @@ VALUES		('IMPROVEMENT_CAMP',		'RESOURCE_DOGO_CANARIO',	1,					1),
 			('IMPROVEMENT_CITY',		'RESOURCE_CHAMPAGNE',		1,					1),
 			('IMPROVEMENT_CITY',		'RESOURCE_MANUSCRIPTS',		1,					1),
 			('IMPROVEMENT_CITY',		'RESOURCE_MOSAICS',			1,					1),
-			('IMPROVEMENT_CITY',		'RESOURCE_GUNPOWDER',			1,					1);
+			('IMPROVEMENT_CITY',		'RESOURCE_GUNPOWDER',		1,					1);
 
 INSERT INTO Improvement_ResourceType_Yields
 			(ImprovementType,			ResourceType, 				YieldType, 				Yield)

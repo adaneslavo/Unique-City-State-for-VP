@@ -15,7 +15,7 @@ local tUCSDefines = {
 	["NumCityStatesForSecondThreshold"] = 5,
 	["NumCityStatesForThirdThreshold"] = 10,
 	["CityStateLuxuryChanceThreshold"] = 85,
-	["CityStateLuxuryChanceThresholdRare"] = 85,
+	["CityStateLuxuryChanceThresholdRare"] = 10,
 	-- for unit gifts
 	["CityStateUnitChanceThreshold"] = 1,		-- per 100
 	-- for GW gifts
@@ -710,7 +710,7 @@ end
 -- Unique stuff for CSs types and personalities
 -- Common Variables
 local tChosenMaritimeLuxuries = {}
-local tChosenMilitarisitcLuxuries = {}
+local tChosenMilitaristicLuxuries = {}
 local tChosenCulturedLuxuries = {}
 local tChosenReligiousLuxuries = {}
 -- MARITIME
@@ -1259,18 +1259,18 @@ function InitializeMilitaristicResources()
 	end
 	
 	if iNumMilitarisiticCityStates > tUCSDefines["NumCityStatesForFirstThreshold"] then
-		table.insert(tChosenMilitarisiticLuxuries, table.remove(tMilitarisiticLuxuries, Game.Rand(#tMilitarisiticLuxuries, "Choose 1st of all available luxuries") + 1))
+		table.insert(tChosenMilitaristicLuxuries, table.remove(tMilitarisiticLuxuries, Game.Rand(#tMilitarisiticLuxuries, "Choose 1st of all available luxuries") + 1))
 	end
 	
 	--[[if #tMilitarisiticLuxuries > 0 then
 		if iNumMilitarisiticCityStates > tUCSDefines["NumCityStatesForSecondThreshold"] then
-			table.insert(tChosenMilitarisiticLuxuries, table.remove(tMilitarisiticLuxuries, Game.Rand(#tMilitarisiticLuxuries, "Choose 2nd of all available luxuries") + 1))
+			table.insert(tChosenMilitaristicLuxuries, table.remove(tMilitarisiticLuxuries, Game.Rand(#tMilitarisiticLuxuries, "Choose 2nd of all available luxuries") + 1))
 		end
 	end
 	
 	if #tMilitarisiticLuxuries > 0 then
 		if iNumMilitarisiticCityStates > tUCSDefines["NumCityStatesForThirdThreshold"] then
-			table.insert(tChosenMilitarisiticLuxuries, table.remove(tMilitarisiticLuxuries, Game.Rand(#tMilitarisiticLuxuries, "Choose 3rd of all available luxuries") + 1))
+			table.insert(tChosenMilitaristicLuxuries, table.remove(tMilitarisiticLuxuries, Game.Rand(#tMilitarisiticLuxuries, "Choose 3rd of all available luxuries") + 1))
 		end
 	end--]]
 end
@@ -2113,7 +2113,7 @@ function UniqueMonopolyBonuses(ePlayer)
 		GameInfoTypes.POLICY_MONOPOLY_HONEY,
 		GameInfoTypes.POLICY_MONOPOLY_MANUSCRIPTS,
 		GameInfoTypes.POLICY_MONOPOLY_MOSAICS,
-		nil
+		nil,
 		GameInfoTypes.POLICY_MONOPOLY_ROPES,
 		GameInfoTypes.POLICY_MONOPOLY_GUNPOWDER
 	}
