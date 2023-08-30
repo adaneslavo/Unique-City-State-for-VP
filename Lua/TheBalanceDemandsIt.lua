@@ -15,7 +15,7 @@ local tUCSDefines = {
 	["NumCityStatesForSecondThreshold"] = 5,
 	["NumCityStatesForThirdThreshold"] = 10,
 	["CityStateLuxuryChanceThreshold"] = 85,
-	["CityStateLuxuryChanceThresholdRare"] = 10,
+	["CityStateLuxuryChanceThresholdRare"] = 85,
 	-- for unit gifts
 	["CityStateUnitChanceThreshold"] = 1,		-- per 100
 	-- for GW gifts
@@ -1262,7 +1262,7 @@ function InitializeMilitaristicResources()
 		table.insert(tChosenMilitarisiticLuxuries, table.remove(tMilitarisiticLuxuries, Game.Rand(#tMilitarisiticLuxuries, "Choose 1st of all available luxuries") + 1))
 	end
 	
-	if #tMilitarisiticLuxuries > 0 then
+	--[[if #tMilitarisiticLuxuries > 0 then
 		if iNumMilitarisiticCityStates > tUCSDefines["NumCityStatesForSecondThreshold"] then
 			table.insert(tChosenMilitarisiticLuxuries, table.remove(tMilitarisiticLuxuries, Game.Rand(#tMilitarisiticLuxuries, "Choose 2nd of all available luxuries") + 1))
 		end
@@ -1272,7 +1272,7 @@ function InitializeMilitaristicResources()
 		if iNumMilitarisiticCityStates > tUCSDefines["NumCityStatesForThirdThreshold"] then
 			table.insert(tChosenMilitarisiticLuxuries, table.remove(tMilitarisiticLuxuries, Game.Rand(#tMilitarisiticLuxuries, "Choose 3rd of all available luxuries") + 1))
 		end
-	end
+	end--]]
 end
 
 function MilitaristicCityStatesBonuses(ePlayer, iX, iY)
