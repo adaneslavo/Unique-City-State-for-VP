@@ -724,6 +724,10 @@ SELECT 'TXT_KEY_RESOURCE_COINS',						'Coins' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_COINS_TEXT',					'TODO' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_COINS_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] -10% [ICON_GOLD] Purchase Cost.' UNION ALL
 --SELECT 'TXT_KEY_RESOURCE_COINS_MONOPOLY_FULL',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] -10% [ICON_GOLD] Gold Purchase Cost.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_GUNPOWDER',						'Gunpowder' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_GUNPOWDER_TEXT',					'The invention of gunpowder is usually attributed to Chinese alchemists during the Tang dynasty, one of the "Four Great Inventions of China." The earliest written record of it – a formula composed of sulfur, charcoal and potassium nitrate dating to the later Song dynasty – was supposed to be an elixir for immortality... it was anything but. But the Chinese did discover that it burned explosively and the resultant gases expanded rapidly when exposed to heat; so it was useful for making fireworks. The Chinese found a more practical use for gunpowder in crude bombs and rockets which they used against the Mongols... until the Mongols overran China and then used the new weapon against everyone else on their path westward.[NEWLINE][NEWLINE]While the Mongols were using gunpowder to intimidate the Europeans they encountered, the Arabs sometime between 1240 and 1280 AD developed better recipes, purer niter, and more deadly weapons – notably cannon and a primitive arquebus. Some historical texts state that the Mamluks used the first cannon in history against the Mongols during the battle at Ain Jalut in 1260, but this is open to debate. The earliest description of a "portable hand cannon", however, does appear in an Arabic manuscript from the 14th Century. Once they''d turned back the Mongols, the Arabs put these to use elsewhere.[NEWLINE][NEWLINE]But it was the Europeans who really took to gunpowder as a means of wholesale slaughter. Not only did they improve the formula and add touches such as "corning" – using liquid to increase granularity and hence stability – and "smokeless" powder, but they created all sorts of toys that used it to hurl small and large bits of lead and iron at people. From the days of the Renaissance, military history in Europe was shaped by gunpowder, as it came to dominate the battlefield like no technology before.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_GUNPOWDER_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_PRODUCTION] towards Gunpowder Units on Empire.' UNION ALL
+--SELECT 'TXT_KEY_RESOURCE_GUNPOWDER_MONOPOLY_FULL',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_PRODUCTION] Production towards Gunpowder Units in all Cities.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_BEER',							'Beer' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_BEER_TEXT',					'Beer is one of the oldest and most widely consumed alcoholic drinks in the world. It is also the third most popular drink overall after water and tea. Beer is brewed from cereal grains—most commonly from malted barley, though wheat, maize (corn), and rice are also used. During the brewing process, fermentation of the starch sugars in the wort produces ethanol and carbonation in the resulting beer.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_BEER_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_GREAT_ENGINEER] Great Engineer Points on Empire.' UNION ALL
@@ -736,6 +740,10 @@ SELECT 'TXT_KEY_RESOURCE_HONEY',						'Honey' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_HONEY_TEXT',					'Honey is a sweet, viscous food substance made by bees and some related insects. Bees produce honey from the sugary secretions of plants (floral nectar) or from secretions of other insects (such as honeydew), by regurgitation, enzymatic activity, and water evaporation. Bees store honey in wax structures called honeycombs. Honey use and production have a long and varied history as an ancient activity. Several cave paintings in Cuevas de la Araña in Spain depict humans foraging for honey at least 8,000 years ago.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_HONEY_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_FOOD] from all [ICON_RES_MAIZE] Maizes, [ICON_RES_RICE] Rices and [ICON_RES_WHEAT] Wheats.' UNION ALL
 --SELECT 'TXT_KEY_RESOURCE_HONEY_MONOPOLY_FULL',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_FOOD] Food from all [ICON_RES_MAIZE] Maize, [ICON_RES_RICE] Rice and [ICON_RES_WHEAT] Wheat resources.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_ROPES',						'Ropes' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_ROPES_TEXT',					'TODO' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_ROPES_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_PRODUCTION] towards Naval Units on Empire.' UNION ALL
+--SELECT 'TXT_KEY_RESOURCE_ROPES_MONOPOLY_FULL',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_PRODUCTION] Production towards Naval Units in all Cities.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_TAPESTRIES',					'Tapestries' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_TAPESTRIES_TEXT',				'TODO' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_TAPESTRIES_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] ???.' UNION ALL
@@ -750,7 +758,7 @@ SELECT 'TXT_KEY_RESOURCE_CHAMPAGNE_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly B
 --SELECT 'TXT_KEY_RESOURCE_CHAMPAGNE_MONOPOLY_FULL',	'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] ???.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS',					'Manuscripts' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS_TEXT',				'A Manuscript or Handwrit is written information that has been manually created by one or more people, such as a hand-written letter, as opposed to being printed or reproduced some other way. The term may also be used for information that is hand-recorded in other ways than writing, for example inscriptions that are chiselled upon a hard material or scratched (the original meaning of graffiti) as with a knife point in plaster or with a stylus on a waxed tablet (the way Romans made notes), or are in cuneiform writing, impressed with a pointed stylus in a flat tablet of unbaked clay.' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_RES_PAPER] Paper. +10% [ICON_PRODUCTION] towards Diplomatic Units.';
+SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_RES_PAPER] Paper. +10% [ICON_PRODUCTION] towards Diplomatic Units on Empire.';
 --SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS_MONOPOLY_FULL',	'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_RES_PAPER] Paper. +10% [ICON_PRODUCTION] Production towards Diplomatic Units in all Cities.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_MOSAICS',						'Mosaics' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_MOSAICS_TEXT',					'TODO' UNION ALL
@@ -1395,8 +1403,10 @@ SELECT 'POLICY_CS_CULTURED', 			'TXT_KEY_POLICY_CS_CULTURED' UNION ALL
 SELECT 'POLICY_CS_RELIGIOUS', 			'TXT_KEY_POLICY_CS_RELIGIOUS' UNION ALL
 SELECT 'POLICY_MONOPOLY_CHEESE', 		'TXT_KEY_RESOURCE_CHEESE' UNION ALL
 SELECT 'POLICY_MONOPOLY_HONEY', 		'TXT_KEY_RESOURCE_HONEY' UNION ALL
+SELECT 'POLICY_MONOPOLY_ROPES', 		'TXT_KEY_RESOURCE_ROPES' UNION ALL
 SELECT 'POLICY_MONOPOLY_MANUSCRIPTS', 	'TXT_KEY_RESOURCE_MANUSCRIPTS' UNION ALL
-SELECT 'POLICY_MONOPOLY_MOSAICS', 		'TXT_KEY_RESOURCE_MOSAICS';
+SELECT 'POLICY_MONOPOLY_MOSAICS', 		'TXT_KEY_RESOURCE_MOSAICS' UNION ALL
+SELECT 'POLICY_MONOPOLY_GUNPOWDER', 		'TXT_KEY_RESOURCE_GUNPOWDER';
 
 UPDATE Policies SET AfraidMinorPerTurnInfluence = 100 WHERE Type = 'POLICY_ALMATY';
 UPDATE Policies SET CityStateUnitFrequencyModifier = 10 WHERE Type = 'POLICY_AMBRACIA';
@@ -1521,7 +1531,14 @@ INSERT INTO Policy_UnitCombatProductionModifiers
 			(PolicyType,					UnitCombatType,			ProductionModifier)
 SELECT 		'POLICY_WOOTEI_NIICIE', 		'UNITCOMBAT_MOUNTED',	10 UNION ALL
 SELECT 		'POLICY_WOOTEI_NIICIE', 		'UNITCOMBAT_GUN',		10 UNION ALL
-SELECT 		'POLICY_MONOPOLY_MANUSCRIPTS', 	'UNITCOMBAT_DIPLOMACY',	10;
+SELECT 		'POLICY_MONOPOLY_MANUSCRIPTS', 	'UNITCOMBAT_DIPLOMACY',	10 UNION ALL
+SELECT 		'POLICY_MONOPOLY_ROPES', 	'UNITCOMBAT_NAVALMELEE',	10 UNION ALL
+SELECT 		'POLICY_MONOPOLY_ROPES', 	'UNITCOMBAT_NAVALRANGED',	10 UNION ALL
+SELECT 		'POLICY_MONOPOLY_ROPES', 	'UNITCOMBAT_CARRIER',	10 UNION ALL
+SELECT 		'POLICY_MONOPOLY_ROPES', 	'UNITCOMBAT_SUBMARINE',	10 UNION ALL
+SELECT 		'POLICY_MONOPOLY_ROPES', 	'UNITCOMBAT_CARGO',	10 UNION ALL
+SELECT 		'POLICY_MONOPOLY_ROPES', 	'UNITCOMBAT_WORKBOAT',	10 UNION ALL
+SELECT 		'POLICY_MONOPOLY_GUNPOWDER', 	'UNITCOMBAT_GUN',	5;
 
 INSERT INTO Policy_ResourceYieldChanges
 			(PolicyType,					ResourceType,			YieldType,				Yield)
@@ -3034,18 +3051,25 @@ INSERT INTO IconFontMapping
 			-- luxuries
 VALUES		('ICON_RES_DOGO_CANARIO', 	'UCS_RESOURCE_FONT_ATLAS',	1),
 			('ICON_RES_LLAO_LLAO', 		'UCS_RESOURCE_FONT_ATLAS',	2),
-			-- bonus
 			('ICON_RES_REINDEER', 		'UCS_RESOURCE_FONT_ATLAS',	3),
+			('ICON_RES_4', 		'UCS_RESOURCE_FONT_ATLAS',	4),
 			-- city-state
-			('ICON_RES_BEER', 			'UCS_RESOURCE_FONT_ATLAS',	4),
-			('ICON_RES_CHEESE', 		'UCS_RESOURCE_FONT_ATLAS',	5),
-			('ICON_RES_HONEY', 			'UCS_RESOURCE_FONT_ATLAS',	6),
-			('ICON_RES_TAPESTRIES', 	'UCS_RESOURCE_FONT_ATLAS',	7),
-			('ICON_RES_SCULPTURES', 	'UCS_RESOURCE_FONT_ATLAS',	8),
-			('ICON_RES_COINS', 			'UCS_RESOURCE_FONT_ATLAS',	9),
-			('ICON_RES_MANUSCRIPTS', 	'UCS_RESOURCE_FONT_ATLAS',	10),
-			('ICON_RES_CHAMPAGNE', 		'UCS_RESOURCE_FONT_ATLAS',	11),
-			('ICON_RES_MOSAICS', 		'UCS_RESOURCE_FONT_ATLAS',	12);
+			('ICON_RES_BEER', 			'UCS_RESOURCE_FONT_ATLAS',	5),
+			('ICON_RES_CHEESE', 		'UCS_RESOURCE_FONT_ATLAS',	6),
+			('ICON_RES_HONEY', 			'UCS_RESOURCE_FONT_ATLAS',	7),
+			('ICON_RES_ROPES', 			'UCS_RESOURCE_FONT_ATLAS',	8),
+			('ICON_RES_TAPESTRIES', 	'UCS_RESOURCE_FONT_ATLAS',	9),
+			('ICON_RES_SCULPTURES', 	'UCS_RESOURCE_FONT_ATLAS',	10),
+			('ICON_RES_COINS', 			'UCS_RESOURCE_FONT_ATLAS',	11),
+			('ICON_RES_C4', 			'UCS_RESOURCE_FONT_ATLAS',	12),
+			('ICON_RES_MANUSCRIPTS', 	'UCS_RESOURCE_FONT_ATLAS',	13),
+			('ICON_RES_CHAMPAGNE', 		'UCS_RESOURCE_FONT_ATLAS',	14),
+			('ICON_RES_MOSAICS', 		'UCS_RESOURCE_FONT_ATLAS',	15),
+			('ICON_RES_R4', 		'UCS_RESOURCE_FONT_ATLAS',	16),
+			('ICON_RES_GUNPOWDER', 		'UCS_RESOURCE_FONT_ATLAS',	17),
+			('ICON_RES_O2', 		'UCS_RESOURCE_FONT_ATLAS',	18),
+			('ICON_RES_O3', 		'UCS_RESOURCE_FONT_ATLAS',	19),
+			('ICON_RES_M4', 		'UCS_RESOURCE_FONT_ATLAS',	20);
 ---------------------------------------------------
 -- Definitions - Improvements
 ---------------------------------------------------	
@@ -3335,15 +3359,17 @@ INSERT INTO Resources
 VALUES		('RESOURCE_DOGO_CANARIO',	null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_DOGO_CANARIO',	'TXT_KEY_RESOURCE_DOGO_CANARIO_TEXT',	'TXT_KEY_RESOURCE_DOGO_CANARIO_MONOPOLY',	'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_DOGO_CANARIO',	null,					0,				2,			2,				'[ICON_RES_DOGO_CANARIO]',	0, 				'UCS_RESOURCE_ATLAS'),
 			('RESOURCE_LLAO_LLAO',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_LLAO_LLAO',		'TXT_KEY_RESOURCE_LLAO_LLAO_TEXT',		'TXT_KEY_RESOURCE_LLAO_LLAO_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_LLAO_LLAO',		null,					0,				2,			2,				'[ICON_RES_LLAO_LLAO]',		1, 				'UCS_RESOURCE_ATLAS'),
 			('RESOURCE_REINDEER',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_REINDEER',		'TXT_KEY_RESOURCE_REINDEER_TEXT',		'TXT_KEY_RESOURCE_REINDEER_MONOPOLY',		'RESOURCECLASS_BONUS',		0,				'ART_DEF_RESOURCE_REINDEER',		null,					0,				0,			0,				'[ICON_RES_REINDEER]',		2, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_BEER',			null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_BEER',			'TXT_KEY_RESOURCE_BEER_TEXT',			'TXT_KEY_RESOURCE_BEER_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_BEER',			null,					0,				2,			2,				'[ICON_RES_BEER]',			3, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_CHEESE',			null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_CHEESE',			'TXT_KEY_RESOURCE_CHEESE_TEXT',			'TXT_KEY_RESOURCE_CHEESE_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_CHEESE',			null,					0,				2,			2,				'[ICON_RES_CHEESE]',		4, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_HONEY',			null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_HONEY',			'TXT_KEY_RESOURCE_HONEY_TEXT',			'TXT_KEY_RESOURCE_HONEY_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_HONEY',			null,					0,				2,			2,				'[ICON_RES_HONEY]',			5, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_TAPESTRIES',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_TAPESTRIES',		'TXT_KEY_RESOURCE_TAPESTRIES_TEXT',		'TXT_KEY_RESOURCE_TAPESTRIES_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_TAPESTRIES',		null,					0,				2,			2,				'[ICON_RES_TAPESTRIES]',	6, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_SCULPTURES',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_SCULPTURES',		'TXT_KEY_RESOURCE_SCULPTURES_TEXT',		'TXT_KEY_RESOURCE_SCULPTURES_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_SCULPTURES',		null,					0,				2,			2,				'[ICON_RES_SCULPTURES]',	7, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_COINS',			null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_COINS',			'TXT_KEY_RESOURCE_COINS_TEXT',			'TXT_KEY_RESOURCE_COINS_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_COINS',			null,					1,				2,			2,				'[ICON_RES_COINS]',			8, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_CHAMPAGNE',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_CHAMPAGNE',		'TXT_KEY_RESOURCE_CHAMPAGNE_TEXT',		'TXT_KEY_RESOURCE_CHAMPAGNE_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_CHAMPAGNE',		null,					0,				2,			2,				'[ICON_RES_CHAMPAGNE]',		10, 			'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_BEER',			null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_BEER',			'TXT_KEY_RESOURCE_BEER_TEXT',			'TXT_KEY_RESOURCE_BEER_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_BEER',			null,					0,				2,			2,				'[ICON_RES_BEER]',			4, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_CHEESE',			null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_CHEESE',			'TXT_KEY_RESOURCE_CHEESE_TEXT',			'TXT_KEY_RESOURCE_CHEESE_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_CHEESE',			null,					0,				2,			2,				'[ICON_RES_CHEESE]',		5, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_HONEY',			null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_HONEY',			'TXT_KEY_RESOURCE_HONEY_TEXT',			'TXT_KEY_RESOURCE_HONEY_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_HONEY',			null,					0,				2,			2,				'[ICON_RES_HONEY]',			6, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_ROPES',			null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_ROPES',			'TXT_KEY_RESOURCE_ROPES_TEXT',			'TXT_KEY_RESOURCE_ROPES_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_ROPES',			null,					0,				2,			2,				'[ICON_RES_ROPES]',			7, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_TAPESTRIES',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_TAPESTRIES',		'TXT_KEY_RESOURCE_TAPESTRIES_TEXT',		'TXT_KEY_RESOURCE_TAPESTRIES_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_TAPESTRIES',		null,					0,				2,			2,				'[ICON_RES_TAPESTRIES]',	8, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_SCULPTURES',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_SCULPTURES',		'TXT_KEY_RESOURCE_SCULPTURES_TEXT',		'TXT_KEY_RESOURCE_SCULPTURES_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_SCULPTURES',		null,					0,				2,			2,				'[ICON_RES_SCULPTURES]',	9, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_COINS',			null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_COINS',			'TXT_KEY_RESOURCE_COINS_TEXT',			'TXT_KEY_RESOURCE_COINS_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_COINS',			null,					1,				2,			2,				'[ICON_RES_COINS]',			10, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_CHAMPAGNE',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_CHAMPAGNE',		'TXT_KEY_RESOURCE_CHAMPAGNE_TEXT',		'TXT_KEY_RESOURCE_CHAMPAGNE_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_CHAMPAGNE',		null,					0,				2,			2,				'[ICON_RES_CHAMPAGNE]',		13, 			'UCS_RESOURCE_ATLAS'),
 			('RESOURCE_MANUSCRIPTS',	null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_MANUSCRIPTS',		'TXT_KEY_RESOURCE_MANUSCRIPTS_TEXT',	'TXT_KEY_RESOURCE_MANUSCRIPTS_MONOPOLY',	'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_MANUSCRIPTS',		null,					0,				2,			2,				'[ICON_RES_MANUSCRIPTS]',	2, 				'EXPANSION_SCEN_TECH_ATLAS'),
-			('RESOURCE_MOSAICS',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_MOSAICS',			'TXT_KEY_RESOURCE_MOSAICS_TEXT',		'TXT_KEY_RESOURCE_MOSAICS_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_MOSAICS',			null,					0,				2,			2,				'[ICON_RES_MOSAICS]',		11, 			'UCS_RESOURCE_ATLAS');
+			('RESOURCE_MOSAICS',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_MOSAICS',			'TXT_KEY_RESOURCE_MOSAICS_TEXT',		'TXT_KEY_RESOURCE_MOSAICS_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_MOSAICS',			null,					0,				2,			2,				'[ICON_RES_MOSAICS]',		14, 			'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_GUNPOWDER',		null,			'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_GUNPOWDER',			'TXT_KEY_RESOURCE_GUNPOWDER_TEXT',		'TXT_KEY_RESOURCE_GUNPOWDER_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_GUNPOWDER',			null,					0,				2,			2,				'[ICON_RES_GUNPOWDER]',		16, 			'UCS_RESOURCE_ATLAS');
 ---------------------------------------------------------
 DELETE FROM Resource_YieldChanges WHERE ResourceType IN ('RESOURCE_GLASS', 'RESOURCE_JEWELRY', 'RESOURCE_PORCELAIN');
 UPDATE Resources SET MonopolyHappiness = 0 WHERE Type IN ('RESOURCE_GLASS', 'RESOURCE_JEWELRY');
@@ -3352,24 +3378,25 @@ UPDATE Resources SET MonopolyGALength = 0, OnlyMinorCivs = 0 WHERE Type IN ('RES
 INSERT INTO Language_en_US
 			(Tag, 										Text)
 SELECT		'TXT_KEY_RESOURCE_GLASS_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] ???.' UNION ALL
-SELECT		'TXT_KEY_RESOURCE_JEWELRY_MONOPOLY',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] ???.';
+SELECT		'TXT_KEY_RESOURCE_JEWELRY_MONOPOLY',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_GREAT_MERCHANT] Great Merchant Points in all owned Cities.';
 SELECT		'TXT_KEY_RESOURCE_PORCELAIN_MONOPOLY',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] ???.';
 
 UPDATE Resources SET Help = 'TXT_KEY_RESOURCE_GLASS_MONOPOLY' WHERE Type IN ('RESOURCE_GLASS');
 UPDATE Resources SET Help = 'TXT_KEY_RESOURCE_JEWELRY_MONOPOLY' WHERE Type IN ('RESOURCE_JEWELRY');
 UPDATE Resources SET Help = 'TXT_KEY_RESOURCE_PORCELAIN_MONOPOLY' WHERE Type IN ('RESOURCE_PORCELAIN');
 ---------------------------------------------------------
-UPDATE Resources SET MonopolyHappiness = 3 WHERE Type = 'RESOURCE_LLAO_LLAO';
+UPDATE Resources SET MonopolyHappiness = 2 WHERE Type = 'RESOURCE_LLAO_LLAO';
 
 INSERT INTO Resource_CityYieldModFromMonopoly
 			(ResourceType, 				YieldType, 				Yield)
-VALUES		('RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			5),
-			('RESOURCE_DOGO_CANARIO',	'YIELD_PRODUCTION',		5),
-			('RESOURCE_LLAO_LLAO',		'YIELD_FOOD',			5);
+VALUES		('RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			3),
+			('RESOURCE_DOGO_CANARIO',	'YIELD_PRODUCTION',		3),
+			('RESOURCE_LLAO_LLAO',		'YIELD_FOOD',			3);
 
 INSERT INTO Resource_MonopolyGreatPersonRateModifiers
 			(ResourceType, 			SpecialistType, 		IsGlobalMonopoly,	IsStrategicMonopoly,	Modifier)
-VALUES		('RESOURCE_BEER',		'SPECIALIST_ENGINEER',	1,					0,						10);
+VALUES		('RESOURCE_BEER',		'SPECIALIST_ENGINEER',	1,					0,						10),
+			('RESOURCE_JEWELRY',		'SPECIALIST_MERCHANT',	1,					0,						10);
 ---------------------------------------------------------
 INSERT INTO Resource_YieldChanges
 			(ResourceType, 				YieldType, 				Yield)
@@ -3386,12 +3413,14 @@ VALUES		('IMPROVEMENT_CAMP',		'RESOURCE_DOGO_CANARIO',	1,					1),
 			('IMPROVEMENT_CITY',		'RESOURCE_BEER',			1,					1),
 			('IMPROVEMENT_CITY',		'RESOURCE_CHEESE',			1,					1),
 			('IMPROVEMENT_CITY',		'RESOURCE_HONEY',			1,					1),
+			('IMPROVEMENT_CITY',		'RESOURCE_ROPES',			1,					1),
 			('IMPROVEMENT_CITY',		'RESOURCE_PORCELAIN',		1,					1),
 			('IMPROVEMENT_CITY',		'RESOURCE_TAPESTRIES',		1,					1),
 			('IMPROVEMENT_CITY',		'RESOURCE_SCULPTURES',		1,					1),
 			('IMPROVEMENT_CITY',		'RESOURCE_CHAMPAGNE',		1,					1),
 			('IMPROVEMENT_CITY',		'RESOURCE_MANUSCRIPTS',		1,					1),
-			('IMPROVEMENT_CITY',		'RESOURCE_MOSAICS',			1,					1);
+			('IMPROVEMENT_CITY',		'RESOURCE_MOSAICS',			1,					1),
+			('IMPROVEMENT_CITY',		'RESOURCE_GUNPOWDER',			1,					1);
 
 INSERT INTO Improvement_ResourceType_Yields
 			(ImprovementType,			ResourceType, 				YieldType, 				Yield)
