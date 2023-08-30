@@ -55,19 +55,17 @@ Changelog:
 			- City-States now claim their GPTIs if they are spawned outside their borders;
 			- City-States now gain a UGPTI on entering the Classical Era, instead of on founding their city, to delay the problems with culture bombing;
 			- now placed only on Strategic resources or tiles without any resource;
-		- Maritime, Cultured and Religious City-States now get their own pools of unique luxuries, that work the same way Mercantile's ones did:
-			(each of them has now unique monopoly bonus totally different from the "standard" luxuries)
-			(from this version UCS becomes not compatible with EMR, which as the mod itself is very problematic and need some rework btw)
-			- Maritime: Beer, Cheese, Honey;
-			- Mercantile: Glass (old), Jewelry (old), ???
-			- Cultured: Porcelain (moved from Mercantile), Tapestry, ???;
-			- Religious: Champagne, Manuscripts, ???;
+		- Maritime, Cultured, Religious and Militaristic City-States now get their own pools of unique luxuries, that work the same way Mercantile's ones did:
+			- each of them has now unique monopoly bonus totally different from the "standard" luxuries)
+			- old Mercantile CS resources now have changed Monopoly abilities;
+			- from this version UCS becomes not compatible with EMR, which as the mod itself is very problematic and need some rework btw;
+			- City-States related luxury resources now have weaker monopoly abilities than regular resources;
+				- Maritime: Beer, Cheese, Honey, Ropes;
+				- Mercantile: Glass (old), Jewelry (old), Coins;
+				- Cultured: Porcelain (moved from Mercantile), Tapestries, Sculptures;
+				- Religious: Champagne, Manuscripts, Mosaics;
+				- Militaristic (rare): Gunpowder;
 		- Cultured City-States now have 0.5% chance for giving the player (if he has free slots) Great Work of Art, Writing or Music (in reversed order, so first are checked music etc.);
-		- City-States related luxury resources now have weaker monopoly abilities than regular resources;
-			(base VP CS related resources (Glass, Jewelry, Porcelain) got their Monopoly bonuses halved)
-			- Glass: +6 Happiness --> +3 Happiness;
-			- Jewelry: +6 Happiness --> +3 Happiness;
-			- Porcelain: +30% GA Length --> +15% GA Length;
 	- Dogo Canario rework:
 		- now has improved Camp model;
 		- now has additional Under Construction model specially for a resource placement;
