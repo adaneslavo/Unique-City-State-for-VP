@@ -83,7 +83,7 @@ Changelog:
 	- Managua rework:
 		- Managua is now Cultured City-State to split the bunch of Mercantile CSs in the Central America;
 		- Managua now has American style (was European);
-		- managua gets new ability based on espionage (3rd CS using such; old ability moved to Sana'a);
+		- Managua gets new abilities based on espionage (3rd CS using such; old ability moved to Sana'a);
 	- Nan Madol: culture on death is now applied once in Capital instead of for each city;
 - fixed:
 	- helper (aka CS tooltip) rework/fix:
@@ -92,8 +92,8 @@ Changelog:
 		- added info about possible Diplomatic Marriage (Austrian UA);
 		- used predefined tags for personalities and traits;
 		- added couple of text tags for localizations;
-		- fixed spacing in the title (no space before an icon);
-		- fixed pledge of protections text replacement added long time ago;
+		- fixed spacing in the title (was no space before an icon);
+		- fixed pledge of protection's text replacement added long time ago;
 		- fixed influence text;
 		- more text replacements;
 	- gifts:
