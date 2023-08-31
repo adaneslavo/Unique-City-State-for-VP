@@ -20,6 +20,7 @@
 		<Row Tag="TXT_KEY_UCS_BONUS_INFLUENCE_TITLE">
 			<Text>Overwhelming influence with a City-State!</Text>
 		</Row>
+		
 
 		<!-- text for CityStateStatusHelper.lua -->
 		<Row Tag="TXT_KEY_UCS_HELPER_HEADER_PERSONALITY_FRIENDLY">
@@ -55,6 +56,7 @@
 		<Row Tag="TXT_KEY_UCS_CONFLICT_RESOLVED_TITLE">
 			<Text>CONFLICT RESOLVED! RELOAD REQUIRED...</Text>
 		</Row>
+		
 
 		<!-- notifications for friendly unit gifts -->
 		<Row Tag="TXT_KEY_UCS_PASSIVES_GIFTS">
@@ -69,6 +71,7 @@
 		<Row Tag="TXT_KEY_UCS_PASSIVES_GREAT_WORK_GIFTS_TITLE">
 			<Text>New masterpiece arrived!</Text>
 		</Row>
+		
 
 		<!-- notifications for unit actions -->
 		<Row Tag="TXT_KEY_UCS_NIHANG_RIPOSTED">
@@ -89,6 +92,7 @@
 		<Row Tag="TXT_KEY_UCS_TEAAT_TITLE">
 			<Text>Great event on the sea!</Text>
 		</Row>
+		
 
 		<!-- notifications for CSs' lua custom events -->
 		<Row Tag="TXT_KEY_UCS_BONUS_BOGOTA_LIBERATION">
