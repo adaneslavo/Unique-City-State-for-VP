@@ -39,7 +39,7 @@ Changelog:
 	- 2 new map Resources:
 		- Reindeer, bonus (exclusive for Karasjohka);
 		- Llao Llao, luxury (unused);
-	- 6 new CS related Resources (below);
+	- 11 new CS related Resources (below);
 - changed:
 	- reworked civilopedia entries for: Armagh, Muscat and Nan Madol;
 	- now all events have CS names (helps with Wonder Planner compatibility);
@@ -71,6 +71,7 @@ Changelog:
 		- now has additional Under Construction model specially for a resource placement;
 		- Dogos are now correctly placed on a hill (were fading inside);
 		- Dogos can now only be placed on Plains or Grasslands (could anywhere);
+		- Dogos cannot be placed on hiden resources (prevents substituting Strategic Resources);
 		- Dogos have now +1 base Food (was +2);
 	- Totem Pole rework:
 		- now has Pillaged and Under Construction model (by @ghost toast);
@@ -80,6 +81,7 @@ Changelog:
 		- added FaithCost, so it may be bought with Faith after acquiring certain belief;
 		- obsoletes correctly like other UUs;
 		- has default AI;
+		- now unlocked at Rifling (like regular unit);
 	- Managua rework:
 		- Managua is now Cultured City-State to split the bunch of Mercantile CSs in the Central America;
 		- Managua now has American style (was European);
@@ -107,8 +109,12 @@ Changelog:
 		- optimizing and fixing;
 	- Potala Palace now unlocked at Architecture (should help a bit with CS quests asking to build it);
 	- Jerusalem now checks if Major player created a Religion (so does not take the Pantheons into account);
-	- Bylina, Gate of Dawn and Visconti Emissary now have free GW slot (was specialist slot);
+	- fixed Sidon's lua code fore Sphere of Influence;
 	- Bedulu now gets Faith from Trade Routes (and Dodoma does not);
+	- Quebec's lua now prevents "pPlayer == nil" error;
+	- fixed Ife's double trigger on faith gain;
+	- Bylina, Gate of Dawn and Visconti Emissary now have free GW slot (was specialist slot);
+	- fixed missing Milan's and Kiev's dummies in the code;
 	- Sisqeno fixes:
 		- Worker now gains same free promotions like Sisqeno (Missionary);
 		- fixed Sisqeno lua bug;
@@ -138,6 +144,7 @@ Changelog:
 		- Dogo Canario now shows correct monopoly text;
 		- monopoly texts are now shorter to save the space for Trade Opportunities window (tooltip for custom resources);
 		- deleted 3 outdated text changes (from the base UCS, one was changing Siam's trait...);
+		- Iwarefa promotion text fix;
 		- "Bullying" is now "Demanding a Tribute";
 		
 

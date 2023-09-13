@@ -768,6 +768,10 @@ function MaritimeCityStatesBonuses(ePlayer, iX, iY)
 	if eMinorTrait ~= tMinorTraits[1] then return end
 	
 	local pMinorCapital = pPlayer:GetCapitalCity()
+	local iCapitalX = pMinorCapital:GetX()
+	local iCapitalY = pMinorCapital:GetY()
+	
+	if iCapitalX ~= iX or iCapitalY ~= iY then return end
 	
 	-- Unique Luxuries
 	if tSettings["EnablePassivesLuxuries"] then
@@ -1020,6 +1024,10 @@ function MercantileCityStatesBonuses(ePlayer, iX, iY)
 	if eMinorTrait ~= tMinorTraits[2] then return end
 	
 	local pMinorCapital = pPlayer:GetCapitalCity()
+	local iCapitalX = pMinorCapital:GetX()
+	local iCapitalY = pMinorCapital:GetY()
+	
+	if iCapitalX ~= iX or iCapitalY ~= iY then return end
 	
 	-- Luxury Resource
 	local tLuxuryResourcesIDs = {}
@@ -1290,6 +1298,10 @@ function MilitaristicCityStatesBonuses(ePlayer, iX, iY)
 	if eMinorTrait ~= tMinorTraits[3] then return end
 	
 	local pMinorCapital = pPlayer:GetCapitalCity()
+	local iCapitalX = pMinorCapital:GetX()
+	local iCapitalY = pMinorCapital:GetY()
+	
+	if iCapitalX ~= iX or iCapitalY ~= iY then return end
 	
 	-- Strategic Resource
 	local tStrategicResourcesIDs = {}
@@ -1568,6 +1580,10 @@ function CulturedCityStatesBonuses(ePlayer, iX, iY)
 	if eMinorTrait ~= tMinorTraits[4] then return end
 	
 	local pMinorCapital = pPlayer:GetCapitalCity()
+	local iCapitalX = pMinorCapital:GetX()
+	local iCapitalY = pMinorCapital:GetY()
+	
+	if iCapitalX ~= iX or iCapitalY ~= iY then return end
 	
 	-- Unique Luxuries
 	if tSettings["EnablePassivesLuxuries"] then
@@ -1906,6 +1922,10 @@ function ReligiousCityStatesBonuses(ePlayer, iX, iY)
 	if eMinorTrait ~= tMinorTraits[5] then return end
 	
 	local pMinorCapital = pPlayer:GetCapitalCity()
+	local iCapitalX = pMinorCapital:GetX()
+	local iCapitalY = pMinorCapital:GetY()
+	
+	if iCapitalX ~= iX or iCapitalY ~= iY then return end
 	
 	-- Unique Luxuries
 	if tSettings["EnablePassivesLuxuries"] then
@@ -2312,7 +2332,11 @@ function CanWePlaceDogoCanario(ePlayer, eUnit, iX, iY, eBuild)
 	
 	local pPlot = Map.GetPlot(iX, iY)
 	
-	if not pPlot:IsHills() then return false end		
+	--if not pPlot:IsHills() then return false end
+
+	local eResource = pPlot:GetResourceType()
+	
+	if eResource ~= -1 then return false end
 
 	return true
 end
@@ -2352,6 +2376,7 @@ end
 	GameEvents.BuildFinished.Add(PlacedLlaoLlao) -- !!!DELETE
 
 
+	
 -- CAHOKIA (IMPROVEMENT MOUND)
 function CanWeBuildMound(ePlayer, eUnit, iX, iY, eBuild)
 	if eBuild ~= GameInfoTypes.BUILD_MOUND then return true end
@@ -2574,7 +2599,7 @@ function MonasteriesOnNewCity(ePlayer, iX, iY)
 end
 
 function PlaceDummiesForMonasteries()
-	for eplayer = 0, GameDefines.MAX_MAJOR_CIVS-1, 1 do
+	for eplayer = 0, GameDefines.MAX_MAJOR_CIVS - 1, 1 do
 		local pPlayer = Players[eplayer]
 	
 		if pPlayer:IsAlive() then
@@ -2596,7 +2621,7 @@ function PlaceDummiesForMonasteries()
 end
 
 function CheckAllMonasteries()
-	for eplayer = 0, GameDefines.MAX_MAJOR_CIVS-1, 1 do
+	for eplayer = 0, GameDefines.MAX_MAJOR_CIVS - 1, 1 do
 		local pPlayer = Players[eplayer]
 	
 		if pPlayer:IsAlive() then
@@ -2931,8 +2956,8 @@ function DestroyLifeForSidon(ePlayer, eCS, iGold, eUnitType, iPlotX, iPlotY)
 	local pPlayer = Players[ePlayer]
 
 	if not Game.IsResolutionPassed(eSphere, tLostCities["eLostSidon"]) and pPlayer:GetEventChoiceCooldown(tEventChoice[7]) ~= 0 and Game.GetNumActiveLeagues() ~= 0 then
-		local pSidonCity = pMinorPlayer:GetCapitalCity()
 		local pMinorPlayer = Players[tLostCities["eLostSidon"]]
+		local pSidonCity = pMinorPlayer:GetCapitalCity()
 		
 		Game.DoEnactResolution(eSphere, tLostCities["eLostSidon"], ePlayer)
 		
@@ -4620,7 +4645,7 @@ end
 
 
 -- IFE (FAITH ON TRAINED DIPLO UNITS)
-function FaithForDiploFromIfe(ePlayer, eCity, eUnit, bGold, bFaith)	
+--[[function FaithForDiploFromIfe(ePlayer, eCity, eUnit, bGold, bFaith)	
 	local pPlayer = Players[ePlayer]
 	local pUnit = pPlayer:GetUnitByID(eUnit)
 	
@@ -4629,17 +4654,17 @@ function FaithForDiploFromIfe(ePlayer, eCity, eUnit, bGold, bFaith)
 			local iBaseYield = 30
 			local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
 			local iYoruba = iBaseYield * iEraModifier		
-			local pCity = pPlayer:GetCityByID(eCity)
-			local pIfe = Players[tLostCities["eLostIfe"]]
+			local pCity = pPlayer:GetCityByID(eCity)--]]
+			--local pIfe = Players[tLostCities["eLostIfe"]]
 		
-			pPlayer:DoInstantYield(GameInfoTypes.YIELD_FAITH, iYoruba, true, pCity:GetID())
+			--[[pPlayer:DoInstantYield(GameInfoTypes.YIELD_FAITH, iYoruba, true, pCity:GetID())
 						
 			if pPlayer:IsHuman() then
 				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_IFE", pUnit:GetName(), pIfe:GetName(), iYoruba), L("TXT_KEY_UCS_BONUS_IFE_TITLE"), pCity:GetX(), pCity:GetY())		
 			end
 		end
 	end
-end
+end--]]
 
 function FaithForDiploFromIfeSpawn(eUnitOwner, eUnit, eUnitType, iX, iY)	
 	local pPlayer = Players[eUnitOwner]
