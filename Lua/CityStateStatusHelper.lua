@@ -93,7 +93,7 @@ local ktQuestsIcon = {
 	[ MinorCivQuestTypes.MINOR_CIV_QUEST_LIBERATION or false ] = function() return "[ICON_OCCUPIED]" end,
 	[ MinorCivQuestTypes.MINOR_CIV_QUEST_HORDE or false ] = function() return "[ICON_HAPPINESS_3]" end,
 	[ MinorCivQuestTypes.MINOR_CIV_QUEST_REBELLION or false ] = function() return "[ICON_HAPPINESS_4]" end,
-	[ MinorCivQuestTypes.MINOR_CIV_QUEST_DISCOVER_AREA or false ] = function() return "[ICON_RANGE_STRENGTH]" end,
+	[ MinorCivQuestTypes.MINOR_CIV_QUEST_EXPLORE_AREA or false ] = function() return "[ICON_RANGE_STRENGTH]" end,
 	[ MinorCivQuestTypes.MINOR_CIV_QUEST_BUILD_X_BUILDINGS or false ] = function() return "[ICON_PRODUCTION]" end,
 	[ MinorCivQuestTypes.MINOR_CIV_QUEST_SPY_ON_MAJOR or false ] = function() return "[ICON_VIEW_CITY]" end,
 	[ MinorCivQuestTypes.MINOR_CIV_QUEST_COUP or false ] = function() return "[ICON_INQUISITOR]" end,
@@ -120,7 +120,7 @@ ktQuestsDisplayOrder = {
 	MinorCivQuestTypes.MINOR_CIV_QUEST_WAR or false, -- VP
 	MinorCivQuestTypes.MINOR_CIV_QUEST_LIBERATION or false, -- VP
 	-- Then other personal quests
-	MinorCivQuestTypes.MINOR_CIV_QUEST_DISCOVER_AREA or false,		-- VP
+	MinorCivQuestTypes.MINOR_CIV_QUEST_EXPLORE_AREA or false,		-- VP
 	MinorCivQuestTypes.MINOR_CIV_QUEST_BUILD_X_BUILDINGS or false,		-- VP
 	MinorCivQuestTypes.MINOR_CIV_QUEST_SPY_ON_MAJOR or false,		-- VP
 	MinorCivQuestTypes.MINOR_CIV_QUEST_COUP or false,		-- VP
@@ -261,13 +261,17 @@ function GetCityStateStatusText(majorPlayerID, minorPlayerID)
 		local majorInfluenceWithMinor = minorPlayer:GetMinorCivFriendshipWithMajor(majorPlayerID)
 
 		-- Status
-		if minorPlayer:IsAllies(majorPlayerID) then			-- Allies
+		if minorPlayer:IsAllies(majorPlayerID) then		-- Allies
 			strStatusText = "[COLOR_CYAN]" .. L("TXT_KEY_ALLIES")
 		elseif minorPlayer:IsFriends(majorPlayerID) then		-- Friends
 			strStatusText = "[COLOR_POSITIVE_TEXT]" .. L("TXT_KEY_FRIENDS")
-		elseif minorPlayer:IsMinorPermanentWar(majorTeamID) then	-- Permanent War
+		elseif minorPlayer:IsMinorPermanentWar(majorTeamID) then		-- Permanent War
 			strStatusText = "[COLOR_NEGATIVE_TEXT]" .. L("TXT_KEY_PERMANENT_WAR")
-		elseif minorPlayer:IsPeaceBlocked(majorTeamID) then		-- Peace blocked by being at war with ally
+		elseif minorPlayer:IsAllyAtWar(majorTeamID) then		-- Peace blocked by being at war with ally
+			strStatusText = "[COLOR_NEGATIVE_TEXT]" .. L("TXT_KEY_PEACE_BLOCKED")
+		elseif minorPlayer:GetPeaceBlockedTurns(majorTeamID) > 0 then		-- Peace blocked due to attacking too recently
+			strStatusText = "[COLOR_NEGATIVE_TEXT]" .. L("TXT_KEY_PEACE_BLOCKED_TURNS", pMinor:GetPeaceBlockedTurns(iActiveTeam))
+		elseif minorPlayer:IsPeaceBlocked(majorTeamID) then		-- Can't make peace for some other reason
 			strStatusText = "[COLOR_NEGATIVE_TEXT]" .. L("TXT_KEY_PEACE_BLOCKED")
 		elseif isAtWar then		-- War
 			strStatusText = "[COLOR_NEGATIVE_TEXT]" .. L("TXT_KEY_WAR")
@@ -281,7 +285,7 @@ function GetCityStateStatusText(majorPlayerID, minorPlayerID)
 			end
 		-- Neutral
 		else 
-			strStatusText = "[COLOR_WHITE]" .. L("TXT_KEY_CITY_STATE_PERSONALITY_NEUTRAL")
+			strStatusText = "[COLOR_WHITE]" .. L("TXT_KEY_NEUTRAL_CSTATE")
 		end
 		
 		strStatusText = strStatusText .. "[ENDCOLOR]"
@@ -812,8 +816,8 @@ local function QuestString(majorPlayerID, minorPlayer, questID, questData1, ques
 			return L("TXT_KEY_CITY_STATE_QUEST_HORDE_FORMAL")
 		elseif questID == MinorCivQuestTypes.MINOR_CIV_QUEST_REBELLION then
 			return L("TXT_KEY_CITY_STATE_QUEST_REBELLION_FORMAL")
-		elseif questID == MinorCivQuestTypes.MINOR_CIV_QUEST_DISCOVER_AREA then
-			return L("TXT_KEY_CITY_STATE_QUEST_DISCOVER_AREA_FORMAL", minorPlayer:GetExplorePercent(majorPlayerID , questID))
+		elseif questID == MinorCivQuestTypes.MINOR_CIV_QUEST_EXPLORE_AREA then
+			return L("TXT_KEY_CITY_STATE_QUEST_EXPLORE_AREA_FORMAL", minorPlayer:GetExplorePercent(majorPlayerID , questID))
 		elseif questID == MinorCivQuestTypes.MINOR_CIV_QUEST_BUILD_X_BUILDINGS then
 			return L("TXT_KEY_CITY_STATE_QUEST_BUILD_X_BUILDINGS_FORMAL", GameInfo.Buildings[questData1].Description, minorPlayer:GetXQuestBuildingRemaining(majorPlayerID, questID, questData1))
 		elseif questID == MinorCivQuestTypes.MINOR_CIV_QUEST_SPY_ON_MAJOR then

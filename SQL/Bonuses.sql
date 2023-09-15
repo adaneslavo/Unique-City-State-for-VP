@@ -727,7 +727,7 @@ SELECT 'TXT_KEY_RESOURCE_COINS_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonu
 SELECT 'TXT_KEY_RESOURCE_GUNPOWDER',					'Gunpowder' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_GUNPOWDER_TEXT',				'The invention of gunpowder is usually attributed to Chinese alchemists during the Tang dynasty, one of the "Four Great Inventions of China." The earliest written record of it – a formula composed of sulfur, charcoal and potassium nitrate dating to the later Song dynasty – was supposed to be an elixir for immortality... it was anything but. But the Chinese did discover that it burned explosively and the resultant gases expanded rapidly when exposed to heat; so it was useful for making fireworks. The Chinese found a more practical use for gunpowder in crude bombs and rockets which they used against the Mongols... until the Mongols overran China and then used the new weapon against everyone else on their path westward.[NEWLINE][NEWLINE]While the Mongols were using gunpowder to intimidate the Europeans they encountered, the Arabs sometime between 1240 and 1280 AD developed better recipes, purer niter, and more deadly weapons – notably cannon and a primitive arquebus. Some historical texts state that the Mamluks used the first cannon in history against the Mongols during the battle at Ain Jalut in 1260, but this is open to debate. The earliest description of a "portable hand cannon", however, does appear in an Arabic manuscript from the 14th Century. Once they''d turned back the Mongols, the Arabs put these to use elsewhere.[NEWLINE][NEWLINE]But it was the Europeans who really took to gunpowder as a means of wholesale slaughter. Not only did they improve the formula and add touches such as "corning" – using liquid to increase granularity and hence stability – and "smokeless" powder, but they created all sorts of toys that used it to hurl small and large bits of lead and iron at people. From the days of the Renaissance, military history in Europe was shaped by gunpowder, as it came to dominate the battlefield like no technology before.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_GUNPOWDER_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_PRODUCTION] towards Gunpowder Units on Empire.' UNION ALL
---SELECT 'TXT_KEY_RESOURCE_GUNPOWDER_MONOPOLY_FULL',	'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_PRODUCTION] Production towards Gunpowder Units in all Cities.' UNION ALL
+--SELECT 'TXT_KEY_RESOURCE_GUNPOWDER_MONOPOLY_FULL',	'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_PRODUCTION] Production towards Gunpowder Units in all owned Cities.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_BEER',							'Beer' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_BEER_TEXT',					'Beer is one of the oldest and most widely consumed alcoholic drinks in the world. It is also the third most popular drink overall after water and tea. Beer is brewed from cereal grains—most commonly from malted barley, though wheat, maize (corn), and rice are also used. During the brewing process, fermentation of the starch sugars in the wort produces ethanol and carbonation in the resulting beer.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_BEER_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_GREAT_ENGINEER] Great Engineer Points on Empire.' UNION ALL
@@ -738,20 +738,20 @@ SELECT 'TXT_KEY_RESOURCE_CHEESE_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bon
 --SELECT 'TXT_KEY_RESOURCE_CHEESE_MONOPOLY_FULL',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +2 [ICON_PRODUCTION] Production from all [ICON_RES_COW] Cattle and [ICON_RES_SHEEP] Sheep resources.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_HONEY',						'Honey' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_HONEY_TEXT',					'Honey is a sweet, viscous food substance made by bees and some related insects. Bees produce honey from the sugary secretions of plants (floral nectar) or from secretions of other insects (such as honeydew), by regurgitation, enzymatic activity, and water evaporation. Bees store honey in wax structures called honeycombs. Honey use and production have a long and varied history as an ancient activity. Several cave paintings in Cuevas de la Araña in Spain depict humans foraging for honey at least 8,000 years ago.' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_HONEY_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_FOOD] from all [ICON_RES_MAIZE] Maizes, [ICON_RES_RICE] Rices and [ICON_RES_WHEAT] Wheats.' UNION ALL
---SELECT 'TXT_KEY_RESOURCE_HONEY_MONOPOLY_FULL',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_FOOD] Food from all [ICON_RES_MAIZE] Maize, [ICON_RES_RICE] Rice and [ICON_RES_WHEAT] Wheat resources.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_HONEY_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_GOLD] from all [ICON_RES_MAIZE] Maizes, [ICON_RES_RICE] Rices and [ICON_RES_WHEAT] Wheats.' UNION ALL
+--SELECT 'TXT_KEY_RESOURCE_HONEY_MONOPOLY_FULL',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_GOLD] Gold from all [ICON_RES_MAIZE] Maize, [ICON_RES_RICE] Rice and [ICON_RES_WHEAT] Wheat resources.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_ROPES',						'Ropes' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_ROPES_TEXT',					'TODO' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_ROPES_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_PRODUCTION] towards Naval Units on Empire.' UNION ALL
---SELECT 'TXT_KEY_RESOURCE_ROPES_MONOPOLY_FULL',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_PRODUCTION] Production towards Naval Units in all Cities.' UNION ALL
+--SELECT 'TXT_KEY_RESOURCE_ROPES_MONOPOLY_FULL',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_PRODUCTION] Production towards Naval Units in all owned Cities.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_TAPESTRIES',					'Tapestries' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_TAPESTRIES_TEXT',				'TODO' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_TAPESTRIES_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] ???.' UNION ALL
 --SELECT 'TXT_KEY_RESOURCE_TAPESTRIES_MONOPOLY_FULL',	'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] ???.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_SCULPTURES',					'Sculptures' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_SCULPTURES_TEXT',				'TODO' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_SCULPTURES_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] ???.' UNION ALL
---SELECT 'TXT_KEY_RESOURCE_SCULPTURES_MONOPOLY_FULL',	'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] ???.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_SCULPTURES_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_GREAT_ARTIST] Great Artist Points on Empire.' UNION ALL
+--SELECT 'TXT_KEY_RESOURCE_SCULPTURES_MONOPOLY_FULL',	'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_GREAT_ARTIST] Great Artist Points in all owned Cities.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_CHAMPAGNE',					'Champagne' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_CHAMPAGNE_TEXT',				'Champagne is a French sparkling wine. Many people use the term Champagne as a generic term for sparkling wine, but in the EU and some other countries, it is illegal to label any product Champagne unless it comes from the Champagne region of France and is produced under the rules of the appellation.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_CHAMPAGNE_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] ???.' UNION ALL
@@ -759,7 +759,7 @@ SELECT 'TXT_KEY_RESOURCE_CHAMPAGNE_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly B
 SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS',					'Manuscripts' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS_TEXT',				'A Manuscript or Handwrit is written information that has been manually created by one or more people, such as a hand-written letter, as opposed to being printed or reproduced some other way. The term may also be used for information that is hand-recorded in other ways than writing, for example inscriptions that are chiselled upon a hard material or scratched (the original meaning of graffiti) as with a knife point in plaster or with a stylus on a waxed tablet (the way Romans made notes), or are in cuneiform writing, impressed with a pointed stylus in a flat tablet of unbaked clay.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_RES_PAPER] Paper. +10% [ICON_PRODUCTION] towards Diplomatic Units on Empire.' UNION ALL
---SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS_MONOPOLY_FULL',	'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_RES_PAPER] Paper. +10% [ICON_PRODUCTION] Production towards Diplomatic Units in all Cities.' UNION ALL
+--SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS_MONOPOLY_FULL',	'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_RES_PAPER] Paper. +10% [ICON_PRODUCTION] Production towards Diplomatic Units in all owned Cities.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_MOSAICS',						'Mosaics' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_MOSAICS_TEXT',					'TODO' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_MOSAICS_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_CULTURE] and +1 [ICON_PEACE] from all Holy Sites.';
@@ -1404,9 +1404,10 @@ SELECT 'POLICY_CS_RELIGIOUS', 			'TXT_KEY_POLICY_CS_RELIGIOUS' UNION ALL
 SELECT 'POLICY_MONOPOLY_CHEESE', 		'TXT_KEY_RESOURCE_CHEESE' UNION ALL
 SELECT 'POLICY_MONOPOLY_HONEY', 		'TXT_KEY_RESOURCE_HONEY' UNION ALL
 SELECT 'POLICY_MONOPOLY_ROPES', 		'TXT_KEY_RESOURCE_ROPES' UNION ALL
+SELECT 'POLICY_MONOPOLY_PORCELAIN', 	'TXT_KEY_RESOURCE_PORCELAIN' UNION ALL
 SELECT 'POLICY_MONOPOLY_MANUSCRIPTS', 	'TXT_KEY_RESOURCE_MANUSCRIPTS' UNION ALL
 SELECT 'POLICY_MONOPOLY_MOSAICS', 		'TXT_KEY_RESOURCE_MOSAICS' UNION ALL
-SELECT 'POLICY_MONOPOLY_GUNPOWDER', 		'TXT_KEY_RESOURCE_GUNPOWDER';
+SELECT 'POLICY_MONOPOLY_GUNPOWDER', 	'TXT_KEY_RESOURCE_GUNPOWDER';
 
 UPDATE Policies SET AfraidMinorPerTurnInfluence = 100 WHERE Type = 'POLICY_ALMATY';
 UPDATE Policies SET CityStateUnitFrequencyModifier = 10 WHERE Type = 'POLICY_AMBRACIA';
@@ -1528,25 +1529,26 @@ INSERT INTO Policy_FounderYield
 SELECT 		'POLICY_MOMBASA',	'YIELD_FAITH', 	40;
 
 INSERT INTO Policy_UnitCombatProductionModifiers
-			(PolicyType,					UnitCombatType,			ProductionModifier)
-SELECT 		'POLICY_WOOTEI_NIICIE', 		'UNITCOMBAT_MOUNTED',	10 UNION ALL
-SELECT 		'POLICY_WOOTEI_NIICIE', 		'UNITCOMBAT_GUN',		10 UNION ALL
-SELECT 		'POLICY_MONOPOLY_MANUSCRIPTS', 	'UNITCOMBAT_DIPLOMACY',	10 UNION ALL
-SELECT 		'POLICY_MONOPOLY_ROPES', 	'UNITCOMBAT_NAVALMELEE',	10 UNION ALL
-SELECT 		'POLICY_MONOPOLY_ROPES', 	'UNITCOMBAT_NAVALRANGED',	10 UNION ALL
-SELECT 		'POLICY_MONOPOLY_ROPES', 	'UNITCOMBAT_CARRIER',	10 UNION ALL
-SELECT 		'POLICY_MONOPOLY_ROPES', 	'UNITCOMBAT_SUBMARINE',	10 UNION ALL
-SELECT 		'POLICY_MONOPOLY_ROPES', 	'UNITCOMBAT_CARGO',	10 UNION ALL
-SELECT 		'POLICY_MONOPOLY_ROPES', 	'UNITCOMBAT_WORKBOAT',	10 UNION ALL
-SELECT 		'POLICY_MONOPOLY_GUNPOWDER', 	'UNITCOMBAT_GUN',	5;
+			(PolicyType,					UnitCombatType,				ProductionModifier)
+SELECT 		'POLICY_WOOTEI_NIICIE', 		'UNITCOMBAT_MOUNTED',		10 UNION ALL
+SELECT 		'POLICY_WOOTEI_NIICIE', 		'UNITCOMBAT_GUN',			10 UNION ALL
+SELECT 		'POLICY_MONOPOLY_MANUSCRIPTS', 	'UNITCOMBAT_DIPLOMACY',		10 UNION ALL
+SELECT 		'POLICY_MONOPOLY_ROPES', 		'UNITCOMBAT_NAVALMELEE',	10 UNION ALL
+SELECT 		'POLICY_MONOPOLY_ROPES', 		'UNITCOMBAT_NAVALRANGED',	10 UNION ALL
+SELECT 		'POLICY_MONOPOLY_ROPES', 		'UNITCOMBAT_CARRIER',		10 UNION ALL
+SELECT 		'POLICY_MONOPOLY_ROPES', 		'UNITCOMBAT_SUBMARINE',		10 UNION ALL
+SELECT 		'POLICY_MONOPOLY_ROPES', 		'UNITCOMBAT_CARGO',			10 UNION ALL
+SELECT 		'POLICY_MONOPOLY_ROPES', 		'UNITCOMBAT_WORKBOAT',		10 UNION ALL
+SELECT 		'POLICY_MONOPOLY_GUNPOWDER', 	'UNITCOMBAT_GUN',			5 UNION ALL
+SELECT 		'POLICY_MONOPOLY_PORCELAIN', 	'UNITCOMBAT_ARCHAEOLOGIST',	15;
 
 INSERT INTO Policy_ResourceYieldChanges
 			(PolicyType,					ResourceType,			YieldType,				Yield)
 SELECT 		'POLICY_MONOPOLY_CHEESE', 		'RESOURCE_COW',			'YIELD_PRODUCTION',		2 UNION ALL
 SELECT 		'POLICY_MONOPOLY_CHEESE', 		'RESOURCE_SHEEP',		'YIELD_PRODUCTION',		2 UNION ALL
-SELECT 		'POLICY_MONOPOLY_HONEY', 		'RESOURCE_MAIZE',		'YIELD_FOOD',			1 UNION ALL
-SELECT 		'POLICY_MONOPOLY_HONEY', 		'RESOURCE_RICE',		'YIELD_FOOD',			1 UNION ALL
-SELECT 		'POLICY_MONOPOLY_HONEY', 		'RESOURCE_WHEAT',		'YIELD_FOOD',			1;
+SELECT 		'POLICY_MONOPOLY_HONEY', 		'RESOURCE_MAIZE',		'YIELD_GOLD',			1 UNION ALL
+SELECT 		'POLICY_MONOPOLY_HONEY', 		'RESOURCE_RICE',		'YIELD_GOLD',			1 UNION ALL
+SELECT 		'POLICY_MONOPOLY_HONEY', 		'RESOURCE_WHEAT',		'YIELD_GOLD',			1;
 
 INSERT INTO Policy_ImprovementYieldChanges
 			(PolicyType, 					ImprovementType, 			YieldType, 			Yield)
@@ -3383,7 +3385,7 @@ INSERT INTO Language_en_US
 			(Tag, 										Text)
 SELECT		'TXT_KEY_RESOURCE_GLASS_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] ???.' UNION ALL
 SELECT		'TXT_KEY_RESOURCE_JEWELRY_MONOPOLY',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_GREAT_MERCHANT] Great Merchant Points in all owned Cities.' UNION ALL
-SELECT		'TXT_KEY_RESOURCE_PORCELAIN_MONOPOLY',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] ???.';
+SELECT		'TXT_KEY_RESOURCE_PORCELAIN_MONOPOLY',		'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +15% [ICON_PRODUCTION] Production towards Archaeologist Units in all owned Cities.';
 
 UPDATE Resources SET Help = 'TXT_KEY_RESOURCE_GLASS_MONOPOLY' WHERE Type IN ('RESOURCE_GLASS');
 UPDATE Resources SET Help = 'TXT_KEY_RESOURCE_JEWELRY_MONOPOLY' WHERE Type IN ('RESOURCE_JEWELRY');
@@ -3400,7 +3402,8 @@ VALUES		('RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			3),
 INSERT INTO Resource_MonopolyGreatPersonRateModifiers
 			(ResourceType, 			SpecialistType, 		IsGlobalMonopoly,	IsStrategicMonopoly,	Modifier)
 VALUES		('RESOURCE_BEER',		'SPECIALIST_ENGINEER',	1,					0,						10),
-			('RESOURCE_JEWELRY',	'SPECIALIST_MERCHANT',	1,					0,						10);
+			('RESOURCE_JEWELRY',	'SPECIALIST_MERCHANT',	1,					0,						10),
+			('RESOURCE_SCULPTURES',	'SPECIALIST_ARTIST',	1,					0,						10);
 ---------------------------------------------------------
 INSERT INTO Resource_YieldChanges
 			(ResourceType, 				YieldType, 				Yield)

@@ -2125,7 +2125,8 @@ function UniqueMonopolyBonuses(ePlayer)
 		GameInfoTypes.RESOURCE_MOSAICS,
 		GameInfoTypes.RESOURCE_COINS,
 		GameInfoTypes.RESOURCE_ROPES,
-		GameInfoTypes.RESOURCE_GUNPOWDER
+		GameInfoTypes.RESOURCE_GUNPOWDER,
+		GameInfoTypes.RESOURCE_PORCELAIN
 	}
 	
 	local tPoliciesForUniqueMonopolies = {
@@ -2135,7 +2136,8 @@ function UniqueMonopolyBonuses(ePlayer)
 		GameInfoTypes.POLICY_MONOPOLY_MOSAICS,
 		nil,
 		GameInfoTypes.POLICY_MONOPOLY_ROPES,
-		GameInfoTypes.POLICY_MONOPOLY_GUNPOWDER
+		GameInfoTypes.POLICY_MONOPOLY_GUNPOWDER,
+		GameInfoTypes.POLICY_MONOPOLY_PORCELAIN
 	}
 	
 	local tBuildingsForUniqueMonopolies = {
@@ -2144,6 +2146,7 @@ function UniqueMonopolyBonuses(ePlayer)
 		GameInfoTypes.BUILDING_MONOPOLY_MANUSCRIPTS,
 		nil,
 		GameInfoTypes.BUILDING_MONOPOLY_COINS,
+		nil,
 		nil,
 		nil
 	}
@@ -2355,13 +2358,15 @@ end
 
 -- YAIUWA (IMPROVEMENT/RESOURCE LLAO LLAO)
 function CanWePlaceLlaoLlao(ePlayer, eUnit, iX, iY, eBuild)
-	if eBuild ~= GameInfoTypes.BUILD_LLAO_LLAO then return true end
+	return false
+	
+	--[[if eBuild ~= GameInfoTypes.BUILD_LLAO_LLAO then return true end
 	
 	local pPlayer = Players[ePlayer]
 	
-	--if not (pPlayer:GetEventChoiceCooldown(tEventChoice[??]) > 0) then return false end
+	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[??]) > 0) then return false end
 
-	return true
+	return true--]]
 end
 GameEvents.PlayerCanBuild.Add(CanWePlaceLlaoLlao)
 
@@ -2373,7 +2378,7 @@ function PlacedLlaoLlao(ePlayer, iX, iY, eImprovement)
 		pPlot:SetImprovementType(tImprovementsRegular[2])
 	end
 end
-	GameEvents.BuildFinished.Add(PlacedLlaoLlao) -- !!!DELETE
+GameEvents.BuildFinished.Add(PlacedLlaoLlao) -- !!!DELETE
 
 
 	
