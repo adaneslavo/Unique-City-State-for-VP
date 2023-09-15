@@ -2335,12 +2335,12 @@ function CanWePlaceDogoCanario(ePlayer, eUnit, iX, iY, eBuild)
 	
 	local pPlot = Map.GetPlot(iX, iY)
 	
-	--if not pPlot:IsHills() then return false end
+	if not pPlot:IsHills() then return false end
 
 	local eResource = pPlot:GetResourceType()
 	
 	if eResource ~= -1 then return false end
-
+	
 	return true
 end
 GameEvents.PlayerCanBuild.Add(CanWePlaceDogoCanario)
@@ -2358,15 +2358,17 @@ end
 
 -- YAIUWA (IMPROVEMENT/RESOURCE LLAO LLAO)
 function CanWePlaceLlaoLlao(ePlayer, eUnit, iX, iY, eBuild)
-	return false
-	
-	--[[if eBuild ~= GameInfoTypes.BUILD_LLAO_LLAO then return true end
+	if eBuild ~= GameInfoTypes.BUILD_LLAO_LLAO then
+		return true
+	else
+		return false
+	end
 	
 	local pPlayer = Players[ePlayer]
 	
-	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[??]) > 0) then return false end
+	--if not (pPlayer:GetEventChoiceCooldown(tEventChoice[??]) > 0) then return false end
 
-	return true--]]
+	return true
 end
 GameEvents.PlayerCanBuild.Add(CanWePlaceLlaoLlao)
 
