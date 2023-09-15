@@ -3391,6 +3391,9 @@ UPDATE Resources SET Help = 'TXT_KEY_RESOURCE_GLASS_MONOPOLY' WHERE Type IN ('RE
 UPDATE Resources SET Help = 'TXT_KEY_RESOURCE_JEWELRY_MONOPOLY' WHERE Type IN ('RESOURCE_JEWELRY');
 UPDATE Resources SET Help = 'TXT_KEY_RESOURCE_PORCELAIN_MONOPOLY' WHERE Type IN ('RESOURCE_PORCELAIN');
 ---------------------------------------------------------
+UPDATE Language_en_US SET Text = Text||'[NEWLINE][NEWLINE]Nearby [ICON_RES_DOGO_CANARIO]: +2 [ICON_PRODUCTION] Production.' WHERE Tag = 'TXT_KEY_BUILDING_STOCKYARD_HELP';
+UPDATE Language_en_US SET Text = Text||'[NEWLINE][NEWLINE]Nearby [ICON_RES_REINDEER]: +2 [ICON_FOOD] Food.' WHERE Tag = 'TXT_KEY_BUILDING_STABLE_HELP';
+---------------------------------------------------------
 UPDATE Resources SET MonopolyHappiness = 2 WHERE Type = 'RESOURCE_LLAO_LLAO';
 
 INSERT INTO Resource_CityYieldModFromMonopoly
@@ -3411,6 +3414,11 @@ VALUES		('RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			1),
 			('RESOURCE_LLAO_LLAO',		'YIELD_FOOD',			1),
 			('RESOURCE_REINDEER',		'YIELD_FOOD',			1),
 			('RESOURCE_REINDEER',		'YIELD_CULTURE',		1);
+
+INSERT INTO Building_ResourceYieldChanges
+			(BuildingType,				ResourceType, 				YieldType, 				Yield)
+VALUES		('BUILDING_STOCKYARD',		'RESOURCE_DOGO_CANARIO',	'YIELD_PRODUCTION',		2),
+			('BUILDING_STABLE',			'RESOURCE_REINDEER',		'YIELD_FOOD',			2);
 
 INSERT INTO Improvement_ResourceTypes
 			(ImprovementType,			ResourceType, 				ResourceMakesValid, ResourceTrade)
@@ -3944,7 +3952,8 @@ UPDATE Units SET CombatClass = 'UNITCOMBAT_MISSILE'			WHERE Special ='SPECIALUNI
 UPDATE Units SET CombatClass = 'UNITCOMBAT_MISSILE'			WHERE Type ='UNIT_ATOMIC_BOMB';
 UPDATE Units SET CombatClass = 'UNITCOMBAT_SPACESHIP_PART'	WHERE DefaultUnitAI ='UNITAI_SPACESHIP_PART';
 ------------------------------
-UPDATE Technologies SET GridY = 3 WHERE Type ='TECH_HORSEBACK_RIDING';
+--UPDATE Technologies SET GridY = 0 WHERE Type ='TECH_SAILING';
+--UPDATE Technologies SET GridY = 10 WHERE Type ='TECH_BRONZE_WORKING';
 --============================================--
 -- The Trick!
 --============================================--

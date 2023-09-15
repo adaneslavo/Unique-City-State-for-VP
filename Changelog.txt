@@ -1,8 +1,33 @@
 
 
 Changelog:
-- fixed Dogo Canario placement (conflict with Valid Terrains probably);
-- some improvement texts fixed;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

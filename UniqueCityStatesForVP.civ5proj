@@ -64,7 +64,7 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
         <Name>Even More Resources</Name>
         <Id>8e54eb87-31e8-4fcd-aafe-ede055b463d0</Id>
         <MinVersion>0</MinVersion>
-        <MaxVersion>999</MaxVersion>
+        <MaxVersion>10</MaxVersion>
       </Association>
     </ModBlockers>
     <ModActions>
