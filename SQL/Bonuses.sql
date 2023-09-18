@@ -2356,8 +2356,8 @@ SELECT 		'BUILDING_RIGA', 			'YIELD_FOOD', 			2;
 
 INSERT INTO Building_SpecificGreatPersonRateModifier 
 			(BuildingType,			SpecialistType,			Modifier)
-SELECT		'BUILDING_KIEV_2',		'SPECIALIST_MUSICIAN',	50 UNION ALL
-SELECT		'BUILDING_MILAN_2',		'SPECIALIST_ARTIST',	50;
+SELECT		'BUILDING_KIEV_2',		'SPECIALIST_MUSICIAN',	5 UNION ALL
+SELECT		'BUILDING_MILAN_2',		'SPECIALIST_ARTIST',	5;
 
 INSERT INTO Building_YieldFromDeath
 			(BuildingType, 					YieldType, 			Yield)

@@ -1,7 +1,8 @@
 
 
 Changelog:
-- fixed Muisca yields in Capital from local population;
+- fixed Muisca yields in Capital from local population (now 1 per 3 Citizens, was 1 per 34);
+- fixed Milan's and Kyiv's modifiers (now 5%, were 50%);
 - added Irrational personality;
 - fixed Religious Pressure buildings;
 - renamed some dummies to better group in the IGE;
