@@ -49,6 +49,7 @@ local eMinorTraitReligious = MinorCivTraitTypes.MINOR_CIV_TRAIT_RELIGIOUS
 local eMinorPersonalityFriendly = MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_FRIENDLY
 local eMinorPersonalityNeutral = MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_NEUTRAL
 local eMinorPersonalityHostile = MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_HOSTILE
+local eMinorPersonalityIrrational = MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_IRRATIONAL
 
 ------------------------------------------------------
 -- Global Constants
@@ -429,6 +430,9 @@ function GetCityStateStatusToolTip(majorPlayerID, minorPlayerID, isFullInfo)
 		elseif eMinorPersonality == eMinorPersonalityHostile then
 			sMinorPersonalityStrCap = "HOSTILE"
 			sMinorPersonalityStr = L("TXT_KEY_UCS_HELPER_HEADER_PERSONALITY_HOSTILE")
+		elseif eMinorPersonality == eMinorPersonalityIrrational then
+			sMinorPersonalityStrCap = "IRRATIONAL"
+			sMinorPersonalityStr = L("TXT_KEY_UCS_HELPER_HEADER_PERSONALITY_IRRATIONAL")
 		end	
 		
 		tip = tip .. " " .. sMinorPersonalityStr

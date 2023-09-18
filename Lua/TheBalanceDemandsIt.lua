@@ -47,7 +47,8 @@ local tMinorTraits = {
 local tMinorPersonalities = {
 	MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_FRIENDLY,
 	MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_NEUTRAL,
-	MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_HOSTILE
+	MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_HOSTILE,
+	MinorCivPersonalityTypes.MINOR_CIV_PERSONALITY_IRRATIONAL
 }
 
 local tEventChoice = {
@@ -176,7 +177,8 @@ local tBuildingsPassiveAbilities = {
 	GameInfoTypes.BUILDING_CS_STRENGTH_HOSTILE,
 	GameInfoTypes.BUILDING_CS_RELIGION_FRIENDLY,
 	GameInfoTypes.BUILDING_CS_RELIGION_NEUTRAL,
-	GameInfoTypes.BUILDING_CS_RELIGION_HOSTILE -- 6
+	GameInfoTypes.BUILDING_CS_RELIGION_HOSTILE, -- 6
+	GameInfoTypes.BUILDING_CS_RELIGION_IRRATIONAL
 }
 
 local tPoliciesPassiveAbilities = {
@@ -658,11 +660,17 @@ function DiplomaticExpansion(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKill
 		end
 		
 		if tSettings["EnablePassivesHitPoints"] then
-			if eMinorPersonality == tMinorPersonalities[1] then
+			local iRandomHPGain = 0
+
+			if eMinorPersonality == tMinorPersonalities[4] then
+				iRandomHPGain = Game.Rand(3, "Random HP Gain for Irrational CSs") + 1
+			end
+
+			if eMinorPersonality == tMinorPersonalities[1] or iRandomHPGain == 1 then
 				pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[1], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[1]) + 1)
-			elseif eMinorPersonality == tMinorPersonalities[2] then
+			elseif eMinorPersonality == tMinorPersonalities[2] or iRandomHPGain == 2  then
 				pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[2], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[2]) + 1)
-			elseif eMinorPersonality == tMinorPersonalities[3] then
+			elseif eMinorPersonality == tMinorPersonalities[3] or iRandomHPGain == 3  then
 				pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[3], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[3]) + 1)
 			end
 		end
@@ -1951,7 +1959,7 @@ function ReligiousCityStatesBonuses(ePlayer, iX, iY)
 	
 	-- policy
 	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[5], true)
-
+	
 	-- buildings
 	if eMinorPersonality == tMinorPersonalities[1] then
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[4], pMinorCapital:GetNumRealBuilding(tBuildingsPassiveAbilities[4]) + 1)
@@ -1959,6 +1967,8 @@ function ReligiousCityStatesBonuses(ePlayer, iX, iY)
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[5], pMinorCapital:GetNumRealBuilding(tBuildingsPassiveAbilities[5]) + 1)
 	elseif eMinorPersonality == tMinorPersonalities[3] then
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[6], pMinorCapital:GetNumRealBuilding(tBuildingsPassiveAbilities[6]) + 1)
+	elseif eMinorPersonality == tMinorPersonalities[4] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[7], pMinorCapital:GetNumRealBuilding(tBuildingsPassiveAbilities[7]) + 1)
 	end
 end
 	
@@ -1986,6 +1996,8 @@ function ReligiousCityStatesBonusesLiberated(ePlayer, eOtherPlayer, eCity)
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[5], pMinorCapital:GetNumRealBuilding(tBuildingsPassiveAbilities[5]) + 1)
 	elseif eMinorPersonality == tMinorPersonalities[3] then
 		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[6], pMinorCapital:GetNumRealBuilding(tBuildingsPassiveAbilities[6]) + 1)
+	elseif eMinorPersonality == tMinorPersonalities[4] then
+		pMinorCapital:SetNumRealBuilding(tBuildingsPassiveAbilities[7], pMinorCapital:GetNumRealBuilding(tBuildingsPassiveAbilities[7]) + 1)
 	end
 end
 
@@ -5072,9 +5084,12 @@ function LuxuriesOnEventOn(ePlayer, eEventChoiceType)
 end
 
 function LuxuriesOnEventOff(ePlayer, eEventChoiceType)
-	local pCapital = pPlayer:GetCapitalCity()
+	if eEventChoiceType == tEventChoice[50] then
+		local pPlayer = Players[ePlayer]
+		local pCapital = pPlayer:GetCapitalCity()
 
-	pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[22], 0)
+		pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[22], 0)
+	end
 end
 
 function LuxuriesFromCaptured(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
@@ -5262,9 +5277,12 @@ function SarnathLowersPolicyCostOnEventOn(ePlayer, eEventChoiceType)
 end
 
 function SarnathLowersPolicyCostOnEventOff(ePlayer, eEventChoiceType)
-	local pCapital = pPlayer:GetCapitalCity()
+	if eEventChoiceType == tEventChoice[56] then
+		local pPlayer = Players[ePlayer]
+		local pCapital = pPlayer:GetCapitalCity()
 
-	pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[26], 0)
+		pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[26], 0)
+	end
 end
 
 function SarnathLowersPolicyCostOnFounding(ePlayer, eHolyCity, eReligion, eBelief1, eBelief2, eBelief3, eBelief4, eBelief5)

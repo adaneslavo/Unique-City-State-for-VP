@@ -1,7 +1,10 @@
 
 
 Changelog:
-
+- fixed Muisca yields in Capital from local population;
+- added Irrational personality;
+- fixed Religious Pressure buildings;
+- renamed some dummies to better group in the IGE;
 
 
 
