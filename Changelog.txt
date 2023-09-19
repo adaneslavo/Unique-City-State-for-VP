@@ -1,12 +1,15 @@
 
 
 Changelog:
-- fixed Muisca yields in Capital from local population (now 1 per 3 Citizens, was 1 per 34);
-- fixed Milan's and Kyiv's modifiers (now 5%, were 50%);
-- added Irrational personality;
-- fixed Religious Pressure buildings;
-- renamed some dummies to better group in the IGE;
-
+- balanced:
+	- changed HurryCostModifiers for UCS' buildings to -20 to match the VP standard (was +5);
+	- added Unhappiness reduction to Bylina, Visconti Emissary and Gate of Dawn;
+- fixed:
+	- added Irrational personality;
+	- fixed Muisca yields in Capital from local population (now 1 per 3 Citizens, was 1 per 34);
+	- fixed Milan's and Kyiv's modifiers (now 5%, were 50%);
+	- fixed Religious Pressure buildings;
+	- renamed some dummies to better group in the IGE;
 
 
 
