@@ -1,6 +1,7 @@
 
 
 Changelog:
+- renamed Dali to Yangjumie (this was old name when Dali was a Kingdom);
 
 
 
