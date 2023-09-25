@@ -1785,7 +1785,7 @@ function FreeGreatWorkFromCityState(ePlayer)
 					iFreeWritingSpots = iFreeWritingSpots + city:GetNumAvailableGreatWorkSlots(GameInfoTypes.GREAT_WORK_SLOT_LITERATURE)
 					iFreeMusicSpots = iFreeMusicSpots + city:GetNumAvailableGreatWorkSlots(GameInfoTypes.GREAT_WORK_SLOT_MUSIC)
 				end
-
+				
 				-- choose great work type for gift
 				local sGreatWorkClassType, eGreatWorkSlotType, sGreatWorkSlotType = nil, nil, nil
 				
@@ -1840,6 +1840,7 @@ function FreeGreatWorkFromCityState(ePlayer)
 					if #tAvailableGreatWorks > 0 then
 						local eGreatWorkType = table.remove(tAvailableGreatWorks, Game.Rand(#tAvailableGreatWorks, "Choose a random ID of a GW") + 1)
 						local eGreatWork = Game.CreateGreatWork(eGreatWorkType, eMajorPlayer, pMajorPlayer:GetCurrentEra(), pPlayer:GetName())
+						local bFoundFreeSlot = false
 						
 						-- looking for a building with at least 1 free slot
 						for city in pMajorPlayer:Cities() do
@@ -1848,7 +1849,6 @@ function FreeGreatWorkFromCityState(ePlayer)
 									if city:IsHasBuilding(building.ID) then
 										local eBuildingClass = GameInfo.BuildingClasses{Type=building.BuildingClass}{}.ID
 										local iNumBuildingGreatWorkSlots = building.GreatWorkCount
-										local bFoundFreeSlot = false
 										
 										for i = 0, iNumBuildingGreatWorkSlots - 1 do
 											if city:GetBuildingGreatWork(eBuildingClass, i) == -1 then
@@ -1866,6 +1866,8 @@ function FreeGreatWorkFromCityState(ePlayer)
 										if bFoundFreeSlot then break end
 									end
 								end
+								
+								if bFoundFreeSlot then break end
 							end
 						end
 					end

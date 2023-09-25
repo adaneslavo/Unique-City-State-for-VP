@@ -1,15 +1,5 @@
 v16:
-- changed:
-	- renamed Dali to Yangjumie (this was old name when Dali was a Kingdom);	
-- fixed:
-	- CS unit gifts and barbarian units:
-		- added workaround to another mercenary and religious UUs, so CSs won't give them as gifts;
-		- added additional block for UUs, so Barbarians do not build them;
-	- art fixes:
-		- extracted original dds file for Manuscripts and resized it a bit;
-		- fixed some resource icons alignment;
-	- Levuka now gives yields rounded up;
-	- fixed Bedulu's ability text;
+
 
 
 
