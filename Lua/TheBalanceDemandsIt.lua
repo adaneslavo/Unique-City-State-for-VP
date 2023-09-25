@@ -2245,7 +2245,7 @@ function CaptureCityForLevuka(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bC
 		local iBaseYield = RandomNumberBetween(100, 200)
 		local iCurrentEraModifier = pPlayer:GetCurrentEra() + 1
 		local iOwnedCities = pPlayer:GetNumCities()
-		local iFoodBonus = (iBaseYield * iCurrentEraModifier) / iOwnedCities
+		local iFoodBonus = math.ceil((iBaseYield * iCurrentEraModifier) / iOwnedCities)
 		
 		for city in pPlayer:Cities() do
 			pPlayer:DoInstantYield(GameInfoTypes.YIELD_FOOD, iFoodBonus, true, city:GetID())
@@ -2296,7 +2296,7 @@ function BarbCampForLevuka(iX, iY, ePlayer)
 		local iBaseYield = RandomNumberBetween(30, 75)
 		local iCurrentEraModifier = pPlayer:GetCurrentEra() + 1
 		local iOwnedCities = pPlayer:GetNumCities()
-		local iFoodBonus = (iBaseYield * iCurrentEraModifier) / iOwnedCities
+		local iFoodBonus = math.ceil((iBaseYield * iCurrentEraModifier) / iOwnedCities)
 		
 		for city in pPlayer:Cities() do
 			pPlayer:DoInstantYield(GameInfoTypes.YIELD_FOOD, iFoodBonus, true, city:GetID())
