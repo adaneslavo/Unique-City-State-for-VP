@@ -2140,7 +2140,10 @@ function UniqueMonopolyBonuses(ePlayer)
 		GameInfoTypes.RESOURCE_COINS,
 		GameInfoTypes.RESOURCE_ROPES,
 		GameInfoTypes.RESOURCE_GUNPOWDER,
-		GameInfoTypes.RESOURCE_PORCELAIN
+		GameInfoTypes.RESOURCE_PORCELAIN,
+		GameInfoTypes.RESOURCE_GLASS,
+		GameInfoTypes.RESOURCE_CHAMPAGNE,
+		GameInfoTypes.RESOURCE_TAPESTRIES
 	}
 	
 	local tPoliciesForUniqueMonopolies = {
@@ -2151,7 +2154,10 @@ function UniqueMonopolyBonuses(ePlayer)
 		nil,
 		GameInfoTypes.POLICY_MONOPOLY_ROPES,
 		GameInfoTypes.POLICY_MONOPOLY_GUNPOWDER,
-		GameInfoTypes.POLICY_MONOPOLY_PORCELAIN
+		GameInfoTypes.POLICY_MONOPOLY_PORCELAIN,
+		GameInfoTypes.POLICY_MONOPOLY_GLASS,
+		GameInfoTypes.POLICY_MONOPOLY_CHAMPAGNE,
+		GameInfoTypes.POLICY_MONOPOLY_TAPESTRIES
 	}
 	
 	local tBuildingsForUniqueMonopolies = {
@@ -2160,6 +2166,9 @@ function UniqueMonopolyBonuses(ePlayer)
 		GameInfoTypes.BUILDING_MONOPOLY_MANUSCRIPTS,
 		nil,
 		GameInfoTypes.BUILDING_MONOPOLY_COINS,
+		nil,
+		nil,
+		nil,
 		nil,
 		nil,
 		nil
