@@ -3922,16 +3922,16 @@ INSERT INTO Unit_ClassUpgrades
 SELECT		'UNIT_SAKA', 		UnitClassType
 FROM Unit_ClassUpgrades WHERE UnitType = 'UNIT_MONGOLIAN_KESHIK';
 ------------------------------
-INSERT INTO Policy_UnitClassReplacements
+/*INSERT INTO Policy_UnitClassReplacements
 			(PolicyType,				ReplacedUnitClassType,			ReplacementUnitClassType)
 VALUES	    ('POLICY_VATICAN_CITY',		'UNITCLASS_TERCIO',				'UNITCLASS_SWISS_GUARD'),
 			('POLICY_LAHORE',			'UNITCLASS_LONGSWORDSMAN',		'UNITCLASS_NIHANG'),
 			('POLICY_KATHMANDU',		'UNITCLASS_RIFLEMAN',			'UNITCLASS_GURKHA'),
-			('POLICY_POKROVKA',			'UNITCLASS_HORSE_ARCHER',		'UNITCLASS_SAKA');
+			('POLICY_POKROVKA',			'UNITCLASS_HORSE_ARCHER',		'UNITCLASS_SAKA');*/
 
-CREATE TABLE IF NOT EXISTS Civilization_UnitClassOverrides_BarbarianDisabler (UnitClassType_Temp TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS Civilization_UnitClassOverrides_Temp (UnitClassType_Temp TEXT NOT NULL);
 
-INSERT INTO Civilization_UnitClassOverrides_BarbarianDisabler
+INSERT INTO Civilization_UnitClassOverrides_Temp
 			(UnitClassType_Temp)
 VALUES		('UNITCLASS_CARAVAN_OF_DALI'),
 			/*('UNITCLASS_CARGO_SHIP_OF_DALI'),*/
@@ -3946,9 +3946,14 @@ VALUES		('UNITCLASS_CARAVAN_OF_DALI'),
 INSERT INTO Civilization_UnitClassOverrides
 			(CivilizationType,			UnitClassType,		UnitType)
 SELECT		'CIVILIZATION_BARBARIAN',	UnitClassType_Temp, NULL
-FROM Civilization_UnitClassOverrides_BarbarianDisabler;
+FROM Civilization_UnitClassOverrides_Temp;
 
-DROP TABLE Civilization_UnitClassOverrides_BarbarianDisabler;
+INSERT INTO Civilization_UnitClassOverrides
+			(CivilizationType,			UnitClassType,		UnitType)
+SELECT		'CIVILIZATION_MINOR',		UnitClassType_Temp, NULL
+FROM Civilization_UnitClassOverrides_Temp;
+
+DROP TABLE Civilization_UnitClassOverrides_Temp;
 ------------------------------
 INSERT INTO Unit_ResourceQuantityRequirements
 			(UnitType, 			ResourceType,	Cost)
