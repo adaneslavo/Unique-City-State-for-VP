@@ -727,6 +727,7 @@ local tChosenMaritimeLuxuries = {}
 local tChosenMilitaristicLuxuries = {}
 local tChosenCulturedLuxuries = {}
 local tChosenReligiousLuxuries = {}
+
 -- MARITIME
 function InitializeMaritimeResources()
 	local tMaritimeLuxuries = {
@@ -765,6 +766,10 @@ function InitializeMaritimeResources()
 			table.insert(tChosenMaritimeLuxuries, table.remove(tMaritimeLuxuries, Game.Rand(#tMaritimeLuxuries, "Choose 3rd of all available luxuries") + 1))
 		end
 	end
+
+	if #tChosenMaritimeLuxuries == 0 then
+		print("LUX_INIT_MARITIME_0_ERROR", iNumMaritimeCityStates, #tMaritimeLuxuries)
+	end
 end
 
 function MaritimeCityStatesBonuses(ePlayer, iX, iY)
@@ -797,6 +802,11 @@ function MaritimeCityStatesBonuses(ePlayer, iX, iY)
 			local eChosenResource = -1
 			
 			repeat
+				if #tChosenMaritimeLuxuries == 0 then
+					print("NO_MARITIME_CS")
+					break
+				end
+
 				local iRandomResource = Game.Rand(#tChosenMaritimeLuxuries, "Choose one of all chosen luxuries") + 1
 				
 				if tChosenMaritimeLuxuries[iRandomResource] ~= nil then
@@ -1153,7 +1163,7 @@ function MercantileFreeGreatPersonImprovement(eTeam, eEra, bFirst)
 			if ePlayerTeam == eTeam then
 				local eMinorTrait = pPlayer:GetMinorCivTrait()
 				
-				-- Maritime
+				-- Mercantile
 				-- Town
 				if eMinorTrait ~= tMinorTraits[2] then return end
 				
@@ -1274,7 +1284,7 @@ function InitializeMilitaristicResources()
 		if pMilitarisiticMinor:IsAlive() then
 			local eMilitarisiticTrait = pMilitarisiticMinor:GetMinorCivTrait()
 			
-			if eMilitarisiticTrait == tMinorTraits[5] then
+			if eMilitarisiticTrait == tMinorTraits[3] then
 				iNumMilitarisiticCityStates = iNumMilitarisiticCityStates + 1
 			end
 		end
@@ -1295,6 +1305,10 @@ function InitializeMilitaristicResources()
 			table.insert(tChosenMilitaristicLuxuries, table.remove(tMilitarisiticLuxuries, Game.Rand(#tMilitarisiticLuxuries, "Choose 3rd of all available luxuries") + 1))
 		end
 	end--]]
+
+	if #tChosenMilitaristicLuxuries == 0 then
+		print("LUX_INIT_MILITARISTIC_0_ERROR", iNumMilitarisiticCityStates, #tMilitarisiticLuxuries)
+	end
 end
 
 function MilitaristicCityStatesBonuses(ePlayer, iX, iY)
@@ -1406,6 +1420,11 @@ function MilitaristicCityStatesBonuses(ePlayer, iX, iY)
 			local eChosenResource = -1
 			
 			repeat
+				if #tChosenMilitaristicLuxuries == 0 then
+					print("NO_MILITARISTIC_CS")
+					break
+				end
+
 				local iRandomResource = Game.Rand(#tChosenMilitaristicLuxuries, "Choose one of all chosen luxuries") + 1
 				
 				if tChosenMilitaristicLuxuries[iRandomResource] ~= nil then
@@ -1454,7 +1473,7 @@ function MilitaristicFreeGreatPersonImprovement(eTeam, eEra, bFirst)
 			if ePlayerTeam == eTeam then
 				local eMinorTrait = pPlayer:GetMinorCivTrait()
 				
-				-- Maritime
+				-- Militaristic
 				-- Fort
 				if eMinorTrait ~= tMinorTraits[3] then return end
 				
@@ -1556,7 +1575,7 @@ function InitializeCulturedResources()
 		if pCulturedMinor:IsAlive() then
 			local eCulturedTrait = pCulturedMinor:GetMinorCivTrait()
 			
-			if eCulturedTrait == tMinorTraits[1] then
+			if eCulturedTrait == tMinorTraits[4] then
 				iNumCulturedCityStates = iNumCulturedCityStates + 1
 			end
 		end
@@ -1576,6 +1595,10 @@ function InitializeCulturedResources()
 		if iNumCulturedCityStates > tUCSDefines["NumCityStatesForThirdThreshold"] then
 			table.insert(tChosenCulturedLuxuries, table.remove(tCulturedLuxuries, Game.Rand(#tCulturedLuxuries, "Choose 3rd of all available luxuries") + 1))
 		end
+	end
+
+	if #tChosenCulturedLuxuries == 0 then
+		print("LUX_INIT_CULTURED_0_ERROR", iNumCulturedCityStates, #tCulturedLuxuries)
 	end
 end
 
@@ -1609,6 +1632,11 @@ function CulturedCityStatesBonuses(ePlayer, iX, iY)
 			local eChosenResource = -1
 			
 			repeat
+				if #tChosenCulturedLuxuries == 0 then
+					print("NO_CULTURED_CS")
+					break
+				end
+
 				local iRandomResource = Game.Rand(#tChosenCulturedLuxuries, "Choose one of all chosen luxuries") + 1
 				
 				if tChosenCulturedLuxuries[iRandomResource] ~= nil then
@@ -1687,7 +1715,7 @@ function CulturedFreeGreatPersonImprovement(eTeam, eEra, bFirst)
 			if ePlayerTeam == eTeam then
 				local eMinorTrait = pPlayer:GetMinorCivTrait()
 				
-				-- Maritime
+				-- Cultured
 				-- Academy
 				if eMinorTrait ~= tMinorTraits[4] then return end
 				
@@ -1921,6 +1949,10 @@ function InitializeReligiousResources()
 			table.insert(tChosenReligiousLuxuries, table.remove(tReligiousLuxuries, Game.Rand(#tReligiousLuxuries, "Choose 3rd of all available luxuries") + 1))
 		end
 	end
+
+	if #tChosenReligiousLuxuries == 0 then
+		print("LUX_INIT_RELIGIOUS_0_ERROR", iNumReligiousCityStates, #tReligiousLuxuries)
+	end
 end
 
 function ReligiousCityStatesBonuses(ePlayer, iX, iY)
@@ -1953,6 +1985,11 @@ function ReligiousCityStatesBonuses(ePlayer, iX, iY)
 			local eChosenResource = -1
 			
 			repeat
+				if #tChosenReligiousLuxuries == 0 then
+					print("NO_RELIGIOUS_CS")
+					break
+				end
+
 				local iRandomResource = Game.Rand(#tChosenReligiousLuxuries, "Choose one of all chosen luxuries") + 1
 				
 				if tChosenReligiousLuxuries[iRandomResource] ~= nil then
@@ -2023,7 +2060,7 @@ function ReligiousFreeGreatPersonImprovement(eTeam, eEra, bFirst)
 			if ePlayerTeam == eTeam then
 				local eMinorTrait = pPlayer:GetMinorCivTrait()
 				
-				-- Maritime
+				-- Religious
 				-- Holy Site
 				if eMinorTrait ~= tMinorTraits[5] then return end
 				

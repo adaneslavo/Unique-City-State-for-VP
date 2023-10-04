@@ -101,9 +101,6 @@ UPDATE Defines SET Value = 8 WHERE Name = 'FRIENDS_FAITH_FLAT_BONUS_AMOUNT_INDUS
 	UPDATE Defines SET Value = 4 WHERE Name = 'ALLIES_FAITH_FLAT_BONUS_AMOUNT_MEDIEVAL';		-- 8
 	UPDATE Defines SET Value = 6 WHERE Name = 'ALLIES_FAITH_FLAT_BONUS_AMOUNT_RENAISSANCE';		-- 12
 	UPDATE Defines SET Value = 8 WHERE Name = 'ALLIES_FAITH_FLAT_BONUS_AMOUNT_INDUSTRIAL';		-- 16
-
-UPDATE Defines SET Value = 4 WHERE Name = 'NEED_DIPLOMAT_DESIRE_MODIFIER';
-UPDATE Defines SET Value = 4 WHERE Name = 'NEED_DIPLOMAT_DISTASTE_MODIFIER';
 ---------------------------------------------------
 -- Updates - CustomModOptions - Events
 ---------------------------------------------------
