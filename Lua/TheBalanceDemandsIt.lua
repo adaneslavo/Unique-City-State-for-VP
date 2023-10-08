@@ -4,6 +4,25 @@ include("FLuaVector.lua")
 local L = Locale.ConvertTextKey
 local bBlockDoubleTriggering = false -- for preventing the double triggering the UnitPrekill event and other functions
 
+-- loop through all conflicts in the game
+function ConflictsTest()
+	print("XXXXXXXXXXXXXXXXXXXXXX")
+	print("CONFLICTS_TEST")
+	for civilization in DB.Query("SELECT Civilizations.Type FROM Civilizations") do
+		for citystate in DB.Query("SELECT MinorCivilizations.Type, MinorCivilizations.Description FROM MinorCivilizations") do
+			for citylist in DB.Query("SELECT Civilization_CityNames.CityName FROM Civilization_CityNames WHERE CivilizationType = ?", civilization.Type) do
+				sMajorCityName = L(citylist.CityName)
+				sMinorCityName = L(citystate.Description)
+				
+				if sMajorCityName == sMinorCityName then
+					print("BASE_CONFLICT", civilization.Type, citystate.Type)	
+				end
+			end
+		end
+	end
+end
+ConflictsTest()
+
 local eSphere = GameInfoTypes.RESOLUTION_SPHERE_OF_INFLUENCE
 local eArtifactRuin = GameInfoTypes.ARTIFACT_ANCIENT_RUIN
 
