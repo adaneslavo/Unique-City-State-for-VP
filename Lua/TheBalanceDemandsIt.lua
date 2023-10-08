@@ -4,25 +4,6 @@ include("FLuaVector.lua")
 local L = Locale.ConvertTextKey
 local bBlockDoubleTriggering = false -- for preventing the double triggering the UnitPrekill event and other functions
 
--- loop through all conflicts in the game
-function ConflictsTest()
-	print("XXXXXXXXXXXXXXXXXXXXXX")
-	print("CONFLICTS_TEST")
-	for civilization in DB.Query("SELECT Civilizations.Type FROM Civilizations") do
-		for citystate in DB.Query("SELECT MinorCivilizations.Type, MinorCivilizations.Description FROM MinorCivilizations") do
-			for citylist in DB.Query("SELECT Civilization_CityNames.CityName FROM Civilization_CityNames WHERE CivilizationType = ?", civilization.Type) do
-				sMajorCityName = L(citylist.CityName)
-				sMinorCityName = L(citystate.Description)
-				
-				if sMajorCityName == sMinorCityName then
-					print("BASE_CONFLICT", civilization.Type, citystate.Type)	
-				end
-			end
-		end
-	end
-end
-ConflictsTest()
-
 local eSphere = GameInfoTypes.RESOLUTION_SPHERE_OF_INFLUENCE
 local eArtifactRuin = GameInfoTypes.ARTIFACT_ANCIENT_RUIN
 
@@ -369,6 +350,25 @@ local tUnitsWithSpread = {}
 -- look for major city --> city-states conflicts
 local tCityConflicts = {}
 
+-- loop through all conflicts in the game printing all the conflicts found
+--[[function ConflictsTest()
+	print("XXXXXXXXXXXXXXXXXXXXXX")
+	print("CONFLICTS_TEST")
+	for civilization in DB.Query("SELECT Civilizations.Type FROM Civilizations") do
+		for citystate in DB.Query("SELECT MinorCivilizations.Type, MinorCivilizations.Description FROM MinorCivilizations") do
+			for citylist in DB.Query("SELECT Civilization_CityNames.CityName FROM Civilization_CityNames WHERE CivilizationType = ?", civilization.Type) do
+				sMajorCityName = L(citylist.CityName)
+				sMinorCityName = L(citystate.Description)
+				
+				if sMajorCityName == sMinorCityName then
+					print("BASE_CONFLICT", civilization.Type, citystate.Type)	
+				end
+			end
+		end
+	end
+end
+ConflictsTest()--]]
+
 function Conflicts()
 	print("XXXXXXXXXXXXXXXXXXXXXX")
 	print("CONFLICTS")
@@ -584,6 +584,8 @@ function MinorPlayerDoTurn(ePlayer)
 				
 				local pMajorPlayer = Players[tEmbassies[ePlayer]]
 				
+				if pMajorPlayer:IsAtWarWith(ePlayer) then return end
+
 				if pMajorPlayer:GetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType]) ~= 0 then
 					pMajorPlayer:SetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType], 3)
 				end 

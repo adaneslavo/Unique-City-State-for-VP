@@ -4,7 +4,7 @@
 INSERT INTO Community	
 			(Type,					Value)
 VALUES		('UCS-PASSIVES-ON',		1),	-- enables CS passive abilities (GW gifts for Cultured CSs; religious pressure for Religious CSs)
-			('UCS-PASSIVES-TILE',	1),	-- enables CS free UGPTI on classical Era for each CS
+			('UCS-PASSIVES-TILE',	1),	-- enables CS free UGPTI on Classical Era for each CS
 			('UCS-PASSIVES-LUX',	1),	-- enables new Unique Luxuries for CSs
 			('UCS-PASSIVES-UNIT',	1),	-- enables civilian unit gifts from friendly CSs
 			('UCS-PASSIVES-BGP',	1), -- enables Border Growth Points gain in City-States after Diplomatic Mission
@@ -3902,6 +3902,8 @@ VALUES		('UNIT_SWISS_GUARD', 	'PROMOTION_GUARDIA_SVIZZERA'),
 			('UNIT_GURKHA', 		'PROMOTION_HEAVY_CHARGE'),
 			('UNIT_GURKHA', 		'PROMOTION_GAIN_EXPERIENCE'),
 			('UNIT_SAKA', 			'PROMOTION_SCYTHIAN_BARRAGE');
+
+UPDATE UnitPromotions SET PediaType = 'PEDIA_SHARED' WHERE Type = 'PROMOTION_HEAVY_CHARGE';
 ------------------------------
 INSERT INTO Unit_ClassUpgrades 	
 			(UnitType, 			UnitClassType)
