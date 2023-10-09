@@ -1,8 +1,5 @@
-v15.6:
-- added entries for conflicts table (new feature blocking certain City-States if conflicting Major Civ is in game; added in dll);
-- added automatic conflict checker printing out all conflicts in the database between major cities and city-states (commented out by default);
-- active bonuses are now not applied to Major Player if it is at war with a city-state (even if he has an Embassy there!);
-- because Gurkha uses Heavy Charge promotion it is now moved to Shared paragraph in the pedia (was in Mounted);
+v15.7:
+
 
 
 
