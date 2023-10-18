@@ -1578,6 +1578,42 @@ function CityStateTrainedUU(ePlayer, eCity, eUnit, bGold, bFaith)
 		end
 	end
 end
+
+function MilitaristicTerrainUpgrades(eUnitOwner, eUnit)
+	print("UPGRADE_CHECK", eUnitOwner, eUnit)
+
+	local pPlayer = Players[eUnitOwner]
+	local pUnit = pPlayer:GetUnitByID(eUnit)
+	local pPlot = pUnit:GetPlot()
+
+	if pPlot then
+		local ePlotOwner = pPlot:GetOwner()
+
+		--if ePlotOwner == -1 then return false end
+		--if ePlotOwner == eUnitOwner then return true end
+
+		if ePlotOwner ~= -1 then
+			local pPlotOwner = Players[ePlotOwner]
+
+			if pPlotOwner:IsMinorCiv() then
+				local eMinorTrait = pPlotOwner:GetMinorCivTrait()
+
+				if eMinorTrait == tMinorTraits[3] then 
+					if pPlotOwner:IsAllies(eUnitOwner) then
+						print("UPGRADE_CHECK_TRUE")
+						return true
+					else
+						print("UPGRADE_CHECK_FALSE")
+						return false
+					end
+				end
+			end
+		end
+	end
+
+	return true
+end
+GameEvents.UnitCanHaveAnyUpgrade.Add(MilitaristicTerrainUpgrades)
 	
 
 -- CULTURED
