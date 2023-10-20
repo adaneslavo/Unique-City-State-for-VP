@@ -9,7 +9,7 @@ local eArtifactRuin = GameInfoTypes.ARTIFACT_ANCIENT_RUIN
 
 local tUCSDefines = {
 	-- for abilities
-	["ThresholdPseudoAllies"] = 3 * GameDefines.FRIENDSHIP_THRESHOLD_ALLIES,
+	["ThresholdPseudoAllies"] = 5 * GameDefines.FRIENDSHIP_THRESHOLD_ALLIES,
 	-- for unique luxury resources related to traits
 	["NumCityStatesForFirstThreshold"] = 0,
 	["NumCityStatesForSecondThreshold"] = 5,
@@ -557,8 +557,6 @@ function MinorPlayerDoTurn(ePlayer)
 				if pMajorPlayer:GetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType]) == 0 and not pMajorPlayer:IsEventChoiceActive(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType]) then
 					pMajorPlayer:DoEventChoice(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType])
 					
-					print("CS_EVENT_ON_A", pMajorPlayer:GetName(), pMinorPlayer:GetName())
-					
 					if pMajorPlayer:IsHuman() then
 						pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_ALLY", pMinorPlayer:GetName()), L("TXT_KEY_UCS_BONUS_ALLY_TITLE"), pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
 					end
@@ -571,11 +569,11 @@ function MinorPlayerDoTurn(ePlayer)
 			if pMinorPlayer:GetImprovementCount(tImprovementsGreatPeople[1]) > 0 then
 				if tEmbassies[ePlayer] == nil then
 					local pMinorCapital = pMinorPlayer:GetCapitalCity()
-				
+					
 					for i = 0, pMinorCapital:GetNumCityPlots() - 1, 1 do
 						local pPlot = pMinorCapital:GetCityIndexPlot(i)
 					   
-						if pPlot and pPlot:GetOwner() == ePlayer and pPlot:GetImprovementType() == tImprovementsGreatPeople[1] then
+					    if pPlot and pPlot:GetOwner() == ePlayer and pPlot:GetImprovementType() == tImprovementsGreatPeople[1] then
 							tEmbassies[ePlayer] = pPlot:GetPlayerThatBuiltImprovement()
 							break
 						end
@@ -583,9 +581,9 @@ function MinorPlayerDoTurn(ePlayer)
 				end
 				
 				local pMajorPlayer = Players[tEmbassies[ePlayer]]
-				
-				if pMajorPlayer:IsAtWarWith(ePlayer) then return end
 
+				if pMajorPlayer:IsAtWarWith(ePlayer) then return end
+				
 				if pMajorPlayer:GetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType]) ~= 0 then
 					pMajorPlayer:SetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType], 3)
 				end 
@@ -593,8 +591,6 @@ function MinorPlayerDoTurn(ePlayer)
 				if pMajorPlayer:GetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType]) == 0 and not pMajorPlayer:IsEventChoiceActive(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType]) then
 					pMajorPlayer:DoEventChoice(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType])
 					
-					print("CS_EVENT_ON_B", pMajorPlayer:GetName(), pMinorPlayer:GetName())
-									
 					if pMajorPlayer:IsHuman() then
 						pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_EMBASSY", pMinorPlayer:GetName()), L("TXT_KEY_UCS_BONUS_EMBASSY_TITLE"), pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
 					end
@@ -604,23 +600,22 @@ function MinorPlayerDoTurn(ePlayer)
 		
 		-- pseudoAlly part
 		if tConditionsForActiveAbilities["FromHighInluenceLevel"] then
-			for ePlayer, pPlayer in ipairs(Players) do
-				if pPlayer and pPlayer:IsAlive() then
-					if pPlayer:IsMinorCiv() then break end
-					if not pPlayer:IsEverAlive() then break end
+			for eplayer, pplayer in ipairs(Players) do
+				if pplayer and pplayer:IsAlive() then
+					if pplayer:IsMinorCiv() then break end
+					if not pplayer:IsEverAlive() then break end
 					
-					if pMinorPlayer:GetMinorCivFriendshipWithMajor(ePlayer) >= tUCSDefines["ThresholdPseudoAllies"] then
-						if pPlayer:GetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType]) ~= 0 then
-							pPlayer:SetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType], 3)
+					if pMinorPlayer:GetMinorCivFriendshipWithMajor(eplayer) >= tUCSDefines["ThresholdPseudoAllies"] then
+						--print("PSEUDO_ALLIES", pMinorPlayer:GetName(), pplayer:GetName(), pMinorPlayer:GetMinorCivFriendshipWithMajor(eplayer))
+						if pplayer:GetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType]) ~= 0 then
+							pplayer:SetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType], 3)
 						end
 						
-						print("CS_EVENT_ON_C", pMajorPlayer:GetName(), pMinorPlayer:GetName())
-					
-						if pPlayer:GetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType]) == 0 and not pPlayer:IsEventChoiceActive(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType]) then
-							pPlayer:DoEventChoice(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType])
+						if pplayer:GetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType]) == 0 and not pplayer:IsEventChoiceActive(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType]) then
+							pplayer:DoEventChoice(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType])
 							
-							if pPlayer:IsHuman() then
-								pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_INFLUENCE", pMinorPlayer:GetName()), L("TXT_KEY_UCS_BONUS_INFLUENCE_TITLE"), pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
+							if pplayer:IsHuman() then
+								pplayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_INFLUENCE", pMinorPlayer:GetName()), L("TXT_KEY_UCS_BONUS_INFLUENCE_TITLE"), pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
 							end
 						end
 					end
@@ -2760,15 +2755,18 @@ function CheckAllMonasteries()
 
 				for iplot = 0, city:GetNumCityPlots() - 1 do
 					local pPlot = city:GetCityIndexPlot(iplot)
-					local eImprovementType = pPlot:GetImprovementType()
-					
-					if eImprovementType == tImprovementsUCS[3] and not pPlot:IsImprovementPillaged() then
-						iMonasteries = iMonasteries + 1
-					end
-					
-					if iMonasteries >= 3 then
-						tCitiesWithEnoughMonasteries[city:GetID()] = true
-						break
+
+					if pPlot then
+						local eImprovementType = pPlot:GetImprovementType()
+						
+						if eImprovementType == tImprovementsUCS[3] and not pPlot:IsImprovementPillaged() then
+							iMonasteries = iMonasteries + 1
+						end
+						
+						if iMonasteries >= 3 then
+							tCitiesWithEnoughMonasteries[city:GetID()] = true
+							break
+						end
 					end
 				end
 			end

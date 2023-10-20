@@ -1,5 +1,8 @@
-v15.7:
-
+v15.8:
+- increased the PseudoAllies threshold factor to 5 (was 3, so now 400 Influence needed);
+- fixed PseudoAllies mechanics (lua error);
+- fixed Monastery lua bug;
+- fixed lua bug in active bonuses;
 
 
 
