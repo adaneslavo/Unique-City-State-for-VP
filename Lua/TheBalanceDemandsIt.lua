@@ -4856,8 +4856,8 @@ function GoldForGPFromGenoa(eUnitOwner, eUnit, eUnitType, iX, iY)
 	
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[37]) ~= 0 then
 		if pUnit:GetUnitCombatType() == GameInfoTypes.UNITCOMBAT_SPECIAL_PEOPLE then
-			local iBaseYield1 = 50
-			local iBaseYield2 = 15
+			local iBaseYield1 = 40
+			local iBaseYield2 = 10
 			local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
 			local iLa = iBaseYield1 * iEraModifier
 			local iSuperba = iBaseYield2 * iEraModifier		
