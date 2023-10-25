@@ -80,7 +80,7 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       </Action>
     </ModActions>
     <ModContent>
-      <Content xmlns="">
+      <Content>
         <Type>InGameUIAddin</Type>
         <Name>CityStateStatusHelper.lua</Name>
         <Description>City-State abilities</Description>
@@ -726,6 +726,10 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
+    <Content Include="Art\SV_Icons\sv_BuildTulou.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
     <Content Include="Art\SV_Icons\sv_UnitTeaat.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
@@ -785,6 +789,10 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
     <Content Include="SQL\Bonuses.sql">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="XML\MinorCivSounds_Expansion2.xml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="XML\UCSTexts.xml">
       <SubType>Lua</SubType>

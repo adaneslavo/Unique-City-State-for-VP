@@ -9,13 +9,13 @@
 			<Text>City-State's Alliance bonuses!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_EMBASSY">
-			<Text>You established an Embassy in [COLOR_CYAN]{1_CS}[ENDCOLOR], therefore you gain a permanent access to the knowledge, technologies, experience and informations of its citizens. Watch for the new bonuses from this City-State.</Text>
+			<Text>You established an Embassy in [COLOR_CYAN]{1_CS}[ENDCOLOR], therefore you gain a permanent access to the knowledge, technologies, experience and informations of its citizens. Remember that this connection is lost if you are at war with this City-State! Watch for the new bonuses from this City-State.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_EMBASSY_TITLE">
 			<Text>City-State's permanent bonuses from an Embassy!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_INFLUENCE">
-			<Text>Now you are under the influence of [COLOR_CYAN]{1_CS}[ENDCOLOR] and may benefit from the knowledge, technologies, experience and informations of its citizens. Watch for the new bonuses from this City-State.</Text>
+			<Text>Now [COLOR_CYAN]{1_CS}[ENDCOLOR] is under your influence, so you may benefit from the knowledge, technologies, experience and informations of its citizens. Watch for the new bonuses from this City-State.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_INFLUENCE_TITLE">
 			<Text>Overwhelming influence with a City-State!</Text>

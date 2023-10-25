@@ -9,7 +9,7 @@ local eArtifactRuin = GameInfoTypes.ARTIFACT_ANCIENT_RUIN
 
 local tUCSDefines = {
 	-- for abilities
-	["ThresholdPseudoAllies"] = 5 * GameDefines.FRIENDSHIP_THRESHOLD_ALLIES,
+	["ThresholdPseudoAllies"] = 5 * GameDefines.FRIENDSHIP_THRESHOLD_ALLIES, -- 400
 	-- for unique luxury resources related to traits
 	["NumCityStatesForFirstThreshold"] = 0,
 	["NumCityStatesForSecondThreshold"] = 5,
@@ -2866,12 +2866,12 @@ function TradeInCapeTown(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eC
 		local iActualTRNumberModifier = pPlayer:GetNumInternationalTradeRoutesUsed() * 0.6
 		local iCahChing = math.ceil((iBaseYield * iPopulationModifier) / iActualTRNumberModifier)
 		local pPlayerCity = pPlayer:GetCityByID(eFromCity)
-		local pMinorPlayer = Players[tLostCities["eLostCapeTown"]]
+		local pCapeTown = Players[tLostCities["eLostCapeTown"]]
 		
 		pPlayer:DoInstantYield(GameInfoTypes.YIELD_GOLD, iCahChing, true, eFromCity)
 
 		if pPlayer:IsHuman() then
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_CAPE_TOWN", pMinorPlayer:GetName(), iCahChing), L("TXT_KEY_UCS_BONUS_CAPE_TOWN_TITLE"), pPlayerCity:GetX(), pPlayerCity:GetY())
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_CAPE_TOWN", pCapeTown:GetName(), iCahChing), L("TXT_KEY_UCS_BONUS_CAPE_TOWN_TITLE"), pPlayerCity:GetX(), pPlayerCity:GetY())
 		end
 	end
 end
@@ -2888,13 +2888,13 @@ function TradeInManila(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eCon
 		local iActualTRNumberModifier = pPlayer:GetNumInternationalTradeRoutesUsed() * 0.6
 		local iYumYum = math.ceil((iBaseYield * iPopulationModifier) / iActualTRNumberModifier)
 		local pPlayerCity = pPlayer:GetCityByID(eFromCity)
-		local pMinorPlayer = Players[tLostCities["eLostManila"]]
+		local pManila = Players[tLostCities["eLostManila"]]
 
 		pPlayer:DoInstantYield(GameInfoTypes.YIELD_FOOD, iYumYum, true, eFromCity)
 		pPlayer:DoInstantYield(GameInfoTypes.YIELD_PRODUCTION, iYumYum, true, eFromCity)
 		
 		if pPlayer:IsHuman() then 
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_MANILA", pMinorPlayer:GetName(), iYumYum), L("TXT_KEY_UCS_BONUS_MANILA_TITLE"), pPlayerCity:GetX(), pPlayerCity:GetY())
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_MANILA", pManila:GetName(), iYumYum), L("TXT_KEY_UCS_BONUS_MANILA_TITLE"), pPlayerCity:GetX(), pPlayerCity:GetY())
 		end
 	end
 end
@@ -2914,7 +2914,7 @@ function TradeInColombo(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eCo
 			end
 
 			if pPlayer:IsHuman() then
-				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_COLOMBO", pCity:GetName(), pMinorPlayer:GetName()), L("TXT_KEY_UCS_BONUS_COLOMBO_TITLE"), pCity:GetX(), pCity:GetY())
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_COLOMBO", pCity:GetName(), pColombo:GetName()), L("TXT_KEY_UCS_BONUS_COLOMBO_TITLE"), pCity:GetX(), pCity:GetY())
 			end
 		end
 	end		
