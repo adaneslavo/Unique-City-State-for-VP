@@ -168,7 +168,9 @@ local tPromotionsActiveAbilities = {
 	GameInfoTypes.PROMOTION_SIKH_TURBAN,
 	GameInfoTypes.PROMOTION_SIKH_MARTIAL_ART,
 	GameInfoTypes.PROMOTION_SIKH_BRACELET,
-	GameInfoTypes.PROMOTION_DAKKAR
+	GameInfoTypes.PROMOTION_DAKKAR,
+	GameInfoTypes.PROMOTION_BRUSSELS, -- 21
+	GameInfoTypes.PROMOTION_BRUSSELS_VS
 }
 
 local tBuildingsPassiveAbilities = {
@@ -2417,6 +2419,7 @@ end
 
 
 -- BRUSSELS (FEATURE MARSH)
+-- improvement
 function CanWePlaceMarsh(ePlayer, eUnit, iX, iY, eBuild)
 	if eBuild ~= GameInfoTypes.BUILD_MARSH then return true end
 	
@@ -2440,6 +2443,83 @@ function PlacedMarsh(ePlayer, iX, iY, eImprovement)
 		pPlot:SetFeatureType(tFeatureTypes[3], -1)
 	end
 end
+
+-- promotion
+--[[function InvisibleMarshOnMove(ePlayer, eUnit, iX, iY) 
+	local pPlayer = Players[ePlayer]
+	
+	local pUnit = pPlayer:GetUnitByID(eUnit)
+	local eUnitCombat = pUnit:GetUnitCombatType()
+	local pPlot = pUnit:GetPlot()
+	local bOnMarsh = pPlot and pPlot:GetFeatureType() == tFeatureTypes[3]
+	local bInCity = pPlot and pPlot:IsCity()
+	
+	local bIsHasEventOn = pPlayer:GetEventChoiceCooldown(tEventChoice[2]) ~= 0
+	
+	-- main promotion
+	if bIsHasEventOn then
+		if eUnitCombat == GameInfoTypes.UNITCOMBAT_RECON or eUnitCombat == GameInfoTypes.UNITCOMBAT_MELEE or eUnitCombat == GameInfoTypes.UNITCOMBAT_GUN then
+			pUnit:SetHasPromotion(tPromotionsActiveAbilities[21], bOnMarsh)
+		end
+	else
+		if pUnit:IsHasPromotion(tPromotionsActiveAbilities[21]) then
+			pUnit:SetHasPromotion(tPromotionsActiveAbilities[21], false)
+		end
+	end
+
+	-- counter promotion
+	if eUnitCombat == GameInfoTypes.UNITCOMBAT_RECON or bInCity then
+		if bOnMarsh then
+			pUnit:SetHasPromotion(tPromotionsActiveAbilities[22], true)
+		else
+			local bIsMarshAround = false
+
+			for i, direction in ipairs(tDirectionTypes) do
+				local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
+					
+				if pAdjacentPlot then
+					if pAdjacentPlot:GetFeatureType() == tFeatureTypes[3] then
+						bIsMarshAround = true
+						break
+					end
+				end
+			end
+
+			pUnit:SetHasPromotion(tPromotionsActiveAbilities[22], bIsMarshAround)
+		end
+	end
+end
+
+function InvisibleMarshOnEventOn(ePlayer, eEventChoiceType)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:IsMinorCiv() then return end
+	
+	if eEventChoiceType == tEventChoice[2] then
+		for unit in pPlayer:Units() do
+			local eUnitCombat = unit:GetUnitCombatType()
+				
+			if eUnitCombat == GameInfoTypes.UNITCOMBAT_RECON or eUnitCombat == GameInfoTypes.UNITCOMBAT_MELEE or eUnitCombat == GameInfoTypes.UNITCOMBAT_GUN then
+				local pPlot = unit:GetPlot()
+				local bOnMarsh = pPlot and pPlot:GetFeatureType() == tFeatureTypes[3]
+					
+				unit:SetHasPromotion(tPromotionsActiveAbilities[21], bOnMarsh)
+			end
+		end
+	end
+end
+
+function InvisibleMarshOnEventOff(ePlayer, eEventChoiceType)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:IsMinorCiv() then return end
+	
+	if eEventChoiceType == tEventChoice[2] then
+		for unit in pPlayer:Units() do
+			unit:SetHasPromotion(tPromotionsActiveAbilities[21], false)
+		end
+	end
+end--]]
 
 
 
@@ -5549,6 +5629,9 @@ function SettingUpSpecificEvents()
 			elseif sMinorCivType == "MINOR_CIV_BRUSSELS" then	
 				tLostCities["eLostBrussels"] = eCS
 				GameEvents.BuildFinished.Add(PlacedMarsh)
+				GameEvents.UnitSetXY.Add(InvisibleMarshOnMove)
+				GameEvents.EventChoiceActivated.Add(InvisibleMarshOnEventOn)
+				GameEvents.EventChoiceEnded.Add(InvisibleMarshOnEventOff)
 			elseif sMinorCivType == "MINOR_CIV_ADEJE" then	
 				tLostCities["eLostAdeje"] = eCS
 				GameEvents.BuildFinished.Add(PlacedDogoCanario)

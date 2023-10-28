@@ -1,7 +1,10 @@
 v15.10:
+- Brussels:
+	- now has new Promotion supporting your units, both civilian and military on Marshes and Rivers;
 - fixed few minor lua issues;
 - added info about Embassies not giving access to abilities during wars;
 - clarified the text when you have a huge influence with a City-State;
+- finally added groups for flag promotions;
 
 v15.9:
 - added new icon for Tulou (by @gwennog);
