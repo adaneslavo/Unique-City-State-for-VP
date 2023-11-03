@@ -447,7 +447,7 @@ SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LAHORE', 				'[COLOR_MAGENTA]Khalsa:[ENDCOLOR]
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LA_VENTA', 			'[COLOR_MAGENTA]Ceremonial Creations:[ENDCOLOR] Player can build a [COLOR_CITY_BROWN]Colossal Head[ENDCOLOR] improvement on [COLOR_CITY_BLUE]Plains[ENDCOLOR] or [COLOR_CITY_BLUE]Grassland[ENDCOLOR] tiles with [COLOR_CITY_GREEN]Forest[ENDCOLOR] or [COLOR_CITY_GREEN]Jungle[ENDCOLOR] by expending the [ICON_GREAT_ARTIST] [COLOR_YIELD_GOLD]G. Artist[ENDCOLOR], [ICON_GREAT_ENGINEER] [COLOR_YIELD_GOLD]G. Engineer[ENDCOLOR], [ICON_GREAT_SCIENTIST] [COLOR_YIELD_GOLD]G. Scientist[ENDCOLOR] or [ICON_PROPHET] [COLOR_YIELD_GOLD]G. Prophet[ENDCOLOR] increasing the [ICON_PRODUCTION] Production, [ICON_RESEARCH] Science, [ICON_CULTURE] Culture, [ICON_GOLDEN_AGE] Golden Age Point, [ICON_GREAT_GENERAL] Great General Point and [ICON_GREAT_ADMIRAL] Great Admiral Point output.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LEVUKA', 				'[COLOR_MAGENTA]Lasakau Sea Warriors:[ENDCOLOR] +1 [ICON_GREAT_GENERAL] Great General Point in the Capital per owned conquered City. [COLOR_YIELD_GOLD]Military Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Destroyers of Bau[ENDCOLOR] promotion (Gain [ICON_FOOD], scaling with Era, when killing Barbarians, clearing Barbarian Encampments (30-75 [ICON_FOOD] Food) or conquering enemy Cities (100-200 [ICON_FOOD] Food)).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LHASA', 				'[COLOR_MAGENTA]A Place Among the Gods:[ENDCOLOR] Cities gain +0.66 [ICON_PEACE] Faith for every [COLOR_CITY_BLUE]Mountain[ENDCOLOR] tile within their workable radius. The [COLOR_YIELD_FOOD]Potala Palace[ENDCOLOR] World Wonder will be available for construction after the foundation of [COLOR_POSITIVE_TEXT]World Congress[ENDCOLOR] and at [COLOR_CYAN]Architecture[ENDCOLOR]. Constructing the [COLOR_CYAN]Potala Palace[ENDCOLOR] grants a [COLOR_POSITIVE_TEXT]Sphere of Influence[ENDCOLOR] with [COLOR_CYAN]Lhasa[ENDCOLOR].[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LONGYAN', 			'[COLOR_MAGENTA]Home of Generals:[ENDCOLOR] Player can build a [COLOR_CITY_BROWN]Tulou[ENDCOLOR] improvement on hill next to a City, increasing the [ICON_FOOD] Food, [ICON_PRODUCTION] Production, [ICON_CULTURE] Culture, [ICON_GREAT_GENERAL] Great General Point output and the [ICON_SILVER_FIST] Supply Cap. Units gain +30% [ICON_STRENGTH] Defensive CS, when on a [COLOR_CITY_BROWN]Tulou[ENDCOLOR].[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LONGYAN', 			'[COLOR_MAGENTA]Home of Generals:[ENDCOLOR] Player can build a [COLOR_CITY_BROWN]Tulou[ENDCOLOR] improvement on hill next to a City, increasing the [ICON_FOOD] Food, [ICON_PRODUCTION] Production, [ICON_CULTURE] Culture, [ICON_GREAT_GENERAL] Great General Point output, nearby City''s [ICON_CITIZEN] Population and the [ICON_SILVER_FIST] Supply Cap. Units gain +30% [ICON_STRENGTH] Defensive CS, when on a [COLOR_CITY_BROWN]Tulou[ENDCOLOR].[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MALACCA', 			'[COLOR_MAGENTA]Strait Settlements:[ENDCOLOR] [COLOR_GREY]Luxury Resources[ENDCOLOR] gain +1 [ICON_GOLD] Gold. Cities gain +10% [ICON_GREAT_MERCHANT] Great Merchant Points. [ICON_GREAT_MERCHANT] Great Merchants'' and [ICON_GREAT_ENGINEER] Great Engineers'' instant abilities gain +10% Yields.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MANAGUA', 			'[COLOR_MAGENTA]Place of the Big Man:[ENDCOLOR] Cities gain +20% [ICON_SPY] Spy Resistance. Successful offensive [ICON_SPY] Spy Mission grants 30 [ICON_FOOD] Food, scaling with Era, and successful defensive [ICON_SPY] Spy Missio - 20 [ICON_CULTURE] Culture, scaling with Era.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MANILA', 				'[COLOR_MAGENTA]Pearl of the Orient:[ENDCOLOR] [ICON_INTERNATIONAL_TRADE] International Trade Routes gain +5% Yields. Finishing a [ICON_INTERNATIONAL_TRADE] Trade Route grants 25-50 [ICON_FOOD] Food and [ICON_PRODUCTION] Production in the City, scaling up with the Destination City''s [ICON_CITIZEN] Population and down with the actual number of active [ICON_INTERNATIONAL_TRADE] Trade Routes.[NEWLINE]' UNION ALL
@@ -689,7 +689,7 @@ INSERT INTO Language_en_US (Tag, Text)
 	SELECT 'TXT_KEY_IMPROVEMENT_CHUM_HELP', 				'Only with the Alliance of the Nyar''ana Marq people allow a civilization enjoy such a beauty of a structure.' UNION ALL
 	-- tulou
 	SELECT 'TXT_KEY_BUILD_TULOU', 							'Construct a Tulou'  UNION ALL
-	SELECT 'TXT_KEY_BUILD_TULOU_HELP', 						'Cannot be built on a [COLOR_GREY]Resource[ENDCOLOR].[NEWLINE]Can only be built on a Hill next to a City.[NEWLINE]Requires an access to [COLOR_CYAN]Longyan[ENDCOLOR]''s ability to be finished.[NEWLINE]+1 [ICON_PRODUCTION] Production with [COLOR_CYAN]Civil Service[ENDCOLOR], +1 [ICON_CULTURE] Culture with [COLOR_CYAN]Architecture[ENDCOLOR] and +1 [ICON_GREAT_GENERAL] Great General Points with [COLOR_CYAN]Military Service[ENDCOLOR]. Adjacent City gains 1 [ICON_CITIZEN] Citizen, when a [COLOR_CITY_BROWN]Tulou[ENDCOLOR] is built. Atacking unit will not leave [COLOR_CITY_BROWN]Tulou[ENDCOLOR], if the enemy is killed. +30% [ICON_STRENGTH] for units standing on a [COLOR_CITY_BROWN]Tulou[ENDCOLOR].' UNION ALL
+	SELECT 'TXT_KEY_BUILD_TULOU_HELP', 						'Cannot be built on a [COLOR_GREY]Resource[ENDCOLOR].[NEWLINE]Can only be built on a Hill next to a City.[NEWLINE]Requires an access to [COLOR_CYAN]Longyan[ENDCOLOR]''s ability to be finished.[NEWLINE]+1 [ICON_PRODUCTION] Production with [COLOR_CYAN]Civil Service[ENDCOLOR], +1 [ICON_CULTURE] Culture with [COLOR_CYAN]Architecture[ENDCOLOR] and +1 [ICON_GREAT_GENERAL] Great General Points with [COLOR_CYAN]Military Service[ENDCOLOR]. Adjacent City gains 1 [ICON_CITIZEN] Citizen, when a [COLOR_CITY_BROWN]Tulou[ENDCOLOR] is built. Atacking unit will not leave [COLOR_CITY_BROWN]Tulou[ENDCOLOR], if the enemy is killed. +30% [ICON_STRENGTH] Defensive CS for units standing on a [COLOR_CITY_BROWN]Tulou[ENDCOLOR].' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_TULOU', 					'Tulou' UNION ALL
 	SELECT 'TXT_KEY_CIV5_IMPROVEMENTS_TULOU', 				'TODO' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_TULOU_HELP', 				'Only with the Alliance of the Longyan people allow a civilization enjoy such a beauty of a structure.' UNION ALL
@@ -1717,7 +1717,7 @@ UPDATE UnitPromotions SET TechPrereq = 'TECH_MILITARY_SCIENCE' WHERE Type = 'PRO
 UPDATE UnitPromotions SET TechPrereq = 'TECH_REPLACEABLE_PARTS' WHERE Type = 'PROMOTION_SIKH_DAGGER';
 UPDATE UnitPromotions SET TechPrereq = 'TECH_BALLISTICS' WHERE Type = 'PROMOTION_SIKH_BRACELET';
 
-UPDATE UnitPromotions SET FlagPromoOrder = 0 WHERE Type IN (
+UPDATE UnitPromotions SET OrderPriority = 50, FlagPromoOrder = 50 WHERE Type IN (
 	'PROMOTION_SIKH',
 	'PROMOTION_SIKH_SWORD',
 	'PROMOTION_SIKH_KNIFE',
@@ -1738,7 +1738,7 @@ UPDATE UnitPromotions SET FlagPromoOrder = 0 WHERE Type IN (
 	'PROMOTION_SCYTHIAN_BARRAGE'
 );
 
-UPDATE UnitPromotions SET FlagPromoOrder = 5 WHERE Type IN (
+UPDATE UnitPromotions SET OrderPriority = 110, FlagPromoOrder = 110 WHERE Type IN (
 	'PROMOTION_CLERMONT',
 	'PROMOTION_CLERMONT1',
 	'PROMOTION_CLERMONT2',
@@ -1749,7 +1749,7 @@ UPDATE UnitPromotions SET FlagPromoOrder = 5 WHERE Type IN (
 	'PROMOTION_CLERMONT7'
 );
 
-UPDATE UnitPromotions SET FlagPromoOrder = 72 WHERE Type IN (
+UPDATE UnitPromotions SET OrderPriority = 75, FlagPromoOrder = 75 WHERE Type IN (
 	'PROMOTION_AMBRACIA',
 	'PROMOTION_ANTANANARIVO',
 	'PROMOTION_AUCKLAND',

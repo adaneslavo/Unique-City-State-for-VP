@@ -1,3 +1,8 @@
+v15.11:
+- adjusted FlagPromoOrder values for new promotions;
+- added OrderPriority values to new promotions;
+- few text adjustments for Tulou;
+
 v15.10:
 - Brussels:
 	- now has new Promotion supporting your units, both civilian and military on Marshes and Rivers;
