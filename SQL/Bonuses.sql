@@ -1749,7 +1749,7 @@ UPDATE UnitPromotions SET OrderPriority = 110, FlagPromoOrder = 110 WHERE Type I
 	'PROMOTION_CLERMONT7'
 );
 
-UPDATE UnitPromotions SET OrderPriority = 75, FlagPromoOrder = 75 WHERE Type IN (
+UPDATE UnitPromotions SET OrderPriority = 180, FlagPromoOrder = 180 WHERE Type IN (
 	'PROMOTION_AMBRACIA',
 	'PROMOTION_ANTANANARIVO',
 	'PROMOTION_AUCKLAND',
