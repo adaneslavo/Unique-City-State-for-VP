@@ -1,3 +1,6 @@
+v15.12:
+- fixed Longyan's population increase;
+
 v15.11:
 - adjusted FlagPromoOrder values for new promotions;
 - added OrderPriority values to new promotions;

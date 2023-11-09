@@ -2888,7 +2888,7 @@ function BuiltTulou(ePlayer, iX, iY, eImprovement)
 		local pCity = Map.GetPlot(iX, iY):GetWorkingCity()
 		local pLongyan = Players[tLostCities["eLostLongyan"]]
 		
-		pCity:ChangePopulation(1)
+		pCity:ChangePopulation(1, true)
 		
 		if pPlayer:IsHuman() then
 			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_LONGYAN_POP", pLongyan:GetName(), pCity:GetName()), L("TXT_KEY_UCS_BONUS_LONGYAN_POP_TITLE"), pCity:GetX(), pCity:GetY())
