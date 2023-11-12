@@ -1,5 +1,6 @@
 v15.12:
 - fixed Longyan's population increase;
+- fixed Thimphu's lua code;
 
 v15.11:
 - adjusted FlagPromoOrder values for new promotions;

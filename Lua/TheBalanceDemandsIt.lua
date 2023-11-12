@@ -3383,12 +3383,13 @@ function DrukTsendhenCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bCo
 	if pNewOwner:GetEventChoiceCooldown(tEventChoice[10]) ~= 0 then
 		local pPlot = Map.GetPlot(iX, iY)
 			
-		if pPlot then
+		if pPlot then		
+			local pConqCity = pPlot:GetWorkingCity()
+
+			-- culture on hill
 			local ePlot = pPlot:GetPlotType()
 			
 			if ePlot == tPlotTypes[2] then
-				local pConqCity = pPlot:GetWorkingCity()
-			
 				pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[4], 1)
 			end
 			
@@ -3417,13 +3418,13 @@ function DrukTsendhenNewCity(ePlayer, iX, iY)
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[10]) ~= 0 then
 		local pPlot = Map.GetPlot(iX, iY)
 				
-		if pPlot then
+		if pPlot then		
+			local pCity = pPlot:GetWorkingCity()
+
 			-- culture on hill
 			local ePlot = pPlot:GetPlotType()
 			
-			if ePlot == tPlotTypes[2] then		
-				local pCity = pPlot:GetWorkingCity()
-			
+			if ePlot == tPlotTypes[2] then
 				pCity:SetNumRealBuilding(tBuildingsActiveAbilities[4], 1)
 			end
 			
