@@ -373,7 +373,7 @@ function ConflictsTest()
 		end
 	end
 end
-ConflictsTest()
+--ConflictsTest()
 
 function Conflicts()
 	print("XXXXXXXXXXXXXXXXXXXXXX")
@@ -3024,7 +3024,6 @@ function BuiltFuneraryTower(ePlayer, iX, iY, eImprovement)
 		pClosestCity:SetNumRealBuilding(tBuildingsActiveAbilities[28], pClosestCity:GetNumRealBuilding(tBuildingsActiveAbilities[28]) + 1)
 	end
 end
-GameEvents.BuildFinished.Add(BuiltFuneraryTower)
 
 
 

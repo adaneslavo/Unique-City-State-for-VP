@@ -5,7 +5,7 @@ INSERT INTO Community
 			(Type,					Value)
 VALUES		('UCS-PASSIVES-ON',		1),	-- enables CS passive abilities (GW gifts for Cultured CSs; religious pressure for Religious CSs)
 			('UCS-PASSIVES-TILE',	1),	-- enables CS free UGPTI on Classical Era for each CS
-			('UCS-PASSIVES-RES',	0),	-- enables CS additional resources (Maritime/ Mercantile/Militaristic);
+			('UCS-PASSIVES-RES',	1),	-- enables CS additional resources (Maritime/ Mercantile/Militaristic);
 			('UCS-PASSIVES-LUX',	1),	-- enables new Unique Luxuries for CSs
 			('UCS-PASSIVES-UNIT',	1),	-- enables civilian unit gifts from friendly CSs
 			('UCS-PASSIVES-BGP',	1), -- enables Border Growth Points gain in City-States after Diplomatic Mission
