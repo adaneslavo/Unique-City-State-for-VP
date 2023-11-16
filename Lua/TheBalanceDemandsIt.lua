@@ -107,7 +107,8 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_LONGYAN,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_KARASJOHKA,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_AYUTTHAYA,
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SARNATH -- 56
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SARNATH, -- 56
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_PALMYRA
 }
 
 local tBuildingsActiveAbilities = {
@@ -137,7 +138,8 @@ local tBuildingsActiveAbilities = {
 	GameInfoTypes.BUILDING_KATENDE,
 	GameInfoTypes.BUILDING_KATENDE_2,
 	GameInfoTypes.BUILDING_SARNATH_2, -- 26
-	GameInfoTypes.BUILDING_LONGYAN
+	GameInfoTypes.BUILDING_LONGYAN,
+	GameInfoTypes.BUILDING_PALMYRA_2
 }
 
 local tBuildingClasses = {
@@ -193,7 +195,8 @@ local tPoliciesPassiveAbilities = {
 
 local tImprovementsRegular = {
 	GameInfoTypes.IMPROVEMENT_CAMP,
-	GameInfoTypes.IMPROVEMENT_PLANTATION
+	GameInfoTypes.IMPROVEMENT_PLANTATION,
+	GameInfoTypes.IMPROVEMENT_TRADING_POST
 }
 
 local tImprovementsUCS = {
@@ -206,7 +209,8 @@ local tImprovementsUCS = {
 	GameInfoTypes.IMPROVEMENT_DOGO_CANARIO,	-- dummy
 	GameInfoTypes.IMPROVEMENT_LLAO_LLAO,	-- dummy
 	GameInfoTypes.IMPROVEMENT_MARSH,		-- dummy
-	GameInfoTypes.IMPROVEMENT_CITY			-- dummy
+	GameInfoTypes.IMPROVEMENT_CITY,			-- dummy
+	GameInfoTypes.IMPROVEMENT_FUNERARY_TOWER
 }
 
 local tImprovementsGreatPeople = {
@@ -353,7 +357,7 @@ local tUnitsWithSpread = {}
 local tCityConflicts = {}
 
 -- loop through all conflicts in the game printing all the conflicts found
---[[function ConflictsTest()
+function ConflictsTest()
 	print("XXXXXXXXXXXXXXXXXXXXXX")
 	print("CONFLICTS_TEST")
 	for civilization in DB.Query("SELECT Civilizations.Type FROM Civilizations") do
@@ -369,7 +373,7 @@ local tCityConflicts = {}
 		end
 	end
 end
-ConflictsTest()--]]
+ConflictsTest()
 
 function Conflicts()
 	print("XXXXXXXXXXXXXXXXXXXXXX")
@@ -809,6 +813,82 @@ function MaritimeCityStatesBonuses(ePlayer, iX, iY)
 	local iCapitalY = pMinorCapital:GetY()
 	
 	if iCapitalX ~= iX or iCapitalY ~= iY then return end
+
+	-- Bonus Resource
+	if tSettings["EnablePassivesTileResources"] then
+		local tBonusResourcesIDs = {}
+		local tBonusResourcesTypes = {}
+		local bBonusPlaced = false
+	
+		for resource in GameInfo.Resources{ResourceClassType="RESOURCECLASS_BONUS"} do
+			table.insert(tBonusResourcesIDs, resource.ID)
+			table.insert(tBonusResourcesTypes, resource.Type)
+		end
+	
+		repeat
+			local iRandomResource = RandomNumberBetween(1, #tBonusResourcesIDs)
+			local eChosenResource = tBonusResourcesIDs[iRandomResource]
+			local tBonusResourceFeatures = {}
+			local tBonusResourceTerrains = {}
+		
+			for row in GameInfo.Resource_FeatureBooleans{ResourceType=tBonusResourcesTypes[iRandomResource]} do
+				table.insert(tBonusResourceFeatures, row.FeatureType)
+			end
+			for row in GameInfo.Resource_TerrainBooleans{ResourceType=tBonusResourcesTypes[iRandomResource]} do
+				table.insert(tBonusResourceTerrains, row.TerrainType)
+			end	
+		
+			for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
+				local pPlot = pMinorCapital:GetCityIndexPlot(i)
+			
+				if pPlot then
+					local bIsCity = pPlot:IsCity()
+					local eImprovement = pPlot:GetImprovementType()
+					local eResource = pPlot:GetResourceType()
+					local eFeature = pPlot:GetFeatureType()
+					local eTerrain = pPlot:GetTerrainType()
+					local bFeaturePass = false
+					local bTerrainPass = false
+				
+					if not bIsCity and eResource == -1 and eImprovement == -1 then
+						if #tBonusResourceFeatures == 0 and eFeature == -1 then
+							bFeaturePass = true
+						else
+							for i, value in ipairs(tBonusResourceFeatures) do
+								if eFeature == FeatureTypes[value] then
+									bFeaturePass = true
+									break
+								end
+							end
+						end
+					
+						if #tBonusResourceTerrains == 0 then
+							bFeaturePass = true
+						else
+							for i, value in ipairs(tBonusResourceTerrains) do
+								if eTerrain == TerrainTypes[value] then
+									bTerrainPass = true
+									break
+								end
+							end
+						end
+					
+						if bFeaturePass and bTerrainPass then
+							pPlot:SetResourceType(eChosenResource, 1)
+							bBonusPlaced = true
+							break
+						end
+					end
+				end
+			
+				if i >= 36 then
+					table.remove(tBonusResourcesIDs, iRandomResource)
+					table.remove(tBonusResourcesTypes, iRandomResource)
+					break
+				end
+			end
+		until (bBonusPlaced or #tBonusResourcesIDs == 0)
+	end
 	
 	-- Unique Luxuries
 	if tSettings["EnablePassivesLuxuries"] then
@@ -836,80 +916,6 @@ function MaritimeCityStatesBonuses(ePlayer, iX, iY)
 			pCapitalPlot:SetImprovementType(tImprovementsUCS[10])
 		end
 	end
-
-	-- Bonus Resource
-	local tBonusResourcesIDs = {}
-	local tBonusResourcesTypes = {}
-	local bBonusPlaced = false
-	
-	for resource in GameInfo.Resources{ResourceClassType="RESOURCECLASS_BONUS"} do
-		table.insert(tBonusResourcesIDs, resource.ID)
-		table.insert(tBonusResourcesTypes, resource.Type)
-	end
-	
-	repeat
-		local iRandomResource = RandomNumberBetween(1, #tBonusResourcesIDs)
-		local eChosenResource = tBonusResourcesIDs[iRandomResource]
-		local tBonusResourceFeatures = {}
-		local tBonusResourceTerrains = {}
-		
-		for row in GameInfo.Resource_FeatureBooleans{ResourceType=tBonusResourcesTypes[iRandomResource]} do
-			table.insert(tBonusResourceFeatures, row.FeatureType)
-		end
-		for row in GameInfo.Resource_TerrainBooleans{ResourceType=tBonusResourcesTypes[iRandomResource]} do
-			table.insert(tBonusResourceTerrains, row.TerrainType)
-		end	
-		
-		for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
-			local pPlot = pMinorCapital:GetCityIndexPlot(i)
-			
-			if pPlot then
-				local bIsCity = pPlot:IsCity()
-				local eImprovement = pPlot:GetImprovementType()
-				local eResource = pPlot:GetResourceType()
-				local eFeature = pPlot:GetFeatureType()
-				local eTerrain = pPlot:GetTerrainType()
-				local bFeaturePass = false
-				local bTerrainPass = false
-				
-				if not bIsCity and eResource == -1 and eImprovement == -1 then
-					if #tBonusResourceFeatures == 0 and eFeature == -1 then
-						bFeaturePass = true
-					else
-						for i, value in ipairs(tBonusResourceFeatures) do
-							if eFeature == FeatureTypes[value] then
-								bFeaturePass = true
-								break
-							end
-						end
-					end
-					
-					if #tBonusResourceTerrains == 0 then
-						bFeaturePass = true
-					else
-						for i, value in ipairs(tBonusResourceTerrains) do
-							if eTerrain == TerrainTypes[value] then
-								bTerrainPass = true
-								break
-							end
-						end
-					end
-					
-					if bFeaturePass and bTerrainPass then
-						pPlot:SetResourceType(eChosenResource, 1)
-						bBonusPlaced = true
-						break
-					end
-				end
-			end
-			
-			if i >= 36 then
-				table.remove(tBonusResourcesIDs, iRandomResource)
-				table.remove(tBonusResourcesTypes, iRandomResource)
-				break
-			end
-		end
-	until (bBonusPlaced or #tBonusResourcesIDs == 0)
 	
 	-- policy
 	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[1], true)
@@ -1072,78 +1078,80 @@ function MercantileCityStatesBonuses(ePlayer, iX, iY)
 	if iCapitalX ~= iX or iCapitalY ~= iY then return end
 	
 	-- Luxury Resource
-	local tLuxuryResourcesIDs = {}
-	local tLuxuryResourcesTypes = {}
-	local bLuxuryPlaced = false
+	if tSettings["EnablePassivesTileResources"] then
+		local tLuxuryResourcesIDs = {}
+		local tLuxuryResourcesTypes = {}
+		local bLuxuryPlaced = false
 	
-	for resource in GameInfo.Resources{ResourceClassType="RESOURCECLASS_LUXURY", OnlyMinorCivs=0} do
-		table.insert(tLuxuryResourcesIDs, resource.ID)
-		table.insert(tLuxuryResourcesTypes, resource.Type)
-	end
-	
-	repeat
-		local iRandomResource = RandomNumberBetween(1, #tLuxuryResourcesIDs)
-		local eChosenResource = tLuxuryResourcesIDs[iRandomResource]
-		local tLuxuryResourceFeatures = {}
-		local tLuxuryResourceTerrains = {}
-		
-		for row in GameInfo.Resource_FeatureBooleans{ResourceType=tLuxuryResourcesTypes[iRandomResource]} do
-			table.insert(tLuxuryResourceFeatures, row.FeatureType)
+		for resource in GameInfo.Resources{ResourceClassType="RESOURCECLASS_LUXURY", OnlyMinorCivs=0} do
+			table.insert(tLuxuryResourcesIDs, resource.ID)
+			table.insert(tLuxuryResourcesTypes, resource.Type)
 		end
-		for row in GameInfo.Resource_TerrainBooleans{ResourceType=tLuxuryResourcesTypes[iRandomResource]} do
-			table.insert(tLuxuryResourceTerrains, row.TerrainType)
-		end	
+	
+		repeat
+			local iRandomResource = RandomNumberBetween(1, #tLuxuryResourcesIDs)
+			local eChosenResource = tLuxuryResourcesIDs[iRandomResource]
+			local tLuxuryResourceFeatures = {}
+			local tLuxuryResourceTerrains = {}
 		
-		for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
-			local pPlot = pMinorCapital:GetCityIndexPlot(i)
+			for row in GameInfo.Resource_FeatureBooleans{ResourceType=tLuxuryResourcesTypes[iRandomResource]} do
+				table.insert(tLuxuryResourceFeatures, row.FeatureType)
+			end
+			for row in GameInfo.Resource_TerrainBooleans{ResourceType=tLuxuryResourcesTypes[iRandomResource]} do
+				table.insert(tLuxuryResourceTerrains, row.TerrainType)
+			end	
+		
+			for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
+				local pPlot = pMinorCapital:GetCityIndexPlot(i)
 			
-			if pPlot then
-				local bIsCity = pPlot:IsCity()
-				local eImprovement = pPlot:GetImprovementType()
-				local eResource = pPlot:GetResourceType()
-				local eFeature = pPlot:GetFeatureType()
-				local eTerrain = pPlot:GetTerrainType()
-				local bFeaturePass = false
-				local bTerrainPass = false
+				if pPlot then
+					local bIsCity = pPlot:IsCity()
+					local eImprovement = pPlot:GetImprovementType()
+					local eResource = pPlot:GetResourceType()
+					local eFeature = pPlot:GetFeatureType()
+					local eTerrain = pPlot:GetTerrainType()
+					local bFeaturePass = false
+					local bTerrainPass = false
 				
-				if not bIsCity and eResource == -1 and eImprovement == -1 then
-					if #tLuxuryResourceFeatures == 0 and eFeature == -1 then
-						bFeaturePass = true
-					else
-						for i, value in ipairs(tLuxuryResourceFeatures) do
-							if eFeature == FeatureTypes[value] then
-								bFeaturePass = true
-								break
+					if not bIsCity and eResource == -1 and eImprovement == -1 then
+						if #tLuxuryResourceFeatures == 0 and eFeature == -1 then
+							bFeaturePass = true
+						else
+							for i, value in ipairs(tLuxuryResourceFeatures) do
+								if eFeature == FeatureTypes[value] then
+									bFeaturePass = true
+									break
+								end
 							end
 						end
-					end
 					
-					if #tLuxuryResourceTerrains == 0 then
-						bFeaturePass = true
-					else
-						for i, value in ipairs(tLuxuryResourceTerrains) do
-							if eTerrain == TerrainTypes[value] then
-								bTerrainPass = true
-								break
+						if #tLuxuryResourceTerrains == 0 then
+							bFeaturePass = true
+						else
+							for i, value in ipairs(tLuxuryResourceTerrains) do
+								if eTerrain == TerrainTypes[value] then
+									bTerrainPass = true
+									break
+								end
 							end
 						end
-					end
 					
-					if bFeaturePass and bTerrainPass then
-						pPlot:SetResourceType(eChosenResource, 1)
-						bLuxuryPlaced = true
-						break
+						if bFeaturePass and bTerrainPass then
+							pPlot:SetResourceType(eChosenResource, 1)
+							bLuxuryPlaced = true
+							break
+						end
 					end
 				end
-			end
 			
-			if i >= 36 then
-				table.remove(tLuxuryResourcesIDs, iRandomResource)
-				table.remove(tLuxuryResourcesTypes, iRandomResource)
-				break
+				if i >= 36 then
+					table.remove(tLuxuryResourcesIDs, iRandomResource)
+					table.remove(tLuxuryResourcesTypes, iRandomResource)
+					break
+				end
 			end
-		end
-	until (bLuxuryPlaced or #tLuxuryResourcesIDs == 0)
+		until (bLuxuryPlaced or #tLuxuryResourcesIDs == 0)
+	end
 	
 	-- policy
 	pPlayer:SetHasPolicy(tPoliciesPassiveAbilities[2], true)
@@ -1350,83 +1358,85 @@ function MilitaristicCityStatesBonuses(ePlayer, iX, iY)
 	if iCapitalX ~= iX or iCapitalY ~= iY then return end
 	
 	-- Strategic Resource
-	local tStrategicResourcesIDs = {}
-	local tStrategicResourcesTypes = {}
-	local bStrategicPlaced = false
+	if tSettings["EnablePassivesTileResources"] then
+		local tStrategicResourcesIDs = {}
+		local tStrategicResourcesTypes = {}
+		local bStrategicPlaced = false
 	
-	for resource in GameInfo.Resources{ResourceUsage=1} do
-		if resource.ID ~= GameInfoTypes.RESOURCE_PAPER then
-			table.insert(tStrategicResourcesIDs, resource.ID)
-			table.insert(tStrategicResourcesTypes, resource.Type)
+		for resource in GameInfo.Resources{ResourceUsage=1} do
+			if resource.ID ~= GameInfoTypes.RESOURCE_PAPER then
+				table.insert(tStrategicResourcesIDs, resource.ID)
+				table.insert(tStrategicResourcesTypes, resource.Type)
+			end
 		end
-	end
 	
-	repeat
-		local iRandomResource = RandomNumberBetween(1, #tStrategicResourcesIDs)
-		local eChosenResource = tStrategicResourcesIDs[iRandomResource]
-		local tStrategicResourceFeatures = {}
-		local tStrategicResourceTerrains = {}
+		repeat
+			local iRandomResource = RandomNumberBetween(1, #tStrategicResourcesIDs)
+			local eChosenResource = tStrategicResourcesIDs[iRandomResource]
+			local tStrategicResourceFeatures = {}
+			local tStrategicResourceTerrains = {}
 			
-		for row in GameInfo.Resource_FeatureBooleans{ResourceType=tStrategicResourcesTypes[iRandomResource]} do
-			table.insert(tStrategicResourceFeatures, row.FeatureType)
-		end
-		for row in GameInfo.Resource_TerrainBooleans{ResourceType=tStrategicResourcesTypes[iRandomResource]} do
-			table.insert(tStrategicResourceTerrains, row.TerrainType)
-		end	
+			for row in GameInfo.Resource_FeatureBooleans{ResourceType=tStrategicResourcesTypes[iRandomResource]} do
+				table.insert(tStrategicResourceFeatures, row.FeatureType)
+			end
+			for row in GameInfo.Resource_TerrainBooleans{ResourceType=tStrategicResourcesTypes[iRandomResource]} do
+				table.insert(tStrategicResourceTerrains, row.TerrainType)
+			end	
 		
-		for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
-			local pPlot = pMinorCapital:GetCityIndexPlot(i)
+			for i = 1, pMinorCapital:GetNumCityPlots() - 1, 1 do
+				local pPlot = pMinorCapital:GetCityIndexPlot(i)
 			
-			if pPlot then
-				local bIsCity = pPlot:IsCity()
-				local eImprovement = pPlot:GetImprovementType()
-				local eResource = pPlot:GetResourceType()
-				local ePlot = pPlot:GetPlotType()
-				local eFeature = pPlot:GetFeatureType()
-				local eTerrain = pPlot:GetTerrainType()
-				local bFeaturePass = false
-				local bTerrainPass = false
+				if pPlot then
+					local bIsCity = pPlot:IsCity()
+					local eImprovement = pPlot:GetImprovementType()
+					local eResource = pPlot:GetResourceType()
+					local ePlot = pPlot:GetPlotType()
+					local eFeature = pPlot:GetFeatureType()
+					local eTerrain = pPlot:GetTerrainType()
+					local bFeaturePass = false
+					local bTerrainPass = false
 				
-				if not bIsCity and eResource == -1 and eImprovement == -1 then
-					if #tStrategicResourceFeatures == 0 and eFeature == -1 then
-						bFeaturePass = true
-					elseif eFeature == -1  and ePlot == tPlotTypes[4] then
-						bFeaturePass = true
-					else
-						for i, value in ipairs(tStrategicResourceFeatures) do
-							if eFeature == FeatureTypes[value] then
-								bFeaturePass = true
-								break
+					if not bIsCity and eResource == -1 and eImprovement == -1 then
+						if #tStrategicResourceFeatures == 0 and eFeature == -1 then
+							bFeaturePass = true
+						elseif eFeature == -1  and ePlot == tPlotTypes[4] then
+							bFeaturePass = true
+						else
+							for i, value in ipairs(tStrategicResourceFeatures) do
+								if eFeature == FeatureTypes[value] then
+									bFeaturePass = true
+									break
+								end
 							end
 						end
-					end
 					
-					if #tStrategicResourceTerrains == 0 then
-						bFeaturePass = true
-					else
-						for i, value in ipairs(tStrategicResourceTerrains) do
-							if eTerrain == TerrainTypes[value] then
-								bTerrainPass = true
-								break
+						if #tStrategicResourceTerrains == 0 then
+							bFeaturePass = true
+						else
+							for i, value in ipairs(tStrategicResourceTerrains) do
+								if eTerrain == TerrainTypes[value] then
+									bTerrainPass = true
+									break
+								end
 							end
 						end
-					end
 					
-					if bFeaturePass and bTerrainPass then
-						pPlot:SetResourceType(eChosenResource, 1)
-						bStrategicPlaced = true
-						break
+						if bFeaturePass and bTerrainPass then
+							pPlot:SetResourceType(eChosenResource, 1)
+							bStrategicPlaced = true
+							break
+						end
 					end
 				end
-			end
 			
-			if i >= 36 then
-				table.remove(tStrategicResourcesIDs, iRandomResource)
-				table.remove(tStrategicResourcesTypes, iRandomResource)
-				break
+				if i >= 36 then
+					table.remove(tStrategicResourcesIDs, iRandomResource)
+					table.remove(tStrategicResourcesTypes, iRandomResource)
+					break
+				end
 			end
-		end
-	until (bStrategicPlaced or #tStrategicResourcesIDs == 0)
+		until (bStrategicPlaced or #tStrategicResourcesIDs == 0)
+	end
 	
 	-- Unique Luxuries
 	if tSettings["EnablePassivesLuxuries"] then
@@ -2533,6 +2543,7 @@ function CanWePlaceDogoCanario(ePlayer, eUnit, iX, iY, eBuild)
 	
 	local pPlot = Map.GetPlot(iX, iY)
 	
+	-- hills requirement moved here because HillsMakesValid was treated as OR to terrain requirement
 	if not pPlot:IsHills() then return false end
 
 	local eResource = pPlot:GetResourceType()
@@ -2603,8 +2614,24 @@ function CanWeBuildTotemPole(ePlayer, eUnit, iX, iY, eBuild)
 	local pPlayer = Players[ePlayer]
 	
 	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[40]) > 0) then return false end
-	
-	return true
+
+	local pPlot = Map.GetPlot(iX, iY)
+
+	-- complex requirement that involves coast, lake and other factors
+	if pPlot:IsAdjacentToShallowWater() then
+		return true
+	else
+		for i, direction in ipairs(tDirectionTypes) do
+			local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
+			local eImprovementType = pAdjacentPlot:GetImprovementType()
+						
+			if pAdjacentPlot and (pAdjacentPlot:IsCity() or eImprovementType == tImprovementsRegular[3] or eImprovementType == tImprovementsGreatPeople[5]) then 
+				return true
+			end
+		end
+	end
+
+	return false
 end
 GameEvents.PlayerCanBuild.Add(CanWeBuildTotemPole)
 
@@ -2631,8 +2658,17 @@ function CanWeBuildColossalHead(ePlayer, eUnit, iX, iY, eBuild)
 	local pPlayer = Players[ePlayer]
 	
 	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[23]) > 0) then return false end
+
+	local pPlot = Map.GetPlot(iX, iY)
+
+	local eTerrain = pPlot:GetTerrainType()
+
+	-- terrain requirement moved here because it was omitted by the feature requirement
+	if eTerrain == tTerrainTypes[5] or eTerrain == tTerrainTypes[6] then
+		return true
+	end
 	
-	return true
+	return false
 end
 GameEvents.PlayerCanBuild.Add(CanWeBuildColossalHead)
 
@@ -2932,6 +2968,63 @@ function CountTulous(ePlayer)
 		pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[27], iNumTulous)
 	end
 end
+
+
+
+-- PALMYRA (IMPROVEMENT FUNERARY TOWER)
+function CanWeBuildFuneraryTower(ePlayer, eUnit, iX, iY, eBuild)
+	if eBuild ~= GameInfoTypes.BUILD_FUNERARY_TOWER then return true end
+	
+	local pPlayer = Players[ePlayer]
+	
+	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[57]) > 0) then return false end
+
+	local pPlot = Map.GetPlot(iX, iY)
+	local ePlotOwner = pPlot:GetOwner()
+	local bIsOnOrAdjacentToOwned = ePlotOwner == ePlayer
+
+	if not bIsOnOrAdjacentToOwned then
+		for i, direction in ipairs(tDirectionTypes) do
+			local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
+			local eAdjacentPlotOwner = pAdjacentPlot:GetOwner()
+			local eImprovementType = pAdjacentPlot:GetImprovementType()
+
+			if eAdjacentPlotOwner == ePlayer or eImprovementType == tImprovementsUCS[11] then 
+				bIsOnOrAdjacentToOwned = true
+				break
+			end
+		end
+	end
+
+	return bIsOnOrAdjacentToOwned
+end
+GameEvents.PlayerCanBuild.Add(CanWeBuildFuneraryTower)
+
+function BuiltFuneraryTower(ePlayer, iX, iY, eImprovement)
+	if eImprovement == tImprovementsUCS[11] then
+		local pPlot = Map.GetPlot(iX, iY)
+		local ePlotOwner = pPlot:GetOwner()
+		local pClosestCity = nil
+
+		if ePlotOwner == ePlayer then 
+			pClosestCity = pPlot:GetWorkingCity()
+		else
+			for i, direction in ipairs(tDirectionTypes) do
+				local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
+				local eAdjacentPlotOwner = pAdjacentPlot:GetOwner()
+				
+				if eAdjacentPlotOwner == ePlayer then 
+					pClosestCity = pAdjacentPlot:GetWorkingCity()
+					pPlot:SetOwner(ePlayer, pClosestCity:GetID())
+					break
+				end
+			end
+		end
+
+		pClosestCity:SetNumRealBuilding(tBuildingsActiveAbilities[28], pClosestCity:GetNumRealBuilding(tBuildingsActiveAbilities[28]) + 1)
+	end
+end
+GameEvents.BuildFinished.Add(BuiltFuneraryTower)
 
 
 
@@ -5519,6 +5612,7 @@ end
 function SettingUpSpecificEvents()
 	tSettings["EnablePassives"] = GameInfo.Community{Type="UCS-PASSIVES-ON"}().Value == 1
 	tSettings["EnablePassivesImprovements"] = GameInfo.Community{Type="UCS-PASSIVES-TILE"}().Value == 1
+	tSettings["EnablePassivesTileResources"] = GameInfo.Community{Type="UCS-PASSIVES-RES"}().Value == 1
 	tSettings["EnablePassivesLuxuries"] = GameInfo.Community{Type="UCS-PASSIVES-LUX"}().Value == 1
 	tSettings["EnablePassivesFreeUnits"] = GameInfo.Community{Type="UCS-PASSIVES-UNIT"}().Value == 1
 	tSettings["EnablePassivesBorderGrowth"] = GameInfo.Community{Type="UCS-PASSIVES-BGP"}().Value == 1
@@ -5590,8 +5684,8 @@ function SettingUpSpecificEvents()
 			
 			-- improvements
 			elseif sMinorCivType == "MINOR_CIV_CAHOKIA" or sMinorCivType == "MINOR_CIV_SGAANG" or sMinorCivType == "MINOR_CIV_NYARYANA_MARQ"
-			or sMinorCivType == "MINOR_CIV_LA_VENTA"
-			or sMinorCivType == "MINOR_CIV_TIWANAKU" or sMinorCivType == "MINOR_CIV_KARYES" or sMinorCivType == "MINOR_CIV_LONGYAN" then
+			or sMinorCivType == "MINOR_CIV_LA_VENTA" or sMinorCivType == "MINOR_CIV_TIWANAKU" or sMinorCivType == "MINOR_CIV_KARYES" 
+			or sMinorCivType == "MINOR_CIV_LONGYAN" or sMinorCivType == "MINOR_CIV_PALMYRA" then
 					GameEvents.PlayerCanBuild.Add(CanWeSubstituteImprovement)
 			
 				if sMinorCivType == "MINOR_CIV_CAHOKIA" then	
@@ -5623,6 +5717,9 @@ function SettingUpSpecificEvents()
 					GameEvents.EventChoiceActivated.Add(TulousOnEventOn)
 					GameEvents.EventChoiceEnded.Add(TulousOnEventOff)
 					GameEvents.CityCaptureComplete.Add(TulousOnCapture)
+				elseif sMinorCivType == "MINOR_CIV_PALMYRA" then	
+					tLostCities["eLostLaVenta"] = eCS
+					GameEvents.BuildFinished.Add(BuiltFuneraryTower)
 				end
 
 

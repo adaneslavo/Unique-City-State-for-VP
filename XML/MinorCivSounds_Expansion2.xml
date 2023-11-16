@@ -249,6 +249,10 @@
 				<AudioScript>AS2D_MINOR_CIV_BUDAPEST</AudioScript>
 			</MinorCivSound>
 			<MinorCivSound>
+				<ID>MINOR_CIV_PALMYRA</ID>
+				<AudioScript>AS2D_MINOR_CIV_BUDAPEST</AudioScript>
+			</MinorCivSound>
+			<MinorCivSound>
 				<ID>MINOR_CIV_AMBRACIA</ID>
 				<AudioScript>AS2D_MINOR_CIV_VALLETTA</AudioScript>
 			</MinorCivSound>
