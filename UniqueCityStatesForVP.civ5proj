@@ -107,7 +107,14 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
     <Folder Include="Art\Models\Improvements\Monastery" />
     <Folder Include="Art\Models\Improvements\Chum" />
     <Folder Include="Art\Models\Improvements\FuneraryTower" />
+    <Folder Include="Art\Models\Improvements\Monastery\Judea" />
+    <Folder Include="Art\Models\Improvements\Monastery\Serbia" />
     <Folder Include="Art\Models\Improvements\Mound" />
+    <Folder Include="Art\Models\Improvements\BedouinCamp" />
+    <Folder Include="Art\Models\Improvements\DaaqAh" />
+    <Folder Include="Art\Models\Improvements\Phrourion" />
+    <Folder Include="Art\Models\Improvements\Torii" />
+    <Folder Include="Art\Models\Improvements\Ribat" />
     <Folder Include="Art\Models\Improvements\Tulou" />
     <Folder Include="Art\Models\Improvements\TotemPole" />
     <Folder Include="Art\Models\Improvements\SunkenCourtyard" />
@@ -239,6 +246,22 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
+    <Content Include="Art\Models\Improvements\BedouinCamp\fx_triggers_bedouin.ftsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\BedouinCamp\Tribe_Bedouin.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\BedouinCamp\Tribe_Bedouin.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\BedouinCamp\Tribe_Bedouin.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
     <Content Include="Art\Models\Improvements\Chum\fx_triggers_woodententSD.ftsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
@@ -315,6 +338,62 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
+    <Content Include="Art\Models\Improvements\DaaqAh\er_daaq_ah.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\DaaqAh\er_daaq_ah.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\DaaqAh\er_daaq_ah_diff.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\DaaqAh\er_daaq_ah_ground.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\DaaqAh\er_daaq_ah_ground_h.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\DaaqAh\er_daaq_ah_sref.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\DaaqAh\hb_er_daaq_ah.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\DaaqAh\hb_er_daaq_ah.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\DaaqAh\hb_er_daaq_ah_diff.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\DaaqAh\hb_er_daaq_ah_groud_h.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\DaaqAh\hb_er_daaq_ah_ground.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\DaaqAh\hb_er_daaq_ah_sref.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\DaaqAh\pl_er_daaq_ah.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\DaaqAh\pl_er_daaq_ah.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
     <Content Include="Art\Models\Improvements\FuneraryTower\Funerary Towers Ground H.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
@@ -351,39 +430,67 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Models\Improvements\Monastery\Fruska_Gora.dds">
+    <Content Include="Art\Models\Improvements\Monastery\Judea\greek fortress HB.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Models\Improvements\Monastery\sistineTI_B.fxsxml">
+    <Content Include="Art\Models\Improvements\Monastery\Judea\Greek Fortress PL.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Models\Improvements\Monastery\sistineTI_B.gr2">
+    <Content Include="Art\Models\Improvements\Monastery\Judea\greek fortress.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Models\Improvements\Monastery\sistineTI_HB.fxsxml">
+    <Content Include="Art\Models\Improvements\Monastery\Judea\greek-fortress.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Models\Improvements\Monastery\sistineTI_HB.gr2">
+    <Content Include="Art\Models\Improvements\Monastery\Judea\WTI_B.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Models\Improvements\Monastery\Wonder_grnd_diff.dds">
+    <Content Include="Art\Models\Improvements\Monastery\Judea\WTI_HB.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Models\Improvements\Monastery\wonder_grnd_h.dds">
+    <Content Include="Art\Models\Improvements\Monastery\Judea\WTI_PL.fxsxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Models\Improvements\Monastery\WTI_PL.fxsxml">
+    <Content Include="Art\Models\Improvements\Monastery\Serbia\Fruska_Gora.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Models\Improvements\Monastery\WTI_PL.gr2">
+    <Content Include="Art\Models\Improvements\Monastery\Serbia\sistineTI_B.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Monastery\Serbia\sistineTI_B.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Monastery\Serbia\sistineTI_HB.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Monastery\Serbia\sistineTI_HB.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Monastery\Serbia\Wonder_grnd_diff.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Monastery\Serbia\wonder_grnd_h.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Monastery\Serbia\WTI_PL.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Monastery\Serbia\WTI_PL.gr2">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
@@ -432,6 +539,34 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="Art\Models\Improvements\Mound\travka.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Phrourion\Oriental Fort B.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Phrourion\Oriental Fort HB.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Phrourion\oriental fort HB.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Phrourion\Oriental Fort PL.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Phrourion\oriental fort PL.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Phrourion\oriental fort.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Improvements\Phrourion\s_oriental_fort_diff_2.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
@@ -747,6 +882,10 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
+    <Content Include="Art\SV_Icons\sv_BuildBedouinCamp.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
     <Content Include="Art\SV_Icons\sv_BuildChum.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
@@ -763,7 +902,7 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\SV_Icons\sv_BuildMonastery.dds">
+    <Content Include="Art\SV_Icons\sv_BuildMonastery1.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
@@ -782,6 +921,14 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
     <Content Include="Art\SV_Icons\sv_BuildMound.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\SV_Icons\sv_BuildDaaqAh.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\SV_Icons\sv_BuildMonastery2.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
     <Content Include="Art\SV_Icons\sv_UnitTeaat.dds">
       <SubType>Lua</SubType>

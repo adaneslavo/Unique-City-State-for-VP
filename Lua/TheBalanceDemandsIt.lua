@@ -210,7 +210,9 @@ local tImprovementsUCS = {
 	GameInfoTypes.IMPROVEMENT_LLAO_LLAO,	-- dummy
 	GameInfoTypes.IMPROVEMENT_MARSH,		-- dummy
 	GameInfoTypes.IMPROVEMENT_CITY,			-- dummy
-	GameInfoTypes.IMPROVEMENT_FUNERARY_TOWER
+	GameInfoTypes.IMPROVEMENT_FUNERARY_TOWER,
+	GameInfoTypes.IMPROVEMENT_BEDOUIN_CAMP,
+	GameInfoTypes.IMPROVEMENT_DAAQ_AH
 }
 
 local tImprovementsGreatPeople = {
@@ -302,7 +304,9 @@ local tUnitsMilitary = {
 
 local tResourcesBonus = {
 	GameInfoTypes.RESOURCE_DEER,
-	GameInfoTypes.RESOURCE_REINDEER
+	GameInfoTypes.RESOURCE_REINDEER,
+	GameInfoTypes.RESOURCE_COW,
+	GameInfoTypes.RESOURCE_SHEEP
 }
 
 local tResourcesLuxury = {
@@ -2549,6 +2553,13 @@ function CanWePlaceDogoCanario(ePlayer, eUnit, iX, iY, eBuild)
 	local eResource = pPlot:GetResourceType()
 	
 	if eResource ~= -1 then return false end
+
+	for i, direction in ipairs(tDirectionTypes) do
+		local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
+		local eAdjacentResourceType = pAdjacentPlot:GetResourceType()
+						
+		if eAdjacentResourceType == tResourcesLuxury[1] then return false end
+	end
 	
 	return true
 end
@@ -3025,6 +3036,71 @@ function BuiltFuneraryTower(ePlayer, iX, iY, eImprovement)
 	end
 end
 
+
+
+-- AL-TIRABIN (IMPROVEMENT MONASTERY, BONUSES FROM MONASTERIES)
+function CanWeBuildBedouinCamp(ePlayer, eUnit, iX, iY, eBuild)
+	if eBuild ~= GameInfoTypes.BUILD_BEDOUIN_CAMP then return true end
+	
+	local pPlayer = Players[ePlayer]
+	
+	--if not (pPlayer:GetEventChoiceCooldown(tEventChoice[39]) > 0) then return false end
+
+	for i, direction in ipairs(tDirectionTypes) do
+		local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
+						
+		if pAdjacentPlot and pAdjacentPlot:IsCity() then return false end
+	end
+	
+	--[[local pPlot = Map.GetPlot(iX, iY)
+	local ePlotResource = pPlot:GetResourceType()
+	local bIsNotOnLuxury = GameInfo.Resources[ePlotResource].ResourceUsage == 0 or GameInfo.Resources[ePlotResource].ResourceUsage == 1
+
+	if bIsNotOnLuxury then return false end--]]
+
+	return true
+end
+GameEvents.PlayerCanBuild.Add(CanWeBuildBedouinCamp)
+
+
+
+-- MOGADISHU (IMPROVEMENT DAAQ AH)
+function CanWeBuildDaaqAh(ePlayer, eUnit, iX, iY, eBuild)
+	if eBuild ~= GameInfoTypes.BUILD_DAAQ_AH then return true end
+	
+	local pPlayer = Players[ePlayer]
+	
+	--if not (pPlayer:GetEventChoiceCooldown(tEventChoice[39]) > 0) then return false end
+	
+	local pPlot = Map.GetPlot(iX, iY)
+
+	if not pPlot:IsHills() then return false end
+
+	return true
+end
+GameEvents.PlayerCanBuild.Add(CanWeBuildDaaqAh)
+
+function BuiltDaaqAh(ePlayer, iX, iY, eImprovement)
+	if eImprovement == tImprovementsUCS[13] then
+		local pPlot = Map.GetPlot(iX, iY)
+		local eResource = pPlot:GetResourceType()
+
+		if eResource == tResourcesBonus[3] or eResource == tResourcesBonus[4] or eResource == tResourcesStrategic[1] then
+			-- do nothing		
+		elseif eResource == -1 then
+			local iRoll = Game.Rand(1, "0=Cow, 1=Sheep")
+			
+			if iRoll == 0 then
+				pPlot:SetResourceType(tResourcesBonus[3], 1)
+			elseif iRoll == 1 then
+				pPlot:SetResourceType(tResourcesBonus[4], 1)
+			end
+		else
+			pPlot:SetResourceType(tResourcesStrategic[1], 3)
+		end
+	end
+end
+GameEvents.BuildFinished.Add(BuiltDaaqAh) -- MOVE!!!
 
 
 -- CAPE TOWN (BENEFITS FROM TRADE ROUTES)

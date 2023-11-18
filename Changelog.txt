@@ -1,14 +1,22 @@
-v15.13:
+v16:
 - new:
-	- added new City-State:
-		- Palmyra (Militaristic, female); added block when Rome is in game;
-	- added new improvement:
+	- added 5 new City-States:
+		- Maritime: Al-Tirabin (West Asia);
+		- Mercantile: Tunis (North Africa), Hanuabada (Oceania);
+		- Militaristic: Palmyra (F; West Asia; added block when Rome is in game);
+		- Religious: Balkh (Central Asia);
+	- added 5 new improvements:
+		- Daaq Ah (exlusive for Mogadishu);
+		- Buryuut Hajar (exclusive for Al-Tirabin);
 		- Funerary Tower (exclusive for Palmyra);
+		- Phrourion (exlusive for Balkh);
+		- Ribat (exclusive for Tunis);
 	- added new model and icon for Mound improvement;
+	- added new model and icon for Monastery improvement (old one is still in the files);
 	- added new setting: enable/disable spawning of additional resources around the City-State;
 - balanced:
 	- deleted yields from Tenets;
-	- increased Unique Improvements yields:
+	- increased tech yields from existing Unique Improvements:
 		- Colossal Head: +1 Production with Masonry;
 		- Chum: +1 Gold with Philosophy;
 		- Monastery: +1 Faith with Construction (moved from Scientific Theory); +1 Culture from Theology; +1 Tourism with Scientific Theory;
@@ -16,19 +24,22 @@ v15.13:
 		- Sunken Courtyard: +2 Faith with Theology;
 		- Totem Pole: +1 Culture with Navigation (was Gold); +1 Tourism with Archaeology; +1 Tourism with Replaceable Parts;
 		- Tulou: +1 Food with Engineering;
-	- Totem Pole:
+	- reworked Totem Pole:
 		- renamed to "Gyáa'aang";
-		- now can also be built on inland Tundra, but requires adjacent City, Town or Village to start;
-		- now can also be built adjacent to Lakes;
+		- now can also be built on inland Tundra, but requires adjacent Lake, City, Town or Village to start;
 		- +1 Culture when adjacent to a City, Town or Village (new);
 		- +1 Golden Age Points if there are 2 adjacent Totem Poles (was Production);
 		- +1 Golden Age Points to adjacent Coast (was Culture);
+	- reworked Mogadishu:
+		- loses bonus yields to Foodplains and Ocean tiles;
+		- gains new improvement: Daaq Ah;
 - changed:
 	- another huge revision of the improvement tooltips (improved visibility; tech yields listed out; added missing info; add additional spaces; reordered infos);
 - fixed:
 	- fixed Karyes' promotion name;
 	- fixed Colossal Head placement (it ignored terrain requirement - moved to lua);
 	- now Colossal Head does not show turn counter on the build icon (similar to how other GPTIs work);
+	- fxied Dogo Canario's placement (could be placed near already placed Dogo);
 	- fixed Ife's ability description;
 
 v15.12:
