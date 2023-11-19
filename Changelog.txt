@@ -1,8 +1,7 @@
 v16:
 - new:
 	- added 5 new City-States:
-		- Maritime: Al-Tirabin (West Asia);
-		- Mercantile: Tunis (North Africa), Hanuabada (Oceania);
+		- Mercantile: Al-Tirabin (West Asia), Hanuabada (Oceania), Tunis (North Africa);
 		- Militaristic: Palmyra (F; West Asia; added block when Rome is in game);
 		- Religious: Balkh (Central Asia);
 	- added 5 new improvements:
@@ -11,6 +10,8 @@ v16:
 		- Funerary Tower (exclusive for Palmyra);
 		- Phrourion (exlusive for Balkh);
 		- Ribat (exclusive for Tunis);
+	- added 1 new promotion:
+		- Papuan Seafaring Prowess (esclusive for Hanuabada);
 	- added new model and icon for Mound improvement;
 	- added new model and icon for Monastery improvement (old one is still in the files);
 	- added new setting: enable/disable spawning of additional resources around the City-State;
@@ -33,8 +34,10 @@ v16:
 	- reworked Mogadishu:
 		- loses bonus yields to Foodplains and Ocean tiles;
 		- gains new improvement: Daaq Ah;
+		- now gains +10% Food during GA (was +5%) and has -5% GAP needed for next GA (was -10%);
 - changed:
 	- another huge revision of the improvement tooltips (improved visibility; tech yields listed out; added missing info; add additional spaces; reordered infos);
+	- Karyes now track the number of Monasteries nearby using dummy buildings instead of global variable;
 - fixed:
 	- fixed Karyes' promotion name;
 	- fixed Colossal Head placement (it ignored terrain requirement - moved to lua);

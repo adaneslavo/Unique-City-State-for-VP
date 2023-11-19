@@ -108,7 +108,9 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_KARASJOHKA,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_AYUTTHAYA,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SARNATH, -- 56
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_PALMYRA
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_PALMYRA,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_AL_TIRABIN,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_MOGADISHU
 }
 
 local tBuildingsActiveAbilities = {
@@ -139,7 +141,9 @@ local tBuildingsActiveAbilities = {
 	GameInfoTypes.BUILDING_KATENDE_2,
 	GameInfoTypes.BUILDING_SARNATH_2, -- 26
 	GameInfoTypes.BUILDING_LONGYAN,
-	GameInfoTypes.BUILDING_PALMYRA_2
+	GameInfoTypes.BUILDING_PALMYRA_2,	
+	GameInfoTypes.BUILDING_KARYES_2,
+	GameInfoTypes.BUILDING_AL_TIRABIN
 }
 
 local tBuildingClasses = {
@@ -348,8 +352,6 @@ local tDirectionTypes = {
 -- ZURICH - it should be stored, but there's additional notification about the lost data (workaround), it's not so important
 local tZurichLastInterests = {}
 local tZurichCounter = {}
--- KARYES
-local tCitiesWithEnoughMonasteries = {}
 -- PRAGUE
 local tUnitsWithSpread = {}
 	for unit in DB.Query("SELECT Units.ID FROM Units WHERE SpreadReligion = 1") do
@@ -377,7 +379,7 @@ function ConflictsTest()
 		end
 	end
 end
---ConflictsTest()
+ConflictsTest()
 
 function Conflicts()
 	print("XXXXXXXXXXXXXXXXXXXXXX")
@@ -1590,7 +1592,7 @@ function CityStateTrainedUU(ePlayer, eCity, eUnit, bGold, bFaith)
 	end
 end
 
-function MilitaristicTerrainUpgrades(eUnitOwner, eUnit)
+--[[function MilitaristicTerrainUpgrades(eUnitOwner, eUnit)
 	print("UPGRADE_CHECK", eUnitOwner, eUnit)
 
 	local pPlayer = Players[eUnitOwner]
@@ -1624,7 +1626,7 @@ function MilitaristicTerrainUpgrades(eUnitOwner, eUnit)
 
 	return true
 end
-GameEvents.UnitCanHaveAnyUpgrade.Add(MilitaristicTerrainUpgrades)
+GameEvents.UnitCanHaveAnyUpgrade.Add(MilitaristicTerrainUpgrades)--]]
 	
 
 -- CULTURED
@@ -2857,7 +2859,7 @@ function PlaceDummiesForMonasteries()
 		if pPlayer:IsAlive() then
 			if pPlayer:GetEventChoiceCooldown(tEventChoice[39]) ~= 0 then	
 				for city in pPlayer:Cities() do
-					if tCitiesWithEnoughMonasteries[city:GetID()] then
+					if city:GetNumRealBuilding(tBuildingsActiveAbilities[29]) >= 3 then
 						city:SetNumRealBuilding(tBuildingsActiveAbilities[20], 1)
 					else
 						city:SetNumRealBuilding(tBuildingsActiveAbilities[20], 0)
@@ -2890,8 +2892,9 @@ function CheckAllMonasteries()
 							iMonasteries = iMonasteries + 1
 						end
 						
+						city:SetNumRealBuilding(tBuildingsActiveAbilities[29], iMonasteries)
+
 						if iMonasteries >= 3 then
-							tCitiesWithEnoughMonasteries[city:GetID()] = true
 							break
 						end
 					end
@@ -3038,29 +3041,64 @@ end
 
 
 
--- AL-TIRABIN (IMPROVEMENT MONASTERY, BONUSES FROM MONASTERIES)
+-- AL-TIRABIN (IMPROVEMENT BEDOUIN CAMP, TRADE ROUTES)
 function CanWeBuildBedouinCamp(ePlayer, eUnit, iX, iY, eBuild)
 	if eBuild ~= GameInfoTypes.BUILD_BEDOUIN_CAMP then return true end
 	
 	local pPlayer = Players[ePlayer]
 	
-	--if not (pPlayer:GetEventChoiceCooldown(tEventChoice[39]) > 0) then return false end
+	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[58]) > 0) then return false end
 
 	for i, direction in ipairs(tDirectionTypes) do
 		local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
 						
 		if pAdjacentPlot and pAdjacentPlot:IsCity() then return false end
 	end
-	
-	--[[local pPlot = Map.GetPlot(iX, iY)
-	local ePlotResource = pPlot:GetResourceType()
-	local bIsNotOnLuxury = GameInfo.Resources[ePlotResource].ResourceUsage == 0 or GameInfo.Resources[ePlotResource].ResourceUsage == 1
-
-	if bIsNotOnLuxury then return false end--]]
 
 	return true
 end
 GameEvents.PlayerCanBuild.Add(CanWeBuildBedouinCamp)
+
+function TradeRoutesFromBedouinsOnEventOn(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[58] then
+		AddTradeRoutesFromBedouins(ePlayer)
+	end
+end
+
+function TradeRoutesFromBedouinsOnEventOff(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[58] then
+		local pPlayer = Players[ePlayer]
+		local pCapital = pPlayer:GetCapitalCity()
+		
+		pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[30], 0)
+	end
+end
+
+function TradeRoutesFromBedouinsOnEraChange(eTeam, eEra, bFirst)
+	for eplayer = 0, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
+		local pPlayer = Players[eplayer]
+
+		if pPlayer and pPlayer:IsAlive() then
+			if pPlayer:IsMinorCiv() then return end
+
+			local ePlayerTeam = pPlayer:GetTeam()
+
+			if ePlayerTeam == eTeam then
+				if pPlayer:GetEventChoiceCooldown(tEventChoice[58]) ~= 0 then
+					AddTradeRoutesFromBedouins(eplayer)
+				end
+			end
+		end
+	end
+end
+
+function AddTradeRoutesFromBedouins(ePlayer)
+	local pPlayer = Players[ePlayer]
+	local pCapital = pPlayer:GetCapitalCity()
+	local iTradeRoutesAvailable = math.ceil((pPlayer:GetCurrentEra() + 2) / 2) -- only in Ancient, Medieval, Industrial and Information
+	
+	pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[30], iTradeRoutesAvailable)
+end
 
 
 
@@ -3070,7 +3108,7 @@ function CanWeBuildDaaqAh(ePlayer, eUnit, iX, iY, eBuild)
 	
 	local pPlayer = Players[ePlayer]
 	
-	--if not (pPlayer:GetEventChoiceCooldown(tEventChoice[39]) > 0) then return false end
+	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[59]) > 0) then return false end
 	
 	local pPlot = Map.GetPlot(iX, iY)
 
@@ -3085,7 +3123,7 @@ function BuiltDaaqAh(ePlayer, iX, iY, eImprovement)
 		local pPlot = Map.GetPlot(iX, iY)
 		local eResource = pPlot:GetResourceType()
 
-		if eResource == tResourcesBonus[3] or eResource == tResourcesBonus[4] or eResource == tResourcesStrategic[1] then
+		if eResource == tResourcesBonus[3] or eResource == tResourcesBonus[4] --[[or eResource == tResourcesStrategic[1]--]] then
 			-- do nothing		
 		elseif eResource == -1 then
 			local iRoll = Game.Rand(1, "0=Cow, 1=Sheep")
@@ -3095,12 +3133,12 @@ function BuiltDaaqAh(ePlayer, iX, iY, eImprovement)
 			elseif iRoll == 1 then
 				pPlot:SetResourceType(tResourcesBonus[4], 1)
 			end
-		else
-			pPlot:SetResourceType(tResourcesStrategic[1], 3)
+		--[[else
+			pPlot:SetResourceType(tResourcesStrategic[1], 3)--]]
 		end
 	end
 end
-GameEvents.BuildFinished.Add(BuiltDaaqAh) -- MOVE!!!
+
 
 
 -- CAPE TOWN (BENEFITS FROM TRADE ROUTES)
@@ -5760,7 +5798,8 @@ function SettingUpSpecificEvents()
 			-- improvements
 			elseif sMinorCivType == "MINOR_CIV_CAHOKIA" or sMinorCivType == "MINOR_CIV_SGAANG" or sMinorCivType == "MINOR_CIV_NYARYANA_MARQ"
 			or sMinorCivType == "MINOR_CIV_LA_VENTA" or sMinorCivType == "MINOR_CIV_TIWANAKU" or sMinorCivType == "MINOR_CIV_KARYES" 
-			or sMinorCivType == "MINOR_CIV_LONGYAN" or sMinorCivType == "MINOR_CIV_PALMYRA" then
+			or sMinorCivType == "MINOR_CIV_LONGYAN" or sMinorCivType == "MINOR_CIV_PALMYRA" or sMinorCivType == "MINOR_CIV_AL_TIRABIN"
+			or sMinorCivType == "MINOR_CIV_MOGADISHU" then
 					GameEvents.PlayerCanBuild.Add(CanWeSubstituteImprovement)
 			
 				if sMinorCivType == "MINOR_CIV_CAHOKIA" then	
@@ -5793,8 +5832,16 @@ function SettingUpSpecificEvents()
 					GameEvents.EventChoiceEnded.Add(TulousOnEventOff)
 					GameEvents.CityCaptureComplete.Add(TulousOnCapture)
 				elseif sMinorCivType == "MINOR_CIV_PALMYRA" then	
-					tLostCities["eLostLaVenta"] = eCS
+					tLostCities["eLostPalmyra"] = eCS
 					GameEvents.BuildFinished.Add(BuiltFuneraryTower)
+				elseif sMinorCivType == "MINOR_CIV_AL_TIRABIN" then	
+					tLostCities["eLostAlTirabin"] = eCS
+					GameEvents.EventChoiceActivated.Add(TradeRoutesFromBedouinsOnEventOn)
+					GameEvents.EventChoiceEnded.Add(TradeRoutesFromBedouinsOnEventOff)
+					GameEvents.TeamSetEra.Add(TradeRoutesFromBedouinsOnEraChange)
+				elseif sMinorCivType == "MINOR_CIV_MOGADISHU" then	
+					tLostCities["eLostMogadishu"] = eCS
+					GameEvents.BuildFinished.Add(BuiltDaaqAh)
 				end
 
 
