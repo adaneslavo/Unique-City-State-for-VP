@@ -36,6 +36,13 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
         <MinVersion>0</MinVersion>
         <MaxVersion>999</MaxVersion>
       </Association>
+      <Association>
+        <Type>Mod</Type>
+        <Name>(@gwennog's) Basques</Name>
+        <Id>63b1732e-5fff-449e-a5bc-17ab5ed71e3a</Id>
+        <MinVersion>0</MinVersion>
+        <MaxVersion>999</MaxVersion>
+      </Association>
     </ModReferences>
     <ReloadLandmarkSystem>true</ReloadLandmarkSystem>
     <ReloadUnitSystem>true</ReloadUnitSystem>
@@ -965,6 +972,10 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
     <Content Include="Art\SV_Icons\sv_UnitSwissGuard.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\SV_Icons\sv_BuildPhrouria.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
     <Content Include="Changelog.txt">
       <SubType>Lua</SubType>

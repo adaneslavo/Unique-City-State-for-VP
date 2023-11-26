@@ -1,14 +1,14 @@
-v16:
+ï»¿v16:
 - new:
 	- added 5 new City-States:
+		- Maritime: IruÃ±ea (South-West Europe; blocked when Basques are in game);
 		- Mercantile: Al-Tirabin (West Asia), Hanuabada (Oceania), Tunis (North Africa);
-		- Militaristic: Palmyra (F; West Asia; added block when Rome is in game);
-		- Religious: Balkh (Central Asia);
+		- Militaristic: Bactra (Central Asia; blocked when Persia is in game), Palmyra (F; West Asia; blocked when Rome is in game);
 	- added 5 new improvements:
 		- Daaq Ah (exlusive for Mogadishu);
 		- Buryuut Hajar (exclusive for Al-Tirabin);
 		- Funerary Tower (exclusive for Palmyra);
-		- Phrourion (exlusive for Balkh);
+		- Phrourion (exlusive for Bactra);
 		- Ribat (exclusive for Tunis);
 	- added 1 new promotion:
 		- Papuan Seafaring Prowess (esclusive for Hanuabada);
@@ -26,7 +26,7 @@ v16:
 		- Totem Pole: +1 Culture with Navigation (was Gold); +1 Tourism with Archaeology; +1 Tourism with Replaceable Parts;
 		- Tulou: +1 Food with Engineering;
 	- reworked Totem Pole:
-		- renamed to "Gyáa'aang";
+		- renamed to "GyÃ¡a'aang";
 		- now can also be built on inland Tundra, but requires adjacent Lake, City, Town or Village to start;
 		- +1 Culture when adjacent to a City, Town or Village (new);
 		- +1 Golden Age Points if there are 2 adjacent Totem Poles (was Production);
@@ -38,12 +38,17 @@ v16:
 - changed:
 	- another huge revision of the improvement tooltips (improved visibility; tech yields listed out; added missing info; add additional spaces; reordered infos);
 	- Karyes now track the number of Monasteries nearby using dummy buildings instead of global variable;
+	- moved some tags from sql to xml, so now all are in one place;
 - fixed:
 	- fixed Karyes' promotion name;
 	- fixed Colossal Head placement (it ignored terrain requirement - moved to lua);
 	- now Colossal Head does not show turn counter on the build icon (similar to how other GPTIs work);
-	- fxied Dogo Canario's placement (could be placed near already placed Dogo);
+	- fixed Dogo Canario's placement (could be placed near already placed Dogo);
+	- fixed Clermont promotion (now given and taken by lua instead of sql; sql was totally out of control);
 	- fixed Ife's ability description;
+	- CityStateStatusHelper.lua changes/fixes:
+		- added latest Congress #6 proposal changes;
+		- added a period after Unique Unit info;
 
 v15.12:
 - fixed Longyan's population increase;
@@ -114,7 +119,7 @@ v15.7:
     - each of them boosts the same buildingclass by 1% of particular yield (so the more of them you build the bigger will be the bonus on all of their kind);
     - added info about started WLTKD;
     - clarified description;
-- fixed – sign error (was not visible; used standard - instead);
+- fixed - sign error (was not visible; used standard - instead);
 - few text fixes;
 
 v15.6 (first only for VP 4.X):
@@ -386,7 +391,7 @@ v14:
         - gained Faith and Golden Age Points from City-State alliances;
         - gained Faith from International Sea Trade Routes;
     - Dano: added -10% Culture Expansion Cost;
-    - Óc Eo: added +20% Sea Trade Route Range;
+    - Ã“c Eo: added +20% Sea Trade Route Range;
     - Djibouti: now gives +80% Production towards Settlers (was +100%) and +100% towards Granaries (was free Granary);
     - Zanzibar: now grants 1 Happiness per 1 active Trade Route;
     - Prague: its ability now activates on each religious unit that can spread a religion (Missionary, Prophet, Sisqeno and any UU);
@@ -575,10 +580,10 @@ v8:
     - added unique art for Grand Harbour (Valetta) building (@gwennog);
     - added new promotion icons (@gwennog);
 - balance:
-    - updated Óc Eo ability (slightly buffed; now also +1 Happiness in Empire for each Sea Internation TR);
+    - updated Ã“c Eo ability (slightly buffed; now also +1 Happiness in Empire for each Sea Internation TR);
 - fixed:
-    - Óc Eo now updates on City construction (builds dummies) and City capturing (checks new owner);
-    - instead of on UnitActionChanged (on Cargo Ship) Óc Eo now updates on PlayerDoTurn; it will save some memory, and will prevent the bug when bonus is no more active and player still has dummies and at least one active trade route;
+    - ï¿½c Eo now updates on City construction (builds dummies) and City capturing (checks new owner);
+    - instead of on UnitActionChanged (on Cargo Ship) ï¿½c Eo now updates on PlayerDoTurn; it will save some memory, and will prevent the bug when bonus is no more active and player still has dummies and at least one active trade route;
     - added missing BullyUnitClass column to MinorCivilizations table;
     - reworked icon atlases for buildings, improvements and promotions; cleaned up the folder and deleted unnecessary files;
     - all dummies now have same generic icon;
@@ -587,7 +592,7 @@ v8:
 v7:
 - new:
     - added City-States with unique abilities:  ==> Taipei (maritime)
-                                                ==> Óc Eo (mercantile);
+                                                ==> ï¿½c Eo (mercantile);
     - added compatibility with any mod that adds Bonus or Luxury resources (f.i. Even More Resources; that mod must be loaded before UCS to work);
     - added manual Yangcheng compatibility with EMR (Animal Resources);
     - added an icon for Marsh improvement by @gwennog;

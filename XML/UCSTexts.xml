@@ -20,6 +20,9 @@
 		<Row Tag="TXT_KEY_UCS_BONUS_INFLUENCE_TITLE">
 			<Text>Overwhelming influence with a City-State!</Text>
 		</Row>
+		<Row Tag="TXT_KEY_CSTRAIT_MINOR_CIV">
+			<Text>A Shift in Alliance</Text>
+		</Row>
 		
 
 		<!-- text for CityStateStatusHelper.lua -->
@@ -35,6 +38,12 @@
 		<Row Tag="TXT_KEY_UCS_HELPER_HEADER_PERSONALITY_IRRATIONAL">
 			<Text>([COLOR:240:105:255:255]Enigmatic[ENDCOLOR])</Text>
 		</Row>
+		<Row Tag="TXT_KEY_CS_ACTIVE_BONUS_HEADER">
+			<Text>[COLOR_LIGHT_GREY]City-State''s bonuses given to Major Player:[ENDCOLOR]</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CS_PASSIVE_BONUS_HEADER">
+			<Text>[COLOR_LIGHT_GREY]City-State''s passive abilities:[ENDCOLOR]</Text>
+		</Row>
 		<Row Tag="TXT_KEY_UCS_HELPER_ACTION_MARRIAGE">
 			<Text>[COLOR_POSITIVE_TEXT]Diplomatic Marriage[ENDCOLOR] available!</Text>
 		</Row>
@@ -44,7 +53,11 @@
 		<Row Tag="TXT_KEY_UCS_HELPER_AT_WAR">
 			<Text>[ICON_WAR] At war with: [COLOR_NEGATIVE_TEXT]{1_AtWarWith}[ENDCOLOR]</Text>
 		</Row>
-		
+		<Row Tag="TXT_KEY_CS_UU_QUICK_INFO">
+			<Text>Unique Unit: [COLOR_YIELD_FOOD]{1_Unique_Unit}[ENDCOLOR] available at [COLOR_CYAN]{2_Tech}[ENDCOLOR].</Text>
+		</Row>
+
+
 
 		<!-- important notifications for player on start -->
 		<Row Tag="TXT_KEY_UCS_CONFLICT">
@@ -127,6 +140,12 @@
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_COLOMBO_TITLE">
 			<Text>Special care trade partners</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_HANUABADA">
+			<Text>Sailors from [COLOR_CYAN]{1_Hanuabada}[ENDCOLOR] instruct you when and where to sail, to get back home as a hero! It's a death sentence for unexperienced man, but thanks to their advices, you can return safely with traded goods. Women start dancing seeing your silhouette on the horizon, granting you {2_GoldenAgePoints} [ICON_GOLDEN_AGE] Golden Age Points!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_HANUABADA_TITLE">
+			<Text>Hiri Trade Cycle</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_ZURICH">
 			<Text>[COLOR_CYAN]{1_Zurich}[ENDCOLOR] bankers found few discrepencies in your spendings and saved you {2_Interests} [ICON_GOLD] Gold in last {3_Turns} turns!</Text>
@@ -301,6 +320,12 @@
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_LONGYAN_POP_TITLE">
 			<Text>Better place to live!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_AL_TIRABIN">
+			<Text>New era, means you can diversify your assortment. And this is what nomadic tribes like [COLOR_CYAN]{1_AlTirabin}[ENDCOLOR] pursue the most! They are experts in trade, and they will surely support your efforts to widen the caravan network crossing their desert settlements, granting you an additional [ICON_INTERNATIONAL_TRADE] Trade Route.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_AL_TIRABIN_TITLE">
+			<Text>Nomadic Life</Text>
 		</Row>
 	</Language_en_US>
 </GameData>
