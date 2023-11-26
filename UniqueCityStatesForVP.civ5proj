@@ -138,6 +138,7 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
     <Folder Include="Art\Models\Units\SwissGuard" />
     <Folder Include="Art\FontIcons" />
     <Folder Include="Art\Icons" />
+    <Folder Include="Art\Miscellanous" />
     <Folder Include="Art\SV_Icons" />
     <Folder Include="Lua" />
     <Folder Include="XML" />
@@ -250,6 +251,30 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="Art\Icons\UCS_Units_256.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Miscellanous\citystatemeterbasemagenta.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Miscellanous\citystatemeterbasetan.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Miscellanous\citystatemeterframeicon16.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Miscellanous\citystatemeterframeicon32.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Miscellanous\citystatemetermagenta32.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Miscellanous\citystatemetertan32.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>

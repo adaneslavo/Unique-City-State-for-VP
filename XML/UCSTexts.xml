@@ -38,6 +38,9 @@
 		<Row Tag="TXT_KEY_UCS_HELPER_HEADER_PERSONALITY_IRRATIONAL">
 			<Text>([COLOR:240:105:255:255]Enigmatic[ENDCOLOR])</Text>
 		</Row>
+		<Row Tag="TXT_KEY_TERRIFIED">
+			<Text>Terrified</Text>
+		</Row>
 		<Row Tag="TXT_KEY_CS_ACTIVE_BONUS_HEADER">
 			<Text>[COLOR_LIGHT_GREY]City-State''s bonuses given to Major Player:[ENDCOLOR]</Text>
 		</Row>

@@ -61,7 +61,7 @@ local kNegBarRange = 81
 local kBarIconAtlas = "CITY_STATE_INFLUENCE_METER_ICON_ATLAS"
 local kBarIconNeutralIndex = 4
 
-local kMinorWar, kMinorAllies, kMinorFriends, kMinorAfraid, kMinorAngry, kMinorNeutral, ktQuestsDisplayOrder
+local kMinorWar, kMinorAllies, kMinorFriends, kMinorAfraid, kMinorTerrified, kMinorAngry, kMinorNeutral, ktQuestsDisplayOrder
 local ktQuestsIcon = {
 	[ MinorCivQuestTypes.MINOR_CIV_QUEST_ROUTE or false ] = function() return "[ICON_CONNECTED]" end,
 	[ MinorCivQuestTypes.MINOR_CIV_QUEST_KILL_CAMP or false ] = function() return "[ICON_WAR]" end,
@@ -147,6 +147,7 @@ kMinorWar = GameInfo.MinorCivTraits_Status.MINOR_FRIENDSHIP_STATUS_WAR
 kMinorAllies = GameInfo.MinorCivTraits_Status.MINOR_FRIENDSHIP_STATUS_ALLIES
 kMinorFriends = GameInfo.MinorCivTraits_Status.MINOR_FRIENDSHIP_STATUS_FRIENDS
 kMinorAfraid = GameInfo.MinorCivTraits_Status.MINOR_FRIENDSHIP_STATUS_AFRAID
+kMinorTerrified = GameInfo.MinorCivTraits_Status.MINOR_FRIENDSHIP_STATUS_TERRIFIED
 kMinorAngry = GameInfo.MinorCivTraits_Status.MINOR_FRIENDSHIP_STATUS_ANGRY
 kMinorNeutral = GameInfo.MinorCivTraits_Status.MINOR_FRIENDSHIP_STATUS_NEUTRAL
 ------------------------------------------------------
@@ -165,7 +166,10 @@ function GetCityStateStatusRow(majorPlayerID, minorPlayerID)
 		-- Friends
 		elseif minorPlayer:IsFriends(majorPlayerID) then
 			return kMinorFriends
-		-- Able to bully?
+		-- Able to demand a heavy tribute?
+		elseif minorPlayer:CanMajorBullyUnit(majorPlayerID) and HasActivePersonalQuestText(majorPlayerID, minorPlayerID) then
+			return kMinorTerrified
+		-- Able to demand a tribute?
 		elseif minorPlayer:CanMajorBullyGold(majorPlayerID) then
 			return kMinorAfraid
 		-- Angry
@@ -225,9 +229,9 @@ function UpdateCityStateStatusBar(majorPlayerID, minorPlayerID, posBarCtrl, negB
 		-- Bubble icon for meter
 		local size = barMarkerCtrl:GetSize().x
 		-- Special case when INF = 0
-		if iInf == 0 then
+		--[[if iInf == 0 then
 			IconHookup(kBarIconNeutralIndex, size, kBarIconAtlas, barMarkerCtrl)
-		elseif info and info.StatusMeterIconAtlasIndex then
+		else--]]if info and info.StatusMeterIconAtlasIndex then
 			IconHookup(info.StatusMeterIconAtlasIndex, size, kBarIconAtlas, barMarkerCtrl)
 		end
 	else
@@ -276,24 +280,17 @@ function GetCityStateStatusText(majorPlayerID, minorPlayerID)
 			strStatusText = "[COLOR_NEGATIVE_TEXT]" .. L("TXT_KEY_PEACE_BLOCKED")
 		elseif isAtWar then		-- War
 			strStatusText = "[COLOR_NEGATIVE_TEXT]" .. L("TXT_KEY_WAR")
-		elseif majorInfluenceWithMinor < GameDefines.FRIENDSHIP_THRESHOLD_NEUTRAL then
-			-- Afraid
-			if minorPlayer:CanMajorBullyGold(majorPlayerID) then
-				strStatusText = "[COLOR_PLAYER_LIGHT_ORANGE_TEXT]" .. L("TXT_KEY_AFRAID") .. "[ENDCOLOR]"
-			-- Angry
-			else
-				strStatusText = "[COLOR_MAGENTA]" .. L("TXT_KEY_ANGRY")
-			end
-		-- Neutral
-		else 
+		elseif minorPlayer:CanMajorBullyUnit(majorPlayerID) and HasActivePersonalQuestText(majorPlayerID, minorPlayerID) then		-- Terrified
+			strStatusText = "[COLOR_PLAYER_LIGHT_ORANGE_TEXT]" .. L("TXT_KEY_TERRIFIED")
+		elseif minorPlayer:CanMajorBullyGold(majorPlayerID) then		-- Afraid
+			strStatusText = "[COLOR:240:230:200:255]" .. L("TXT_KEY_AFRAID")
+		elseif majorInfluenceWithMinor < GameDefines.FRIENDSHIP_THRESHOLD_NEUTRAL then		-- Angry
+			strStatusText = "[COLOR_MAGENTA]" .. L("TXT_KEY_ANGRY")
+		else		-- Neutral
 			strStatusText = "[COLOR_WHITE]" .. L("TXT_KEY_NEUTRAL_CSTATE")
 		end
 		
 		strStatusText = strStatusText .. "[ENDCOLOR]"
-		
-		if not isAtWar then
-			strStatusText = strStatusText .. " " .. majorInfluenceWithMinor .. " [ICON_INFLUENCE]"
-		end
 	else
 		print("Lua error - invalid player index")
 	end
@@ -414,7 +411,14 @@ function GetCityStateStatusToolTip(majorPlayerID, minorPlayerID, isFullInfo)
 		end
 
 		-- Status
+		local isAtWar = majorTeam:IsAtWar(minorTeamID)
+		local majorInfluenceWithMinor = minorPlayer:GetMinorCivFriendshipWithMajor(majorPlayerID)
+		
 		tip = tip .. " " .. GetCityStateStatusText(majorPlayerID, minorPlayerID)
+		
+		if not isAtWar then
+			tip = tip .. " " .. majorInfluenceWithMinor .. " [ICON_INFLUENCE]"
+		end
 		
 		-- Personality (in header)
 		local eMinorPersonality = minorPlayer:GetPersonality()

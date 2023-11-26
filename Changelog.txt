@@ -1,9 +1,17 @@
 ﻿v16:
 - new:
-	- added 5 new City-States:
-		- Maritime: Iruñea (South-West Europe; blocked when Basques are in game);
-		- Mercantile: Al-Tirabin (West Asia), Hanuabada (Oceania), Tunis (North Africa);
-		- Militaristic: Bactra (Central Asia; blocked when Persia is in game), Palmyra (F; West Asia; blocked when Rome is in game);
+	- added 8 new City-States:
+		- Maritime: 
+			- Iruñea (South-West Europe; blocked when Basques are in game);
+			- Jetarkte (South America);
+			- Mbabane (F; South Africa);
+		- Mercantile: 
+			- Al-Tirabin (West Asia);
+			- Hanuabada (Oceania);
+			- Tunis (North Africa);
+		- Militaristic: 
+			- Bactra (Central Asia; blocked when Persia is in game);
+			- Palmyra (F; West Asia; blocked when Rome is in game);
 	- added 5 new improvements:
 		- Daaq Ah (exlusive for Mogadishu);
 		- Buryuut Hajar (exclusive for Al-Tirabin);
@@ -15,6 +23,10 @@
 	- added new model and icon for Mound improvement;
 	- added new model and icon for Monastery improvement (old one is still in the files);
 	- added new setting: enable/disable spawning of additional resources around the City-State;
+	- added new CS attitude: "Terrified" (means you can demand a Heavy Tribute); it has orange colour (previously "Afraid");
+		- "Afraid" has now Tan colour;
+		- "Angry" has now Magenta colour;
+		- "Afraid" and "Terrified" now can be shown also with positive influence value (was only negative; when positive it was neutral);
 - balanced:
 	- deleted yields from Tenets;
 	- increased tech yields from existing Unique Improvements:
@@ -47,8 +59,9 @@
 	- fixed Clermont promotion (now given and taken by lua instead of sql; sql was totally out of control);
 	- fixed Ife's ability description;
 	- CityStateStatusHelper.lua changes/fixes:
-		- added latest Congress #6 proposal changes;
+		- added latest Congress #6 proposal changes (Heavy Tribute; Militaristic Gift Counter);
 		- added a period after Unique Unit info;
+		- it is now CSL compatible and uses same function there to take current CS atitude;
 
 v15.12:
 - fixed Longyan's population increase;

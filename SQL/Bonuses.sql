@@ -165,6 +165,17 @@ UPDATE CustomModOptions SET Value = 1 WHERE Name = 'GLOBAL_CS_GIFTS';
 -- Inquisitors will keep religion out of allied City State cities if positioned adjacent
 UPDATE CustomModOptions SET Value = 1 WHERE Name = 'RELIGION_ALLIED_INQUISITORS';
 ---------------------------------------------------
+-- Updates - New colours
+---------------------------------------------------
+INSERT INTO MinorCivTraits_Status
+			(Type,									StatusIcon,						PositiveStatusMeter,	NegativeStatusMeter,			StatusMeterIconAtlasIndex)
+VALUES		('MINOR_FRIENDSHIP_STATUS_TERRIFIED',	'CityStateMeterOrange32.dds',	NULL,					'CityStateMeterBaseOrange.dds',	3);
+
+UPDATE MinorCivTraits_Status SET StatusIcon = 'CityStateMeterTan32.dds', NegativeStatusMeter = 'CityStateMeterBaseTan.dds', StatusMeterIconAtlasIndex = 5 WHERE Type = 'MINOR_FRIENDSHIP_STATUS_AFRAID';
+UPDATE MinorCivTraits_Status SET StatusIcon = 'CityStateMeterMagenta32.dds', NegativeStatusMeter = 'CityStateMeterBaseMagenta.dds', StatusMeterIconAtlasIndex = 6 WHERE Type = 'MINOR_FRIENDSHIP_STATUS_ANGRY';
+
+UPDATE IconTextureAtlases SET IconsPerColumn = 7 WHERE Atlas = 'CITY_STATE_INFLUENCE_METER_ICON_ATLAS';
+---------------------------------------------------
 -- Updates - Language_en_US
 ---------------------------------------------------
 UPDATE Language_en_US SET Text = REPLACE(Text, 'Available![ENDCOLOR]', '[ENDCOLOR]available!') WHERE Tag = 'TXT_KEY_CSTATE_CAN_EMBASSY';
@@ -748,7 +759,7 @@ INSERT INTO Language_en_US (Tag, Text)
 	SELECT 'TXT_KEY_IMPROVEMENT_RIBAT', 					'Ribat' UNION ALL
 	SELECT 'TXT_KEY_CIV5_IMPROVEMENTS_RIBAT', 				'TODO' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_RIBAT_HELP', 				'Only with the Alliance of the Tunis people allow a civilization enjoy such a beauty of a structure.' UNION ALL
-	-- torii
+	-- torii (unfinished)
 	SELECT 'TXT_KEY_BUILD_TORII', 							'Construct a Torii'  UNION ALL
 	SELECT 'TXT_KEY_BUILD_TORII_HELP', 						'Requires an access to [COLOR_CYAN]Ishiyama[ENDCOLOR]''s ability to be finished.[NEWLINE]Can only be built on a Hill next to a City.[NEWLINE]Cannot be built on a [COLOR_GREY]Resource[ENDCOLOR].[NEWLINE][NEWLINE]Adjacent City gains 1 [ICON_CITIZEN] Citizen, when a [COLOR_CITY_BROWN]Tulou[ENDCOLOR] is built. Atacking unit will not leave a [COLOR_CITY_BROWN]Tulou[ENDCOLOR], if the enemy is killed. +30% [ICON_STRENGTH] Defensive CS for units standing on a [COLOR_CITY_BROWN]Tulou[ENDCOLOR]. Each [COLOR_CITY_BROWN]Tulou[ENDCOLOR] (even pillaged) increases [ICON_SILVER_FIST] Military Supply Cap by 1.[NEWLINE][NEWLINE]Yield changes from Technologies:[NEWLINE][ICON_BULLET]+1 [ICON_FOOD] Food with [COLOR_CYAN]Engineering[ENDCOLOR][NEWLINE][ICON_BULLET]+1 [ICON_PRODUCTION] Production with [COLOR_CYAN]Civil Service[ENDCOLOR][NEWLINE][ICON_BULLET]+1 [ICON_CULTURE] Culture with [COLOR_CYAN]Architecture[ENDCOLOR][NEWLINE][ICON_BULLET]+1 [ICON_GREAT_GENERAL] Great General Points with [COLOR_CYAN]Military Service[ENDCOLOR][NEWLINE]' UNION ALL
 	SELECT 'TXT_KEY_IMPROVEMENT_TORII', 					'Torii' UNION ALL
