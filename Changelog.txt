@@ -65,7 +65,7 @@
 	- fixed Clermont promotion (now given and taken by lua instead of sql; sql was totally out of control);
 	- fixed Ife's ability description;
 	- CityStateStatusHelper.lua changes/fixes:
-		- added latest Congress #6 proposal changes (Heavy Tribute; Militaristic Gift Counter);
+		- added latest Congress #6 proposal changes (Heavy Tribute; Militaristic Gift Counter; Coups; Resting Points);
 		- added a period after Unique Unit info;
 		- it is now CSL compatible and uses same function there to take current CS atitude;
 

@@ -151,7 +151,9 @@ local tBuildingsActiveAbilities = {
 	GameInfoTypes.BUILDING_PALMYRA_2,	
 	GameInfoTypes.BUILDING_KARYES_2,
 	GameInfoTypes.BUILDING_AL_TIRABIN,
-	GameInfoTypes.BUILDING_JETARKTE -- 31
+	GameInfoTypes.BUILDING_JETARKTE, -- 31
+	GameInfoTypes.BUILDING_SADDARVAZEH,
+	GameInfoTypes.BUILDING_IRUNEA
 }
 
 local tBuildingClasses = {
@@ -6026,12 +6028,13 @@ end
 
 -- SADDARVAZEH (MISSIONARIES SPAWNED)
 function ZoroasterHolySite(iX, iY, ePlotOwner, eOldImprovement, eNewImprovement, bPillaged)
+	print("ZORO_BUILT")
 	if eNewImprovement == tImprovementsGreatPeople[2] and (eOldImprovement ~= eNewImprovement or eOldImprovement == -1) then
 		local pPlayer = Players[ePlotOwner]
-	
-		if pPlayer:GetEventChoiceCooldown(tEventChoice[64]) ~= 0 then
+		print("ZORO_BUILT_HOLY_SITE")
+		if pPlayer:GetEventChoiceCooldown(tEventChoice[65]) ~= 0 then
 			local bCanMissionaryBeSpawned = pPlayer:HasCreatedReligion()
-
+			print("ZORO_BUILT_HOLY_SITE", bCanMissionaryBeSpawned)
 			if bCanMissionaryBeSpawned then
 				local pPlot = Map.GetPlot(iX, iY)
 				local pCity = pPlot:GetWorkingCity()
@@ -6039,23 +6042,31 @@ function ZoroasterHolySite(iX, iY, ePlotOwner, eOldImprovement, eNewImprovement,
 				local eReligion = pPlayer:GetReligionCreatedByPlayer()		
 				local bCityHasMajority = pCity:GetReligiousMajority() > 0 and pCity:GetReligiousMajority() == eReligion
 				local bIsValidCity = false
+				local iRealX, iRealY = iX, iY
 				local pSaddarvazeh = Players[tLostCities["eLostSaddarvazeh"]]
 				
 				if bCityHasMajority then
-					pPlayer:AddFreeUnit(tUnitsCivilian[3], UNITAI_DEFENSE)
+					pCity:SetNumRealBuilding(tBuildingsActiveAbilities[32], pCity:GetNumRealBuilding(tBuildingsActiveAbilities[32]) + 1) -- temporary solution for city choosing
+					--pPlayer:AddFreeUnit(tUnitsCivilian[3], UNITAI_DEFENSE)
+					print("ZORO_BUILT_HOLY_SITE", "CITY_HAS_MAJORITY")
 					bIsValidCity = true
 				else
 					for city in pPlayer:Cities() do
 						if city:IsHolyCityForReligion(eReligion) and city:GetReligiousMajority() == eReligion then
-							-- nothing until fixed
-							pPlayer:AddFreeUnit(tUnitsCivilian[3], UNITAI_DEFENSE)
+							city:SetNumRealBuilding(tBuildingsActiveAbilities[32], city:GetNumRealBuilding(tBuildingsActiveAbilities[32]) + 1) -- temporary solution for city choosing
+							--pPlayer:AddFreeUnit(tUnitsCivilian[3], UNITAI_DEFENSE)
+							print("ZORO_BUILT_HOLY_SITE", "HOLY_CITY")
 							bIsValidCity = true
+							pCity = city
+							iRealX = city:GetX()
+							iRealY = city:GetY()
+							break
 						end
 					end
 				end
 
 				if bIsValidCity and pPlayer:IsHuman() then
-					pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_SADDARVAZEH", pSaddarvazeh:GetName()), L("TXT_KEY_UCS_BONUS_SADDARVAZEH_TITLE"), iX, iY)
+					pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_SADDARVAZEH", pSaddarvazeh:GetName(), pCity:GetName()), L("TXT_KEY_UCS_BONUS_SADDARVAZEH_TITLE"), iRealX, iRealY)
 				end
 			end
 		end
@@ -6064,42 +6075,48 @@ end
 
 function ZoroasterFound(ePlayer, eHolyCity, eReligion, eBelief1, eBelief2, eBelief3, eBelief4, eBelief5)
 	local pPlayer = Players[ePlayer]
-	
-	if pPlayer:GetEventChoiceCooldown(tEventChoice[64]) ~= 0 then
+	print("ZORO_FOUND")
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[65]) ~= 0 then
+		print("ZORO_ACTS?")
 		ZoroasterActs(ePlayer, eReligion)
 	end
 end
 
 function ZoroasterEnhanced(ePlayer, eReligion, eBelief1, eBelief2)
 	local pPlayer = Players[ePlayer]
-	
-	if pPlayer:GetEventChoiceCooldown(tEventChoice[64]) ~= 0 then
+	print("ZORO_ENHANCE")
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[65]) ~= 0 then
+		print("ZORO_ACTS?")
 		ZoroasterActs(ePlayer, eReligion)
 	end
 end
 
 function ZoroasterReformed(ePlayer, eReligion, eBelief)
 	local pPlayer = Players[ePlayer]
-	
-	if pPlayer:GetEventChoiceCooldown(tEventChoice[64]) ~= 0 then
+	print("ZORO_REFORM")
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[65]) ~= 0 then
+		print("ZORO_ACTS?")
 		ZoroasterActs(ePlayer, eReligion)
 	end
 end
 
 function ZoroasterActs(ePlayer, eReligion)
 	local pPlayer = Players[ePlayer]
-	
+	print("ZORO_ACT")
 	for city in pPlayer:Cities() do
 		if city:IsHolyCityForReligion(eReligion) and city:GetReligiousMajority() == eReligion then
-			-- nothing until fixed
-			pPlayer:AddFreeUnit(tUnitsCivilian[3], UNITAI_DEFENSE)
+			city:SetNumRealBuilding(tBuildingsActiveAbilities[32], city:GetNumRealBuilding(tBuildingsActiveAbilities[32]) + 1) -- temporary solution for city choosing
+			--pPlayer:AddFreeUnit(tUnitsCivilian[3], UNITAI_DEFENSE)
 
 			local iX = city:GetX()
 			local iY = city:GetY()
-
+			local pSaddarvazeh = Players[tLostCities["eLostSaddarvazeh"]]
+			
 			if pPlayer:IsHuman() then
-				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_SADDARVAZEH", pSaddarvazeh:GetName()), L("TXT_KEY_UCS_BONUS_SADDARVAZEH_TITLE"), iX, iY)
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_SADDARVAZEH", pSaddarvazeh:GetName(), city:GetName()), L("TXT_KEY_UCS_BONUS_SADDARVAZEH_TITLE"), iX, iY)
 			end
+			
+			break
 		end
 	end
 end
@@ -6121,16 +6138,17 @@ function IruneaConstructsOnEraChange(eTeam, eEra, bFirst)
 					local pCity = pPlayer:GetCapitalCity() -- nil
 					local pIrunea = Players[tLostCities["eLostIrunea"]]
 
-					--[[for city in pPlayer:Cities() do
+					for city in pPlayer:Cities() do
 						if city:IsCoastal(10) then
 							pCity = city -- unused until added
 						end
-					end--]]
+					end
 
-					pPlayer:AddFreeUnit(tUnitsCivilian[2], UNITAI_DEFENSE)
+					pCity:SetNumRealBuilding(tBuildingsActiveAbilities[33], pCity:GetNumRealBuilding(tBuildingsActiveAbilities[33]) + 1) -- temporary solution for city choosing
+					--pPlayer:AddFreeUnit(tUnitsCivilian[2], UNITAI_DEFENSE)
 					
 					if pPlayer:IsHuman() then
-						pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_IRUNEA", pIrunea:GetName()), L("TXT_KEY_UCS_BONUS_IRUNEA_TITLE"), pCity:GetX(), pCity:GetY())
+						pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_IRUNEA_ERA", pIrunea:GetName()), L("TXT_KEY_UCS_BONUS_IRUNEA_ERA_TITLE"), pCity:GetX(), pCity:GetY())
 					end
 				end
 			end
@@ -6148,10 +6166,11 @@ function IruneaConstructsOnCityFounding(ePlayer, iX, iY)
 			local pCity = pPlot:GetWorkingCity()
 			
 			if pCity:IsCoastal(10) then
-				pPlayer:AddFreeUnit(tUnitsCivilian[2], UNITAI_DEFENSE)
+				pCity:SetNumRealBuilding(tBuildingsActiveAbilities[33], 1) -- temporary solution for city choosing
+				--pPlayer:AddFreeUnit(tUnitsCivilian[2], UNITAI_DEFENSE)
 					
 				if pPlayer:IsHuman() then
-					pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_IRUNEA", pIrunea:GetName()), L("TXT_KEY_UCS_BONUS_IRUNEA_TITLE"), pCity:GetX(), pCity:GetY())
+					pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_IRUNEA_SETTLE", pIrunea:GetName()), L("TXT_KEY_UCS_BONUS_IRUNEA_SETTLE_TITLE"), pCity:GetX(), pCity:GetY())
 				end
 			end
 		end

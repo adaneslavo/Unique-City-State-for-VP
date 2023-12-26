@@ -798,9 +798,9 @@ function GetActiveQuestText(majorPlayerID, minorPlayerID)
 		end
 			
 		-- Coup
-		if (bnw_mode and minorPlayer:GetCoupCooldown() > 0) then
+		--[[if (bnw_mode and minorPlayer:GetCoupCooldown() > 0) then
 			sIconTextOther = sIconTextOther .. "[ICON_TEAM_2]"
-		end
+		end--]]
 		-- END
 	else
 		print("Lua error - invalid player index")
@@ -1026,9 +1026,9 @@ function GetActiveQuestToolTip(majorPlayerID, minorPlayerID)
 		end
 
 		-- Coup
-		if (bnw_mode and minorPlayer:GetCoupCooldown() > 0) then
+		--[[if (bnw_mode and minorPlayer:GetCoupCooldown() > 0) then
 			table_insert(tTooltipOther,"[ICON_TEAM_2] " .. L("TXT_KEY_CITY_STATE_QUEST_COUP_COOLDOWN_TT", minorPlayer:GetCoupCooldown()))
-		end
+		end--]]
 		-- END
 	else
 		print("Lua error - invalid player index")
@@ -1180,7 +1180,7 @@ function GetCityStateStatusAlly(majorPlayerID, minorPlayerID, isFullInfo)
 		end
 		
 		if not isFullInfo then
-			return toolTip:sub(1,(toolTip:find("[NEWLINE]",1,true) or 999)-1)
+			return toolTip:sub(1, (toolTip:find("[NEWLINE]", 1, true) or 999) - 1)
 		end
 	else
 		print("Lua error - invalid player index")

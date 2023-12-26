@@ -348,5 +348,17 @@
 		<Row Tag="TXT_KEY_UCS_BONUS_SADDARVAZEH_TITLE">
 			<Text>Zoroaster Speaks!</Text>
 		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_IRUNEA_ERA">
+			<Text>[COLOR_CYAN]{1_Irunea}[ENDCOLOR].</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_IRUNEA_ERA_TITLE">
+			<Text>Basques celebrate a new era!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_IRUNEA_SETTLE">
+			<Text>[COLOR_CYAN]{1_Irunea}[ENDCOLOR].</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_IRUNEA_SETTLE_TITLE">
+			<Text>Basques supports a new colony!</Text>
+		</Row>
 	</Language_en_US>
 </GameData>
