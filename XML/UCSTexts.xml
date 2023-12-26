@@ -330,5 +330,23 @@
 		<Row Tag="TXT_KEY_UCS_BONUS_AL_TIRABIN_TITLE">
 			<Text>Nomadic Life</Text>
 		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_MENDYARRUP_FIX">
+			<Text>Unique techniques of using the cold fire to clear the undergrowth without destorying upper part of the forest possessed by the [COLOR_CYAN]{1_Mendyarrup}[ENDCOLOR] can significantly speed up city's growth. [COLOR_CYAN]{2_City}[ENDCOLOR] gains additional boost of {3_Food} [ICON_FOOD] Food.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_MENDYARRUP_FIX_TITLE">
+			<Text>Clear path!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_MENDYARRUP_XP">
+			<Text>New life can mobilize your forces for even better effort. Thanks to a cooperation with [COLOR_CYAN]{1_Mendyarrup}[ENDCOLOR] you know how to direct this force into your own units. [COLOR_CYAN]{2_City}[ENDCOLOR] spreads the news to {3_NumUnits} units garissoned around granting them 2 XP.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_MENDYARRUP_XP_TITLE">
+			<Text>Strength for the people!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_SADDARVAZEH">
+			<Text>[COLOR_CYAN]{1_Saddarvazeh}[ENDCOLOR].</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_SADDARVAZEH_TITLE">
+			<Text>Zoroaster Speaks!</Text>
+		</Row>
 	</Language_en_US>
 </GameData>

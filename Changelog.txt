@@ -1,24 +1,28 @@
 ﻿v16:
 - new:
-	- added 8 new City-States:
-		- Maritime: 
-			- Iruñea (South-West Europe; blocked when Basques are in game);
+	- added 10 new City-States:
+		- 3 Maritime: 
 			- Jetarkte (South America);
-			- Mbabane (F; South Africa);
-		- Mercantile: 
+			- Mendyarrup (Australia);
+			- Oiasso (South-West Europe; blocked by Basques);
+		- 3 Mercantile: 
 			- Al-Tirabin (West Asia);
 			- Hanuabada (Oceania);
-			- Tunis (North Africa);
-		- Militaristic: 
-			- Bactra (Central Asia; blocked when Persia is in game);
-			- Palmyra (F; West Asia; blocked when Rome is in game);
+			- Tunis (North Africa; blocked by Arabia);
+		- 3 Militaristic: 
+			- Bactra (Central Asia; blocked by Persia);
+			- Mbabane (F; South Africa);
+			- Palmyra (F; West Asia; blocked by Rome);
+		- 1 Religious:
+			- Saddarvazeh (West Asia; blocked by Persia);
 	- added 5 new improvements:
 		- Daaq Ah (exlusive for Mogadishu);
 		- Buryuut Hajar (exclusive for Al-Tirabin);
 		- Funerary Tower (exclusive for Palmyra);
 		- Phrourion (exlusive for Bactra);
 		- Ribat (exclusive for Tunis);
-	- added 1 new promotion:
+	- added 2 new promotions:
+		- Karla Nyidiny (exclusive for Mendyarrup);
 		- Papuan Seafaring Prowess (esclusive for Hanuabada);
 	- added new model and icon for Mound improvement;
 	- added new model and icon for Monastery improvement (old one is still in the files);
@@ -51,6 +55,8 @@
 	- another huge revision of the improvement tooltips (improved visibility; tech yields listed out; added missing info; add additional spaces; reordered infos);
 	- Karyes now track the number of Monasteries nearby using dummy buildings instead of global variable;
 	- moved some tags from sql to xml, so now all are in one place;
+	- deleted multiple dummies and moved the bonus to policy instead (related to unit production modifiers);
+	- replaced manual code for Yangcheng's bonus to animals with query;
 - fixed:
 	- fixed Karyes' promotion name;
 	- fixed Colossal Head placement (it ignored terrain requirement - moved to lua);

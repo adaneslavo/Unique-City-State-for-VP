@@ -113,7 +113,11 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_MOGADISHU,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_HANUABADA,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_BALKH, -- 61
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_CLERMONT
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_CLERMONT,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_MENDYARRUP,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_JETARKTE,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SADDARVAZEH,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_IRUNEA -- 66
 }
 
 local tBuildingsActiveAbilities = {
@@ -146,7 +150,8 @@ local tBuildingsActiveAbilities = {
 	GameInfoTypes.BUILDING_LONGYAN,
 	GameInfoTypes.BUILDING_PALMYRA_2,	
 	GameInfoTypes.BUILDING_KARYES_2,
-	GameInfoTypes.BUILDING_AL_TIRABIN
+	GameInfoTypes.BUILDING_AL_TIRABIN,
+	GameInfoTypes.BUILDING_JETARKTE -- 31
 }
 
 local tBuildingClasses = {
@@ -184,7 +189,8 @@ local tPromotionsActiveAbilities = {
 	GameInfoTypes.PROMOTION_CLERMONT4,
 	GameInfoTypes.PROMOTION_CLERMONT5,
 	GameInfoTypes.PROMOTION_CLERMONT6, -- 26
-	GameInfoTypes.PROMOTION_CLERMONT7
+	GameInfoTypes.PROMOTION_CLERMONT7,
+	GameInfoTypes.PROMOTION_MENDYARRUP
 }
 
 local tBuildingsPassiveAbilities = {
@@ -4279,6 +4285,73 @@ end
 
 
 
+-- JETARKTE (CITY ON COAST?)
+function SeaNomadsOnEventOn(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[64] then
+		local pPlayer = Players[ePlayer]
+	
+		for city in pPlayer:Cities() do
+			if city:IsCoastal(10) then
+				city:SetNumRealBuilding(tBuildingsActiveAbilities[31], 1)
+			end
+		end
+	end
+end
+
+function SeaNomadsOnEventOff(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[64] then
+		local pPlayer = Players[ePlayer]
+	
+		for city in pPlayer:Cities() do
+			city:SetNumRealBuilding(tBuildingsActiveAbilities[31], 0)
+		end
+	end
+end
+
+function SeaNomadsCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
+	local pNewOwner = Players[eNewOwner]
+	
+	if pNewOwner:GetEventChoiceCooldown(tEventChoice[64]) ~= 0 then
+		local pPlot = Map.GetPlot(iX, iY)
+			
+		if pPlot then
+			local pConqCity = pPlot:GetWorkingCity()
+			
+			if pConqCity:IsCoastal(10) then
+				pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[31], 1)
+			end
+		end
+	else
+		if not pNewOwner:IsEventChoiceActive(tEventChoice[64]) then
+			local pPlot = Map.GetPlot(iX, iY)
+			
+			if pPlot then
+				local pConqCity = pPlot:GetWorkingCity()
+			
+				pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[31], 0)
+			end
+		end
+	end
+end
+
+function SeaNomadsNewCity(ePlayer, iX, iY)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[64]) ~= 0 then
+		local pPlot = Map.GetPlot(iX, iY)
+				
+		if pPlot then
+			local pCity = pPlot:GetWorkingCity()
+			
+			if pCity:IsCoastal(10) then		
+				pCity:SetNumRealBuilding(tBuildingsActiveAbilities[31], 1)
+			end
+		end
+	end
+end
+
+
+
 -- DALI (BUYING TRADE UNITS WITH FAITH)
 function TradeWithFaith(ePlayer, eCity, eUnit)
 	if eUnit ~= tUnitsCivilian[7] --[[and eUnit ~= tUnitsCivilian[8]--]] then return true end
@@ -5860,6 +5933,230 @@ function GiveClermontPromoOnTrain(eUnitOwner, eUnit, eUnitType, iX, iY)
 		end
 	end
 end
+
+
+
+-- MENDYARRUP (GROWTH INTO MILITARY)
+function FixForMendyarrup(iX, iY, ePlotOwner, eOldImprovement, eNewImprovement, bPillaged)
+	if eOldImprovement ~= eNewImprovement or bPillaged then return end
+	
+	local pPlayer = Players[ePlotOwner]
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[63]) ~= 0 then
+		local pPlot = Map.GetPlot(iX, iY)
+		local pCity = pPlot:GetWorkingCity()
+		local iOneTurnFood = pCity:GetYieldRate(iFoodYield)
+		local pMendyarrup = Players[tLostCities["eLostMendyarrup"]]
+
+		if pCity then
+			pPlayer:DoInstantYield(GameInfoTypes.YIELD_FOOD, iOneTurnFood, true, pCity:GetID())
+		
+			if pPlayer:IsHuman() then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_MENDYARRUP_FIX", pMendyarrup:GetName(), pCity:GetName(), iOneTurnFood), L("TXT_KEY_UCS_BONUS_MENDYARRUP_FIX_TITLE"), iX, iY)
+			end
+		end
+	end
+end
+
+function PillageForMendyarrup(iX, iY, ePlotOwner, eOldImprovement, eNewImprovement, bPillaged)
+	if eOldImprovement ~= eNewImprovement or not bPillaged then return end
+	
+	local pPlot = Map.GetPlot(iX, iY)
+	local iNumUnitsOnTile = pPlot:GetNumUnits()
+				
+	if iNumUnitsOnTile > 0 then
+		for i = 0, iNumUnitsOnTile - 1, 1 do
+			local pUnit = pPlot:GetUnit(i)
+						
+			if pUnit:IsCombatUnit() then
+				if pUnit:IsHasPromotion(tPromotionsActiveAbilities[28]) then
+					local iMovementAdded = 1
+						
+					pUnit:ChangeExperience(3)
+					pUnit:ChangeMoves(GameDefines["MOVE_DENOMINATOR"] * iMovementAdded)
+					break
+				end
+			end
+		end
+	end		
+end
+
+function GrowthForMendyarrup(iX, iY, iOldPop, iNewPop)
+	if iNewPop <= iOldPop or iNewPop < 2 then return end
+	
+	local pPlot = Map.GetPlot(iX, iY)
+	local pCity = pPlot:GetWorkingCity()
+	local ePlayer = pCity:GetOwner()	
+	local pPlayer = Players[pCity:GetOwner()]
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[63]) ~= 0 then
+		local pMendyarrup = Players[tLostCities["eLostMendyarrup"]]
+		local iSumUnitsBuffed = 0
+		
+		for iplot = 0, 18 do -- 2 tiles away from a city
+			local plot = pCity:GetCityIndexPlot(iplot)
+			
+			if plot then
+				local iNumUnitsOnTile = plot:GetNumUnits()
+				
+				if iNumUnitsOnTile > 0 then
+					for i = 0, iNumUnitsOnTile - 1, 1 do
+						local pUnit = plot:GetUnit(i)
+						
+						if pUnit:GetOwner() == ePlayer then
+							if pUnit:IsCombatUnit() then
+								pUnit:ChangeExperience(2)
+								iSumUnitsBuffed = iSumUnitsBuffed + 1
+							end
+						end
+					end
+				end
+			end
+		end
+
+		if iSumUnitsBuffed then	
+			if pPlayer:IsHuman() then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_MENDYARRUP_XP", pMendyarrup:GetName(), pCity:GetName(), iSumUnitsBuffed), L("TXT_KEY_UCS_BONUS_MENDYARRUP_XP_TITLE"), iX, iY)
+			end
+		end
+	end
+end
+
+
+
+-- SADDARVAZEH (MISSIONARIES SPAWNED)
+function ZoroasterHolySite(iX, iY, ePlotOwner, eOldImprovement, eNewImprovement, bPillaged)
+	if eNewImprovement == tImprovementsGreatPeople[2] and (eOldImprovement ~= eNewImprovement or eOldImprovement == -1) then
+		local pPlayer = Players[ePlotOwner]
+	
+		if pPlayer:GetEventChoiceCooldown(tEventChoice[64]) ~= 0 then
+			local bCanMissionaryBeSpawned = pPlayer:HasCreatedReligion()
+
+			if bCanMissionaryBeSpawned then
+				local pPlot = Map.GetPlot(iX, iY)
+				local pCity = pPlot:GetWorkingCity()
+				local pChosenCity = pCity -- unused currently (choosing city not possible)	
+				local eReligion = pPlayer:GetReligionCreatedByPlayer()		
+				local bCityHasMajority = pCity:GetReligiousMajority() > 0 and pCity:GetReligiousMajority() == eReligion
+				local bIsValidCity = false
+				local pSaddarvazeh = Players[tLostCities["eLostSaddarvazeh"]]
+				
+				if bCityHasMajority then
+					pPlayer:AddFreeUnit(tUnitsCivilian[3], UNITAI_DEFENSE)
+					bIsValidCity = true
+				else
+					for city in pPlayer:Cities() do
+						if city:IsHolyCityForReligion(eReligion) and city:GetReligiousMajority() == eReligion then
+							-- nothing until fixed
+							pPlayer:AddFreeUnit(tUnitsCivilian[3], UNITAI_DEFENSE)
+							bIsValidCity = true
+						end
+					end
+				end
+
+				if bIsValidCity and pPlayer:IsHuman() then
+					pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_SADDARVAZEH", pSaddarvazeh:GetName()), L("TXT_KEY_UCS_BONUS_SADDARVAZEH_TITLE"), iX, iY)
+				end
+			end
+		end
+	end
+end
+
+function ZoroasterFound(ePlayer, eHolyCity, eReligion, eBelief1, eBelief2, eBelief3, eBelief4, eBelief5)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[64]) ~= 0 then
+		ZoroasterActs(ePlayer, eReligion)
+	end
+end
+
+function ZoroasterEnhanced(ePlayer, eReligion, eBelief1, eBelief2)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[64]) ~= 0 then
+		ZoroasterActs(ePlayer, eReligion)
+	end
+end
+
+function ZoroasterReformed(ePlayer, eReligion, eBelief)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[64]) ~= 0 then
+		ZoroasterActs(ePlayer, eReligion)
+	end
+end
+
+function ZoroasterActs(ePlayer, eReligion)
+	local pPlayer = Players[ePlayer]
+	
+	for city in pPlayer:Cities() do
+		if city:IsHolyCityForReligion(eReligion) and city:GetReligiousMajority() == eReligion then
+			-- nothing until fixed
+			pPlayer:AddFreeUnit(tUnitsCivilian[3], UNITAI_DEFENSE)
+
+			local iX = city:GetX()
+			local iY = city:GetY()
+
+			if pPlayer:IsHuman() then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_SADDARVAZEH", pSaddarvazeh:GetName()), L("TXT_KEY_UCS_BONUS_SADDARVAZEH_TITLE"), iX, iY)
+			end
+		end
+	end
+end
+
+
+
+-- IRUNEA (FREE WORK BOATS)
+function IruneaConstructsOnEraChange(eTeam, eEra, bFirst)
+	for eplayer = 0, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
+		local pPlayer = Players[eplayer]
+
+		if pPlayer and pPlayer:IsAlive() then
+			if pPlayer:IsMinorCiv() then return end
+
+			local ePlayerTeam = pPlayer:GetTeam()
+
+			if ePlayerTeam == eTeam then
+				if pPlayer:GetEventChoiceCooldown(tEventChoice[66]) ~= 0 then
+					local pCity = pPlayer:GetCapitalCity() -- nil
+					local pIrunea = Players[tLostCities["eLostIrunea"]]
+
+					--[[for city in pPlayer:Cities() do
+						if city:IsCoastal(10) then
+							pCity = city -- unused until added
+						end
+					end--]]
+
+					pPlayer:AddFreeUnit(tUnitsCivilian[2], UNITAI_DEFENSE)
+					
+					if pPlayer:IsHuman() then
+						pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_IRUNEA", pIrunea:GetName()), L("TXT_KEY_UCS_BONUS_IRUNEA_TITLE"), pCity:GetX(), pCity:GetY())
+					end
+				end
+			end
+		end
+	end
+end
+
+function IruneaConstructsOnCityFounding(ePlayer, iX, iY)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[66]) ~= 0 then
+		local pPlot = Map.GetPlot(iX, iY)
+				
+		if pPlot then
+			local pCity = pPlot:GetWorkingCity()
+			
+			if pCity:IsCoastal(10) then
+				pPlayer:AddFreeUnit(tUnitsCivilian[2], UNITAI_DEFENSE)
+					
+				if pPlayer:IsHuman() then
+					pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_IRUNEA", pIrunea:GetName()), L("TXT_KEY_UCS_BONUS_IRUNEA_TITLE"), pCity:GetX(), pCity:GetY())
+				end
+			end
+		end
+	end
+end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- INITIALIZATION
@@ -6125,6 +6422,12 @@ function SettingUpSpecificEvents()
 				GameEvents.CityCaptureComplete.Add(LongClawOfMemoryCapture)
 				GameEvents.PlayerCityFounded.Add(LongClawOfMemoryNewCity)
 				GameEvents.CityConstructed.Add(LongClawOfMemoryBuildingConstruction)
+			elseif sMinorCivType == "MINOR_CIV_JETARKTE" then
+				tLostCities["eLostJetarkte"] = eCS
+				GameEvents.EventChoiceActivated.Add(SeaNomadsOnEventOn)
+				GameEvents.EventChoiceEnded.Add(SeaNomadsOnEventOff)
+				GameEvents.CityCaptureComplete.Add(SeaNomadsCapture)
+				GameEvents.PlayerCityFounded.Add(SeaNomadsNewCity)
 			
 			
 			-- new/exclusive units
@@ -6302,6 +6605,32 @@ function SettingUpSpecificEvents()
 				GameEvents.EventChoiceActivated.Add(GiveClermontPromoOnEventOn)
 				GameEvents.EventChoiceEnded.Add(TakeClermontPromoOnEventOff)
 				GameEvents.UnitCreated.Add(GiveClermontPromoOnTrain)
+
+				
+			-- growth and military
+			elseif sMinorCivType == "MINOR_CIV_MENDYARRUP" then
+				tLostCities["eLostMendyarrup"] = eCS	
+				GameEvents.TileImprovementChanged.Add(FixForMendyarrup)
+				GameEvents.TileImprovementChanged.Add(PillageForMendyarrup)
+				GameEvents.SetPopulation.Add(GrowthForMendyarrup)
+
+
+
+			-- free Missionaries
+			elseif sMinorCivType == "MINOR_CIV_SADDARVAZEH" then
+				tLostCities["eLostSaddarvazeh"] = eCS
+				GameEvents.TileImprovementChanged.Add(ZoroasterHolySite)
+				GameEvents.ReligionFounded.Add(ZoroasterFound)
+				GameEvents.ReligionEnhanced.Add(ZoroasterEnhanced)
+				GameEvents.ReligionReformed.Add(ZoroasterReformed)
+
+
+
+			-- free Missionaries
+			elseif sMinorCivType == "MINOR_CIV_IRUNEA" then
+				tLostCities["eLostIrunea"] = eCS
+				GameEvents.TeamSetEra.Add(IruneaConstructsOnEraChange)
+				GameEvents.PlayerCityFounded.Add(IruneaConstructsOnCityFounding)
 			end
 		end
 	end
