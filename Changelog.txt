@@ -4,7 +4,7 @@
 		- 3 Maritime: 
 			- Jetarkte (South America);
 			- Mendyarrup (Australia);
-			- Oiasso (South-West Europe; blocked by Basques);
+			- Donostia (South-West Europe; blocked by Basques);
 		- 3 Mercantile: 
 			- Al-Tirabin (West Asia);
 			- Hanuabada (Oceania);
@@ -51,6 +51,7 @@
 		- loses bonus yields to Foodplains and Ocean tiles;
 		- gains new improvement: Daaq Ah;
 		- now gains +10% Food during GA (was +5%) and has -5% GAP needed for next GA (was -10%);
+	- Hong Kong: deleted "x10" factor from the migration threshold, so now the chance will be ten times lower;
 - changed:
 	- another huge revision of the improvement tooltips (improved visibility; tech yields listed out; added missing info; add additional spaces; reordered infos);
 	- Karyes now track the number of Monasteries nearby using dummy buildings instead of global variable;

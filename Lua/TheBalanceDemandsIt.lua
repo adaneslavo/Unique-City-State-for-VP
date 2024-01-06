@@ -117,7 +117,8 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_MENDYARRUP,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_JETARKTE,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SADDARVAZEH,
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_IRUNEA -- 66
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_IRUNEA, -- 66
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_TUNIS
 }
 
 local tBuildingsActiveAbilities = {
@@ -233,7 +234,8 @@ local tImprovementsUCS = {
 	GameInfoTypes.IMPROVEMENT_FUNERARY_TOWER, -- 11
 	GameInfoTypes.IMPROVEMENT_BEDOUIN_CAMP,
 	GameInfoTypes.IMPROVEMENT_DAAQ_AH,
-	GameInfoTypes.IMPROVEMENT_PHROURION
+	GameInfoTypes.IMPROVEMENT_PHROURION,
+	GameInfoTypes.IMPROVEMENT_RIBAT
 }
 
 local tImprovementsGreatPeople = {
@@ -2705,6 +2707,26 @@ GameEvents.PlayerCanBuild.Add(CanWeBuildColossalHead)
 
 
 
+-- TUNIS (IMPROVEMENT RIBAT)
+function CanWeBuildRibat(ePlayer, eUnit, iX, iY, eBuild)
+	if eBuild ~= GameInfoTypes.BUILD_RIBAT then return true end
+	
+	local pPlayer = Players[ePlayer]
+	
+	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[67]) > 0) then return false end
+	
+	for i, direction in ipairs(tDirectionTypes) do
+		local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
+						
+		if pAdjacentPlot and pAdjacentPlot:IsCity() then return false end
+	end
+
+	return true
+end
+GameEvents.PlayerCanBuild.Add(CanWeBuildRibat)
+
+
+
 -- BACTRA (IMPROVEMENT PHROURION)
 function CanWeBuildPhrourion(ePlayer, eUnit, iX, iY, eBuild)
 	if eBuild ~= GameInfoTypes.BUILD_PHROURION then return true end
@@ -4731,7 +4753,7 @@ function MigrationToHongKong(ePlayer)
 		local pHongKongCity = pHongKong:GetCapitalCity()		
 		
 		for city in pPlayer:Cities() do
-			local iMigrationThreshold = (city:GetPopulation() - pHongKongCity:GetPopulation()) * 10
+			local iMigrationThreshold = city:GetPopulation() - pHongKongCity:GetPopulation()
 			local iCurrentInfluenceWithHongKong = pHongKong:GetMinorCivFriendshipWithMajor(ePlayer)
 
 			if iMigrationThreshold > 0 and iCurrentInfluenceWithHongKong >= GameDefines.FRIENDSHIP_THRESHOLD_FRIENDS then
@@ -6254,7 +6276,8 @@ function SettingUpSpecificEvents()
 			
 			-- improvements
 			elseif sMinorCivType == "MINOR_CIV_CAHOKIA" or sMinorCivType == "MINOR_CIV_SGAANG" or sMinorCivType == "MINOR_CIV_NYARYANA_MARQ" 
-			or sMinorCivType == "MINOR_CIV_LA_VENTA" or sMinorCivType == "MINOR_CIV_BALKH" or sMinorCivType == "MINOR_CIV_PALMYRA" 
+			or sMinorCivType == "MINOR_CIV_LA_VENTA" or sMinorCivType == "MINOR_CIV_TUNIS" 
+			or sMinorCivType == "MINOR_CIV_BALKH" or sMinorCivType == "MINOR_CIV_PALMYRA" 
 			or sMinorCivType == "MINOR_CIV_MOGADISHU" or sMinorCivType == "MINOR_CIV_TIWANAKU" or sMinorCivType == "MINOR_CIV_LONGYAN" 
 			or sMinorCivType == "MINOR_CIV_AL_TIRABIN" or sMinorCivType == "MINOR_CIV_KARYES" then
 					GameEvents.PlayerCanBuild.Add(CanWeSubstituteImprovement)
@@ -6267,6 +6290,8 @@ function SettingUpSpecificEvents()
 					tLostCities["eLostNyaryanaMarq"] = eCS
 				elseif sMinorCivType == "MINOR_CIV_LA_VENTA" then	
 					tLostCities["eLostLaVenta"] = eCS
+				elseif sMinorCivType == "MINOR_CIV_TUNIS" then	
+					tLostCities["eLostTunis"] = eCS
 				elseif sMinorCivType == "MINOR_CIV_BALKH" then	
 					tLostCities["eLostBalkh"] = eCS
 					GameEvents.BuildFinished.Add(BuiltPhrourion)

@@ -938,6 +938,10 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
+    <Content Include="Art\SV_Icons\sv_BuildRibat.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
     <Content Include="Art\SV_Icons\sv_BuildSunkenCourtyard.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
