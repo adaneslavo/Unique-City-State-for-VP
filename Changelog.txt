@@ -1,4 +1,10 @@
-﻿v16:
+﻿v16.X:
+- contains new version of .xml CS sound file to substitute in DLC folder;
+
+v16.1:
+- deleted Siamese leftover code;
+
+v16:
 - new:
 	- added 10 new City-States:
 		- 3 Maritime: 

@@ -52,10 +52,6 @@ UPDATE Community SET Value = '1' WHERE Type = 'UCS-CIVILIZATION-BASQUE' AND EXIS
 ---------------------------------------------------
 UPDATE Units SET NumInfPerEra = 20 WHERE Class = 'UNITCLASS_GREAT_DIPLOMAT';
 ---------------------------------------------------
--- Updates - Traits
----------------------------------------------------
-UPDATE Traits SET InfluenceMeetCS = 45 WHERE Type = 'TRAIT_CITY_STATE_BONUSES';
----------------------------------------------------
 -- Updates - Defines
 ---------------------------------------------------
 UPDATE Defines SET Value = 40 WHERE Name = 'FRIENDSHIP_THRESHOLD_FRIENDS';
