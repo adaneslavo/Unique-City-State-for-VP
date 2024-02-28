@@ -6050,13 +6050,12 @@ end
 
 -- SADDARVAZEH (MISSIONARIES SPAWNED)
 function ZoroasterHolySite(iX, iY, ePlotOwner, eOldImprovement, eNewImprovement, bPillaged)
-	print("ZORO_BUILT")
 	if eNewImprovement == tImprovementsGreatPeople[2] and (eOldImprovement ~= eNewImprovement or eOldImprovement == -1) then
 		local pPlayer = Players[ePlotOwner]
-		print("ZORO_BUILT_HOLY_SITE")
-		if pPlayer:GetEventChoiceCooldown(tEventChoice[65]) ~= 0 then
+		
+		if pPlayer and pPlayer:GetEventChoiceCooldown(tEventChoice[65]) ~= 0 then
 			local bCanMissionaryBeSpawned = pPlayer:HasCreatedReligion()
-			print("ZORO_BUILT_HOLY_SITE", bCanMissionaryBeSpawned)
+			
 			if bCanMissionaryBeSpawned then
 				local pPlot = Map.GetPlot(iX, iY)
 				local pCity = pPlot:GetWorkingCity()
@@ -6070,14 +6069,12 @@ function ZoroasterHolySite(iX, iY, ePlotOwner, eOldImprovement, eNewImprovement,
 				if bCityHasMajority then
 					pCity:SetNumRealBuilding(tBuildingsActiveAbilities[32], pCity:GetNumRealBuilding(tBuildingsActiveAbilities[32]) + 1) -- temporary solution for city choosing
 					--pPlayer:AddFreeUnit(tUnitsCivilian[3], UNITAI_DEFENSE)
-					print("ZORO_BUILT_HOLY_SITE", "CITY_HAS_MAJORITY")
 					bIsValidCity = true
 				else
 					for city in pPlayer:Cities() do
 						if city:IsHolyCityForReligion(eReligion) and city:GetReligiousMajority() == eReligion then
 							city:SetNumRealBuilding(tBuildingsActiveAbilities[32], city:GetNumRealBuilding(tBuildingsActiveAbilities[32]) + 1) -- temporary solution for city choosing
 							--pPlayer:AddFreeUnit(tUnitsCivilian[3], UNITAI_DEFENSE)
-							print("ZORO_BUILT_HOLY_SITE", "HOLY_CITY")
 							bIsValidCity = true
 							pCity = city
 							iRealX = city:GetX()
@@ -6097,34 +6094,31 @@ end
 
 function ZoroasterFound(ePlayer, eHolyCity, eReligion, eBelief1, eBelief2, eBelief3, eBelief4, eBelief5)
 	local pPlayer = Players[ePlayer]
-	print("ZORO_FOUND")
+	
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[65]) ~= 0 then
-		print("ZORO_ACTS?")
 		ZoroasterActs(ePlayer, eReligion)
 	end
 end
 
 function ZoroasterEnhanced(ePlayer, eReligion, eBelief1, eBelief2)
 	local pPlayer = Players[ePlayer]
-	print("ZORO_ENHANCE")
+	
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[65]) ~= 0 then
-		print("ZORO_ACTS?")
 		ZoroasterActs(ePlayer, eReligion)
 	end
 end
 
 function ZoroasterReformed(ePlayer, eReligion, eBelief)
 	local pPlayer = Players[ePlayer]
-	print("ZORO_REFORM")
+	
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[65]) ~= 0 then
-		print("ZORO_ACTS?")
 		ZoroasterActs(ePlayer, eReligion)
 	end
 end
 
 function ZoroasterActs(ePlayer, eReligion)
 	local pPlayer = Players[ePlayer]
-	print("ZORO_ACT")
+	
 	for city in pPlayer:Cities() do
 		if city:IsHolyCityForReligion(eReligion) and city:GetReligiousMajority() == eReligion then
 			city:SetNumRealBuilding(tBuildingsActiveAbilities[32], city:GetNumRealBuilding(tBuildingsActiveAbilities[32]) + 1) -- temporary solution for city choosing

@@ -128,6 +128,7 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
     <Folder Include="Art\Models\Resources" />
     <Folder Include="Art\Models\Resources\DogoCanario" />
     <Folder Include="Art\Models\Resources\LlaoLlao" />
+    <Folder Include="Art\Models\Resources\Reindeer" />
     <Folder Include="Art\Models\Units" />
     <Folder Include="Art\Models\Units\Ghurka" />
     <Folder Include="Art\Models\Units\Teaat2" />
@@ -783,6 +784,18 @@ Not compatible with Sukritact's Suzerians for obvious reasons since these two ar
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="Art\Models\Resources\DogoCanario\planks and stone.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Resources\Reindeer\resource_reindeer.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Resources\Reindeer\resource_reindeer.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Models\Resources\Reindeer\resource_reindeer_diff.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>

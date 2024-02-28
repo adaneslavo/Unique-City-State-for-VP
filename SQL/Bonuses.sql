@@ -3361,7 +3361,11 @@ VALUES 		('Any',			'Constructed', 			1, 		'ART_DEF_IMPROVEMENT_BIG_HEAD', 		'RAN
 			('Any',			'Any', 					1, 		'ART_DEF_IMPROVEMENT_NONE', 			'RANDOM', 		'ART_DEF_RESOURCE_DOGO_CANARIO',	'dogs_resource.fxsxml',					1),
 			('Any',			'UnderConstruction', 	1, 		'ART_DEF_IMPROVEMENT_CAMP', 			'RANDOM', 		'ART_DEF_RESOURCE_DOGO_CANARIO',	'dogs_canario_HB.fxsxml',				1),
 			('Any',			'Constructed', 			1, 		'ART_DEF_IMPROVEMENT_CAMP', 			'RANDOM', 		'ART_DEF_RESOURCE_DOGO_CANARIO',	'dogs_canario_CN.fxsxml',				1),
-			('Any',			'Pillaged', 			1, 		'ART_DEF_IMPROVEMENT_CAMP', 			'RANDOM', 		'ART_DEF_RESOURCE_DOGO_CANARIO',	'dogs_canario_PL.fxsxml',				1);
+			('Any',			'Pillaged', 			1, 		'ART_DEF_IMPROVEMENT_CAMP', 			'RANDOM', 		'ART_DEF_RESOURCE_DOGO_CANARIO',	'dogs_canario_PL.fxsxml',				1),
+			('Any',			'Any', 					0.12, 	'ART_DEF_IMPROVEMENT_NONE', 			'ANIMATED', 	'ART_DEF_RESOURCE_REINDEER',		'resource_reindeer.fxsxml',				1),
+			('Any',			'UnderConstruction', 	0.12, 	'ART_DEF_IMPROVEMENT_CAMP', 			'ANIMATED', 	'ART_DEF_RESOURCE_REINDEER',		'resource_reindeer.fxsxml',				1),
+			('Any',			'Constructed', 			0.12, 	'ART_DEF_IMPROVEMENT_CAMP', 			'ANIMATED', 	'ART_DEF_RESOURCE_REINDEER',		'resource_reindeer.fxsxml',				1),
+			('Any',			'Pillaged', 			0.12, 	'ART_DEF_IMPROVEMENT_CAMP', 			'ANIMATED', 	'ART_DEF_RESOURCE_REINDEER',		'resource_reindeer.fxsxml',				1);
 			
 INSERT INTO ArtDefine_StrategicView
 			(StrategicViewType, 					TileType, 		Asset)
@@ -4213,7 +4217,7 @@ FROM Units WHERE Type = 'UNIT_MISSIONARY';
 -- mercenaries
 INSERT INTO Units
 					(Type,					Class,						Description,				Civilopedia,						Strategy,								Help,								NoMinorCivGift,	NoMinorGifts,	Combat,		RangedCombat,	Cost,	FaithCost,		RequiresFaithPurchaseEnabled,	Moves,	BaseSightRange, Range,	PurchaseOnly,	MoveAfterPurchase,	CombatClass, Domain, DefaultUnitAI,		MilitarySupport, MilitaryProduction, Pillage, Mechanized, IgnoreBuildingDefense,	PrereqTech,				ObsoleteTech,			GoodyHutUpgradeUnitClass,	AdvancedStartCost,	MinAreaSize, NukeDamageLevel, CombatLimit, XPValueAttack, XPValueDefense, Conscription,	NoMaintenance, UnitArtInfo,					UnitArtInfoEraVariation, ShowInPedia, MoveRate, UnitFlagIconOffset, PortraitIndex,	IconAtlas,			UnitFlagAtlas,			MaxHitPoints, BaseLandAirDefense,	PurchaseCooldown, IsMounted,	UnitEraUpgrade)
-SELECT DISTINCT 	'UNIT_SWISS_GUARD',		'UNITCLASS_SWISS_GUARD',	'TXT_KEY_UNIT_SWISS_GUARD',	'TXT_KEY_CIV5_UNIT_SWISS_GUARD',	'TXT_KEY_UNIT_SWISS_GUARD_STRATEGY',	'TXT_KEY_UNIT_SWISS_GUARD_HELP',	1,				1,				28,			RangedCombat,	220,	500,			RequiresFaithPurchaseEnabled,	Moves,	BaseSightRange, Range,	PurchaseOnly,	MoveAfterPurchase,	CombatClass, Domain, 'UNITAI_DEFENSE',	MilitarySupport, MilitaryProduction, Pillage, Mechanized, IgnoreBuildingDefense,	'TECH_BANKING',			NULL,					NULL,						-1,					MinAreaSize, NukeDamageLevel, CombatLimit, XPValueAttack, XPValueDefense, Conscription,	NoMaintenance, 'ART_DEF_UNIT_SWISS_GUARD',	UnitArtInfoEraVariation, ShowInPedia, MoveRate, 0,					0,				'UCS_UNIT_ATLAS',	'UCS_UNIT_FLAG_ATLAS',	MaxHitPoints, 1,					PurchaseCooldown, IsMounted,	1
+SELECT DISTINCT 	'UNIT_SWISS_GUARD',		'UNITCLASS_SWISS_GUARD',	'TXT_KEY_UNIT_SWISS_GUARD',	'TXT_KEY_CIV5_UNIT_SWISS_GUARD',	'TXT_KEY_UNIT_SWISS_GUARD_STRATEGY',	'TXT_KEY_UNIT_SWISS_GUARD_HELP',	1,				1,				28,			RangedCombat,	500,	500,			RequiresFaithPurchaseEnabled,	Moves,	BaseSightRange, Range,	PurchaseOnly,	MoveAfterPurchase,	CombatClass, Domain, 'UNITAI_DEFENSE',	MilitarySupport, MilitaryProduction, Pillage, Mechanized, IgnoreBuildingDefense,	'TECH_BANKING',			NULL,					NULL,						-1,					MinAreaSize, NukeDamageLevel, CombatLimit, XPValueAttack, XPValueDefense, Conscription,	NoMaintenance, 'ART_DEF_UNIT_SWISS_GUARD',	UnitArtInfoEraVariation, ShowInPedia, MoveRate, 0,					0,				'UCS_UNIT_ATLAS',	'UCS_UNIT_FLAG_ATLAS',	MaxHitPoints, 1,					PurchaseCooldown, IsMounted,	1
 FROM Units WHERE Type = 'UNIT_FCOMPANY';
 
 -- religious mercenaries

@@ -1,5 +1,9 @@
-﻿v16.X:
+﻿v16.2:
+- Reindeer finally got his own model (thanks to @ghost toast)!
 - contains new version of .xml CS sound file to substitute in DLC folder;
+- increased Swiss Guard cost from 220 to 500 Faith;
+- added pPlayer check for Saddarvazeh lua code;
+- deleted old print statements;
 
 v16.1:
 - deleted Siamese leftover code;
