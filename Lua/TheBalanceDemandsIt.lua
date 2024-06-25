@@ -744,29 +744,33 @@ function CanWeSubstituteImprovement(ePlayer, eUnit, iX, iY, eBuild)
 
 	local pPlayer = Players[ePlayer]
 		
-	if eCurrentImprovementType ~= -1 or pPlayer:IsHuman() then
-		for i, eimprovement in ipairs(tImprovementsUCS) do
-			if eimprovement == eCurrentImprovementType then				
-				if eResourceTypeUnderneath ~= -1 then
-					local sTech = GameInfo.Resources[eResourceTypeUnderneath].TechReveal
-					
-					if sTech then
-						local eTech = GameInfo.Technologies{Type=sTech}().ID
-						local pTeam = Teams[Players[ePlayer]:GetTeam()]
+	if not pPlayer:IsHuman() then
+		if eCurrentImprovementType ~= -1 then
+			for i, eimprovement in ipairs(tImprovementsUCS) do
+				if eimprovement == eCurrentImprovementType then				
+					if eResourceTypeUnderneath ~= -1 then
+						local sTech = GameInfo.Resources[eResourceTypeUnderneath].TechReveal
 						
-						return pTeam:IsHasTech(eTech)
+						if sTech then
+							local eTech = GameInfo.Technologies{Type=sTech}().ID
+							local pTeam = Teams[Players[ePlayer]:GetTeam()]
+							
+							return pTeam:IsHasTech(eTech)
+						else
+							return true
+						end
 					else
-						return true
+						return false -- when there's no resource on the tile, so you cannot replace
 					end
-				else
-					return false -- when there's no resource on the tile, so you cannot replace
 				end
 			end
+			
+			return true -- when improvement is not the UCS improvement
+		else
+			return true -- when there's no improvement on the tile
 		end
-		
-		return true -- when improvement is not the UCS improvement
 	else
-		return true -- when there's no improvement on the tile
+		return true -- is human
 	end
 end
 -----------------------------------------------------------------------------------------------------------
