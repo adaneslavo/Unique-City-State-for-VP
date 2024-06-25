@@ -1,4 +1,11 @@
-﻿v16.2:
+﻿Changelog:
+v16.3:
+- now human players can substitute UCS improvements at any time (unlike the AI);
+- fixed lua error in line 278;
+- fixed lua error in line 5953;
+- added missing entry for Daaq Ah; fixed descritpion;
+
+v16.2:
 - Reindeer finally got his own model (thanks to @ghost toast)!
 - contains new version of .xml CS sound file to substitute in DLC folder;
 - increased Swiss Guard cost from 220 to 500 Faith;

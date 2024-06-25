@@ -741,8 +741,10 @@ function CanWeSubstituteImprovement(ePlayer, eUnit, iX, iY, eBuild)
 	local pPlot = Map.GetPlot(iX, iY)
 	local eResourceTypeUnderneath = pPlot:GetResourceType()
 	local eCurrentImprovementType = pPlot:GetImprovementType()
+
+	local pPlayer = Players[ePlayer]
 		
-	if eCurrentImprovementType ~= -1 then
+	if eCurrentImprovementType ~= -1 or pPlayer:IsHuman() then
 		for i, eimprovement in ipairs(tImprovementsUCS) do
 			if eimprovement == eCurrentImprovementType then				
 				if eResourceTypeUnderneath ~= -1 then
@@ -5950,7 +5952,7 @@ function GiveClermontPromoOnTrain(eUnitOwner, eUnit, eUnitType, iX, iY)
 	local pUnit = pPlayer:GetUnitByID(eUnit)
 	
 	if pPlayer:GetEventChoiceCooldown(tEventChoice[62]) ~= 0 then
-		local eUnitCombatClass = unit:GetUnitCombatType()
+		local eUnitCombatClass = pUnit:GetUnitCombatType()
 
 		if eUnitCombatClass == GameInfoTypes.UNITCOMBAT_MELEE or eUnitCombatClass == GameInfoTypes.UNITCOMBAT_GUN then
 			pUnit:SetHasPromotion(tPromotionsActiveAbilities[21], true)
