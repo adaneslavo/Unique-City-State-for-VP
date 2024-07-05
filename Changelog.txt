@@ -1,4 +1,16 @@
 ﻿Changelog:
+v16.5:
+- fixed a bug with proceeding to new era;
+
+v16.4:
+- Phanoteus:
+	- lost defense bonus;
+	- gained Network Points bonus (+5);
+	- fixed descritpion;
+- Managua:
+	- nerfed defense bonus to +10 (was +15);
+	- fixed descritpion;
+
 v16.3:
 - now human players can substitute UCS improvements at any time (unlike the AI);
 - fixed lua error in line 278;

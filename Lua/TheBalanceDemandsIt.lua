@@ -4410,7 +4410,7 @@ function DummyTechHorsebackRiding(eTeam, eTech, iChange)
 	
 	pActiveTeam:GetTeamTechs():SetHasTech(tTechnologyTypes[5], true)
 end
-
+GameEvents.TeamTechResearched.Add(DummyTechHorsebackRiding)
 
 
 -- VATICAN CITY (SWISS GUARD FUNCTIONS)
@@ -6477,7 +6477,7 @@ function SettingUpSpecificEvents()
 			-- new/exclusive units
 			elseif sMinorCivType == "MINOR_CIV_DALI" then
 				tLostCities["eLostDali"] = eCS
-				GameEvents.TeamTechResearched.Add(DummyTechHorsebackRiding)
+				--GameEvents.TeamTechResearched.Add(DummyTechHorsebackRiding)
 			elseif sMinorCivType == "MINOR_CIV_VATICAN_CITY" then
 				tLostCities["eLostVaticanCity"] = eCS
 				GameEvents.CombatEnded.Add(SwissGuardHealingAttack)
