@@ -1,4 +1,11 @@
 ﻿Changelog:
+v16.6:
+- Santo Domingo: now +2 to monopolies (was +3);
+- Rishikesh:
+	- now flat Culture instead of Tourism;
+	- corrected text and changed Mountain bonus: now +1 Faith and +1 Culture per 2 Mountain tiles (was Faith only missing Tourism);
+	- increased cost to 300 Faith (was 200);
+
 v16.5:
 - fixed a bug with proceeding to new era;
 
