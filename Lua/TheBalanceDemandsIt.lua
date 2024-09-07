@@ -2721,11 +2721,11 @@ function CanWeBuildRibat(ePlayer, eUnit, iX, iY, eBuild)
 	
 	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[67]) > 0) then return false end
 	
-	for i, direction in ipairs(tDirectionTypes) do
+	--[[for i, direction in ipairs(tDirectionTypes) do
 		local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
 						
 		if pAdjacentPlot and pAdjacentPlot:IsCity() then return false end
-	end
+	end--]]
 
 	return true
 end
@@ -2743,13 +2743,11 @@ function CanWeBuildPhrourion(ePlayer, eUnit, iX, iY, eBuild)
 	
 	local pPlot = Map.GetPlot(iX, iY)
 
-	for i, direction in ipairs(tDirectionTypes) do
+	--[[for i, direction in ipairs(tDirectionTypes) do
 		local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
 		
-		if pAdjacentPlot then
-			if pAdjacentPlot:IsCity() then return false end
-		end
-	end
+		if pAdjacentPlot and pAdjacentPlot:IsCity() then return false end
+	end--]]
 
 	if pPlot:IsRiverSide() then return true end
 
@@ -2997,11 +2995,11 @@ function CanWeBuildBedouinCamp(ePlayer, eUnit, iX, iY, eBuild)
 	
 	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[58]) > 0) then return false end
 
-	for i, direction in ipairs(tDirectionTypes) do
+	--[[for i, direction in ipairs(tDirectionTypes) do
 		local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
 						
 		if pAdjacentPlot and pAdjacentPlot:IsCity() then return false end
-	end
+	end--]]
 
 	return true
 end
@@ -3144,11 +3142,11 @@ function CanWeBuildMonastery(ePlayer, eUnit, iX, iY, eBuild)
 	
 	if not (pPlayer:GetEventChoiceCooldown(tEventChoice[39]) > 0) then return false end
 	
-	for i, direction in ipairs(tDirectionTypes) do
+	--[[for i, direction in ipairs(tDirectionTypes) do
 		local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
 						
 		if pAdjacentPlot and pAdjacentPlot:IsCity() then return false end
-	end
+	end--]]
 
 	return true
 end
@@ -3525,7 +3523,7 @@ function BuiltWonderForLhasa(ePlayer, eCity, eBuilding, bGold, bFaith)
 		local pMinorPlayer = Players[tLostCities["eLostLhasa"]]
 		
 		Game.DoEnactResolution(eSphere, tLostCities["eLostLhasa"], ePlayer)
-		GameEvents.CityConstructed.Remove(BuiltWonderForLhasa)
+		--GameEvents.CityConstructed.Remove(BuiltWonderForLhasa)
 		
 		if pPlayer:IsHuman() then
 			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_LHASA", pMinorPlayer:GetName()), L("TXT_KEY_UCS_BONUS_LHASA_TITLE"), pCity:GetX(), pCity:GetY())

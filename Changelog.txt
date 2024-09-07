@@ -1,4 +1,13 @@
 ﻿Changelog:
+v16.8:
+- fix of Lelux yields;
+
+v16.7:
+- compatibility with VP 4.16:
+	- obsoleted Improvement_AdjacentImprovementYieldChanges, Improvement_YieldAdjacentSameType, Improvement_YieldAdjacentSameTwoType,
+	- new feature for Improvements: NoAdjacentCity (moved from lua: Ribat, Phrourion, Monastery, Buryuut Hajar);
+- fix of Potala Palace CTD;
+
 v16.6:
 - Santo Domingo: now +2 to monopolies (was +3);
 - Rishikesh:
