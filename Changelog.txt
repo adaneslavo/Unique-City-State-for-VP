@@ -1,6 +1,13 @@
 ﻿Changelog:
+v16.9:
+- increased the PseudoAllyThreshold to 600 Influence (was 400);
+
 v16.8:
-- fix of Lelux yields;
+- balanced:
+	- Prague: cut base yields; now 4-13 (was 10-30);
+	- Leluh: now 2 Faith per City on killed unit (was 5 Culture in Capital);
+- fixed
+	- fixed lua nil error on line 710 (border growth on diplo actions);
 
 v16.7:
 - compatibility with VP 4.16:
@@ -29,8 +36,8 @@ v16.4:
 
 v16.3:
 - now human players can substitute UCS improvements at any time (unlike the AI);
-- fixed lua error in line 278;
-- fixed lua error in line 5953;
+- fixed lua error on line 278;
+- fixed lua error on line 5953;
 - added missing entry for Daaq Ah; fixed descritpion;
 
 v16.2:

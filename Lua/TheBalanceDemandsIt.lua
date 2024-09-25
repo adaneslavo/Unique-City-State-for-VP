@@ -9,7 +9,7 @@ local eArtifactRuin = GameInfoTypes.ARTIFACT_ANCIENT_RUIN
 
 local tUCSDefines = {
 	-- for abilities
-	["ThresholdPseudoAllies"] = 5 * GameDefines.FRIENDSHIP_THRESHOLD_ALLIES, -- 400
+	["ThresholdPseudoAllies"] = 600				-- 7.5 * GameDefines.FRIENDSHIP_THRESHOLD_ALLIES
 	-- for unique luxury resources related to traits
 	["NumCityStatesForFirstThreshold"] = 0,
 	["NumCityStatesForSecondThreshold"] = 5,
@@ -707,25 +707,28 @@ function DiplomaticExpansion(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, eKill
 		local pPlot = Map.GetPlot(iX, iY)
 		local pMinorCity = pPlot:GetWorkingCity()
 		local pMinorPlayer = Players[pPlot:GetOwner()]
-		local eMinorPersonality = pMinorPlayer:GetPersonality()
-
-		if tSettings["EnablePassivesBorderGrowth"] then
-			pMinorCity:ChangeJONSCultureStored(iBorderGrowthBonus)
-		end
 		
-		if tSettings["EnablePassivesHitPoints"] then
-			local iRandomHPGain = 0
+		if pMinorCity and pMinorPlayer then
+			local eMinorPersonality = pMinorPlayer:GetPersonality()
 
-			if eMinorPersonality == tMinorPersonalities[4] then
-				iRandomHPGain = Game.Rand(3, "Random HP Gain for Irrational CSs") + 1
+			if tSettings["EnablePassivesBorderGrowth"] then
+				pMinorCity:ChangeJONSCultureStored(iBorderGrowthBonus)
 			end
+		
+			if tSettings["EnablePassivesHitPoints"] then
+				local iRandomHPGain = 0
 
-			if eMinorPersonality == tMinorPersonalities[1] or iRandomHPGain == 1 then
-				pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[1], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[1]) + 1)
-			elseif eMinorPersonality == tMinorPersonalities[2] or iRandomHPGain == 2  then
-				pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[2], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[2]) + 1)
-			elseif eMinorPersonality == tMinorPersonalities[3] or iRandomHPGain == 3  then
-				pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[3], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[3]) + 1)
+				if eMinorPersonality == tMinorPersonalities[4] then
+					iRandomHPGain = Game.Rand(3, "Random HP Gain for Irrational CSs") + 1
+				end
+
+				if eMinorPersonality == tMinorPersonalities[1] or iRandomHPGain == 1 then
+					pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[1], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[1]) + 1)
+				elseif eMinorPersonality == tMinorPersonalities[2] or iRandomHPGain == 2  then
+					pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[2], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[2]) + 1)
+				elseif eMinorPersonality == tMinorPersonalities[3] or iRandomHPGain == 3  then
+					pMinorCity:SetNumRealBuilding(tBuildingsPassiveAbilities[3], pMinorCity:GetNumRealBuilding(tBuildingsPassiveAbilities[3]) + 1)
+				end
 			end
 		end
 	end
@@ -4982,7 +4985,7 @@ function SpreadTheFaithInPrussia(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, e
 		
 		for i, spreadunit in ipairs(tUnitsWithSpread) do
 			if pUnit:GetUnitType() == spreadunit then
-				local iBaseYield = RandomNumberBetween(10, 30)
+				local iBaseYield = RandomNumberBetween(4, 13)
 				local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
 				local iCultureFromDeath = iBaseYield * iEraModifier
 				local iFaithFromDeath = iCultureFromDeath * 2			
