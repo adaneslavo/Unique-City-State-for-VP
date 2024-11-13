@@ -1,5 +1,5 @@
 ﻿Changelog:
-v16.9:
+v16.9 (in progress):
 - increased the PseudoAllyThreshold to 600 Influence (was 400);
 
 v16.8:
