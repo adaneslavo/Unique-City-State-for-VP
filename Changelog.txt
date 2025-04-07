@@ -1,6 +1,7 @@
 ﻿Changelog:
 v16.9 (in progress):
 - increased the PseudoAllyThreshold to 600 Influence (was 400);
+- fixed Gurkha (move after purchase);
 
 v16.8:
 - balanced:

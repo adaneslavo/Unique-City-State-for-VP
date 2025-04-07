@@ -9,7 +9,7 @@ local eArtifactRuin = GameInfoTypes.ARTIFACT_ANCIENT_RUIN
 
 local tUCSDefines = {
 	-- for abilities
-	["ThresholdPseudoAllies"] = 600				-- 7.5 * GameDefines.FRIENDSHIP_THRESHOLD_ALLIES
+	["ThresholdPseudoAllies"] = 600,				-- 7.5 * GameDefines.FRIENDSHIP_THRESHOLD_ALLIES
 	-- for unique luxury resources related to traits
 	["NumCityStatesForFirstThreshold"] = 0,
 	["NumCityStatesForSecondThreshold"] = 5,
@@ -2247,6 +2247,7 @@ function ConquerCityStatesLuxuries(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPo
 		if not bIsNonMercantileResource then
 			pNewOwner:ChangeNumResourceTotal(pCityPlot:GetResourceType(), -1) -- stops multiplication of luxury underneath
 			pCityPlot:SetImprovementType(tImprovementsUCS[10])
+			pCityPlot:SetImprovementType(-1)
 		end
 	end
 end
