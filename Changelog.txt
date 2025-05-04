@@ -1,4 +1,17 @@
 ﻿Changelog:
+v17:
+- added 5 new City-States:
+	- 2 Maritime:
+		- Balley y Chashtal (West Europe),
+		- Kagyrgyn (North Asia).
+	- 1 Cultured:
+		- Vaduz (West Europe).
+	- 2 Religious:
+		- Matonjeni (South Africa),
+		- Ngazargamu (Central Africa).
+- Vaduz got unique sound, adjusted existing sounds;
+- added missing texts for Saddarvazheh and Donostia;
+
 v16.9 (in progress):
 - increased the PseudoAllyThreshold to 600 Influence (was 400);
 - fixed Gurkha (move after purchase);
