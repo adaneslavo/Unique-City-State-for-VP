@@ -554,7 +554,7 @@ for specialUnit in DB.Query("SELECT Units.ID, Units.Type, Units.Description, Uni
 end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
--- RNG
+-- Random Number Generator (RNG)
 function RandomNumberBetween(iLower, iHigher)
     return (Game.Rand((iHigher + 1) - iLower, "")) + iLower
 end
@@ -624,34 +624,38 @@ function MinorPlayerDoTurn(ePlayer)
 		
 		-- Embassy part
 		if tConditionsForActiveAbilities["FromEmbassy"] then
-			if pMinorPlayer:GetImprovementCount(tImprovementsGreatPeople[1]) > 0 then
-				if tEmbassies[ePlayer] == nil then
-					local pMinorCapital = pMinorPlayer:GetCapitalCity()
-					
-					for i = 0, pMinorCapital:GetNumCityPlots() - 1, 1 do
-						local pPlot = pMinorCapital:GetCityIndexPlot(i)
+			for row in DB.Query("select ID From Improvements where IsEmbassy=1") do
+				if pMinorPlayer:GetImprovementCount(row.ID) > 0 then -- was tImprovementsGreatPeople[1], but changed it to more universal condition
+					if tEmbassies[ePlayer] == nil then
+						for minorcity in pMinorPlayer:Cities() do
+							for i = 0, minorcity:GetNumCityPlots() - 1, 1 do
+								local pPlot = minorcity:GetCityIndexPlot(i)
 					   
-					    if pPlot and pPlot:GetOwner() == ePlayer and pPlot:GetImprovementType() == tImprovementsGreatPeople[1] then
-							tEmbassies[ePlayer] = pPlot:GetPlayerThatBuiltImprovement()
-							break
+								if pPlot and pPlot:GetOwner() == ePlayer and pPlot:GetImprovementType() == tImprovementsGreatPeople[1] then
+									tEmbassies[ePlayer] = pPlot:GetPlayerThatBuiltImprovement()
+									break
+								end
+							end
 						end
 					end
-				end
 				
-				local pMajorPlayer = Players[tEmbassies[ePlayer]]
+					local pMajorPlayer = Players[tEmbassies[ePlayer]]
 
-				if pMajorPlayer:IsAtWarWith(ePlayer) then return end
+					if pMajorPlayer:IsAtWarWith(ePlayer) then return end
 				
-				if pMajorPlayer:GetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType]) ~= 0 then
-					pMajorPlayer:SetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType], 3)
-				end 
+					if pMajorPlayer:GetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType]) ~= 0 then
+						pMajorPlayer:SetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType], 3)
+					end 
 				
-				if pMajorPlayer:GetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType]) == 0 and not pMajorPlayer:IsEventChoiceActive(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType]) then
-					pMajorPlayer:DoEventChoice(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType])
+					if pMajorPlayer:GetEventChoiceCooldown(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType]) == 0 and not pMajorPlayer:IsEventChoiceActive(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType]) then
+						pMajorPlayer:DoEventChoice(GameInfoTypes["PLAYER_EVENT_CHOICE_" .. sMinorCivType])
 					
-					if pMajorPlayer:IsHuman() then
-						pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_EMBASSY", pMinorPlayer:GetName()), L("TXT_KEY_UCS_BONUS_EMBASSY_TITLE"), pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
+						if pMajorPlayer:IsHuman() then
+							pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_EMBASSY", pMinorPlayer:GetName()), L("TXT_KEY_UCS_BONUS_EMBASSY_TITLE"), pMinorPlayer:GetCapitalCity():GetX(), pMinorPlayer:GetCapitalCity():GetY())
+						end
 					end
+
+					break
 				end
 			end
 		end
@@ -1026,15 +1030,14 @@ function MaritimeFreeGreatPersonImprovement(eTeam, eEra, bFirst)
 					if pPlot then
 						local bIsCity = pPlot:IsCity()
 						local ePlot = pPlot:GetPlotType()
+						local ePlotOwner = pPlot:GetOwner()
 						local eResource = pPlot:GetResourceType()
 						local bIsStrategic = (eResource ~= -1) and (GameInfo.Resources[eResource].ResourceUsage == 1) or false
 						local eImprovement = pPlot:GetImprovementType()
 						local eFeature = pPlot:GetFeatureType()
 						
-						if not bIsCity and eImprovement == -1 and eFeature == -1 and (bIsStrategic or eResource == -1) and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
+						if not bIsCity and (ePlotOwner == -1 or ePlotOwner == eplayer) and eImprovement == -1 and eFeature == -1 and (bIsStrategic or eResource == -1) and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
 							pPlot:SetImprovementType(tImprovementsGreatPeople[4])
-
-							local ePlotOwner = pPlot:GetOwner()
 
 							if ePlotOwner ~= eplayer then
 								pPlot:SetOwner(eplayer, pMinorCapital:GetID())
@@ -1262,15 +1265,14 @@ function MercantileFreeGreatPersonImprovement(eTeam, eEra, bFirst)
 					if pPlot then
 						local bIsCity = pPlot:IsCity()
 						local ePlot = pPlot:GetPlotType()
+						local ePlotOwner = pPlot:GetOwner()
 						local eResource = pPlot:GetResourceType()
 						local bIsStrategic = (eResource ~= -1) and (GameInfo.Resources[eResource].ResourceUsage == 1) or false
 						local eImprovement = pPlot:GetImprovementType()
 						local eFeature = pPlot:GetFeatureType()
 						
-						if not bIsCity and eImprovement == -1 and eFeature == -1 and (bIsStrategic or eResource == -1) and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
+						if not bIsCity and (ePlotOwner == -1 or ePlotOwner == eplayer) and eImprovement == -1 and eFeature == -1 and (bIsStrategic or eResource == -1) and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
 							pPlot:SetImprovementType(tImprovementsGreatPeople[5])
-
-							local ePlotOwner = pPlot:GetOwner()
 
 							if ePlotOwner ~= eplayer then
 								pPlot:SetOwner(eplayer, pMinorCapital:GetID())
@@ -1574,15 +1576,14 @@ function MilitaristicFreeGreatPersonImprovement(eTeam, eEra, bFirst)
 					if pPlot then
 						local bIsCity = pPlot:IsCity()
 						local ePlot = pPlot:GetPlotType()
+						local ePlotOwner = pPlot:GetOwner()
 						local eResource = pPlot:GetResourceType()
 						local bIsStrategic = (eResource ~= -1) and (GameInfo.Resources[eResource].ResourceUsage == 1) or false
 						local eImprovement = pPlot:GetImprovementType()
 						local eFeature = pPlot:GetFeatureType()
 						
-						if not bIsCity and eImprovement == -1 and eFeature == -1 and (bIsStrategic or eResource == -1) and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
+						if not bIsCity and (ePlotOwner == -1 or ePlotOwner == eplayer) and eImprovement == -1 and eFeature == -1 and (bIsStrategic or eResource == -1) and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
 							pPlot:SetImprovementType(tImprovementsGreatPeople[3])
-
-							local ePlotOwner = pPlot:GetOwner()
 
 							if ePlotOwner ~= eplayer then
 								pPlot:SetOwner(eplayer, pMinorCapital:GetID())
@@ -1620,7 +1621,7 @@ function CityStateTrainedUU(ePlayer, eCity, eUnit, bGold, bFaith)
 		local eUniqueUnit = pPlayer:GetMinorCivUniqueUnit()
 		local sUniqueUnitType = GameInfo.Units{ID=eUniqueUnit}().Type
 
-		-- checking if produced unit matched the a) unique unit from any civ; b) unassigned unique units; to be substituted
+		-- checking if produced basic unit matched the a) UU from any civ (given by the CS) or b) unassigned UU
 		for civclassoverrides in GameInfo.Civilization_UnitClassOverrides{UnitClassType=sProducedUnitClass} do
 			if civclassoverrides.UnitType == sUniqueUnitType then
 				ePrereqTech = GameInfoTypes[GameInfo.Units{Type=sUniqueUnitType}().PrereqTech]				
@@ -1852,15 +1853,14 @@ function CulturedFreeGreatPersonImprovement(eTeam, eEra, bFirst)
 					if pPlot then
 						local bIsCity = pPlot:IsCity()
 						local ePlot = pPlot:GetPlotType()
+						local ePlotOwner = pPlot:GetOwner()
 						local eResource = pPlot:GetResourceType()
 						local bIsStrategic = (eResource ~= -1) and (GameInfo.Resources[eResource].ResourceUsage == 1) or false
 						local eImprovement = pPlot:GetImprovementType()
 						local eFeature = pPlot:GetFeatureType()
 						
-						if not bIsCity and eImprovement == -1 and eFeature == -1 and (bIsStrategic or eResource == -1) and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
+						if not bIsCity and (ePlotOwner == -1 or ePlotOwner == eplayer) and eImprovement == -1 and eFeature == -1 and (bIsStrategic or eResource == -1) and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
 							pPlot:SetImprovementType(tImprovementsGreatPeople[6])
-
-							local ePlotOwner = pPlot:GetOwner()
 
 							if ePlotOwner ~= eplayer then
 								pPlot:SetOwner(eplayer, pMinorCapital:GetID())
@@ -2197,15 +2197,14 @@ function ReligiousFreeGreatPersonImprovement(eTeam, eEra, bFirst)
 					if pPlot then
 						local bIsCity = pPlot:IsCity()
 						local ePlot = pPlot:GetPlotType()
+						local ePlotOwner = pPlot:GetOwner()
 						local eResource = pPlot:GetResourceType()
 						local bIsStrategic = (eResource ~= -1) and (GameInfo.Resources[eResource].ResourceUsage == 1) or false
 						local eImprovement = pPlot:GetImprovementType()
 						local eFeature = pPlot:GetFeatureType()
 						
-						if not bIsCity and eImprovement == -1 and eFeature == -1 and (bIsStrategic or eResource == -1) and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
+						if not bIsCity and (ePlotOwner == -1 or ePlotOwner == eplayer) and eImprovement == -1 and eFeature == -1 and (bIsStrategic or eResource == -1) and (ePlot == tPlotTypes[1] or ePlot == tPlotTypes[2]) then
 							pPlot:SetImprovementType(tImprovementsGreatPeople[2])
-
-							local ePlotOwner = pPlot:GetOwner()
 
 							if ePlotOwner ~= eplayer then
 								pPlot:SetOwner(eplayer, pMinorCapital:GetID())
@@ -2262,7 +2261,7 @@ end
 -----------------------------------------------------------------------------------------------------------
 -- functions common for all city-state's traits
 -- after conquest unique luxuries must be again artificially improved
-function ConquerCityStatesLuxuries(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
+--[[function ConquerCityStatesLuxuries(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
 	local pNewOwner = Players[eNewOwner]
 	local pCityPlot = Map.GetPlot(iX, iY)
 	local eResource = pCityPlot:GetResourceType()
@@ -2291,7 +2290,7 @@ function LiberatedCityStatesLuxuries(ePlayer, eOtherPlayer, eCity)
 			pCityState:ChangeNumResourceTotal(pCityPlot:GetResourceType(), 1)
 		end
 	end
-end
+end--]]
 
 -- some unique luxuries have unique monopoly effects requiring policies or buildings
 function UniqueMonopolyBonuses(ePlayer)
@@ -4778,27 +4777,33 @@ end
 
 -- BAGHCASARAY (NEW CITIZENS ON KILL)
 function YesirCaptives(eAttackingPlayer, eAttackingUnit, iAttackerDamage, iAttackerFinalDamage, iAttackerMaxHP, eDefendingPlayer, eDefendingUnit, iDefenderDamage, iDefenderFinalDamage, iDefenderMaxHP, eInterceptingPlayer, eInterceptingUnit, iInterceptorDamage, iX, iY)
-	if (iAttackerFinalDamage > iAttackerMaxHP) or (iDefenderFinalDamage < iDefenderMaxHP) then return end
+	if (iAttackerFinalDamage > iAttackerMaxHP) and (iDefenderFinalDamage > iDefenderMaxHP) then return end
+	if (iAttackerFinalDamage < iAttackerMaxHP) and (iDefenderFinalDamage < iDefenderMaxHP) then return end
 	
-	local pAttackingPlayer = Players[eAttackingPlayer]
-	local pAttackingUnit = pAttackingPlayer:GetUnitByID(eAttackingUnit)
-
-	if pAttackingUnit and pAttackingUnit:IsHasPromotion(tPromotionsActiveAbilities[29]) then
+	local pPlayer, pUnit = nil, nil
 	
-		local iCaptureChance = RandomNumberBetween(1, 10)
+	if iAttackerFinalDamage > iAttackerMaxHP then
+		pPlayer = Players[eDefendingPlayer]
+		pUnit = pPlayer:GetUnitByID(eDefendingUnit)
+	elseif iDefenderFinalDamage > iDefenderMaxHP then
+		pPlayer = Players[eAttackingPlayer]
+		pUnit = pPlayer:GetUnitByID(eAttackingUnit)
+	end
+	
+	if pUnit and pUnit:IsHasPromotion(tPromotionsActiveAbilities[29]) then
+		local iCaptureChance = RandomNumberBetween(1, 100)
 		
-		if iCaptureChance < 10 then return end
-
+		if iCaptureChance <= 5 then return end
+		
 		local iDistance = 0
 		local pClosestCity = nil
 		local pBaghcasaray = Players[tLostCities["eLostBaghcasaray"]]
 
-		iDistance, pClosestCity = CheckDistance(pAttackingPlayer, pAttackingUnit:GetPlot())
-
+		iDistance, pClosestCity = CheckDistance(pPlayer, pUnit:GetPlot())
 		pClosestCity:ChangePopulation(1, true)
 
-		if pAttackingPlayer:IsHuman() then
-			pAttackingPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_BAGHCASARAY", pBaghcasaray:GetName(), pClosestCity:GetName()), L("TXT_KEY_UCS_BONUS_BAGHCASARAY_TITLE"), pClosestCity:GetX(), pClosestCity:GetY())
+		if pPlayer:IsHuman() then
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_BAGHCASARAY", pBaghcasaray:GetName(), pClosestCity:GetName()), L("TXT_KEY_UCS_BONUS_BAGHCASARAY_TITLE"), pClosestCity:GetX(), pClosestCity:GetY())
 		end
 	end
 end
@@ -5509,7 +5514,7 @@ function CultureOnDiploTrain(eUnitOwner, eUnit, eUnitType, iX, iY)
 				local iBaseYield = RandomNumberBetween(15, 25)
 				local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
 				local iCulturedDiplo = iBaseYield  * iEraModifier
-				local pCapital = pPlayer:GetCapitalCity()
+				local pCity = Map.GetPlot(iX, iY):GetWorkingCity()
 				local pSanandaj = Players[tLostCities["eLostSanandaj"]]
 
 				local sUnit = L(diploUnit.Description)
@@ -5519,10 +5524,10 @@ function CultureOnDiploTrain(eUnitOwner, eUnit, eUnitType, iX, iY)
 					sUnit = "an [COLOR_CYAN]" .. sUnit .. "[ENDCOLOR]"
 				end
 
-				pPlayer:DoInstantYield(GameInfoTypes.YIELD_CULTURE, iCulturedDiplo, true, pCapital:GetID())
+				pPlayer:DoInstantYield(GameInfoTypes.YIELD_CULTURE, iCulturedDiplo, true, pCity:GetID())
 				
 				if pPlayer:IsHuman() then
-					pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_SANANDAJ_DIPLO", pSanandaj:GetName(), sUnit, iCulturedDiplo), L("TXT_KEY_UCS_BONUS_SANANDAJ_DIPLO_TITLE"), pCapital:GetX(), pCapital:GetY())		
+					pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_SANANDAJ_DIPLO", pSanandaj:GetName(), sUnit, iCulturedDiplo), L("TXT_KEY_UCS_BONUS_SANANDAJ_DIPLO_TITLE"), iX, iY)		
 				end
 			end
 		end
@@ -5547,7 +5552,7 @@ function EnvoyOnEraChange(eTeam, eEra, bFirst)
 					--pPlayer:AddFreeUnit(tUnitsCivilian[2], UNITAI_DEFENSE)
 					
 					if pPlayer:IsHuman() then
-						pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_SANANDAJ_ERA", pSanandaj:GetName()), L("TXT_KEY_UCS_BONUS_SANANDAJ_ERA_TITLE"), pCapital:GetX(), pCapital:GetY())
+						pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_SANANDAJ_ERA", pSanandaj:GetName()), L("TXT_KEY_UCS_BONUS_SANANDAJ_ERA_TITLE"), pCity:GetX(), pCity:GetY())
 					end
 				end
 			end
@@ -6798,6 +6803,8 @@ function SettingUpSpecificEvents()
 			elseif sMinorCivType == "MINOR_CIV_SANANDAJ" then
 				tLostCities["eLostSanandaj"] = eCS
 				GameEvents.UnitCreated.Add(CultureOnDiploTrain)
+				GameEvents.TeamSetEra.Add(EnvoyOnEraChange)
+				
 
 
 			-- unique promotion branch

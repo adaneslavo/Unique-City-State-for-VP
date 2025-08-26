@@ -38,7 +38,11 @@ local civ5_mode = type(MouseOverStrategicViewResource) == "function"
 
 local newLine = "[NEWLINE]"
 
-local iEmbassy = GameInfoTypes.IMPROVEMENT_EMBASSY
+--local iEmbassy = GameInfoTypes.IMPROVEMENT_EMBASSY
+local tIsEmbassyImprovement = {}
+for row in DB.Query("SELECT ID FROM Improvements WHERE IsEmbassy=1") do
+    tIsEmbassyImprovement[row.ID] = true
+end
 
 local eMinorTraitCultured = MinorCivTraitTypes.MINOR_CIV_TRAIT_CULTURED
 local eMinorTraitMilitaristic = MinorCivTraitTypes.MINOR_CIV_TRAIT_MILITARISTIC
@@ -476,7 +480,16 @@ function GetCityStateStatusToolTip(majorPlayerID, minorPlayerID, isFullInfo)
 		
 		-- Possible actions:	
 			-- Embassies
-			if minorPlayer:GetImprovementCount(iEmbassy) > 0 then
+			local bIsEmbassyCheck = false
+			
+			for k, v in pairs(tIsEmbassyImprovement) do
+				if minorPlayer:GetImprovementCount(k) > 0 then
+					bIsEmbassyCheck = true
+					break
+				end
+			end
+
+			if bIsEmbassyCheck --[[minorPlayer:GetImprovementCount(iEmbassy) > 0--]] then
 				table_insert(tips, L("TXT_KEY_CSTATE_CANNOT_EMBASSY"))
 			else
 				table_insert(tips, L("TXT_KEY_CSTATE_CAN_EMBASSY"))

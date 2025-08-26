@@ -379,13 +379,13 @@
 			<Text>New challenges of the upcoming era!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_SANANDAJ_DIPLO">
-			<Text>[COLOR_CYAN]{1_Sanandaj}[ENDCOLOR] is grateful for your recent diplomatic efforts. Training an {2_Unit} over military ones is always a tough choice, but you chose the right way and got {3_Culture} [ICON_CULTURE] Culture.</Text>
+			<Text>[COLOR_CYAN]{1_Sanandaj}[ENDCOLOR] is grateful for your recent diplomatic efforts. Training {2_Unit} over military units is always a tough choice, but you chose the right peaceful path and got {3_Culture} [ICON_CULTURE] Culture.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_SANANDAJ_DIPLO_TITLE">
 			<Text>Diplomacy is the key!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_BAGHCASARAY">
-			<Text>[COLOR_CYAN]{1_Baghcasaray}[ENDCOLOR] is known of its prosperous slave market. Because of your long-term relationship, they give you one, and he immediately starts working in [COLOR_CYAN]{2_City}[ENDCOLOR].</Text>
+			<Text>[COLOR_CYAN]{1_Baghcasaray}[ENDCOLOR] is known of its prosperous slave market. Because of your long-term relationship, they give you one of their slaves, and he immediately starts working for you in [COLOR_CYAN]{2_City}[ENDCOLOR].</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_BAGHCASARAY_TITLE">
 			<Text>Slave captured!</Text>
