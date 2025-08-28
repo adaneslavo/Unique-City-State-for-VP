@@ -5,7 +5,7 @@ v17:
 		- Balley y Chashtal (West Europe),
 		- Kagyrgyn (North Asia).
 	- 1 Militaristic:
-		- Baghcasaray (East Europe).
+		- Baghcasaray (East Europe) with new Promotion icon by @gwennog.
 	- 2 Cultured:
 		- Sanandaj (West Asia),
 		- Vaduz (West Europe).
@@ -22,7 +22,7 @@ v17:
 - Vaduz got unique sound, adjusted existing sounds;
 - deleted temporary fix for conquered and liberated CSs with non-mercantile resources (VP fixed it; by @axatin);
 
-v16.9 (in progress):
+v16.9:
 - increased the PseudoAllyThreshold to 600 Influence (was 400);
 - fixed Gurkha (move after purchase);
 
