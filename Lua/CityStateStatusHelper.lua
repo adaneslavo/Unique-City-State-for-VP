@@ -1,5 +1,3 @@
-print("This is the modded CityStateStatusHelper from EUI - CBP- CSD")
-------------------------------------------------------
 -- CityStateStatusHelper.lua
 -- Author: Anton Strenger
 --

@@ -42,10 +42,10 @@
 			<Text>Terrified</Text>
 		</Row>
 		<Row Tag="TXT_KEY_CS_ACTIVE_BONUS_HEADER">
-			<Text>[COLOR_LIGHT_GREY]City-State''s bonuses given to Major Player:[ENDCOLOR]</Text>
+			<Text>[COLOR_LIGHT_GREY]City-State's bonuses given to Major Player:[ENDCOLOR]</Text>
 		</Row>
 		<Row Tag="TXT_KEY_CS_PASSIVE_BONUS_HEADER">
-			<Text>[COLOR_LIGHT_GREY]City-State''s passive abilities:[ENDCOLOR]</Text>
+			<Text>[COLOR_LIGHT_GREY]City-State's passive abilities:[ENDCOLOR]</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_HELPER_ACTION_MARRIAGE">
 			<Text>[COLOR_POSITIVE_TEXT]Diplomatic Marriage[ENDCOLOR] available!</Text>
