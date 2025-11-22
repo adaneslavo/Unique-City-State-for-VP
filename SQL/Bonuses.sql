@@ -165,7 +165,8 @@ UPDATE CustomModOptions SET Value = 1 WHERE Name = 'YIELD_MODIFIER_FROM_UNITS';
 -- Updates - CustomModOptions - CS Abilities
 ---------------------------------------------------
 -- CS Overseas Territory
--- City States allied to a major act as an "overseas territoriy" of the major - other units may not enter CS territory unless they could enter the allied major's territory
+-- City States allied to a major act as an "overseas territoriy" of the major - other units may not enter CS territory unless 
+-- they could enter the allied major's territory
 UPDATE CustomModOptions SET Value = 1 WHERE Name = 'GLOBAL_CS_OVERSEAS_TERRITORY';
 	
 -- CS Gift Ships
@@ -173,7 +174,8 @@ UPDATE CustomModOptions SET Value = 1 WHERE Name = 'GLOBAL_CS_OVERSEAS_TERRITORY
 UPDATE CustomModOptions SET Value = 1 WHERE Name = 'GLOBAL_CS_GIFT_SHIPS';	
 
 -- CS Militaristic upgrade (enabled by default; not working as intended --> look at policy Regimental System)
--- Units in allied militaristic City States can upgrade - requires a (cosmetic) patch to UnitPanel.lua to fix the incorrect message about being in friendly territory
+-- Units in allied militaristic City States can upgrade - requires a (cosmetic) patch to UnitPanel.lua to fix the incorrect 
+-- message about being in friendly territory
 UPDATE CustomModOptions SET Value = 1 WHERE Name = 'GLOBAL_CS_UPGRADES';	
 	
 -- CS Gifts
@@ -4022,7 +4024,7 @@ UPDATE Resources SET Help = 'TXT_KEY_RESOURCE_GLASS_MONOPOLY' WHERE Type IN ('RE
 UPDATE Resources SET Help = 'TXT_KEY_RESOURCE_JEWELRY_MONOPOLY' WHERE Type IN ('RESOURCE_JEWELRY');
 UPDATE Resources SET Help = 'TXT_KEY_RESOURCE_PORCELAIN_MONOPOLY' WHERE Type IN ('RESOURCE_PORCELAIN');
 ---------------------------------------------------------
-UPDATE Language_en_US SET Text = Text||'[NEWLINE][NEWLINE]Nearby [ICON_RES_DOGO_CANARIO]: +2 [ICON_PRODUCTION] Production.' WHERE Tag = 'TXT_KEY_BUILDING_STOCKYARD_HELP';
+UPDATE Language_en_US SET Text = Text||'[NEWLINE][NEWLINE]Nearby [ICON_RES_DOGO_CANARIO]: +2 [ICON_PRODUCTION] Production.' WHERE Tag = 'TXT_KEY_BUILDING_AGRIBUSINESS_HELP';
 UPDATE Language_en_US SET Text = Text||'[NEWLINE][NEWLINE]Nearby [ICON_RES_REINDEER]: +2 [ICON_FOOD] Food.' WHERE Tag = 'TXT_KEY_BUILDING_STABLE_HELP';
 ---------------------------------------------------------
 UPDATE Resources SET MonopolyHappiness = 2 WHERE Type = 'RESOURCE_LLAO_LLAO';
@@ -4048,7 +4050,7 @@ VALUES		('RESOURCE_DOGO_CANARIO',	'YIELD_FOOD',			1),
 
 INSERT INTO Building_ResourceYieldChanges
 			(BuildingType,				ResourceType, 				YieldType, 				Yield)
-VALUES		('BUILDING_STOCKYARD',		'RESOURCE_DOGO_CANARIO',	'YIELD_PRODUCTION',		2),
+VALUES		('BUILDING_AGRIBUSINESS',	'RESOURCE_DOGO_CANARIO',	'YIELD_PRODUCTION',		2),
 			('BUILDING_STABLE',			'RESOURCE_REINDEER',		'YIELD_FOOD',			2);
 
 INSERT INTO Improvement_ResourceTypes
@@ -4345,7 +4347,7 @@ FROM UnitClasses WHERE Type = 'UNITCLASS_MISSIONARY';
 INSERT INTO UnitClasses
 					(Type,						Description,					MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, DefaultUnit)
 SELECT DISTINCT 	'UNITCLASS_SWISS_GUARD',	'TXT_KEY_UNIT_SWISS_GUARD',		MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, 'UNIT_SWISS_GUARD'
-FROM UnitClasses WHERE Type = 'UNITCLASS_FCOMPANY';
+FROM UnitClasses WHERE Type = 'UNITCLASS_FREE_COMPANY';
 
 INSERT INTO UnitClasses
 					(Type,						Description,					MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, DefaultUnit)
@@ -4360,7 +4362,7 @@ FROM UnitClasses WHERE Type = 'UNITCLASS_RIFLEMAN';
 INSERT INTO UnitClasses
 					(Type,						Description,					MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, DefaultUnit)
 SELECT DISTINCT 	'UNITCLASS_SAKA',			'TXT_KEY_UNIT_SAKA',			MaxGlobalInstances, MaxTeamInstances, MaxPlayerInstances, InstanceCostModifier, 'UNIT_SAKA'
-FROM UnitClasses WHERE Type = 'UNITCLASS_HORSE_ARCHER';
+FROM UnitClasses WHERE Type = 'UNITCLASS_SKIRMISHER';
 ------------------------------
 ------------------------------
 -- civilians
@@ -4388,7 +4390,7 @@ FROM Units WHERE Type = 'UNIT_MISSIONARY';
 INSERT INTO Units
 					(Type,					Class,						Description,				Civilopedia,						Strategy,								Help,								NoMinorCivGift,	NoMinorCivUU,	Combat,		RangedCombat,	Cost,	FaithCost,		RequiresFaithPurchaseEnabled,	Moves,	BaseSightRange, Range,	PurchaseOnly,	MoveAfterPurchase,	CombatClass, Domain, DefaultUnitAI,		MilitarySupport, MilitaryProduction, Pillage, Mechanized, IgnoreBuildingDefense,	PrereqTech,				ObsoleteTech,			GoodyHutUpgradeUnitClass,	AdvancedStartCost,	MinAreaSize, NukeDamageLevel, CombatLimit, XPValueAttack, XPValueDefense, Conscription,	NoMaintenance, UnitArtInfo,					UnitArtInfoEraVariation, ShowInPedia, MoveRate, UnitFlagIconOffset, PortraitIndex,	IconAtlas,			UnitFlagAtlas,			MaxHitPoints, BaseLandAirDefense,	PurchaseCooldown, IsMounted,	UnitEraUpgrade)
 SELECT DISTINCT 	'UNIT_SWISS_GUARD',		'UNITCLASS_SWISS_GUARD',	'TXT_KEY_UNIT_SWISS_GUARD',	'TXT_KEY_CIV5_UNIT_SWISS_GUARD',	'TXT_KEY_UNIT_SWISS_GUARD_STRATEGY',	'TXT_KEY_UNIT_SWISS_GUARD_HELP',	1,				1,				28,			RangedCombat,	500,	500,			RequiresFaithPurchaseEnabled,	Moves,	BaseSightRange, Range,	PurchaseOnly,	MoveAfterPurchase,	CombatClass, Domain, 'UNITAI_DEFENSE',	MilitarySupport, MilitaryProduction, Pillage, Mechanized, IgnoreBuildingDefense,	'TECH_BANKING',			NULL,					NULL,						-1,					MinAreaSize, NukeDamageLevel, CombatLimit, XPValueAttack, XPValueDefense, Conscription,	NoMaintenance, 'ART_DEF_UNIT_SWISS_GUARD',	UnitArtInfoEraVariation, ShowInPedia, MoveRate, 0,					0,				'UCS_UNIT_ATLAS',	'UCS_UNIT_FLAG_ATLAS',	MaxHitPoints, 1,					PurchaseCooldown, IsMounted,	1
-FROM Units WHERE Type = 'UNIT_FCOMPANY';
+FROM Units WHERE Type = 'UNIT_FREE_COMPANY';
 
 -- religious mercenaries
 INSERT INTO Units
@@ -4561,7 +4563,7 @@ FROM Unit_ClassUpgrades WHERE UnitType = 'UNIT_MONGOLIAN_KESHIK';
 VALUES	    ('POLICY_VATICAN_CITY',		'UNITCLASS_TERCIO',				'UNITCLASS_SWISS_GUARD'),
 			('POLICY_LAHORE',			'UNITCLASS_LONGSWORDSMAN',		'UNITCLASS_NIHANG'),
 			('POLICY_KATHMANDU',		'UNITCLASS_RIFLEMAN',			'UNITCLASS_GURKHA'),
-			('POLICY_POKROVKA',			'UNITCLASS_HORSE_ARCHER',		'UNITCLASS_SAKA');*/
+			('POLICY_POKROVKA',			'UNITCLASS_SKIRMISHER',			'UNITCLASS_SAKA');*/
 
 CREATE TABLE IF NOT EXISTS Civilization_UnitClassOverrides_Temp (UnitClassType_Temp TEXT NOT NULL);
 
@@ -4655,7 +4657,7 @@ CREATE TABLE IF NOT EXISTS MinorCivilizations_Copy (
 	'ArtStyleSuffix' text default NULL, 
 	'ArtStylePrefix' text default NULL, 
 	'MinorCivTrait' text not NULL, 
-	'Playable' boolean,
+	'Playable' integer not NULL,
 	'FixedPersonality' text default NULL, 
 	'BullyUnitClass' text default NULL, 
 	foreign key (Description) references Language_en_US(Tag), 
@@ -4665,8 +4667,8 @@ CREATE TABLE IF NOT EXISTS MinorCivilizations_Copy (
 	foreign key (MinorCivTrait) references MinorCivTraits(Type));
 
 INSERT INTO MinorCivilizations_Copy
-			(Type,	Description, ShortDescription, Adjective, Civilopedia, DefaultPlayerColor, ArtDefineTag, ArtStyleType, ArtStyleSuffix, ArtStylePrefix, MinorCivTrait,	FixedPersonality, BullyUnitClass)
-SELECT		Type,	Description, ShortDescription, Adjective, Civilopedia, DefaultPlayerColor, ArtDefineTag, ArtStyleType, ArtStyleSuffix, ArtStylePrefix, MinorCivTrait,	FixedPersonality, BullyUnitClass
+			(Type,	Description, ShortDescription, Adjective, Civilopedia, DefaultPlayerColor, ArtDefineTag, ArtStyleType, ArtStyleSuffix, ArtStylePrefix, MinorCivTrait, Playable,	FixedPersonality, BullyUnitClass)
+SELECT		Type,	Description, ShortDescription, Adjective, Civilopedia, DefaultPlayerColor, ArtDefineTag, ArtStyleType, ArtStyleSuffix, ArtStylePrefix, MinorCivTrait, Playable,	FixedPersonality, BullyUnitClass
 FROM MinorCivilizations
 ORDER BY (abs(random()) % (SELECT max(_ROWID_) FROM MinorCivilizations));
 
