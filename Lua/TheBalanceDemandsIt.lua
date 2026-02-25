@@ -4436,7 +4436,7 @@ function DummyTechHorsebackRiding(eTeam, eTech, iChange)
 	local pActivePlayer = Players[eActivePlayer]
 	
 	if pActivePlayer:IsMinorCiv() then return end
-	
+	print("DUMMY_TRADE", pActivePlayer:GetName(), eTeam, eTech, iChange)
 	local pActiveTeam = Teams[pActivePlayer:GetTeam()]
 	
 	pActiveTeam:GetTeamTechs():SetHasTech(tTechnologyTypes[5], true)
@@ -4663,8 +4663,9 @@ function HealersFromIskanwaya(ePlayer)
 					local bPlotMissionary, bPlotHolySite, bPlotMountain = false, false, false
 					local bAdjacentMissionary, bAdjacentHolySite, bAdjacentMountain = false, false, false
 
-					bPlotMissionary = pPlot:GetUnit() and pPlot:GetUnit():GetUnitType() == tUnitsCivilian[3]
-					bPlotHolySite = pPlot:GetImprovementType() == tImprovementsGreatPeople[2]
+					local pUnit = pPlot:GetUnit()
+					bPlotMissionary = pUnit and pUnit:GetOwner() == ePlayer and pUnit:GetUnitType() == tUnitsCivilian[3]
+					bPlotHolySite = pPlot:GetOwner() == ePlayer and pPlot:GetImprovementType() == tImprovementsGreatPeople[2]
 					bPlotMountain = pPlot:GetPlotType() == tPlotTypes[3]
 
 					if bPlotMissionary or bPlotHolySite or bPlotMountain then
@@ -4674,8 +4675,9 @@ function HealersFromIskanwaya(ePlayer)
 							local pAdjacentPlot = Map.PlotDirection(iX, iY, direction)
 						
 							if pAdjacentPlot then
-								bAdjacentMissionary = pAdjacentPlot:GetUnit() and pAdjacentPlot:GetUnit():GetUnitType() == tUnitsCivilian[3]
-								bAdjacentHolySite = pAdjacentPlot:GetImprovementType() == tImprovementsGreatPeople[2]
+								local pAdjacentUnit = pAdjacentPlot:GetUnit()
+								bAdjacentMissionary = pAdjacentUnit and pAdjacentUnit:GetOwner() == ePlayer and pAdjacentUnit:GetUnitType() == tUnitsCivilian[3]
+								bAdjacentHolySite = pAdjacentPlot:GetOwner() == ePlayer and pAdjacentPlot:GetImprovementType() == tImprovementsGreatPeople[2]
 								bAdjacentMountain = pAdjacentPlot:GetPlotType() == tPlotTypes[3]
 
 								if bAdjacentMissionary or bAdjacentHolySite or bAdjacentMountain then

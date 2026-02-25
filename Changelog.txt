@@ -1,8 +1,11 @@
 ﻿Changelog:
+v18.4:
+- Iskanwaya: now Missionary or Holy Site must belong to the owner of the unit that is healed;
+
 v18.3:
 - CityStateStatusHelper.lua changes:
 	- reworked (and also fixed) contender tooltip function:
-		- now highlights your civ wiht green;
+		- now highlights your civ with green;
 		- defeated major civs are shifted to the bottom of the list;
 		- added missing tag label (deleted from VP);
 	- changed tag and reworked Unique Unit tooltip part;
