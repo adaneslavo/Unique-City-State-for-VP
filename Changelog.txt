@@ -1,4 +1,31 @@
 ﻿Changelog:
+v19:
+- new:
+	- added 13 new City-States:
+		- Maritime (2):
+			- Kariatebike (Oceania), Okak (North America);
+		- Mercantile (2):
+			- Abalessa (North Africa), Luxembourg (West Europe);
+		- Militaristic (3):
+			- Macaco (South America), Vaitape (Oceania), Waitukubuli (Central America);
+		- Cultured (3):
+			- Kitcisipirini (North America), Mutawaynatji (Australia), Victoria (East Africa);
+		- Religious (3)
+			- Camutins (South America), Gondar (East Africa), Sambaa K'e (North America);
+	- added Copra Luxury Resource (Kariatebike);
+	- added new Quicksand promotion (Abalessa);
+- fixed and changed:
+	- Gwynedd: fixed % modifier in lua function;
+	- Mbabane: reduced bonus Defense to 2 CS per City (was 10);
+	- Thimphu: now culture to defense conversion is also updated on building construction;
+	- fixed multiple ability descriptions;
+- lua:
+	- modified notifications for multiple events (replaced generic notification with specific ones);
+	- now only "map resources" can be placed around City-States;
+	- added ConstAppearance values to new resources in Resource table;
+	- reduced IsMinorCiv checks (in some cases with error);
+	- updated notes about unassigned UUs that can be trained by the Militaristic CSs (after MUC integration);
+
 v18.4:
 - Iskanwaya: now Missionary or Holy Site must belong to the owner of the unit that is healed;
 

@@ -458,6 +458,45 @@ SELECT 'TXT_KEY_CIV5_SANANDAJ_TEXT', 						'Sanandaj, the capital of Iran''s Kur
 SELECT 'TXT_KEY_CITYSTATE_BAGHCASARAY', 				'Baghcasaray' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_BAGHCASARAY_ADJ', 				'Crimean' UNION ALL
 SELECT 'TXT_KEY_CIV5_BAGHCASARAY_TEXT', 					'Bakhchisaray (also spelled Baghchasaray or Bakhchysarai) is a historic town in Crimea, Ukraine, known as the former capital of the Crimean Khanate from the 16th to the 18th century. Founded around 1532 by Sahib I Giray, it became the political, cultural, and spiritual center of the Crimean Tatars. The town''s name, derived from Persian (baghche-saray meaning "garden palace"), reflects its picturesque setting among gardens and mountain valleys. Its most famous landmark, the Bakhchisaray Palace (Hansaray), served as the residence of the Crimean khans and is celebrated for its Islamic architecture, intricate tilework, and the "Fountain of Tears", immortalized by Alexander Pushkin in his 1823 poem. Though the city declined after the Russian annexation of Crimea in 1783, it remains a symbol of Crimean Tatar heritage and resilience.' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_KARIATEBIKE', 				'Kariatebike' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_KARIATEBIKE_ADJ', 				'Kiribati' UNION ALL
+SELECT 'TXT_KEY_CIV5_KARIATEBIKE_TEXT', 					'TODO' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_KITCISIPIRINI', 				'Kitcisipirini' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_KITCISIPIRINI_ADJ', 				'Algonquin' UNION ALL
+SELECT 'TXT_KEY_CIV5_KITCISIPIRINI_TEXT', 					'TODO' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_LUXEMBOURG', 					'Luxembourg' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_LUXEMBOURG_ADJ', 					'Luxembourgian' UNION ALL
+SELECT 'TXT_KEY_CIV5_LUXEMBOURG_TEXT', 						'TODO' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_MUTAWAYNATJI', 				'Mutawaynatji' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_MUTAWAYNATJI_ADJ', 				'Hakkan' UNION ALL
+SELECT 'TXT_KEY_CIV5_MUTAWAYNATJI_TEXT', 					'TODO' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_OKAK', 						'Okak' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_OKAK_ADJ', 						'Thule' UNION ALL
+SELECT 'TXT_KEY_CIV5_OKAK_TEXT', 							'TODO' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_VAITAPE', 					'Vaitape' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_VAITAPE_ADJ', 					'Bora-Bora' UNION ALL
+SELECT 'TXT_KEY_CIV5_VAITAPE_TEXT', 						'TODO' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_ABALESSA', 					'Abalessa' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_ABALESSA_ADJ', 					'Touareg' UNION ALL
+SELECT 'TXT_KEY_CIV5_ABALESSA_TEXT', 						'TODO' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_MACACO', 						'Macaco' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_MACACO_ADJ', 						'Palmarista' UNION ALL
+SELECT 'TXT_KEY_CIV5_MACACO_TEXT', 							'TODO' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_WAITUKUBULI', 				'Waitukubuli' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_WAITUKUBULI_ADJ', 				'Kalinago' UNION ALL
+SELECT 'TXT_KEY_CIV5_WAITUKUBULI_TEXT', 					'TODO' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_VICTORIA', 					'Victoria' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_VICTORIA_ADJ', 					'Seychellois' UNION ALL
+SELECT 'TXT_KEY_CIV5_VICTORIA_TEXT', 						'TODO' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_CAMUTINS', 					'Camutins' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_CAMUTINS_ADJ', 					'Marajoara' UNION ALL
+SELECT 'TXT_KEY_CIV5_CAMUTINS_TEXT', 						'TODO' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_GONDAR', 						'Gondar' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_GONDAR_ADJ', 						'Simien' UNION ALL
+SELECT 'TXT_KEY_CIV5_GONDAR_TEXT', 							'TODO' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_SAMBAA_KE', 					'Sambaa K''e' UNION ALL
+SELECT 'TXT_KEY_CITYSTATE_SAMBAA_KE_ADJ', 					'Dene' UNION ALL
+SELECT 'TXT_KEY_CIV5_SAMBAA_KE_TEXT', 						'TODO' UNION ALL
 
 SELECT 'TXT_KEY_CITYSTATE_ISHIYAMA', 					'Ishiyama' UNION ALL
 SELECT 'TXT_KEY_CITYSTATE_ISHIYAMA_ADJ', 					'Ikko-ikki' UNION ALL
@@ -480,11 +519,12 @@ The Beothuk were an Indigenous people of Newfoundland, Canada, who lived on the 
 -------------------------------------------------
 INSERT INTO Language_en_US (Tag, Text)
 -- abilities
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ABALESSA', 			'[COLOR_MAGENTA]Blue Men of the Desert:[ENDCOLOR] [COLOR_CITY_BROWN]Camps[ENDCOLOR] and [COLOR_CITY_BROWN]Pastures[ENDCOLOR] gain +1 [ICON_GOLD] Gold.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ADEJE', 				'[COLOR_MAGENTA]Benesmer:[ENDCOLOR] Player can place a [ICON_RES_DOGO_CANARIO] [COLOR_GREY]Dogo Canario[ENDCOLOR] resource on Hills with [COLOR_CITY_BLUE]Plains[ENDCOLOR] or [COLOR_CITY_BLUE]Grassland[ENDCOLOR] (not adjacent) ([ICON_FOOD], [ICON_PRODUCTION], [ICON_GOLD], [ICON_CULTURE], [ICON_PEACE]).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ALMATY', 				'[COLOR_MAGENTA]Almatu:[ENDCOLOR] [ICON_TRADE] City Connections and International [ICON_CARAVAN] Land Trade Routes generate +1 [ICON_RESEARCH] Science. Player gains +1 [ICON_INFLUENCE] Influence per turn with Afraid [ICON_CITY_STATE] City-States.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_AL_TIRABIN', 			'[COLOR_MAGENTA]Asa''ir:[ENDCOLOR] +1 [ICON_INTERNATIONAL_TRADE] Trade Route per 2 Eras. Player can build a [COLOR_CITY_BROWN]Buryuut Hajar[ENDCOLOR] improvement on [COLOR_CITY_BLUE]Desert[ENDCOLOR] not adjacent to a City (not adjacent) ([ICON_FOOD], [ICON_PRODUCTION], [ICON_GOLD], [ICON_CULTURE]).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_AMBRACIA', 			'[COLOR_MAGENTA]Pyrrhic War:[ENDCOLOR] +10% [ICON_WAR] Militaristic [ICON_CITY_STATE] City-State Gift Rate. [COLOR_YIELD_GOLD]Land Military Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Mercenaries of Pyrrhus[ENDCOLOR] promotion (Unit gains +5% [ICON_PRODUCTION], if it [COLOR:255:230:85:255]is Garrisoned on Land[ENDCOLOR]).[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ANANGULA', 			'[COLOR_MAGENTA]Untold Stories:[ENDCOLOR] +10% International [ICON_CARGO_SHIP] Sea Trade Route Maximum Range. International [ICON_CARGO_SHIP] Sea Trade Routes gain +1 [ICON_GOLD] Gold and +1 [ICON_CULTURE] Culture. Unit''s death grants 1 [ICON_CULTURE] Culture in each City, scaling with Era.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ANANGULA', 			'[COLOR_MAGENTA]Untold Stories:[ENDCOLOR] +10% International [ICON_CARGO_SHIP] Sea Trade Route Maximum Range. International [ICON_CARGO_SHIP] Sea Trade Routes generate +1 [ICON_GOLD] Gold and +1 [ICON_CULTURE] Culture. Unit''s death grants 1 [ICON_CULTURE] Culture in each City, scaling with Era.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ANDORRA', 			'[COLOR_MAGENTA]Pyrenean Paréage:[ENDCOLOR] +1 [ICON_TOURISM] Tourism for every [COLOR_CITY_BLUE]Mountain[ENDCOLOR] tile within their workable radius. -10% [ICON_HAPPINESS_3] Boredom in Cities with [COLOR_CITY_BLUE]Mountains[ENDCOLOR] nearby.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ANTANANARIVO', 		'[COLOR_MAGENTA]Libertalia:[ENDCOLOR] Player can see all Barbarian Encampments. Units gain [COLOR_WATER_TEXT]Pirate Haven[ENDCOLOR] promotion (Unit gains [ICON_GOLD] [COLOR:255:230:85:255]on Kill[ENDCOLOR]).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ANTWERP', 			'[COLOR_MAGENTA]Economic Prominence:[ENDCOLOR] Merchants gain +1 [ICON_GOLD] Gold. -10% [ICON_GOLD] Gold Purchase Cost.[NEWLINE]' UNION ALL
@@ -505,25 +545,27 @@ SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BUDAPEST', 			'[COLOR_MAGENTA]Pearl of Danube:
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BUENOS_AIRES', 		'[COLOR_MAGENTA]Vox Populi:[ENDCOLOR] +1 [ICON_HAPPINESS_1] Happiness per each unique owned [COLOR_GREY]Luxury Resource[ENDCOLOR].[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_BYBLOS', 				'[COLOR_MAGENTA]Byblos Cedar:[ENDCOLOR] [COLOR_CITY_BROWN]Fishing Boats[ENDCOLOR] gain +1 [ICON_FOOD] Food. Cities gain +5% [ICON_PRODUCTION] Production towards [ICON_WONDER] World Wonders and all Naval Units.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_CAHOKIA', 			'[COLOR_MAGENTA]Monks Mound:[ENDCOLOR] Player can build a [COLOR_CITY_BROWN]Mound[ENDCOLOR] improvement (not adjacent) ([ICON_GOLD], [ICON_RESEARCH], [ICON_PEACE], [ICON_GOLDEN_AGE], [ICON_GREAT_GENERAL], [ICON_STRENGTH]).[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_CAMUTINS', 			'[COLOR_MAGENTA]Terra Preta:[ENDCOLOR] [COLOR_CITY_GREEN]Flood Plains[ENDCOLOR] gain +1 [ICON_PEACE] Faith. After Birth of a [ICON_CITIZEN] Citizen City claims all adjacent tiles containing [COLOR_CITY_BROWN]Flood Plains[ENDCOLOR] or [COLOR_CITY_BROWN]Lakes[ENDCOLOR] within the 4-tile radius.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_CANOSSA', 			'[COLOR_MAGENTA]Ardent Flame in Pious Heart:[ENDCOLOR] [COLOR_YIELD_GOLD]Civil Servants[ENDCOLOR] gain +1 [ICON_PEACE] Faith. +1 [ICON_DIPLOMAT] Great Diplomat Point, if City has a [COLOR_YIELD_FOOD]Temple[ENDCOLOR].[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_CAPE_TOWN', 			'[COLOR_MAGENTA]Cape of Good Hope:[ENDCOLOR] +10% [ICON_INTERNATIONAL_TRADE] Trade Route Maximum Range. Finishing a [ICON_INTERNATIONAL_TRADE] Trade Route grants 20-40 [ICON_GOLD] Gold, scaling up with the Destination City''s [ICON_CITIZEN] Population and down with the actual number of active [ICON_INTERNATIONAL_TRADE] Trade Routes.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_CHEVAK', 				'[COLOR_MAGENTA]Amellrutaq:[ENDCOLOR] +1 [ICON_FOOD] Food for every 3 worked [COLOR_CITY_BLUE]Tundra[ENDCOLOR] tiles, or 3 [COLOR_CITY_BLUE]Snow[ENDCOLOR] tiles within workable radius. Cities gain +10% [ICON_CULTURE_LOCAL] Border Growth Rate. Cities gain -1 [ICON_HAPPINESS_3] Unhappiness from Distress.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_CLERMONT', 			'[COLOR_MAGENTA]Crusade:[ENDCOLOR] Newly-produced [COLOR_YIELD_GOLD]Melee[ENDCOLOR] and [COLOR_YIELD_GOLD]Gunpowder Units[ENDCOLOR] gain a random promotion after their first combat (out of 6). [COLOR_YIELD_GOLD]Military Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Crusader''s Zeal[ENDCOLOR] promotion (+15% XP [COLOR:255:230:85:255]on Fight[ENDCOLOR]).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_COLOMBO', 			'[COLOR_MAGENTA]Home of Cinnamon:[ENDCOLOR] [COLOR_CITY_GREEN]Forests[ENDCOLOR] and [COLOR_CITY_GREEN]Jungles[ENDCOLOR] gain +1 [ICON_GOLD] Gold. Player allied with [COLOR_CYAN]Colombo[ENDCOLOR] heals all his units by 10 HP each time the [ICON_INTERNATIONAL_TRADE] Trade Route originated from a City owned by that Player finishes.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_DAKKAR', 				'[COLOR_MAGENTA]The Conquest of Abyssinia:[ENDCOLOR] Each unit gift to a [ICON_CITY_STATE] City-State grants additional 20 [ICON_INFLUENCE] Influence. [COLOR_YIELD_GOLD]Units Gifted[ENDCOLOR] to a [ICON_CITY_STATE] City-State gain [COLOR_WATER_TEXT]Futuh Al-Habash[ENDCOLOR] promotion (+5 [ICON_STRENGTH] CS and/or +5 [ICON_RANGE_STRENGTH] RCS).[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_DALI', 				'[COLOR_MAGENTA]Tea Horse Road:[ENDCOLOR] Player can purchase [ICON_CARAVAN] [COLOR_YIELD_GOLD]Caravans[ENDCOLOR] with [ICON_PEACE] Faith. All [ICON_INTERNATIONAL_TRADE] Trade Routes gain +10% [ICON_PEACE] Religious Presure.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_DALI', 				'[COLOR_MAGENTA]Tea Horse Road:[ENDCOLOR] Player can purchase [ICON_CARAVAN] [COLOR_YIELD_GOLD]Caravans[ENDCOLOR] with [ICON_PEACE] Faith. All [ICON_INTERNATIONAL_TRADE] Trade Routes generate +10% [ICON_PEACE] Religious Presure.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_DANO', 				'[COLOR_MAGENTA]Tendaalun:[ENDCOLOR] [COLOR_YIELD_FOOD]Shrines[ENDCOLOR] gain +2 [ICON_CULTURE_LOCAL] Border Growth Points. -10% [ICON_CULTURE] Tile Culture Expansion Cost in all Cities. Border expansion grants 3 [ICON_PEACE] Faith, scaling with Era.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_DJIBOUTI', 			'[COLOR_MAGENTA]Urheimat:[ENDCOLOR] [COLOR_YIELD_FOOD]Granaries[ENDCOLOR] gain +1 [ICON_CULTURE] Culture. Cities gain +80% [ICON_PRODUCTION] Production towards [COLOR_YIELD_GOLD]Settlers[ENDCOLOR] and +100% [ICON_PRODUCTION] Production towards [COLOR_YIELD_FOOD]Granaries[ENDCOLOR].[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_DODOMA', 				'[COLOR_MAGENTA]Abode of Peace:[ENDCOLOR] [ICON_INTERNATIONAL_TRADE] International Trade Routes grant +1 [ICON_GOLD] Gold to both: Origin and Destination City. International [ICON_CARGO_SHIP] Sea Trade Routes generate +1 [ICON_TOURISM] Tourism. [COLOR_YIELD_GOLD]Civilian Naval Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Sail in the Wilderness[ENDCOLOR] promotion (+2[ICON_MOVES]Movement Points).[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_DODOMA', 				'[COLOR_MAGENTA]Abode of Peace:[ENDCOLOR] International [ICON_INTERNATIONAL_TRADE] Trade Routes generate +1 [ICON_GOLD] Gold to both: Origin and Destination City. International [ICON_CARGO_SHIP] Sea Trade Routes generate +1 [ICON_TOURISM] Tourism. [COLOR_YIELD_GOLD]Civilian Naval Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Sail in the Wilderness[ENDCOLOR] promotion (+2[ICON_MOVES]Movement Points).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_DOUALA', 				'[COLOR_MAGENTA]Minature Continent:[ENDCOLOR] +1 [ICON_INTERNATIONAL_TRADE] Trade Route. +10% [ICON_PRODUCTION] Production towards [COLOR_YIELD_GOLD]Trade Units[ENDCOLOR][NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_FAYA', 				'[COLOR_MAGENTA]Turbulent Independence:[ENDCOLOR] [COLOR_YIELD_GOLD]Military Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Spoils of War[ENDCOLOR] promotion (Unit gains [ICON_RESEARCH] [COLOR:255:230:85:255]on Kill[ENDCOLOR]).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_FLORENCE', 			'[COLOR_MAGENTA]Cradle of the Renaissance:[ENDCOLOR] [COLOR_CITY_BROWN]Quarries[ENDCOLOR] gain +1 [ICON_CULTURE] Culture. Artists gain +1 [ICON_GOLDEN_AGE] Golden Age Points. Player has 1% chance per turn of spawning the [ICON_GREAT_ARTIST] Great Artist or [ICON_GREAT_ENGINEER] Great Engineer in the Capital.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_GENEVA', 				'[COLOR_MAGENTA]L''Escalade:[ENDCOLOR] Cities gain +3% [ICON_GREAT_PEOPLE] Great People Points. Birth of a [ICON_GREAT_PEOPLE] [COLOR_YIELD_GOLD]Great Person[ENDCOLOR] grants 25 [ICON_PEACE] Faith, scaling with Era.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_GENOA', 				'[COLOR_MAGENTA]La Superba:[ENDCOLOR] Birth of a [ICON_GREAT_PEOPLE] [COLOR_YIELD_GOLD]Great Person[ENDCOLOR] grants 40 [ICON_GOLD] Gold and 10 [ICON_GOLDEN_AGE] Golden Age Points, scaling with Era.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_GONDAR', 				'[COLOR_MAGENTA]Fields of Judith:[ENDCOLOR] Pillaging grants 12 [ICON_PEACE] Faith to the unit''s origin City, scaling with Era. Pillaging Great Person Improvements deals 20 Damage to the working City.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_GRANADA', 			'[COLOR_MAGENTA]Alcázars:[ENDCOLOR] [COLOR_CITY_BROWN]Forts[ENDCOLOR], [COLOR_CITY_BROWN]Citadels[ENDCOLOR] and [COLOR_CITY_BROWN]Pontoon Bridges[ENDCOLOR] gain +1 [ICON_GREAT_GENERAL] Great General Point. Player gains +10% [ICON_WAR] War Score.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_GWYNEDD', 			'[COLOR_MAGENTA]Cyfraith Hywel:[ENDCOLOR] +10% [ICON_CULTURE] Culture during the [ICON_HAPPINESS_1] WLTKD. +33% [ICON_HAPPINESS_1] WLTKD Length.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_HANOI', 				'[COLOR_MAGENTA]Nine-tiered Hierarchy:[ENDCOLOR] Civil Servants gain +1 [ICON_GREAT_GENERAL] Great General Point and +1 [ICON_GREAT_ADMIRAL] Great Admiral Point. Military Units gain [COLOR_WATER_TEXT]Patriotism[ENDCOLOR] promotion (+10%[ICON_STRENGTH]CS [COLOR:255:230:85:255]inside Friendly Territory[ENDCOLOR]).[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_HANUABADA', 			'[COLOR_MAGENTA]Hiri Trade Cycles:[ENDCOLOR] Cities gain +15% [ICON_PRODUCTION] Production towards [COLOR_YIELD_GOLD]Cargo Ships[ENDCOLOR]. Finishing a Sea [ICON_CARGO_SHIP] Trade Route grants 10-50 [ICON_GOLDEN_AGE] Golden Age Points, scaling up with the Destination City''s [ICON_CITIZEN] Population and down with the actual number of active [ICON_INTERNATIONAL_TRADE] Trade Routes. Land Units gain [COLOR_WATER_TEXT]Papuan Seafaring Prowess[ENDCOLOR] promotion (+2 [ICON_VISION] Sight and +50%[ICON_STRENGTH]Defensive CS if unit [COLOR:255:230:85:255]is Embarked[ENDCOLOR]).[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_HANUABADA', 			'[COLOR_MAGENTA]Hiri Trade Cycles:[ENDCOLOR] Cities gain +15% [ICON_PRODUCTION] Production towards [COLOR_YIELD_GOLD]Cargo Ships[ENDCOLOR]. Finishing a [ICON_CARGO_SHIP] Sea Trade Route grants 10-50 [ICON_GOLDEN_AGE] Golden Age Points, scaling up with the Destination City''s [ICON_CITIZEN] Population and down with the actual number of active [ICON_INTERNATIONAL_TRADE] Trade Routes. Land Units gain [COLOR_WATER_TEXT]Papuan Seafaring Prowess[ENDCOLOR] promotion (+2 [ICON_VISION] Sight and +50%[ICON_STRENGTH]Defensive CS if unit [COLOR:255:230:85:255]is Embarked[ENDCOLOR]).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_HONDURAS', 			'[COLOR_MAGENTA]Banana Republic:[ENDCOLOR] Resources granted from [ICON_CITY_STATE] City-States count toward Global Monopolies (doesn''t stack with [COLOR_CYAN]Exchange Markets[ENDCOLOR] policy).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_HONG_KONG', 			'[COLOR_MAGENTA]Prosperous:[ENDCOLOR] Cities gain +5% [ICON_FOOD] Growth and +1 [ICON_GOLD] Gold for every 6 [ICON_CITIZEN] Citizens. Each turn there''s a chance that 1 [ICON_CITIZEN] Citizen from 1 Player''s City will migrate to [COLOR_CYAN]Hong Kong[ENDCOLOR] granting 30 [ICON_INFLUENCE] Influence and 100-150 [ICON_GOLD] Gold, scaling with Era and current [ICON_INFLUENCE] Influence level with [COLOR_CYAN]Hong Kong[ENDCOLOR].[NEWLINE]' UNION ALL /* Chance of migration starts from 0%, if the City has equal [ICON_CITIZEN] Citizens to [COLOR_CYAN]Hong Kong[ENDCOLOR], and grows by 1% with each [ICON_CITIZEN] Citizen above that number.*/
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_HONIARA', 			'[COLOR_MAGENTA]Suahongi Dance:[ENDCOLOR] [ICON_GW_MUSIC] Great Works of Music gain +2 [ICON_FOOD] Food. Musicians gain +1 [ICON_CULTURE_LOCAL] Border Growth Point. Each [ICON_CULTURE] Culture Expansion to a [COLOR_GREY]Bonus Resource[ENDCOLOR] grants 25 [ICON_FOOD] Food on land and 50 [ICON_FOOD] Food on sea, scaling with Era.[NEWLINE]' UNION ALL
@@ -534,28 +576,32 @@ SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ISKANWAYA', 			'[COLOR_MAGENTA]Kallawaya Heale
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_JERUSALEM', 			'[COLOR_MAGENTA]Holy Lands:[ENDCOLOR] [COLOR_CITY_BROWN]Holy Sites[ENDCOLOR] gain +1 [ICON_PEACE] Faith. [COLOR_CYAN]Jerusalem[ENDCOLOR] will adopt the Majority Religion of its Ally and gains at the same time permanent +100% Religious Pressure (stays on Capture). [COLOR_CYAN]Jerusalem[ENDCOLOR] has a religious pressure equal to a Holy City. When there''s a change of alliance, new Ally will gain a [COLOR_POSITIVE_TEXT]Sphere of Influence[ENDCOLOR] with [COLOR_CYAN]Jerusalem[ENDCOLOR], if the World Congress has been founded.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_JETARKTE', 			'[COLOR_MAGENTA]Sea Nomads:[ENDCOLOR] Units can Airlift (lit. Sealift) between Coastal Cities.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_JUYUBIT', 			'[COLOR_MAGENTA]Brotherhood of the Canoe:[ENDCOLOR] [ICON_RES_FISH] [COLOR_GREY]Fish[ENDCOLOR] gain +1 [ICON_FOOD] Food. [COLOR_GREY]Bonus Resources[ENDCOLOR] gain +1 [ICON_RESEARCH] Science. Player can train [COLOR_YIELD_GOLD]Te''aat[ENDCOLOR] unit (unique [COLOR_YIELD_GOLD]Workboat[ENDCOLOR]).[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KABUL', 				'[COLOR_MAGENTA]Paradise on Earth:[ENDCOLOR] Cities gain +0.66 [ICON_CULTURE] Culture for every [COLOR_CITY_BLUE]Mountain[ENDCOLOR] tile within their workable radius. [COLOR_YIELD_GOLD]Land Military Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Mujahideen[ENDCOLOR] promotion (+25%[ICON_STRENGTH]Defensive CS, if standing next to a Mountain).[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KABUL', 				'[COLOR_MAGENTA]Paradise on Earth:[ENDCOLOR] Cities gain +0.66 [ICON_CULTURE] Culture for every [COLOR_CITY_BLUE]Mountain[ENDCOLOR] tile within their workable radius. [COLOR_YIELD_GOLD]Land Military Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Mujahideen[ENDCOLOR] promotion (+25% [ICON_STRENGTH] Defensive CS, if standing next to a Mountain).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KAGYRGYN', 			'[COLOR_MAGENTA]Luoravetlan:[ENDCOLOR] [COLOR_CITY_BROWN]Camps[ENDCOLOR] and [COLOR_CITY_BROWN]Fishing Boats[ENDCOLOR] gain +1 [ICON_GREAT_GENERAL] Great General Point. Birth of a [ICON_GREAT_GENERAL] [COLOR_YIELD_GOLD]Great General[ENDCOLOR] grants in the origin City [ICON_FOOD] Food equal to 75% of current [ICON_FOOD] Food per turn value of your Empire.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KARASJOHKA', 			'[COLOR_MAGENTA]Sameby:[ENDCOLOR] [ICON_RES_DEER] [COLOR_GREY]Deers[ENDCOLOR] gain +1 [ICON_FOOD] Food and +1 [ICON_PRODUCTION] Production. [COLOR_YIELD_GOLD]Recon and Ranged Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Siida Training[ENDCOLOR] promotion (+5% [ICON_STRENGTH] Attack CS/[ICON_RANGE_STRENGTH] Attack RCS and additional 10% in Forest). When a [COLOR_CITY_BROWN]Camp[ENDCOLOR] on [ICON_RES_DEER] [COLOR_GREY]Deer[ENDCOLOR] is built, there''s 80% chance of spawning a [ICON_RES_REINDEER] [COLOR_GREY]Reindeer[ENDCOLOR] on adjacent [COLOR_CITY_BLUE]Tundra[ENDCOLOR] or [COLOR_CITY_BLUE]Snow[ENDCOLOR] tile, and another 10% for additional one (chances are increased by 1% for each adjacent [COLOR_CITY_BLUE]Snow[ENDCOLOR] tile).[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KARIATEBIKE', 		'[COLOR_MAGENTA]In the South Seas:[ENDCOLOR] Player gains 3 copies of [ICON_RES_COPRA] [COLOR_GREY]Copra[ENDCOLOR] (they do not count towards [ICON_MONOPOLY] Monopolies). Cities gain +5% [ICON_FOOD] Food.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KARYES', 				'[COLOR_MAGENTA]Monastic Republic:[ENDCOLOR] [COLOR_YIELD_GOLD]Land Civilian Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Climber of Mount Athos[ENDCOLOR] promotion (Unit [COLOR:255:230:85:255]can cross Mountains[ENDCOLOR]). Player can build a [COLOR_CITY_BROWN]Monastery[ENDCOLOR] improvement on Hills not adjacent to a City (not adjacent) ([ICON_PRODUCTION], [ICON_GOLD], [ICON_CULTURE], [ICON_PEACE], [ICON_TOURISM]). +1 [ICON_DIPLOMAT] Great Diplomat Point and -10% [ICON_HAPPINESS_3] Religious Unrest in City, if there are at least 3 [COLOR_CITY_BROWN]Monasteries[ENDCOLOR] within their workable radius.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KATENDE', 			'[COLOR_MAGENTA]Long Claw of Memory:[ENDCOLOR] Construction of the [COLOR_YIELD_FOOD]Scrivener''s Office[ENDCOLOR], [COLOR_YIELD_FOOD]Printing Press[ENDCOLOR] and [COLOR_YIELD_FOOD]Foreign Bureau[ENDCOLOR] grants +1 [ICON_GREAT_ARTIST] Great Artist Point and +1 [ICON_GREAT_WRITER] Great Writer Point in the City. [COLOR_YIELD_GOLD]Diplomatic Units[ENDCOLOR] gain +15% [ICON_INFLUENCE] Influence.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KATENDE', 			'[COLOR_MAGENTA]Long Claw of Memory:[ENDCOLOR] Cities gain +1 [ICON_GREAT_ARTIST] Great Artist Point and +1 [ICON_GREAT_WRITER] Great Writer Point for every of the following buildings: [COLOR_YIELD_FOOD]Scrivener''s Office[ENDCOLOR], [COLOR_YIELD_FOOD]Printing Press[ENDCOLOR] and [COLOR_YIELD_FOOD]Foreign Bureau[ENDCOLOR]. [COLOR_YIELD_GOLD]Diplomatic Units[ENDCOLOR] gain +15% [ICON_INFLUENCE] Influence.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KATHMANDU', 			'[COLOR_MAGENTA]Gorkha Kingdom:[ENDCOLOR] Each [ICON_CITY_STATE] City-State Friend grants +1 [ICON_PEACE] Faith and each [ICON_CITY_STATE] City-State Ally grants +1 [ICON_GREAT_GENERAL] Great General Point to all Cities. Player can purchase [COLOR_YIELD_GOLD]Gurkha[ENDCOLOR] unit (unique [COLOR_YIELD_GOLD]Fusilier[ENDCOLOR]) with [ICON_GOLD] Gold.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KIEV', 				'[COLOR_MAGENTA]Stories of Old:[ENDCOLOR] Player can construct [COLOR_YIELD_FOOD]Bylina[ENDCOLOR] ([ICON_GREAT_MUSICIAN]). +5% [ICON_GREAT_MUSICIAN] Great Musicians generation.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KIGALI', 				'[COLOR_MAGENTA]Last True Rwabugiri:[ENDCOLOR] Border expansion grants +1 [ICON_PRODUCTION] Production and +1 [ICON_GOLD] Gold. Killing an Enemy Unit grants 5 [ICON_CULTURE_LOCAL] Border Growth Points in all Cities. -10% [ICON_WAR] War Weariness in the Empire.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KIGALI', 				'[COLOR_MAGENTA]Last True Rwabugiri:[ENDCOLOR] Border Expansion grants 1 [ICON_PRODUCTION] Production and 1 [ICON_GOLD] Gold. Killing an Enemy Unit grants 5 [ICON_CULTURE_LOCAL] Border Growth Points in all Cities. -10% [ICON_WAR] War Weariness in the Empire.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KITCISIPIRINI', 		'[COLOR_MAGENTA]Council of the Fires:[ENDCOLOR] Each [ICON_CITY_STATE] City-State Alliance grants +1 [ICON_CULTURE] Culture to all Cities. Finishing the International [ICON_INTERNATIONAL_TRADE] Trade Route from or to a City grants 30 [ICON_GOLD] Gold to that City.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KUALA_LUMPUR', 		'[COLOR_MAGENTA]Muddy Confluence:[ENDCOLOR] [COLOR_CITY_GREEN]River[ENDCOLOR] tiles gain +1 [ICON_GOLD] Gold. Building construction grants 20 [ICON_FOOD] Food. Birth of a [ICON_CITIZEN] Citizen grants 10 [ICON_CULTURE] Culture, scaling with Era.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_KYZYL', 				'[COLOR_MAGENTA]Center of Asia:[ENDCOLOR] [COLOR_YIELD_FOOD]Palace[ENDCOLOR] and [COLOR_YIELD_FOOD]Monuments[ENDCOLOR] gain +1 [ICON_RESEARCH] Science. Researching a Technology grants 5-20 [ICON_PRODUCTION] Production in all Cities, scaling up with Era and down with the number of Cities (caps at 8 Cities).[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LACONIA', 			'[COLOR_MAGENTA]Agoge:[ENDCOLOR] [COLOR_YIELD_GOLD]Land Military Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Spartan Discipline[ENDCOLOR] promotion (+15%[ICON_STRENGTH]CS if unit [COLOR:255:230:85:255]is adjacent to another Friendly Unit[ENDCOLOR]).[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LACONIA', 			'[COLOR_MAGENTA]Agoge:[ENDCOLOR] [COLOR_YIELD_GOLD]Land Military Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Spartan Discipline[ENDCOLOR] promotion (+15% [ICON_STRENGTH] CS if unit [COLOR:255:230:85:255]is adjacent to another Friendly Unit[ENDCOLOR]).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LAHORE', 				'[COLOR_MAGENTA]Khalsa:[ENDCOLOR] Player can purchase [COLOR_YIELD_GOLD]Nihang[ENDCOLOR] unit (unique [COLOR_YIELD_GOLD]Longswordsman[ENDCOLOR]) with [ICON_PEACE] Faith.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LA_VENTA', 			'[COLOR_MAGENTA]Ceremonial Creations:[ENDCOLOR] Player can build a [COLOR_CITY_BROWN]Colossal Head[ENDCOLOR] improvement on [COLOR_CITY_BLUE]Plains[ENDCOLOR] or [COLOR_CITY_BLUE]Grassland[ENDCOLOR] with [COLOR_CITY_GREEN]Forest[ENDCOLOR] or [COLOR_CITY_GREEN]Jungle[ENDCOLOR] by expending the [ICON_GREAT_ARTIST] [COLOR_YIELD_GOLD]G. Artist[ENDCOLOR], [ICON_GREAT_ENGINEER] [COLOR_YIELD_GOLD]G. Engineer[ENDCOLOR], [ICON_GREAT_SCIENTIST] [COLOR_YIELD_GOLD]G. Scientist[ENDCOLOR] or [ICON_PROPHET] [COLOR_YIELD_GOLD]G. Prophet[ENDCOLOR] ([ICON_PRODUCTION], [ICON_RESEARCH], [ICON_CULTURE], [ICON_GOLDEN_AGE], [ICON_GREAT_GENERAL], [ICON_GREAT_ADMIRAL]).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LEVUKA', 				'[COLOR_MAGENTA]Lasakau Sea Warriors:[ENDCOLOR] +1 [ICON_GREAT_GENERAL] Great General Point in the Capital per owned conquered City. [COLOR_YIELD_GOLD]Military Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Destroyers of Bau[ENDCOLOR] promotion (Gain [ICON_FOOD], scaling with Era, when killing Barbarians, clearing Barbarian Encampments (30-75 [ICON_FOOD] Food) or conquering enemy Cities (100-200 [ICON_FOOD] Food)).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LHASA', 				'[COLOR_MAGENTA]A Place Among the Gods:[ENDCOLOR] Cities gain +0.66 [ICON_PEACE] Faith for every [COLOR_CITY_BLUE]Mountain[ENDCOLOR] tile within their workable radius. The [COLOR_YIELD_FOOD]Potala Palace[ENDCOLOR] World Wonder will be available for construction after the foundation of [COLOR_POSITIVE_TEXT]World Congress[ENDCOLOR] and at [COLOR_CYAN]Architecture[ENDCOLOR]. Constructing the [COLOR_CYAN]Potala Palace[ENDCOLOR] grants a [COLOR_POSITIVE_TEXT]Sphere of Influence[ENDCOLOR] with [COLOR_CYAN]Lhasa[ENDCOLOR].[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LONGYAN', 			'[COLOR_MAGENTA]Home of Generals:[ENDCOLOR] Player can build a [COLOR_CITY_BROWN]Tulou[ENDCOLOR] improvement on Hills next to a City ([ICON_FOOD], [ICON_PRODUCTION], [ICON_CULTURE], [ICON_GREAT_GENERAL], [ICON_STRENGTH], [ICON_SILVER_FIST], [ICON_CITIZEN]).[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_LUXEMBOURG', 			'[COLOR_MAGENTA]Gibraltar of the North:[ENDCOLOR] [COLOR_CITY_BROWN]Holy Sites[ENDCOLOR] gain +1 [ICON_GOLD] Gold and +1 [ICON_CULTURE] Culture. Capital gains +3 [ICON_STRENGTH] City Strength. +20% [ICON_GREAT_ARTIST] Great Artist generation during [ICON_GOLDEN_AGE] Golden Ages.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MACACO', 				'[COLOR_MAGENTA]Angola Janga:[ENDCOLOR] [COLOR_YIELD_FOOD]Walls[ENDCOLOR] gain +1 [ICON_GREAT_GENERAL] Great General Point. Border Expansion grants 2 [ICON_GREAT_GENERAL] Great General Points. Cities gain +1 [ICON_CULTURE] Culture for each 3 [ICON_STRENGTH] Base City Strength (without Garrison).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MALACCA', 			'[COLOR_MAGENTA]Strait Settlements:[ENDCOLOR] [COLOR_GREY]Luxury Resources[ENDCOLOR] gain +1 [ICON_GOLD] Gold. Cities gain +10% [ICON_GREAT_MERCHANT] Great Merchant Points. [ICON_GREAT_MERCHANT] Great Merchants'' and [ICON_GREAT_ENGINEER] Great Engineers'' instant abilities gain +10% Yields.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MANAGUA', 			'[COLOR_MAGENTA]Place of the Big Man:[ENDCOLOR] Cities gain +10 [ICON_SPY] Spy Security. Successful offensive [ICON_SPY] Spy Mission grants 30 [ICON_FOOD] Food, scaling with Era, and successful defensive [ICON_SPY] Spy Missio - 20 [ICON_CULTURE] Culture, scaling with Era.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MANILA', 				'[COLOR_MAGENTA]Pearl of the Orient:[ENDCOLOR] [ICON_INTERNATIONAL_TRADE] International Trade Routes gain +5% Yields. Finishing a [ICON_INTERNATIONAL_TRADE] Trade Route grants 25-50 [ICON_FOOD] Food and [ICON_PRODUCTION] Production in the City, scaling up with the Destination City''s [ICON_CITIZEN] Population and down with the actual number of active [ICON_INTERNATIONAL_TRADE] Trade Routes.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MANILA', 				'[COLOR_MAGENTA]Pearl of the Orient:[ENDCOLOR] International [ICON_INTERNATIONAL_TRADE] Trade Routes generate +5% Yields. Finishing a [ICON_INTERNATIONAL_TRADE] Trade Route grants 25-50 [ICON_FOOD] Food and [ICON_PRODUCTION] Production in the City, scaling up with the Destination City''s [ICON_CITIZEN] Population and down with the actual number of active [ICON_INTERNATIONAL_TRADE] Trade Routes.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MATONJENI', 			'[COLOR_MAGENTA]Sacred Abode of Mwali:[ENDCOLOR] [COLOR_CITY_BROWN]Holy Sites[ENDCOLOR] gain +4 [ICON_FOOD] Food. Birth of a [ICON_PROPHET] [COLOR_YIELD_GOLD]Great Prophet[ENDCOLOR] grants in the origin City [ICON_FOOD] Food equal to 125% of current [ICON_FOOD] Food per turn value of your Empire.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MBABANE', 			'[COLOR_MAGENTA]Fortress of Africa:[ENDCOLOR] Civil Servants gain +1 [ICON_GREAT_GENERAL] Great General Point. Cities gain +10 HP and +10 [ICON_STRENGTH] Defense.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MBANZA_KONGO', 		'[COLOR_MAGENTA]Warrior Queen:[ENDCOLOR] [COLOR_YIELD_GOLD]Land Military Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Manikongo Glory[ENDCOLOR] promotion (+15%[ICON_STRENGTH]CS [COLOR:255:230:85:255]in Forest, Jungle, Marsh and Flood Plains[ENDCOLOR]).[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MBABANE', 			'[COLOR_MAGENTA]Fortress of Africa:[ENDCOLOR] Civil Servants gain +1 [ICON_GREAT_GENERAL] Great General Point. Cities gain +10 HP and +10 [ICON_STRENGTH] City Strength.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MBANZA_KONGO', 		'[COLOR_MAGENTA]Warrior Queen:[ENDCOLOR] [COLOR_YIELD_GOLD]Land Military Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Manikongo Glory[ENDCOLOR] promotion (+15% [ICON_STRENGTH] CS [COLOR:255:230:85:255]in Forest, Jungle, Marsh and Flood Plains[ENDCOLOR]).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MELBOURNE', 			'[COLOR_MAGENTA]Gold Rush:[ENDCOLOR] [COLOR_CITY_BROWN]Mines[ENDCOLOR] gain +1 [ICON_GOLD] Gold. Cities convert 10% of [ICON_GOLD] Gold into [ICON_FOOD] Food and 5% of [ICON_GOLD] Gold into [ICON_CULTURE_LOCAL] Border Growth Points.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MENDYARRUP', 			'[COLOR_MAGENTA]Inheritance of the Kaartdijin:[ENDCOLOR] Repairing pillaged improvement grants extra [ICON_FOOD] Food equal to 1-turn gain in the working City. Birth of a [ICON_CITIZEN] Citizen grants 2 XP to all units within 2 tiles from that City. [COLOR_YIELD_GOLD]Land Military Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Karla Nyidiny[ENDCOLOR] promotion (Unit uses [COLOR:255:230:85:255]no[ENDCOLOR][ICON_MOVES]Movement Points [COLOR:255:230:85:255]on Pillage[ENDCOLOR]. +1[ICON_MOVES]Movement Point and +3 XP [COLOR:255:230:85:255]on Pillage[ENDCOLOR]).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MILAN', 				'[COLOR_MAGENTA]House of Visconti:[ENDCOLOR] Player can construct [COLOR_YIELD_FOOD]Visconti Emissaries[ENDCOLOR] ([ICON_GREAT_ARTIST]). +5% [ICON_GREAT_ARTIST] Great Artists generation.[NEWLINE]' UNION ALL
@@ -564,17 +610,19 @@ SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MOMBASA', 			'[COLOR_MAGENTA]Thenashara Taifa:
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MONACO', 				'[COLOR_MAGENTA]Banking Haven:[ENDCOLOR] [COLOR_YIELD_FOOD]Markets[ENDCOLOR] and [COLOR_YIELD_FOOD]Banks[ENDCOLOR] gain +1 [ICON_CULTURE_LOCAL] Border Growth Point. -33% [ICON_GOLD] Tile Gold Purchase Cost in all Cities.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MUISCA', 				'[COLOR_MAGENTA]The Golden One:[ENDCOLOR] Capital gains +1 [ICON_GOLD] Gold for its every 3 [ICON_CITIZEN] Citizens and +1 [ICON_GOLD] Gold for every 20 [ICON_CITIZEN] Citizens in your Empire. Border expansion doubled during [ICON_GOLDEN_AGE] Golden Ages and [ICON_HAPPINESS_1] WLTKDs.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MULTAN', 				'[COLOR_MAGENTA]City of Saints:[ENDCOLOR] Birth of a [ICON_CITIZEN] Citizen grants 10 [ICON_PEACE] Faith, scaling with Era. Owned [ICON_MISSIONARY] [COLOR_YIELD_GOLD]Missionaries[ENDCOLOR] can spread Religion 1 additional time.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MUSCAT', 				'[COLOR_MAGENTA]Cryptus Portus:[ENDCOLOR] Player gains +50% Modfier for Catching [ICON_SPY] Enemy Spies. Cities with garrisoned units gain +10% [ICON_STRENGTH] Strength. Garrisoned units have no [ICON_GOLD] Gold Maintenance.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MUSCAT', 				'[COLOR_MAGENTA]Cryptus Portus:[ENDCOLOR] Player gains +50% Modfier for Catching [ICON_SPY] Enemy Spies. Cities with garrisoned units gain +10% [ICON_STRENGTH] CS. Garrisoned units have no [ICON_GOLD] Gold Maintenance.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MUTAWAYNATJI', 		'[COLOR_MAGENTA]Black War:[ENDCOLOR] Units gain additional +3 XP per local [ICON_GREAT_WORK] Great Work in the City they were trained in. Pillaging grants 8 [ICON_CULTURE] Culture to the unit''s origin City, scaling with Era.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_MUTITJULU', 			'[COLOR_MAGENTA]Tjukurpa:[ENDCOLOR] Cities gain +1 [ICON_GOLDEN_AGE] Golden Age Point for every 2 worked [COLOR_CITY_BLUE]Deserts[ENDCOLOR]. [COLOR_WHITE]Natural Wonders[ENDCOLOR] gain +3 [ICON_PEACE] Faith and [COLOR_CITY_BLUE]Deserts[ENDCOLOR] gain +1 [ICON_PEACE] Faith.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_NAN_MADOL', 			'[COLOR_MAGENTA]Reef of Heaven:[ENDCOLOR] [COLOR_CITY_BLUE]Oceans[ENDCOLOR] gain +1 [ICON_FOOD] Food and +1 [ICON_CULTURE] Culture. [COLOR_CITY_GREEN]Atolls[ENDCOLOR] gain +1 [ICON_PRODUCTION] Production. Unit''s death grants 2 [ICON_PEACE] Faith in every City, scaling with Era.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_NGAZARGAMU', 			'[COLOR_MAGENTA]None to Fear but God:[ENDCOLOR] [COLOR_CITY_BROWN]Towns[ENDCOLOR] and [COLOR_CITY_BROWN]Villages[ENDCOLOR] gain +1 [ICON_PRODUCTION] Production. Training a Military Unit grants 2 [ICON_PEACE] Faith in all Cities, scaling with Era.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_NGAZARGAMU', 			'[COLOR_MAGENTA]None to Fear but God:[ENDCOLOR] [COLOR_CITY_BROWN]Towns[ENDCOLOR] and [COLOR_CITY_BROWN]Villages[ENDCOLOR] gain +1 [ICON_PRODUCTION] Production. Training a Military Unit grants 2 [ICON_PEACE] Faith, scaling with Era and number of Cities.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_NYARYANA_MARQ', 		'[COLOR_MAGENTA]Reindeer Herders:[ENDCOLOR] [COLOR_CITY_BLUE]Snow[ENDCOLOR] gain +1 [ICON_CULTURE] Culture. Player can build a [COLOR_CITY_BROWN]Chum[ENDCOLOR] improvement on [COLOR_CITY_BLUE]Tundra[ENDCOLOR] and [COLOR_CITY_BLUE]Snow[ENDCOLOR] (not adjacent) ([ICON_FOOD], [ICON_PRODUCTION], [ICON_GOLD]).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_OC_EO', 				'[COLOR_MAGENTA]Lords of the Great Glass River:[ENDCOLOR] +20% [ICON_CARGO_SHIP] Sea Trade Route Maximum Range. Coastal Cities gain +1 [ICON_CULTURE_LOCAL] Border Growth Point. +1 [ICON_HAPPINESS_1] Happiness in Empire for each active International [ICON_CARGO_SHIP] Sea Trade Route.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ODENSO', 				'[COLOR_MAGENTA]Winter War:[ENDCOLOR] [COLOR_YIELD_GOLD]Military Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Lord of the Hunt[ENDCOLOR] promotion (+1[ICON_VIEW_CITY]Sight. +5 HP [COLOR:255:230:85:255]on Heal inside Neutral Territory[ENDCOLOR]).[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ORMUS', 				'[COLOR_MAGENTA]Jewel of the Ring:[ENDCOLOR] [COLOR_GREY]Luxury Resources[ENDCOLOR] gain +1 [ICON_FOOD] Food. [ICON_INTERNATIONAL_TRADE] International Trade Routes to a [ICON_CITY_STATE] City-State generate +0.4 [ICON_INFLUENCE] Influence per turn (with the target [ICON_CITY_STATE] City-State) per each owned [ICON_INTERNATIONAL_TRADE] Trade Route to a [ICON_CITY_STATE] City-State (caps at +2 [ICON_INFLUENCE] Influence).[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_OKAK', 				'[COLOR_MAGENTA]Hunting of the Bowhead:[ENDCOLOR] [ICON_RES_WHALE] [COLOR_GREY]Whales[ENDCOLOR] gain +1 [ICON_CULTURE] Culture. Player has 10% chance to start the hunting. During the hunt there''s 100% chance to spawn a [ICON_RES_WHALE] [COLOR_GREY]Whale[ENDCOLOR] in the workable radius of the Empire (this spawn chance is reduced by 20% for each [ICON_RES_WHALE] [COLOR_GREY]Whale[ENDCOLOR] already in the workable radius of the Empire).[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ORMUS', 				'[COLOR_MAGENTA]Jewel of the Ring:[ENDCOLOR] [COLOR_GREY]Luxury Resources[ENDCOLOR] gain +1 [ICON_FOOD] Food. International [ICON_INTERNATIONAL_TRADE] Trade Routes to a [ICON_CITY_STATE] City-State generate +0.4 [ICON_INFLUENCE] Influence per turn (with the target [ICON_CITY_STATE] City-State) per each owned [ICON_INTERNATIONAL_TRADE] Trade Route to a [ICON_CITY_STATE] City-State (caps at +2 [ICON_INFLUENCE] Influence).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_OUIDAH', 				'[COLOR_MAGENTA]Slave Coast:[ENDCOLOR] [COLOR_YIELD_GOLD]Workers[ENDCOLOR] gain +15% [ICON_WORKER] Construction Modifier. Each [COLOR_YIELD_GOLD]Worker[ENDCOLOR] generates 1 [ICON_GOLD] Gold per turn. Each improvement construction by a [COLOR_YIELD_GOLD]Worker[ENDCOLOR] grants permanent -1% [ICON_GOLD] Gold Purchase Cost in the City that owns this tile.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_PALMYRA', 			'[COLOR_MAGENTA]Pearl of the Desert:[ENDCOLOR] [ICON_TRADE] City Connections generate +1 [ICON_PRODUCTION] Production. Unit''s death grants 2 [ICON_GOLDEN_AGE] Golden Age Points and 2 [ICON_GREAT_GENERAL] Great General Points, scaling with Era. Player can build a [COLOR_CITY_BROWN]Funerary Tower[ENDCOLOR] improvement on a Flatland with [COLOR_CITY_BLUE]Desert[ENDCOLOR], also outside owned territory if adjacent to owned land (claims the tile, when build is finished) ([ICON_PRODUCTION], [ICON_CULTURE], [ICON_PEACE], [ICON_GOLDEN_AGE], [ICON_CULTURE_LOCAL]).[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_PANAMA_CITY', 		'[COLOR_MAGENTA]Panama Canal:[ENDCOLOR] [COLOR_CITY_GREEN]Lakes[ENDCOLOR] gain +1 [ICON_GOLD] Gold. +10% [ICON_CARGO_SHIP] Sea Trade Route Maximum Range. International [ICON_CARGO_SHIP] Sea Trade Routes gain +1 [ICON_GOLD] Gold.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_PANAMA_CITY', 		'[COLOR_MAGENTA]Panama Canal:[ENDCOLOR] [COLOR_CITY_GREEN]Lakes[ENDCOLOR] gain +1 [ICON_GOLD] Gold. +10% [ICON_CARGO_SHIP] Sea Trade Route Maximum Range. International [ICON_CARGO_SHIP] Sea Trade Routes generate +1 [ICON_GOLD] Gold.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_PELYM', 				'[COLOR_MAGENTA]Siberian Warlords:[ENDCOLOR] Cities on [COLOR_CITY_BLUE]Tundra[ENDCOLOR] or [COLOR_CITY_BLUE]Snow[ENDCOLOR] gain +2 [ICON_SILVER_FIST] Military Supply Cap. [COLOR_YIELD_GOLD]Land Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Siberian Education[ENDCOLOR] promotion (+10% [ICON_STRENGTH] CS and Double Movement on Tundra and Snow tiles).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_PHANOTEUS', 			'[COLOR_MAGENTA]Gift of Prometheus:[ENDCOLOR] +20% chance to [COLOR_POSITIVE_TEXT]Rig Elections[ENDCOLOR] in [ICON_CITY_STATE] City-States. Spies stationed in a foreign City gain +5 Network Points per turn.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_POKROVKA', 			'[COLOR_MAGENTA]People of the Steppes:[ENDCOLOR] Player can train [COLOR_YIELD_GOLD]Saka[ENDCOLOR] unit (unique [COLOR_YIELD_GOLD]Skirmisher[ENDCOLOR]). [COLOR_YIELD_GOLD]Mounted Melee Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Scythian Arrow Barrage[ENDCOLOR] promotion (Unit deals 5 Damage to adjacent units on turn start).[NEWLINE]' UNION ALL
@@ -585,7 +633,8 @@ SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_RAGUSA', 				'[COLOR_MAGENTA]Maritime Suzerain
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_RIGA', 				'[COLOR_MAGENTA]Hanseatic League:[ENDCOLOR] Cities gain +2% [ICON_FOOD] Food. Cities gain +1% [ICON_PRODUCTION] Production with each [ICON_INTERNATIONAL_TRADE] Trade Route to a [ICON_CITY_STATE] City-State .[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_RISHIKESH', 			'[COLOR_MAGENTA]Himalayan Yogi:[ENDCOLOR] Cities on [COLOR_CITY_GREEN]River[ENDCOLOR] gain +2 [ICON_PEACE] Faith. Player can construct an [COLOR_YIELD_FOOD]Ashram[ENDCOLOR] ([ICON_RESEARCH], [ICON_PEACE], [ICON_TOURISM], [ICON_HAPPINESS_3]).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SADDARVAZEH', 		'[COLOR_MAGENTA]Thus Spoke Zarathustra:[ENDCOLOR] [ICON_GW_WRITING] Great Works of Literature gain +2 [ICON_PEACE] Faith. Building a [COLOR_CITY_BROWN]Holy Site[ENDCOLOR] or Founding, Enhancing or Reforming the Religion grants a free [COLOR_YIELD_GOLD]Missionary[ENDCOLOR] in the City, where a [COLOR_CITY_BROWN]Holy Site[ENDCOLOR] was built or in a Holy City (must have a majority of own Religion).[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SAMARKAND', 			'[COLOR_MAGENTA]The Sogd:[ENDCOLOR] [ICON_INTERNATIONAL_TRADE] International Trade Routes grant +4 [ICON_GOLD] Gold to both: Origin and Destination City. [COLOR_YIELD_GOLD]Trade Units[ENDCOLOR] gain +2 [ICON_SIGHT] Sight.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SAMARKAND', 			'[COLOR_MAGENTA]The Sogd:[ENDCOLOR] International [ICON_INTERNATIONAL_TRADE] Trade Routes generate +4 [ICON_GOLD] Gold to both: Origin and Destination City. [COLOR_YIELD_GOLD]Trade Units[ENDCOLOR] gain +2 [ICON_SIGHT] Sight.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SAMBAA_KE', 			'[COLOR_MAGENTA]Sound of Soul:[ENDCOLOR] ???[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SANAA', 				'[COLOR_MAGENTA]Arabia Felix:[ENDCOLOR] Capital gains +1 [ICON_GOLD] Gold for each different [COLOR_GREY]Luxury Resource[ENDCOLOR] improved by the Player (traded or imported [COLOR_GREY]Luxury Resources[ENDCOLOR] do not count). Each currently applied percentage-based [ICON_MONOPOLY] Global Monopoly modifier gains an additional +5% bonus.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SANANDAJ', 			'[COLOR_MAGENTA]Gorani Literature:[ENDCOLOR] Training a Diplomatic Unit grants 15-25 [ICON_CULTURE] Culture in the City, scaling with Era. Each Era change grants a free [COLOR_YIELD_GOLD]Envoy[ENDCOLOR] in your Capital.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SANTO_DOMINGO', 		'[COLOR_MAGENTA]Caribbean''s Gateway:[ENDCOLOR] Each currently applied Happiness or flat-yield [ICON_MONOPOLY] Global Monopoly modifier gains an additional +2 bonus.[NEWLINE]' UNION ALL
@@ -595,21 +644,24 @@ SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SIDON', 				'[COLOR_MAGENTA]City for Conquest:
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SIERRA_LEONE', 		'[COLOR_MAGENTA]Realm of the Free:[ENDCOLOR] [COLOR_YIELD_GOLD]Workers[ENDCOLOR] gain +20% [ICON_WORKER] Construction Modifier. Cities gain -5% [ICON_HAPPINESS_3] Distress. Each [COLOR_YIELD_GOLD]Worker[ENDCOLOR] generates 1 [ICON_CULTURE] Culture per turn.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SINGAPORE', 			'[COLOR_MAGENTA]Developed Wealth:[ENDCOLOR] Cities gain +5% [ICON_PRODUCTION] Production towards [COLOR_YIELD_GOLD]Diplomatic Units[ENDCOLOR]. Expended [COLOR_YIELD_GOLD]Diplomatic Units[ENDCOLOR] grant 30 [ICON_GOLD] Gold, scaling with Era and current [ICON_INFLUENCE] Influence level with with a [ICON_CITY_STATE] City-State, where they were located. [COLOR_YIELD_GOLD]Diplomatic Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Noble[ENDCOLOR] promotion (+15 [ICON_INFLUENCE] Influence to Diplomatic Missions).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SOFIA', 				'[COLOR_MAGENTA]Serdica:[ENDCOLOR] Cities gain +1 [ICON_GREAT_GENERAL] Great General Point and +1 [ICON_GREAT_ADMIRAL] Great Admiral Point per Religion present in this City. [ICON_GREAT_GENERAL] [COLOR_YIELD_GOLD]Great Generals[ENDCOLOR] and [ICON_GREAT_ADMIRAL] [COLOR_YIELD_GOLD]Great Admirals[ENDCOLOR] gain +10% [ICON_STRENGTH] Combat Effectiveness Bonus.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SUCEAVA', 			'[COLOR_MAGENTA]Athleta Christi:[ENDCOLOR] -10% [ICON_PEACE] Faith Purchase Cost for [COLOR_YIELD_FOOD]Religious Buildings[ENDCOLOR], [COLOR_YIELD_GOLD]Missionaries[ENDCOLOR] and [COLOR_YIELD_GOLD]Inquisitors[ENDCOLOR]. [COLOR_YIELD_GOLD]Land Military Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Battle of Vaslui[ENDCOLOR] promotion (+10% [ICON_STRENGTH] Defensive CS. Military kills generate [ICON_PEACE] Faith equivalent to 100% of the killed''s [ICON_STRENGTH] Combat Strength.)[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SUCEAVA', 			'[COLOR_MAGENTA]Athleta Christi:[ENDCOLOR] -10% [ICON_PEACE] Faith Purchase Cost for [COLOR_YIELD_FOOD]Religious Buildings[ENDCOLOR], [COLOR_YIELD_GOLD]Missionaries[ENDCOLOR] and [COLOR_YIELD_GOLD]Inquisitors[ENDCOLOR]. [COLOR_YIELD_GOLD]Land Military Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Battle of Vaslui[ENDCOLOR] promotion (+10% [ICON_STRENGTH] Defensive CS. Military kills generate [ICON_PEACE] Faith equivalent to 100% of the killed''s [ICON_STRENGTH] CS.)[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SURREY', 				'[COLOR_MAGENTA]Center of Aviation:[ENDCOLOR] [COLOR_GREY]Strategic Resources[ENDCOLOR] gain +1 [ICON_GREAT_GENERAL] Great General Point. Cities gain +10% [ICON_PRODUCTION] Production towards [COLOR_YIELD_GOLD]Air Units[ENDCOLOR]. [COLOR_YIELD_GOLD]Air Units[ENDCOLOR] gain [COLOR_WATER_TEXT]Magnificence in Flying Machines[ENDCOLOR] promotion (+10%[ICON_RANGE_STRENGTH]RCS [COLOR:255:230:85:255]vs Land and Naval Units[ENDCOLOR]).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_SYDNEY', 				'[COLOR_MAGENTA]Capital Infrastructure:[ENDCOLOR] [ICON_HAPPINESS_1] WLTKD generate +5% [ICON_FOOD] Food. [ICON_HAPPINESS_1] WLTKD start grants 5-20 [ICON_GREAT_ARTIST] Great Artist Points, [ICON_GREAT_ARTIST] Great Writer Points and [ICON_GREAT_ARTIST] Great Musician Points, scaling with Era [NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_TAIWAN', 				'[COLOR_MAGENTA]Taiwanese Miracle:[ENDCOLOR] Cities gain +10% [ICON_RESEARCH] Science from the Research Process. Converts 15% of [ICON_RESEARCH] Science into [ICON_FOOD] Food.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_TBILISI', 			'[COLOR_MAGENTA]Patronqmoba:[ENDCOLOR] +50% [ICON_GREAT_GENERAL] Great General Points from combat in Friendly territory. -33% Yield Penalty for Puppeted Cities.[NEWLINE]' UNION ALL
-SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_THIMPHU', 			'[COLOR_MAGENTA]Druk Tsendhen:[ENDCOLOR] Cities on [COLOR_CYAN]Hill[ENDCOLOR] gain +3 [ICON_CULTURE] Culture. Cities gain 1 [ICON_STRENGTH] Defense for each 10 [ICON_CULTURE] Culture per turn.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_THIMPHU', 			'[COLOR_MAGENTA]Druk Tsendhen:[ENDCOLOR] Cities on [COLOR_CYAN]Hill[ENDCOLOR] gain +3 [ICON_CULTURE] Culture. Cities gain 1 [ICON_STRENGTH] City Strength for each 10 [ICON_CULTURE] Culture per turn.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_TIWANAKU', 			'[COLOR_MAGENTA]Hana Pacha:[ENDCOLOR] Player can purchase [COLOR_YIELD_GOLD]Sisqeno[ENDCOLOR] unit (unique [COLOR_YIELD_GOLD]Missionary[ENDCOLOR]) with [ICON_PEACE] Faith. Player can build a [COLOR_CITY_BROWN]Sunken Courtyard[ENDCOLOR] improvement on a Flatland with [COLOR_CITY_BLUE]Plains[ENDCOLOR], [COLOR_CITY_BLUE]Tundra[ENDCOLOR] or [COLOR_CITY_BLUE]Desert[ENDCOLOR] by expending a [ICON_MISSIONARY] [COLOR_YIELD_GOLD]Missionary[ENDCOLOR] (not adjacent) ([ICON_RESEARCH], [ICON_CULTURE], [ICON_PEACE], [ICON_TOURISM]).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_TUNIS', 				'[COLOR_MAGENTA]Caliphs of Carthage:[ENDCOLOR] Player can build a [COLOR_CITY_BROWN]Ribat[ENDCOLOR] improvement on a [COLOR_CITY_BLUE]Desert[ENDCOLOR] ([ICON_GOLD], [ICON_CULTURE], [ICON_PEACE], [ICON_GREAT_GENERAL]).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_TYRE', 				'[COLOR_MAGENTA]Ruins of the Ancient World:[ENDCOLOR] [ICON_ARTIFACT] [COLOR_CITY_BROWN]Landmarks[ENDCOLOR] gain +2 [ICON_GOLD] Gold. Cities gain +10% Production towards [ICON_ARTIFACT] [COLOR_YIELD_GOLD]Archaeologists[ENDCOLOR]. [ICON_WONDER] World Wonder construction grants 20-40 [ICON_TOURISM] Tourism, scaling with Era and number of [ICON_WONDER] World Wonders in that City.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_UR', 					'[COLOR_MAGENTA]Cradle of Civilization:[ENDCOLOR] [ICON_TRADE] City Connections generate +2 [ICON_FOOD] Food. Newly founded Cities gain 1 additional [ICON_CITIZEN] Citizen.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_VADUZ', 				'[COLOR_MAGENTA]Princely Collections:[ENDCOLOR] [ICON_GREAT_WORK] Great Works gain +1 [ICON_GOLD] Gold. [ICON_GOLD] Gold Purchase on a building grants 20-30 [ICON_GREAT_PEOPLE] Great People Points towards a random Cultural [ICON_GREAT_PEOPLE] Great Person in this City, scaling with Era. This value is reduced by 80%, if City currently has a progress towards that [ICON_GREAT_PEOPLE] Great Person.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_VAITAPE', 			'[COLOR_MAGENTA]Sons of Hiro:[ENDCOLOR] [COLOR_CITY_GREEN]Atolls[ENDCOLOR] gain +1 [ICON_GREAT_ADMIRAL] Great Admiral Point and +15% Tile Defense. Killing a Ship grants [ICON_GREAT_ADMIRAL] Great Admiral Points equal to 30% of defeated unit''s [ICON_STRENGTH] CS.[NEWLINE]' UNION ALL 
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_VALLETTA', 			'[COLOR_MAGENTA]The Grand Harbor:[ENDCOLOR] Player can construct [COLOR_YIELD_FOOD]The Grand Harbor[ENDCOLOR] ([ICON_FOOD], [ICON_RESEARCH], [ICON_STRENGTH]).[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_VANCOUVER', 			'[COLOR_MAGENTA]Terminal City:[ENDCOLOR] Each City increases [ICON_GOLD] Gold from [ICON_TRADE] City Connections by 3%. -30% [ICON_GOLD] City Connections Gold Maintenance.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_VATICAN_CITY', 		'[COLOR_MAGENTA]Conclave:[ENDCOLOR] Expending a [ICON_GREAT_PEOPLE] [COLOR_YIELD_GOLD]Great Person[ENDCOLOR] grants 10 [ICON_INFLUENCE] Influence with all met [ICON_CITY_STATE] City-States. Player can purchase [COLOR_YIELD_GOLD]Swiss Guard[ENDCOLOR] unit (mercenary) with [ICON_GOLD] Gold or [ICON_PEACE] Faith.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_VICTORIA', 			'[COLOR_MAGENTA]Finis Coronat Opus:[ENDCOLOR]  Capital gains +1 [ICON_HAPPINESS_1] Happiness. [COLOR_GREY]Sea Resources[ENDCOLOR] (owned or claimed, and revealed) are immediately improved with the most basic improvement.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_VILNIUS', 			'[COLOR_MAGENTA]Athens of the North:[ENDCOLOR] Player can construct [COLOR_YIELD_FOOD]The Gate of Dawn[ENDCOLOR] ([ICON_GREAT_WRITER]). Writers gain +1 [ICON_GOLD] Gold.[NEWLINE]' UNION ALL
+SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_WAITUKUBULI', 		'[COLOR_MAGENTA]Land of Caribs:[ENDCOLOR] ???[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_WELLINGTON', 			'[COLOR_MAGENTA]Te Whanga-nui-a-Tara:[ENDCOLOR] [COLOR_GREY]Strategic Resources[ENDCOLOR] gain +1 [ICON_FOOD] Food. Player gains additional copies of [COLOR_GREY]Strategic Resource[ENDCOLOR]:[NEWLINE][ICON_BULLET] +1, if he has at least 1 copy and no Monopolies[NEWLINE][ICON_BULLET] +2, if he has a [ICON_MONOPOLY] Strategic Monopoly[NEWLINE][ICON_BULLET] +3, if he has a [ICON_MONOPOLY] Global Monopoly[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_WITTENBERG', 			'[COLOR_MAGENTA]Birth of the Reformation:[ENDCOLOR] Cities gain +1 [ICON_PRODUCTION] Production, +1 [ICON_GOLD] Gold and +1 [ICON_CULTURE] Culture per Religion present in this City. Cities gain -10% [ICON_PEACE] Religious Pressure and -10% [ICON_PEACE] Conversion Resistance. -5% [ICON_HAPPINESS_3] Religious Unrest in all Cities.[NEWLINE]' UNION ALL
 SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_WOOTEI_NIICIE', 		'[COLOR_MAGENTA]People of the Blue Sky:[ENDCOLOR] Cities gain +10% [ICON_PRODUCTION] Production towards [COLOR_YIELD_GOLD]Mounted and Gunpowder Units[ENDCOLOR]. [COLOR_YIELD_GOLD]Land Units[ENDCOLOR] trained in Cities with a [COLOR_YIELD_FOOD]Caravansary[ENDCOLOR] or [ICON_RES_HORSE] [COLOR_GREY]Horses[ENDCOLOR] nearby gain +15 XP. Levelling up a unit grants 2 [ICON_GREAT_GENERAL] Great General Points, scaling with unit level.[NEWLINE]' UNION ALL
@@ -621,6 +673,8 @@ SELECT 'TXT_KEY_CSTRAIT_MINOR_CIV_ZURICH', 				'[COLOR_MAGENTA]Banking Establish
 -------------------------------------------------
 INSERT INTO Language_en_US (Tag, Text)
 -- promotions
+SELECT 'TXT_KEY_PROMOTION_ABALESSA', 					'Quicksand' UNION ALL
+SELECT 'TXT_KEY_PROMOTION_ABALESSA_HELP', 					'-1 [ICON_MOVES] for 2 turns.' UNION ALL
 SELECT 'TXT_KEY_PROMOTION_AMBRACIA', 					'Mercenaries of Pyrrhus' UNION ALL
 SELECT 'TXT_KEY_PROMOTION_AMBRACIA_HELP', 					'Generates +5% [ICON_PRODUCTION] Production when [COLOR_POSITIVE_TEXT]Garrisoned in the City[ENDCOLOR].' UNION ALL
 SELECT 'TXT_KEY_PROMOTION_ANTANANARIVO', 				'Pirate Haven' UNION ALL
@@ -763,6 +817,8 @@ INSERT INTO Language_en_US (Tag, Text)
 -- improvements
 	-- dummy (city-state)
 	SELECT 'TXT_KEY_IMPROVEMENT_CITY', 						'City-State' UNION ALL
+	-- dummy (atoll)
+	SELECT 'TXT_KEY_IMPROVEMENT_ATOLL', 					'Atoll' UNION ALL
 	-- marsh
 	SELECT 'TXT_KEY_BUILD_MARSH', 							'Create a Marsh'  UNION ALL
 	SELECT 'TXT_KEY_BUILD_MARSH_HELP', 						'Requires an access to [COLOR:200:200:200:255]Brussels[ENDCOLOR]'' ability.[NEWLINE][NEWLINE]Terraforms the landscape here into the [COLOR_CITY_GREEN]Marsh[ENDCOLOR], while installing an improvement that''ll stabilize it.[NEWLINE]'  UNION ALL
@@ -862,47 +918,50 @@ INSERT INTO Language_en_US (Tag, Text)
 -------------------------------------------------
 -- resources
 SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO',					'Dogo Canario' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO_TEXT',			'Dogo Canario are a breed of dog native to the canary islands, a rare dog with a broad head and muscular body. They played a role in the myth, funeral customs and even diet of the guanches. Some were even mummified along with their owners.' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO_MONOPOLY',		'Requires an access to [COLOR:200:200:200:255]Adeje[ENDCOLOR]''s ability to be finished.[NEWLINE][NEWLINE][COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +3% [ICON_FOOD] and +3% [ICON_PRODUCTION] in all owned Cities.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO_TEXT',				'Dogo Canario are a breed of dog native to the canary islands, a rare dog with a broad head and muscular body. They played a role in the myth, funeral customs and even diet of the guanches. Some were even mummified along with their owners.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_DOGO_CANARIO_MONOPOLY',			'Requires an access to [COLOR:200:200:200:255]Adeje[ENDCOLOR]''s ability to be finished.[NEWLINE][NEWLINE][COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +3% [ICON_FOOD] and +3% [ICON_PRODUCTION] in all owned Cities.' UNION ALL
 /*SELECT 'TXT_KEY_RESOURCE_LLAO_LLAO',					'Llao Llao' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_LLAO_LLAO_TEXT',				'TODO' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_LLAO_LLAO_MONOPOLY',			'Requires an access to [COLOR:200:200:200:255]Yaiuwa[ENDCOLOR]''s ability to be placed.[NEWLINE][NEWLINE][COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +3% [ICON_FOOD] in all owned Cities and +2 [ICON_HAPPINESS_1] Empire-Wide Happiness.' UNION ALL*/
+SELECT 'TXT_KEY_RESOURCE_LLAO_LLAO_TEXT',					'TODO' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_LLAO_LLAO_MONOPOLY',				'Requires an access to [COLOR:200:200:200:255]Yaiuwa[ENDCOLOR]''s ability to be placed.[NEWLINE][NEWLINE][COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +3% [ICON_FOOD] in all owned Cities and +2 [ICON_HAPPINESS_1] Empire-Wide Happiness.' UNION ALL*/
 SELECT 'TXT_KEY_RESOURCE_REINDEER',						'Reindeer' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_REINDEER_TEXT',				'TODO' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_REINDEER_MONOPOLY',			'Requires an access to [COLOR:200:200:200:255]Karasjohka[ENDCOLOR]''s ability to be placed.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_REINDEER_TEXT',					'TODO' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_REINDEER_MONOPOLY',				'Requires an access to [COLOR:200:200:200:255]Karasjohka[ENDCOLOR]''s ability to be placed.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_COPRA',						'Copra' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_COPRA_TEXT',						'TODO' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_COPRA_MONOPOLY',					'Requires an access to [COLOR:200:200:200:255]Kariatebike[ENDCOLOR]''s ability to be obtained.[NEWLINE][NEWLINE][COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_FOOD] in all owned Cities.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_COINS',						'Coins' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_COINS_TEXT',					'TODO' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_COINS_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] -10% [ICON_GOLD] Gold Purchase Cost.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_COINS_TEXT',						'TODO' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_COINS_MONOPOLY',					'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] -10% [ICON_GOLD] Gold Purchase Cost.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_GUNPOWDER',					'Gunpowder' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_GUNPOWDER_TEXT',				'The invention of gunpowder is usually attributed to Chinese alchemists during the Tang dynasty, one of the "Four Great Inventions of China." The earliest written record of it - a formula composed of sulfur, charcoal and potassium nitrate dating to the later Song dynasty - was supposed to be an elixir for immortality... it was anything but. But the Chinese did discover that it burned explosively and the resultant gases expanded rapidly when exposed to heat; so it was useful for making fireworks. The Chinese found a more practical use for gunpowder in crude bombs and rockets which they used against the Mongols... until the Mongols overran China and then used the new weapon against everyone else on their path westward.[NEWLINE][NEWLINE]While the Mongols were using gunpowder to intimidate the Europeans they encountered, the Arabs sometime between 1240 and 1280 AD developed better recipes, purer niter, and more deadly weapons - notably cannon and a primitive arquebus. Some historical texts state that the Mamluks used the first cannon in history against the Mongols during the battle at Ain Jalut in 1260, but this is open to debate. The earliest description of a "portable hand cannon", however, does appear in an Arabic manuscript from the 14th Century. Once they''d turned back the Mongols, the Arabs put these to use elsewhere.[NEWLINE][NEWLINE]But it was the Europeans who really took to gunpowder as a means of wholesale slaughter. Not only did they improve the formula and add touches such as "corning" - using liquid to increase granularity and hence stability - and "smokeless" powder, but they created all sorts of toys that used it to hurl small and large bits of lead and iron at people. From the days of the Renaissance, military history in Europe was shaped by gunpowder, as it came to dominate the battlefield like no technology before.' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_GUNPOWDER_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_PRODUCTION] towards [COLOR_YIELD_GOLD]Gunpowder Units[ENDCOLOR] in all owned Cities.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_GUNPOWDER_TEXT',					'The invention of gunpowder is usually attributed to Chinese alchemists during the Tang dynasty, one of the "Four Great Inventions of China." The earliest written record of it - a formula composed of sulfur, charcoal and potassium nitrate dating to the later Song dynasty - was supposed to be an elixir for immortality... it was anything but. But the Chinese did discover that it burned explosively and the resultant gases expanded rapidly when exposed to heat; so it was useful for making fireworks. The Chinese found a more practical use for gunpowder in crude bombs and rockets which they used against the Mongols... until the Mongols overran China and then used the new weapon against everyone else on their path westward.[NEWLINE][NEWLINE]While the Mongols were using gunpowder to intimidate the Europeans they encountered, the Arabs sometime between 1240 and 1280 AD developed better recipes, purer niter, and more deadly weapons - notably cannon and a primitive arquebus. Some historical texts state that the Mamluks used the first cannon in history against the Mongols during the battle at Ain Jalut in 1260, but this is open to debate. The earliest description of a "portable hand cannon", however, does appear in an Arabic manuscript from the 14th Century. Once they''d turned back the Mongols, the Arabs put these to use elsewhere.[NEWLINE][NEWLINE]But it was the Europeans who really took to gunpowder as a means of wholesale slaughter. Not only did they improve the formula and add touches such as "corning" - using liquid to increase granularity and hence stability - and "smokeless" powder, but they created all sorts of toys that used it to hurl small and large bits of lead and iron at people. From the days of the Renaissance, military history in Europe was shaped by gunpowder, as it came to dominate the battlefield like no technology before.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_GUNPOWDER_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +5% [ICON_PRODUCTION] towards [COLOR_YIELD_GOLD]Gunpowder Units[ENDCOLOR] in all owned Cities.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_BEER',							'Beer' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_BEER_TEXT',					'Beer is one of the oldest and most widely consumed alcoholic drinks in the world. It is also the third most popular drink overall after water and tea. Beer is brewed from cereal grains—most commonly from malted barley, though wheat, maize (corn), and rice are also used. During the brewing process, fermentation of the starch sugars in the wort produces ethanol and carbonation in the resulting beer.' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_BEER_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_GREAT_ENGINEER] Great Engineer Points in all owned Cities.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_BEER_TEXT',						'Beer is one of the oldest and most widely consumed alcoholic drinks in the world. It is also the third most popular drink overall after water and tea. Beer is brewed from cereal grains—most commonly from malted barley, though wheat, maize (corn), and rice are also used. During the brewing process, fermentation of the starch sugars in the wort produces ethanol and carbonation in the resulting beer.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_BEER_MONOPOLY',					'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_GREAT_ENGINEER] Great Engineer Points in all owned Cities.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_CHEESE',						'Cheese' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_CHEESE_TEXT',					'Cheese is a dairy product derived from milk that is produced in a wide range of flavors, textures, and forms by coagulation of the milk protein casein. Over a thousand types of cheese from various countries are produced. Their styles, textures and flavors depend on the origin of the milk (including the animal''s diet), whether they have been pasteurized, the butterfat content, the bacteria and mold, the processing, and aging. Cheese is valued for its portability, long life, and high content of fat, protein, calcium, and phosphorus.' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_CHEESE_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +2 [ICON_PRODUCTION] from all [ICON_RES_COW] [COLOR_GREY]Cattle[ENDCOLOR] and [ICON_RES_SHEEP] [COLOR_GREY]Sheep[ENDCOLOR].' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_CHEESE_TEXT',						'Cheese is a dairy product derived from milk that is produced in a wide range of flavors, textures, and forms by coagulation of the milk protein casein. Over a thousand types of cheese from various countries are produced. Their styles, textures and flavors depend on the origin of the milk (including the animal''s diet), whether they have been pasteurized, the butterfat content, the bacteria and mold, the processing, and aging. Cheese is valued for its portability, long life, and high content of fat, protein, calcium, and phosphorus.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_CHEESE_MONOPOLY',					'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +2 [ICON_PRODUCTION] from all [ICON_RES_COW] [COLOR_GREY]Cattle[ENDCOLOR] and [ICON_RES_SHEEP] [COLOR_GREY]Sheep[ENDCOLOR].' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_HONEY',						'Honey' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_HONEY_TEXT',					'Honey is a sweet, viscous food substance made by bees and some related insects. Bees produce honey from the sugary secretions of plants (floral nectar) or from secretions of other insects (such as honeydew), by regurgitation, enzymatic activity, and water evaporation. Bees store honey in wax structures called honeycombs. Honey use and production have a long and varied history as an ancient activity. Several cave paintings in Cuevas de la Araña in Spain depict humans foraging for honey at least 8,000 years ago.' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_HONEY_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_GOLD] from all [ICON_RES_MAIZE] [COLOR_GREY]Maize[ENDCOLOR], [ICON_RES_RICE] [COLOR_GREY]Rice[ENDCOLOR] and [ICON_RES_WHEAT] [COLOR_GREY]Wheat[ENDCOLOR].' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_HONEY_TEXT',						'Honey is a sweet, viscous food substance made by bees and some related insects. Bees produce honey from the sugary secretions of plants (floral nectar) or from secretions of other insects (such as honeydew), by regurgitation, enzymatic activity, and water evaporation. Bees store honey in wax structures called honeycombs. Honey use and production have a long and varied history as an ancient activity. Several cave paintings in Cuevas de la Araña in Spain depict humans foraging for honey at least 8,000 years ago.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_HONEY_MONOPOLY',					'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_GOLD] from all [ICON_RES_MAIZE] [COLOR_GREY]Maize[ENDCOLOR], [ICON_RES_RICE] [COLOR_GREY]Rice[ENDCOLOR] and [ICON_RES_WHEAT] [COLOR_GREY]Wheat[ENDCOLOR].' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_ROPES',						'Ropes' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_ROPES_TEXT',					'TODO' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_ROPES_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_PRODUCTION] towards [COLOR_YIELD_GOLD]Naval Units[ENDCOLOR] in all owned Cities.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_ROPES_TEXT',						'TODO' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_ROPES_MONOPOLY',					'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_PRODUCTION] towards [COLOR_YIELD_GOLD]Naval Units[ENDCOLOR] in all owned Cities.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_TAPESTRIES',					'Tapestries' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_TAPESTRIES_TEXT',				'TODO' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_TAPESTRIES_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_CULTURE] to [COLOR_YIELD_FOOD]Palace[ENDCOLOR], all [COLOR_YIELD_FOOD]Religious Buildings[ENDCOLOR] and [COLOR_YIELD_FOOD]Castles[ENDCOLOR].' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_TAPESTRIES_TEXT',					'TODO' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_TAPESTRIES_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_CULTURE] to [COLOR_YIELD_FOOD]Palace[ENDCOLOR], all [COLOR_YIELD_FOOD]Religious Buildings[ENDCOLOR] and [COLOR_YIELD_FOOD]Castles[ENDCOLOR].' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_SCULPTURES',					'Sculptures' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_SCULPTURES_TEXT',				'TODO' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_SCULPTURES_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_GREAT_ARTIST] Great Artists Points in all owned Cities.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_SCULPTURES_TEXT',					'TODO' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_SCULPTURES_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +10% [ICON_GREAT_ARTIST] Great Artists Points in all owned Cities.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_CHAMPAGNE',					'Champagne' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_CHAMPAGNE_TEXT',				'Champagne is a French sparkling wine. Many people use the term Champagne as a generic term for sparkling wine, but in the EU and some other countries, it is illegal to label any product Champagne unless it comes from the Champagne region of France and is produced under the rules of the appellation.' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_CHAMPAGNE_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_GOLDEN_AGE] from all [COLOR_GREY]Luxury Resource[ENDCOLOR].' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_CHAMPAGNE_TEXT',					'Champagne is a French sparkling wine. Many people use the term Champagne as a generic term for sparkling wine, but in the EU and some other countries, it is illegal to label any product Champagne unless it comes from the Champagne region of France and is produced under the rules of the appellation.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_CHAMPAGNE_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_GOLDEN_AGE] from all [COLOR_GREY]Luxury Resource[ENDCOLOR].' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS',					'Manuscripts' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS_TEXT',				'A Manuscript or Handwrit is written information that has been manually created by one or more people, such as a hand-written letter, as opposed to being printed or reproduced some other way. The term may also be used for information that is hand-recorded in other ways than writing, for example inscriptions that are chiselled upon a hard material or scratched (the original meaning of graffiti) as with a knife point in plaster or with a stylus on a waxed tablet (the way Romans made notes), or are in cuneiform writing, impressed with a pointed stylus in a flat tablet of unbaked clay.' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS_MONOPOLY',			'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_RES_PAPER] [COLOR_GREY]Paper[ENDCOLOR]; +10% [ICON_PRODUCTION] towards [COLOR_YIELD_GOLD]Diplomatic Units[ENDCOLOR] in all owned Cities.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS_TEXT',					'A Manuscript or Handwrit is written information that has been manually created by one or more people, such as a hand-written letter, as opposed to being printed or reproduced some other way. The term may also be used for information that is hand-recorded in other ways than writing, for example inscriptions that are chiselled upon a hard material or scratched (the original meaning of graffiti) as with a knife point in plaster or with a stylus on a waxed tablet (the way Romans made notes), or are in cuneiform writing, impressed with a pointed stylus in a flat tablet of unbaked clay.' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_MANUSCRIPTS_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_RES_PAPER] [COLOR_GREY]Paper[ENDCOLOR]; +10% [ICON_PRODUCTION] towards [COLOR_YIELD_GOLD]Diplomatic Units[ENDCOLOR] in all owned Cities.' UNION ALL
 SELECT 'TXT_KEY_RESOURCE_MOSAICS',						'Mosaics' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_MOSAICS_TEXT',					'TODO' UNION ALL
-SELECT 'TXT_KEY_RESOURCE_MOSAICS_MONOPOLY',				'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_CULTURE] and +1 [ICON_PEACE] from all [COLOR_CITY_BROWN]Holy Sites[ENDCOLOR].';
+SELECT 'TXT_KEY_RESOURCE_MOSAICS_TEXT',						'TODO' UNION ALL
+SELECT 'TXT_KEY_RESOURCE_MOSAICS_MONOPOLY',					'[COLOR_POSITIVE_TEXT]Monopoly Bonus:[ENDCOLOR] +1 [ICON_CULTURE] and +1 [ICON_PEACE] from all [COLOR_CITY_BROWN]Holy Sites[ENDCOLOR].';
 -------------------------------------------------
 -------------------------------------------------
 INSERT INTO Language_en_US (Tag, Text)
@@ -972,22 +1031,29 @@ SELECT 'TXT_KEY_BUILDING_DUMMY_ANDORRA_MOUNTAIN', 		'UCS Andorra (Mountain)' UNI
 SELECT 'TXT_KEY_BUILDING_DUMMY_ANDORRA_HAPPINESS', 		'UCS Andorra (Happiness)' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_BALLEY_CHASHTAL', 		'UCS Balley y Chashtal' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_BEDULU', 				'UCS Bedulu' UNION ALL
+SELECT 'TXT_KEY_BUILDING_DUMMY_CAMUTINS', 				'UCS Camutins' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_CANOSSA', 				'UCS Canossa' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_CHEVAK', 				'UCS Chevak' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_DODOMA', 				'UCS Dodoma' UNION ALL
+SELECT 'TXT_KEY_BUILDING_DUMMY_GONDAR', 				'UCS Gondar' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_IRUNEA', 				'UCS Irunea' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_JETARKTE', 				'UCS Jetarkte' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_KAGYRGYN', 				'UCS Kagyrgyn' UNION ALL
+SELECT 'TXT_KEY_BUILDING_DUMMY_KARIATEBIKE', 			'UCS Kariatebike' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_KARYES_DIPLO', 			'UCS Karyes (Diplo)' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_KARYES_COUNTER', 		'UCS Karyes (Counter)' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_KATENDE_ARTIST', 		'UCS Katende (Artist)' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_KATENDE_WRITER', 		'UCS Katende (Writer)' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_KIGALI', 				'UCS Kigali' UNION ALL
+SELECT 'TXT_KEY_BUILDING_DUMMY_KITCISIPIRINI', 			'UCS Kitcisipirini' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_LEVUKA', 				'UCS Levuka' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_LONGYAN', 				'UCS Longyan' UNION ALL
+SELECT 'TXT_KEY_BUILDING_DUMMY_LUXEMBOURG', 			'UCS Luxembourg' UNION ALL
+SELECT 'TXT_KEY_BUILDING_DUMMY_MACACO', 				'UCS Macaco' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_MANAGUA', 				'UCS Managua' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_MATONJENI', 				'UCS Matonjeni' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_MBABANE', 				'UCS Mbabane' UNION ALL
+SELECT 'TXT_KEY_BUILDING_DUMMY_MUTAWAYNATJI', 			'UCS Mutawaynatji' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_MUTITJULU', 				'UCS Mutitjulu' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_NAN_MADOL', 				'UCS Nan Madol' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_OC_EO_RANGE', 			'UCS Óc Eo (Range)' UNION ALL
@@ -1007,6 +1073,7 @@ SELECT 'TXT_KEY_BUILDING_DUMMY_SARNATH_POLICY', 		'UCS Sarnath (Policy)' UNION A
 SELECT 'TXT_KEY_BUILDING_DUMMY_TAIWAN', 				'UCS Taipei' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_THIMPHU_CULTURE', 		'UCS Thimphu (Culture)' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_THIMPHU_DEFENSE', 		'UCS Thimphu (Defense)' UNION ALL
+SELECT 'TXT_KEY_BUILDING_DUMMY_VICTORIA', 				'UCS Victoria' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_WOOTEI_NIICIE_LEVEL', 	'UCS Wootei-niicie (Level)' UNION ALL
 SELECT 'TXT_KEY_BUILDING_DUMMY_WOOTEI_NIICIE_XP', 		'UCS Wootei-niicie (XP)' UNION ALL
 
@@ -1082,6 +1149,7 @@ UPDATE Language_en_US SET Text = Text||'Additional bonuses from [ICON_CITY_STATE
 UPDATE Language_en_US SET Text = Text||'Additional bonuses from [ICON_CITY_STATE] [COLOR:200:200:200:255]City-States[ENDCOLOR]:[NEWLINE][ICON_BULLET][COLOR:200:200:200:255]Dano[ENDCOLOR]: +2 [ICON_CULTURE_LOCAL]' WHERE Tag == 'TXT_KEY_BUILDING_SHRINE_HELP';
 UPDATE Language_en_US SET Text = Text||'Additional bonuses from [ICON_CITY_STATE] [COLOR:200:200:200:255]City-States[ENDCOLOR]:[NEWLINE][ICON_BULLET][COLOR:200:200:200:255]Zurich[ENDCOLOR]: +1 [ICON_GOLD]' WHERE Tag == 'TXT_KEY_BUILDING_STOCK_EXCHANGE_HELP';
 UPDATE Language_en_US SET Text = Text||'Additional bonuses from [ICON_CITY_STATE] [COLOR:200:200:200:255]City-States[ENDCOLOR]:[NEWLINE][ICON_BULLET][COLOR:200:200:200:255]Prague[ENDCOLOR]: +1 [ICON_CULTURE]' WHERE Tag == 'TXT_KEY_BUILDING_WALLS_HELP';
+UPDATE Language_en_US SET Text = Text||'Additional bonuses from [ICON_CITY_STATE] [COLOR:200:200:200:255]City-States[ENDCOLOR]:[NEWLINE][ICON_BULLET][COLOR:200:200:200:255]Macaco[ENDCOLOR]: +1 [ICON_GREAT_GENERAL]' WHERE Tag == 'TXT_KEY_BUILDING_WALLS_HELP';
 UPDATE Language_en_US SET Text = Text||'Additional bonuses from [ICON_CITY_STATE] [COLOR:200:200:200:255]City-States[ENDCOLOR]:[NEWLINE][ICON_BULLET][COLOR:200:200:200:255]Bratislava[ENDCOLOR]: +2 [ICON_CULTURE] and +2 [ICON_TOURISM]' WHERE Tag == 'TXT_KEY_BUILDING_WRITERS_GUILD_HELP';
 --==========================================================================================================================
 -- DEFINITIONS
@@ -1091,87 +1159,101 @@ UPDATE Language_en_US SET Text = Text||'Additional bonuses from [ICON_CITY_STATE
 ---------------------------------------------------
 INSERT INTO MinorCivilizations 
 			(Type, 							ShortDescription, 						Civilopedia, 							Description, 							Adjective, 									ArtDefineTag, 					DefaultPlayerColor, 				ArtStyleType, 				ArtStyleSuffix, 	ArtStylePrefix, 	MinorCivTrait,					FixedPersonality,	Playable,	BullyUnitClass)
-SELECT 		'MINOR_CIV_ADEJE', 				'TXT_KEY_CITYSTATE_ADEJE', 				'TXT_KEY_CIV5_ADEJE_TEXT', 				'TXT_KEY_CITYSTATE_ADEJE', 				'TXT_KEY_CITYSTATE_ADEJE_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_WHITE', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MARITIME',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_AL_TIRABIN', 		'TXT_KEY_CITYSTATE_AL_TIRABIN', 		'TXT_KEY_CIV5_AL_TIRABIN_TEXT', 		'TXT_KEY_CITYSTATE_AL_TIRABIN', 		'TXT_KEY_CITYSTATE_AL_TIRABIN_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_AMBRACIA', 			'TXT_KEY_CITYSTATE_AMBRACIA', 			'TXT_KEY_CIV5_AMBRACIA_TEXT', 			'TXT_KEY_CITYSTATE_AMBRACIA', 			'TXT_KEY_CITYSTATE_AMBRACIA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_GRECO_ROMAN', 	'_MED', 			'MEDITERRANEAN', 	'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_ANANGULA', 			'TXT_KEY_CITYSTATE_ANANGULA', 			'TXT_KEY_CIV5_ANANGULA_TEXT',			'TXT_KEY_CITYSTATE_ANANGULA',			'TXT_KEY_CITYSTATE_ANANGULA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_WHITE', 			'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_CULTURED',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_ANDORRA', 			'TXT_KEY_CITYSTATE_ANDORRA', 			'TXT_KEY_CIV5_ANDORRA_TEXT', 			'TXT_KEY_CITYSTATE_ANDORRA', 			'TXT_KEY_CITYSTATE_ANDORRA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_BLUE', 			'ARTSTYLE_GRECO_ROMAN', 	'_MED', 			'MEDITERRANEAN', 	'MINOR_TRAIT_CULTURED',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_ARMAGH', 			'TXT_KEY_CITYSTATE_ARMAGH', 			'TXT_KEY_CIV5_ARMAGH_TEXT', 			'TXT_KEY_CITYSTATE_ARMAGH', 			'TXT_KEY_CITYSTATE_ARMAGH_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_AUCKLAND', 			'TXT_KEY_CITYSTATE_AUCKLAND', 			'TXT_KEY_CIV5_AUCKLAND_TEXT', 			'TXT_KEY_CITYSTATE_AUCKLAND', 			'TXT_KEY_CITYSTATE_AUCKLAND_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_BLUE', 			'ARTSTYLE_POLYNESIAN', 		'_POLYNESIA', 		'ASIAN', 			'MINOR_TRAIT_MARITIME',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_AYUTTHAYA', 			'TXT_KEY_CITYSTATE_AYUTTHAYA', 			'TXT_KEY_CIV5_AYUTTHAYA_TEXT', 			'TXT_KEY_CITYSTATE_AYUTTHAYA', 			'TXT_KEY_CITYSTATE_AYUTTHAYA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_CULTURED',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_BAGAN', 				'TXT_KEY_CITYSTATE_BAGAN', 				'TXT_KEY_CIV5_BAGAN_TEXT', 				'TXT_KEY_CITYSTATE_BAGAN', 				'TXT_KEY_CITYSTATE_BAGAN_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_ABALESSA', 			'TXT_KEY_CITYSTATE_ABALESSA', 			'TXT_KEY_CIV5_ABALESSA_TEXT', 			'TXT_KEY_CITYSTATE_ABALESSA', 			'TXT_KEY_CITYSTATE_ABALESSA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_ADEJE', 				'TXT_KEY_CITYSTATE_ADEJE', 				'TXT_KEY_CIV5_ADEJE_TEXT', 				'TXT_KEY_CITYSTATE_ADEJE', 				'TXT_KEY_CITYSTATE_ADEJE_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_WHITE', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MARITIME',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_AL_TIRABIN', 		'TXT_KEY_CITYSTATE_AL_TIRABIN', 		'TXT_KEY_CIV5_AL_TIRABIN_TEXT', 		'TXT_KEY_CITYSTATE_AL_TIRABIN', 		'TXT_KEY_CITYSTATE_AL_TIRABIN_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_AMBRACIA', 			'TXT_KEY_CITYSTATE_AMBRACIA', 			'TXT_KEY_CIV5_AMBRACIA_TEXT', 			'TXT_KEY_CITYSTATE_AMBRACIA', 			'TXT_KEY_CITYSTATE_AMBRACIA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_GRECO_ROMAN', 	'_MED', 			'MEDITERRANEAN', 	'MINOR_TRAIT_MILITARISTIC',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_ANANGULA', 			'TXT_KEY_CITYSTATE_ANANGULA', 			'TXT_KEY_CIV5_ANANGULA_TEXT',			'TXT_KEY_CITYSTATE_ANANGULA',			'TXT_KEY_CITYSTATE_ANANGULA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_WHITE', 			'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_CULTURED',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_ANDORRA', 			'TXT_KEY_CITYSTATE_ANDORRA', 			'TXT_KEY_CIV5_ANDORRA_TEXT', 			'TXT_KEY_CITYSTATE_ANDORRA', 			'TXT_KEY_CITYSTATE_ANDORRA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_BLUE', 			'ARTSTYLE_GRECO_ROMAN', 	'_MED', 			'MEDITERRANEAN', 	'MINOR_TRAIT_CULTURED',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_ARMAGH', 			'TXT_KEY_CITYSTATE_ARMAGH', 			'TXT_KEY_CIV5_ARMAGH_TEXT', 			'TXT_KEY_CITYSTATE_ARMAGH', 			'TXT_KEY_CITYSTATE_ARMAGH_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_RELIGIOUS',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_AUCKLAND', 			'TXT_KEY_CITYSTATE_AUCKLAND', 			'TXT_KEY_CIV5_AUCKLAND_TEXT', 			'TXT_KEY_CITYSTATE_AUCKLAND', 			'TXT_KEY_CITYSTATE_AUCKLAND_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_BLUE', 			'ARTSTYLE_POLYNESIAN', 		'_POLYNESIA', 		'ASIAN', 			'MINOR_TRAIT_MARITIME',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_AYUTTHAYA', 			'TXT_KEY_CITYSTATE_AYUTTHAYA', 			'TXT_KEY_CIV5_AYUTTHAYA_TEXT', 			'TXT_KEY_CITYSTATE_AYUTTHAYA', 			'TXT_KEY_CITYSTATE_AYUTTHAYA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_CULTURED',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_BAGAN', 				'TXT_KEY_CITYSTATE_BAGAN', 				'TXT_KEY_CIV5_BAGAN_TEXT', 				'TXT_KEY_CITYSTATE_BAGAN', 				'TXT_KEY_CITYSTATE_BAGAN_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
 SELECT 		'MINOR_CIV_BAGHCASARAY', 		'TXT_KEY_CITYSTATE_BAGHCASARAY', 		'TXT_KEY_CIV5_BAGHCASARAY_TEXT', 		'TXT_KEY_CITYSTATE_BAGHCASARAY', 		'TXT_KEY_CITYSTATE_BAGHCASARAY_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_EUROPEAN', 		'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_BALKH', 				'TXT_KEY_CITYSTATE_BALKH', 				'TXT_KEY_CIV5_BALKH_TEXT', 				'TXT_KEY_CITYSTATE_BALKH', 				'TXT_KEY_CITYSTATE_BALKH_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_BALLEY_CHASHTAL', 	'TXT_KEY_CITYSTATE_BALLEY_CHASHTAL', 	'TXT_KEY_CIV5_BALLEY_CHASHTAL_TEXT', 	'TXT_KEY_CITYSTATE_BALLEY_CHASHTAL', 	'TXT_KEY_CITYSTATE_BALLEY_CHASHTAL_ADJ', 	'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_MARITIME',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_BEDULU', 			'TXT_KEY_CITYSTATE_BEDULU', 			'TXT_KEY_CIV5_BEDULU_TEXT', 			'TXT_KEY_CITYSTATE_BEDULU', 			'TXT_KEY_CITYSTATE_BEDULU_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_CANOSSA', 			'TXT_KEY_CITYSTATE_CANOSSA', 			'TXT_KEY_CIV5_CANOSSA_TEXT', 			'TXT_KEY_CITYSTATE_CANOSSA', 			'TXT_KEY_CITYSTATE_CANOSSA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_GRECO_ROMAN', 	'_MED', 			'MEDITERRANEAN', 	'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_CHEVAK', 			'TXT_KEY_CITYSTATE_CHEVAK', 			'TXT_KEY_CIV5_CHEVAK_TEXT', 			'TXT_KEY_CITYSTATE_CHEVAK', 			'TXT_KEY_CITYSTATE_CHEVAK_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_MARITIME',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_CLERMONT', 			'TXT_KEY_CITYSTATE_CLERMONT', 			'TXT_KEY_CIV5_CLERMONT_TEXT', 			'TXT_KEY_CITYSTATE_CLERMONT', 			'TXT_KEY_CITYSTATE_CLERMONT_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_WHITE', 			'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_DAKKAR', 			'TXT_KEY_CITYSTATE_DAKKAR', 			'TXT_KEY_CIV5_DAKKAR_TEXT', 			'TXT_KEY_CITYSTATE_DAKKAR', 			'TXT_KEY_CITYSTATE_DAKKAR_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_DALI', 				'TXT_KEY_CITYSTATE_DALI', 				'TXT_KEY_CIV5_DALI_TEXT', 				'TXT_KEY_CITYSTATE_DALI', 				'TXT_KEY_CITYSTATE_DALI_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_PEACH', 			'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_DANO', 				'TXT_KEY_CITYSTATE_DANO', 				'TXT_KEY_CIV5_DANO_TEXT', 				'TXT_KEY_CITYSTATE_DANO', 				'TXT_KEY_CITYSTATE_DANO_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_MIDDLE_BLUE', 	'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_DJIBOUTI', 			'TXT_KEY_CITYSTATE_DJIBOUTI', 			'TXT_KEY_CIV5_DJIBOUTI_TEXT', 			'TXT_KEY_CITYSTATE_DJIBOUTI', 			'TXT_KEY_CITYSTATE_DJIBOUTI_ADJ', 			'ART_DEF_CIVILIZATION_MINOR',	'PLAYERCOLOR_MINOR_PEACH', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MARITIME',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_DODOMA', 			'TXT_KEY_CITYSTATE_DODOMA', 			'TXT_KEY_CIV5_DODOMA_TEXT', 			'TXT_KEY_CITYSTATE_DODOMA', 			'TXT_KEY_CITYSTATE_DODOMA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_YELLOW', 		'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_DOUALA', 			'TXT_KEY_CITYSTATE_DOUALA', 			'TXT_KEY_CIV5_DOUALA_TEXT', 			'TXT_KEY_CITYSTATE_DOUALA', 			'TXT_KEY_CITYSTATE_DOUALA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_MIDDLE_BLUE', 	'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_FAYA', 				'TXT_KEY_CITYSTATE_FAYA', 				'TXT_KEY_CIV5_FAYA_TEXT', 				'TXT_KEY_CITYSTATE_FAYA', 				'TXT_KEY_CITYSTATE_FAYA_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_GRANADA', 			'TXT_KEY_CITYSTATE_GRANADA', 			'TXT_KEY_CIV5_GRANADA_TEXT', 			'TXT_KEY_CITYSTATE_GRANADA', 			'TXT_KEY_CITYSTATE_GRANADA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_YELLOW', 		'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_GWYNEDD', 			'TXT_KEY_CITYSTATE_GWYNEDD', 			'TXT_KEY_CIV5_GWYNEDD_TEXT', 			'TXT_KEY_CITYSTATE_GWYNEDD', 			'TXT_KEY_CITYSTATE_GWYNEDD_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_CULTURED',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_HANUABADA', 			'TXT_KEY_CITYSTATE_HANUABADA', 			'TXT_KEY_CIV5_HANUABADA_TEXT', 			'TXT_KEY_CITYSTATE_HANUABADA', 			'TXT_KEY_CITYSTATE_HANUABADA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_PURPLE', 	'ARTSTYLE_POLYNESIAN', 		'_POLYNESIA', 		'ASIAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_HONDURAS', 			'TXT_KEY_CITYSTATE_HONDURAS', 			'TXT_KEY_CIV5_HONDURAS_TEXT', 			'TXT_KEY_CITYSTATE_HONDURAS', 			'TXT_KEY_CITYSTATE_HONDURAS_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_MERCANTILE',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_HONIARA', 			'TXT_KEY_CITYSTATE_HONIARA', 			'TXT_KEY_CIV5_HONIARA_TEXT', 			'TXT_KEY_CITYSTATE_HONIARA', 			'TXT_KEY_CITYSTATE_HONIARA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_PURPLE', 	'ARTSTYLE_POLYNESIAN', 		'_POLYNESIA', 		'ASIAN', 			'MINOR_TRAIT_MARITIME',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_IRUNEA', 			'TXT_KEY_CITYSTATE_IRUNEA', 			'TXT_KEY_CIV5_IRUNEA_TEXT', 			'TXT_KEY_CITYSTATE_IRUNEA', 			'TXT_KEY_CITYSTATE_IRUNEA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_PURPLE', 	'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_MARITIME',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_ISKANWAYA', 			'TXT_KEY_CITYSTATE_ISKANWAYA', 			'TXT_KEY_CIV5_ISKANWAYA_TEXT', 			'TXT_KEY_CITYSTATE_ISKANWAYA', 			'TXT_KEY_CITYSTATE_ISKANWAYA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_BLUE', 			'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_JETARKTE', 			'TXT_KEY_CITYSTATE_JETARKTE', 			'TXT_KEY_CIV5_JETARKTE_TEXT',			'TXT_KEY_CITYSTATE_JETARKTE',			'TXT_KEY_CITYSTATE_JETARKTE_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_YELLOW',			'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_MARITIME',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_JUYUBIT', 			'TXT_KEY_CITYSTATE_JUYUBIT', 			'TXT_KEY_CIV5_JUYUBIT_TEXT',			'TXT_KEY_CITYSTATE_JUYUBIT',			'TXT_KEY_CITYSTATE_JUYUBIT_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN',			'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_MARITIME',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_KAGYRGYN', 			'TXT_KEY_CITYSTATE_KAGYRGYN', 			'TXT_KEY_CIV5_KAGYRGYN_TEXT', 			'TXT_KEY_CITYSTATE_KAGYRGYN', 			'TXT_KEY_CITYSTATE_KAGYRGYN_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_PEACH', 			'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MARITIME',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_KARASJOHKA', 		'TXT_KEY_CITYSTATE_KARASJOHKA', 		'TXT_KEY_CIV5_KARASJOHKA_TEXT', 		'TXT_KEY_CITYSTATE_KARASJOHKA', 		'TXT_KEY_CITYSTATE_KARASJOHKA_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_PEACH', 			'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_CULTURED',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_KARYES', 			'TXT_KEY_CITYSTATE_KARYES', 			'TXT_KEY_CIV5_KARYES_TEXT', 			'TXT_KEY_CITYSTATE_KARYES', 			'TXT_KEY_CITYSTATE_KARYES_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_GRECO_ROMAN', 	'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_KATENDE', 			'TXT_KEY_CITYSTATE_KATENDE', 			'TXT_KEY_CIV5_KATENDE_TEXT', 			'TXT_KEY_CITYSTATE_KATENDE', 			'TXT_KEY_CITYSTATE_KATENDE_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_PURPLE', 	'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_CULTURED',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_KIGALI', 			'TXT_KEY_CITYSTATE_KIGALI', 			'TXT_KEY_CIV5_KIGALI_TEXT', 			'TXT_KEY_CITYSTATE_KIGALI', 			'TXT_KEY_CITYSTATE_KIGALI_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_LACONIA', 			'TXT_KEY_CITYSTATE_LACONIA', 			'TXT_KEY_CIV5_LACONIA_TEXT', 			'TXT_KEY_CITYSTATE_LACONIA', 			'TXT_KEY_CITYSTATE_LACONIA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_GRECO_ROMAN', 	'_MED', 			'MEDITERRANEAN', 	'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_LAHORE', 			'TXT_KEY_CITYSTATE_LAHORE', 			'TXT_KEY_CIV5_LAHORE_TEXT', 			'TXT_KEY_CITYSTATE_LAHORE', 			'TXT_KEY_CITYSTATE_LAHORE_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_WHITE', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_LEVUKA', 			'TXT_KEY_CITYSTATE_LEVUKA', 			'TXT_KEY_CIV5_LEVUKA_TEXT', 			'TXT_KEY_CITYSTATE_LEVUKA', 			'TXT_KEY_CITYSTATE_LEVUKA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_BLUE', 			'ARTSTYLE_POLYNESIAN', 		'_POLYNESIA', 		'ASIAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_LONGYAN', 			'TXT_KEY_CITYSTATE_LONGYAN', 			'TXT_KEY_CIV5_LONGYAN_TEXT', 			'TXT_KEY_CITYSTATE_LONGYAN', 			'TXT_KEY_CITYSTATE_LONGYAN_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_PURPLE', 	'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_MANAGUA', 			'TXT_KEY_CITYSTATE_MANAGUA', 			'TXT_KEY_CIV5_MANAGUA_TEXT', 			'TXT_KEY_CITYSTATE_MANAGUA', 			'TXT_KEY_CITYSTATE_MANAGUA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_PEACH', 			'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_CULTURED',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_MATONJENI', 			'TXT_KEY_CITYSTATE_MATONJENI', 			'TXT_KEY_CIV5_MATONJENI_TEXT', 			'TXT_KEY_CITYSTATE_MATONJENI', 			'TXT_KEY_CITYSTATE_MATONJENI_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_YELLOW', 		'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_MBABANE', 			'TXT_KEY_CITYSTATE_MBABANE', 			'TXT_KEY_CIV5_MBABANE_TEXT', 			'TXT_KEY_CITYSTATE_MBABANE', 			'TXT_KEY_CITYSTATE_MBABANE_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_WHITE', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_MENDYARRUP', 		'TXT_KEY_CITYSTATE_MENDYARRUP', 		'TXT_KEY_CIV5_MENDYARRUP_TEXT', 		'TXT_KEY_CITYSTATE_MENDYARRUP', 		'TXT_KEY_CITYSTATE_MENDYARRUP_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_MIDDLE_PURPLE', 	'ARTSTYLE_POLYNESIAN', 		'_POLYNESIA', 		'ASIAN', 			'MINOR_TRAIT_MARITIME',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_MUISCA', 			'TXT_KEY_CITYSTATE_MUISCA', 			'TXT_KEY_CIV5_MUISCA_TEXT', 			'TXT_KEY_CITYSTATE_MUISCA', 			'TXT_KEY_CITYSTATE_MUISCA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_WHITE', 			'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_MERCANTILE',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_MULTAN', 			'TXT_KEY_CITYSTATE_MULTAN', 			'TXT_KEY_CIV5_MULTAN_TEXT', 			'TXT_KEY_CITYSTATE_MULTAN', 			'TXT_KEY_CITYSTATE_MULTAN_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_MUSCAT', 			'TXT_KEY_CITYSTATE_MUSCAT', 			'TXT_KEY_CIV5_MUSCAT_TEXT', 			'TXT_KEY_CITYSTATE_MUSCAT', 			'TXT_KEY_CITYSTATE_MUSCAT_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_MUTITJULU', 			'TXT_KEY_CITYSTATE_MUTITJULU', 			'TXT_KEY_CIV5_MUTITJULU_TEXT', 			'TXT_KEY_CITYSTATE_MUTITJULU', 			'TXT_KEY_CITYSTATE_MUTITJULU_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_MIDDLE_PURPLE', 	'ARTSTYLE_POLYNESIAN', 		'_POLYNESIA', 		'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_NAN_MADOL', 			'TXT_KEY_CITYSTATE_NAN_MADOL', 			'TXT_KEY_CIV5_NAN_MADOL_TEXT', 			'TXT_KEY_CITYSTATE_NAN_MADOL',			'TXT_KEY_CITYSTATE_NAN_MADOL_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_PEACH', 			'ARTSTYLE_POLYNESIAN', 		'_POLYNESIA', 		'ASIAN', 			'MINOR_TRAIT_CULTURED',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_NGAZARGAMU', 		'TXT_KEY_CITYSTATE_NGAZARGAMU', 		'TXT_KEY_CIV5_NGAZARGAMU_TEXT', 		'TXT_KEY_CITYSTATE_NGAZARGAMU', 		'TXT_KEY_CITYSTATE_NGAZARGAMU_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_PURPLE', 	'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_NYARYANA_MARQ', 		'TXT_KEY_CITYSTATE_NYARYANA_MARQ', 		'TXT_KEY_CIV5_NYARYANA_MARQ_TEXT', 		'TXT_KEY_CITYSTATE_NYARYANA_MARQ', 		'TXT_KEY_CITYSTATE_NYARYANA_MARQ_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GRAY', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_CULTURED',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_OC_EO', 				'TXT_KEY_CITYSTATE_OC_EO', 				'TXT_KEY_CIV5_OC_EO_TEXT', 				'TXT_KEY_CITYSTATE_OC_EO', 				'TXT_KEY_CITYSTATE_OC_EO_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_ODENSO', 			'TXT_KEY_CITYSTATE_ODENSO', 			'TXT_KEY_CIV5_ODENSO_TEXT', 			'TXT_KEY_CITYSTATE_ODENSO', 			'TXT_KEY_CITYSTATE_ODENSO_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_MIDDLE_PURPLE', 	'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_OUIDAH', 			'TXT_KEY_CITYSTATE_OUIDAH', 			'TXT_KEY_CIV5_OUIDAH_TEXT', 			'TXT_KEY_CITYSTATE_OUIDAH', 			'TXT_KEY_CITYSTATE_OUIDAH_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_BLUE', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_PALMYRA', 			'TXT_KEY_CITYSTATE_PALMYRA', 			'TXT_KEY_CIV5_PALMYRA_TEXT', 			'TXT_KEY_CITYSTATE_PALMYRA', 			'TXT_KEY_CITYSTATE_PALMYRA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_PEACH', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_PELYM', 				'TXT_KEY_CITYSTATE_PELYM', 				'TXT_KEY_CIV5_PELYM_TEXT', 				'TXT_KEY_CITYSTATE_PELYM', 				'TXT_KEY_CITYSTATE_PELYM_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_PHANOTEUS', 			'TXT_KEY_CITYSTATE_PHANOTEUS', 			'TXT_KEY_CIV5_PHANOTEUS_TEXT', 			'TXT_KEY_CITYSTATE_PHANOTEUS', 			'TXT_KEY_CITYSTATE_PHANOTEUS_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_BLUE', 	'ARTSTYLE_GRECO_ROMAN', 	'_MED', 			'MEDITERRANEAN', 	'MINOR_TRAIT_MERCANTILE',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_POKROVKA', 			'TXT_KEY_CITYSTATE_POKROVKA', 			'TXT_KEY_CIV5_POKROVKA_TEXT', 			'TXT_KEY_CITYSTATE_POKROVKA', 			'TXT_KEY_CITYSTATE_POKROVKA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_YELLOW', 	'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_QUELIMANE', 			'TXT_KEY_CITYSTATE_QUELIMANE', 			'TXT_KEY_CIV5_QUELIMANE_TEXT', 			'TXT_KEY_CITYSTATE_QUELIMANE', 			'TXT_KEY_CITYSTATE_QUELIMANE_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_PEACH', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_RISHIKESH', 			'TXT_KEY_CITYSTATE_RISHIKESH', 			'TXT_KEY_CIV5_RISHIKESH_TEXT', 			'TXT_KEY_CITYSTATE_RISHIKESH', 			'TXT_KEY_CITYSTATE_RISHIKESH_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GRAY', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_SADDARVAZEH', 		'TXT_KEY_CITYSTATE_SADDARVAZEH', 		'TXT_KEY_CIV5_SADDARVAZEH_TEXT', 		'TXT_KEY_CITYSTATE_SADDARVAZEH',		'TXT_KEY_CITYSTATE_SADDARVAZEH_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_PEACH', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_SANAA', 				'TXT_KEY_CITYSTATE_SANAA', 				'TXT_KEY_CIV5_SANAA_TEXT', 				'TXT_KEY_CITYSTATE_SANAA', 				'TXT_KEY_CITYSTATE_SANAA_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_YELLOW', 	'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_SANANDAJ', 			'TXT_KEY_CITYSTATE_SANANDAJ', 			'TXT_KEY_CIV5_SANANDAJ_TEXT', 			'TXT_KEY_CITYSTATE_SANANDAJ', 			'TXT_KEY_CITYSTATE_SANANDAJ_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_WHITE', 			'ARTSTYLE_EUROPEAN', 		'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_CULTURED',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_SANTO_DOMINGO', 		'TXT_KEY_CITYSTATE_SANTO_DOMINGO', 		'TXT_KEY_CIV5_SANTO_DOMINGO_TEXT', 		'TXT_KEY_CITYSTATE_SANTO_DOMINGO', 		'TXT_KEY_CITYSTATE_SANTO_DOMINGO_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_BLUE', 	'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_MERCANTILE',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_SARNATH', 			'TXT_KEY_CITYSTATE_SARNATH', 			'TXT_KEY_CIV5_SARNATH_TEXT', 			'TXT_KEY_CITYSTATE_SARNATH', 			'TXT_KEY_CITYSTATE_SARNATH_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_YELLOW', 	'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_SGANG_GWAAY', 		'TXT_KEY_CITYSTATE_SGANG_GWAAY', 		'TXT_KEY_CIV5_SGANG_GWAAY_TEXT',		'TXT_KEY_CITYSTATE_SGANG_GWAAY',		'TXT_KEY_CITYSTATE_SGANG_GWAAY_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_MARITIME',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_SIERRA_LEONE', 		'TXT_KEY_CITYSTATE_SIERRA_LEONE', 		'TXT_KEY_CIV5_SIERRA_LEONE_TEXT',		'TXT_KEY_CITYSTATE_SIERRA_LEONE',		'TXT_KEY_CITYSTATE_SIERRA_LEONE_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_MIDDLE_BLUE', 	'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_CULTURED',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_SUCEAVA', 			'TXT_KEY_CITYSTATE_SUCEAVA', 			'TXT_KEY_CIV5_SUCEAVA_TEXT', 			'TXT_KEY_CITYSTATE_SUCEAVA', 			'TXT_KEY_CITYSTATE_SUCEAVA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_MIDDLE_PURPLE', 	'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_SURREY', 			'TXT_KEY_CITYSTATE_SURREY', 			'TXT_KEY_CIV5_SURREY_TEXT', 			'TXT_KEY_CITYSTATE_SURREY', 			'TXT_KEY_CITYSTATE_SURREY_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GRAY', 			'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_TAIWAN', 			'TXT_KEY_CITYSTATE_TAIWAN', 			'TXT_KEY_CIV5_TAIWAN_TEXT', 			'TXT_KEY_CITYSTATE_TAIWAN', 			'TXT_KEY_CITYSTATE_TAIWAN_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MARITIME',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_TBILISI', 			'TXT_KEY_CITYSTATE_TBILISI', 			'TXT_KEY_CIV5_TBILISI_TEXT', 			'TXT_KEY_CITYSTATE_TBILISI', 			'TXT_KEY_CITYSTATE_TBILISI_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GRAY', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_THIMPHU', 			'TXT_KEY_CITYSTATE_THIMPHU', 			'TXT_KEY_CIV5_THIMPHU_TEXT', 			'TXT_KEY_CITYSTATE_THIMPHU', 			'TXT_KEY_CITYSTATE_THIMPHU_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_MIDDLE_BLUE', 	'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_CULTURED',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_TIWANAKU', 			'TXT_KEY_CITYSTATE_TIWANAKU', 			'TXT_KEY_CIV5_TIWANAKU_TEXT', 			'TXT_KEY_CITYSTATE_TIWANAKU', 			'TXT_KEY_CITYSTATE_TIWANAKU_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_YELLOW', 	'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_TUNIS', 				'TXT_KEY_CITYSTATE_TUNIS', 				'TXT_KEY_CIV5_TUNIS_TEXT', 				'TXT_KEY_CITYSTATE_TUNIS', 				'TXT_KEY_CITYSTATE_TUNIS_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GRAY', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_VADUZ', 				'TXT_KEY_CITYSTATE_VADUZ', 				'TXT_KEY_CIV5_VADUZ_TEXT', 				'TXT_KEY_CITYSTATE_VADUZ', 				'TXT_KEY_CITYSTATE_VADUZ_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_CULTURED',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_WOOTEI_NIICIE', 		'TXT_KEY_CITYSTATE_WOOTEI_NIICIE', 		'TXT_KEY_CIV5_WOOTEI_NIICIE_TEXT',		'TXT_KEY_CITYSTATE_WOOTEI_NIICIE',		'TXT_KEY_CITYSTATE_WOOTEI_NIICIE_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
-SELECT 		'MINOR_CIV_YANGCHENG', 			'TXT_KEY_CITYSTATE_YANGCHENG', 			'TXT_KEY_CIV5_YANGCHENG_TEXT', 			'TXT_KEY_CITYSTATE_YANGCHENG', 			'TXT_KEY_CITYSTATE_YANGCHENG_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GRAY', 			'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER';
+SELECT 		'MINOR_CIV_BALKH', 				'TXT_KEY_CITYSTATE_BALKH', 				'TXT_KEY_CIV5_BALKH_TEXT', 				'TXT_KEY_CITYSTATE_BALKH', 				'TXT_KEY_CITYSTATE_BALKH_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_BALLEY_CHASHTAL', 	'TXT_KEY_CITYSTATE_BALLEY_CHASHTAL', 	'TXT_KEY_CIV5_BALLEY_CHASHTAL_TEXT', 	'TXT_KEY_CITYSTATE_BALLEY_CHASHTAL', 	'TXT_KEY_CITYSTATE_BALLEY_CHASHTAL_ADJ', 	'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_MARITIME',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_BEDULU', 			'TXT_KEY_CITYSTATE_BEDULU', 			'TXT_KEY_CIV5_BEDULU_TEXT', 			'TXT_KEY_CITYSTATE_BEDULU', 			'TXT_KEY_CITYSTATE_BEDULU_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_CAMUTINS', 			'TXT_KEY_CITYSTATE_CAMUTINS', 			'TXT_KEY_CIV5_CAMUTINS_TEXT',			'TXT_KEY_CITYSTATE_CAMUTINS',			'TXT_KEY_CITYSTATE_CAMUTINS_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN',			'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_CANOSSA', 			'TXT_KEY_CITYSTATE_CANOSSA', 			'TXT_KEY_CIV5_CANOSSA_TEXT', 			'TXT_KEY_CITYSTATE_CANOSSA', 			'TXT_KEY_CITYSTATE_CANOSSA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_GRECO_ROMAN', 	'_MED', 			'MEDITERRANEAN', 	'MINOR_TRAIT_RELIGIOUS',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_CHEVAK', 			'TXT_KEY_CITYSTATE_CHEVAK', 			'TXT_KEY_CIV5_CHEVAK_TEXT', 			'TXT_KEY_CITYSTATE_CHEVAK', 			'TXT_KEY_CITYSTATE_CHEVAK_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_MARITIME',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_CLERMONT', 			'TXT_KEY_CITYSTATE_CLERMONT', 			'TXT_KEY_CIV5_CLERMONT_TEXT', 			'TXT_KEY_CITYSTATE_CLERMONT', 			'TXT_KEY_CITYSTATE_CLERMONT_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_WHITE', 			'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_MILITARISTIC',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_DAKKAR', 			'TXT_KEY_CITYSTATE_DAKKAR', 			'TXT_KEY_CIV5_DAKKAR_TEXT', 			'TXT_KEY_CITYSTATE_DAKKAR', 			'TXT_KEY_CITYSTATE_DAKKAR_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_DALI', 				'TXT_KEY_CITYSTATE_DALI', 				'TXT_KEY_CIV5_DALI_TEXT', 				'TXT_KEY_CITYSTATE_DALI', 				'TXT_KEY_CITYSTATE_DALI_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_PEACH', 			'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_DANO', 				'TXT_KEY_CITYSTATE_DANO', 				'TXT_KEY_CIV5_DANO_TEXT', 				'TXT_KEY_CITYSTATE_DANO', 				'TXT_KEY_CITYSTATE_DANO_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_MIDDLE_BLUE', 	'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_DJIBOUTI', 			'TXT_KEY_CITYSTATE_DJIBOUTI', 			'TXT_KEY_CIV5_DJIBOUTI_TEXT', 			'TXT_KEY_CITYSTATE_DJIBOUTI', 			'TXT_KEY_CITYSTATE_DJIBOUTI_ADJ', 			'ART_DEF_CIVILIZATION_MINOR',	'PLAYERCOLOR_MINOR_PEACH', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MARITIME',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_DODOMA', 			'TXT_KEY_CITYSTATE_DODOMA', 			'TXT_KEY_CIV5_DODOMA_TEXT', 			'TXT_KEY_CITYSTATE_DODOMA', 			'TXT_KEY_CITYSTATE_DODOMA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_YELLOW', 		'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_DOUALA', 			'TXT_KEY_CITYSTATE_DOUALA', 			'TXT_KEY_CIV5_DOUALA_TEXT', 			'TXT_KEY_CITYSTATE_DOUALA', 			'TXT_KEY_CITYSTATE_DOUALA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_MIDDLE_BLUE', 	'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_FAYA', 				'TXT_KEY_CITYSTATE_FAYA', 				'TXT_KEY_CIV5_FAYA_TEXT', 				'TXT_KEY_CITYSTATE_FAYA', 				'TXT_KEY_CITYSTATE_FAYA_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_GONDAR', 			'TXT_KEY_CITYSTATE_GONDAR', 			'TXT_KEY_CIV5_GONDAR_TEXT', 			'TXT_KEY_CITYSTATE_GONDAR', 			'TXT_KEY_CITYSTATE_GONDAR_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_GRANADA', 			'TXT_KEY_CITYSTATE_GRANADA', 			'TXT_KEY_CIV5_GRANADA_TEXT', 			'TXT_KEY_CITYSTATE_GRANADA', 			'TXT_KEY_CITYSTATE_GRANADA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_YELLOW', 		'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_MILITARISTIC',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_GWYNEDD', 			'TXT_KEY_CITYSTATE_GWYNEDD', 			'TXT_KEY_CIV5_GWYNEDD_TEXT', 			'TXT_KEY_CITYSTATE_GWYNEDD', 			'TXT_KEY_CITYSTATE_GWYNEDD_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_CULTURED',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_HANUABADA', 			'TXT_KEY_CITYSTATE_HANUABADA', 			'TXT_KEY_CIV5_HANUABADA_TEXT', 			'TXT_KEY_CITYSTATE_HANUABADA', 			'TXT_KEY_CITYSTATE_HANUABADA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_PURPLE', 	'ARTSTYLE_POLYNESIAN', 		'_POLYNESIA', 		'ASIAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_HONDURAS', 			'TXT_KEY_CITYSTATE_HONDURAS', 			'TXT_KEY_CIV5_HONDURAS_TEXT', 			'TXT_KEY_CITYSTATE_HONDURAS', 			'TXT_KEY_CITYSTATE_HONDURAS_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_MERCANTILE',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_HONIARA', 			'TXT_KEY_CITYSTATE_HONIARA', 			'TXT_KEY_CIV5_HONIARA_TEXT', 			'TXT_KEY_CITYSTATE_HONIARA', 			'TXT_KEY_CITYSTATE_HONIARA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_PURPLE', 	'ARTSTYLE_POLYNESIAN', 		'_POLYNESIA', 		'ASIAN', 			'MINOR_TRAIT_MARITIME',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_IRUNEA', 			'TXT_KEY_CITYSTATE_IRUNEA', 			'TXT_KEY_CIV5_IRUNEA_TEXT', 			'TXT_KEY_CITYSTATE_IRUNEA', 			'TXT_KEY_CITYSTATE_IRUNEA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_PURPLE', 	'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_MARITIME',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_ISKANWAYA', 			'TXT_KEY_CITYSTATE_ISKANWAYA', 			'TXT_KEY_CIV5_ISKANWAYA_TEXT', 			'TXT_KEY_CITYSTATE_ISKANWAYA', 			'TXT_KEY_CITYSTATE_ISKANWAYA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_BLUE', 			'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_RELIGIOUS',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_JETARKTE', 			'TXT_KEY_CITYSTATE_JETARKTE', 			'TXT_KEY_CIV5_JETARKTE_TEXT',			'TXT_KEY_CITYSTATE_JETARKTE',			'TXT_KEY_CITYSTATE_JETARKTE_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_YELLOW',			'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_MARITIME',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_JUYUBIT', 			'TXT_KEY_CITYSTATE_JUYUBIT', 			'TXT_KEY_CIV5_JUYUBIT_TEXT',			'TXT_KEY_CITYSTATE_JUYUBIT',			'TXT_KEY_CITYSTATE_JUYUBIT_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN',			'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_MARITIME',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_KAGYRGYN', 			'TXT_KEY_CITYSTATE_KAGYRGYN', 			'TXT_KEY_CIV5_KAGYRGYN_TEXT', 			'TXT_KEY_CITYSTATE_KAGYRGYN', 			'TXT_KEY_CITYSTATE_KAGYRGYN_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_PEACH', 			'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MARITIME',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_KARASJOHKA', 		'TXT_KEY_CITYSTATE_KARASJOHKA', 		'TXT_KEY_CIV5_KARASJOHKA_TEXT', 		'TXT_KEY_CITYSTATE_KARASJOHKA', 		'TXT_KEY_CITYSTATE_KARASJOHKA_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_PEACH', 			'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_CULTURED',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_KARIATEBIKE', 		'TXT_KEY_CITYSTATE_KARIATEBIKE', 		'TXT_KEY_CIV5_KARIATEBIKE_TEXT', 		'TXT_KEY_CITYSTATE_KARIATEBIKE', 		'TXT_KEY_CITYSTATE_KARIATEBIKE_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_POLYNESIAN', 		'_POLYNESIA', 		'ASIAN', 			'MINOR_TRAIT_MARITIME',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_KARYES', 			'TXT_KEY_CITYSTATE_KARYES', 			'TXT_KEY_CIV5_KARYES_TEXT', 			'TXT_KEY_CITYSTATE_KARYES', 			'TXT_KEY_CITYSTATE_KARYES_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_GRECO_ROMAN', 	'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_RELIGIOUS',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_KATENDE', 			'TXT_KEY_CITYSTATE_KATENDE', 			'TXT_KEY_CIV5_KATENDE_TEXT', 			'TXT_KEY_CITYSTATE_KATENDE', 			'TXT_KEY_CITYSTATE_KATENDE_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_PURPLE', 	'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_CULTURED',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_KIGALI', 			'TXT_KEY_CITYSTATE_KIGALI', 			'TXT_KEY_CIV5_KIGALI_TEXT', 			'TXT_KEY_CITYSTATE_KIGALI', 			'TXT_KEY_CITYSTATE_KIGALI_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_KITCISIPIRINI', 		'TXT_KEY_CITYSTATE_KITCISIPIRINI', 		'TXT_KEY_CIV5_KITCISIPIRINI_TEXT', 		'TXT_KEY_CITYSTATE_KITCISIPIRINI', 		'TXT_KEY_CITYSTATE_KITCISIPIRINI_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_CULTURED',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_LACONIA', 			'TXT_KEY_CITYSTATE_LACONIA', 			'TXT_KEY_CIV5_LACONIA_TEXT', 			'TXT_KEY_CITYSTATE_LACONIA', 			'TXT_KEY_CITYSTATE_LACONIA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_GRECO_ROMAN', 	'_MED', 			'MEDITERRANEAN', 	'MINOR_TRAIT_MILITARISTIC',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_LAHORE', 			'TXT_KEY_CITYSTATE_LAHORE', 			'TXT_KEY_CIV5_LAHORE_TEXT', 			'TXT_KEY_CITYSTATE_LAHORE', 			'TXT_KEY_CITYSTATE_LAHORE_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_WHITE', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_LEVUKA', 			'TXT_KEY_CITYSTATE_LEVUKA', 			'TXT_KEY_CIV5_LEVUKA_TEXT', 			'TXT_KEY_CITYSTATE_LEVUKA', 			'TXT_KEY_CITYSTATE_LEVUKA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_BLUE', 			'ARTSTYLE_POLYNESIAN', 		'_POLYNESIA', 		'ASIAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_LONGYAN', 			'TXT_KEY_CITYSTATE_LONGYAN', 			'TXT_KEY_CIV5_LONGYAN_TEXT', 			'TXT_KEY_CITYSTATE_LONGYAN', 			'TXT_KEY_CITYSTATE_LONGYAN_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_PURPLE', 	'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_LUXEMBOURG', 		'TXT_KEY_CITYSTATE_LUXEMBOURG', 		'TXT_KEY_CIV5_LUXEMBOURG_TEXT', 		'TXT_KEY_CITYSTATE_LUXEMBOURG', 		'TXT_KEY_CITYSTATE_LUXEMBOURG_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_YELLOW', 		'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_MERCANTILE',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_MACACO', 			'TXT_KEY_CITYSTATE_MACACO', 			'TXT_KEY_CIV5_MACACO_TEXT',				'TXT_KEY_CITYSTATE_MACACO',				'TXT_KEY_CITYSTATE_MACACO_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_PEACH',			'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_MANAGUA', 			'TXT_KEY_CITYSTATE_MANAGUA', 			'TXT_KEY_CIV5_MANAGUA_TEXT', 			'TXT_KEY_CITYSTATE_MANAGUA', 			'TXT_KEY_CITYSTATE_MANAGUA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_PEACH', 			'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_CULTURED',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_MATONJENI', 			'TXT_KEY_CITYSTATE_MATONJENI', 			'TXT_KEY_CIV5_MATONJENI_TEXT', 			'TXT_KEY_CITYSTATE_MATONJENI', 			'TXT_KEY_CITYSTATE_MATONJENI_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_YELLOW', 		'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_MBABANE', 			'TXT_KEY_CITYSTATE_MBABANE', 			'TXT_KEY_CIV5_MBABANE_TEXT', 			'TXT_KEY_CITYSTATE_MBABANE', 			'TXT_KEY_CITYSTATE_MBABANE_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_WHITE', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_MENDYARRUP', 		'TXT_KEY_CITYSTATE_MENDYARRUP', 		'TXT_KEY_CIV5_MENDYARRUP_TEXT', 		'TXT_KEY_CITYSTATE_MENDYARRUP', 		'TXT_KEY_CITYSTATE_MENDYARRUP_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_MIDDLE_PURPLE', 	'ARTSTYLE_POLYNESIAN', 		'_POLYNESIA', 		'ASIAN', 			'MINOR_TRAIT_MARITIME',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_MUISCA', 			'TXT_KEY_CITYSTATE_MUISCA', 			'TXT_KEY_CIV5_MUISCA_TEXT', 			'TXT_KEY_CITYSTATE_MUISCA', 			'TXT_KEY_CITYSTATE_MUISCA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_WHITE', 			'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_MERCANTILE',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_MULTAN', 			'TXT_KEY_CITYSTATE_MULTAN', 			'TXT_KEY_CIV5_MULTAN_TEXT', 			'TXT_KEY_CITYSTATE_MULTAN', 			'TXT_KEY_CITYSTATE_MULTAN_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_MUSCAT', 			'TXT_KEY_CITYSTATE_MUSCAT', 			'TXT_KEY_CIV5_MUSCAT_TEXT', 			'TXT_KEY_CITYSTATE_MUSCAT', 			'TXT_KEY_CITYSTATE_MUSCAT_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_MUTAWAYNATJI', 		'TXT_KEY_CITYSTATE_MUTAWAYNATJI', 		'TXT_KEY_CIV5_MUTAWAYNATJI_TEXT', 		'TXT_KEY_CITYSTATE_MUTAWAYNATJI', 		'TXT_KEY_CITYSTATE_MUTAWAYNATJI_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GRAY', 			'ARTSTYLE_POLYNESIAN', 		'_POLYNESIA', 		'ASIAN', 			'MINOR_TRAIT_CULTURED',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_MUTITJULU', 			'TXT_KEY_CITYSTATE_MUTITJULU', 			'TXT_KEY_CIV5_MUTITJULU_TEXT', 			'TXT_KEY_CITYSTATE_MUTITJULU', 			'TXT_KEY_CITYSTATE_MUTITJULU_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_MIDDLE_PURPLE', 	'ARTSTYLE_POLYNESIAN', 		'_POLYNESIA', 		'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_NAN_MADOL', 			'TXT_KEY_CITYSTATE_NAN_MADOL', 			'TXT_KEY_CIV5_NAN_MADOL_TEXT', 			'TXT_KEY_CITYSTATE_NAN_MADOL',			'TXT_KEY_CITYSTATE_NAN_MADOL_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_PEACH', 			'ARTSTYLE_POLYNESIAN', 		'_POLYNESIA', 		'ASIAN', 			'MINOR_TRAIT_CULTURED',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_NGAZARGAMU', 		'TXT_KEY_CITYSTATE_NGAZARGAMU', 		'TXT_KEY_CIV5_NGAZARGAMU_TEXT', 		'TXT_KEY_CITYSTATE_NGAZARGAMU', 		'TXT_KEY_CITYSTATE_NGAZARGAMU_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_PURPLE', 	'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_NYARYANA_MARQ', 		'TXT_KEY_CITYSTATE_NYARYANA_MARQ', 		'TXT_KEY_CIV5_NYARYANA_MARQ_TEXT', 		'TXT_KEY_CITYSTATE_NYARYANA_MARQ', 		'TXT_KEY_CITYSTATE_NYARYANA_MARQ_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GRAY', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_CULTURED',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_OC_EO', 				'TXT_KEY_CITYSTATE_OC_EO', 				'TXT_KEY_CIV5_OC_EO_TEXT', 				'TXT_KEY_CITYSTATE_OC_EO', 				'TXT_KEY_CITYSTATE_OC_EO_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_ODENSO', 			'TXT_KEY_CITYSTATE_ODENSO', 			'TXT_KEY_CIV5_ODENSO_TEXT', 			'TXT_KEY_CITYSTATE_ODENSO', 			'TXT_KEY_CITYSTATE_ODENSO_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_MIDDLE_PURPLE', 	'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_MILITARISTIC',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_OKAK', 				'TXT_KEY_CITYSTATE_OKAK', 				'TXT_KEY_CIV5_OKAK_TEXT', 				'TXT_KEY_CITYSTATE_OKAK', 				'TXT_KEY_CITYSTATE_OKAK_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_BLUE', 			'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_MARITIME',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_OUIDAH', 			'TXT_KEY_CITYSTATE_OUIDAH', 			'TXT_KEY_CIV5_OUIDAH_TEXT', 			'TXT_KEY_CITYSTATE_OUIDAH', 			'TXT_KEY_CITYSTATE_OUIDAH_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_BLUE', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_PALMYRA', 			'TXT_KEY_CITYSTATE_PALMYRA', 			'TXT_KEY_CIV5_PALMYRA_TEXT', 			'TXT_KEY_CITYSTATE_PALMYRA', 			'TXT_KEY_CITYSTATE_PALMYRA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_PEACH', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_PELYM', 				'TXT_KEY_CITYSTATE_PELYM', 				'TXT_KEY_CIV5_PELYM_TEXT', 				'TXT_KEY_CITYSTATE_PELYM', 				'TXT_KEY_CITYSTATE_PELYM_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_CYAN', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_PHANOTEUS', 			'TXT_KEY_CITYSTATE_PHANOTEUS', 			'TXT_KEY_CIV5_PHANOTEUS_TEXT', 			'TXT_KEY_CITYSTATE_PHANOTEUS', 			'TXT_KEY_CITYSTATE_PHANOTEUS_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_BLUE', 	'ARTSTYLE_GRECO_ROMAN', 	'_MED', 			'MEDITERRANEAN', 	'MINOR_TRAIT_MERCANTILE',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_POKROVKA', 			'TXT_KEY_CITYSTATE_POKROVKA', 			'TXT_KEY_CIV5_POKROVKA_TEXT', 			'TXT_KEY_CITYSTATE_POKROVKA', 			'TXT_KEY_CITYSTATE_POKROVKA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_YELLOW', 	'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_QUELIMANE', 			'TXT_KEY_CITYSTATE_QUELIMANE', 			'TXT_KEY_CIV5_QUELIMANE_TEXT', 			'TXT_KEY_CITYSTATE_QUELIMANE', 			'TXT_KEY_CITYSTATE_QUELIMANE_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_PEACH', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_RISHIKESH', 			'TXT_KEY_CITYSTATE_RISHIKESH', 			'TXT_KEY_CIV5_RISHIKESH_TEXT', 			'TXT_KEY_CITYSTATE_RISHIKESH', 			'TXT_KEY_CITYSTATE_RISHIKESH_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GRAY', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_SADDARVAZEH', 		'TXT_KEY_CITYSTATE_SADDARVAZEH', 		'TXT_KEY_CIV5_SADDARVAZEH_TEXT', 		'TXT_KEY_CITYSTATE_SADDARVAZEH',		'TXT_KEY_CITYSTATE_SADDARVAZEH_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_PEACH', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_SAMBAA_KE', 			'TXT_KEY_CITYSTATE_SAMBAA_KE', 			'TXT_KEY_CIV5_SAMBAA_KE_TEXT',			'TXT_KEY_CITYSTATE_SAMBAA_KE',			'TXT_KEY_CITYSTATE_SAMBAA_KE_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_RELIGIOUS',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_SANAA', 				'TXT_KEY_CITYSTATE_SANAA', 				'TXT_KEY_CIV5_SANAA_TEXT', 				'TXT_KEY_CITYSTATE_SANAA', 				'TXT_KEY_CITYSTATE_SANAA_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_YELLOW', 	'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_SANANDAJ', 			'TXT_KEY_CITYSTATE_SANANDAJ', 			'TXT_KEY_CIV5_SANANDAJ_TEXT', 			'TXT_KEY_CITYSTATE_SANANDAJ', 			'TXT_KEY_CITYSTATE_SANANDAJ_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_WHITE', 			'ARTSTYLE_EUROPEAN', 		'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_CULTURED',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_SANTO_DOMINGO', 		'TXT_KEY_CITYSTATE_SANTO_DOMINGO', 		'TXT_KEY_CIV5_SANTO_DOMINGO_TEXT', 		'TXT_KEY_CITYSTATE_SANTO_DOMINGO', 		'TXT_KEY_CITYSTATE_SANTO_DOMINGO_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_BLUE', 	'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_MERCANTILE',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_SARNATH', 			'TXT_KEY_CITYSTATE_SARNATH', 			'TXT_KEY_CIV5_SARNATH_TEXT', 			'TXT_KEY_CITYSTATE_SARNATH', 			'TXT_KEY_CITYSTATE_SARNATH_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_YELLOW', 	'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_SGANG_GWAAY', 		'TXT_KEY_CITYSTATE_SGANG_GWAAY', 		'TXT_KEY_CIV5_SGANG_GWAAY_TEXT',		'TXT_KEY_CITYSTATE_SGANG_GWAAY',		'TXT_KEY_CITYSTATE_SGANG_GWAAY_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_MARITIME',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_SIERRA_LEONE', 		'TXT_KEY_CITYSTATE_SIERRA_LEONE', 		'TXT_KEY_CIV5_SIERRA_LEONE_TEXT',		'TXT_KEY_CITYSTATE_SIERRA_LEONE',		'TXT_KEY_CITYSTATE_SIERRA_LEONE_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_MIDDLE_BLUE', 	'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_CULTURED',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_SUCEAVA', 			'TXT_KEY_CITYSTATE_SUCEAVA', 			'TXT_KEY_CIV5_SUCEAVA_TEXT', 			'TXT_KEY_CITYSTATE_SUCEAVA', 			'TXT_KEY_CITYSTATE_SUCEAVA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_MIDDLE_PURPLE', 	'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_RELIGIOUS',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_SURREY', 			'TXT_KEY_CITYSTATE_SURREY', 			'TXT_KEY_CIV5_SURREY_TEXT', 			'TXT_KEY_CITYSTATE_SURREY', 			'TXT_KEY_CITYSTATE_SURREY_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GRAY', 			'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_MILITARISTIC',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_TAIWAN', 			'TXT_KEY_CITYSTATE_TAIWAN', 			'TXT_KEY_CIV5_TAIWAN_TEXT', 			'TXT_KEY_CITYSTATE_TAIWAN', 			'TXT_KEY_CITYSTATE_TAIWAN_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MARITIME',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_TBILISI', 			'TXT_KEY_CITYSTATE_TBILISI', 			'TXT_KEY_CIV5_TBILISI_TEXT', 			'TXT_KEY_CITYSTATE_TBILISI', 			'TXT_KEY_CITYSTATE_TBILISI_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GRAY', 			'ARTSTYLE_MIDDLE_EAST', 	'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_THIMPHU', 			'TXT_KEY_CITYSTATE_THIMPHU', 			'TXT_KEY_CIV5_THIMPHU_TEXT', 			'TXT_KEY_CITYSTATE_THIMPHU', 			'TXT_KEY_CITYSTATE_THIMPHU_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_MIDDLE_BLUE', 	'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_CULTURED',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_TIWANAKU', 			'TXT_KEY_CITYSTATE_TIWANAKU', 			'TXT_KEY_CIV5_TIWANAKU_TEXT', 			'TXT_KEY_CITYSTATE_TIWANAKU', 			'TXT_KEY_CITYSTATE_TIWANAKU_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_YELLOW', 	'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_RELIGIOUS',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_TUNIS', 				'TXT_KEY_CITYSTATE_TUNIS', 				'TXT_KEY_CIV5_TUNIS_TEXT', 				'TXT_KEY_CITYSTATE_TUNIS', 				'TXT_KEY_CITYSTATE_TUNIS_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GRAY', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_MERCANTILE',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_VADUZ', 				'TXT_KEY_CITYSTATE_VADUZ', 				'TXT_KEY_CIV5_VADUZ_TEXT', 				'TXT_KEY_CITYSTATE_VADUZ', 				'TXT_KEY_CITYSTATE_VADUZ_ADJ', 				'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GREEN', 			'ARTSTYLE_EUROPEAN', 		'_EURO', 			'EUROPEAN', 		'MINOR_TRAIT_CULTURED',			NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_VAITAPE', 			'TXT_KEY_CITYSTATE_VAITAPE', 			'TXT_KEY_CIV5_VAITAPE_TEXT', 			'TXT_KEY_CITYSTATE_VAITAPE', 			'TXT_KEY_CITYSTATE_VAITAPE_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_MIDDLE_BLUE', 	'ARTSTYLE_POLYNESIAN', 		'_POLYNESIA', 		'ASIAN', 			'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_VICTORIA', 			'TXT_KEY_CITYSTATE_VICTORIA', 			'TXT_KEY_CIV5_VICTORIA_TEXT', 			'TXT_KEY_CITYSTATE_VICTORIA', 			'TXT_KEY_CITYSTATE_VICTORIA_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_PEACH', 			'ARTSTYLE_MIDDLE_EAST', 	'_AFRI', 			'AFRICAN', 			'MINOR_TRAIT_CULTURED',			NULL,				1,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_WAITUKUBULI', 		'TXT_KEY_CITYSTATE_WAITUKUBULI', 		'TXT_KEY_CIV5_WAITUKUBULI_TEXT', 		'TXT_KEY_CITYSTATE_WAITUKUBULI', 		'TXT_KEY_CITYSTATE_WAITUKUBULI_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GRAY', 			'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_MILITARISTIC',		NULL,				1,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_WOOTEI_NIICIE', 		'TXT_KEY_CITYSTATE_WOOTEI_NIICIE', 		'TXT_KEY_CIV5_WOOTEI_NIICIE_TEXT',		'TXT_KEY_CITYSTATE_WOOTEI_NIICIE',		'TXT_KEY_CITYSTATE_WOOTEI_NIICIE_ADJ', 		'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_LIGHT_GREEN', 	'ARTSTYLE_SOUTH_AMERICA', 	'_AMER', 			'AMERICAN', 		'MINOR_TRAIT_MILITARISTIC',		NULL,				0,			'UNITCLASS_WORKER' UNION ALL
+SELECT 		'MINOR_CIV_YANGCHENG', 			'TXT_KEY_CITYSTATE_YANGCHENG', 			'TXT_KEY_CIV5_YANGCHENG_TEXT', 			'TXT_KEY_CITYSTATE_YANGCHENG', 			'TXT_KEY_CITYSTATE_YANGCHENG_ADJ', 			'ART_DEF_CIVILIZATION_MINOR', 	'PLAYERCOLOR_MINOR_GRAY', 			'ARTSTYLE_ASIAN', 			'_ASIA', 			'ASIAN', 			'MINOR_TRAIT_RELIGIOUS',		NULL,				0,			'UNITCLASS_WORKER';
 
 INSERT INTO MinorCivilization_CityNames 
 			(MinorCivType, 					CityName)
+SELECT 		'MINOR_CIV_ABALESSA', 			'TXT_KEY_CITYSTATE_ABALESSA' UNION ALL
 SELECT 		'MINOR_CIV_ADEJE', 				'TXT_KEY_CITYSTATE_ADEJE' UNION ALL
 SELECT 		'MINOR_CIV_AL_TIRABIN', 		'TXT_KEY_CITYSTATE_AL_TIRABIN' UNION ALL
 SELECT 		'MINOR_CIV_AMBRACIA', 			'TXT_KEY_CITYSTATE_AMBRACIA' UNION ALL
@@ -1185,6 +1267,7 @@ SELECT 		'MINOR_CIV_BAGHCASARAY', 		'TXT_KEY_CITYSTATE_BAGHCASARAY' UNION ALL
 SELECT 		'MINOR_CIV_BALKH', 				'TXT_KEY_CITYSTATE_BALKH' UNION ALL
 SELECT 		'MINOR_CIV_BALLEY_CHASHTAL', 	'TXT_KEY_CITYSTATE_BALLEY_CHASHTAL' UNION ALL
 SELECT 		'MINOR_CIV_BEDULU', 			'TXT_KEY_CITYSTATE_BEDULU' UNION ALL
+SELECT 		'MINOR_CIV_CAMUTINS', 			'TXT_KEY_CITYSTATE_CAMUTINS' UNION ALL
 SELECT 		'MINOR_CIV_CANOSSA', 			'TXT_KEY_CITYSTATE_CANOSSA' UNION ALL
 SELECT 		'MINOR_CIV_CHEVAK', 			'TXT_KEY_CITYSTATE_CHEVAK' UNION ALL
 SELECT 		'MINOR_CIV_CLERMONT', 			'TXT_KEY_CITYSTATE_CLERMONT' UNION ALL
@@ -1195,6 +1278,7 @@ SELECT 		'MINOR_CIV_DJIBOUTI', 			'TXT_KEY_CITYSTATE_DJIBOUTI' UNION ALL
 SELECT 		'MINOR_CIV_DODOMA', 			'TXT_KEY_CITYSTATE_DODOMA' UNION ALL
 SELECT 		'MINOR_CIV_DOUALA', 			'TXT_KEY_CITYSTATE_DOUALA' UNION ALL
 SELECT 		'MINOR_CIV_FAYA', 				'TXT_KEY_CITYSTATE_FAYA' UNION ALL
+SELECT 		'MINOR_CIV_GONDAR', 			'TXT_KEY_CITYSTATE_GONDAR' UNION ALL
 SELECT 		'MINOR_CIV_GRANADA', 			'TXT_KEY_CITYSTATE_GRANADA' UNION ALL
 SELECT 		'MINOR_CIV_GWYNEDD', 			'TXT_KEY_CITYSTATE_GWYNEDD' UNION ALL
 SELECT 		'MINOR_CIV_HANUABADA', 			'TXT_KEY_CITYSTATE_HANUABADA' UNION ALL
@@ -1206,13 +1290,17 @@ SELECT 		'MINOR_CIV_JETARKTE', 			'TXT_KEY_CITYSTATE_JETARKTE' UNION ALL
 SELECT 		'MINOR_CIV_JUYUBIT', 			'TXT_KEY_CITYSTATE_JUYUBIT' UNION ALL
 SELECT 		'MINOR_CIV_KAGYRGYN', 			'TXT_KEY_CITYSTATE_KAGYRGYN' UNION ALL
 SELECT 		'MINOR_CIV_KARASJOHKA', 		'TXT_KEY_CITYSTATE_KARASJOHKA' UNION ALL
+SELECT 		'MINOR_CIV_KARIATEBIKE', 		'TXT_KEY_CITYSTATE_KARIATEBIKE' UNION ALL
 SELECT 		'MINOR_CIV_KARYES', 			'TXT_KEY_CITYSTATE_KARYES' UNION ALL
 SELECT 		'MINOR_CIV_KATENDE', 			'TXT_KEY_CITYSTATE_KATENDE' UNION ALL
 SELECT 		'MINOR_CIV_KIGALI', 			'TXT_KEY_CITYSTATE_KIGALI' UNION ALL
+SELECT 		'MINOR_CIV_KITCISIPIRINI', 		'TXT_KEY_CITYSTATE_KITCISIPIRINI' UNION ALL
 SELECT 		'MINOR_CIV_LACONIA', 			'TXT_KEY_CITYSTATE_LACONIA' UNION ALL
 SELECT 		'MINOR_CIV_LAHORE', 			'TXT_KEY_CITYSTATE_LAHORE' UNION ALL
 SELECT 		'MINOR_CIV_LEVUKA', 			'TXT_KEY_CITYSTATE_LEVUKA' UNION ALL
 SELECT 		'MINOR_CIV_LONGYAN', 			'TXT_KEY_CITYSTATE_LONGYAN' UNION ALL
+SELECT 		'MINOR_CIV_LUXEMBOURG', 		'TXT_KEY_CITYSTATE_LUXEMBOURG' UNION ALL
+SELECT 		'MINOR_CIV_MACACO', 			'TXT_KEY_CITYSTATE_MACACO' UNION ALL
 SELECT 		'MINOR_CIV_MANAGUA', 			'TXT_KEY_CITYSTATE_MANAGUA' UNION ALL
 SELECT 		'MINOR_CIV_MATONJENI', 			'TXT_KEY_CITYSTATE_MATONJENI' UNION ALL
 SELECT 		'MINOR_CIV_MBABANE', 			'TXT_KEY_CITYSTATE_MBABANE' UNION ALL
@@ -1220,12 +1308,14 @@ SELECT 		'MINOR_CIV_MENDYARRUP', 		'TXT_KEY_CITYSTATE_MENDYARRUP' UNION ALL
 SELECT 		'MINOR_CIV_MUISCA', 			'TXT_KEY_CITYSTATE_MUISCA' UNION ALL
 SELECT 		'MINOR_CIV_MULTAN', 			'TXT_KEY_CITYSTATE_MULTAN' UNION ALL
 SELECT 		'MINOR_CIV_MUSCAT', 			'TXT_KEY_CITYSTATE_MUSCAT' UNION ALL
+SELECT 		'MINOR_CIV_MUTAWAYNATJI', 		'TXT_KEY_CITYSTATE_MUTAWAYNATJI' UNION ALL
 SELECT 		'MINOR_CIV_MUTITJULU', 			'TXT_KEY_CITYSTATE_MUTITJULU' UNION ALL
 SELECT 		'MINOR_CIV_NAN_MADOL', 			'TXT_KEY_CITYSTATE_NAN_MADOL' UNION ALL
 SELECT 		'MINOR_CIV_NGAZARGAMU', 		'TXT_KEY_CITYSTATE_NGAZARGAMU' UNION ALL
 SELECT 		'MINOR_CIV_NYARYANA_MARQ', 		'TXT_KEY_CITYSTATE_NYARYANA_MARQ' UNION ALL
 SELECT 		'MINOR_CIV_OC_EO', 				'TXT_KEY_CITYSTATE_OC_EO' UNION ALL
 SELECT 		'MINOR_CIV_ODENSO', 			'TXT_KEY_CITYSTATE_ODENSO' UNION ALL
+SELECT 		'MINOR_CIV_OKAK', 				'TXT_KEY_CITYSTATE_OKAK' UNION ALL
 SELECT 		'MINOR_CIV_OUIDAH', 			'TXT_KEY_CITYSTATE_OUIDAH' UNION ALL
 SELECT 		'MINOR_CIV_PALMYRA', 			'TXT_KEY_CITYSTATE_PALMYRA' UNION ALL
 SELECT 		'MINOR_CIV_PELYM', 				'TXT_KEY_CITYSTATE_PELYM' UNION ALL
@@ -1234,6 +1324,7 @@ SELECT 		'MINOR_CIV_POKROVKA', 			'TXT_KEY_CITYSTATE_POKROVKA' UNION ALL
 SELECT 		'MINOR_CIV_QUELIMANE', 			'TXT_KEY_CITYSTATE_QUELIMANE' UNION ALL
 SELECT 		'MINOR_CIV_RISHIKESH', 			'TXT_KEY_CITYSTATE_RISHIKESH' UNION ALL
 SELECT 		'MINOR_CIV_SADDARVAZEH', 		'TXT_KEY_CITYSTATE_SADDARVAZEH' UNION ALL
+SELECT 		'MINOR_CIV_SAMBAA_KE', 			'TXT_KEY_CITYSTATE_SAMBAA_KE' UNION ALL
 SELECT 		'MINOR_CIV_SANAA', 				'TXT_KEY_CITYSTATE_SANAA' UNION ALL
 SELECT 		'MINOR_CIV_SANANDAJ', 			'TXT_KEY_CITYSTATE_SANANDAJ' UNION ALL
 SELECT 		'MINOR_CIV_SANTO_DOMINGO', 		'TXT_KEY_CITYSTATE_SANTO_DOMINGO' UNION ALL
@@ -1248,6 +1339,9 @@ SELECT 		'MINOR_CIV_THIMPHU', 			'TXT_KEY_CITYSTATE_THIMPHU' UNION ALL
 SELECT 		'MINOR_CIV_TIWANAKU', 			'TXT_KEY_CITYSTATE_TIWANAKU' UNION ALL
 SELECT 		'MINOR_CIV_TUNIS', 				'TXT_KEY_CITYSTATE_TUNIS' UNION ALL
 SELECT 		'MINOR_CIV_VADUZ', 				'TXT_KEY_CITYSTATE_VADUZ' UNION ALL
+SELECT 		'MINOR_CIV_VAITAPE', 			'TXT_KEY_CITYSTATE_VAITAPE' UNION ALL
+SELECT 		'MINOR_CIV_VICTORIA', 			'TXT_KEY_CITYSTATE_VICTORIA' UNION ALL
+SELECT 		'MINOR_CIV_WAITUKUBULI', 		'TXT_KEY_CITYSTATE_WAITUKUBULI' UNION ALL
 SELECT 		'MINOR_CIV_WOOTEI_NIICIE', 		'TXT_KEY_CITYSTATE_WOOTEI_NIICIE' UNION ALL
 SELECT 		'MINOR_CIV_YANGCHENG', 			'TXT_KEY_CITYSTATE_YANGCHENG';
 
@@ -1433,7 +1527,7 @@ SELECT 		'MINOR_CIV_ZURICH', 			'FLAVOR_MILITARY_TRAINING', 1;
 
 INSERT INTO MinorCivilization_Flavors
 			(MinorCivType, 					FlavorType, 				Flavor)
--- UCS
+-- UCS part 1
 SELECT 		'MINOR_CIV_CLERMONT', 			'FLAVOR_OFFENSE', 			9 UNION ALL
 SELECT 		'MINOR_CIV_CLERMONT', 			'FLAVOR_RELIGION', 			6 UNION ALL
 SELECT 		'MINOR_CIV_HONDURAS', 			'FLAVOR_GOLD', 				7 UNION ALL
@@ -1509,7 +1603,11 @@ SELECT 		'MINOR_CIV_SIERRA_LEONE', 		'FLAVOR_MILITARY_TRAINING', 3 UNION ALL
 SELECT 		'MINOR_CIV_SURREY', 			'FLAVOR_DEFENSE', 			7 UNION ALL
 SELECT 		'MINOR_CIV_SURREY', 			'FLAVOR_OFFENSE', 			3 UNION ALL
 SELECT 		'MINOR_CIV_SURREY', 			'FLAVOR_MILITARY_TRAINING', 3 UNION ALL
-SELECT 		'MINOR_CIV_SURREY', 			'FLAVOR_EXPANSION', 		2 UNION ALL
+SELECT 		'MINOR_CIV_SURREY', 			'FLAVOR_EXPANSION', 		2;
+
+INSERT INTO MinorCivilization_Flavors
+			(MinorCivType, 					FlavorType, 				Flavor)
+-- UCS part 2
 SELECT 		'MINOR_CIV_TAIWAN', 			'FLAVOR_DEFENSE', 			7 UNION ALL
 SELECT 		'MINOR_CIV_TAIWAN', 			'FLAVOR_CITY_DEFENSE', 		3 UNION ALL
 SELECT 		'MINOR_CIV_TAIWAN', 			'FLAVOR_GOLD', 				3 UNION ALL
@@ -1658,7 +1756,24 @@ SELECT 		'MINOR_CIV_SANANDAJ', 			'FLAVOR_CULTURE',			10 UNION ALL
 SELECT 		'MINOR_CIV_SANANDAJ', 			'FLAVOR_EXPANSION',			5 UNION ALL
 SELECT 		'MINOR_CIV_BAGHCASARAY', 		'FLAVOR_MILITARY_TRAINING',	7 UNION ALL
 SELECT 		'MINOR_CIV_BAGHCASARAY', 		'FLAVOR_DEFENSE',			4 UNION ALL
-SELECT 		'MINOR_CIV_BAGHCASARAY', 		'FLAVOR_EXPANSION',			4;
+SELECT 		'MINOR_CIV_BAGHCASARAY', 		'FLAVOR_EXPANSION',			4 UNION ALL
+SELECT 		'MINOR_CIV_KARIATEBIKE', 		'FLAVOR_DEFENSE',			9 UNION ALL
+SELECT 		'MINOR_CIV_KARIATEBIKE', 		'FLAVOR_GOLD',				5 UNION ALL
+SELECT 		'MINOR_CIV_KARIATEBIKE', 		'FLAVOR_GROWTH',			1 UNION ALL
+SELECT 		'MINOR_CIV_KITCISIPIRINI', 		'FLAVOR_CULTURE',			10 UNION ALL
+SELECT 		'MINOR_CIV_KITCISIPIRINI', 		'FLAVOR_DEFENSE',			5 UNION ALL
+SELECT 		'MINOR_CIV_LUXEMBOURG', 		'FLAVOR_GOLD',				6 UNION ALL
+SELECT 		'MINOR_CIV_LUXEMBOURG', 		'FLAVOR_CITY_DEFENSE',		6 UNION ALL
+SELECT 		'MINOR_CIV_LUXEMBOURG', 		'FLAVOR_CULTURE',			3 UNION ALL
+SELECT 		'MINOR_CIV_MUTAWAYNATJI', 		'FLAVOR_OFFENSE',			8 UNION ALL
+SELECT 		'MINOR_CIV_MUTAWAYNATJI', 		'FLAVOR_CULTURE',			5 UNION ALL
+SELECT 		'MINOR_CIV_MUTAWAYNATJI', 		'FLAVOR_RELIGION',			2 UNION ALL
+SELECT 		'MINOR_CIV_OKAK', 				'FLAVOR_CULTURE',			7 UNION ALL
+SELECT 		'MINOR_CIV_OKAK', 				'FLAVOR_GROWTH',			4 UNION ALL
+SELECT 		'MINOR_CIV_OKAK', 				'FLAVOR_NAVAL',				4 UNION ALL
+SELECT 		'MINOR_CIV_VAITAPE', 			'FLAVOR_EXPANSION',			8 UNION ALL
+SELECT 		'MINOR_CIV_VAITAPE', 			'FLAVOR_NAVAL',				5 UNION ALL
+SELECT 		'MINOR_CIV_VAITAPE', 			'FLAVOR_OFFENSE',			2;
 
 -- base blocks
 INSERT INTO MajorBlocksMinor
@@ -1681,8 +1796,8 @@ SELECT 		'CIVILIZATION_SWEDEN',		'MINOR_CIV_ODENSO';
 INSERT INTO MajorBlocksMinor
 			(MajorCiv, 						MinorCiv)
 SELECT 		'CIVILIZATION_GT_BASQUES',		'MINOR_CIV_IRUNEA'		WHERE EXISTS (SELECT * FROM BuildingClasses WHERE Type='BUILDINGCLASS_DUMMY_UCS_BASQUE') UNION ALL
-SELECT 		'CIVILIZATION_JAR_NANMADOL',	'MINOR_CIV_NAN_MADOL'	WHERE EXISTS (SELECT * FROM BuildingClasses WHERE Type='BUILDINGCLASS_DUMMY_UCS_NAN_MADOL') /*UNION ALL
-SELECT 		'CIVILIZATION_JAR_MARAJOARA',	'MINOR_CIV_CAMUTINS'	WHERE EXISTS (SELECT * FROM BuildingClasses WHERE Type='BUILDINGCLASS_DUMMY_UCS_MARAJOARA')*/;
+SELECT 		'CIVILIZATION_JAR_NANMADOL',	'MINOR_CIV_NAN_MADOL'	WHERE EXISTS (SELECT * FROM BuildingClasses WHERE Type='BUILDINGCLASS_DUMMY_UCS_NAN_MADOL') UNION ALL
+SELECT 		'CIVILIZATION_JAR_MARAJOARA',	'MINOR_CIV_CAMUTINS'	WHERE EXISTS (SELECT * FROM BuildingClasses WHERE Type='BUILDINGCLASS_DUMMY_UCS_MARAJOARA');
 ---------------------------------------------------
 -- Compatibility (part II)
 ---------------------------------------------------
@@ -1711,7 +1826,7 @@ BEGIN
 END;
 
 /* Marajoara (Camutins) */
-/*CREATE TRIGGER IF NOT EXISTS UCSCompatibilityMarajoara
+CREATE TRIGGER IF NOT EXISTS UCSCompatibilityMarajoara
 AFTER INSERT ON Civilizations
 WHEN NEW.Type = 'CIVILIZATION_JAR_MARAJOARA'
 BEGIN
@@ -1720,7 +1835,7 @@ BEGIN
 
 	INSERT INTO MajorBlocksMinor (MajorCiv, MinorCiv)
 	SELECT		'CIVILIZATION_JAR_MARAJOARA', 'MINOR_CIV_CAMUTINS';
-END;*/
+END;
 ---------------------------------------------------
 -- Definitions - Technologies
 ---------------------------------------------------
@@ -1766,6 +1881,8 @@ SELECT 'POLICY_DUMMY_KATHMANDU', 			'TXT_KEY_CITYSTATE_KATHMANDU' UNION ALL
 SELECT 'POLICY_DUMMY_KIGALI', 				'TXT_KEY_CITYSTATE_KIGALI' UNION ALL
 SELECT 'POLICY_DUMMY_KUALA_LUMPUR', 		'TXT_KEY_CITYSTATE_KUALA_LUMPUR' UNION ALL
 SELECT 'POLICY_DUMMY_LAHORE', 				'TXT_KEY_CITYSTATE_LAHORE' UNION ALL
+SELECT 'POLICY_DUMMY_LUXEMBOURG', 			'TXT_KEY_CITYSTATE_LUXEMBOURG' UNION ALL
+SELECT 'POLICY_DUMMY_MACACO', 				'TXT_KEY_CITYSTATE_MACACO' UNION ALL
 SELECT 'POLICY_DUMMY_MALACCA', 				'TXT_KEY_CITYSTATE_MALACCA' UNION ALL
 SELECT 'POLICY_DUMMY_MANILA', 				'TXT_KEY_CITYSTATE_MANILA' UNION ALL
 SELECT 'POLICY_DUMMY_MOGADISHU', 			'TXT_KEY_CITYSTATE_MOGADISHU' UNION ALL
@@ -1795,6 +1912,7 @@ SELECT 'POLICY_DUMMY_TBILISI', 				'TXT_KEY_CITYSTATE_TBILISI' UNION ALL
 SELECT 'POLICY_DUMMY_TYRE', 				'TXT_KEY_CITYSTATE_TYRE' UNION ALL
 SELECT 'POLICY_DUMMY_UR', 					'TXT_KEY_CITYSTATE_UR' UNION ALL
 SELECT 'POLICY_DUMMY_VADUZ', 				'TXT_KEY_CITYSTATE_VADUZ' UNION ALL
+SELECT 'POLICY_DUMMY_VAITAPE', 				'TXT_KEY_CITYSTATE_VAITAPE' UNION ALL
 SELECT 'POLICY_DUMMY_VANCOUVER', 			'TXT_KEY_CITYSTATE_VANCOUVER' UNION ALL
 SELECT 'POLICY_DUMMY_VATICAN_CITY', 		'TXT_KEY_CITYSTATE_VATICAN_CITY' UNION ALL
 SELECT 'POLICY_DUMMY_WOOTEI_NIICIE', 		'TXT_KEY_CITYSTATE_WOOTEI_NIICIE' UNION ALL
@@ -1920,6 +2038,10 @@ INSERT INTO Policy_GoldenAgeYieldMod
 			(PolicyType, 				YieldType, 		Yield)
 SELECT 		'POLICY_DUMMY_MOGADISHU',	'YIELD_FOOD', 	10;
 
+INSERT INTO Policy_GoldenAgeGreatPersonRateModifier
+			(PolicyType, 				GreatPersonType, 		Modifier)
+SELECT 		'POLICY_DUMMY_LUXEMBOURG',	'GREATPERSON_ARTIST', 	20;
+
 INSERT INTO Policy_YieldFromBirth
 			(PolicyType, 					YieldType, 			Yield)
 SELECT 		'POLICY_DUMMY_KUALA_LUMPUR', 	'YIELD_CULTURE',	10 UNION ALL
@@ -1931,10 +2053,15 @@ SELECT 		'POLICY_DUMMY_KUALA_LUMPUR', 	'YIELD_FOOD', 	20 UNION ALL
 SELECT 		'POLICY_DUMMY_BAGAN',			'YIELD_FAITH', 	10;
 
 INSERT INTO Policy_YieldFromBorderGrowth 
-			(PolicyType, 			YieldType, 			Yield)
-SELECT 		'POLICY_DUMMY_DANO',	'YIELD_FAITH', 		3 UNION ALL
-SELECT 		'POLICY_DUMMY_KIGALI',	'YIELD_PRODUCTION',	1 UNION ALL
-SELECT 		'POLICY_DUMMY_KIGALI',	'YIELD_GOLD',		1;
+			(PolicyType, 			YieldType, 						Yield)
+SELECT 		'POLICY_DUMMY_DANO',	'YIELD_FAITH', 					3 UNION ALL
+SELECT 		'POLICY_DUMMY_MACACO',	'YIELD_GREAT_GENERAL_POINTS',	2 UNION ALL
+SELECT 		'POLICY_DUMMY_KIGALI',	'YIELD_PRODUCTION',				1 UNION ALL
+SELECT 		'POLICY_DUMMY_KIGALI',	'YIELD_GOLD',					1;
+
+INSERT INTO Policy_YieldFromKills
+			(PolicyType, 			YieldType, 						Yield)
+SELECT 		'POLICY_DUMMY_VAITAPE',	'YIELD_GREAT_ADMIRAL_POINTS', 	30;
 
 INSERT INTO Policy_ConquerorYield 
 			(PolicyType, 			YieldType, 			Yield)
@@ -2014,6 +2141,7 @@ SELECT 		'POLICY_DUMMY_RES_MOSAICS', 	'IMPROVEMENT_HOLY_SITE', 	'YIELD_FAITH',		
 ---------------------------------------------------
 INSERT INTO UnitPromotions 
 			(Type, 										Description, 								Help, 											CannotBeChosen, Sound, 				PortraitIndex, 	IconAtlas, 				PediaType, 			PediaEntry)
+SELECT 		'PROMOTION_ABALESSA', 						'TXT_KEY_PROMOTION_ABALESSA', 				'TXT_KEY_PROMOTION_ABALESSA_HELP', 				1, 				'AS2D_IF_LEVELUP', 	54, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_ABALESSA' UNION ALL
 SELECT 		'PROMOTION_AMBRACIA', 						'TXT_KEY_PROMOTION_AMBRACIA', 				'TXT_KEY_PROMOTION_AMBRACIA_HELP', 				1, 				'AS2D_IF_LEVELUP', 	17, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_AMBRACIA' UNION ALL
 SELECT 		'PROMOTION_ANTANANARIVO', 					'TXT_KEY_PROMOTION_ANTANANARIVO', 			'TXT_KEY_PROMOTION_ANTANANARIVO_HELP', 			1, 				'AS2D_IF_LEVELUP', 	8, 				'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_ANTANANARIVO' UNION ALL
 SELECT 		'PROMOTION_AUCKLAND', 						'TXT_KEY_PROMOTION_AUCKLAND', 				'TXT_KEY_PROMOTION_AUCKLAND_HELP', 				1, 				'AS2D_IF_LEVELUP', 	26, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_SHARED', 	'TXT_KEY_PROMOTION_AUCKLAND' UNION ALL
@@ -2070,6 +2198,7 @@ SELECT 		'PROMOTION_SIKH_BRACELET', 					'TXT_KEY_PROMOTION_SIKH_BRACELET', 			'
 SELECT 		'PROMOTION_SCYTHIAN_BARRAGE', 				'TXT_KEY_PROMOTION_POKROVKA', 				'TXT_KEY_PROMOTION_POKROVKA_HELP', 				1, 				'AS2D_IF_LEVELUP', 	48, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_RANGED', 	'TXT_KEY_PROMOTION_POKROVKA' /*UNION ALL
 SELECT 		'PROMOTION_???', 							'TXT_KEY_PROMOTION_???', 					'TXT_KEY_PROMOTION_???_HELP', 					1, 				'AS2D_IF_LEVELUP', 	22, 			'UCS_PROMOTION_ATLAS', 	'PEDIA_???', 		'TXT_KEY_PROMOTION_???'*/;
 
+UPDATE UnitPromotions SET MovesChange = -1, PlagueID = 10, PlaguePriority = 0, PromotionDuration = 2 WHERE Type = 'PROMOTION_ABALESSA';
 UPDATE UnitPromotions SET MaxHitPointsChange = 25 WHERE Type = 'PROMOTION_BELGRADE';
 UPDATE UnitPromotions SET River = 1 WHERE Type = 'PROMOTION_BRUSSELS';
 UPDATE UnitPromotions SET ExperiencePercent = 15 WHERE Type = 'PROMOTION_CLERMONT';
@@ -2170,6 +2299,7 @@ UPDATE UnitPromotions SET OrderPriority = 110, FlagPromoOrder = 110 WHERE Type I
 );
 
 UPDATE UnitPromotions SET OrderPriority = 180, FlagPromoOrder = 180 WHERE Type IN (
+	'PROMOTION_ABALESSA',
 	'PROMOTION_AMBRACIA',
 	'PROMOTION_ANTANANARIVO',
 	'PROMOTION_AUCKLAND',
@@ -2559,16 +2689,19 @@ SELECT 		'BUILDINGCLASS_DUMMY_ANDORRA_2', 			'BUILDING_DUMMY_ANDORRA_2', 			'TXT
 SELECT 		'BUILDINGCLASS_DUMMY_ANTWERP', 				'BUILDING_DUMMY_ANTWERP',	 			'TXT_KEY_BUILDING_DUMMY_ANTWERP' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_BALLEY_CHASHTAL', 		'BUILDING_DUMMY_BALLEY_CHASHTAL',	 	'TXT_KEY_BUILDING_DUMMY_BALLEY_CHASHTAL' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_BEDULU', 				'BUILDING_DUMMY_BEDULU',	 			'TXT_KEY_BUILDING_DUMMY_BEDULU' UNION ALL
+SELECT 		'BUILDINGCLASS_DUMMY_CAMUTINS', 			'BUILDING_DUMMY_CAMUTINS', 				'TXT_KEY_BUILDING_DUMMY_CAMUTINS' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_CANOSSA', 				'BUILDING_DUMMY_CANOSSA', 				'TXT_KEY_BUILDING_DUMMY_CANOSSA' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_CAPE_TOWN', 			'BUILDING_DUMMY_CAPE_TOWN', 			'TXT_KEY_BUILDING_DUMMY_CAPE_TOWN' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_CHEVAK', 				'BUILDING_DUMMY_CHEVAK', 				'TXT_KEY_BUILDING_DUMMY_CHEVAK' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_DODOMA', 				'BUILDING_DUMMY_DODOMA', 				'TXT_KEY_BUILDING_DUMMY_DODOMA' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_GENEVA', 				'BUILDING_DUMMY_GENEVA', 				'TXT_KEY_BUILDING_DUMMY_GENEVA' UNION ALL
+SELECT 		'BUILDINGCLASS_DUMMY_GONDAR', 				'BUILDING_DUMMY_GONDAR', 				'TXT_KEY_BUILDING_DUMMY_GONDAR' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_HONG_KONG', 			'BUILDING_DUMMY_HONG_KONG', 			'TXT_KEY_BUILDING_DUMMY_HONG_KONG' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_IRUNEA', 				'BUILDING_DUMMY_IRUNEA', 				'TXT_KEY_BUILDING_DUMMY_IRUNEA' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_JETARKTE', 			'BUILDING_DUMMY_JETARKTE', 				'TXT_KEY_BUILDING_DUMMY_JETARKTE' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_KABUL', 				'BUILDING_DUMMY_KABUL', 				'TXT_KEY_BUILDING_DUMMY_KABUL' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_KAGYRGYN', 			'BUILDING_DUMMY_KAGYRGYN', 				'TXT_KEY_BUILDING_DUMMY_KAGYRGYN' UNION ALL
+SELECT 		'BUILDINGCLASS_DUMMY_KARIATEBIKE', 			'BUILDING_DUMMY_KARIATEBIKE', 			'TXT_KEY_BUILDING_DUMMY_KARIATEBIKE' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_KARYES', 				'BUILDING_DUMMY_KARYES', 				'TXT_KEY_BUILDING_DUMMY_KARYES_DIPLO' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_KARYES_2', 			'BUILDING_DUMMY_KARYES_2', 				'TXT_KEY_BUILDING_DUMMY_KARYES_COUNTER' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_KATENDE', 				'BUILDING_DUMMY_KATENDE', 				'TXT_KEY_BUILDING_DUMMY_KATENDE_ARTIST' UNION ALL
@@ -2576,15 +2709,19 @@ SELECT 		'BUILDINGCLASS_DUMMY_KATENDE_2', 			'BUILDING_DUMMY_KATENDE_2', 			'TXT
 SELECT 		'BUILDINGCLASS_DUMMY_KATHMANDU', 			'BUILDING_DUMMY_KATHMANDU', 			'TXT_KEY_BUILDING_DUMMY_KATHMANDU' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_KIEV', 				'BUILDING_DUMMY_KIEV', 					'TXT_KEY_BUILDING_DUMMY_KIEV' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_KIGALI', 				'BUILDING_DUMMY_KIGALI', 				'TXT_KEY_BUILDING_DUMMY_KIGALI' UNION ALL
+SELECT 		'BUILDINGCLASS_DUMMY_KITCISIPIRINI', 		'BUILDING_DUMMY_KITCISIPIRINI', 		'TXT_KEY_BUILDING_DUMMY_KITCISIPIRINI' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_KUALA_LUMPUR', 		'BUILDING_DUMMY_KUALA_LUMPUR', 			'TXT_KEY_BUILDING_DUMMY_KUALA_LUMPUR' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_LEVUKA', 				'BUILDING_DUMMY_LEVUKA',	 			'TXT_KEY_BUILDING_DUMMY_LEVUKA' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_LHASA', 				'BUILDING_DUMMY_LHASA', 				'TXT_KEY_BUILDING_DUMMY_LHASA' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_LONGYAN', 				'BUILDING_DUMMY_LONGYAN',	 			'TXT_KEY_BUILDING_DUMMY_LONGYAN' UNION ALL
+SELECT 		'BUILDINGCLASS_DUMMY_LUXEMBOURG', 			'BUILDING_DUMMY_LUXEMBOURG',	 		'TXT_KEY_BUILDING_DUMMY_LUXEMBOURG' UNION ALL
+SELECT 		'BUILDINGCLASS_DUMMY_MACACO', 				'BUILDING_DUMMY_MACACO',	 			'TXT_KEY_BUILDING_DUMMY_MACACO' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_MANAGUA', 				'BUILDING_DUMMY_MANAGUA',	 			'TXT_KEY_BUILDING_DUMMY_MANAGUA' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_MATONJENI', 			'BUILDING_DUMMY_MATONJENI',	 			'TXT_KEY_BUILDING_DUMMY_MATONJENI' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_MBABANE', 				'BUILDING_DUMMY_MBABANE',	 			'TXT_KEY_BUILDING_DUMMY_MBABANE' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_MELBOURNE', 			'BUILDING_DUMMY_MELBOURNE',	 			'TXT_KEY_BUILDING_DUMMY_MELBOURNE' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_MILAN', 				'BUILDING_DUMMY_MILAN', 				'TXT_KEY_BUILDING_DUMMY_MILAN' UNION ALL
+SELECT 		'BUILDINGCLASS_DUMMY_MUTAWAYNATJI', 		'BUILDING_DUMMY_MUTAWAYNATJI',	 		'TXT_KEY_BUILDING_DUMMY_MUTAWAYNATJI' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_MUTITJULU', 			'BUILDING_DUMMY_MUTITJULU',	 			'TXT_KEY_BUILDING_DUMMY_MUTITJULU' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_NAN_MADOL', 			'BUILDING_DUMMY_NAN_MADOL',	 			'TXT_KEY_BUILDING_DUMMY_NAN_MADOL' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_OC_EO', 				'BUILDING_DUMMY_OC_EO', 				'TXT_KEY_BUILDING_DUMMY_OC_EO_RANGE' UNION ALL
@@ -2611,6 +2748,7 @@ SELECT 		'BUILDINGCLASS_DUMMY_THIMPHU', 				'BUILDING_DUMMY_THIMPHU', 				'TXT_K
 SELECT 		'BUILDINGCLASS_DUMMY_THIMPHU_2', 			'BUILDING_DUMMY_THIMPHU_2', 			'TXT_KEY_BUILDING_DUMMY_THIMPHU_DEFENSE' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_VANCOUVER', 			'BUILDING_DUMMY_VANCOUVER',	 			'TXT_KEY_BUILDING_DUMMY_VANCOUVER' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_VATICAN_CITY', 		'BUILDING_DUMMY_VATICAN_CITY',	 		'TXT_KEY_BUILDING_DUMMY_VATICAN_CITY' UNION ALL
+SELECT 		'BUILDINGCLASS_DUMMY_VICTORIA', 			'BUILDING_DUMMY_VICTORIA',	 			'TXT_KEY_BUILDING_DUMMY_VICTORIA' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_WELLINGTON_HORSE', 	'BUILDING_DUMMY_WELLINGTON_HORSE',	 	'TXT_KEY_BUILDING_DUMMY_WELLINGTON_HORSE' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_WELLINGTON_IRON', 		'BUILDING_DUMMY_WELLINGTON_IRON',	 	'TXT_KEY_BUILDING_DUMMY_WELLINGTON_IRON' UNION ALL
 SELECT 		'BUILDINGCLASS_DUMMY_WELLINGTON_COAL', 		'BUILDING_DUMMY_WELLINGTON_COAL',	 	'TXT_KEY_BUILDING_DUMMY_WELLINGTON_COAL' UNION ALL
@@ -2665,16 +2803,19 @@ SELECT 		'BUILDING_DUMMY_ANDORRA_2', 			'BUILDINGCLASS_DUMMY_ANDORRA_2', 			-1, 
 SELECT 		'BUILDING_DUMMY_ANTWERP', 				'BUILDINGCLASS_DUMMY_ANTWERP', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_ANTWERP', 					'TXT_KEY_CSTRAIT_MINOR_CIV_ANTWERP', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_BALLEY_CHASHTAL', 		'BUILDINGCLASS_DUMMY_BALLEY_CHASHTAL', 		-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_BALLEY_CHASHTAL', 			'TXT_KEY_CSTRAIT_MINOR_CIV_BALLEY_CHASHTAL', 			-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_BEDULU', 				'BUILDINGCLASS_DUMMY_BEDULU', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_BEDULU', 					'TXT_KEY_CSTRAIT_MINOR_CIV_BEDULU', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
+SELECT 		'BUILDING_DUMMY_CAMUTINS', 				'BUILDINGCLASS_DUMMY_CAMUTINS', 			-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_CAMUTINS', 					'TXT_KEY_CSTRAIT_MINOR_CIV_CAMUTINS', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_CANOSSA', 				'BUILDINGCLASS_DUMMY_CANOSSA', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_CANOSSA', 					'TXT_KEY_CSTRAIT_MINOR_CIV_CANOSSA', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_CAPE_TOWN', 			'BUILDINGCLASS_DUMMY_CAPE_TOWN', 			-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_CAPE_TOWN', 				'TXT_KEY_CSTRAIT_MINOR_CIV_CAPE_TOWN', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_CHEVAK', 				'BUILDINGCLASS_DUMMY_CHEVAK', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_CHEVAK', 					'TXT_KEY_CSTRAIT_MINOR_CIV_CHEVAK', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_DODOMA', 				'BUILDINGCLASS_DUMMY_DODOMA', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_DODOMA', 					'TXT_KEY_CSTRAIT_MINOR_CIV_DODOMA', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_GENEVA', 				'BUILDINGCLASS_DUMMY_GENEVA', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_GENEVA', 					'TXT_KEY_CSTRAIT_MINOR_CIV_GENEVA', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
+SELECT 		'BUILDING_DUMMY_GONDAR', 				'BUILDINGCLASS_DUMMY_GONDAR', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_GONDAR', 					'TXT_KEY_CSTRAIT_MINOR_CIV_GONDAR', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_HONG_KONG', 			'BUILDINGCLASS_DUMMY_HONG_KONG', 			-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_HONG_KONG', 				'TXT_KEY_CSTRAIT_MINOR_CIV_HONG_KONG', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_IRUNEA', 				'BUILDINGCLASS_DUMMY_IRUNEA', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_IRUNEA', 					'TXT_KEY_CSTRAIT_MINOR_CIV_IRUNEA', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_JETARKTE', 				'BUILDINGCLASS_DUMMY_JETARKTE', 			-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_JETARKTE', 					'TXT_KEY_CSTRAIT_MINOR_CIV_JETARKTE', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_KABUL', 				'BUILDINGCLASS_DUMMY_KABUL', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_KABUL', 					'TXT_KEY_CSTRAIT_MINOR_CIV_KABUL', 						-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_KAGYRGYN', 				'BUILDINGCLASS_DUMMY_KAGYRGYN', 			-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_KAGYRGYN', 					'TXT_KEY_CSTRAIT_MINOR_CIV_KAGYRGYN', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
+SELECT 		'BUILDING_DUMMY_KARIATEBIKE', 			'BUILDINGCLASS_DUMMY_KARIATEBIKE', 			-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_KARIATEBIKE', 				'TXT_KEY_CSTRAIT_MINOR_CIV_KARIATEBIKE', 				-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_KARYES', 				'BUILDINGCLASS_DUMMY_KARYES', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_KARYES_DIPLO', 				'TXT_KEY_CSTRAIT_MINOR_CIV_KARYES', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_KARYES_2', 				'BUILDINGCLASS_DUMMY_KARYES_2', 			-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_KARYES_COUNTER', 			'TXT_KEY_CSTRAIT_MINOR_CIV_KARYES', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_KATENDE', 				'BUILDINGCLASS_DUMMY_KATENDE', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_KATENDE_ARTIST', 			'TXT_KEY_CSTRAIT_MINOR_CIV_KATENDE', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
@@ -2682,15 +2823,19 @@ SELECT 		'BUILDING_DUMMY_KATENDE_2', 			'BUILDINGCLASS_DUMMY_KATENDE_2', 			-1, 
 SELECT 		'BUILDING_DUMMY_KATHMANDU', 			'BUILDINGCLASS_DUMMY_KATHMANDU', 			-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_KATHMANDU', 				'TXT_KEY_CSTRAIT_MINOR_CIV_KATHMANDU', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_KIEV', 					'BUILDINGCLASS_DUMMY_KIEV', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_KIEV', 						'TXT_KEY_CSTRAIT_MINOR_CIV_KIEV', 						-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_KIGALI', 				'BUILDINGCLASS_DUMMY_KIGALI', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_KIGALI', 					'TXT_KEY_CSTRAIT_MINOR_CIV_KIGALI', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
+SELECT 		'BUILDING_DUMMY_KITCISIPIRINI', 		'BUILDINGCLASS_DUMMY_KITCISIPIRINI', 		-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_KITCISIPIRINI', 			'TXT_KEY_CSTRAIT_MINOR_CIV_KITCISIPIRINI', 				-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_KUALA_LUMPUR', 			'BUILDINGCLASS_DUMMY_KUALA_LUMPUR', 		-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_KUALA_LUMPUR', 				'TXT_KEY_CSTRAIT_MINOR_CIV_KUALA_LUMPUR', 				-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_LEVUKA', 				'BUILDINGCLASS_DUMMY_LEVUKA', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_LEVUKA', 					'TXT_KEY_CSTRAIT_MINOR_CIV_LEVUKA', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_LHASA', 				'BUILDINGCLASS_DUMMY_LHASA', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_LHASA', 					'TXT_KEY_CSTRAIT_MINOR_CIV_LHASA', 						-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_LONGYAN', 				'BUILDINGCLASS_DUMMY_LONGYAN', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_LONGYAN', 					'TXT_KEY_CSTRAIT_MINOR_CIV_LONGYAN', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
+SELECT 		'BUILDING_DUMMY_LUXEMBOURG', 			'BUILDINGCLASS_DUMMY_LUXEMBOURG', 			-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_LUXEMBOURG', 				'TXT_KEY_CSTRAIT_MINOR_CIV_LUXEMBOURG', 				-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
+SELECT 		'BUILDING_DUMMY_MACACO', 				'BUILDINGCLASS_DUMMY_MACACO', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_MACACO', 					'TXT_KEY_CSTRAIT_MINOR_CIV_MACACO', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_MANAGUA', 				'BUILDINGCLASS_DUMMY_MANAGUA', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_MANAGUA', 					'TXT_KEY_CSTRAIT_MINOR_CIV_MANAGUA', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_MATONJENI', 			'BUILDINGCLASS_DUMMY_MATONJENI', 			-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_MATONJENI', 				'TXT_KEY_CSTRAIT_MINOR_CIV_MATONJENI', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_MBABANE', 				'BUILDINGCLASS_DUMMY_MBABANE', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_MBABANE', 					'TXT_KEY_CSTRAIT_MINOR_CIV_MBABANE', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_MELBOURNE', 			'BUILDINGCLASS_DUMMY_MELBOURNE', 			-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_MELBOURNE', 				'TXT_KEY_CSTRAIT_MINOR_CIV_MELBOURNE', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_MILAN', 				'BUILDINGCLASS_DUMMY_MILAN', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_MILAN', 					'TXT_KEY_CSTRAIT_MINOR_CIV_MILAN', 						-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
+SELECT 		'BUILDING_DUMMY_MUTAWAYNATJI', 			'BUILDINGCLASS_DUMMY_MUTAWAYNATJI', 		-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_MUTAWAYNATJI', 				'TXT_KEY_CSTRAIT_MINOR_CIV_MUTAWAYNATJI', 				-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_MUTITJULU', 			'BUILDINGCLASS_DUMMY_MUTITJULU', 			-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_MUTITJULU', 				'TXT_KEY_CSTRAIT_MINOR_CIV_MUTITJULU', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_NAN_MADOL', 			'BUILDINGCLASS_DUMMY_NAN_MADOL', 			-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_NAN_MADOL', 				'TXT_KEY_CSTRAIT_MINOR_CIV_NAN_MADOL', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_OC_EO', 				'BUILDINGCLASS_DUMMY_OC_EO', 				-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_OC_EO_RANGE', 				'TXT_KEY_CSTRAIT_MINOR_CIV_OC_EO', 						-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
@@ -2717,6 +2862,7 @@ SELECT 		'BUILDING_DUMMY_THIMPHU', 				'BUILDINGCLASS_DUMMY_THIMPHU', 				-1, 	0
 SELECT 		'BUILDING_DUMMY_THIMPHU_2', 			'BUILDINGCLASS_DUMMY_THIMPHU_2', 			-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_THIMPHU_DEFENSE', 			'TXT_KEY_CSTRAIT_MINOR_CIV_THIMPHU', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_VANCOUVER', 			'BUILDINGCLASS_DUMMY_VANCOUVER', 			-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_VANCOUVER', 				'TXT_KEY_CSTRAIT_MINOR_CIV_VANCOUVER', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_VATICAN_CITY', 			'BUILDINGCLASS_DUMMY_VATICAN_CITY', 		-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_VATICAN_CITY', 				'TXT_KEY_CSTRAIT_MINOR_CIV_VATICAN_CITY', 				-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
+SELECT 		'BUILDING_DUMMY_VICTORIA', 				'BUILDINGCLASS_DUMMY_VICTORIA', 			-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_VICTORIA', 					'TXT_KEY_CSTRAIT_MINOR_CIV_VICTORIA', 					-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_WELLINGTON_HORSE', 		'BUILDINGCLASS_DUMMY_WELLINGTON_HORSE', 	-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_WELLINGTON_HORSE', 			'TXT_KEY_CSTRAIT_MINOR_CIV_WELLINGTON', 				-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_WELLINGTON_IRON', 		'BUILDINGCLASS_DUMMY_WELLINGTON_IRON', 		-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_WELLINGTON_IRON', 			'TXT_KEY_CSTRAIT_MINOR_CIV_WELLINGTON', 				-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
 SELECT 		'BUILDING_DUMMY_WELLINGTON_COAL', 		'BUILDINGCLASS_DUMMY_WELLINGTON_COAL', 		-1, 	0,			0, 					NULL, 		'TXT_KEY_BUILDING_DUMMY_WELLINGTON_COAL', 			'TXT_KEY_CSTRAIT_MINOR_CIV_WELLINGTON', 				-1, 			1, 			0, 				1, 				5, 					'UCS_BUILDING_ATLAS', 			1, 				1,			-1,				NULL UNION ALL
@@ -2762,8 +2908,9 @@ UPDATE Buildings SET SpecialistType = 'SPECIALIST_CIVIL_SERVANT', GreatPeopleRat
 UPDATE Buildings SET SpecialistType = 'SPECIALIST_ARTIST', GreatPeopleRateChange = 1 WHERE Type = 'BUILDING_DUMMY_KATENDE';
 UPDATE Buildings SET SpecialistType = 'SPECIALIST_WRITER', GreatPeopleRateChange = 1 WHERE Type = 'BUILDING_DUMMY_KATENDE_2';
 UPDATE Buildings SET CitySupplyFlat = 1 WHERE Type = 'BUILDING_DUMMY_LONGYAN';
+UPDATE Buildings SET Defense = 300 WHERE Type = 'BUILDING_DUMMY_LUXEMBOURG';
 UPDATE Buildings SET SpySecurityModifier = 10 WHERE Type = 'BUILDING_DUMMY_MANAGUA';
-UPDATE Buildings SET ExtraCityHitPoints = 10, Defense = 1000 WHERE Type = 'BUILDING_DUMMY_MBABANE';
+UPDATE Buildings SET ExtraCityHitPoints = 10, Defense = 200 WHERE Type = 'BUILDING_DUMMY_MBABANE';
 UPDATE Buildings SET TradeRouteSeaDistanceModifier = 20 WHERE Type = 'BUILDING_DUMMY_OC_EO';
 UPDATE Buildings SET Happiness = 1 WHERE Type = 'BUILDING_DUMMY_OC_EO_3';
 UPDATE Buildings SET TradeRouteSeaDistanceModifier = 10, TradeRouteSeaGoldBonus = 100 WHERE Type = 'BUILDING_DUMMY_PANAMA_CITY';
@@ -2775,6 +2922,7 @@ UPDATE Buildings SET PolicyCostModifier = -1 WHERE Type = 'BUILDING_DUMMY_SARNAT
 UPDATE Buildings SET Defense = 10 WHERE Type = 'BUILDING_DUMMY_THIMPHU_2';
 UPDATE Buildings SET CityConnectionTradeRouteModifier = 3 WHERE Type = 'BUILDING_DUMMY_VANCOUVER';
 UPDATE Buildings SET GPExpendInfluence = 10 WHERE Type = 'BUILDING_DUMMY_VATICAN_CITY';
+UPDATE Buildings SET Happiness = 1 WHERE Type = 'BUILDING_DUMMY_VICTORIA';
 UPDATE Buildings SET ReligiousPressureModifier = -10, ConversionModifier = 10 WHERE Type = 'BUILDING_DUMMY_WITTENBERG';
 
 UPDATE Buildings SET ExtraCityHitPoints = 1 WHERE Type = 'BUILDING_DUMMY_CS_STR_FRIENDLY';
@@ -2817,8 +2965,8 @@ SELECT		'BUILDING_DUMMY_WITTENBERG',	'YIELD_GOLD',					100 UNION ALL
 SELECT		'BUILDING_DUMMY_WITTENBERG',	'YIELD_CULTURE',				100;
 
 INSERT INTO Building_YieldPerFriend 
-			(BuildingType, 					YieldType, 		Yield)
-SELECT 		'BUILDING_DUMMY_KATHMANDU', 	'YIELD_FAITH', 	1;
+			(BuildingType, 					YieldType, 			Yield)
+SELECT 		'BUILDING_DUMMY_KATHMANDU', 	'YIELD_FAITH', 		1;
 
 INSERT INTO Building_YieldPerAlly 
 			(BuildingType, 					YieldType, 						Yield)
@@ -2826,7 +2974,13 @@ SELECT 		'BUILDING_DUMMY_BEDULU', 		'YIELD_FAITH', 					1 UNION ALL
 SELECT 		'BUILDING_DUMMY_BEDULU', 		'YIELD_GOLDEN_AGE_POINTS', 		1 UNION ALL
 SELECT 		'BUILDING_DUMMY_KATHMANDU', 	'YIELD_FAITH', 					1 UNION ALL
 SELECT 		'BUILDING_DUMMY_KATHMANDU', 	'YIELD_GREAT_GENERAL_POINTS', 	1 UNION ALL
+SELECT 		'BUILDING_DUMMY_KITCISIPIRINI', 'YIELD_CULTURE', 				1 UNION ALL
 SELECT 		'BUILDING_DUMMY_RAGUSA', 		'YIELD_FOOD', 					1;
+
+INSERT INTO Building_YieldFromPillage
+			(BuildingType, 					YieldType, 			Yield)
+SELECT 		'BUILDING_DUMMY_GONDAR', 		'YIELD_FAITH', 		12 UNION ALL
+SELECT 		'BUILDING_DUMMY_MUTAWAYNATJI', 	'YIELD_CULTURE', 	8;
 
 INSERT INTO Building_YieldChanges	
 			(BuildingType, 					YieldType, 							Yield)
@@ -2834,7 +2988,9 @@ SELECT 		'BUILDING_POTALA', 				'YIELD_CULTURE', 					3 UNION ALL
 SELECT 		'BUILDING_ASHRAM', 				'YIELD_SCIENCE', 					1 UNION ALL
 SELECT 		'BUILDING_ASHRAM', 				'YIELD_FAITH', 						1 UNION ALL
 SELECT 		'BUILDING_ASHRAM', 				'YIELD_CULTURE', 					1 UNION ALL
+SELECT 		'BUILDING_DUMMY_CAMUTINS', 		'YIELD_FOOD', 						2 UNION ALL
 SELECT 		'BUILDING_DUMMY_LEVUKA', 		'YIELD_GREAT_GENERAL_POINTS', 		1 UNION ALL
+SELECT 		'BUILDING_DUMMY_MACACO', 		'YIELD_CULTURE', 					1 UNION ALL
 SELECT 		'BUILDING_DUMMY_OC_EO_2', 		'YIELD_CULTURE_LOCAL',				1 UNION ALL
 SELECT 		'BUILDING_DUMMY_PALMYRA_2', 	'YIELD_CULTURE_LOCAL',				1 UNION ALL
 SELECT 		'BUILDING_DUMMY_RISHIKESH',		'YIELD_FAITH', 						2 UNION ALL
@@ -2861,6 +3017,10 @@ SELECT 		'BUILDING_N_BRID', 			'YIELD_FOOD', 			1 UNION ALL
 SELECT 		'BUILDING_N_BRID', 			'YIELD_PRODUCTION',		1 UNION ALL
 SELECT 		'BUILDING_DUMMY_RIGA', 		'YIELD_FOOD', 			2;
 
+INSERT INTO Building_GlobalYieldModifiers 
+			(BuildingType, 					YieldType, 			Yield)
+SELECT 		'BUILDING_DUMMY_KARIATEBIKE', 	'YIELD_FOOD', 		5;
+
 INSERT INTO Building_BuildingClassYieldModifiers 
 			(BuildingType, 				BuildingClassType,			YieldType, 				Modifier)
 SELECT 		'BUILDING_N_GAELACH', 		'BUILDINGCLASS_N_GAELACH',	'YIELD_CULTURE', 		1 UNION ALL
@@ -2884,6 +3044,10 @@ SELECT 		'BUILDING_DUMMY_PALMYRA', 		'YIELD_GREAT_GENERAL_POINTS', 	2;
 INSERT INTO Building_YieldFromVictoryGlobal
 			(BuildingType,				YieldType,				Yield)
 SELECT		'BUILDING_DUMMY_KIGALI',	'YIELD_CULTURE_LOCAL',	5;
+
+INSERT INTO Building_YieldFromInternationalTREnd
+			(BuildingType,					YieldType,		Yield)
+SELECT		'BUILDING_DUMMY_KITCISIPIRINI',	'YIELD_GOLD',	30;
 
 INSERT INTO Building_YieldFromProcessModifier
 			(BuildingType, 				YieldType, 			Yield)
@@ -2925,6 +3089,10 @@ INSERT INTO Building_DomainFreeExperiences
 SELECT 		'BUILDING_GRAND_HARBOR', 			'DOMAIN_SEA', 	15 UNION ALL
 SELECT 		'BUILDING_DUMMY_WOOTEI_NIICIE_2', 	'DOMAIN_LAND', 	15;
 
+INSERT INTO Building_DomainFreeExperiencePerGreatWork
+			(BuildingType,					DomainType,		Experience)
+SELECT 		'BUILDING_DUMMY_MUTAWAYNATJI',	'DOMAIN_LAND',	3;
+
 INSERT INTO Building_ResourceQuantity
 			(BuildingType, 							ResourceType, 			Quantity)
 SELECT 		'BUILDING_DUMMY_WELLINGTON_HORSE', 		'RESOURCE_HORSE', 		1 UNION ALL
@@ -2951,6 +3119,10 @@ INSERT INTO Building_HurryModifiers
 			(BuildingType,				HurryType,		HurryCostModifier)
 SELECT		'BUILDING_DUMMY_RES_COINS',	'HURRY_GOLD',	-10;
 
+INSERT INTO Building_ResourceQuantity
+			(BuildingType,					ResourceType,		Quantity)
+SELECT		'BUILDING_DUMMY_KARIATEBIKE',	'RESOURCE_COPRA',	3;
+
 INSERT INTO Building_Flavors 
 			(BuildingType, 				FlavorType, 				Flavor)
 SELECT 		'BUILDING_BYLINA', 			'FLAVOR_GREAT_PEOPLE', 		3 UNION ALL
@@ -2968,6 +3140,7 @@ SELECT 		'BUILDING_ASHRAM', 			'FLAVOR_SCIENCE', 			1;
 ---------------------------------------------------		
 INSERT INTO Events 
 			(Type, 										Description, 					Help, 											EventArt, RandomChance, NumChoices, IgnoresGlobalCooldown, EventCooldown)
+SELECT  	'PLAYER_EVENT_MINOR_CIV_ABALESSA', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_ABALESSA', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_ADEJE', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_ADEJE', 				'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_ALMATY', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_ALMATY', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_AL_TIRABIN', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_AL_TIRABIN', 		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
@@ -2993,6 +3166,7 @@ SELECT  	'PLAYER_EVENT_MINOR_CIV_BUDAPEST', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TX
 SELECT  	'PLAYER_EVENT_MINOR_CIV_BUENOS_AIRES', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_BUENOS_AIRES', 		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_BYBLOS', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_BYBLOS', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_CAHOKIA', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_CAHOKIA', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
+SELECT  	'PLAYER_EVENT_MINOR_CIV_CAMUTINS', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_CAMUTINS', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_CANOSSA', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_CANOSSA', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_CAPE_TOWN', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_CAPE_TOWN', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_CHEVAK', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_CHEVAK', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
@@ -3008,6 +3182,7 @@ SELECT  	'PLAYER_EVENT_MINOR_CIV_FAYA', 				'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_K
 SELECT  	'PLAYER_EVENT_MINOR_CIV_FLORENCE', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_FLORENCE', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_GENEVA', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_GENEVA', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_GENOA', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_GENOA', 				'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
+SELECT  	'PLAYER_EVENT_MINOR_CIV_GONDAR', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_GONDAR', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_GRANADA', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_GRANADA', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_GWYNEDD', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_GWYNEDD', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_HANOI', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_HANOI', 				'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
@@ -3024,11 +3199,13 @@ SELECT  	'PLAYER_EVENT_MINOR_CIV_JUYUBIT', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT
 SELECT  	'PLAYER_EVENT_MINOR_CIV_KABUL', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_KABUL', 				'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_KAGYRGYN', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_KAGYRGYN', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_KARASJOHKA', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_KARASJOHKA',			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
+SELECT  	'PLAYER_EVENT_MINOR_CIV_KARIATEBIKE', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_KARIATEBIKE',		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_KARYES', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_KARYES', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_KATENDE', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_KATENDE', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_KATHMANDU', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_KATHMANDU', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_KIEV', 				'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_KIEV', 				'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_KIGALI', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_KIGALI', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
+SELECT  	'PLAYER_EVENT_MINOR_CIV_KITCISIPIRINI', 	'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_KITCISIPIRINI',		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_KUALA_LUMPUR', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_KUALA_LUMPUR', 		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT 		'PLAYER_EVENT_MINOR_CIV_KYZYL', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_KYZYL', 				'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_LACONIA', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_LACONIA', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
@@ -3037,6 +3214,8 @@ SELECT  	'PLAYER_EVENT_MINOR_CIV_LA_VENTA', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TX
 SELECT  	'PLAYER_EVENT_MINOR_CIV_LEVUKA', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_LEVUKA', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_LHASA', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_LHASA', 				'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_LONGYAN', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_LONGYAN', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
+SELECT  	'PLAYER_EVENT_MINOR_CIV_LUXEMBOURG', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_LUXEMBOURG',			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
+SELECT  	'PLAYER_EVENT_MINOR_CIV_MACACO', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_MACACO', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_MALACCA', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_MALACCA', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_MANAGUA', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_MANAGUA', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_MANILA', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_MANILA', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
@@ -3052,6 +3231,7 @@ SELECT  	'PLAYER_EVENT_MINOR_CIV_MONACO', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_
 SELECT  	'PLAYER_EVENT_MINOR_CIV_MUISCA', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_MUISCA', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_MULTAN', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_MULTAN', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_MUSCAT', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_MUSCAT', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
+SELECT  	'PLAYER_EVENT_MINOR_CIV_MUTAWAYNATJI', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_MUTAWAYNATJI',		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_MUTITJULU', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_MUTITJULU', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_NAN_MADOL', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_NAN_MADOL', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_NGAZARGAMU', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_NGAZARGAMU', 		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
@@ -3059,6 +3239,7 @@ SELECT  	'PLAYER_EVENT_MINOR_CIV_NYARYANA_MARQ',		'TXT_KEY_CSTRAIT_MINOR_CIV', 	
 SELECT  	'PLAYER_EVENT_MINOR_CIV_OC_EO', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_OC_EO', 				'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_ORMUS', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_ORMUS', 				'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_ODENSO', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_ODENSO', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
+SELECT  	'PLAYER_EVENT_MINOR_CIV_OKAK', 				'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_OKAK', 				'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_OUIDAH', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_OUIDAH', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_PALMYRA', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_PALMYRA', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_PANAMA_CITY', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_PANAMA_CITY', 		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
@@ -3073,6 +3254,7 @@ SELECT  	'PLAYER_EVENT_MINOR_CIV_RIGA', 				'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_K
 SELECT  	'PLAYER_EVENT_MINOR_CIV_RISHIKESH', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_RISHIKESH', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_SADDARVAZEH', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_SADDARVAZEH', 		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_SAMARKAND', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_SAMARKAND', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
+SELECT  	'PLAYER_EVENT_MINOR_CIV_SAMBAA_KE', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_SAMBAA_KE', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_SANAA', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_SANAA', 				'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_SANANDAJ', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_SANANDAJ', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_SANTO_DOMINGO',		'TXT_KEY_CSTRAIT_MINOR_CIV',	'TXT_KEY_CSTRAIT_MINOR_CIV_SANTO_DOMINGO', 		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
@@ -3093,10 +3275,13 @@ SELECT  	'PLAYER_EVENT_MINOR_CIV_TUNIS', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_K
 SELECT  	'PLAYER_EVENT_MINOR_CIV_TYRE', 				'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_TYRE', 				'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_UR', 				'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_UR', 				'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_VADUZ', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_VADUZ', 				'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
+SELECT  	'PLAYER_EVENT_MINOR_CIV_VAITAPE', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_VAITAPE', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_VALLETTA', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_VALLETTA', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_VANCOUVER', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_VANCOUVER', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_VATICAN_CITY', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_VATICAN_CITY', 		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
+SELECT  	'PLAYER_EVENT_MINOR_CIV_VICTORIA', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_VICTORIA', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_VILNIUS', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_VILNIUS', 			'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
+SELECT  	'PLAYER_EVENT_MINOR_CIV_WAITUKUBULI', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_WAITUKUBULI', 		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_WELLINGTON', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_WELLINGTON', 		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_WITTENBERG', 		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_WITTENBERG', 		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
 SELECT  	'PLAYER_EVENT_MINOR_CIV_WOOTEI_NIICIE',		'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_KEY_CSTRAIT_MINOR_CIV_WOOTEI_NIICIE', 		'AllianceShift.dds', -1, 1, 1, 1 UNION ALL
@@ -3107,6 +3292,7 @@ SELECT  	'PLAYER_EVENT_MINOR_CIV_ZURICH', 			'TXT_KEY_CSTRAIT_MINOR_CIV', 	'TXT_
 
 INSERT INTO EventChoices 
 			(Type, 												Description, 							Help, 											EventDuration, 	Expires, 	CapitalEffectOnly,	EventPolicy, 					EventPromotion, 			EventBuildingClassGlobal)
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ABALESSA', 			'TXT_KEY_CITYSTATE_ABALESSA', 			'TXT_KEY_CSTRAIT_MINOR_CIV_ABALESSA', 			3, 				1, 			0,					NULL, 							NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ADEJE', 				'TXT_KEY_CITYSTATE_ADEJE', 				'TXT_KEY_CSTRAIT_MINOR_CIV_ADEJE', 				3, 				1, 			0,					NULL, 							NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ALMATY', 			'TXT_KEY_CITYSTATE_ALMATY', 			'TXT_KEY_CSTRAIT_MINOR_CIV_ALMATY', 			3, 				1, 			0,					'POLICY_DUMMY_ALMATY', 			NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_AL_TIRABIN', 		'TXT_KEY_CITYSTATE_AL_TIRABIN', 		'TXT_KEY_CSTRAIT_MINOR_CIV_AL_TIRABIN', 		3, 				1, 			0,					NULL, 							NULL, 						NULL UNION ALL
@@ -3132,6 +3318,7 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BUDAPEST', 			'TXT_KEY_CITYSTATE_BUDAPES
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BUENOS_AIRES', 		'TXT_KEY_CITYSTATE_BUENOS_AIRES', 		'TXT_KEY_CSTRAIT_MINOR_CIV_BUENOS_AIRES', 		3, 				1, 			0,					'POLICY_DUMMY_BUENOS_AIRES',	NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BYBLOS', 			'TXT_KEY_CITYSTATE_BYBLOS', 			'TXT_KEY_CSTRAIT_MINOR_CIV_BYBLOS', 			3, 				1, 			0,					'POLICY_DUMMY_BYBLOS', 			NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_CAHOKIA', 			'TXT_KEY_CITYSTATE_CAHOKIA', 			'TXT_KEY_CSTRAIT_MINOR_CIV_CAHOKIA', 			3, 				1, 			0,					NULL, 							NULL, 						NULL UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_CAMUTINS', 			'TXT_KEY_CITYSTATE_CAMUTINS', 			'TXT_KEY_CSTRAIT_MINOR_CIV_CAMUTINS', 			3, 				1, 			0,					NULL, 							NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_CANOSSA', 			'TXT_KEY_CITYSTATE_CANOSSA', 			'TXT_KEY_CSTRAIT_MINOR_CIV_CANOSSA', 			3, 				1, 			0,					NULL, 							NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_CAPE_TOWN', 			'TXT_KEY_CITYSTATE_CAPE_TOWN', 			'TXT_KEY_CSTRAIT_MINOR_CIV_CAPE_TOWN', 			3, 				1, 			0,					NULL, 							NULL, 						'BUILDINGCLASS_DUMMY_CAPE_TOWN' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_CHEVAK', 			'TXT_KEY_CITYSTATE_CHEVAK',				'TXT_KEY_CSTRAIT_MINOR_CIV_CHEVAK', 			3, 				1, 			0,					NULL, 							NULL, 						'BUILDINGCLASS_DUMMY_CHEVAK' UNION ALL
@@ -3147,6 +3334,7 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_FAYA', 				'TXT_KEY_CITYSTATE_FAYA', 			
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_FLORENCE', 			'TXT_KEY_CITYSTATE_FLORENCE', 			'TXT_KEY_CSTRAIT_MINOR_CIV_FLORENCE', 			3, 				1, 			0,					NULL, 							NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_GENEVA', 			'TXT_KEY_CITYSTATE_GENEVA', 			'TXT_KEY_CSTRAIT_MINOR_CIV_GENEVA', 			3, 				1, 			0,					'POLICY_DUMMY_GENEVA', 			NULL, 						'BUILDINGCLASS_DUMMY_GENEVA' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_GENOA', 				'TXT_KEY_CITYSTATE_GENOA', 				'TXT_KEY_CSTRAIT_MINOR_CIV_GENOA', 				3, 				1, 			0,					'POLICY_DUMMY_GENOA', 			NULL, 						NULL UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_GONDAR', 			'TXT_KEY_CITYSTATE_GONDAR', 			'TXT_KEY_CSTRAIT_MINOR_CIV_GONDAR', 			3, 				1, 			0,					NULL, 							NULL, 						'BUILDINGCLASS_DUMMY_GONDAR' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_GRANADA', 			'TXT_KEY_CITYSTATE_GRANADA', 			'TXT_KEY_CSTRAIT_MINOR_CIV_GRANADA', 			3, 				1, 			0,					NULL, 							NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_GWYNEDD', 			'TXT_KEY_CITYSTATE_GWYNEDD', 			'TXT_KEY_CSTRAIT_MINOR_CIV_GWYNEDD', 			3, 				1, 			0,					'POLICY_DUMMY_GWYNEDD', 		NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_HANOI', 				'TXT_KEY_CITYSTATE_HANOI', 				'TXT_KEY_CSTRAIT_MINOR_CIV_HANOI', 				3, 				1, 			0,					NULL, 							'PROMOTION_HANOI', 			NULL UNION ALL
@@ -3163,11 +3351,13 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_JUYUBIT', 			'TXT_KEY_CITYSTATE_JUYUBIT'
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KABUL', 				'TXT_KEY_CITYSTATE_KABUL', 				'TXT_KEY_CSTRAIT_MINOR_CIV_KABUL', 				3, 				1, 			0,					NULL, 							NULL, 						'BUILDINGCLASS_DUMMY_KABUL' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KAGYRGYN', 			'TXT_KEY_CITYSTATE_KAGYRGYN', 			'TXT_KEY_CSTRAIT_MINOR_CIV_KAGYRGYN', 			3, 				1, 			0,					NULL, 							NULL, 						'BUILDINGCLASS_DUMMY_KAGYRGYN' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARASJOHKA', 		'TXT_KEY_CITYSTATE_KARASJOHKA', 		'TXT_KEY_CSTRAIT_MINOR_CIV_KARASJOHKA', 		3, 				1, 			0,					NULL, 							'PROMOTION_KARASJOHKA', 	NULL UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARIATEBIKE', 		'TXT_KEY_CITYSTATE_KARIATEBIKE', 		'TXT_KEY_CSTRAIT_MINOR_CIV_KARIATEBIKE', 		3, 				1, 			1,					NULL, 							NULL, 						'BUILDINGCLASS_DUMMY_KARIATEBIKE' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARYES', 			'TXT_KEY_CITYSTATE_KARYES', 			'TXT_KEY_CSTRAIT_MINOR_CIV_KARYES', 			3, 				1, 			0,					NULL, 							'PROMOTION_KARYES', 		NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KATENDE', 			'TXT_KEY_CITYSTATE_KATENDE', 			'TXT_KEY_CSTRAIT_MINOR_CIV_KATENDE', 			3, 				1, 			0,					'POLICY_DUMMY_KATENDE', 		NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KATHMANDU', 			'TXT_KEY_CITYSTATE_KATHMANDU', 			'TXT_KEY_CSTRAIT_MINOR_CIV_KATHMANDU', 			3, 				1, 			0,					'POLICY_DUMMY_KATHMANDU', 		NULL, 						'BUILDINGCLASS_DUMMY_KATHMANDU' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KIEV', 				'TXT_KEY_CITYSTATE_KIEV', 				'TXT_KEY_CSTRAIT_MINOR_CIV_KIEV', 				3, 				1, 			0,					NULL, 							NULL, 						'BUILDINGCLASS_DUMMY_KIEV' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KIGALI', 			'TXT_KEY_CITYSTATE_KIGALI', 			'TXT_KEY_CSTRAIT_MINOR_CIV_KIGALI', 			3, 				1, 			0,					'POLICY_DUMMY_KIGALI', 			NULL, 						'BUILDINGCLASS_DUMMY_KIGALI' UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KITCISIPIRINI', 		'TXT_KEY_CITYSTATE_KITCISIPIRINI', 		'TXT_KEY_CSTRAIT_MINOR_CIV_KITCISIPIRINI', 		3, 				1, 			0,					NULL, 							NULL, 						'BUILDINGCLASS_DUMMY_KITCISIPIRINI' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KUALA_LUMPUR', 		'TXT_KEY_CITYSTATE_KUALA_LUMPUR', 		'TXT_KEY_CSTRAIT_MINOR_CIV_KUALA_LUMPUR', 		3, 				1, 			0,					'POLICY_DUMMY_KUALA_LUMPUR', 	NULL, 						'BUILDINGCLASS_DUMMY_KUALA_LUMPUR' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KYZYL', 				'TXT_KEY_CITYSTATE_KYZYL', 				'TXT_KEY_CSTRAIT_MINOR_CIV_KYZYL', 				3, 				1, 			0,					NULL, 							NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LACONIA', 			'TXT_KEY_CITYSTATE_LACONIA', 			'TXT_KEY_CSTRAIT_MINOR_CIV_LACONIA', 			3, 				1, 			0,					NULL, 							'PROMOTION_LACONIA', 		NULL UNION ALL
@@ -3176,6 +3366,8 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LA_VENTA', 			'TXT_KEY_CITYSTATE_LA_VENT
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LEVUKA', 			'TXT_KEY_CITYSTATE_LEVUKA', 			'TXT_KEY_CSTRAIT_MINOR_CIV_LEVUKA', 			3, 				1, 			0,					NULL,							'PROMOTION_LEVUKA', 		NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LHASA', 				'TXT_KEY_CITYSTATE_LHASA', 				'TXT_KEY_CSTRAIT_MINOR_CIV_LHASA', 				3, 				1, 			0,					NULL, 							NULL, 						'BUILDINGCLASS_DUMMY_LHASA' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LONGYAN', 			'TXT_KEY_CITYSTATE_LONGYAN', 			'TXT_KEY_CSTRAIT_MINOR_CIV_LONGYAN', 			3, 				1, 			0,					NULL, 							NULL, 						NULL UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LUXEMBOURG', 		'TXT_KEY_CITYSTATE_LUXEMBOURG', 		'TXT_KEY_CSTRAIT_MINOR_CIV_LUXEMBOURG', 		3, 				1, 			1,					'POLICY_DUMMY_LUXEMBOURG', 		NULL, 						'BUILDINGCLASS_DUMMY_LUXEMBOURG' UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MACACO', 			'TXT_KEY_CITYSTATE_MACACO', 			'TXT_KEY_CSTRAIT_MINOR_CIV_MACACO', 			3, 				1, 			0,					'POLICY_DUMMY_MACACO', 			NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MALACCA', 			'TXT_KEY_CITYSTATE_MALACCA', 			'TXT_KEY_CSTRAIT_MINOR_CIV_MALACCA', 			3, 				1, 			0,					'POLICY_DUMMY_MALACCA', 		NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MANAGUA', 			'TXT_KEY_CITYSTATE_MANAGUA', 			'TXT_KEY_CSTRAIT_MINOR_CIV_MANAGUA', 			3, 				1, 			1,					NULL, 							NULL, 						'BUILDINGCLASS_DUMMY_MANAGUA' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MANILA', 			'TXT_KEY_CITYSTATE_MANILA', 			'TXT_KEY_CSTRAIT_MINOR_CIV_MANILA', 			3, 				1, 			0,					'POLICY_DUMMY_MANILA', 			NULL, 						NULL UNION ALL
@@ -3191,12 +3383,14 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MONACO', 			'TXT_KEY_CITYSTATE_MONACO', 
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MUISCA', 			'TXT_KEY_CITYSTATE_MUISCA', 			'TXT_KEY_CSTRAIT_MINOR_CIV_MUISCA', 			3, 				1, 			0,					'POLICY_DUMMY_MUISCA', 			NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MULTAN', 			'TXT_KEY_CITYSTATE_MULTAN', 			'TXT_KEY_CSTRAIT_MINOR_CIV_MULTAN', 			3, 				1, 			0,					'POLICY_DUMMY_MULTAN', 			NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MUSCAT', 			'TXT_KEY_CITYSTATE_MUSCAT', 			'TXT_KEY_CSTRAIT_MINOR_CIV_MUSCAT', 			3, 				1, 			0,					'POLICY_DUMMY_MUSCAT', 			NULL, 						NULL UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MUTAWAYNATJI', 		'TXT_KEY_CITYSTATE_MUTAWAYNATJI', 		'TXT_KEY_CSTRAIT_MINOR_CIV_MUTAWAYNATJI', 		3, 				1, 			0,					NULL, 							NULL, 						'BUILDINGCLASS_DUMMY_MUTAWAYNATJI' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MUTITJULU', 			'TXT_KEY_CITYSTATE_MUTITJULU',			'TXT_KEY_CSTRAIT_MINOR_CIV_MUTITJULU', 			3, 				1, 			0,					'POLICY_DUMMY_MUTITJULU', 		NULL, 						'BUILDINGCLASS_DUMMY_MUTITJULU' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_NAN_MADOL', 			'TXT_KEY_CITYSTATE_NAN_MADOL',			'TXT_KEY_CSTRAIT_MINOR_CIV_NAN_MADOL', 			3, 				1, 			0,					NULL, 							NULL, 						'BUILDINGCLASS_DUMMY_NAN_MADOL' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_NGAZARGAMU', 		'TXT_KEY_CITYSTATE_NGAZARGAMU', 		'TXT_KEY_CSTRAIT_MINOR_CIV_NGAZARGAMU', 		3, 				1, 			0,					NULL, 							NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_NYARYANA_MARQ', 		'TXT_KEY_CITYSTATE_NYARYANA_MARQ', 		'TXT_KEY_CSTRAIT_MINOR_CIV_NYARYANA_MARQ', 		3, 				1, 			0,					NULL, 							NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_OC_EO', 				'TXT_KEY_CITYSTATE_OC_EO', 				'TXT_KEY_CSTRAIT_MINOR_CIV_OC_EO', 				3, 				1, 			0,					NULL, 							NULL, 						'BUILDINGCLASS_DUMMY_OC_EO' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ODENSO', 			'TXT_KEY_CITYSTATE_ODENSO', 			'TXT_KEY_CSTRAIT_MINOR_CIV_ODENSO', 			3, 				1, 			0,					NULL, 							'PROMOTION_ODENSO', 		NULL UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_OKAK', 				'TXT_KEY_CITYSTATE_OKAK', 				'TXT_KEY_CSTRAIT_MINOR_CIV_OKAK', 				3, 				1, 			0,					NULL, 							NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ORMUS', 				'TXT_KEY_CITYSTATE_ORMUS', 				'TXT_KEY_CSTRAIT_MINOR_CIV_ORMUS', 				3, 				1, 			0,					'POLICY_DUMMY_ORMUS', 			NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_OUIDAH', 			'TXT_KEY_CITYSTATE_OUIDAH', 			'TXT_KEY_CSTRAIT_MINOR_CIV_OUIDAH', 			3, 				1, 			0,					'POLICY_DUMMY_OUIDAH', 			NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_PALMYRA', 			'TXT_KEY_CITYSTATE_PALMYRA', 			'TXT_KEY_CSTRAIT_MINOR_CIV_PALMYRA', 			3, 				1, 			1,					'POLICY_DUMMY_PALMYRA', 		NULL, 						'BUILDINGCLASS_DUMMY_PALMYRA' UNION ALL
@@ -3212,6 +3406,7 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_RIGA', 				'TXT_KEY_CITYSTATE_RIGA', 			
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_RISHIKESH', 			'TXT_KEY_CITYSTATE_RISHIKESH', 			'TXT_KEY_CSTRAIT_MINOR_CIV_RISHIKESH', 			3, 				1, 			0,					NULL, 							NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_SADDARVAZEH', 		'TXT_KEY_CITYSTATE_SADDARVAZEH', 		'TXT_KEY_CSTRAIT_MINOR_CIV_SADDARVAZEH', 		3, 				1, 			0,					'POLICY_DUMMY_SADDARVAZEH', 	NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_SAMARKAND', 			'TXT_KEY_CITYSTATE_SAMARKAND', 			'TXT_KEY_CSTRAIT_MINOR_CIV_SAMARKAND', 			3, 				1, 			0,					'POLICY_DUMMY_SAMARKAND', 		NULL, 						'BUILDINGCLASS_DUMMY_SAMARKAND' UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_SAMBAA_KE', 			'TXT_KEY_CITYSTATE_SAMBAA_KE', 			'TXT_KEY_CSTRAIT_MINOR_CIV_SAMBAA_KE', 			3, 				1, 			0,					NULL, 							NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_SANAA', 				'TXT_KEY_CITYSTATE_SANAA', 				'TXT_KEY_CSTRAIT_MINOR_CIV_SANAA', 				3, 				1, 			0,					'POLICY_DUMMY_SANAA', 			NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_SANANDAJ', 			'TXT_KEY_CITYSTATE_SANANDAJ', 			'TXT_KEY_CSTRAIT_MINOR_CIV_SANANDAJ', 			3, 				1, 			0,					NULL, 							NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_SANTO_DOMINGO', 		'TXT_KEY_CITYSTATE_SANTO_DOMINGO',		'TXT_KEY_CSTRAIT_MINOR_CIV_SANTO_DOMINGO', 		3, 				1, 			0,					'POLICY_DUMMY_SANTO_DOMINGO',	NULL, 						NULL UNION ALL
@@ -3232,10 +3427,13 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_TUNIS', 				'TXT_KEY_CITYSTATE_TUNIS', 	
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_TYRE', 				'TXT_KEY_CITYSTATE_TYRE', 				'TXT_KEY_CSTRAIT_MINOR_CIV_TYRE', 				3, 				1, 			0,					'POLICY_DUMMY_TYRE', 			NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_UR', 				'TXT_KEY_CITYSTATE_UR', 				'TXT_KEY_CSTRAIT_MINOR_CIV_UR', 				3, 				1, 			0,					'POLICY_DUMMY_UR', 				NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_VADUZ', 				'TXT_KEY_CITYSTATE_VADUZ', 				'TXT_KEY_CSTRAIT_MINOR_CIV_VADUZ', 				3, 				1, 			0,					'POLICY_DUMMY_VADUZ', 			NULL, 						NULL UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_VAITAPE', 			'TXT_KEY_CITYSTATE_VAITAPE', 			'TXT_KEY_CSTRAIT_MINOR_CIV_VAITAPE', 			3, 				1, 			0,					'POLICY_DUMMY_VAITAPE', 		NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_VALLETTA', 			'TXT_KEY_CITYSTATE_VALLETTA', 			'TXT_KEY_CSTRAIT_MINOR_CIV_VALLETTA', 			3, 				1, 			0,					NULL, 							NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_VANCOUVER', 			'TXT_KEY_CITYSTATE_VANCOUVER', 			'TXT_KEY_CSTRAIT_MINOR_CIV_VANCOUVER', 			3, 				1, 			0,					'POLICY_DUMMY_VANCOUVER', 		NULL, 						'BUILDINGCLASS_DUMMY_VANCOUVER' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_VATICAN_CITY', 		'TXT_KEY_CITYSTATE_VATICAN_CITY',		'TXT_KEY_CSTRAIT_MINOR_CIV_VATICAN_CITY', 		3, 				1, 			1,					'POLICY_DUMMY_VATICAN_CITY', 	NULL, 						'BUILDINGCLASS_DUMMY_VATICAN_CITY' UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_VICTORIA', 			'TXT_KEY_CITYSTATE_VICTORIA', 			'TXT_KEY_CSTRAIT_MINOR_CIV_VICTORIA', 			3, 				1, 			1,					NULL, 							NULL, 						'BUILDINGCLASS_DUMMY_VICTORIA' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_VILNIUS', 			'TXT_KEY_CITYSTATE_VILNIUS', 			'TXT_KEY_CSTRAIT_MINOR_CIV_VILNIUS', 			3, 				1, 			0,					NULL, 							NULL, 						NULL UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_WAITUKUBULI', 		'TXT_KEY_CITYSTATE_WAITUKUBULI', 		'TXT_KEY_CSTRAIT_MINOR_CIV_WAITUKUBULI', 		3, 				1, 			0,					NULL, 							NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_WELLINGTON', 		'TXT_KEY_CITYSTATE_WELLINGTON', 		'TXT_KEY_CSTRAIT_MINOR_CIV_WELLINGTON', 		3, 				1, 			0,					NULL, 							NULL, 						NULL UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_WITTENBERG', 		'TXT_KEY_CITYSTATE_WITTENBERG', 		'TXT_KEY_CSTRAIT_MINOR_CIV_WITTENBERG', 		3, 				1, 			0,					NULL, 							NULL, 						'BUILDINGCLASS_DUMMY_WITTENBERG' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_WOOTEI_NIICIE', 		'TXT_KEY_CITYSTATE_WOOTEI_NIICIE', 		'TXT_KEY_CSTRAIT_MINOR_CIV_WOOTEI_NIICIE', 		3, 				1, 			1,					'POLICY_DUMMY_WOOTEI_NIICIE',	NULL, 						'BUILDINGCLASS_DUMMY_WOOTEI_NIICIE' UNION ALL
@@ -3246,6 +3444,7 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ZURICH', 			'TXT_KEY_CITYSTATE_ZURICH', 
 
 INSERT INTO Event_ParentEvents 
 			(EventChoiceType, 									EventType)
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ABALESSA', 			'PLAYER_EVENT_MINOR_CIV_ABALESSA' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ADEJE', 				'PLAYER_EVENT_MINOR_CIV_ADEJE' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ALMATY', 			'PLAYER_EVENT_MINOR_CIV_ALMATY' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_AL_TIRABIN', 		'PLAYER_EVENT_MINOR_CIV_AL_TIRABIN' UNION ALL
@@ -3271,6 +3470,7 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BUDAPEST', 			'PLAYER_EVENT_MINOR_CIV_BU
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BUENOS_AIRES', 		'PLAYER_EVENT_MINOR_CIV_BUENOS_AIRES' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BYBLOS', 			'PLAYER_EVENT_MINOR_CIV_BYBLOS' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_CAHOKIA', 			'PLAYER_EVENT_MINOR_CIV_CAHOKIA' UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_CAMUTINS', 			'PLAYER_EVENT_MINOR_CIV_CAMUTINS' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_CANOSSA', 			'PLAYER_EVENT_MINOR_CIV_CANOSSA' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_CAPE_TOWN', 			'PLAYER_EVENT_MINOR_CIV_CAPE_TOWN' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_CHEVAK', 			'PLAYER_EVENT_MINOR_CIV_CHEVAK' UNION ALL
@@ -3286,6 +3486,7 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_FAYA', 				'PLAYER_EVENT_MINOR_CIV_FAYA'
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_FLORENCE', 			'PLAYER_EVENT_MINOR_CIV_FLORENCE' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_GENEVA', 			'PLAYER_EVENT_MINOR_CIV_GENEVA' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_GENOA', 				'PLAYER_EVENT_MINOR_CIV_GENOA' UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_GONDAR', 			'PLAYER_EVENT_MINOR_CIV_GONDAR' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_GRANADA', 			'PLAYER_EVENT_MINOR_CIV_GRANADA' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_GWYNEDD', 			'PLAYER_EVENT_MINOR_CIV_GWYNEDD' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_HANOI', 				'PLAYER_EVENT_MINOR_CIV_HANOI' UNION ALL
@@ -3302,11 +3503,13 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_JUYUBIT', 			'PLAYER_EVENT_MINOR_CIV_JUY
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KABUL', 				'PLAYER_EVENT_MINOR_CIV_KABUL' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KAGYRGYN', 			'PLAYER_EVENT_MINOR_CIV_KAGYRGYN' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARASJOHKA', 		'PLAYER_EVENT_MINOR_CIV_KARASJOHKA' UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARIATEBIKE', 		'PLAYER_EVENT_MINOR_CIV_KARIATEBIKE' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARYES', 			'PLAYER_EVENT_MINOR_CIV_KARYES' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KATENDE', 			'PLAYER_EVENT_MINOR_CIV_KATENDE' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KATHMANDU', 			'PLAYER_EVENT_MINOR_CIV_KATHMANDU' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KIEV', 				'PLAYER_EVENT_MINOR_CIV_KIEV' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KIGALI', 			'PLAYER_EVENT_MINOR_CIV_KIGALI' UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KITCISIPIRINI', 		'PLAYER_EVENT_MINOR_CIV_KITCISIPIRINI' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KUALA_LUMPUR', 		'PLAYER_EVENT_MINOR_CIV_KUALA_LUMPUR' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KYZYL', 				'PLAYER_EVENT_MINOR_CIV_KYZYL' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LAHORE', 			'PLAYER_EVENT_MINOR_CIV_LAHORE' UNION ALL
@@ -3315,6 +3518,8 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LA_VENTA', 			'PLAYER_EVENT_MINOR_CIV_LA
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LEVUKA', 			'PLAYER_EVENT_MINOR_CIV_LEVUKA' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LHASA', 				'PLAYER_EVENT_MINOR_CIV_LHASA' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LONGYAN', 			'PLAYER_EVENT_MINOR_CIV_LONGYAN' UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LUXEMBOURG', 		'PLAYER_EVENT_MINOR_CIV_LUXEMBOURG' UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MACACO', 			'PLAYER_EVENT_MINOR_CIV_MACACO' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MALACCA', 			'PLAYER_EVENT_MINOR_CIV_MALACCA' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MANAGUA', 			'PLAYER_EVENT_MINOR_CIV_MANAGUA' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MANILA', 			'PLAYER_EVENT_MINOR_CIV_MANILA' UNION ALL
@@ -3331,11 +3536,13 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MUISCA', 			'PLAYER_EVENT_MINOR_CIV_MUIS
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MULTAN', 			'PLAYER_EVENT_MINOR_CIV_MULTAN' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MUSCAT', 			'PLAYER_EVENT_MINOR_CIV_MUSCAT' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MUTITJULU', 			'PLAYER_EVENT_MINOR_CIV_MUTITJULU' UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MUTAWAYNATJI', 		'PLAYER_EVENT_MINOR_CIV_MUTAWAYNATJI' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_NAN_MADOL', 			'PLAYER_EVENT_MINOR_CIV_NAN_MADOL' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_NGAZARGAMU', 		'PLAYER_EVENT_MINOR_CIV_NGAZARGAMU' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_NYARYANA_MARQ', 		'PLAYER_EVENT_MINOR_CIV_NYARYANA_MARQ' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_OC_EO', 				'PLAYER_EVENT_MINOR_CIV_OC_EO' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ODENSO', 			'PLAYER_EVENT_MINOR_CIV_ODENSO' UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_OKAK', 				'PLAYER_EVENT_MINOR_CIV_OKAK' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ORMUS', 				'PLAYER_EVENT_MINOR_CIV_ORMUS' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_OUIDAH', 			'PLAYER_EVENT_MINOR_CIV_OUIDAH' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_PALMYRA', 			'PLAYER_EVENT_MINOR_CIV_PALMYRA' UNION ALL
@@ -3351,6 +3558,7 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_RIGA', 				'PLAYER_EVENT_MINOR_CIV_RIGA'
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_RISHIKESH', 			'PLAYER_EVENT_MINOR_CIV_RISHIKESH' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_SADDARVAZEH', 		'PLAYER_EVENT_MINOR_CIV_SADDARVAZEH' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_SAMARKAND', 			'PLAYER_EVENT_MINOR_CIV_SAMARKAND' UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_SAMBAA_KE', 			'PLAYER_EVENT_MINOR_CIV_SAMBAA_KE' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_SANAA', 				'PLAYER_EVENT_MINOR_CIV_SANAA' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_SANANDAJ', 			'PLAYER_EVENT_MINOR_CIV_SANANDAJ' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_SANTO_DOMINGO', 		'PLAYER_EVENT_MINOR_CIV_SANTO_DOMINGO' UNION ALL
@@ -3371,13 +3579,16 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_TUNIS', 				'PLAYER_EVENT_MINOR_CIV_TUNI
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_TYRE', 				'PLAYER_EVENT_MINOR_CIV_TYRE' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_UR', 				'PLAYER_EVENT_MINOR_CIV_UR' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_VADUZ', 				'PLAYER_EVENT_MINOR_CIV_VADUZ' UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_VAITAPE', 			'PLAYER_EVENT_MINOR_CIV_VAITAPE' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_VALLETTA', 			'PLAYER_EVENT_MINOR_CIV_VALLETTA' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_VANCOUVER', 			'PLAYER_EVENT_MINOR_CIV_VANCOUVER' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_VATICAN_CITY', 		'PLAYER_EVENT_MINOR_CIV_VATICAN_CITY' UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_VICTORIA', 			'PLAYER_EVENT_MINOR_CIV_VICTORIA' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_VILNIUS', 			'PLAYER_EVENT_MINOR_CIV_VILNIUS' UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_WAITUKUBULI', 		'PLAYER_EVENT_MINOR_CIV_WAITUKUBULI' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_WELLINGTON', 		'PLAYER_EVENT_MINOR_CIV_WELLINGTON' UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_WOOTEI_NIICIE', 		'PLAYER_EVENT_MINOR_CIV_WOOTEI_NIICIE' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_WITTENBERG', 		'PLAYER_EVENT_MINOR_CIV_WITTENBERG' UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_WOOTEI_NIICIE', 		'PLAYER_EVENT_MINOR_CIV_WOOTEI_NIICIE' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_YANGCHENG', 			'PLAYER_EVENT_MINOR_CIV_YANGCHENG' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_YEREVAN', 			'PLAYER_EVENT_MINOR_CIV_YEREVAN' UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ZANZIBAR', 			'PLAYER_EVENT_MINOR_CIV_ZANZIBAR' UNION ALL
@@ -3388,27 +3599,28 @@ INSERT INTO EventChoice_ResourceQuantity
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BUDAPEST', 	'RESOURCE_HORSE', 	5;
 
 INSERT INTO EventChoice_BuildingClassYieldChange 
-			(EventChoiceType, 								BuildingClassType, 					YieldType, 				YieldChange)
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_VALLETTA', 		'BUILDINGCLASS_GRAND_HARBOR', 		'YIELD_FOOD', 			2 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_VALLETTA', 		'BUILDINGCLASS_GRAND_HARBOR', 		'YIELD_SCIENCE', 		2 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BRATISLAVA', 	'BUILDINGCLASS_WRITERS_GUILD', 		'YIELD_CULTURE', 		2 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BRATISLAVA', 	'BUILDINGCLASS_ARTISTS_GUILD', 		'YIELD_CULTURE', 		2 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BRATISLAVA', 	'BUILDINGCLASS_MUSICIANS_GUILD', 	'YIELD_CULTURE', 		2 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BRATISLAVA', 	'BUILDINGCLASS_WRITERS_GUILD', 		'YIELD_TOURISM', 		1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BRATISLAVA', 	'BUILDINGCLASS_ARTISTS_GUILD', 		'YIELD_TOURISM', 		1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BRATISLAVA', 	'BUILDINGCLASS_MUSICIANS_GUILD', 	'YIELD_TOURISM', 		1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_HONDURAS', 		'BUILDINGCLASS_HARBOR', 			'YIELD_GOLD', 			1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_DANO', 			'BUILDINGCLASS_SHRINE', 			'YIELD_CULTURE_LOCAL', 	2 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_DJIBOUTI', 		'BUILDINGCLASS_GRANARY', 			'YIELD_CULTURE', 		1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ISKANWAYA', 		'BUILDINGCLASS_AQUEDUCT', 			'YIELD_FAITH', 			1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KYZYL', 			'BUILDINGCLASS_PALACE', 			'YIELD_SCIENCE', 		1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KYZYL', 			'BUILDINGCLASS_MONUMENT', 			'YIELD_SCIENCE', 		1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MONACO', 		'BUILDINGCLASS_MARKET', 			'YIELD_CULTURE_LOCAL', 	1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MONACO', 		'BUILDINGCLASS_BANK', 				'YIELD_CULTURE_LOCAL', 	1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_PRAGUE', 		'BUILDINGCLASS_WALLS', 				'YIELD_CULTURE', 		1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_PRAGUE', 		'BUILDINGCLASS_CASTLE', 			'YIELD_CULTURE', 		1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ZURICH', 		'BUILDINGCLASS_BANK', 				'YIELD_GOLD', 			1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ZURICH', 		'BUILDINGCLASS_STOCK_EXCHANGE',		'YIELD_GOLD', 			1;
+			(EventChoiceType, 								BuildingClassType, 					YieldType, 						YieldChange)
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_VALLETTA', 		'BUILDINGCLASS_GRAND_HARBOR', 		'YIELD_FOOD', 					2 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_VALLETTA', 		'BUILDINGCLASS_GRAND_HARBOR', 		'YIELD_SCIENCE', 				2 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BRATISLAVA', 	'BUILDINGCLASS_WRITERS_GUILD', 		'YIELD_CULTURE', 				2 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BRATISLAVA', 	'BUILDINGCLASS_ARTISTS_GUILD', 		'YIELD_CULTURE', 				2 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BRATISLAVA', 	'BUILDINGCLASS_MUSICIANS_GUILD', 	'YIELD_CULTURE', 				2 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BRATISLAVA', 	'BUILDINGCLASS_WRITERS_GUILD', 		'YIELD_TOURISM', 				1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BRATISLAVA', 	'BUILDINGCLASS_ARTISTS_GUILD', 		'YIELD_TOURISM', 				1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BRATISLAVA', 	'BUILDINGCLASS_MUSICIANS_GUILD', 	'YIELD_TOURISM', 				1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_DANO', 			'BUILDINGCLASS_SHRINE', 			'YIELD_CULTURE_LOCAL', 			2 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_DJIBOUTI', 		'BUILDINGCLASS_GRANARY', 			'YIELD_CULTURE', 				1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_HONDURAS', 		'BUILDINGCLASS_HARBOR', 			'YIELD_GOLD', 					1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ISKANWAYA', 		'BUILDINGCLASS_AQUEDUCT', 			'YIELD_FAITH', 					1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KYZYL', 			'BUILDINGCLASS_PALACE', 			'YIELD_SCIENCE', 				1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KYZYL', 			'BUILDINGCLASS_MONUMENT', 			'YIELD_SCIENCE', 				1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MACACO', 		'BUILDINGCLASS_WALLS', 				'YIELD_GREAT_GENERAL_POINTS', 	1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MONACO', 		'BUILDINGCLASS_MARKET', 			'YIELD_CULTURE_LOCAL', 			1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MONACO', 		'BUILDINGCLASS_BANK', 				'YIELD_CULTURE_LOCAL', 			1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_PRAGUE', 		'BUILDINGCLASS_WALLS', 				'YIELD_CULTURE', 				1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_PRAGUE', 		'BUILDINGCLASS_CASTLE', 			'YIELD_CULTURE', 				1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ZURICH', 		'BUILDINGCLASS_BANK', 				'YIELD_GOLD', 					1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ZURICH', 		'BUILDINGCLASS_STOCK_EXCHANGE',		'YIELD_GOLD', 					1;
 
 INSERT INTO EventChoice_BuildingClassYieldModifier 
 			(EventChoiceType, 								BuildingClassType, 				YieldType, 			Modifier)
@@ -3426,7 +3638,7 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_FLORENCE', 	'SPECIALIST_ARTIST', 		'YIEL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MBABANE', 	'SPECIALIST_CIVIL_SERVANT', 'YIELD_GREAT_GENERAL_POINTS', 	1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_VILNIUS', 	'SPECIALIST_WRITER', 		'YIELD_GOLD', 					1;
 
-INSERT INTO EventChoice_ImprovementYieldChange 
+INSERT INTO EventChoice_ImprovementYieldChange -- special 
 			(EventChoiceType, 								ImprovementType, 					YieldType, 						YieldChange)
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ADEJE', 			'IMPROVEMENT_DOGO_CANARIO', 		'YIELD_CULTURE', 				1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ADEJE', 			'IMPROVEMENT_DOGO_CANARIO', 		'YIELD_FAITH', 					1 UNION ALL
@@ -3434,11 +3646,34 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_AL_TIRABIN', 	'IMPROVEMENT_BEDOUIN_CAMP'
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_AL_TIRABIN', 	'IMPROVEMENT_BEDOUIN_CAMP', 		'YIELD_CULTURE', 				1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BALKH', 			'IMPROVEMENT_PHROURION', 			'YIELD_GOLD', 					1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BALKH', 			'IMPROVEMENT_PHROURION', 			'YIELD_GREAT_GENERAL_POINTS', 	1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_CAHOKIA', 		'IMPROVEMENT_MOUND', 				'YIELD_GOLD', 					1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_CAHOKIA', 		'IMPROVEMENT_MOUND', 				'YIELD_FAITH', 					1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARYES', 		'IMPROVEMENT_MONASTERY', 			'YIELD_CULTURE', 				1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARYES', 		'IMPROVEMENT_MONASTERY', 			'YIELD_FAITH', 					1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LA_VENTA', 		'IMPROVEMENT_BIG_HEAD', 			'YIELD_SCIENCE', 				2 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LA_VENTA', 		'IMPROVEMENT_BIG_HEAD', 			'YIELD_CULTURE', 				1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LONGYAN', 		'IMPROVEMENT_TULOU', 				'YIELD_CULTURE', 				1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LONGYAN', 		'IMPROVEMENT_TULOU', 				'YIELD_GREAT_GENERAL_POINTS', 	1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MOGADISHU', 		'IMPROVEMENT_DAAQ_AH', 				'YIELD_PRODUCTION', 			1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MOGADISHU', 		'IMPROVEMENT_DAAQ_AH', 				'YIELD_CULTURE', 				1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_NYARYANA_MARQ', 	'IMPROVEMENT_CHUM', 				'YIELD_FOOD', 					2 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_PALMYRA', 		'IMPROVEMENT_FUNERARY_TOWER', 		'YIELD_CULTURE', 				1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_PALMYRA', 		'IMPROVEMENT_FUNERARY_TOWER', 		'YIELD_GOLDEN_AGE_POINTS', 		1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_SGANG_GWAAY', 	'IMPROVEMENT_TOTEM_POLE', 			'YIELD_FOOD', 					1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_SGANG_GWAAY', 	'IMPROVEMENT_TOTEM_POLE', 			'YIELD_CULTURE', 				1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_TIWANAKU', 		'IMPROVEMENT_SUNK_COURT', 			'YIELD_CULTURE', 				1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_TIWANAKU', 		'IMPROVEMENT_SUNK_COURT', 			'YIELD_FAITH', 					1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_TUNIS', 			'IMPROVEMENT_RIBAT', 				'YIELD_FAITH', 					2;
+--SELECT 	'PLAYER_EVENT_CHOICE_MINOR_CIV_YAIUWA', 		'IMPROVEMENT_LLAO_LLAO', 			'YIELD_FOOD', 					1 UNION ALL
+--SELECT 	'PLAYER_EVENT_CHOICE_MINOR_CIV_YAIUWA', 		'IMPROVEMENT_LLAO_LLAO', 			'YIELD_SCIENCE', 				1;
+
+INSERT INTO EventChoice_ImprovementYieldChange -- regular 
+			(EventChoiceType, 								ImprovementType, 					YieldType, 						YieldChange)
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ABALESSA', 		'IMPROVEMENT_CAMP', 				'YIELD_GOLD', 					1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_ABALESSA', 		'IMPROVEMENT_PASTURE', 				'YIELD_GOLD', 					1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BRUSSELS', 		'IMPROVEMENT_MARSH', 				'YIELD_GOLD', 					1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BRUSSELS', 		'IMPROVEMENT_MARSH', 				'YIELD_CULTURE', 				1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BYBLOS', 		'IMPROVEMENT_FISHING_BOATS', 		'YIELD_FOOD', 					1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_CAHOKIA', 		'IMPROVEMENT_MOUND', 				'YIELD_GOLD', 					1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_CAHOKIA', 		'IMPROVEMENT_MOUND', 				'YIELD_FAITH', 					1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_FLORENCE', 		'IMPROVEMENT_QUARRY', 				'YIELD_CULTURE', 				1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_GRANADA', 		'IMPROVEMENT_FORT', 				'YIELD_GREAT_GENERAL_POINTS', 	1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_GRANADA', 		'IMPROVEMENT_CITADEL', 				'YIELD_GREAT_GENERAL_POINTS', 	1 UNION ALL
@@ -3448,40 +3683,26 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_IRUNEA', 		'IMPROVEMENT_FISHING_BOATS', 
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_JERUSALEM', 		'IMPROVEMENT_HOLY_SITE', 			'YIELD_FAITH',					1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KAGYRGYN', 		'IMPROVEMENT_CAMP', 				'YIELD_GREAT_GENERAL_POINTS', 	1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KAGYRGYN', 		'IMPROVEMENT_FISHING_BOATS', 		'YIELD_GREAT_GENERAL_POINTS', 	1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARYES', 		'IMPROVEMENT_MONASTERY', 			'YIELD_CULTURE', 				1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARYES', 		'IMPROVEMENT_MONASTERY', 			'YIELD_FAITH', 					1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LA_VENTA', 		'IMPROVEMENT_BIG_HEAD', 			'YIELD_SCIENCE', 				2 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LA_VENTA', 		'IMPROVEMENT_BIG_HEAD', 			'YIELD_CULTURE', 				1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LONGYAN', 		'IMPROVEMENT_TULOU', 				'YIELD_CULTURE', 				1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LONGYAN', 		'IMPROVEMENT_TULOU', 				'YIELD_GREAT_GENERAL_POINTS', 	1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LUXEMBOURG', 	'IMPROVEMENT_HOLY_SITE', 			'YIELD_GOLD', 					1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_LUXEMBOURG', 	'IMPROVEMENT_HOLY_SITE', 			'YIELD_CULTURE', 				1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MATONJENI', 		'IMPROVEMENT_HOLY_SITE', 			'YIELD_FOOD', 					4 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MELBOURNE', 		'IMPROVEMENT_MINE', 				'YIELD_GOLD', 					1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MOGADISHU', 		'IMPROVEMENT_DAAQ_AH', 				'YIELD_PRODUCTION', 			1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_MOGADISHU', 		'IMPROVEMENT_DAAQ_AH', 				'YIELD_CULTURE', 				1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_NGAZARGAMU', 	'IMPROVEMENT_TRADING_POST', 		'YIELD_PRODUCTION', 			1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_NGAZARGAMU', 	'IMPROVEMENT_CUSTOMS_HOUSE', 		'YIELD_PRODUCTION', 			1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_NYARYANA_MARQ', 	'IMPROVEMENT_CHUM', 				'YIELD_FOOD', 					2 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_PALMYRA', 		'IMPROVEMENT_FUNERARY_TOWER', 		'YIELD_CULTURE', 				1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_PALMYRA', 		'IMPROVEMENT_FUNERARY_TOWER', 		'YIELD_GOLDEN_AGE_POINTS', 		1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_QUEBEC_CITY', 	'IMPROVEMENT_CAMP', 				'YIELD_GOLD', 					1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_QUEBEC_CITY', 	'IMPROVEMENT_LUMBERMILL', 			'YIELD_GOLD', 					1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_RAGUSA', 		'IMPROVEMENT_EMBASSY', 				'YIELD_FOOD', 					1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_SGANG_GWAAY', 	'IMPROVEMENT_TOTEM_POLE', 			'YIELD_FOOD', 					1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_SGANG_GWAAY', 	'IMPROVEMENT_TOTEM_POLE', 			'YIELD_CULTURE', 				1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_TIWANAKU', 		'IMPROVEMENT_SUNK_COURT', 			'YIELD_CULTURE', 				1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_TIWANAKU', 		'IMPROVEMENT_SUNK_COURT', 			'YIELD_FAITH', 					1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_TUNIS', 			'IMPROVEMENT_RIBAT', 				'YIELD_FAITH', 					2 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_TYRE', 			'IMPROVEMENT_LANDMARK', 			'YIELD_GOLD', 					2;
---SELECT 	'PLAYER_EVENT_CHOICE_MINOR_CIV_YAIUWA', 		'IMPROVEMENT_LLAO_LLAO', 			'YIELD_FOOD', 					1 UNION ALL
---SELECT 	'PLAYER_EVENT_CHOICE_MINOR_CIV_YAIUWA', 		'IMPROVEMENT_LLAO_LLAO', 			'YIELD_SCIENCE', 				1;
 
 INSERT INTO EventChoice_FeatureYieldChange 
-			(EventChoiceType, 							FeatureType, 			YieldType, 			YieldChange)
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BRUSSELS', 	'FEATURE_MARSH', 		'YIELD_GOLD', 		1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BRUSSELS', 	'FEATURE_MARSH', 		'YIELD_CULTURE', 	1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_COLOMBO', 	'FEATURE_FOREST', 		'YIELD_GOLD', 		1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_COLOMBO', 	'FEATURE_JUNGLE', 		'YIELD_GOLD', 		1 UNION ALL
-SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_NAN_MADOL', 	'FEATURE_ATOLL',		'YIELD_PRODUCTION',	1;
+			(EventChoiceType, 							FeatureType, 				YieldType, 						YieldChange)
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BRUSSELS', 	'FEATURE_MARSH', 			'YIELD_GOLD', 					1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_BRUSSELS', 	'FEATURE_MARSH', 			'YIELD_CULTURE', 				1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_CAMUTINS', 	'FEATURE_FLOOD_PLAINS', 	'YIELD_FAITH', 					1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_COLOMBO', 	'FEATURE_FOREST', 			'YIELD_GOLD', 					1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_COLOMBO', 	'FEATURE_JUNGLE', 			'YIELD_GOLD', 					1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_NAN_MADOL', 	'FEATURE_ATOLL',			'YIELD_PRODUCTION',				1 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_VAITAPE', 	'FEATURE_ATOLL',			'YIELD_GREAT_ADMIRAL_POINTS',	1;
 
 INSERT INTO EventChoice_TerrainYieldChange 
 			(EventChoiceType, 								TerrainType, 		YieldType, 			YieldChange)
@@ -3499,6 +3720,7 @@ SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_JUYUBIT', 		'RESOURCE_FISH', 			'YIELD_F
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARASJOHKA', 	'RESOURCE_DEER', 			'YIELD_FOOD', 					1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARASJOHKA', 	'RESOURCE_DEER', 			'YIELD_PRODUCTION', 			1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_KARASJOHKA', 	'RESOURCE_REINDEER', 		'YIELD_PRODUCTION', 			2 UNION ALL
+SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_OKAK', 			'RESOURCE_WHALE', 			'YIELD_CULTURE', 				1 UNION ALL
 --SELECT 	'PLAYER_EVENT_CHOICE_MINOR_CIV_YAIUWA', 		'RESOURCE_LLAO_LLAO', 		'YIELD_FOOD', 					1 UNION ALL
 --SELECT 	'PLAYER_EVENT_CHOICE_MINOR_CIV_YAIUWA', 		'RESOURCE_LLAO_LLAO', 		'YIELD_SCIENCE', 				1 UNION ALL
 SELECT 		'PLAYER_EVENT_CHOICE_MINOR_CIV_YEREVAN', 		'RESOURCE_HORSE', 			'YIELD_CULTURE', 				1;
@@ -3669,7 +3891,7 @@ INSERT INTO IconFontMapping
 VALUES		('ICON_RES_DOGO_CANARIO', 	'UCS_RESOURCE_FONT_ATLAS',	1),
 			--('ICON_RES_LLAO_LLAO', 	'UCS_RESOURCE_FONT_ATLAS',	2),
 			('ICON_RES_REINDEER', 		'UCS_RESOURCE_FONT_ATLAS',	3),
-			('ICON_RES_4', 				'UCS_RESOURCE_FONT_ATLAS',	4),
+			('ICON_RES_COPRA', 			'UCS_RESOURCE_FONT_ATLAS',	4),
 			-- city-state
 			('ICON_RES_BEER', 			'UCS_RESOURCE_FONT_ATLAS',	5),
 			('ICON_RES_CHEESE', 		'UCS_RESOURCE_FONT_ATLAS',	6),
@@ -3783,6 +4005,7 @@ SELECT 		'BUILD_DOGO_CANARIO', 		'FEATURE_MARSH',	'TECH_MASONRY', 		600, 	0, 			
 INSERT INTO Improvements 
 			(Type, 							Description, 							Civilopedia, 								Help, 										ArtDefineTag, 							PortraitIndex, 	IconAtlas)
 SELECT 		'IMPROVEMENT_CITY', 			'TXT_KEY_IMPROVEMENT_CITY', 			NULL, 										NULL, 										'ART_DEF_IMPROVEMENT_NONE', 			39, 			'TERRAIN_ATLAS' UNION ALL
+SELECT 		'IMPROVEMENT_ATOLL', 			'TXT_KEY_IMPROVEMENT_ATOLL', 			NULL, 										NULL, 										'ART_DEF_IMPROVEMENT_NONE', 			39, 			'TERRAIN_ATLAS' UNION ALL
 SELECT 		'IMPROVEMENT_MARSH', 			'TXT_KEY_IMPROVEMENT_MARSH', 			'TXT_KEY_CIV5_IMPROVEMENTS_MARSH', 			'TXT_KEY_IMPROVEMENT_MARSH_HELP', 			'ART_DEF_IMPROVEMENT_MARSH', 			0, 				'UCS_IMPROVEMENT_ATLAS' UNION ALL
 SELECT 		'IMPROVEMENT_BIG_HEAD', 		'TXT_KEY_IMPROVEMENT_BIG_HEAD', 		'TXT_KEY_CIV5_IMPROVEMENTS_BIG_HEAD', 		'TXT_KEY_IMPROVEMENT_BIG_HEAD_HELP', 		'ART_DEF_IMPROVEMENT_BIG_HEAD', 		4, 				'UCS_IMPROVEMENT_ATLAS' UNION ALL
 SELECT 		'IMPROVEMENT_SUNK_COURT', 		'TXT_KEY_IMPROVEMENT_SUNK_COURT', 		'TXT_KEY_CIV5_IMPROVEMENTS_SUNK_COURT', 	'TXT_KEY_IMPROVEMENT_SUNK_COURT_HELP', 		'ART_DEF_IMPROVEMENT_SUNK_COURT', 		2, 				'UCS_IMPROVEMENT_ATLAS' UNION ALL
@@ -3800,6 +4023,7 @@ SELECT 		'IMPROVEMENT_TULOU', 			'TXT_KEY_IMPROVEMENT_TULOU', 			'TXT_KEY_CIV5_I
 SELECT 		'IMPROVEMENT_DOGO_CANARIO',		'TXT_KEY_IMPROVEMENT_DOGO_CANARIO',		'TXT_KEY_CIV5_IMPROVEMENTS_DOGO_CANARIO', 	'TXT_KEY_IMPROVEMENT_DOGO_CANARIO_HELP',	'ART_DEF_IMPROVEMENT_DOGO_CANARIO', 	14, 			'UCS_IMPROVEMENT_ATLAS';
 --SELECT 	'IMPROVEMENT_LLAO_LLAO',		'TXT_KEY_IMPROVEMENT_LLAO_LLAO',		'TXT_KEY_CIV5_IMPROVEMENTS_LLAO_LLAO', 		'TXT_KEY_IMPROVEMENT_LLAO_LLAO_HELP',		'ART_DEF_IMPROVEMENT_LLAO_LLAO', 		0, 				'UCS_IMPROVEMENT_ATLAS';
 
+UPDATE Improvements SET DefenseModifier = 15 WHERE Type = 'IMPROVEMENT_ATOLL';
 UPDATE Improvements SET Coastal = 1, RemoveWhenComplete = 1, CreatesFeature = 'FEATURE_MARSH' WHERE Type = 'IMPROVEMENT_MARSH';
 UPDATE Improvements SET PillageGold = 12, CreatedByGreatPerson = 1 WHERE Type = 'IMPROVEMENT_BIG_HEAD';
 UPDATE Improvements SET NoTwoAdjacent = 1, RequiresFlatlands = 1, PillageGold = 15 WHERE Type = 'IMPROVEMENT_SUNK_COURT';
@@ -4091,21 +4315,22 @@ VALUES		('IMPROVEMENT_MARSH',			'FLAVOR_GROWTH',		30),
 -- Definitions - Resources
 ---------------------------------------------------	
 INSERT INTO Resources 
-			(Type,						TechReveal,		TechImproveable,		TechCityTrade, 			Description,						Civilopedia, 							Help,										ResourceClassType, 			IsMonopoly, 	ArtDefineTag, 						CivilizationType,		OnlyMinorCivs,  Happiness,  ResourceUsage, SeaResource,	AnimalResource,	PlantResource,	RockResource,	IconString, 				PortraitIndex, 	IconAtlas)
-VALUES		('RESOURCE_DOGO_CANARIO',	null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_DOGO_CANARIO',	'TXT_KEY_RESOURCE_DOGO_CANARIO_TEXT',	'TXT_KEY_RESOURCE_DOGO_CANARIO_MONOPOLY',	'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_DOGO_CANARIO',	null,					0,				2,			2,				0,			1,				0,				0,				'[ICON_RES_DOGO_CANARIO]',	0, 				'UCS_RESOURCE_ATLAS'),
-			--('RESOURCE_LLAO_LLAO',	null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_LLAO_LLAO',		'TXT_KEY_RESOURCE_LLAO_LLAO_TEXT',		'TXT_KEY_RESOURCE_LLAO_LLAO_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_LLAO_LLAO',		null,					0,				2,			2,				0,			0,				1,				0,				'[ICON_RES_LLAO_LLAO]',		1, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_REINDEER',		null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_REINDEER',		'TXT_KEY_RESOURCE_REINDEER_TEXT',		'TXT_KEY_RESOURCE_REINDEER_MONOPOLY',		'RESOURCECLASS_BONUS',		0,				'ART_DEF_RESOURCE_REINDEER',		null,					0,				0,			0,				0,			1,				0,				0,				'[ICON_RES_REINDEER]',		2, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_BEER',			null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_BEER',			'TXT_KEY_RESOURCE_BEER_TEXT',			'TXT_KEY_RESOURCE_BEER_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_BEER',			null,					0,				2,			2,				0,			0,				0,				0,				'[ICON_RES_BEER]',			4, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_CHEESE',			null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_CHEESE',			'TXT_KEY_RESOURCE_CHEESE_TEXT',			'TXT_KEY_RESOURCE_CHEESE_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_CHEESE',			null,					0,				2,			2,				0,			0,				0,				0,				'[ICON_RES_CHEESE]',		5, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_HONEY',			null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_HONEY',			'TXT_KEY_RESOURCE_HONEY_TEXT',			'TXT_KEY_RESOURCE_HONEY_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_HONEY',			null,					0,				2,			2,				0,			0,				0,				0,				'[ICON_RES_HONEY]',			6, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_ROPES',			null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_ROPES',			'TXT_KEY_RESOURCE_ROPES_TEXT',			'TXT_KEY_RESOURCE_ROPES_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_ROPES',			null,					0,				2,			2,				0,			0,				0,				0,				'[ICON_RES_ROPES]',			7, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_SCULPTURES',		null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_SCULPTURES',		'TXT_KEY_RESOURCE_SCULPTURES_TEXT',		'TXT_KEY_RESOURCE_SCULPTURES_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_SCULPTURES',		null,					0,				2,			2,				0,			0,				0,				0,				'[ICON_RES_SCULPTURES]',	9, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_TAPESTRIES',		null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_TAPESTRIES',		'TXT_KEY_RESOURCE_TAPESTRIES_TEXT',		'TXT_KEY_RESOURCE_TAPESTRIES_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_TAPESTRIES',		null,					0,				2,			2,				0,			0,				0,				0,				'[ICON_RES_TAPESTRIES]',	8, 				'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_CHAMPAGNE',		null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_CHAMPAGNE',		'TXT_KEY_RESOURCE_CHAMPAGNE_TEXT',		'TXT_KEY_RESOURCE_CHAMPAGNE_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_CHAMPAGNE',		null,					0,				2,			2,				0,			0,				0,				0,				'[ICON_RES_CHAMPAGNE]',		13, 			'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_MANUSCRIPTS',	null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_MANUSCRIPTS',		'TXT_KEY_RESOURCE_MANUSCRIPTS_TEXT',	'TXT_KEY_RESOURCE_MANUSCRIPTS_MONOPOLY',	'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_MANUSCRIPTS',		null,					0,				2,			2,				0,			0,				0,				0,				'[ICON_RES_MANUSCRIPTS]',	12, 			'UCS_RESOURCE_ATLAS'), -- 2, 'EXPANSION_SCEN_TECH_ATLAS'
-			('RESOURCE_MOSAICS',		null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_MOSAICS',			'TXT_KEY_RESOURCE_MOSAICS_TEXT',		'TXT_KEY_RESOURCE_MOSAICS_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_MOSAICS',			null,					0,				2,			2,				0,			0,				0,				0,				'[ICON_RES_MOSAICS]',		14, 			'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_COINS',			null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_COINS',			'TXT_KEY_RESOURCE_COINS_TEXT',			'TXT_KEY_RESOURCE_COINS_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_COINS',			null,					1,				2,			2,				0,			0,				0,				0,				'[ICON_RES_COINS]',			20, 			'UCS_RESOURCE_ATLAS'),
-			('RESOURCE_GUNPOWDER',		null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_GUNPOWDER',		'TXT_KEY_RESOURCE_GUNPOWDER_TEXT',		'TXT_KEY_RESOURCE_GUNPOWDER_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_GUNPOWDER',		null,					0,				2,			2,				0,			0,				0,				0,				'[ICON_RES_GUNPOWDER]',		16, 			'UCS_RESOURCE_ATLAS');
+			(Type,						TechReveal,		TechImproveable,		TechCityTrade, 			Description,						Civilopedia, 							Help,										ResourceClassType, 			IsMonopoly, 	ArtDefineTag, 						CivilizationType,		OnlyMinorCivs,  Happiness,  ResourceUsage, SeaResource,	AnimalResource,	PlantResource,	RockResource,	ConstAppearance,	IconString, 				PortraitIndex, 	IconAtlas)
+VALUES		('RESOURCE_DOGO_CANARIO',	null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_DOGO_CANARIO',	'TXT_KEY_RESOURCE_DOGO_CANARIO_TEXT',	'TXT_KEY_RESOURCE_DOGO_CANARIO_MONOPOLY',	'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_DOGO_CANARIO',	null,					0,				2,			2,				0,			1,				0,				0,				0,					'[ICON_RES_DOGO_CANARIO]',	0, 				'UCS_RESOURCE_ATLAS'),
+			--('RESOURCE_LLAO_LLAO',	null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_LLAO_LLAO',		'TXT_KEY_RESOURCE_LLAO_LLAO_TEXT',		'TXT_KEY_RESOURCE_LLAO_LLAO_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_LLAO_LLAO',		null,					0,				2,			2,				0,			0,				1,				0,				0,					'[ICON_RES_LLAO_LLAO]',		1, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_REINDEER',		null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_REINDEER',		'TXT_KEY_RESOURCE_REINDEER_TEXT',		'TXT_KEY_RESOURCE_REINDEER_MONOPOLY',		'RESOURCECLASS_BONUS',		0,				'ART_DEF_RESOURCE_REINDEER',		null,					0,				0,			0,				0,			1,				0,				0,				0,					'[ICON_RES_REINDEER]',		2, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_COPRA',			null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_COPRA',			'TXT_KEY_RESOURCE_COPRA_TEXT',			'TXT_KEY_RESOURCE_COPRA_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_COPRA',			null,					0,				2,			2,				0,			1,				1,				0,				0,					'[ICON_RES_COPRA]',			3, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_BEER',			null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_BEER',			'TXT_KEY_RESOURCE_BEER_TEXT',			'TXT_KEY_RESOURCE_BEER_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_BEER',			null,					0,				2,			2,				0,			0,				0,				0,				0,					'[ICON_RES_BEER]',			4, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_CHEESE',			null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_CHEESE',			'TXT_KEY_RESOURCE_CHEESE_TEXT',			'TXT_KEY_RESOURCE_CHEESE_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_CHEESE',			null,					0,				2,			2,				0,			0,				0,				0,				0,					'[ICON_RES_CHEESE]',		5, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_HONEY',			null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_HONEY',			'TXT_KEY_RESOURCE_HONEY_TEXT',			'TXT_KEY_RESOURCE_HONEY_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_HONEY',			null,					0,				2,			2,				0,			0,				0,				0,				0,					'[ICON_RES_HONEY]',			6, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_ROPES',			null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_ROPES',			'TXT_KEY_RESOURCE_ROPES_TEXT',			'TXT_KEY_RESOURCE_ROPES_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_ROPES',			null,					0,				2,			2,				0,			0,				0,				0,				0,					'[ICON_RES_ROPES]',			7, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_SCULPTURES',		null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_SCULPTURES',		'TXT_KEY_RESOURCE_SCULPTURES_TEXT',		'TXT_KEY_RESOURCE_SCULPTURES_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_SCULPTURES',		null,					0,				2,			2,				0,			0,				0,				0,				0,					'[ICON_RES_SCULPTURES]',	9, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_TAPESTRIES',		null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_TAPESTRIES',		'TXT_KEY_RESOURCE_TAPESTRIES_TEXT',		'TXT_KEY_RESOURCE_TAPESTRIES_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_TAPESTRIES',		null,					0,				2,			2,				0,			0,				0,				0,				0,					'[ICON_RES_TAPESTRIES]',	8, 				'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_CHAMPAGNE',		null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_CHAMPAGNE',		'TXT_KEY_RESOURCE_CHAMPAGNE_TEXT',		'TXT_KEY_RESOURCE_CHAMPAGNE_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_CHAMPAGNE',		null,					0,				2,			2,				0,			0,				0,				0,				0,					'[ICON_RES_CHAMPAGNE]',		13, 			'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_MANUSCRIPTS',	null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_MANUSCRIPTS',		'TXT_KEY_RESOURCE_MANUSCRIPTS_TEXT',	'TXT_KEY_RESOURCE_MANUSCRIPTS_MONOPOLY',	'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_MANUSCRIPTS',		null,					0,				2,			2,				0,			0,				0,				0,				0,					'[ICON_RES_MANUSCRIPTS]',	12, 			'UCS_RESOURCE_ATLAS'), -- 2, 'EXPANSION_SCEN_TECH_ATLAS'
+			('RESOURCE_MOSAICS',		null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_MOSAICS',			'TXT_KEY_RESOURCE_MOSAICS_TEXT',		'TXT_KEY_RESOURCE_MOSAICS_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_MOSAICS',			null,					0,				2,			2,				0,			0,				0,				0,				0,					'[ICON_RES_MOSAICS]',		14, 			'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_COINS',			null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_COINS',			'TXT_KEY_RESOURCE_COINS_TEXT',			'TXT_KEY_RESOURCE_COINS_MONOPOLY',			'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_COINS',			null,					1,				2,			2,				0,			0,				0,				0,				0,					'[ICON_RES_COINS]',			20, 			'UCS_RESOURCE_ATLAS'),
+			('RESOURCE_GUNPOWDER',		null,			'TECH_AGRICULTURE',		'TECH_AGRICULTURE',		'TXT_KEY_RESOURCE_GUNPOWDER',		'TXT_KEY_RESOURCE_GUNPOWDER_TEXT',		'TXT_KEY_RESOURCE_GUNPOWDER_MONOPOLY',		'RESOURCECLASS_LUXURY',		1,				'ART_DEF_RESOURCE_GUNPOWDER',		null,					0,				2,			2,				0,			0,				0,				0,				0,					'[ICON_RES_GUNPOWDER]',		16, 			'UCS_RESOURCE_ATLAS');
 ---------------------------------------------------------
 DELETE FROM Resource_YieldChanges WHERE ResourceType IN ('RESOURCE_GLASS', 'RESOURCE_JEWELRY', 'RESOURCE_PORCELAIN');
 UPDATE Resources SET MonopolyHappiness = 0 WHERE Type IN ('RESOURCE_GLASS', 'RESOURCE_JEWELRY');
