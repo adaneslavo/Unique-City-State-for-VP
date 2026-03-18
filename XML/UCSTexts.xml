@@ -120,65 +120,64 @@
 
 		<!-- notifications for CSs' lua custom events -->
 		<Row Tag="TXT_KEY_UCS_BONUS_BOGOTA_LIBERATION">
-			<Text>Your liberation efforts do not go unrewarded and [COLOR_CYAN]{1_Bogota}[ENDCOLOR] awes you! It will not spare money on you and rewards you with {2_Culture} [ICON_CULTURE] Culture. What will you do with it?</Text>
+			<Text>Your liberation efforts don't go unrewarded and this is why [COLOR_CYAN]{1_Bogota}[ENDCOLOR] awes you! It does not skimp on money and rewards you with multiple precious artifacts worth {2_Culture} [ICON_CULTURE]. What will you do with them?</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_BOGOTA_LIBERATION_TITLE">
 			<Text>United independence!</Text>
 		</Row>
-		
 		<Row Tag="TXT_KEY_UCS_BONUS_BOGOTA_CAPTURE">
-			<Text>You could have liberated that city, but at least you can make lives of these people easier under your rule. [COLOR_CYAN]{1_Bogota}[ENDCOLOR] wants you to continue your mission and gives you a small revenue of {2_Culture} [ICON_CULTURE] Culture to encourage you to help her unite the world in the future.</Text>
+			<Text>You could have liberated that city, but... at least you can make lives of these people easier under your glorious rule, can't you? [COLOR_CYAN]{1_Bogota}[ENDCOLOR] encourages you to continue the mission giving you a small consolation prize worth {2_Culture} [ICON_CULTURE]. It still hopes you can help it unite the world.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_BOGOTA_CAPTURE_TITLE">
 			<Text>United independence?</Text>
 		</Row>
-		
+
 		<Row Tag="TXT_KEY_UCS_BONUS_CAPE_TOWN">
-			<Text>Transit through a Cape of Good Hope is very lucrative business. Part of the revenues come back to you as an additional profit. [COLOR_CYAN]{1_CapeTown}[ENDCOLOR] rewards you with {2_Gold} [ICON_GOLD] Gold!</Text>
+			<Text>Transit through a Cape of Good Hope is very lucrative business. The secret deal with [COLOR_CYAN]{1_CapeTown}[ENDCOLOR] guarantees that some part of the revenues are rerouted to your pocket as an additional profit. Treat this as a payment for security? Nevertheless, you are now richer by {2_Gold} [ICON_GOLD].</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_CAPE_TOWN_TITLE">
-			<Text>Cape of Good Hope</Text>
+			<Text>Cape of Good Hope!</Text>
 		</Row>
-		
+
 		<Row Tag="TXT_KEY_UCS_BONUS_MANILA">
-			<Text>Travelling with the navigators from the [COLOR_CYAN]{1_Manila}[ENDCOLOR] allows you to find rare places where you can buy or sell exotic good. Your merchants send you an additional support of {2_FoodAndProduction} [ICON_FOOD] Food and [ICON_PRODUCTION] Production!</Text>
+			<Text>Travelling with the experienced navigators from the [COLOR_CYAN]{1_Manila}[ENDCOLOR] allows you to find curious selling markets for your exotic goods. Your merchants pack another bunch of crates filled with some food and raw materials worth {2_FoodAndProduction} [ICON_FOOD] and [ICON_PRODUCTION].</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_MANILA_TITLE">
-			<Text>Pearl of the Orient</Text>
+			<Text>Pearl of the Orient!</Text>
 		</Row>
-		
+
 		<Row Tag="TXT_KEY_UCS_BONUS_COLOMBO">
-			<Text>[COLOR_CYAN]{1_CityOfTrade}[ENDCOLOR] finished a [ICON_INTERNATIONAL_TRADE] Trade Route. Desired goods from [COLOR_CYAN]{2_Colombo}[ENDCOLOR] brought you enough profits to restructure your army and increase the defense of the whole trade network.</Text>
+			<Text>Because [COLOR_CYAN]{1_CityOfTrade}[ENDCOLOR] has finished another trade mission recently, [COLOR_CYAN]{2_Colombo}[ENDCOLOR] can carefully count all the profits. Its great experience can be used to restructure your army and increase the defenses of the whole trade network, [COLOR_POSITIVE_TEXT]healing all your units in this city by 10 HP[ENDCOLOR].</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_COLOMBO_TITLE">
-			<Text>Special care trade partners</Text>
+			<Text>Special care trade partners!</Text>
 		</Row>
-		
+
 		<Row Tag="TXT_KEY_UCS_BONUS_HANUABADA">
-			<Text>Sailors from [COLOR_CYAN]{1_Hanuabada}[ENDCOLOR] instruct you when and where to sail, to get back home as a hero! It's a death sentence for unexperienced man, but thanks to their advices, you can return safely with traded goods. Women start dancing seeing your silhouette on the horizon, granting you {2_GoldenAgePoints} [ICON_GOLDEN_AGE] Golden Age Points!</Text>
+			<Text>Sailors from [COLOR_CYAN]{1_Hanuabada}[ENDCOLOR] are true heroes! It could be a death sentence for an unexperienced man to sail like they do, but thanks to their advices, you return safely with traded exotic goods. Women start dancing seeing your silhouette on the horizon, granting you {2_GoldenAgePoints} [ICON_GOLDEN_AGE].</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_HANUABADA_TITLE">
-			<Text>Hiri Trade Cycle</Text>
+			<Text>Hiri trade cycle!</Text>
 		</Row>
-		
+
 		<Row Tag="TXT_KEY_UCS_BONUS_ZURICH">
-			<Text>[COLOR_CYAN]{1_Zurich}[ENDCOLOR] bankers found few discrepencies in your spendings and saved you {2_Interests} [ICON_GOLD] Gold in last {3_Turns} turns!</Text>
+			<Text>Experienced and careful bankers from [COLOR_CYAN]{1_Zurich}[ENDCOLOR] found few discrepencies in your spendings and saved you {2_Interests} [ICON_GOLD] only in last {3_Turns} turns!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_ZURICH_TITLE">
-			<Text>Money in the right hands</Text>
+			<Text>Money in the right hands!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_ZURICH_STOP_ALLY">
-			<Text>You are no longer an Ally of [COLOR_CYAN]{1_Zurich}[ENDCOLOR]. Be sure to establish an Embassy to keep working on your interests. In last {2_Turns} they managed to save you {3_Interests} [ICON_GOLD] Gold.</Text>
+			<Text>Your partnership with [COLOR_CYAN]{1_Zurich}[ENDCOLOR] finally ends, so is the inevitably helpful support from their bankers. Be sure to establish an embassy or try to improve your relationship with them to encourage them to work for you again. In last {2_Turns} turns they managed to save you {3_Interests} [ICON_GOLD]. How could you let them go?!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_ZURICH_STOP_ALLY_ZERO">
-			<Text>You are no longer an Ally of [COLOR_CYAN]{1_Zurich}[ENDCOLOR]. Be sure to establish an Embassy to keep working on your interests. Unfortunately we lost all our data about your latest savings, but we promise to keep better in the future!</Text>
+			<Text>Your partnership with [COLOR_CYAN]{1_Zurich}[ENDCOLOR] finally ends, so is the inevitably helpful support from their bankers. Be sure to establish an embassy or try to improve your relationship with them to encourage them to work for you again. Unfortunately we lost all of our data about your latest savings, but we promise to keep better in the future!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_ZURICH_STOP_ALLY_TITLE">
 			<Text>Your treasury is endangered!</Text>
 		</Row>
-		
+
 		<Row Tag="TXT_KEY_UCS_BONUS_JERUSALEM_RELIGION">
-			<Text>[COLOR_CYAN]{1_Jerusalem}[ENDCOLOR] adopted your main Religion. Now they spread your word over the world.</Text>
+			<Text>[COLOR_CYAN]{1_JerusalemCity}[ENDCOLOR] has just adopted {2_ReligionIcon} [COLOR_CYAN]{3_ReligionName}[ENDCOLOR] as you did long time ago. Now they spread your word over the world with force and devotion you have never expected.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_JERUSALEM_RELIGION_TITLE">
 			<Text>Infidels converted!</Text>
@@ -218,10 +217,10 @@
 		</Row>
 		
 		<Row Tag="TXT_KEY_UCS_BONUS_HONG_KONG">
-			<Text>A citizen migrated from [COLOR_CYAN]{1_YourCity}[ENDCOLOR] to [COLOR_CYAN]{2_HongKongCity}[ENDCOLOR]. [COLOR_CYAN]{3_HongKong}[ENDCOLOR] is grateful and it will not leave you without nothing. You receive {4_Gold} [ICON_GOLD] Gold and feel a substantial warming of billateral contacts by {5_Influence} [ICON_INFLUENCE] Influence.</Text>
+			<Text>A citizen migrated from [COLOR_CYAN]{1_YourCity}[ENDCOLOR] to [COLOR_CYAN]{2_HongKongCity}[ENDCOLOR]. [COLOR_CYAN]{3_HongKong}[ENDCOLOR] is really appreciates that sacrifice and has prepared something in return. You receive {4_Gold} [ICON_GOLD] Gold and feel a substantial warming of billateral contacts by {5_Influence} [ICON_INFLUENCE] Influence.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_HONG_KONG_TITLE">
-			<Text>Another citizen left you city!</Text>
+			<Text>{1_HongKong} welcomes new citizen![NEWLINE]</Text>
 		</Row>
 		
 		<Row Tag="TXT_KEY_UCS_BONUS_FLORENCE">
@@ -356,12 +355,15 @@
 		<Row Tag="TXT_KEY_UCS_BONUS_LONGYAN_POP_TITLE">
 			<Text>Better place to live!</Text>
 		</Row>
-		
-		<Row Tag="TXT_KEY_UCS_BONUS_AL_TIRABIN">
-			<Text>New era, means you can diversify your assortment. And this is what nomadic tribes like [COLOR_CYAN]{1_AlTirabin}[ENDCOLOR] pursue the most! They are experts in trade, and they will surely support your efforts to widen the caravan network crossing their desert settlements, granting you an additional [ICON_INTERNATIONAL_TRADE] Trade Route.</Text>
+
+		<Row Tag="TXT_KEY_UCS_BONUS_AL_TIRABIN_ON">
+			<Text>Nomadic tribes like [COLOR_CYAN]{1_AlTirabin}[ENDCOLOR] are experts in trade, and they will surely support your efforts to widen the caravan network crossing their desert settlements, granting you [COLOR_POSITIVE_TEXT]{2_Number} additional [ICON_INTERNATIONAL_TRADE] Trade Route{3_Plural}[ENDCOLOR].</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_AL_TIRABIN_ERA">
+			<Text>New era, means you can diversify your assortment. And this is what nomadic tribes like [COLOR_CYAN]{1_AlTirabin}[ENDCOLOR] pursue the most! They are experts in trade, and they will surely support your efforts to widen the caravan network crossing their desert settlements, granting you [COLOR_POSITIVE_TEXT]an additional [ICON_INTERNATIONAL_TRADE] Trade Route[ENDCOLOR].</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_AL_TIRABIN_TITLE">
-			<Text>Nomadic Life</Text>
+			<Text>Nomadic life!</Text>
 		</Row>
 		
 		<Row Tag="TXT_KEY_UCS_BONUS_MENDYARRUP_FIX">
@@ -467,8 +469,11 @@
 			<Text>Fresh water found!</Text>
 		</Row>
 		
-		<Row Tag="TXT_KEY_UCS_BONUS_GONDAR">
-			<Text>[COLOR_CYAN]{1_Gondar}[ENDCOLOR] knows no mercy for the enemies! Thanks to their spies you know where to hit, so it really hurts. Destroyed [COLOR_CYAN]{2_Improvement}[ENDCOLOR] cause a domino effect damaging [COLOR_CYAN]{3_City}[ENDCOLOR] for 20 HP.</Text>
+		<Row Tag="TXT_KEY_UCS_BONUS_GONDAR_UNIT_OWNER">
+			<Text>[COLOR_CYAN]{1_Gondar}[ENDCOLOR] knows no mercy for their enemies! Thanks to their spies you know where to hit, so it really hurts. Destroyed [COLOR_CYAN]{2_Improvement}[ENDCOLOR] starts a domino effect damaging nearby [COLOR_CYAN]{3_City}[ENDCOLOR] for {4_Damage} HP.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_GONDAR_TILE_OWNER">
+			<Text>[COLOR_CYAN]{1_Gondar}[ENDCOLOR] knows no mercy for their enemies! It's a pity your enemy has good relationship with them. Their spies infiltrated your lands and found weakest points of your defenses. Destroyed [COLOR_CYAN]{2_Improvement}[ENDCOLOR] starts a domino effect damaging one of your cities, [COLOR_CYAN]{3_City}[ENDCOLOR], for {4_Damage} HP.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_GONDAR_TITLE">
 			<Text>Burn in flames![NEWLINE]</Text>
@@ -485,6 +490,13 @@
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_VICTORIA_TITLE">
 			<Text>God bless developement!</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_UCS_BONUS_ABALESSA">
+			<Text>One of your units, [COLOR_CYAN]{1_Unit}[ENDCOLOR] was not careful enough during its march through vast desert areas. It entered a trap set by nomadic people of [COLOR_CYAN]{2_Abalessa}[ENDCOLOR], loyal to your enemy [COLOR_CYAN]{3_MajorPlayer}[ENDCOLOR], who rules over this region, significantly delaying your campaign.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_ABALESSA_TITLE">
+			<Text>It's a trap![NEWLINE]</Text>
 		</Row>
 	</Language_en_US>
 </GameData>

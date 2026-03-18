@@ -1,5 +1,8 @@
 ﻿Changelog:
 v19:
+- adapted to VP 5.2 changes:
+	- updated Building_YieldPerFriend and Building_YieldPerAlly tables (added Times100 modification);
+	- Tbilisi: changed -30% by Policies.PuppetYieldPenaltyMod to +25% by Policies.PuppetYieldAndSupplyModifierChange (old column is not available anymore);
 - new:
 	- added 13 new City-States:
 		- Maritime (2):
@@ -15,14 +18,23 @@ v19:
 	- added Copra Luxury Resource (Kariatebike);
 	- added new Quicksand promotion (Abalessa);
 - fixed and changed:
+	- Al-Tirabin:
+		- now gives additional trade routes in Classical, Renaissance, Modern and Information Eras (was 1 earlier for the first 3);
+		- added 1 missing notification on Information era; improved the code logic a bit;
+		- added additional notification when the event is on;
+	- Bogota: 
+		- reduced Culture from capturing a city to 10 (was 30) and increased for liberating the city to 30-50 (was 20-30);
+		- deleted dummy policy giving culture from conquests (relic from the old code befroe notification was added);
 	- Gwynedd: fixed % modifier in lua function;
 	- Mbabane: reduced bonus Defense to 2 CS per City (was 10);
 	- Thimphu: now culture to defense conversion is also updated on building construction;
 	- fixed multiple ability descriptions;
+	- reworked and expanded almost all the notification texts;
 - lua:
+	- changed additional resource placement:
+		- now only "map resources" can be placed around City-States (all Bonus, Luxury and Strategic);
+		- added ConstAppearance values to new resources in Resource table;
 	- modified notifications for multiple events (replaced generic notification with specific ones);
-	- now only "map resources" can be placed around City-States;
-	- added ConstAppearance values to new resources in Resource table;
 	- reduced IsMinorCiv checks (in some cases with error);
 	- updated notes about unassigned UUs that can be trained by the Militaristic CSs (after MUC integration);
 

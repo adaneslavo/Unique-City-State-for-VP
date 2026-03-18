@@ -543,8 +543,7 @@ end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -- automated CS UU gifts for any changes made by other modmods
--- VP (with MUC integrated): Sipahi, Redcoats, Companion Cavalry, Norwegian Ski Infantry, Mehal Sefari, Battering Ram, Pracinha
-
+-- VP (with MUC integrated): Sipahi, Redcoats, Companion Cavalry, Norwegian Ski Infantry, Mehal Sefari, Battering Ram, Pracinha, Yamato
 local tUniqueUnitsFromMinors = {}
 
 for specialUnit in DB.Query("SELECT Units.ID, Units.Type, Units.Description, Units.PrereqTech FROM Units WHERE MinorCivGift = 1") do
@@ -2380,7 +2379,7 @@ function UniqueMonopolyBonuses(ePlayer)
 end
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
--- BOGOTA (CULTURE FROM LIBERATION)
+-- BOGOTA (CULTURE FROM CITY CAPTURE OR LIBERATION)
 function LiberatedForBogota(ePlayer, eOtherPlayer, eCity)
 	local pPlayer = Players[ePlayer]
 	
@@ -2392,11 +2391,12 @@ function LiberatedForBogota(ePlayer, eOtherPlayer, eCity)
 		
 		if iCities > 6 then iCities = 6 end
 
-		local iBaseYield = RandomNumberBetween(20, 30)
+		local iBaseYield = RandomNumberBetween(30, 50)
 		local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
 		local iCultureLiberated = iBaseYield * iEraModifier * iCities
+		local eCulture = GameInfoTypes.YIELD_CULTURE
 	
-		pPlayer:DoInstantYield(GameInfoTypes.YIELD_CULTURE, iCultureLiberated, true, pCapital:GetID())
+		pPlayer:DoInstantYield(eCulture, iCultureLiberated, true, pCapital:GetID())
 		
 		for eplayer = 0, GameDefines.MAX_CIV_PLAYERS - 1, 1 do
 			local pPlayer = Players[eplayer]
@@ -2411,7 +2411,7 @@ function LiberatedForBogota(ePlayer, eOtherPlayer, eCity)
 		end
 
 		if pPlayer:IsHuman() then
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_BOGOTA_LIBERATION", pMinorPlayer:GetName(), iCultureLiberated), L("TXT_KEY_UCS_BONUS_BOGOTA_LIBERATION_TITLE"), pLiberatedCity:GetX(), pLiberatedCity:GetY())
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_INSTANT_YIELD, L("TXT_KEY_UCS_BONUS_BOGOTA_LIBERATION", pMinorPlayer:GetName(), iCultureLiberated), L("TXT_KEY_UCS_BONUS_BOGOTA_LIBERATION_TITLE"), pLiberatedCity:GetX(), pLiberatedCity:GetY(), eCulture)
 		end
 	end
 end
@@ -2423,21 +2423,22 @@ function CapturedForBogota(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConq
 		local pCapital = pPlayer:GetCapitalCity()	
 		local pMinorPlayer = Players[tLostCities["eLostBogota"]]
 		
-		local iBaseYield = 30
+		local iBaseYield = 10
 		local iCurrentEraModifier = pPlayer:GetCurrentEra() + 1
 		local iCultureCaptured = iBaseYield * iCurrentEraModifier
+		local eCulture = GameInfoTypes.YIELD_CULTURE
 		
-		pPlayer:DoInstantYield(GameInfoTypes.YIELD_CULTURE, iCultureCaptured, true, pCapital:GetID())
+		pPlayer:DoInstantYield(eCulture, iCultureCaptured, true, pCapital:GetID())
 		
 		if pPlayer:IsHuman() then
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_BOGOTA_CAPTURE", pMinorPlayer:GetName(), iCultureCaptured), L("TXT_KEY_UCS_BONUS_BOGOTA_CAPTURE_TITLE", pMinorPlayer:GetName()), iX, iY)
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_INSTANT_YIELD, L("TXT_KEY_UCS_BONUS_BOGOTA_CAPTURE", pMinorPlayer:GetName(), iCultureCaptured), L("TXT_KEY_UCS_BONUS_BOGOTA_CAPTURE_TITLE", pMinorPlayer:GetName()), iX, iY, eCulture)
 		end
 	end
 end
 
 
 
--- LEVUKA (GROWTH FROM KILLING AND CONQUER)
+-- LEVUKA (GROWTH FROM CITY CAPTURE AND KILLING BARBARIANS; GGP FROM CONQUERED CITIES)
 function CaptureCityForLevuka(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
 	local pPlayer = Players[eNewOwner]
 	
@@ -2461,30 +2462,6 @@ function CaptureCityForLevuka(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bC
 	end
 end
 
-function ConquestsForLevuka(ePlayer)
-	local pPlayer = Players[ePlayer]
-	
-	if pPlayer:IsMinorCiv() then return end
-	
-	if pPlayer:GetEventChoiceCooldown(tEventChoice[13]) ~= 0 then
-		local iConqueredCities = 0
-		
-		for city in pPlayer:Cities() do
-			if city:GetOwner() ~= city:GetOriginalOwner() then
-				iConqueredCities = iConqueredCities + 1
-			end
-		end
-		
-		pPlayer:GetCapitalCity():SetNumRealBuilding(tBuildingsActiveAbilities[9], iConqueredCities)
-	else
-		if pPlayer:CountNumBuildings(tBuildingsActiveAbilities[9]) > 0 then
-			if not pPlayer:IsEventChoiceActive(tEventChoice[13]) then
-				pPlayer:GetCapitalCity():SetNumRealBuilding(tBuildingsActiveAbilities[9], 0)
-			end
-		end
-	end
-end
-
 function BarbCampForLevuka(iX, iY, ePlayer)
     local pPlayer = Players[ePlayer]
     local pTeam = Teams[pPlayer:GetTeam()]
@@ -2505,6 +2482,30 @@ function BarbCampForLevuka(iX, iY, ePlayer)
 			
 		if pPlayer:IsHuman() then
 			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_LEVUKA_BARBARIANS", pMinorPlayer:GetName(), iFoodBonus), L("TXT_KEY_UCS_BONUS_LEVUKA_BARBARIANS_TITLE"), iX, iY)
+		end
+	end
+end
+
+function ConquestsForLevuka(ePlayer)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:IsMinorCiv() then return end
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[13]) ~= 0 then
+		local iConqueredCities = 0
+		
+		for city in pPlayer:Cities() do
+			if city:GetOwner() ~= city:GetOriginalOwner() then
+				iConqueredCities = iConqueredCities + 1
+			end
+		end
+		
+		pPlayer:GetCapitalCity():SetNumRealBuilding(tBuildingsActiveAbilities[9], iConqueredCities)
+	else
+		if pPlayer:CountNumBuildings(tBuildingsActiveAbilities[9]) > 0 then
+			if not pPlayer:IsEventChoiceActive(tEventChoice[13]) then
+				pPlayer:GetCapitalCity():SetNumRealBuilding(tBuildingsActiveAbilities[9], 0)
+			end
 		end
 	end
 end
@@ -2827,7 +2828,6 @@ end
 
 
 
-
 -- PALMYRA (IMPROVEMENT FUNERARY TOWER)
 function CanWeBuildFuneraryTower(ePlayer, eUnit, iX, iY, eBuild)
 	if eBuild ~= GameInfoTypes.BUILD_FUNERARY_TOWER then return true end
@@ -3056,7 +3056,18 @@ GameEvents.PlayerCanBuild.Add(CanWeBuildBedouinCamp)
 
 function TradeRoutesFromBedouinsOnEventOn(ePlayer, eEventChoiceType)
 	if eEventChoiceType == tEventChoice[58] then
-		AddTradeRoutesFromBedouins(ePlayer)
+		local pPlayer = Players[ePlayer]
+		local iAddedRoutes = AddTradeRoutesFromBedouins(ePlayer)
+		
+		if iAddedRoutes > 0 then
+			if pPlayer:IsHuman() then
+				local pCapital = pPlayer:GetCapitalCity()
+				local pAlTirabin = Players[tLostCities["eLostAlTirabin"]]
+				local sPlural = (iAddedRoutes > 1) and "s" or ""
+		
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_AL_TIRABIN_ON", pAlTirabin:GetName(), iAddedRoutes, sPlural), L("TXT_KEY_UCS_BONUS_AL_TIRABIN_TITLE"), pCapital:GetX(), pCapital:GetY())
+			end
+		end
 	end
 end
 
@@ -3080,14 +3091,14 @@ function TradeRoutesFromBedouinsOnEraChange(eTeam, eEra, bFirst)
 
 			if ePlayerTeam == eTeam then
 				if pPlayer:GetEventChoiceCooldown(tEventChoice[58]) ~= 0 then
-					AddTradeRoutesFromBedouins(eplayer)
+					local iAddedRoutes = AddTradeRoutesFromBedouins(eplayer)
 
-					if eEra == 2 or eEra == 4 or eEra == 6 then
+					if (eEra + 1) % 2 == 0 then
 						if pPlayer:IsHuman() then
 							local pCapital = pPlayer:GetCapitalCity()
 							local pAlTirabin = Players[tLostCities["eLostAlTirabin"]]
 
-							pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_AL_TIRABIN", pAlTirabin:GetName()), L("TXT_KEY_UCS_BONUS_AL_TIRABIN_TITLE"), pCapital:GetX(), pCapital:GetY())
+							pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_AL_TIRABIN_ERA", pAlTirabin:GetName()), L("TXT_KEY_UCS_BONUS_AL_TIRABIN_TITLE"), pCapital:GetX(), pCapital:GetY())
 						end
 					end
 				end
@@ -3099,9 +3110,11 @@ end
 function AddTradeRoutesFromBedouins(ePlayer)
 	local pPlayer = Players[ePlayer]
 	local pCapital = pPlayer:GetCapitalCity()
-	local iTradeRoutesAvailable = math.floor((pPlayer:GetCurrentEra() + 2) / 2) -- only in Ancient, Medieval, Industrial and Information
+	local iTradeRoutesAvailable = math.floor((pPlayer:GetCurrentEra() + 1) / 2) -- only in Classical, Renaissance, Modern and Information
 	
 	pCapital:SetNumRealBuilding(tBuildingsActiveAbilities[30], iTradeRoutesAvailable)
+
+	return iTradeRoutesAvailable
 end
 
 
@@ -3139,7 +3152,7 @@ function BuiltTulou(ePlayer, iX, iY, eImprovement)
 		pCity:ChangePopulation(1, true)
 		
 		if pPlayer:IsHuman() then
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_LONGYAN_POP", pLongyan:GetName(), pCity:GetName()), L("TXT_KEY_UCS_BONUS_LONGYAN_POP_TITLE"), pCity:GetX(), pCity:GetY())
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_CITY_GROWTH, L("TXT_KEY_UCS_BONUS_LONGYAN_POP", pLongyan:GetName(), pCity:GetName()), L("TXT_KEY_UCS_BONUS_LONGYAN_POP_TITLE"), pCity:GetX(), pCity:GetY())
 		end
 	end
 end
@@ -3289,7 +3302,7 @@ end
 
 
 
--- VAITAPE
+-- VAITAPE (DEFENSE ON ATOLLS)
 function VaitapeBuildsDefensesOnEventOn(ePlayer, eEventChoiceType)
 	if eEventChoiceType == tEventChoice[74] then
 		local pPlayer = Players[ePlayer]
@@ -3400,6 +3413,7 @@ function ImproveSeaResourcesOnEventOn(ePlayer, eEventChoiceType)
 	if eEventChoiceType == tEventChoice[78] then
 		local pPlayer = Players[ePlayer]
 		local iResources, iCities = 0, 0
+		local iResourceX, iResourceY
 
 		for city in pPlayer:Cities() do
 			local bCityImproved = false
@@ -3430,6 +3444,8 @@ function ImproveSeaResourcesOnEventOn(ePlayer, eEventChoiceType)
 									local eImprovement = GameInfo.Improvements{Type=improvement.ImprovementType}().ID
 									
 									pPlot:SetImprovementType(eImprovement)
+									iResourceX = pPlot:GetX()
+									iResourceY = pPlot:GetY()
 									iResources = iResources + 1
 									bCityImproved = true
 									break
@@ -3447,11 +3463,10 @@ function ImproveSeaResourcesOnEventOn(ePlayer, eEventChoiceType)
 
 		if iResources > 0 and pPlayer:IsHuman() then
 			local pVictoria = Players[tLostCities["eLostVictoria"]]
-			local pCapital = pPlayer:GetCapitalCity()
 			local sPlural = (iResources > 1) and "s" or ""
 			local sSecondPlural = (iCities > 1) and "ies" or "y"
 
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_VICTORIA_EMPIRE", pVictoria:GetName(), iResources, sPlural, iCities, sSecondPlural), L("TXT_KEY_UCS_BONUS_VICTORIA_TITLE"), pCapital:GetX(), pCapital:GetY())
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_CITY_TILE, L("TXT_KEY_UCS_BONUS_VICTORIA_EMPIRE", pVictoria:GetName(), iResources, sPlural, iCities, sSecondPlural), L("TXT_KEY_UCS_BONUS_VICTORIA_TITLE"), iResourceX, iResourceY)
 		end
 	end
 end
@@ -3463,6 +3478,7 @@ function ImproveSeaResourcesOnCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, 
 		local pPlot = Map.GetPlot(iX, iY)
 		local pConqCity = pPlot:GetWorkingCity()
 		local iResources = 0
+		local iResourceX, iResourceY
 		
 		for i = 0, pConqCity:GetNumCityPlots() - 1, 1 do
 			local pPlot = pConqCity:GetCityIndexPlot(i)
@@ -3490,6 +3506,8 @@ function ImproveSeaResourcesOnCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, 
 								local eImprovement = GameInfo.Improvements{Type=improvement.ImprovementType}().ID
 							
 								pPlot:SetImprovementType(eImprovement)
+								iResourceX = pPlot:GetX()
+								iResourceY = pPlot:GetY()
 								iResources = iResources + 1
 								break
 							end
@@ -3503,7 +3521,7 @@ function ImproveSeaResourcesOnCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, 
 			local pVictoria = Players[tLostCities["eLostVictoria"]]
 			local sPlural = (iResources > 1) and "s" or ""
 			
-			pNewOwner:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_VICTORIA_CITY", pVictoria:GetName(), iResources, sPlural, pConqCity:GetName()), L("TXT_KEY_UCS_BONUS_VICTORIA_TITLE"), pConqCity:GetX(), pConqCity:GetY())
+			pNewOwner:AddNotification(NotificationTypes.NOTIFICATION_CITY_TILE, L("TXT_KEY_UCS_BONUS_VICTORIA_CITY", pVictoria:GetName(), iResources, sPlural, pConqCity:GetName()), L("TXT_KEY_UCS_BONUS_VICTORIA_TITLE"), iResourceX, iResourceY)
 		end
 	end
 end
@@ -3517,6 +3535,7 @@ function ImproveSeaResourcesOnNewCity(ePlayer, iX, iY)
 		if pCityPlot then
 			local pCity = pCityPlot:GetWorkingCity()
 			local iResources = 0
+			local iResourceX, iResourceY
 			
 			for i = 0, pCity:GetNumCityPlots() - 1, 1 do
 				local pPlot = pCity:GetCityIndexPlot(i)
@@ -3544,6 +3563,8 @@ function ImproveSeaResourcesOnNewCity(ePlayer, iX, iY)
 									local eImprovement = GameInfo.Improvements{Type=improvement.ImprovementType}().ID
 								
 									pPlot:SetImprovementType(eImprovement)
+									iResourceX = pPlot:GetX()
+									iResourceY = pPlot:GetY()
 									iResources = iResources + 1
 									break
 								end
@@ -3557,7 +3578,7 @@ function ImproveSeaResourcesOnNewCity(ePlayer, iX, iY)
 				local pVictoria = Players[tLostCities["eLostVictoria"]]
 				local sPlural = (iResources > 1) and "s" or ""
 
-				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_VICTORIA_CITY", pVictoria:GetName(), iResources, sPlural, pCity:GetName()), L("TXT_KEY_UCS_BONUS_VICTORIA_TITLE"), pCity:GetX(), pCity:GetY())
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_CITY_TILE, L("TXT_KEY_UCS_BONUS_VICTORIA_CITY", pVictoria:GetName(), iResources, sPlural, pCity:GetName()), L("TXT_KEY_UCS_BONUS_VICTORIA_TITLE"), iResourceX, iResourceY)
 			end
 		end
 	end
@@ -3595,7 +3616,7 @@ function ImproveSeaResourcesOnBoughtPlot(eCityOwner, eCity, iX, iY, bGold, bCult
 							local pVictoria = Players[tLostCities["eLostVictoria"]]
 							local pCity = pPlayer:GetCityByID(eCity)
 
-							pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_VICTORIA_TILE", pVictoria:GetName(), pCity:GetName()), L("TXT_KEY_UCS_BONUS_VICTORIA_TITLE"), iX, iY)
+							pPlayer:AddNotification(NotificationTypes.NOTIFICATION_CITY_TILE, L("TXT_KEY_UCS_BONUS_VICTORIA_TILE", pVictoria:GetName(), pCity:GetName()), L("TXT_KEY_UCS_BONUS_VICTORIA_TITLE"), iX, iY)
 						end
 						
 						break
@@ -3614,6 +3635,7 @@ function ImproveSeaResourcesOnTech(eTeam, eTech, iChange)
 	
 	if pActivePlayer:GetEventChoiceCooldown(tEventChoice[78]) ~= 0 then
 		local iResources, iCities = 0, 0
+		local iResourceX, iResourceY
 
 		for city in pActivePlayer:Cities() do
 			local bCityImproved = false
@@ -3644,6 +3666,8 @@ function ImproveSeaResourcesOnTech(eTeam, eTech, iChange)
 									local eImprovement = GameInfo.Improvements{Type=improvement.ImprovementType}().ID
 									
 									pPlot:SetImprovementType(eImprovement)
+									iResourceX = pPlot:GetX()
+									iResourceY = pPlot:GetY()
 									iResources = iResources + 1
 									bCityImproved = true
 									break
@@ -3661,18 +3685,17 @@ function ImproveSeaResourcesOnTech(eTeam, eTech, iChange)
 
 		if iResources > 0 and pActivePlayer:IsHuman() then
 			local pVictoria = Players[tLostCities["eLostVictoria"]]
-			local pCapital = pActivePlayer:GetCapitalCity()
 			local sPlural = (iResources > 1) and "s" or ""
 			local sSecondPlural = (iCities > 1) and "ies" or "y"
 
-			pActivePlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_VICTORIA_EMPIRE", pVictoria:GetName(), iResources, sPlural, iCities, sSecondPlural), L("TXT_KEY_UCS_BONUS_VICTORIA_TITLE"), pCapital:GetX(), pCapital:GetY())
+			pActivePlayer:AddNotification(NotificationTypes.NOTIFICATION_CITY_TILE, L("TXT_KEY_UCS_BONUS_VICTORIA_EMPIRE", pVictoria:GetName(), iResources, sPlural, iCities, sSecondPlural), L("TXT_KEY_UCS_BONUS_VICTORIA_TITLE"), iResourceX, iResourceY)
 		end
 	end
 end
 
 
 
--- CAPE TOWN (BENEFITS FROM TRADE ROUTES)
+-- CAPE TOWN (YIELDS FROM FINISHING TRADE ROUTES)
 function TradeInCapeTown(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eConnectionType)
 	local pPlayer = Players[eFromPlayer]
 		
@@ -3694,7 +3717,8 @@ function TradeInCapeTown(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eC
 end
 
 
--- MANILA (YIELDS AT THE END FOR TRADE)
+
+-- MANILA (YIELDS FROM FINISHING TRADE ROUTES)
 function TradeInManila(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eConnectionType)
 	local pPlayer = Players[eFromPlayer]
 	
@@ -3717,7 +3741,8 @@ function TradeInManila(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eCon
 end
 
 
--- COLOMBO (HEAL UNITS AT THE END FOR TRADE)
+
+-- COLOMBO (HEAL UNITS AFTER FINISHING TRADE ROUTES)
 function TradeInColombo(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eConnectionType)
 	local pPlayer = Players[eFromPlayer]
 	
@@ -3739,7 +3764,7 @@ end
 
 
 
--- HANUABADA (HIRI TRADE CYCLE)
+-- HANUABADA (YIELDS FROM FINISHING TRADE ROUTES)
 function TradeInHanuabada(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eConnectionType)
 	local pPlayer = Players[eFromPlayer]
 		
@@ -3878,7 +3903,7 @@ function JerusalemsDevotion(ePlayer)
 				if pMinorPlayer:IsAllies(ePlayer) then
 					local pMajorPlayer = Players[ePlayer]
 
-			if not pMajorPlayer:HasCreatedReligion() then return end
+					if not pMajorPlayer:HasCreatedReligion() then return end
 					
             		if pMajorPlayer:GetMajorityReligion() ~= nil and pMajorPlayer:GetMajorityReligion() ~= pMinorPlayer:GetMajorityReligion() then
             			local pJerusalemCity = pMinorPlayer:GetCapitalCity()
@@ -3887,7 +3912,11 @@ function JerusalemsDevotion(ePlayer)
 						pJerusalemCity:SetNumRealBuilding(tBuildingsActiveAbilities[10], 1)
 						
 						if pMajorPlayer:IsHuman() then
-							pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_JERUSALEM_RELIGION", pMinorPlayer:GetName()), L("TXT_KEY_UCS_BONUS_JERUSALEM_RELIGION_TITLE"), pJerusalemCity:GetX(), pJerusalemCity:GetY())
+							local eReligion = pMajorPlayer:GetMajorityReligion()
+							local sReligionIcon = GameInfo.Religions[eReligion].IconString
+							local sReligionName = L(GameInfo.Religions[eReligion].Description)
+
+							pMajorPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_JERUSALEM_RELIGION", pJerusalemCity:GetName(), sReligionIcon, sReligionName), L("TXT_KEY_UCS_BONUS_JERUSALEM_RELIGION_TITLE"), pJerusalemCity:GetX(), pJerusalemCity:GetY())
 						end
             		end
         		
@@ -3937,7 +3966,7 @@ end
 
 
 
--- LHASA (SPHERE OF INFLUENCE FROM WW)
+-- LHASA (SPHERE OF INFLUENCE FROM POTALA PALACE WORLD WONDER)
 function CanWeBuildPotalaPalace(ePlayer, eBuilding)
 	if eBuilding ~= tBuildingsActiveAbilities[1] then return true end
 	if Game.GetNumActiveLeagues() == 0 then return false end
@@ -3963,7 +3992,7 @@ end
 
 
 
--- ÓC EO (TRADE ROUTES INTO GROWTH)
+-- ÓC EO (TRADE ROUTES INTO COASTAL EXPANSION)
 	--[[	Domain - DomainTypes.DOMAIN_LAND or DomainTypes.DOMAIN_SEA (int)
 		TurnsLeft - turns left before the trade route can be reassigned (int)
 		FromCivilizationType - eg GameInfoTypes.CIVILIZATION_ENGLAND (int)
@@ -4099,7 +4128,7 @@ end
 
 
 
--- THIMPHU (CITY ON HILL?)
+-- THIMPHU (CULTURE FROM CITIES ON HILL; CULTURE INTO DEFENSE)
 function DrukTsendhenOnEventOn(ePlayer, eEventChoiceType)
 	if eEventChoiceType == tEventChoice[10] then
 		local pPlayer = Players[ePlayer]
@@ -4208,7 +4237,7 @@ end
 
 
 
--- PELYM (CITY ON TUNDRA OR SNOW?)
+-- PELYM (SUPPLY FROM CITIES ON TUNDRA OR SNOW)
 function SiberianWarlordsOnEventOn(ePlayer, eEventChoiceType)
 	if eEventChoiceType == tEventChoice[51] then
 		local pPlayer = Players[ePlayer]
@@ -4285,7 +4314,7 @@ end
 
 
 
--- RAGUSA (CITY ON COAST?)
+-- RAGUSA (SUPPLY FROM CITIES ON COAST)
 function MaritimeSuzeraintyOnEventOn(ePlayer, eEventChoiceType)
 	if eEventChoiceType == tEventChoice[31] then
 		local pPlayer = Players[ePlayer]
@@ -4352,7 +4381,7 @@ end
 
 
 
--- RISHIKESH (CITY ON RIVER?)
+-- RISHIKESH (FAITH FROM CITIES ON RIVER)
 function HimalayanYogiOnEventOn(ePlayer, eEventChoiceType)
 	if eEventChoiceType == tEventChoice[15] then
 		local pPlayer = Players[ePlayer]
@@ -4423,7 +4452,7 @@ end
 
 
 
--- ANDORRA (MOUNTAIN NEARBY?)
+-- ANDORRA (TOURSIM FROM MOUNTAINS NEARBY)
 function PyreneanPareageOnEventOn(ePlayer, eEventChoiceType)
 	if eEventChoiceType == tEventChoice[11] then
 		local pPlayer = Players[ePlayer]
@@ -4506,7 +4535,7 @@ end
 
 
 
--- CANOSSA (TEMPLE BUILT?)
+-- CANOSSA (GDP FROM CITIES WITH TEMPLE)
 function ArdentFlameInPiousHeartOnEventOn(ePlayer, eEventChoiceType)
 	if eEventChoiceType == tEventChoice[12] then
 		local pPlayer = Players[ePlayer]
@@ -4579,7 +4608,7 @@ end
 
 
 
--- WOOTEI-NIICIE (CARAVANSARY BUILT? HORSES NEARBY?)
+-- WOOTEI-NIICIE (XP FROM CARAVANSARY)
 function PeopleOfTheBlueSkyOnEventOn(ePlayer, eEventChoiceType)
 	if eEventChoiceType == tEventChoice[43] then
 		local pPlayer = Players[ePlayer]
@@ -4652,7 +4681,7 @@ end
 
 
 
--- KATENDE (DIPLOMATIC NATIONAL WONDERS BUILT?)
+-- KATENDE (GAP AND GWP FROM DIPLOMATIC NATIONAL WONDERS)
 function LongClawOfMemoryOnEventOn(ePlayer, eEventChoiceType)
 	if eEventChoiceType == tEventChoice[52] then
 		local pPlayer = Players[ePlayer]
@@ -4753,7 +4782,7 @@ end
 
 
 
--- JETARKTE (CITY ON COAST?)
+-- JETARKTE ("AIRPORT" IN CITIES ON COAST)
 function SeaNomadsOnEventOn(ePlayer, eEventChoiceType)
 	if eEventChoiceType == tEventChoice[64] then
 		local pPlayer = Players[ePlayer]
@@ -4820,7 +4849,7 @@ end
 
 
 
--- MACACO (CONVERT DEFENSE INTO CULTURE)
+-- MACACO (DEFENSE INTO CULTURE)
 function AngolaJangaOnEventOn(ePlayer, eEventChoiceType)
 	if eEventChoiceType == tEventChoice[77] then
 		local pPlayer = Players[ePlayer]
@@ -4936,6 +4965,7 @@ function DummyTechHorsebackRiding(eTeam, eTech, iChange)
 	pActiveTeam:GetTeamTechs():SetHasTech(tTechnologyTypes[5], true)
 end
 GameEvents.TeamTechResearched.Add(DummyTechHorsebackRiding)
+
 
 
 -- VATICAN CITY (SWISS GUARD FUNCTIONS)
@@ -5296,22 +5326,30 @@ end
 
 
 
--- ABALESSA (PROMOTION FOR ENEMIES ON DESERT)
+-- ABALESSA (NEGATIVE PROMOTION FOR ENEMIES ON DESERT)
 function DelayedBySandOnMove(ePlayer, eUnit, iX, iY) 
 	local pPlot = Map.GetPlot(iX, iY)
 	
-	if pPlot:GetTerrainType() ~= tTerrainTypes[7] then return end
+	if not pPlot or pPlot:GetTerrainType() ~= tTerrainTypes[7] then return end
 	
 	local pPlotOwner = Players[pPlot:GetOwner()]
-	local pPlayer = Players[ePlayer]
+	local pUnitOwner = Players[ePlayer]
 		
-	if not pPlotOwner:IsAtWarWith(ePlayer) then return end
+	if not pPlotOwner or not pUnitOwner or not pPlotOwner:IsAtWarWith(ePlayer) then return end
 
-	if pPlotOwner and pPlotOwner:GetEventChoiceCooldown(tEventChoice[79]) ~= 0 then
-		local pUnit = pPlayer:GetUnitByID(eUnit)
+	if pPlotOwner:GetEventChoiceCooldown(tEventChoice[79]) ~= 0 then
+		local pUnit = pUnitOwner:GetUnitByID(eUnit)
 
-		pUnit:SetHasPromotion(tPromotionsActiveAbilities[30], false)
-		pUnit:SetHasPromotion(tPromotionsActiveAbilities[30], true)
+		if pUnit then
+			pUnit:SetHasPromotion(tPromotionsActiveAbilities[30], false)
+			pUnit:SetHasPromotion(tPromotionsActiveAbilities[30], true)
+
+			if pUnitOwner:IsHuman() then
+				local pAbalessa = Players[tLostCities["eLostAbalessa"]]
+
+				pUnitOwner:AddNotification(NotificationTypes.NOTIFICATION_ENEMY_IN_TERRITORY, L("TXT_KEY_UCS_BONUS_ABALESSA", pUnit:GetName(), pAbalessa:GetName(), pPlotOwner:GetCivilizationShortDescription()), L("TXT_KEY_UCS_BONUS_ABALESSA_TITLE"), iX, iY, pUnit:GetUnitType())
+			end
+		end
 	end
 end
 
@@ -5356,7 +5394,7 @@ function MigrationToHongKong(ePlayer)
 					pHongKong:ChangeMinorCivFriendshipWithMajor(ePlayer, iInfluence)
 
 					if pPlayer:IsHuman() then
-						pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_HONG_KONG", city:GetName(), pHongKongCity:GetName(), pHongKong:GetName(), iGoldReward, iInfluence), L("TXT_KEY_UCS_BONUS_HONG_KONG_TITLE"), city:GetX(), city:GetY())
+						pPlayer:AddNotification(NotificationTypes.NOTIFICATION_STARVING, L("TXT_KEY_UCS_BONUS_HONG_KONG", city:GetName(), pHongKongCity:GetName(), pHongKong:GetName(), iGoldReward, iInfluence), L("TXT_KEY_UCS_BONUS_HONG_KONG_TITLE", pHongKongCity:GetName()), city:GetX(), city:GetY())
 					end
 
 					break
@@ -6817,7 +6855,7 @@ function GrowthIntoExpansion(iX, iY, iOldPop, iNewPop)
 		pCity:SetNumRealBuilding(tBuildingsActiveAbilities[39], pCity:GetNumRealBuilding(tBuildingsActiveAbilities[39]) + 1)
 		
 		if pPlayer:IsHuman() then
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_INSTANT_YIELD, L("TXT_KEY_UCS_BONUS_CAMUTINS_FOOD", pCamutins:GetName(), pCity:GetName()), L("TXT_KEY_UCS_BONUS_CAMUTINS_FOOD_TITLE"), iX, iY)
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_CAMUTINS_FOOD", pCamutins:GetName(), pCity:GetName()), L("TXT_KEY_UCS_BONUS_CAMUTINS_FOOD_TITLE"), iX, iY)
 		end
 
 		-- expanding city territory
@@ -6879,7 +6917,7 @@ function GondarStrikesTheCity(iX, iY, ePlotOwner, eOldImprovement, eNewImproveme
 	
 	local iNumUnitsOnTile = pPlot:GetNumUnits()
 
-	if iNumUnitsOnTile > 0 then
+	if iNumUnitsOnTile > 0 and ePlotOwner ~= -1 then
 		for i = 0, iNumUnitsOnTile - 1, 1 do
 			local pUnit = pPlot:GetUnit(i)
 						
@@ -6890,13 +6928,21 @@ function GondarStrikesTheCity(iX, iY, ePlotOwner, eOldImprovement, eNewImproveme
 					local pWorkingCity = pPlot:GetWorkingCity()
 					
 					if pWorkingCity then
-						pWorkingCity:ChangeDamage(10)
+						local iBaseDamage = 20
+						local iEraModifier = math.max(1, pUnitOwner:GetCurrentEra())
+						local iFinalDamage = iBaseDamage * iEraModifier
+		
+						pWorkingCity:ChangeDamage(iFinalDamage)
+						local pTileOwner = Player[ePlotOwner]
 						local pGondar = Players[tLostCities["eLostGondar"]]
 
 						if pUnitOwner:IsHuman() then
-							pUnitOwner:AddNotification(NotificationTypes.NOTIFICATION_ENEMY_IN_TERRITORY, L("TXT_KEY_UCS_BONUS_GONDAR", pGondar:GetName(), sImprovementName, pWorkingCity:GetName()), L("TXT_KEY_UCS_BONUS_GONDAR_TITLE"), iX, iY, pUnit:GetUnitType())
+							pUnitOwner:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_GONDAR_UNIT_OWNER", pGondar:GetName(), sImprovementName, pWorkingCity:GetName(), iFinalDamage), L("TXT_KEY_UCS_BONUS_GONDAR_TITLE"), iX, iY)
 						end
-
+						if pTileOwner:IsHuman() then
+							pTileOwner:AddNotification(NotificationTypes.NOTIFICATION_ENEMY_IN_TERRITORY, L("TXT_KEY_UCS_BONUS_GONDAR_TILE_OWNER", pGondar:GetName(), sImprovementName, pWorkingCity:GetName(), iFinalDamage), L("TXT_KEY_UCS_BONUS_GONDAR_TITLE"), iX, iY, pUnit:GetUnitType())
+						end
+						
 						break
 					end
 				end
@@ -6944,7 +6990,7 @@ function ZoroasterHolySite(iX, iY, ePlotOwner, eOldImprovement, eNewImprovement,
 				end
 
 				if bIsValidCity and pPlayer:IsHuman() then
-					pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_SADDARVAZEH", pSaddarvazeh:GetName(), pCity:GetName()), L("TXT_KEY_UCS_BONUS_SADDARVAZEH_TITLE"), iRealX, iRealY)
+					pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GREAT_PERSON_ACTIVE_PLAYER, L("TXT_KEY_UCS_BONUS_SADDARVAZEH", pSaddarvazeh:GetName(), pCity:GetName()), L("TXT_KEY_UCS_BONUS_SADDARVAZEH_TITLE"), iRealX, iRealY, tUnitsCivilian[3])
 				end
 			end
 		end
@@ -6988,7 +7034,7 @@ function ZoroasterActs(ePlayer, eReligion)
 			local pSaddarvazeh = Players[tLostCities["eLostSaddarvazeh"]]
 			
 			if pPlayer:IsHuman() then
-				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_SADDARVAZEH", pSaddarvazeh:GetName(), city:GetName()), L("TXT_KEY_UCS_BONUS_SADDARVAZEH_TITLE"), iX, iY)
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GREAT_PERSON_ACTIVE_PLAYER, L("TXT_KEY_UCS_BONUS_SADDARVAZEH", pSaddarvazeh:GetName(), city:GetName()), L("TXT_KEY_UCS_BONUS_SADDARVAZEH_TITLE"), iX, iY, tUnitsCivilian[3])
 			end
 			
 			break
@@ -7023,7 +7069,7 @@ function IruneaConstructsOnEraChange(eTeam, eEra, bFirst)
 					--pPlayer:AddFreeUnit(tUnitsCivilian[2], UNITAI_DEFENSE)
 					
 					if pPlayer:IsHuman() then
-						pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_IRUNEA_ERA", pIrunea:GetName(), pCity:GetName()), L("TXT_KEY_UCS_BONUS_IRUNEA_ERA_TITLE"), pCity:GetX(), pCity:GetY())
+						pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GREAT_PERSON_ACTIVE_PLAYER, L("TXT_KEY_UCS_BONUS_IRUNEA_ERA", pIrunea:GetName(), pCity:GetName()), L("TXT_KEY_UCS_BONUS_IRUNEA_ERA_TITLE"), pCity:GetX(), pCity:GetY(), tUnitsCivilian[2])
 					end
 				end
 			end
@@ -7047,7 +7093,7 @@ function IruneaConstructsOnCityFounding(ePlayer, iX, iY)
 				--pPlayer:AddFreeUnit(tUnitsCivilian[2], UNITAI_DEFENSE)
 					
 				if pPlayer:IsHuman() then
-					pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_IRUNEA_SETTLE", pIrunea:GetName(), pCity:GetName()), L("TXT_KEY_UCS_BONUS_IRUNEA_SETTLE_TITLE"), pCity:GetX(), pCity:GetY())
+					pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GREAT_PERSON_ACTIVE_PLAYER, L("TXT_KEY_UCS_BONUS_IRUNEA_SETTLE", pIrunea:GetName(), pCity:GetName()), L("TXT_KEY_UCS_BONUS_IRUNEA_SETTLE_TITLE"), pCity:GetX(), pCity:GetY(), tUnitsCivilian[2])
 				end
 			end
 		end
@@ -7181,8 +7227,8 @@ function SettingUpSpecificEvents()
 			elseif sMinorCivType == "MINOR_CIV_LEVUKA" then
 				tLostCities["eLostLevuka"] = eCS
 				GameEvents.CityCaptureComplete.Add(CaptureCityForLevuka)
-				GameEvents.PlayerDoTurn.Add(ConquestsForLevuka)
 				GameEvents.BarbariansCampCleared.Add(BarbCampForLevuka)
+				GameEvents.PlayerDoTurn.Add(ConquestsForLevuka)
 				
 			
 			-- custom improvements
