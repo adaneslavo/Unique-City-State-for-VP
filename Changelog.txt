@@ -28,8 +28,10 @@ v19:
 	- Gwynedd: fixed % modifier in lua function;
 	- Mbabane: reduced bonus Defense to 2 CS per City (was 10);
 	- Thimphu: now culture to defense conversion is also updated on building construction;
-	- fixed multiple ability descriptions;
+	- Tyre: now currently constructed World Wonder doesn't count for the scaler;
 	- reworked and expanded almost all the notification texts;
+	- added possibility to easily turn of original City-States;
+	- fixed multiple ability descriptions;
 - lua:
 	- changed additional resource placement:
 		- now only "map resources" can be placed around City-States (all Bonus, Luxury and Strategic);

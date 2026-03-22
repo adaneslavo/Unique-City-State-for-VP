@@ -3152,7 +3152,7 @@ function BuiltTulou(ePlayer, iX, iY, eImprovement)
 		pCity:ChangePopulation(1, true)
 		
 		if pPlayer:IsHuman() then
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_CITY_GROWTH, L("TXT_KEY_UCS_BONUS_LONGYAN_POP", pLongyan:GetName(), pCity:GetName()), L("TXT_KEY_UCS_BONUS_LONGYAN_POP_TITLE"), pCity:GetX(), pCity:GetY())
+			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_CITY_GROWTH, L("TXT_KEY_UCS_BONUS_LONGYAN", pLongyan:GetName(), pCity:GetName()), L("TXT_KEY_UCS_BONUS_LONGYAN_TITLE"), pCity:GetX(), pCity:GetY())
 		end
 	end
 end
@@ -3615,8 +3615,10 @@ function ImproveSeaResourcesOnBoughtPlot(eCityOwner, eCity, iX, iY, bGold, bCult
 						if pPlayer:IsHuman() then
 							local pVictoria = Players[tLostCities["eLostVictoria"]]
 							local pCity = pPlayer:GetCityByID(eCity)
+							local sResourceIcon = GameInfo.Resources{ID=eResource}().IconString
+							local sResourceName = L(GameInfo.Resources{ID=eResource}().Description)
 
-							pPlayer:AddNotification(NotificationTypes.NOTIFICATION_CITY_TILE, L("TXT_KEY_UCS_BONUS_VICTORIA_TILE", pVictoria:GetName(), pCity:GetName()), L("TXT_KEY_UCS_BONUS_VICTORIA_TITLE"), iX, iY)
+							pPlayer:AddNotification(NotificationTypes.NOTIFICATION_CITY_TILE, L("TXT_KEY_UCS_BONUS_VICTORIA_TILE", pVictoria:GetName(), sResourceIcon, sResourceName, pCity:GetName()), L("TXT_KEY_UCS_BONUS_VICTORIA_TITLE"), iX, iY)
 						end
 						
 						break
@@ -5447,14 +5449,12 @@ function ResearchersFromKyzyl(eTeam, eTech, iChange)
 		local pKyzyl = Players[tLostCities["eLostKyzyl"]]
 		local sKyzylYields = ""
 		
+		local iOwnedCities = math.min(pActivePlayer:GetNumCities(), 8)
+		local iCitiesNumberDismodifier = 1 - ((iOwnedCities - 1) * 0.1)
+		
 		for city in pActivePlayer:Cities() do
 			local iBaseYield = RandomNumberBetween(5, 20)
 			local iEraModifier = math.max(1, pActivePlayer:GetCurrentEra())
-			local iOwnedCities = pActivePlayer:GetNumCities()
-
-			if iOwnedCities > 8 then iOwnedCities = 8 end
-
-			local iCitiesNumberDismodifier = 1 - ((iOwnedCities - 1) * 0.1)
 			local iProductionBoostFromResearch = iBaseYield * iEraModifier * iCitiesNumberDismodifier
 
 			pActivePlayer:DoInstantYield(GameInfoTypes.YIELD_PRODUCTION, iProductionBoostFromResearch, true, city:GetID())
@@ -5481,7 +5481,7 @@ function TourismFromTyre(ePlayer, eCity, eBuilding, bGold, bFaith)
 		if pPlayer:GetEventChoiceCooldown(tEventChoice[22]) ~= 0 then
 			local pCity = pPlayer:GetCityByID(eCity)
 			local iBaseYield = RandomNumberBetween(20, 40)
-			local iWonderModifier = 1 + (pCity:GetNumWorldWonders() * 0.2)
+			local iWonderModifier = 1 + ((pCity:GetNumWorldWonders() - 1) * 0.2)
 			local iEraModifier = math.max(1, pPlayer:GetCurrentEra())
 			local iTourismBoost = iBaseYield * iWonderModifier * iEraModifier
 			local pTyre = Players[tLostCities["eLostTyre"]]
@@ -5489,7 +5489,9 @@ function TourismFromTyre(ePlayer, eCity, eBuilding, bGold, bFaith)
 			pPlayer:DoInstantYield(GameInfoTypes.YIELD_TOURISM, iTourismBoost, true, eCity)
 
 			if pPlayer:IsHuman() then
-				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_TYRE", L(GameInfo.Buildings[eBuilding].Description), pTyre:GetName(), iTourismBoost), L("TXT_KEY_UCS_BONUS_TYRE_TITLE"), pCity:GetX(), pCity:GetY())
+				local sWonderName = L(GameInfo.Buildings[eBuilding].Description)
+
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_TYRE", sWonderName, pCity:GetName(), pTyre:GetName(), iTourismBoost), L("TXT_KEY_UCS_BONUS_TYRE_TITLE", sWonderName), pCity:GetX(), pCity:GetY())
 			end	
 		end
 	end
@@ -6289,7 +6291,7 @@ function HoniaraSignsForTheNature(eCityOwner, eCity, iX, iY, bGold, bCulture)
 			if not bCoast then
 				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_HONIARA_LAND", pHoniara:GetName(), iSuahongiDance, pCity:GetName()), L("TXT_KEY_UCS_BONUS_HONIARA_TITLE"), pCity:GetX(), pCity:GetY())
 			else
-				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_HONIARA_SEA", pHoniara:GetName(), iSuahongiDance, pCity:GetName()), L("TXT_KEY_UCS_BONUS_HONIARA_TITLE"), pCity:GetX(), pCity:GetY())
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_HONIARA_SEA", pHoniara:GetName(), pCity:GetName(), iSuahongiDance), L("TXT_KEY_UCS_BONUS_HONIARA_TITLE"), pCity:GetX(), pCity:GetY())
 			end
 		end	
 	end
