@@ -127,7 +127,7 @@
 		</Row>
 
 		<Row Tag="TXT_KEY_UCS_BONUS_MANILA">
-			<Text>Travelling with the experienced navigators from the [COLOR_CYAN]{1_Manila}[ENDCOLOR] allows you to find curious selling markets for your exotic goods. Your merchants pack another bunch of crates filled with some food and raw materials worth {2_FoodAndProduction} [ICON_FOOD] and [ICON_PRODUCTION].</Text>
+			<Text>Travelling with the experienced navigators from [COLOR_CYAN]{1_Manila}[ENDCOLOR] allows you to find curious selling markets for your exotic goods. Your merchants pack another bunch of crates filled with some food and raw materials worth {2_FoodAndProduction} [ICON_FOOD] and [ICON_PRODUCTION].</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_MANILA_TITLE">
 			<Text>Pearl of the Orient!</Text>

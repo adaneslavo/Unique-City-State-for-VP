@@ -3707,6 +3707,7 @@ function TradeInCapeTown(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eC
 		local iPopulationModifier = pToPlayer:GetCityByID(eToCity):GetPopulation()
 		local iActualTRNumberModifier = pPlayer:GetNumInternationalTradeRoutesUsed() * 0.6
 		local iCahChing = math.ceil((iBaseYield * iPopulationModifier) / iActualTRNumberModifier)
+		print("CAPE_TOWN", iBaseYield, iPopulationModifier, iActualTRNumberModifier, "FINAL", iCahChing)
 		local pPlayerCity = pPlayer:GetCityByID(eFromCity)
 		local pCapeTown = Players[tLostCities["eLostCapeTown"]]
 		
@@ -3730,6 +3731,7 @@ function TradeInManila(eFromPlayer, eFromCity, eToPlayer, eToCity, eDomain, eCon
 		local iPopulationModifier = pToPlayer:GetCityByID(eToCity):GetPopulation()
 		local iActualTRNumberModifier = pPlayer:GetNumInternationalTradeRoutesUsed() * 0.6
 		local iYumYum = math.ceil((iBaseYield * iPopulationModifier) / iActualTRNumberModifier)
+		print("CAPE_TOWN", iBaseYield, iPopulationModifier, iActualTRNumberModifier, "FINAL", iYumYum)
 		local pPlayerCity = pPlayer:GetCityByID(eFromCity)
 		local pManila = Players[tLostCities["eLostManila"]]
 
