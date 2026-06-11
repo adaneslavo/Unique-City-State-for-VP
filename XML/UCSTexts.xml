@@ -141,14 +141,14 @@
 		</Row>
 		
 		<Row Tag="TXT_KEY_UCS_BONUS_SYDNEY">
-			<Text>[COLOR_CYAN]{1_Sydney}[ENDCOLOR] is known from organizing huge and spectacular events. Many artists and creators arrive there to present their works to the wider audience. Because [COLOR_CYAN]{2_City}[ENDCOLOR] is about to glorify your rulings, these people were redirected to your city instead, increasing the progress towards [ICON_GREAT_ARTIST] {3_GreatArtist}, [ICON_GREAT_WRITER] {4_GreatWriter} and [ICON_GREAT_MUSICIAN] {5_GreatMusician} by {6_PointsArtist}, {7_PointsWriter} and {8_PointsMusician} [ICON_GREAT_PEOPLE] respectively.</Text>
+			<Text>[COLOR_CYAN]{1_Sydney}[ENDCOLOR] is known from organizing huge and spectacular events. Many artists and creators arrive there to present their works to the wider audience. Because [COLOR_CYAN]{2_City}[ENDCOLOR] is about to glorify your rulings, these people were redirected to your city instead, increasing the progress towards [ICON_GREAT_ARTIST] {3_GreatArtist}, [ICON_GREAT_WRITER] {4_GreatWriter} and [ICON_GREAT_MUSICIAN] {5_GreatMusician} by {6_PointsArtist} [ICON_GREAT_PEOPLE], {7_PointsWriter} [ICON_GREAT_PEOPLE] and {8_PointsMusician} [ICON_GREAT_PEOPLE] respectively.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_SYDNEY_TITLE">
 			<Text>Creators boom!</Text>
 		</Row>
 		
 		<Row Tag="TXT_KEY_UCS_BONUS_COLOMBO">
-			<Text>Because [COLOR_CYAN]{1_CityOfTrade}[ENDCOLOR] has finished another trade mission recently, [COLOR_CYAN]{2_Colombo}[ENDCOLOR] can carefully count all the profits. Its great experience can be used to restructure your army and increase the defenses of the whole trade network, [COLOR_POSITIVE_TEXT]healing all your units in this city by 10 HP[ENDCOLOR].</Text>
+			<Text>Because [COLOR_CYAN]{1_CityOfTrade}[ENDCOLOR] has finished another trade mission recently, [COLOR_CYAN]{2_Colombo}[ENDCOLOR] can carefully count all the profits. Its great experience can be used to restructure your army and increase the defenses of the whole trade network, [COLOR_POSITIVE_TEXT]healing all your units by 10 HP[ENDCOLOR].</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_COLOMBO_TITLE">
 			<Text>Special care trade partners!</Text>
@@ -169,7 +169,7 @@
 		</Row>
 		
 		<Row Tag="TXT_KEY_UCS_BONUS_SINGAPORE">
-			<Text>Wise diplomats from [COLOR_CYAN]{1_Singapore}[ENDCOLOR] finished their negotiations with a great success giving increasing you a nice relationship boost in [COLOR_CYAN]{2_InfluencedCityState}[ENDCOLOR], but there's more! They also managed to acquire some fundings for your upcoming projects from local companies. Your treasury enriches by {3_Gold} [ICON_GOLD].</Text>
+			<Text>Wise diplomats from [COLOR_CYAN]{1_Singapore}[ENDCOLOR] finished their negotiations with a great success giving you a nice relationship boost in [COLOR_CYAN]{2_InfluencedCityState}[ENDCOLOR], but there's more! They also managed to acquire some fundings for your upcoming projects from local companies. Your treasury enriches by {3_Gold} [ICON_GOLD].</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_SINGAPORE_TITLE">
 			<Text>Diplomatic success!</Text>
@@ -420,6 +420,13 @@
 			<Text>Good place to live!</Text>
 		</Row>
 
+		<Row Tag="TXT_KEY_UCS_BONUS_WAITUKUBULI">
+			<Text>It's not probably the most elegant and human way to treat your opponent's corpses like that, but [COLOR_CYAN]{1_Waitukubuli}[ENDCOLOR] taught you that no food can be wasted. That's why you have to prepare their bodies for their last journey, to [COLOR_CYAN]{3_City}[ENDCOLOR], securing {2_Food} [ICON_FOOD] Food for harsh times.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_WAITUKUBULI_TITLE">
+			<Text>Cannibalism!</Text>
+		</Row>
+
 		<Row Tag="TXT_KEY_UCS_BONUS_AYUTTHAYA_DECLARED">
 			<Text>Councellors from [COLOR_CYAN]{1_Ayutthaya}[ENDCOLOR] advised you to declare war. Now to achieve all of your goals you must almost instantly adjust all industrial sectors, so they could fulfill huge demands of the accelerating war machine. Your recent actions gave you {2_Production} [ICON_PRODUCTION] in each City. Time to find more!</Text>
 		</Row>
@@ -501,6 +508,13 @@
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_SADDARVAZEH_TITLE">
 			<Text>Zoroaster speaks!</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_UCS_BONUS_SAMBAA_KE">
+			<Text>[COLOR_CYAN]{1_SambaaKe}[ENDCOLOR] dances on each occasion and they treat it like a remedy for everything. They dance when they are sad or happy. They use dance to fight evil ghosts and to provide good odds. You should dance, too! Teach your people how to do it with these talented teachers providing permanent +3% [ICON_GREAT_MUSICIAN] Great Musician Points in all cities.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UCS_BONUS_SAMBAA_KE_TITLE">
+			<Text>Calm your soul!</Text>
 		</Row>
 	</Language_en_US>
 </GameData>

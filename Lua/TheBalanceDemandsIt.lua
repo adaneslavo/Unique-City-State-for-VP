@@ -130,7 +130,9 @@ local tEventChoice = {
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_GONDAR, -- 76
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_MACACO,
 	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_VICTORIA,
-	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_ABALESSA
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_ABALESSA,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_SAMBAA_KE,
+	GameInfoTypes.PLAYER_EVENT_CHOICE_MINOR_CIV_WAITUKUBULI -- 81
 }
 
 local tBuildingsActiveAbilities = {
@@ -173,7 +175,10 @@ local tBuildingsActiveAbilities = {
 	GameInfoTypes.BUILDING_GRAND_HARBOR,
 	GameInfoTypes.BUILDING_GATE_OF_DAWN,
 	GameInfoTypes.BUILDING_DUMMY_CAMUTINS,
-	GameInfoTypes.BUILDING_DUMMY_MACACO
+	GameInfoTypes.BUILDING_DUMMY_MACACO,
+	GameInfoTypes.BUILDING_DUMMY_SAMBAA_KE, -- 41
+	GameInfoTypes.BUILDING_DUMMY_SAMBAA_KE_2,
+	GameInfoTypes.BUILDING_DUMMY_WAITUKUBULI
 }
 
 local tBuildingClasses = {
@@ -4942,6 +4947,196 @@ end
 
 
 
+-- SAMBAA KE (FAITH AND GP ON TUNDRA; GMUSP FROM PROPHETS)
+function SoundOfSoulOnEventOn(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[80] then
+		local pPlayer = Players[ePlayer]
+
+		for city in pPlayer:Cities() do
+			local bIsOnTundra = city:Plot():GetTerrainType() == tTerrainTypes[2]
+
+			if bIsOnTundra then
+				city:SetNumRealBuilding(tBuildingsActiveAbilities[41], 1)
+			end
+		end
+	end
+end
+
+function SoundOfSoulOnEventOff(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[80] then
+		local pPlayer = Players[ePlayer]
+	
+		for city in pPlayer:Cities() do
+			city:SetNumRealBuilding(tBuildingsActiveAbilities[41], 0)
+		end
+	end
+end
+
+function SoundOfSoulOnCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
+	local pNewOwner = Players[eNewOwner]
+	local pPlot = Map.GetPlot(iX, iY)
+	local pConqCity = pPlot:GetWorkingCity()
+			
+	if pNewOwner:GetEventChoiceCooldown(tEventChoice[80]) ~= 0 then
+		local bIsOnTundra = pPlot:GetTerrainType() == tTerrainTypes[2]
+			
+		if bIsOnTundra then
+			pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[41], 1)
+		end
+	else
+		if not pNewOwner:IsEventChoiceActive(tEventChoice[80]) then
+			pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[41], 0)
+		end
+	end
+end
+
+function SoundOfSoulOnNewCity(ePlayer, iX, iY)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[80]) ~= 0 then
+		local pPlot = Map.GetPlot(iX, iY)
+		
+		if pPlot then
+			local pCity = pPlot:GetWorkingCity()	
+			local bIsOnTundra = pPlot:GetTerrainType() == tTerrainTypes[2]
+			
+			if bIsOnTundra then
+				pCity:SetNumRealBuilding(tBuildingsActiveAbilities[41], 1)
+			end
+		end
+	end
+end
+
+function LetsDanceForSambaaKe(eUnitOwner, eUnit, eUnitType, iX, iY)	
+	local pPlayer = Players[eUnitOwner]
+	local pUnit = pPlayer:GetUnitByID(eUnit)
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[80]) ~= 0 then
+		local pSambaaKe = Players[tLostCities["eLostSambaaKe"]]
+		
+		if pUnit:GetUnitType() == tUnitsGreatPeople[10] then
+			for city in pPlayer:Cities() do
+				city:SetNumRealBuilding(tBuildingsActiveAbilities[42], city:GetNumRealBuilding(tBuildingsActiveAbilities[42]) + 1)
+			end
+
+			if pPlayer:IsHuman() then
+				pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_SAMBAA_KE", pSambaaKe:GetName()), L("TXT_KEY_UCS_BONUS_SAMBAA_KE_TITLE"), iX, iY)		
+			end
+		end
+	end
+end
+
+
+
+-- WAITUKUBULI (DEFENSE ON ISLANDS)
+function LandOfCaribsOnEventOn(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[81] then
+		local pPlayer = Players[ePlayer]
+		
+		for city in pPlayer:Cities() do
+			local bIsland = Map.GetNumTilesOfLandmass(city:Plot():GetLandmass()) <= 10
+			
+			if bIsland then
+				city:SetNumRealBuilding(tBuildingsActiveAbilities[43], 1)
+			end
+		end
+	end
+end
+
+function LandOfCaribsOnEventOff(ePlayer, eEventChoiceType)
+	if eEventChoiceType == tEventChoice[81] then
+		local pPlayer = Players[ePlayer]
+	
+		for city in pPlayer:Cities() do
+			city:SetNumRealBuilding(tBuildingsActiveAbilities[43], 0)
+		end
+	end
+end
+
+function LandOfCaribsOnCapture(eOldOwner, bIsCapital, iX, iY, eNewOwner, iPop, bConquest)
+	local pNewOwner = Players[eNewOwner]
+	local pPlot = Map.GetPlot(iX, iY)
+	local pConqCity = pPlot:GetWorkingCity()
+			
+	if pNewOwner:GetEventChoiceCooldown(tEventChoice[81]) ~= 0 then
+		local bIsland = Map.GetNumTilesOfLandmass(pPlot:GetLandmass()) <= 10
+			
+		if bIsland then
+			pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[43], 1)
+		end
+	else
+		if not pNewOwner:IsEventChoiceActive(tEventChoice[81]) then
+			pConqCity:SetNumRealBuilding(tBuildingsActiveAbilities[43], 0)
+		end
+	end
+end
+
+function LandOfCaribsOnNewCity(ePlayer, iX, iY)
+	local pPlayer = Players[ePlayer]
+	
+	if pPlayer:GetEventChoiceCooldown(tEventChoice[81]) ~= 0 then
+		local pPlot = Map.GetPlot(iX, iY)
+		
+		if pPlot then
+			local pCity = pPlot:GetWorkingCity()	
+			local bIsland = Map.GetNumTilesOfLandmass(pPlot:GetLandmass()) <= 10
+			
+			if bIsland then
+				pCity:SetNumRealBuilding(tBuildingsActiveAbilities[43], 1)
+			end
+		end
+	end
+end
+
+function Cannibalism(eAttackingPlayer, eAttackingUnit, iAttackerDamage, iAttackerFinalDamage, iAttackerMaxHP, eDefendingPlayer, eDefendingUnit, iDefenderDamage, iDefenderFinalDamage, iDefenderMaxHP, eInterceptingPlayer, eInterceptingUnit, iInterceptorDamage, iX, iY)
+	local pAttackingPlayer = Players[eAttackingPlayer]
+	local pDefendingPlayer = Players[eDefendingPlayer]
+	
+	if pAttackingPlayer and pAttackingPlayer:GetEventChoiceCooldown(tEventChoice[81]) ~= 0 then
+		if iDefenderFinalDamage >= iDefenderMaxHP and iAttackerFinalDamage < iAttackerMaxHP then
+			local pAttackingUnit = pAttackingPlayer:GetUnitByID(eAttackingUnit)
+			local pPlot = Map.GetPlot(iX, iY)
+			local iDistance = 10000
+			local pClosestCity = nil
+			local iBaseFood = 10
+			local iEraModifier = math.max(1, pAttackingPlayer:GetCurrentEra())	
+			local iCannibalism = iBaseFood * iEraModifier
+			local pWaitukubuli = Players[tLostCities["eLostWaitukubuli"]]
+			
+			iDistance, pClosestCity = CheckDistance(pAttackingPlayer, pPlot)
+
+			pAttackingPlayer:DoInstantYield(GameInfoTypes.YIELD_FOOD, iCannibalism, true, pClosestCity:GetID())
+
+			if pAttackingPlayer:IsHuman() then
+				pAttackingPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_WAITUKUBULI", pWaitukubuli:GetName(), iCannibalism, pClosestCity:GetName()), L("TXT_KEY_UCS_BONUS_WAITUKUBULI_TITLE"), iX, iY)
+			end
+		end
+	end
+
+	if pDefendingPlayer and pDefendingPlayer:GetEventChoiceCooldown(tEventChoice[81]) ~= 0 then
+		if iAttackerFinalDamage >= iAttackerMaxHP and iDefenderFinalDamage < iDefenderMaxHP then
+			local pDefendingUnit = pDefendingPlayer:GetUnitByID(eDefendingUnit)
+			local pPlot = Map.GetPlot(iX, iY)
+			local iDistance = 10000
+			local pClosestCity = nil
+			local iBaseFood = 10
+			local iEraModifier = math.max(1, pDefendingPlayer:GetCurrentEra())	
+			local iCannibalism = iBaseFood * iEraModifier
+			local pWaitukubuli = Players[tLostCities["eLostWaitukubuli"]]
+			
+			iDistance, pClosestCity = CheckDistance(pDefendingPlayer, pPlot)
+
+			pDefendingPlayer:DoInstantYield(GameInfoTypes.YIELD_FOOD, iCannibalism, true, pClosestCity:GetID())
+
+			if pDefendingPlayer:IsHuman() then
+				pDefendingPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_WAITUKUBULI", pWaitukubuli:GetName(), iCannibalism, pClosestCity:GetName()), L("TXT_KEY_UCS_BONUS_WAITUKUBULI_TITLE"), iX, iY)
+			end
+		end
+	end
+end
+
+
+
 -- DALI (BUYING TRADE UNITS WITH FAITH)
 function TradeWithFaith(ePlayer, eCity, eUnit)
 	if eUnit ~= tUnitsCivilian[7] --[[and eUnit ~= tUnitsCivilian[8]--]] then return true end
@@ -5218,6 +5413,8 @@ end
 
 -- KABUL (PROMOTION NEAR MOUNTAIN)
 function MujahideensFromKabulOnMove(ePlayer, eUnit, iX, iY) 
+	if iX < 0 or iY < 0 then return end
+	
 	local pPlayer = Players[ePlayer]
 	
 	if pPlayer:IsMinorCiv() then return end
@@ -5331,7 +5528,9 @@ end
 
 
 -- ABALESSA (NEGATIVE PROMOTION FOR ENEMIES ON DESERT)
-function DelayedBySandOnMove(ePlayer, eUnit, iX, iY) 
+function DelayedBySandOnMove(ePlayer, eUnit, iX, iY)
+	if iX < 0 or iY < 0 then return end
+	
 	local pPlot = Map.GetPlot(iX, iY)
 	
 	if not pPlot or pPlot:GetTerrainType() ~= tTerrainTypes[7] then return end
@@ -7295,9 +7494,9 @@ function SettingUpSpecificEvents()
 			elseif sMinorCivType == "MINOR_CIV_BRUSSELS" then	
 				tLostCities["eLostBrussels"] = eCS
 				GameEvents.BuildFinished.Add(PlacedMarsh)
-				GameEvents.UnitSetXY.Add(InvisibleMarshOnMove)
-				GameEvents.EventChoiceActivated.Add(InvisibleMarshOnEventOn)
-				GameEvents.EventChoiceEnded.Add(InvisibleMarshOnEventOff)
+				--GameEvents.EventChoiceActivated.Add(InvisibleMarshOnEventOn)
+				--GameEvents.EventChoiceEnded.Add(InvisibleMarshOnEventOff)
+				--GameEvents.UnitSetXY.Add(InvisibleMarshOnMove)
 			elseif sMinorCivType == "MINOR_CIV_ADEJE" then	
 				tLostCities["eLostAdeje"] = eCS
 				GameEvents.BuildFinished.Add(PlacedDogoCanario)
@@ -7441,6 +7640,20 @@ function SettingUpSpecificEvents()
 				GameEvents.CityCaptureComplete.Add(AngolaJangaOnCapture)
 				GameEvents.PlayerCityFounded.Add(AngolaJangaOnNewCity)
 				GameEvents.CityConstructed.Add(AngolaJangaOnBuildingConstruction)
+			elseif sMinorCivType == "MINOR_CIV_SAMBAA_KE" then
+				tLostCities["eLostSambaaKe"] = eCS
+				GameEvents.EventChoiceActivated.Add(SoundOfSoulOnEventOn)
+				GameEvents.EventChoiceEnded.Add(SoundOfSoulOnEventOff)
+				GameEvents.CityCaptureComplete.Add(SoundOfSoulOnCapture)
+				GameEvents.PlayerCityFounded.Add(SoundOfSoulOnNewCity)
+				GameEvents.UnitCreated.Add(LetsDanceForSambaaKe)	
+			elseif sMinorCivType == "MINOR_CIV_WAITUKUBULI" then
+				tLostCities["eLostWaitukubuli"] = eCS
+				GameEvents.EventChoiceActivated.Add(LandOfCaribsOnEventOn)
+				GameEvents.EventChoiceEnded.Add(LandOfCaribsOnEventOff)
+				GameEvents.CityCaptureComplete.Add(LandOfCaribsOnCapture)
+				GameEvents.PlayerCityFounded.Add(LandOfCaribsOnNewCity)
+				GameEvents.CombatEnded.Add(Cannibalism)
 			
 			
 			-- new/exclusive custom units
@@ -7568,7 +7781,7 @@ function SettingUpSpecificEvents()
 				tLostCities["eLostGenoa"] = eCS
 				GameEvents.UnitCreated.Add(GoldForGPFromGenoa)
 
-
+				
 			-- yield per unit
 			elseif sMinorCivType == "MINOR_CIV_SIERRA_LEONE" then
 				tLostCities["eLostSierraLeone"] = eCS

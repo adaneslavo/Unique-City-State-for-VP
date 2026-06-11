@@ -1,4 +1,13 @@
 ﻿Changelog:
+v19.1:
+- added two missing abilities for Waitukubuli and Sambaa K'ee;
+- added missing Flavours for latest CSs;
+- small tweaks to the notification texts;
+- fixed UnitSetXY events (Abalessa and Kabul);
+- added PolicyType for new UUs to prevent weird CS gifts (maybe finally fixed?);
+- revised OrderPriority and FlagPromoOrder values;
+- separated OrderPriority and FlagPromoOrder of some promotions (Sikh and other unit specific);
+
 v19:
 - adapted to VP 5.2 changes:
 	- updated Building_YieldPerFriend and Building_YieldPerAlly tables (added Times100 modification);
