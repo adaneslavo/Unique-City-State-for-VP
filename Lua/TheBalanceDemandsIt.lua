@@ -5796,7 +5796,7 @@ function SpreadTheFaithInPrussia(eUnitOwner, eUnit, eUnitType, iX, iY, bDelay, e
 				pPlayer:DoInstantYield(GameInfoTypes.YIELD_FAITH, iFaithFromDeath, true, pCapital:GetID())
 			
 				if pPlayer:IsHuman() then
-					pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_PRAGUE", pPrague:GetName(), pUnit:GetName(), iFaithFromDeath, iCultureFromDeath), L("TXT_KEY_UCS_BONUS_PRAGUE_TITLE"), pCapital:GetX(), pCapital:GetY())
+					pPlayer:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, L("TXT_KEY_UCS_BONUS_PRAGUE", pPrague:GetName(), pUnit:GetName(), iCultureFromDeath, iFaithFromDeath), L("TXT_KEY_UCS_BONUS_PRAGUE_TITLE"), pCapital:GetX(), pCapital:GetY())
 				end
 				
 				break	

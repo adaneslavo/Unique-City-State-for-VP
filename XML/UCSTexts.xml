@@ -47,7 +47,7 @@
 			<Text>Terrified</Text>
 		</Row>
 		<Row Tag="TXT_KEY_CS_ACTIVE_BONUS_HEADER">
-			<Text>[COLOR_LIGHT_GREY]City-State's bonuses given to Major Player:[ENDCOLOR]</Text>
+			<Text>[COLOR_LIGHT_GREY]City-State's perks given to a Major Player when activated:[ENDCOLOR]</Text>
 		</Row>
 		<Row Tag="TXT_KEY_CS_PASSIVE_BONUS_HEADER">
 			<Text>[COLOR_LIGHT_GREY]City-State's passive abilities:[ENDCOLOR]</Text>
@@ -120,7 +120,7 @@
 
 		<!-- notifications for CSs' lua custom events -->
 		<Row Tag="TXT_KEY_UCS_BONUS_CAPE_TOWN">
-			<Text>Transit through a Cape of Good Hope is very lucrative business. The secret deal with [COLOR_CYAN]{1_CapeTown}[ENDCOLOR] guarantees that some part of the revenues are rerouted to your pocket as an additional profit. Treat this as a payment for security? Nevertheless, you are now richer by {2_Gold} [ICON_GOLD].</Text>
+			<Text>Transit through a Cape of Good Hope is a very lucrative business. The secret deal with [COLOR_CYAN]{1_CapeTown}[ENDCOLOR] guarantees that some part of the revenues is rerouted to your pocket as an additional profit. Treat this as a payment for security? Nevertheless, you are now richer by {2_Gold} [ICON_GOLD].</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_CAPE_TOWN_TITLE">
 			<Text>Cape of Good Hope!</Text>
@@ -233,7 +233,7 @@
 		</Row>
 		
 		<Row Tag="TXT_KEY_UCS_BONUS_PRAGUE">
-			<Text>The clergy from [COLOR_CYAN]{1_Prague}[ENDCOLOR] value your loss of a [COLOR_CYAN]{2_LostUnit}[ENDCOLOR], who was trying to convert pagans and infidels to your religion. To compensate this tragic event and encourage you to continue such desired missions, they buy from you few relics worth {3_Faith} [ICON_PEACE] and {4_Culture} [ICON_CULTURE].</Text>
+			<Text>The clergy from [COLOR_CYAN]{1_Prague}[ENDCOLOR] value your loss of a [COLOR_CYAN]{2_LostUnit}[ENDCOLOR], who was trying to convert pagans and infidels to your religion. To compensate this tragic event and encourage you to continue such desired missions, they buy from you few relics worth {4_Culture} [ICON_CULTURE] and {3_Faith} [ICON_PEACE].</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_PRAGUE_TITLE">
 			<Text>Glorious death during a mission!</Text>
@@ -324,7 +324,7 @@
 		</Row>
 		
 		<Row Tag="TXT_KEY_UCS_BONUS_HONIARA_LAND">
-			<Text>Good time has finally come to you. Intrigued [COLOR_CYAN]{1_Honiara}[ENDCOLOR] observes that with excitement. They are experienced fishermen, but they also know what are the possible field harvests, and they do not complain, when they are low. They appreciate that Gods made this season rich for you, and share additional {2_Food} [ICON_FOOD] in the [COLOR_CYAN]{3_City}[ENDCOLOR]. You should dance with these people and thank the Gods, too!</Text>
+			<Text>Good time has finally come to you. Intrigued [COLOR_CYAN]{1_Honiara}[ENDCOLOR] observes that with excitement. They are experienced fishermen, but they also know what are the possible field harvests, and they do not complain, when they are low. They appreciate that Gods made this season rich for you, and share additional {2_Food} [ICON_FOOD] in [COLOR_CYAN]{3_City}[ENDCOLOR]. You should dance with these people and thank the Gods, too!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_HONIARA_SEA">
 			<Text>[COLOR_CYAN]{1_Honiara}[ENDCOLOR] is shocked with your recent successful sea harvests. They are very experienced fishermen, but what you just did is beyond their expectations. They praise the Gods, who made this season so abundant. That's why they moved to your stocks in the [COLOR_CYAN]{2_City}[ENDCOLOR] inmense {3_Food} [ICON_FOOD]. It's more than usual. Let's dance with these people to thank your Gods, too!</Text>
@@ -504,7 +504,7 @@
 		</Row>
 		
 		<Row Tag="TXT_KEY_UCS_BONUS_SADDARVAZEH">
-			<Text>[COLOR_CYAN]{1_Saddarvazeh}[ENDCOLOR] prays to the Zoroaster for help in spreading the word to different nations. Thanks to their devotion, after long time of empty slogans, their voices were finally heard and awarded with a new ambitious [COLOR_POSITIVE_TEXT]Missionary[ENDCOLOR], who is immediately put under your command in [COLOR_CYAN]{2_City}[ENDCOLOR]. Use it wisely!</Text>
+			<Text>[COLOR_CYAN]{1_Saddarvazeh}[ENDCOLOR] prays to the Zoroaster for help in spreading the word to different nations. Thanks to their devotion, after thousands of empty slogans, their voices were finally heard and awarded with a new ambitious [COLOR_POSITIVE_TEXT]Missionary[ENDCOLOR], who is immediately put under your command in [COLOR_CYAN]{2_City}[ENDCOLOR]. Use it wisely!</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UCS_BONUS_SADDARVAZEH_TITLE">
 			<Text>Zoroaster speaks!</Text>

@@ -1,4 +1,17 @@
 ﻿Changelog:
+v19.3:
+- added compatibility with Canada custom civ (Vancouver, Victoria, Quebec City);
+- added Gondar block when Ethiopia is in play;
+- now VP additional CSs are deleted instead of being blocked (clearer diagnostics for me);
+- fixed few errors related to VP additional CSs;
+- another bunch of text fixes and improvements;
+
+v19.2:
+- adapted to all necessary changes introduced in VP 5.2.X and 5.3.X;
+	- removed UNITCOMBAT_SPACESHIP_PART, UNITCOMBAT_MISSILE and UNITCOMBAT_ARCHAEOLOGIST (VP has already added it in the meantime);
+	- removed Torii from my plans for Ishiyama CS bonus;
+- text fixes and improvements;
+	
 v19.1:
 - added two missing abilities for Waitukubuli and Sambaa K'ee;
 - added missing Flavours for latest CSs;
